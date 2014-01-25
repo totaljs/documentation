@@ -9,8 +9,8 @@
 <br />
 <div><strong>Download total.js:</strong></div>
 <ul class="text">
-    <li><a href="https://github.com/petersirka/total.js/releases" class="link">empty-project.zip (for OSX/Unix/Linux), 90 kB</a>
-    <li><a href="https://github.com/petersirka/total.js/releases" class="link">empty-project-visualstudio.zip or WebMatrix (for Windows + iisnode), 90 kB</a>
+    <li><a href="https://github.com/totaljs/framework/releases" class="link">empty-project.zip (for OSX/Unix/Linux), 90 kB</a>
+    <li><a href="https://github.com/totaljs/framework/releases" class="link">empty-project-visualstudio.zip or WebMatrix (for Windows + iisnode), 90 kB</a>
     <li><a href="http://www.totaljs.com/download/nginx.conf.zip" class="link">example of nginx.conf, 1 kB</a></li>
     <li><a href="http://www.totaljs.com/download/web.config.zip" class="link">total.js web.config for iisnode, 1 kB</a></li>
 </ul><br />
@@ -39,7 +39,7 @@ $ npm install total.js
 </pre>
 <br />
 <div>
-	Or download <a href="https://github.com/petersirka/total.js/releases" class="link b">empty-project (120 kB)</a>.
+	Or download <a href="https://github.com/totaljs/framework/releases" class="link b">empty-project (120 kB)</a>.
 </div>
 <br />
 <hr />
@@ -143,12 +143,16 @@ http {
         server_name totaljs.com;
         charset     utf-8;
 
+        # WITH WEBSOCKET DEFINITION
         location @proxy {
             proxy_set_header   Host             $http_host;
             proxy_set_header   X-Forwarded-For  $remote_addr;
             proxy_set_header   X-NginX-Proxy    true;
             proxy_pass         http://127.0.0.1:8000;
             proxy_redirect     off;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade          $http_upgrade;
+            proxy_set_header Connection       "upgrade";
             break;
         }
 
@@ -160,19 +164,7 @@ http {
             access_log    off;
             log_not_found off;
             deny all;
-        }
-
-        # WEBSOCKET DEFINITION
-
-        # location /websocket/ {
-        #     proxy_pass http://127.0.0.1:8000;
-        #     proxy_http_version 1.1;
-        #     proxy_set_header Host             $http_host;
-        #     proxy_set_header X-Forwarded-For  $remote_addr;
-        #     proxy_set_header X-NginX-Proxy    true;
-        #     proxy_set_header Upgrade          $http_upgrade;
-        #     proxy_set_header Connection       "upgrade";
-        # }
+        }        
     }
 
     server {
