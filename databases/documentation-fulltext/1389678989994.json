@@ -1,0 +1,1 @@
+{"url":"/FrameworkImage/#image.save","description":"Save image modification into the file. This function run all defined/called image commands.","name":"image.save(filename, [callback])","path":"FrameworkImage"}

@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.databases","description":"Get the public path from framework.config['directory-databases'].","name":"framework.path.databases([name])","path":"FrameworkPath"}

@@ -1,0 +1,1 @@
+{"url":"/FrameworkFileSystem/#framework.fs.create.content","description":"Create a content file into the framework.config['directory-contents'].","name":"framework.fs.create.content(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

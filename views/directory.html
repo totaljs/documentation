@@ -1,0 +1,78 @@
+@{meta('Project directory')}
+
+<h1>Project directory</h1>
+<br />
+<div>
+	Website / Web application project has simply directory structure. Many directories are optional.
+</div>
+<br />
+<div class="image">
+	@{image('directory-structure.png', 480, 302, 'Directory structure')}
+	<div>total.js web project - directory structure</div>
+</div>
+
+<br />
+<br />
+<h2>Directory: contents</h2>
+<div class="mt20 text"><span class="high">optional</span> Directory contains content files. Content file is a plain HTML file with <span class="high-code">.html</span> extension and you can render it in views. Content file doesn't contain special markup, is render as a raw HTML and it serves for banners or static content.<br /><br /><a href="/FrameworkViews/#content" class="link">Documentation: view @&#123;content()&#125;</a></div>
+<br />
+<hr />
+<br />
+<h2>Directory: controllers</h2>
+<div class="mt20 text"><span class="high red">required</span> Directory contains all controller files. Controller defines the different actions that your users can interact with. In each controller you can define routes, flags, functions, models, etc..<br /><br /><a href="/how-does-it-work/controllers/" class="link">How do controllers work?</a><br /><a href="/FrameworkController/" class="link">Documentation: FrameworkController</a><br /></div>
+<br />
+<hr />
+<br />
+<h2>Directory: databases</h2>
+<div class="mt20 text"><span class="high">optional</span> This directory is optional and contains all NoSQL embedded databases. If you don't use NoSQL embedded databases, remove this directory. NoSQL embedded database is implemented in total.js core.<br /><br /><a href="/FrameworkNoSQL/" class="link">Documentation: FrameworkNoSQL</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/contact-form">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: definitions</h2>
+<div class="mt20 text"><span class="high">optional</span> This directory is optional and contains all framework definitions. Defition can affect framework functions or your custom classes. When is framework ready all definition files are loaded.<br /><br /><a href="/how-does-it-work/definitions/" class="link">How do definitions work?</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/definitions">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: logs</h2>
+<div class="mt20 text"><span class="high">optional</span> This directory is optional and contains all log files. Log file is a plain text file and the file name contains date about its creation <span class="high-code">yyyy-MM-dd.log</span>. You can create a log file with: <span class="high-code">framework.log('my description')</span> or<br /><span class="high-code">controller.log('my description')</span>.<br /><br /><a href="/Framework/#framework.log" class="link">Documentation: framework.log()</a><br /><a href="/FrameworkController/#controller.log" class="link">Documentation: controller.log()</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/logs">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: modules</h2>
+<div class="mt20 text"><span class="high">optional</span> Modules directory contains all application modules. The module can contain classes, functions or constants. Each controller can call module or module can create own route.<br /><br /><a href="/how-does-it-work/modules/" class="link">How do modules work?</a><br /><a href="/Framework/#framework.module" class="link">Documentation: framework.module()</a><br /><a href="/FrameworkController/#controller.module" class="link">Documentation: controller.module()</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/framework-modules">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: public</h2>
+<div class="mt20 text"><span class="high">optional</span> This directory is published into the internet and directory contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.).</div>
+<br />
+<hr />
+<br />
+<h2>Directory: resources</h2>
+<div class="mt20 text"><span class="high">optional</span> If you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. This way is resources. A resource file is a plain text file that contains the strings. Resource file has same syntax as a config file.<br /><br /><a href="/how-does-it-work/resources/" class="link">How do resources work?</a><br /><a href="/Framework/#framework.resource" class="link">Documentation: framework.resource()</a><br /><a href="/FrameworkController/#controller.resource" class="link">Documentation: controller.resource()</a><br /><a href="/FrameworkViews/#resource" class="link">Documentation: view @&#123;resource()&#125;</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/localization-resources">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: templates</h2>
+<div class="mt20 text"><span class="high">optional</span> This directory contains templates. Template is a HTML file with special marks. Templates are suitable for repeating data (such as list of products, comments, etc.).<br /><br /><a href="/how-does-it-work/templates/" class="link">How do templates work?</a><br /><a href="/FrameworkController/#controller.template" class="link">Documentation: controller.template()</a><br /><a href="/FrameworkViews/#template" class="link">Documentation: view @&#123;template()&#125;</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/templating">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: tests</h2>
+<div class="mt20 text"><span class="high">optional</span> Test directory contains scripts for assertion testing. In assertion test you can test every controller and its routes in your web application. Tests are independent on your web application in release mode.<br /><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/assertion-testing">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: tmp</h2>
+<div class="mt20 text"><span class="high">optional</span> Tmp is a temporary directory. Framework stores compiled files, internal cache and form uploads in this directory. This directory is often cleaning.</div>
+<br />
+<hr />
+<br />
+<h2>Directory: views</h2>
+<div class="mt20 text"><span class="high">optional</span> Views are used for rendering a response to a request. View is HTML file with special framework marks. In views is defined layout of web pages.<br /><br /><a href="/how-does-it-work/views/" class="link">How do views work?</a><br /><a href="/FrameworkViews/" class="link">Documentation: Views</a><br /><a href="/FrameworkViews/#view" class="link">Documentation: view @&#123;view()&#125;</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/views">Example</a></div></div>
+<br />
+<hr />
+<br />
+<h2>Directory: workers</h2>
+<div class="mt20 text"><span class="high">optional</span> Workers are used for other helper work.<br /><br /><a href="/Framework/#framework.worker" class="link">Documentation: framework.worker()</a><br /><div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/wokers">Example</a></div></div>
+

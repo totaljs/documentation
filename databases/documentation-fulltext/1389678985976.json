@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#routeUpload","description":"Route URL to Upload directory by the config['static-url-upload'].","name":"@{routeUpload(name)}","path":"FrameworkViews"}

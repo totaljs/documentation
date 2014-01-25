@@ -1,0 +1,1 @@
+{"url":"/FrameworkFileSystem/#framework.fs.create.css","description":"Create a CSS file into the framework.config['directory-public'] + framework.config['static-url-css'].","name":"framework.fs.create.css(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

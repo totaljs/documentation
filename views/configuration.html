@@ -1,0 +1,282 @@
+@{meta('Configuration')}
+
+<h1>Configuration</h1>
+
+<br />
+<div class="text">
+	Framework know two configuration files - <strong class="high">debug</strong> and <strong class="high">release</strong>. Debug configuration file is for development and release configuration file is for production. Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
+</div>
+<br />
+<div class="image">
+	@{image('config-files.png', 300, 256, 'Directory with config files')}
+	<div>Sample of configuration files in website directory</div>
+</div>
+<br />
+<h2>Structure of configuration file</h2>
+<br />
+<div class="text">
+	Configuration files are plain text files saved in UTF-8 encoding. Structure of configuration file is very simple. Each line is a key-value value. All values in configuration file are optional. You can add your own custom values and from any place in the framework you can get the value back.
+</div>
+<br />
+<div class="important"><b>Important note:</b></div class="red">
+<div class="mt3 text">All values obtained from the framework are readonly. Framework doesn't store back changed values into the config file. <b>Configuration file is loaded at the start once.</b></div>
+<br />
+<hr />
+<h3>How does framework parse a configuration file?</h3>
+<div class="text">
+	Framework reads configuration file into the memory. Then it splits all lines into the array <span class="high-code">lines.split('&#92;n')</span>. In the each line framework finds first colon <b>:</b> <span class="high-code">line.indexOf(':')</span>. Colon is a delimiter key:value. Then framework trims white chars <span class="high-code">key.trim()</span> from a <b>key</b> and it trims white chars <span class="high-code">value.trim()</span> from a <b/>value</b>. If the line doesn't contain colon <b>:</b> then line is considered as a comment.
+</div>
+<br />
+<div><strong>Example:</strong></div>
+<br />
+<pre class="brush: plain">
+// this is a comment
+key-1                              : value
+key-2                              : value
+
+this is a comment
+this is a key                      : :::: value
+key-3                              : &lt;b&gt;value&lt;/b&gt;
+value                              : key
+</pre>
+		<br />
+		<div><strong>Result:</strong></div>
+		<br />
+		<pre class="brush: jscript">
+console.log(framework.config['key-1']);              // OUTPUT: value
+console.log(framework.config['key-2']);              // OUTPUT: value
+console.log(framework.config['this is a key']);      // OUTPUT: :::: value
+console.log(framework.config['key-3']);              // OUTPUT: &lt;b&gt;value&lt;/b&gt;
+console.log(framework.config.value);                 // OUTPUT: key
+</pre>
+<br />
+<div class="text">
+	The framework has built-in String.prototype for parsing configuration from string into the object <a href="/String.prototype/#String.prototype.configuration" class="link">String.prototype.configuration</a>.
+</div>
+<br />
+<h2>Framework optional options</h2>
+<br />
+<pre class="brush: plain">
+// framework options
+name                               : totaljs.com
+version                            : 1.01
+secret                             : secret-key-for-web
+author							   : Your company name
+ 
+etag-version                       :
+
+// Default directory options
+directory-definitions              : /definitions/
+directory-contents                 : /contents/
+directory-controllers              : /controllers/
+directory-views                    : /views/
+directory-temp                     : /tmp/
+directory-templates                : /templates/
+directory-resources                : /resources/
+directory-public                   : /public/
+directory-modules                  : /modules/
+directory-logs                     : /logs/
+directory-tests                    : /tests/
+directory-workers                  : /workers/
+
+// Default url for static routing
+static-url                         :
+static-url-js                      : /js/
+static-url-css                     : /css/
+static-url-image                   : /img/
+static-url-video                   : /video/
+static-url-font                    : /font/
+static-url-upload                  : /upload/
+
+// Default extensions for accepting files
+static-accepts                     : .jpg,.png,.gif,.ico,.js,.css,.txt,.xml,.woff,.ttf,.eot,.svg,.zip,.rar,.pdf,....
+
+// Static-accepts-custom: add your own values into the static-accepts
+static-accepts-custom              : .mp3,.flv
+
+// Default configuration of listening
+// If you set IP and PORT manually in the code, then is skipped this setting.
+default-ip                         : 127.0.0.1
+default-port					   : 8000
+
+// Default view layout - {directory-views}/{_layout}.html
+default-layout                     : _layout
+ 
+// Default maximum request size / length (default 5 kB)
+default-request-length             : 5120
+default-websocket-request-length   : 5120
+ 
+// In milliseconds
+default-request-timeout            : 3000
+ 
+allow-gzip                         : true
+ 
+// If you'll using Socket.io, set allow-websocket to false
+allow-websocket                    : true
+
+// enable/disable static compilation
+allow-compile-js                   : true
+allow-compile-css                  : true
+</pre>
+<br />
+<h2>How to get value from configuration?</h2>
+<h3>In the framework class</h3>
+<pre class="brush: jscript">
+var name = framework.config['name'];
+
+// or
+
+name = framework.config.name;
+</pre>
+		<h3>In the controller class</h3>
+<pre class="brush: jscript">
+var name = controller.config['name'];
+
+// or
+
+name = controller.config.name;
+</pre>
+		<h3>In the view</h3>
+<pre class="brush: xml">
+	@&#123;config[&#39;name&#39;]&#125;
+
+	&lt;!-- OR --&gt;
+
+	@&#123;config.name&#125;
+</pre>
+		<br />
+		<br />
+		<h2>What should you know?</h2>
+		<div class="text mt15">
+			Configuration can be inject from URL address - <a href="https://github.com/petersirka/total.js/tree/master/examples/framework-inject-config" class="link">Example</a>.
+		</div>
+
+		<h3 id="config.name">configuration: @name</h3>
+<pre class="brush: plain">
+&nbsp;
+name                               : totaljs.com
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	This option is a website name and it's used in a process name. Name is inserted into the META title (in all subpages). If you want to know how the framework creates a meta information, please visit <a href="/Framework/#framework.onMeta" class="link">framework.onMeta()</a>.
+</div>
+<br />
+<div class="image">
+	@{image('framework-configuration-name.png', 457, 267, 'framework.config.name')}
+	<div>Where is used a framework.config[&#39;name&#39;]?</div>
+</div>
+		<h3 id="config.author">configuration: @author</h3>
+<pre class="brush: plain">
+&nbsp;
+author                             : Your company name
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	This option adds the meta author tag into the HTML according <a href="/FrameworkViews/#@&#123;head&#125;" class="link">@&#123;head&#125;</a> mark.
+</div>
+<br />
+<div class="image">
+	@{image('meta-author.png', 500, 20, 'framework.config.author')}
+	<div>Where is used the framework.config[&#39;author&#39;]?</div>
+</div>
+<br />
+<h3>configuration: @version</h3>
+<pre class="brush: plain">
+&nbsp;
+version                           : 1.01
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	This option is a website version and it's used in an etag if <span class="high-code">framework.config[&#39;etag-version&#39;]</span> <b>is empty</b>. If is the <span class="high-code">framework.config.version</span> used as etag then all chars without a-z and 0-9 are removed. Example: <span class="high-code">1.01</span> = <span class="high-code">101</span>.
+</div>
+<br />
+<div class="image">
+	@{image('etag-version.gif', 382, 186, 'framework.config.version')}
+	<div>Where is used the framework.config[&#39;version&#39;]?</div>
+</div>
+<br />
+<h3>configuration: @etag-version</h3>
+<pre class="brush: plain">
+&nbsp;
+etag-version                      : 1
+&nbsp;
+</pre>
+		<br />
+		<div>
+			This option affects all etags (<a href="http://en.wikipedia.org/wiki/HTTP_ETag" class="link">HTTP ETag</a>) in static files. ETag-version value is added always at the end of generated etag. Example: framework generates etag <span class="high-code">1760</span> internally and automatically add <span class="high-code">:1</span> to the end of etag - result <span class="high-code">1760:1</span>.
+		</div>
+		<br />
+		<div class="image">
+			@{image('etag.gif', 382, 186, 'framework.config[etag-version]')}
+			<div>Where is used the framework.config[&#39;etag-version&#39;]?</div>
+		</div>
+		<br />
+		<h3>configuration: @secret</h3>
+<pre class="brush: plain">
+&nbsp;
+secret                          : secret-key-for-web
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	This option is a secret key for encoding &amp; decoding values (e.g. Session). Only two methods use this value: <span class="high-code">framework.encode()</span> and <span class="high-code">framework.decode()</span>. For more information click here: <a href="/Framework/#framework.encode" class="link">Framework encoding &amp; decoding hash</a>.
+</div>
+<br />
+<hr />
+<h3>configuration: @static-url and @static-url-[js, css, image, video, font, upload]</h3>
+<pre class="brush: plain">
+&nbsp;
+static-url                         :
+static-url-js                      : /js/
+static-url-css                     : /css/
+static-url-image                   : /img/
+static-url-video                   : /video/
+static-url-font                    : /font/
+static-url-upload                  : /upload/
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	This option affects all functions in all controllers and views. If you use e.g. <span class="high-code">controller.routeImage('logo.png')</span> then URL will be routed into the <span class="high-code">/img/logo.png</span>.
+</div>
+<div class="documentation-example mt10">
+	<a href="https://github.com/petersirka/total.js/tree/master/examples/static-crossdomain">Crossdomain example</a>
+</div>
+<br />
+<hr />
+<h3>configuration: @static-accepts</h3>
+<pre class="brush: plain">
+&nbsp;
+static-accepts                     : .jpg,.png,.gif,.ico,.js,.css,.txt,.xml,.woff,.ttf,.eot,.svg,.zip,.rar,.pdf,....
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	<span class="high-code">framework.config['static-accepts']</span> is parsed as Array and this option allows/disallows request which is routed into the static file. <b>Default accepts:</b> .jpg, .png, .gif, .ico, .js, .css, .txt, .xml, .woff, .ttf, .eot, .svg, .zip, .rar, .pdf, .docx, .xlsx, .doc, .xls, .html, .htm, .appcache, .map, .ogg, .mp3, .webp, .swf.
+</div>
+<br />
+<hr />
+<h3>configuration: @static-accepts-custom</h3>
+<pre class="brush: plain">
+&nbsp;
+static-accepts-custom              : .mp3,.flv
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	<span class="high-code">framework.config[&#39;static-accepts-custom&#39;]</span> is parsed as Array and then is inserted into the <span class="high-code">framework.config[&#39;static-accepts&#39;]</span>.
+</div>
+<br />
+<br />
+<h2 id="debug-release-tip">Tip: automatically setting of debug / release mode</h2>
+<div class="mt15 text">
+	My development hostname machine is <span class="high-code">Peters.iMac.local</span>. If I&#39;ll copy application into the server then framework is running in a production mode (config-release).
+</div>
+<br />
+<div class="image">
+	@{image('debug-release.gif', 530, 205, 'Debug & Release')}
+	<div>How to automatically set up the debug &amp; release mode?</div>
+</div>

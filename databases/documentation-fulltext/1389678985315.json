@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#prev","description":"Add prev (PREVIOUS PAGE) tag into the HTML head. This result is rendered via @{head} tag.<br />Output: &lt;link rel=&quot;prev&quot; ...","name":"@{prev(url)}","path":"FrameworkViews"}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    @{meta}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=1280, user-scalable=yes" />
+    <meta name="robots" content="all,follow" />
+    @{head}
+    @{css('default.css')}
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/sh/shCore.js"></script>
+    <script type="text/javascript" src="/sh/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/sh/shBrushPlain.js"></script>
+    <script type="text/javascript" src="/sh/shBrushCss.js"></script>
+    <script type="text/javascript" src="/sh/shBrushXml.js"></script>
+    @{js('default.js')}
+    @{favicon('favicon.ico')}
+<head>
+<body>
+
+    <div class="container">
+        <div>
+            <a href="/">@{image('logo.png', 700, 90, 'total.js logo')}</a>
+        </div>
+        <br />
+        <div class="menu">
+            <form action="/search/" method="get" class="search">
+                <div><input type="text" name="q" placeholder="Search in documentation" value="@{get.q}" autofocus="autofocus" /></div>
+            </form>
+            <ul>
+                <li><a href="/">Get started</a></li>
+                <li><a href="/tutorial/">Tutorial</a></li>
+                <li><a href="/configuration/">Configuration</a></li>
+                <li><a href="/directory/">Directory</a></li>
+                <!--
+                <li><a href="/best-practices/">Best practices</a></li>
+                -->
+                <li><a href="/did-you-know/" class="b">Did you know?</a></li>
+                <li><a href="https://groups.google.com/forum/#!forum/totaljs" target="_blank">Discussion forum</a></li>
+                <li><a href="https://github.com/petersirka/total.js/tree/master/examples">Examples</a></li>
+                <li><a href="https://github.com/petersirka/total.js-modules" style="color:red">Download modules</a></li>
+                <li><a href="/videos/" class="b">Videos</a></li>
+            </ul>
+            <br />
+            <div><strong>How does it works?</strong></div>
+            <ul>
+                <li><a href="/how-does-it-work/definitions/">Definitions</a></li>
+                <li><a href="/how-does-it-work/controllers/">Controllers</a></li>
+                <li><a href="/how-does-it-work/modules/">Modules</a></li>
+                <li><a href="/how-does-it-work/views/">Views / Render engine</a></li>
+                <li><a href="/how-does-it-work/templates/">Templates</a></li>
+                <li><a href="/how-does-it-work/resources/">Resources</a></li>
+                <li><a href="/how-does-it-work/html-css-js/">HTML, CSS, JS</a></li>
+                <li><a href="/how-does-it-work/authorization/">Authorization</a></li>
+                <li><a href="/how-does-it-work/validation/">Validation</a></li>            
+                <li><a href="/how-does-it-work/security/">Security (XSS, CSRF)</a></li>
+            </ul>
+            <br />
+            <div><strong>Documentation</strong></div>
+            @{template('menu', repository.menu)}
+            <br />
+            <div><strong>Builders</strong></div>
+            @{template('menu', repository.menuBuilders)}
+            <br />
+            <div><strong>Prototypes</strong></div>
+            @{template('menu', repository.menuPrototypes)}
+            <br />
+            <div><strong>Additional</strong></div>
+            @{template('menu', repository.menuAdditional)}
+        </div>    
+        <div class="content">
+            @{body}
+        </div>
+        <div class="cl">&nbsp;</div>
+    </div>
+    
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"url":"/FrameworkFileSystem/#framework.fs.create.js","description":"Create a JS file into the framework.config['directory-public'] + framework.config['static-url-js'].","name":"framework.fs.create.js(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

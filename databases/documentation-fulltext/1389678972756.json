@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.on('request-begin')","description":"This event is triggered when begin HTTP request to a controller (NOT VALID FOR STATIC FILES).","name":"framework.on('request-begin', req, res)","path":"Framework"}

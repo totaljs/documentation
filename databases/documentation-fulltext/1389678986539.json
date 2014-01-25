@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#viewToggle","description":"Render view into current view.","name":"@{viewToggle(visible, name, [model])}","path":"FrameworkViews"}

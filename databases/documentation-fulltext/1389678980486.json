@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.routeImage","description":"Route a image file by the config['static-url-image']. Returns relative URL address.","name":"controller.routeImage(name)","path":"FrameworkController"}

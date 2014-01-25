@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.onRoute","description":"Refusing request. You must return Boolean value. If false then is request refused.","name":"framework.onRoute(req, res)","path":"Framework"}

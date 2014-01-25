@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.workers","description":"Get the workers path from framework.config['directory-workers'].","name":"framework.path.workers([name])","path":"FrameworkPath"}

@@ -1,0 +1,27 @@
+@{meta('How does security work?')}
+
+<h1>How does security work?</h1>
+<br />
+<hr />
+<br />
+<div class="text">
+	<ul>		
+		<li>Framework automatically protects XSS (<a href="http://en.wikipedia.org/wiki/Cross-site_scripting" class="link" target="_blank">Cross-site scripting</a>).</li>
+		<li>For protecting of <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" class="link">CSRF attacks</a> you must use XHR sending of forms.</li>
+		<li>Views and Templates render encoded HTML as default.</li>
+		<li>Framework supports method for settings <a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" class="link" target="_blank">CORS</a>.</li>
+		<li>Framework supports auto-binding model into forms.</a>
+	</ul>
+	<div style="height:50px">
+		<div class="documentation-example fl"><a href="https://github.com/petersirka/total.js/tree/master/examples/xss-protection"><b>EXAMPLE:</b> XSS protection</a></div>
+		<div class="documentation-example fl"><a href="https://github.com/petersirka/total.js/tree/master/examples/csrf"><b>EXAMPLE:</b> CSRF</a></div>
+		<div class="documentation-example fl"><a href="https://github.com/petersirka/total.js/tree/master/examples/cors"><b>EXAMPLE:</b> CORS</a></div>
+		<div class="documentation-example fl"><a href="https://github.com/petersirka/total.js/tree/master/examples/cors"><b>EXAMPLE:</b> Auto-Binding models</a></div>		
+	</div>	
+</div>
+
+<h2>Auto-bindings models</h2>
+
+<div class="center">
+	@{image('views-binding.png', 800, 517, 'Auto-bindings models')}
+</div>

@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.routeCSS","description":"Route a CSS file accoring the config['static-url-css']. Returns the relative URL address.","name":"framework.routeCSS(name)","path":"Framework"}

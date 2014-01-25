@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.on('controller')","description":"This event is called every Request to Controller. In this event you can cancel request to the controller through controller.cancel().","name":"framework.on('controller', controller, name)","path":"Framework"}

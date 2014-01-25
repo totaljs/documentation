@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.responsePipe","description":"Create response from URL (copy response to a response without headers).","name":"framework.responsePipe(req, res, url, [headers], [timeout], [callback])","path":"Framework"}

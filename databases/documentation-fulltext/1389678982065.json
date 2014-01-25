@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.image","description":"Response image. For load file from anywhere - file name must start with ~ char.","name":"controller.image(filename, fnProcess, [headers], [useImageMagick])","path":"FrameworkController"}

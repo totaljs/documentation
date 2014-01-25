@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#etag","description":"Set ETag value - this function create response header.","name":"@{etag(value)}","path":"FrameworkViews"}

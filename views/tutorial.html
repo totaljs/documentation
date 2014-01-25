@@ -1,0 +1,231 @@
+@{meta('Tutorial')}
+@{currentImage('tutorial')}
+
+<h1>How to create a website using total.js?</h1>
+
+<h2>Create website directory</h2>
+<div class="text mt20">
+	Firstly we must create directory for the website.
+	<br /><br />
+	<pre class="brush: plain">$ mkdir website
+cd website</pre>
+</div>
+<br />
+<div class="documentation-example">
+	@{download('tutorial.zip', 'Download this tutorial (.zip)')}
+</div>
+<h2>Installation</h2>
+<div class="text mt20">
+	<pre class="brush: plain">$ npm install total.js</pre>
+	<br />
+	<div class="center">
+		@{image('install.png', 740, 418, 'total.js installation')}
+	</div>
+	<ul>
+		<li>Open website directory in <a href="http://www.sublimetext.com" class="link">Sublime Text Editor</a>.</li>
+	</ul>
+
+</div>
+<h2>First steps</h2>
+<div class="text">
+	<ul>
+		<li>create &quot;controllers&quot; directory</li>
+		<li>create &quot;definitions&quot; directory</li>
+		<li>create &quot;public&quot; directory</li>
+		<li>create &quot;views&quot; directory</li>
+		<li>create &quot;templates&quot; directory</li>
+	</ul>
+	<div>For more informations about directories read: <a href="/directory/" class="link">project directory structure</a>.</div>
+	<h3>website/index.js</h3>
+	<div>This script is a base application script and this script will run with node.js.</div>
+	<br />
+	<pre class="brush: jscript">var framework = require('total.js');
+var http = require('http');
+
+var debug = true;
+
+framework.run(http, debug, 8005);
+</pre>
+	<br />
+	<div class="center">
+		@{image('base.png', 784, 502, 'Empty project in Sublime Text Editor')}
+	</div>
+	<h3>Create definition: definitions/database.js</h3>
+	<div>We must create a temporary database of blogs. For creating database we use definitions. Definition script is automatically run after the framework is loaded. <a href="/how-does-it-work/definitions/" class="link">How do definitions work?</a></div>
+	<br />
+<pre class="brush: jscript">var db = [];
+
+db.push({ title: 'How to create a website?', link: 'how-to-create-a-website', date: new Date().add('m', -5), body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.' });
+db.push({ title: 'Search engine optimization', link: 'search-engine-optimalization', date: new Date().add('m', -4), body: 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.' });
+db.push({ title: 'JavaScript Best Practices', link: 'javascript-best-practices', date: new Date().add('m', -3), body: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.' });
+db.push({ title: 'Sass vs. LESS', link: 'sass-vs-less', date: new Date().add('m', -2), body: 'This book is a treatise on the theory of ethics, very popular during the Renaissance.' });
+db.push({ title: 'Mobile and tablet development', link: 'mobile-and-tablet-development', date: new Date().add('m', -1), body: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable.' });
+db.push({ title: 'Web application framework for node.js', link: 'web-application-framework-for-node-js', date: new Date(), body: 'If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text.' });
+
+framework.global.db = db;
+</pre>
+	<br />
+	<div class="center">
+		@{image('definition.png', 761, 474, 'Temporary database definition')}
+	</div>
+	<h3>Create controller: controllers/default.js</h3>
+	<div><a href="/how-does-it-work/controllers/" class="link">How do controllers work?</a></div>
+	<h4 class="mt15">Define routes and actions</h4>
+	<pre class="brush: jscript">exports.install = function(framework) {
+	framework.route('/', view_homepage);
+	framework.route('/{link}/', view_detail);
+};
+
+// Blog list
+function view_homepage() {
+	var self = this;
+	self.view('homepage');
+}
+
+// Blog detail
+function view_detail(link) {
+	var self = this;
+
+	var blog = self.global.db.find(function(blog) {
+		return blog.link === link;
+	});
+
+	if (blog === null) {
+		self.view404();
+		return;
+	}
+
+	self.view('detail', blog);
+}
+</pre>
+	<br />
+	<div class="center">
+		@{image('controller.png', 761, 474, 'Define controller')}
+	</div>
+	<br />
+	<hr />
+	<h2>Create views</h2>
+	<div><a href="/how-does-it-work/views/" class="link">How do views work?</a></div>
+	<h3 class="mt15">views/_layout.html</h3>
+	<div>In <span class="high-code">_layout.html</span> we will generate dynamic content - H1, sitemap and body.</div>
+	<br />
+	<pre class="brush: xml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    @&#123;meta&#125;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=10&quot; /&gt;
+    &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=1280, user-scalable=yes&quot; /&gt;
+    &lt;meta name=&quot;robots&quot; content=&quot;all,follow&quot; /&gt;
+    @&#123;head&#125;
+    @&#123;favicon('favicon.ico')&#125;
+&lt;head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;@&#123;title&#125;&lt;/h1&gt;
+
+    @&#123;template('sitemap', sitemap)&#125;
+
+    &lt;div&gt;
+        @&#123;body&#125;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+	<br />
+	<div class="center">
+		@{image('layout.png', 761, 474, 'Define layout')}
+	</div>
+	<hr />
+	<h3 class="mt20">views/homepage.html</h3>
+	<div>In this &quot;view&quot; we will add MetaTags, sitemap and show all blogs.</div>
+	<br />
+	<pre class="brush: xml">@&#123;meta('My blog website', 'Description', 'Keywords')&#125;
+@&#123;sitemap('Homepage')&#125;
+
+&lt;h2&gt;All blogs&lt;/h2&gt;
+
+@&#123;template('blogs', global.db, '', global.db)&#125;
+</pre>
+	<br />
+	<div class="center">
+		@{image('homepage.png', 761, 474, 'Define homepage view')}
+	</div>
+	<hr />
+	<h3 class="mt20">views/detail.html</h3>
+	<div>In this &quot;view&quot; we will show blog detail.</div>
+	<br />
+	<pre class="brush: xml">@&#123;meta(model.title)&#125;
+@&#123;sitemap('Homepage', '../')&#125;
+@&#123;sitemap(model.title)&#125;
+
+&lt;h2&gt;Blog body&lt;/h2&gt;
+&lt;div&gt;@&#123;model.body&#125;&lt;/div&gt;
+</pre>
+	<br />
+	<div class="center">
+		@{image('detail.png', 761, 474, 'Define detail view')}
+	</div>
+	<br />
+	<hr />
+	<h2>Create templates</h2>
+	<div><a href="/how-does-it-work/templates/" class="link">How do templates work?</a></div>
+	<h3 class="mt15">templates/blogs.html</h3>
+	<div>In this &quot;template&quot; we define rendering blogs from database.</div>
+	<br />
+<pre class="brush: xml">&lt;ul&gt;
+	&lt;!--
+	&lt;li&gt;
+		&lt;div&gt;&lt;a href=&quot;/{link}/&quot;&gt;{title}&lt;/a&gt;&lt;/div&gt;
+		&lt;div&gt;{date | dd.MM.yyyy}&lt;/div&gt;
+	&lt;/li&gt;
+	--&gt;
+&lt;/ul&gt;
+&lt;div&gt;Blogs: {length} {length | 'items', 'item', 'items', 'items'}&lt;/div&gt;
+</pre>
+	<br />
+	<div class="center">
+		@{image('blogs.png', 761, 474, 'Define template for rendering blogs')}
+	</div>
+	<hr />
+	<h3>templates/sitemap.html</h3>
+	<div>In this &quot;template&quot; we define rendering sitemap.</div>
+	<br />
+<pre class="brush: xml">&lt;div&gt;
+	Sitemap:&amp;nbsp;
+	&lt;!--
+	&amp;rarr; &lt;a href=&quot;{url}&quot;&gt;{name}&lt;/a&gt;
+	--&gt;
+&lt;/div&gt;
+</pre>
+	<br />
+	<div class="center">
+		@{image('sitemap.png', 761, 474, 'Define template for rendering sitemap')}
+	</div>
+	<br />
+	<h2>Run website</h2>
+	<div>Run website via Sublime Text Editor (CMD+B) or open terminal and type:</div>
+	<br />
+<pre class="brush: plain">$ node index.js</pre>
+	<br />	
+	<div class="center">
+		@{image('run.png', 761, 474, 'Run in Sublim Text')}
+	</div>
+	<br />
+	<hr />
+	<h3>Open website in web browser</h3>
+	<br />
+	<div class="center">
+		@{image('homepage-render.png', 776, 563, 'Homepage')}
+	</div>
+	<br />
+	<hr />
+	<br />
+	<div class="center">
+		@{image('detail-render.png', 776, 563, 'Detail')}
+	</div>	
+</div>
+<div class="documentation-example" style="margin-left:17px">
+	@{download('tutorial.zip', 'Download this tutorial (.zip)')}
+</div>

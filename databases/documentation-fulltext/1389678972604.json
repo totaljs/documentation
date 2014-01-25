@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.on('clear')","description":"This event is triggered when framework clears internal information.","name":"framework.on('clear', name, [value])","path":"Framework"}

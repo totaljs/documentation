@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#image","description":"Create IMG tag. URL address routes into the config['static-url-image'] (by the currentImage).","name":"@{image(filename, [width], [height], [alt], [className])}","path":"FrameworkViews"}

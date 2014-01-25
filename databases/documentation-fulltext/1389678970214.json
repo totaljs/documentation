@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.file","description":"Register a new file route to controller or module. This function can handle static files in a controller. This function must be executed in a controller/module file. For more information look up to the example.","name":"framework.file(name, [fnValid], fnExec)","path":"Framework"}

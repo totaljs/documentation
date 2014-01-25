@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.clear","description":"Clear uploaded files. Important: for prevent auto clearing use controller.noClear().","name":"controller.clear()","path":"FrameworkController"}

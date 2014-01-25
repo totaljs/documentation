@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.controllers","description":"Get the controllers path from framework.config['directory-controllers'].","name":"framework.path.controllers([name])","path":"FrameworkPath"}

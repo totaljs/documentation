@@ -1,0 +1,57 @@
+@{meta('How do definitions work?')}
+
+<h1>How do definitions work?</h1>
+<br />
+<div class="message message-alert">
+	Definition serves for setting of framework.
+</div>
+<br />
+<hr />
+<div class="text">
+	<ul>
+		<li>Definition is plain JavaScript file.</li>
+		<li>Framework automatically loads each definition.</li>
+		<li>You can create unlimited count of definitions.</li>
+		<li class="red">Definition can access to framework functions, properties and events.</li>
+		<li class="red">Definition can inject controller, config and module from URL.</li>
+		<li class="red">Definition can create any files.</li>
+		<li><b>Definition can inject from URL address</b> - <a href="https://github.com/petersirka/total.js/tree/master/examples/framework-inject-definition" class="link">Example</a>.</li>
+	</ul>
+</div>
+<!--
+<div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/framework-definitions">Definition example</a></div>
+<br />
+-->
+<hr />
+<div class="center">@{image('framework-start.png', 810, 300, 'Starting total.js project')}</div>
+<hr />
+<br />
+<br />
+<h2 class="nmt">Definition of Definition</h2>
+<br />
+<pre class="brush: jscript">
+
+// framework == Framework
+// utils == FrameworkUtils
+
+// Example:
+framework.injectModule('test', 'http://www.totaljs.com/inject.js');
+
+framework.custom = {};
+framework.custom.myName = 'Peter Širka';
+
+framework.config.secret += utils.GUID(5);
+
+framework.helpers.now = function(format) {
+	return new Date().format(format || 'dd.MM.yyyy');
+};
+
+// Set restrictions
+framework.restrictions.disallow('192.168.0.1');
+framework.restrictions.disallow('user-agent', /MSIE/);
+
+// Set redirects
+framework.redirect('http://totaljs.com', 'http://www.totaljs.com', true, true);
+
+</pre>
+<br />

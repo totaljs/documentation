@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#head","description":"Add value into the HTML head. This result is rendered via @{head} - without arguments.","name":"@{head(value)}","path":"FrameworkViews"}

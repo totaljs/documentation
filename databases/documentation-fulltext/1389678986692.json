@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#template","description":"Render template from config['directory-templates'].","name":"@{template(name, arr, [nameEmpty], [repository])}","path":"FrameworkViews"}

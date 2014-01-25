@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.noClear","description":"Enable/Disable auto clearing of uploaded files. For manual clearing of uploaded files use: controller.clear().","name":"controller.noClear([enable])","path":"FrameworkController"}

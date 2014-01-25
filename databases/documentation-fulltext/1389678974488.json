@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.public","description":"Get the public path from framework.config['directory-public'].","name":"framework.path.public([name])","path":"FrameworkPath"}

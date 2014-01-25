@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.responseStream","description":"Response stream. All text/* content-types are compressed via GZIP (if is enabled config['allow-gzip']).","name":"framework.responseStream(req, res, contentType, stream, [downloadName], [headers])","path":"Framework"}

@@ -1,0 +1,1 @@
+{"url":"/FrameworkUtils/#utils.download","description":"Download content or file from an url address.","name":"utils.download(url, callback, [headers], [method], [params], [encoding])","path":"FrameworkUtils"}

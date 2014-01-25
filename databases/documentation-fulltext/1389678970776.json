@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.isProcessed","description":"Indicates whether the static file is processed internally. This function is bounded with framework.responseFile() or framework.responseImage().","name":"framework.isProcessed(filename)","path":"Framework"}

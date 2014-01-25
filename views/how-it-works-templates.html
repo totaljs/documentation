@@ -1,0 +1,241 @@
+@{meta('How do templates work?')}
+
+<h1>How do &quot;templates&quot; work?</h1>
+<br />
+<div class="message message-alert">
+	Templates are rendering data from database or from <span class="high-code">Array</span> collection. It&#39;s safe, simple and comfortable for rendering data from database. Templates are rendered in views or into a string.
+</div>
+<br />
+<hr />
+<div class="text">
+	<ul>
+		<li>Template is plain HTML file.</li>
+		<li><b class="red">IMPORTANT:</b> Server tags are represented as <span class="high-code">&#123;keyword&#125;</span> (encoded) tag and <span class="high-code">&#123;!keyword&#125;</span> (raw) tag.</li>
+		<li>Templates support very simple condition.</li>
+		<li>Templates support number and date formatting.</li>
+		<li>Templates support pluralizing of numbers.</li>
+		<li class="red b">Templates can render other Templates or Views.</li>
+		<li class="red">Templates are synchronous.</li>
+		<li class="red">Templates are compiled into the function.</li>
+		<li class="red">All templates (HTML) are minimized under compilation (total.js saves memory).</li>
+		<li class="red">Render template engine is fixed (the only option for changing render engine is rewriting of the prototype).</li>
+		<li class="red b">You can render template into the string in a controller or use <a href="/String.prototype/#String.prototype.params" class="link">String.prototype.params</a>.</li>
+		<li>Templates don't support custom helpers.</li>
+	</ul>
+</div>
+<hr />
+<br />
+<div class="center">@{image('templates.png', 810, 220, 'Views')}</div>
+
+<h2>Define template</h2>
+<div class="text">
+	You can define a lot of template files.
+</div>
+<div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/templating">Example</a></div>
+<h3>Mode: repeat all</h3>
+<div class="text">
+	Mode: &quot;repeat all&quot; is repeating of all HTML code by the array collections.
+</div>
+<br />
+<pre class="brush: xml">
+	&lt;div&gt;{name}&lt;/div&gt;
+	&lt;div&gt;{registered | yyyy-MM-dd}&lt;/div&gt;
+</pre>
+<br />
+<div class="fs11 mb10"><strong>EXAMPLE OF OUTPUT</strong>:</div>
+<pre class="brush: xml">
+	&lt;div&gt;Peter&lt;/div&gt;
+	&lt;div&gt;2013-10-15&lt;/div&gt;
+	&lt;div&gt;John&lt;/div&gt;
+	&lt;div&gt;2013-10-12&lt;/div&gt;
+	&lt;div&gt;Lucia&lt;/div&gt;
+	&lt;div&gt;2013-10-05&lt;/div&gt;
+</pre>
+<br />
+<hr />
+<h3>Mode: repeat comment</h3>
+<div class="text">
+	Mode: &quot;repeat comment&quot; is repeating of all HTML code in the commented code.
+</div>
+<br />
+<pre class="brush: xml">
+	&lt;ul&gt;
+		&lt;!--
+		&lt;li&gt;
+			&lt;div&gt;{name}&lt;/div&gt;
+			&lt;div&gt;{registered | yyyy-MM-dd}&lt;/div&gt;
+		&lt;/li&gt;
+		--&gt;
+	&lt;/ul&gt;
+</pre>
+<br />
+<div class="fs11 mb10"><strong>EXAMPLE OF OUTPUT</strong>:</div>
+<pre class="brush: xml">
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;div&gt;Peter&lt;/div&gt;
+			&lt;div&gt;2013-10-15&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;div&gt;John&lt;/div&gt;
+			&lt;div&gt;2013-10-12&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;div&gt;Lucia&lt;/div&gt;
+			&lt;div&gt;2013-10-05&lt;/div&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+</pre>
+<br />
+<hr />
+<h3>Mode: repeat comment with repository object</h3>
+<pre class="brush: xml">
+	&lt;ul&gt;
+		&lt;!--
+		&lt;li&gt;
+			&lt;div&gt;{name}&lt;/div&gt;
+			&lt;div&gt;{registered | yyyy-MM-dd}&lt;/div&gt;
+		&lt;/li&gt;
+		--&gt;
+	&lt;/ul&gt;
+	&lt;div&gt;{items | ### ###} {items | 'items', 'item', 'items', 'items'}&lt;/div&gt;
+</pre>
+<br />
+<div class="fs11 mb10"><strong>EXAMPLE OF OUTPUT</strong>:</div>
+<pre class="brush: xml">
+	&lt;ul&gt;
+		&lt;li&gt;
+			&lt;div&gt;Peter&lt;/div&gt;
+			&lt;div&gt;2013-10-15&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;div&gt;John&lt;/div&gt;
+			&lt;div&gt;2013-10-12&lt;/div&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;div&gt;Lucia&lt;/div&gt;
+			&lt;div&gt;2013-10-05&lt;/div&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;div&gt;3 items&lt;/div&gt;
+</pre>
+<br />
+<br />
+<div class="center">
+	@{image('templates-more.png', 800, 333, 'Templates')}
+</div>
+<h2>IMPORTANT</h2>
+<h3>A number formatting</h3>
+<div class="text">
+	<div class="mb10">This mark is using: <a href="/Number.prototype/#Number.prototype.format" class="link">Number.prototype.format()</a>.</div>
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{name}&lt;/div&gt;
+				&lt;div&gt;{price | ### ###.##}&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;
+	</pre>
+</div>
+
+<h3>A date &amp; time formatting</h3>
+<div class="text">
+	<div class="mb10">This mark is using: <a href="/Date.prototype/#Date.prototype.pluralize" class="link">Date.prototype.format()</a>.</div>
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{name}&lt;/div&gt;
+				&lt;div&gt;{date | dd.MM.yyyy} at {date | HH:mm:ss}&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;
+	</pre>
+</div>
+
+<h3>Pluralize number</h3>
+<div class="text">
+	<div class="mb10">This mark is using: <a href="/Number.prototype/#Number.prototype.pluralize" class="link">Number.prototype.pluralize()</a>.</div>
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{count | 'zero', 'one', 'few', 'other'}&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;
+	</pre>
+</div>
+
+<h3>A string formatting (maximum characters)</h3>
+<div class="text">
+	<div class="mb10">This mark is using: <a href="/String.prototype/#String.prototype.max" class="link">String.prototype.max()</a>.</div>
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{name | 20}&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;
+	</pre>
+</div>
+
+<h3>Template condition</h3>
+<div class="text">
+	Templates support very simple conditions. You can use EVEN/ODD or BOOLEAN condition. Template knows 3 types of conditions:
+	<ul>
+		<li>Boolean condition <span class="high-code">{booelan | 'true' : 'false'}</span></li>
+		<li>Number (odd/even) condition <span class="high-code">{number | 'even' : 'odd'}</span></li>
+		<li>Current index (odd/even) condition <span class="high-code">{# | 'even' : 'odd'}</span></li>
+	</ul>
+</div>
+<div class="text mt10">
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{boolean | 'if true (encoded)' : 'if false (encoded) - optional'}&lt;/div&gt;
+				&lt;div&gt;{!boolean | 'if true (raw)' : 'if false (raw) - optional'}&lt;/div&gt;
+				&lt;br /&gt;
+				&lt;div&gt;{number | 'if even (encoded)' : 'if odd (encoded) - optional'}&lt;/div&gt;
+				&lt;div&gt;{!number | 'if even (raw)' : 'if odd (raw) - optional'}&lt;/div&gt;
+				&lt;br /&gt;
+				&lt;div&gt;{# | 'if even (encoded)' : 'if odd (encoded) - optional'}&lt;/div&gt;
+				&lt;div&gt;{!# | 'if even (raw)' : 'if odd (raw) - optional'}&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;
+	</pre>
+</div>
+<div class="documentation-example mt10"><a href="https://github.com/petersirka/total.js/tree/master/examples/templating">Complete example</a></div>
+
+<h3>Render Template or View in Template</h3>
+<div class="text">
+	Templates support rendering of templates or views in templates.
+	<ul>
+		<li>property must contain an Array or Object</li>
+		<li>@&#123;view()&#125; or @&#123;template()&#125; must contain property name</li>
+	</ul>
+</div>
+<div class="text mt10">
+	<pre class="brush: jscript">
+		var model = [
+			{ alias: 'Peter', information: { age: 29, sex: 'male' }, tags: ['JavaScript', 'CSS', 'HTML', 'node.js'] },
+			{ alias: 'Jozef', information: { age: 26, sex: 'male' }, tags: ['Java', 'Objective-C', 'C#'] },
+			{ alias: 'Lucia', information: { age: 32, sex: 'female' }, tags: ['copywriting'] }
+		];</pre>
+	<br />
+	<pre class="brush: xml">
+		&lt;ul&gt;
+		&lt;!--
+			&lt;li&gt;
+				&lt;div&gt;{alias}&lt;/div&gt;
+				&lt;div&gt;@&#123;view('user', information)&#125;&lt;/div&gt;
+				&lt;div&gt;@&#123;template('tags', tags)&#125;&lt;/div&gt;
+			&lt;/li&gt;
+		--&gt;
+		&lt;/ul&gt;</pre>
+</div>

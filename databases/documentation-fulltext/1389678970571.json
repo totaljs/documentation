@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.injectConfig","description":"Inject the configuration from URL address. configuration must be in total.js config format.","name":"framework.injectConfig(url, [debug], [rewrite])","path":"Framework"}

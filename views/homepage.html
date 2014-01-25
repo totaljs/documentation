@@ -1,0 +1,215 @@
+@{meta('total.js documentation - web application framework for node.js')}
+
+<h1 class="center">Welcome in total.js documentation</h1>
+<div class="fs11 silver center">Free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS.</div>
+<br />
+<div class="message message-alert">
+	Thank you for interesting of total.js - web application framework for node.js. I'm improving the quality and grammar of this documentation.
+</div>
+<br />
+<div><strong>Download total.js:</strong></div>
+<ul class="text">
+    <li><a href="https://github.com/petersirka/total.js/releases" class="link">empty-project.zip (for OSX/Unix/Linux), 90 kB</a>
+    <li><a href="https://github.com/petersirka/total.js/releases" class="link">empty-project-visualstudio.zip or WebMatrix (for Windows + iisnode), 90 kB</a>
+    <li><a href="http://www.totaljs.com/download/nginx.conf.zip" class="link">example of nginx.conf, 1 kB</a></li>
+    <li><a href="http://www.totaljs.com/download/web.config.zip" class="link">total.js web.config for iisnode, 1 kB</a></li>
+</ul><br />
+<div><strong>On current page:</strong></div>
+<ul class="text">
+    <li><a href="#total" class="link">How does total.js work?</a>
+    <li><a href="#ngrok" class="link">Website testing on the internet (tunnel between localhost and internet)</a>
+    <li><a href="#publish" class="link">Publish a website - REVERSE PROXY</a>
+    <li><a href="#sublime" class="link">Download node.js Sublime Text Build System</a>
+    <li><a href="#sublime-syntax" class="link">Download Sublime Text 2 syntax</a>
+</ul>
+<h2 id="total" style="margin-top:30px">How does total.js work?</h2>
+<br />
+<div class="mb10 text">
+	<strong>total.js is web application framework for node.js</strong>. If you understand functions of framework then you will love it. Framework has very simple logic and many features for creating rich web application.
+</div>
+<br />
+<hr />
+<br />
+<div class="center">@{image('framework.png', 810, 528, 'Framework')}</div>
+<hr />
+<br />
+<h3>Install framework - total.js</h3>
+<pre class="brush: plain">$ cd yourwebsitedirectory
+$ npm install total.js
+</pre>
+<br />
+<div>
+	Or download <a href="https://github.com/petersirka/total.js/releases" class="link b">empty-project (120 kB)</a>.
+</div>
+<br />
+<hr />
+<h3>How to run framework?</h3>
+<h4>HTTP</h4>
+<pre class="brush: jscript">var framework = require('total.js');
+var http = require(&#39;http&#39;);
+
+var port = 8000;
+var debug = true;
+
+framework.run(http, debug, port, &#39;127.0.0.1&#39;);
+</pre>
+<h4>HTTPS</h4>
+<pre class="brush: jscript">var framework = require(&#39;total.js&#39;);
+var https = require(&#39;https&#39;);
+var fs = require(&#39;fs&#39;);
+
+var options = {
+	key: fs.readFileSync(&#39;path-to-key.pem&#39;),
+	cert: fs.readFileSync(&#39;path-to-cert.pem&#39;)
+};
+
+var port = 8000;
+var debug = true;
+
+framework.run(http, debug, port, &#39;127.0.0.1&#39;, options);
+</pre>
+<br />
+<hr />
+<h3>How is the framework initialized?</h3>
+<div class="text">
+	<ul>
+		<li>01. Load configuration</li>
+		<li>02. Clear temporary directory</li>
+		<li>03. Load cache</li>
+		<li>04. Load definitions</li>
+		<li>05. Load controllers</li>
+		<li>06. Load modules</li>
+		<li>07. Load global module (#.js)</li>
+		<li>08. Waiting for a request</li>
+	</ul>
+</div>
+<br />
+<hr />
+<h2 id="ngrok">Website testing on the internet (tunnel between localhost and internet)</h2>
+<div class="text" style="margin-top:20px">    
+    <div>Homepage: <a href="https://ngrok.com/" class="link b">ngrok - secure introspectable tunnels to localhost</a></div>
+    <div>Documentation: <a href="https://ngrok.com/usage" class="link">ngrok - documentation</a></div>
+    <br />
+    <div>
+        Ngrok creates a tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.
+    </div>
+</div>
+<h3>ngrok and total.js</h3>
+<div class="image" style="margin-top:15px">@{image('ngrok-run.jpg', 682, 390, 'NGROK RUN')}</div>
+<br />
+<div class="image">@{image('ngrok-running.jpg', 682, 390, 'NGROK IS RUNNING')}</div>
+<br />
+<div class="image">@{image('web-public.jpg', 600, 300, 'NGROK RESULT')}</div>
+<br />
+<h2 id="publish">Publish a website - REVERSE PROXY</h2>
+<br />
+<div class="image">@{image('reverse-proxy.png', 458, 156, 'node.js / total.js reverse proxy')}</div>
+<br />
+<h4>Reverse proxy through ...</h4>
+<div class="text">
+	<ul>
+		<li><a href="http://nginx.org/" class="link">NGINX - <b>recommended</b></a> (OSX, Linux, Windows)</li>
+		<li><a href="http://haproxy.1wt.eu/" class="link">HAProxy</a> (OSX, Linux, Solaris)</li>
+		<li><a href="https://github.com/nodejitsu/node-http-proxy" class="link">node-http-proxy</a> (OSX, Linux, Windows)</li>
+		<li><a href="https://www.phusionpassenger.com" class="link">Phusion Passenger</a> (OSX, Linux)</li>
+		<li><a href="https://github.com/tjanczuk/iisnode" class="link">IIS - iisnode</a> (Windows) - <a href="http://www.totaljs.com/download/web.config.zip" class="link">download web.config for total.js</a></li>
+		<li><a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass" class="link">Apache</a> (OSX, Linux)</li>
+	</ul>
+	<h4 style="margin-top:20px">Deploy a website to AppFog</h4>
+	<div class="center" style="margin-top:15px">
+		<iframe width="800" height="600" src="//www.youtube.com/embed/kZvCCyR6iBI" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+<br />
+<h4>NGINX reverse proxy - EDIT: nginx.conf</h4>
+<pre class="brush: plain">worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    server {
+        listen      80;
+        server_name www.totaljs.com;
+        server_name totaljs.com;
+        charset     utf-8;
+
+        location @proxy {
+            proxy_set_header   Host             $http_host;
+            proxy_set_header   X-Forwarded-For  $remote_addr;
+            proxy_set_header   X-NginX-Proxy    true;
+            proxy_pass         http://127.0.0.1:8000;
+            proxy_redirect     off;
+            break;
+        }
+
+        location / {
+            try_files $uri.html $uri $uri/ @proxy;
+        }
+
+        location ~ /. {
+            access_log    off;
+            log_not_found off;
+            deny all;
+        }
+
+        # WEBSOCKET DEFINITION
+
+        # location /websocket/ {
+        #     proxy_pass http://127.0.0.1:8000;
+        #     proxy_http_version 1.1;
+        #     proxy_set_header Host             $http_host;
+        #     proxy_set_header X-Forwarded-For  $remote_addr;
+        #     proxy_set_header X-NginX-Proxy    true;
+        #     proxy_set_header Upgrade          $http_upgrade;
+        #     proxy_set_header Connection       "upgrade";
+        # }
+    }
+
+    server {
+        listen      80;
+        server_name docs.totaljs.com;
+        charset     utf-8;
+
+        location @proxy {
+            proxy_set_header   Host             $http_host;
+            proxy_set_header   X-Forwarded-For  $remote_addr;
+            proxy_set_header   X-NginX-Proxy    true;
+            proxy_pass         http://127.0.0.1:8001;
+            proxy_redirect     off;
+            break;
+        }
+
+        location / {
+            try_files $uri.html $uri $uri/ @proxy;
+        }
+
+        location ~ /. {
+            access_log    off;
+            log_not_found off;
+            deny all;
+        }
+    }
+}</pre>
+<br />
+<h2 id="sublime">Download node.js Sublime Text Build System</h2>
+<div>@{image('sublime-menu.png', 810, 323, 'Sublime Build System')}</div>
+<br />
+<div class="image">@{image('sublime-packages.png', 463, 315, 'Sublime User packages')}</div>
+<br />
+<div>Download and unzip to <span class="high-code">/user/</span>: @{download('nodejs.sublime-build.zip', 'nodejs.sublime-build.zip', '', 'link b')}</div>
+<br />
+<h2 id="sublime-syntax">Download Sublime Text 2 syntax</h2>
+<br />
+<div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax (4.9 kB)</a></div>
+<div>Download the file, unpack and read <em class="b">readme.txt</em></div>
+<div>@{image('sublime.png', 820, 544, 'total.js syntax for Sublime TExt 2 editor')}</div>

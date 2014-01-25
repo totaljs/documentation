@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.contents","description":"Get the contents path from framework.config['directory-contents'].","name":"framework.path.contents([name])","path":"FrameworkPath"}

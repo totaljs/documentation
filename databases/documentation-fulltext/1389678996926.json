@@ -1,0 +1,1 @@
+{"url":"/Array.prototype/#Array.prototype.waiting","description":"This function removed asynchronically first item and then executes onItem parameter. If array is empty then executes onComplete parameter.","name":"Array.prototype.waiting(onItem, [onComplete])","path":"Array.prototype"}

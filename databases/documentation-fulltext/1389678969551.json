@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.onCompileCSS","description":"This delegate replace an internal CSS compiler. For more information look up to the example. Delegate is not async.","name":"framework.onCompileCSS(filename, content)","path":"Framework"}

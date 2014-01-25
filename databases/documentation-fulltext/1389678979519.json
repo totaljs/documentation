@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.wait","description":"Add a function to async waiting list.","name":"controller.wait(name, [waitingFor], fn)","path":"FrameworkController"}

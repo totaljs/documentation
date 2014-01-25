@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#contentToggle","description":"Render static content from config['directory-contents'].","name":"@{contentToggle(visible, name)}","path":"FrameworkViews"}

@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#routeStatic","description":"Route URL to static directory by the config['static-url'].","name":"@{routeStatic(name)}","path":"FrameworkViews"}

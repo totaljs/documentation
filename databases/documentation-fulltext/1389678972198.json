@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.routeVideo","description":"Route a video file accoring the config['static-url-video']. Returns the relative URL address.","name":"framework.routeVideo(name)","path":"Framework"}

@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.routeDownload","description":"Route to download directory according the config['static-url-download']. Returns the relative URL address.","name":"framework.routeDownload(name)","path":"Framework"}

@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.responseCustom","description":"Custom response. This function clears uploaded files, creates request/response stats and emits event - request-end.","name":"framework.responseCustom(req, res)","path":"Framework"}

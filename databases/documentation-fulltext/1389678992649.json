@@ -1,0 +1,1 @@
+{"url":"/HttpRouteOptionsFlags/#https","description":"Request protocol must be HTTPS. In the websocket framework replaces HTTPS to WSS.","name":"https","path":"HttpRouteOptionsFlags"}

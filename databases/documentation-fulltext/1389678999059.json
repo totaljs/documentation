@@ -1,0 +1,1 @@
+{"url":"/Builders.SchemaBuilder/#builders.schema","description":"Create a schema. Schema supports joining others schemas.","name":"builders.schema(name, definition, [defaults])","path":"Builders.SchemaBuilder"}

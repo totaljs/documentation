@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.test","description":"Run all tests in config['directory-tests'] (or only specific tests).","name":"framework.test(stop, [names], [callback])","path":"Framework"}

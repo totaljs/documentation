@@ -1,0 +1,1 @@
+{"url":"/Builders.ErrorBuilder/","description":"<p>Error builder is helpful for model error handling.</p><br /><pre class=\"brush: jscript\">var builders = require('total.js/builders');\nvar builder = new builders.ErrorBuilder();</pre>","name":"Builders.ErrorBuilder","path":"Builders.ErrorBuilder"}

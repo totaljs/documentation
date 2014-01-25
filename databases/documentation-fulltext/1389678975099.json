@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.resources","description":"Get the resources path from framework.config['directory-resources'].","name":"framework.path.resources([name])","path":"FrameworkPath"}

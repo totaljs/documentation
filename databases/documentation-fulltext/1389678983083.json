@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.on('send')","description":"This event is triggered when is sended a message.","name":"controller.on('send', message, id, blacklist)","path":"FrameworkController"}

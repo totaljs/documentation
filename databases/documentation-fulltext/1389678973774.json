@@ -1,0 +1,1 @@
+{"url":"/FrameworkFileSystem/#framework.fs.create.worker","description":"Create a worker file into the framework.config['directory-workers'].","name":"framework.fs.create.worker(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

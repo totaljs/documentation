@@ -1,0 +1,75 @@
+@{meta('How does authorization work?')}
+
+<h1>How does authorization work?</h1>
+<br />
+<div class="message message-alert">
+	total.js has the simple authorization mechanism.
+</div>
+<br />
+<div>@{image('authorization.png', 810, 300, 'Authorization')}</div>
+<hr />
+<br />
+<div class="text">
+	<ul>
+		<li>You can create your own authorization mechanism (<b>total.js gives open options</b>).</li>
+		<li>Authorization delegate is async.</li>
+		<li>You can authorize user by the cookies / headers or request data.</li>
+		<li>In this delegate you can set user roles.</li>
+		<li class="red b">Authorization delegate is adding logged or unlogged flag.</li>
+	</ul>
+</div>
+<div class="documentation-example">
+	<a href="https://github.com/petersirka/total.js-modules/tree/master/authorization">Authorization module</a>
+	<a href="https://github.com/petersirka/total.js/tree/master/examples/authorization">Example</a>
+</div>
+<h2>EXAMPLE FOR UNDERSTANDING</h2>
+<br />
+<pre class="brush: jscript">framework.onAuthorization = function(req, res, flags, next) {
+
+	var userId = req.cookie('user').parseInt();
+
+	if (userId === 0) {
+
+		// unlogged user
+		next(false);
+		return;
+	}
+
+	var self = this;
+
+	self.database('users').one(function(doc) { return doc.id === userId; }, function(user) {
+
+		if (user === null) {
+
+			// unlogged user
+			next(false);
+			return;
+		}
+
+		// user is logged
+		req.user = user;
+		next(true);
+
+	});
+
+}
+</pre>
+<br />
+<h2>TIP: REDIRECTING OF USERS</h2>
+<br />
+<pre class="brush: jscript">exports.install = function(framework) {
+	framework.route('#401', error401);
+};
+
+// Unauthorized
+function error401() {
+	var self = this;
+
+	if (self.flags.indexOf('logged') === -1) {
+		self.redirect('/login/form/?r=' + encodeURIComponent(self.url));
+		return;
+	}
+
+	self.redirect('/user/profile/');
+}
+</pre>

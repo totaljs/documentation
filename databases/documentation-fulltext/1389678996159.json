@@ -1,0 +1,1 @@
+{"url":"/Number.prototype/#Number.prototype.VAT","description":"VAT calculator. Example: (100).VAT(20) == 83.33","name":"Number.prototype.VAT(percentage, [decimals], [includedVAT])","path":"Number.prototype"}

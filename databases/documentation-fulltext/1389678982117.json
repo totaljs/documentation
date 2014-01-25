@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.fileAsync","description":"Response file (Async). For load file from anywhere - file name must start with ~ char. This method is called when all operation in async (controller.await(), controller.wait()) are completed.","name":"controller.fileAsync(filename, [downloadName], [headers])","path":"FrameworkController"}

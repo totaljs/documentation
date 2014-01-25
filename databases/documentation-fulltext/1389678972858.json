@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.on('websocket-begin')","description":"This event is triggered when begin Websocket request to a controller.","name":"framework.on('websocket-begin', controller, client)","path":"Framework"}

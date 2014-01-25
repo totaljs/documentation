@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.on('request-end')","description":"This event is triggered when end HTTP request from a controller (NOT VALID FOR STATIC FILES).","name":"framework.on('request-end', req, res)","path":"Framework"}

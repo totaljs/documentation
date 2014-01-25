@@ -1,0 +1,50 @@
+@{meta('How does HTML, CSS and JavaScript work?')}
+
+<h1>How does HTML, CSS and JavaScript work?</h1>
+<br />
+<div class="message message-alert">
+	total.js is doing the dirty job for you. Its core has implemented good tools to improve development<br />and rendering web site for all web browsers.
+</div>
+<br />
+<hr />
+<h2>In release mode ...</h2>
+<div class="text">
+	<ul>
+		<li>Framework sets reasonable HTTP cache for static files (IMG, JS, CSS).</li>
+		<li>Framework clears used resources in a time loop.</li>
+		<li>Release mode returns highly rated content.</li>
+	</ul>
+</div>
+<div class="center">@{image('pagespeed.png', 751, 73, 'PageSpeed')}</div>
+<h2>HTML</h2>
+<div class="text">
+	<ul>
+		<li>All comments are removed from HTML.</li>
+		<li>All HTML code is minified under compilation.</li>
+	</ul>
+</div>
+<div class="center">@{image('source-code.gif', 810, 300, 'total.js rendered HTML code')}</div>
+<h2>CSS</h2>
+<div class="text">
+	<ul>
+		<li>All CSS code is minified (by default true) <span class="high-code">framework.config['allow-compile-css']</span></li>
+		<li>CSS supports - auto vendor prefixes - <a href="https://github.com/petersirka/total.js/tree/master/examples/css-auto-vendor-prefixes" class="link">auto vendor prefixes example</a>.</li>
+		<li>CSS supports - LESS (constants and functions) - <a href="https://github.com/petersirka/total.js/tree/master/examples/css-less" class="link">LESS example</a>.</li>
+		<li>You can disable auto-vendor-prefixes - remove the mark from CSS: <span class="high-code">@#auto-vendor-prefix#@</span></li>
+		<li class="b">All inline code in HTML <span class="high-code">&lt;style type=&quot;text/css&quot;&gt;...</span> is compiled and minified.</li>
+		<li>You can rewrite built-in compilation - <a href="https://github.com/petersirka/total.js/tree/master/examples/external-compile-sass" class="link">SASS example</a>.</li>
+		<li class="b red">If the file name contains &quot;.min&quot; then it will be not compiled.</li>
+	</ul>
+</div>
+<div class="center">@{image('css.png', 725, 766, 'CSS')}</div>
+<h2>JavaScript</h2>
+<div class="text">
+	<ul>
+		<li>All JavaScript code is minified (by default true) <span class="high-code">framework.config['allow-compile-js']</span></li>
+		<li class="b">All inline code in HTML <span class="high-code">&lt;script type=&quot;text/javascript&quot;&gt;...</span> is minified.</li>
+		<li>You can rewrite built-in minification - <a href="https://github.com/petersirka/total.js/tree/master/examples/external-compile-uglifyjs" class="link">UglifyJS example</a>.</li>
+		<li class="b red">If the file name contains &quot;.min&quot; then it will be not compiled.</li>
+	</ul>
+	<br />
+</div>
+<div class="center">@{image('js.png', 810, 210, 'JS minify')}</div>

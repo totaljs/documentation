@@ -1,0 +1,1 @@
+{"url":"/FrameworkUtils/#utils.validate","description":"Validate an object model.<br />IMPORTANT: If 'properties' is string then properties read by the schema validation. Read more in Builders.SchemaBuilder.","name":"utils.validate(model, properties, prepare, [builder], [resource])","path":"FrameworkUtils"}

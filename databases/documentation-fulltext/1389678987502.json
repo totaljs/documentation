@@ -1,0 +1,1 @@
+{"url":"/FrameworkUtils/#utils.send","description":"Send stream or file to an url address.","name":"utils.send(name, stream, url, [callback], [headers], [method])","path":"FrameworkUtils"}

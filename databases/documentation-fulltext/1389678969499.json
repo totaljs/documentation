@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.onValidation","description":"Validation delegate for validating data models. You must return Boolean. If true then is value validated.","name":"framework.onValidation(name, value)","path":"Framework"}

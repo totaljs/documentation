@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#text","description":"Render text box &lt;input type=&quot;text&quot; ... <br />\n@{text('Name', { class: 'form', maxlength: 30, placeholder: 'Your name', required: true })}","name":"@{text(name, [attr])}","path":"FrameworkViews"}

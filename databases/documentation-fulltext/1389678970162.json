@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.websocket","description":"Register a new Websocket route to controller or module. This function must be executed in a controller/module file. For more information look up to the example.","name":"framework.websocket(url, fn)","path":"Framework"}

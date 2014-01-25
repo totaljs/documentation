@@ -1,0 +1,1 @@
+{"url":"/Builders.PageBuilder/","description":"<p>Page builder is helpful for datasource paging.</p><br /><pre class=\"brush: jscript\">var builders = require('total.js/builders');\nvar builder = new builders.PageBuilder();</pre>","name":"Builders.PageBuilder","path":"Builders.PageBuilder"}

@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#content","description":"Render static content from config['directory-contents'].","name":"@{content(name)}","path":"FrameworkViews"}

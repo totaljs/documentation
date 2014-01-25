@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.modules","description":"Get the modules path from framework.config['directory-modules'].","name":"framework.path.modules([name])","path":"FrameworkPath"}

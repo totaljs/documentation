@@ -1,0 +1,1 @@
+{"url":"/FrameworkController/#controller.routeFont","description":"Route a font file by the config['static-url-font']. Returns relative URL address.","name":"controller.routeFont(name)","path":"FrameworkController"}

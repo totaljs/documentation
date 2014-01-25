@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.redirect","description":"Register route for HOST redirecting. This feature you can define in definitions.","name":"framework.redirect(oldHost, newHost, [copyPath], [permanent])","path":"Framework"}

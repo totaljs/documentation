@@ -1,0 +1,196 @@
+@{meta('How do views work?')}
+
+<h1>How do &quot;views&quot; work?</h1>
+<br />
+<div class="message message-alert">
+	&quot;Views&quot; serve for renderig of HTML. You can render &quot;view&quot; in &quot;view&quot; and &quot;view&quot; is rendered into the layout at the end.
+</div>
+<br />
+<hr />
+<div class="text">
+	<ul>
+		<li>View is plain HTML file.</li>
+		<li><b class="red">IMPORTANT:</b> Server tags are represented as <span class="high-code">@&#123;keyword&#125;</span> (encoded) tag and <span class="high-code">@&#123;!keyword&#125;</span> (raw) tag.</li>
+		<li>Views support simple condition.</li>
+		<li>Views support custom helpers.</li>
+		<li>Each view has a layout (you can disable a layout).</li>
+		<li>View can render others views (therefore total.js).</li>
+		<li class="red">Views are synchronous.</li>
+		<li class="red">Views are compiled into the function.</li>
+		<li class="red">All views (HTML) are minimized under compilation (total.js saves memory).</li>
+		<li class="red">Layout is rendered at the last (if it is not disabled).</li>
+		<li class="red">Render engine is fixed (the only option for changing render engine is rewriting its prototype).</li>
+		<li class="red">You can render view into the string in a controller.</li>
+	</ul>
+</div>
+<hr />
+<div class="center">@{image('views.png', 810, 400, 'Views')}</div>
+<hr />
+<br />
+<h2>Repository vs. Model</h2>
+<div class="text">
+	Into views you can transfer variable through <span class="high-code">controller.repository</span> or <span class="high-code">controller.view('name', <b>model</b>)</span>.
+</div>
+<br />
+<pre class="brush: jscript">function some_action() {
+	var self = this;
+
+	self.repository.firstname = 'Peter';
+	self.repository.lastname = 'Sirka';
+
+	self.view('my-view', { firstname: 'Janko', lastname: 'Hrasko' });
+}</pre>
+<br />
+<div class="center">@{image('repository-vs-model.png', 810, 170, 'Repository vs. Model')}</div>
+<h3>View: /views/my-view.html</h3>
+<pre class="brush: xml">@&#123;repository.firstname&#125; or @&#123;model.firstname&#125;</pre>
+<br />
+<h3>Layout: /views/_layout.html</h3>
+<div class="text"><span class="high-code">controller.repository</span> works also in a layout. Model doesn&#39;t work because model is for current view and view can contains many other views.</div>
+<br />
+<pre class="brush: xml">In layout only works: @&#123;repository.firstname&#125;
+
+&lt;!-- The model can be only for current view, why? --&gt;
+&lt;div&gt;@&#123;view('footer', { company: '858project.com' })&#125;&lt;div&gt;</pre>
+<br />
+<hr />
+<br />
+<h2>Define a layout</h2>
+<div class="text">
+	You can define a lot of layout files.
+</div>
+<div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/views">Example</a></div>
+<br />
+<pre class="brush: xml">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    @&#123;meta&#125;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=10&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=1024, user-scalable=yes&quot; /&gt;
+	&lt;meta name=&quot;robots&quot; content=&quot;all,follow&quot; /&gt;
+	@&#123;head&#125;
+	@&#123;css('default.css')&#125;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+	@&#123;js('default.js')&#125;
+	@&#123;favicon('favicon.ico')&#125;
+&lt;/head&gt;
+&lt;body&gt;
+	@&#123;view('header')&#125;
+	&lt;div class=&quot;content&quot;&gt;
+		&lt;!-- Here is rendered a content from views --&gt;
+		@&#123;body&#125;
+	&lt;/div&gt;
+	@&#123;view('footer')&#125;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br />
+<h2>Define a view</h2>
+<div class="text">
+	You can create a lot of view files.
+</div>
+<div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/views">Example</a></div>
+<br />
+<pre class="brush: xml">@&#123;meta('Title', 'Description (optional)', 'Keywords (optional)')&#125;
+
+&lt;div&gt;Hello World!&lt;/div&gt;
+
+@&#123;template('products', [&#123; name: 'A', price: 23.32 &#125;, &#123; name: 'B', price: 32.10 &#125;])&#125;
+@&#123;content('adv')&#125;
+
+@&#123;template('users', model)&#125;
+
+&lt;!-- Look into definition of custom helper --&gt;
+@&#123;customHelper('Hello', 2 + 3)&#125;
+
+&lt;!-- You can define multi-line command --&gt;
+
+@&#123;template('products', [&#123; name: 'A', price: 23.32 &#125;,
+                        &#123; name: 'B', price: 32.10 &#125;,
+                        &#123; name: 'C', price: 15.22 &#125;])&#125;
+</pre>
+
+<h3>Views conditions</h3>
+<div class="text">
+	Views supports simple conditions. Example:
+</div>
+<div class="text mt10">
+	<pre class="brush: xml">@&#123;if (user === null)&#125;
+	&lt;div>sign in&lt;/div&gt;
+@&#123;else&#125;
+	&lt;div&gt;sign up&lt;/div&gt;
+@&#123;endif&#125;
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+@&#123;if (model.name === 'Peter')&#125;
+	&lt;div>Here is Peter&lt;/div&gt;
+@&#123;endif&#125;
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+@&#123;if (model.name !== 'Peter')&#125;
+	&lt;div>Here is @&#123;model.name&#125;&lt;/div&gt;
+@&#123;endif&#125;
+
+	</pre>
+</div>
+
+<h3>Dynamic rendering</h3>
+<div class="text">
+	View function can compile a view template dynamically.
+</div>
+<div class="text mt10">
+	<pre class="brush: xml">
+&lt;!-- VIEW --&gt;
+@&#123;view('<div><b>@&#123;model.name&#125;</b></div>', &#123; name: 'Peter Širka' &#125;)&#125;
+
+&lt;!-- TEMPLATE --&gt;
+@&#123;template('<div>&#123;name&#125;</div>', [&#123;name: 'Peter Širka'&#125;,&#123;name: 'Steve Jobs'&#125;])&#125;
+</pre>
+</div>
+
+<h3>Define custom helper</h3>
+<div class="text">
+	Write code into a definition.
+</div>
+<br />
+<pre class="brush: jscript">framewoker.helpers.customHelper = function(str, num) {
+	// this === controller
+	return str + ' = ' + num;
+};
+</pre>
+<br />
+<h2>Prefixes</h2>
+<div class="center">
+	@{image('prefixy.png', 800, 283, 'Prefixes for mobile devices')}
+</div>
+<div class="documentation-example"><a href="https://github.com/petersirka/total.js/tree/master/examples/mobile"><b>EXAMPLE:</b> Prefixes (multi-devices development)</a></div>
+<br />
+<h2>Auto-bindings models</h2>
+<div class="center">
+	@{image('views-binding.png', 800, 517, 'Auto-bindings models')}
+</div>
+<h3>Controller</h3>
+<pre class="brush: jscript">function view_contactform() {
+	this.view('contactform', { Email: '@', Name: 'Ano&lt;n&gt;ym' });
+};
+</pre>
+<h3>View</h3>
+<pre class="brush: html">Email: @&#123;input('Email')&#125;
+Name: @&#123;input('Name')&#125;
+</pre>
+<h3>Output</h3>
+<pre class="brush: html">Email: &lt;input type="text" name="Email" value="@" /&gt;
+Name: &lt;input type="text" name="Name" value="Ano&amp;lt;n&amp;gt;ym" /&gt;
+</pre>
+<br />
+<h2>Download Sublime Text 2 syntax</h2>
+<br />
+<div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax (4.9 kB)</a></div>
+<div>Download the file, unpack and read <em class="b">readme.txt</em></div>
+<div>@{image('sublime.png', 820, 544, 'total.js syntax for Sublime TExt 2 editor')}</div>

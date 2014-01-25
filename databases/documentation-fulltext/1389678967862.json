@@ -1,0 +1,1 @@
+{"url":"/Framework/","description":"<p>The main class (core) of total.js. This class is singleton and is set as global variable.</p><br /><pre class=\"brush: jscript\">\nconsole.log(framework.version);\n\n// In a defintion, module, etc.:\nframework.on('load', function() {\n\n\t// ...\n\t// ...\n\n});</pre>","name":"Framework","path":"Framework"}

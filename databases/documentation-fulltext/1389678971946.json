@@ -1,0 +1,1 @@
+{"url":"/Framework/#framework.decrypt","description":"Internal cryptography function for decrypting of string or object.","name":"framework.decrypt(name, key, [jsonConvert])","path":"Framework"}

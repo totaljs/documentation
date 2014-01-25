@@ -1,0 +1,1 @@
+{"url":"/String.prototype/#String.prototype.pluralize","description":"Pluralize string. This string is converted into the Number and then is pluralized.","name":"String.prototype.pluralize(zero, one, few, other)","path":"String.prototype"}

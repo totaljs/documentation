@@ -1,0 +1,1 @@
+{"url":"/FrameworkViews/#dns","description":"Add dns prefetch tag into the HTML head. This result is rendered via @{head} tag.<br />Output: &lt;link rel=&quot;dns-prefetch&quot; ...","name":"@{dns(filename1, [filename2], [filename..n])}","path":"FrameworkViews"}

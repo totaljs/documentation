@@ -1,0 +1,1 @@
+{"url":"/Builders.ErrorBuilder/#builder.json","description":"Serialize ErrorBuilder into the JSON. Collection is serialized as array: [{ name: 'Property', error: 'Error message.'}].<br />Framework supports:\n\ncontroller.json(ErrorBuilder);","name":"builder.json()","path":"Builders.ErrorBuilder"}

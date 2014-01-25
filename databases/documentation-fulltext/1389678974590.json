@@ -1,0 +1,1 @@
+{"url":"/FrameworkPath/#framework.path.logs","description":"Get the logs path from framework.config['directory-logs'].","name":"framework.path.logs([name])","path":"FrameworkPath"}
