@@ -201,3 +201,5 @@ a.link:hover { color: #0092E6; }
 .syntaxhighlighter .color2, .syntaxhighlighter .color2 a { color: #ff1493 !important; }
 .syntaxhighlighter .color3, .syntaxhighlighter .color3 a { color: red !important; }
 .syntaxhighlighter .keyword { font-weight: bold !important; }
+
+.fork { position: absolute; top: 0; right: 0; border: 0; }
