@@ -7204,7 +7204,7 @@
     },
     {
       "name": "HttpFile",
-      "description": "This class is created after is uploaded a file on the server. Using: [Controller.files](/FrameworkController/#controller.files).",
+      "description": "This class is created after is uploaded a file on the server. Usage: [Controller.files](/FrameworkController/#controller.files).",
       "group": "Additional",
       "properties":
       [
@@ -7394,7 +7394,7 @@
     },
     {
       "name": "HttpRouteOptions",
-      "description": "Using:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, { flags: ['post', 'json'], timeout: 10000 });\n};\n\n===",
+      "description": "Usage:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, { flags: ['post', 'json'], timeout: 10000 });\n};\n\n===",
       "group": "Additional",
       "properties":
       [
@@ -7445,7 +7445,7 @@
     },
     {
       "name": "HttpRouteOptionsFlags",
-      "description": "Using:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, ['xhr', 'post']);\n};\n\n===",
+      "description": "Usage:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, ['xhr', 'post']);\n};\n\n===",
       "group": "Additional",
       "properties":
       [
