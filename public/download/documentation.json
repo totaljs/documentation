@@ -7204,7 +7204,7 @@
     },
     {
       "name": "HttpFile",
-      "description": "This class is created after is uploaded a file on the server. Usage: [Controller.files](/FrameworkController/#controller.files).",
+      "description": "This class is created after is uploaded a file on the server. Usage: [Controller.files](http://docs.totaljs.com/FrameworkController/#controller.files).",
       "group": "Additional",
       "properties":
       [
