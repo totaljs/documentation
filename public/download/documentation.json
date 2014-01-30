@@ -629,6 +629,19 @@
           ]
         },
         {
+          "name": "framework.component",
+          "description": "Get a component object. This function returns all exported functions.",
+          "return": "Object",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Component name."
+            }
+          ]
+        },
+        {
           "name": "framework.module",
           "description": "Get a framework module. All modules are defined in config['directory-modules'].",
           "return": "Object",
@@ -643,6 +656,20 @@
           ]
         },
         {
+          "name": "framework.model",
+          "description": "Get a framework model. All models are defined in config['directory-models'].",
+          "return": "Object",
+          "example": "https://github.com/totaljs/examples/tree/master/models",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Model name."
+            }
+          ]
+        },
+        {
           "name": "framework.injectModule",
           "description": "Inject a module from URL address. Module must be a 100% pure javascript file.",
           "return": "Framework",
@@ -653,6 +680,44 @@
               "name": "name",
               "type": "String",
               "description": "Module name."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A valid URL address."
+            }
+          ]
+        },
+        {
+          "name": "framework.injectComponent",
+          "description": "Inject a component from URL address. Component must be a 100% pure javascript file.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-component",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Component name."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A valid URL address."
+            }
+          ]
+        },
+        {
+          "name": "framework.injectModel",
+          "description": "Inject a model from URL address. Model must be a 100% pure javascript file.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-model",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Model name."
             },
             {
               "name": "url",
@@ -1321,12 +1386,12 @@
               "name": "contentType",
               "type": "String",
               "description": "This ContentType will be added into utils.getContentType(). Example: text/html"
-            }            
+            }
           ]
         },
         {
           "name": "framework.assert",
-          "description": "Check if ETag or Last Modified has modified. If @compare === {String} compare if-none-match .... if @compare === {Date} compare if-modified-since. This function automatically flush a response 304 (if not modified).",
+          "description": "Add \"test request\" into the assertion testing.",
           "return": "Framework",
           "example": "https://github.com/totaljs/examples/tree/master/assertion-testing",
           "params":
@@ -1400,6 +1465,33 @@
           ]
         },
         {
+          "name": "framework.assert",
+          "description": "Add \"test functions\" into the assertion testing.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/assertion-testing",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Test name"
+            },
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "Test function.",
+              "params":
+              [
+                {
+                  "name": "name",
+                  "type": "String",
+                  "description": "Name of test."
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "framework.test",
           "description": "Run all tests in config['directory-tests'] (or only specific tests).",
           "return": "Framework",
@@ -1433,6 +1525,25 @@
           "params": []
         },
         {
+          "name": "framework.controller",
+          "description": "Read or register (dynamic) controller. If you'll not define a controller then function returns existing controller object.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Controller name."
+            },
+            {
+              "options": ["optional"],
+              "name": "definition",
+              "type": "Function",
+              "description": "Controller definition."
+            }
+          ]
+        },
+        {
           "name": "framework.unlink",
           "description": "Remove files.",
           "return": "Framework",
@@ -1446,7 +1557,7 @@
             {
               "options": ["optional"],
               "name": "callback",
-              "type": "Callback.",
+              "type": "Function",
               "description": "Complete callback."
             }
           ]
@@ -1841,6 +1952,27 @@
           "name": "framework.config",
           "go": "configuration",
           "return": "FrameworkConfig"
+        },
+        {
+          "description": "Property return framework custom functions. You can define your own functions over the framework.",
+          "name": "framework.functions",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-functions",
+          "return": "Object"
+        },
+        {
+          "description": "Is framework running in debug mode?",
+          "name": "framework.isDebug",
+          "return": "Boolean"
+        },
+        {
+          "description": "Is framework running in test mode?",
+          "name": "framework.isTest",
+          "return": "Boolean"
+        },
+        {
+          "description": "Custom framework id. Serves for the cluster.",
+          "name": "framework.id",
+          "return": "String/Number"
         },
         {
           "options": ["readonly"],
@@ -2518,6 +2650,34 @@
         },
         {
           "return": "String",
+          "name": "framework.path.components",
+          "description": "Get the public path from framework.config['directory-components'].",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String",
+              "description": "File name without path."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "framework.path.models",
+          "description": "Get the public path from framework.config['directory-models'].",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String",
+              "description": "File name without path."
+            }
+          ]
+        },
+        {
+          "return": "String",
           "name": "framework.path.databases",
           "description": "Get the public path from framework.config['directory-databases'].",
           "params":
@@ -2980,6 +3140,12 @@
           "return": "String",
           "name": "controller.name",
           "description": "Return name of controller."
+        },
+        {
+          "options": ["readonly", "http"],
+          "return": "Object",
+          "name": "controller.$model",
+          "description": "Return of current model in current view."
         },
         {
           "options": ["readonly", "http", "websocket"],
@@ -3531,6 +3697,21 @@
               "name": "name",
               "type": "String",
               "description": "Module name."
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
+          "name": "controller.model",
+          "description": "Return a model object.",
+          "example": "https://github.com/totaljs/examples/tree/master/models",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Model name."
             }
           ]
         },
@@ -7449,6 +7630,12 @@
       "group": "Additional",
       "properties":
       [
+        {
+          "options": ["optional", "http"],
+          "return": "String",
+          "name": "options",
+          "description": "Request must contain: OPTIONS method."
+        },
         {
           "options": ["optional", "http"],
           "return": "String",

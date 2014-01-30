@@ -1,0 +1,39 @@
+@{meta('How do models work?')}
+
+<h1>How do models work?</h1>
+<br />
+<div class="message message-alert">
+	<b>Models serve for database schemas.</b> You can use models in other projects.
+</div>
+<br />
+<hr />
+<div class="text">
+	<ul>
+		<li>Model is plain JavaScript file.</li>
+		<li>All models are stored in <span class="high-code">your-app/models/</span> directory.</li>
+		<li>You can create unlimited count of models.</li>
+		<li><b>Model can inject from URL address</b> - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-model" class="link">Example</a>.</li>
+	</ul>
+</div>
+<hr />
+<div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/models">Model example</a></div>
+<br />
+<h2 class="nmt">Model definition</h2>
+<br />
+<pre class="brush: jscript">// Model name: article
+exports.comment = function() {
+	return { content: String, date: Date };
+};
+</pre>
+<br />
+<h2>Usage</h2>
+<h3>Universal usage</h3>
+<pre class="brush: jscript">var model = framework.model('article').comment();</pre>
+<br />
+<h3>In controllers</h3>
+<pre class="brush: jscript">
+function view_homepage() {
+	var self = this;
+	self.json(self.component('article').comment());
+}
+</pre>
