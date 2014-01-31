@@ -58,7 +58,24 @@ function view_directory() {
 */
 function view_howdoesitworks(name) {
     var self = this;
-    self.view('how-it-works-' + name);
+    switch (name) {
+        case 'authorization':
+        case 'components':
+        case 'controllers':
+        case 'definitions':
+        case 'html-css-js':
+        case 'models':
+        case 'modules':
+        case 'resources':
+        case 'security':
+        case 'templates':
+        case 'validation':
+        case 'views':
+            self.view('how-it-works-' + name);
+            return;        
+    }
+
+    self.view404();
 }
 
 /*
