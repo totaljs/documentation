@@ -3145,7 +3145,7 @@
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.$model",
-          "description": "Return of current model in current view."
+          "description": "Return the current model in current view."
         },
         {
           "options": ["readonly", "http", "websocket"],
