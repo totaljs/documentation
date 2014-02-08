@@ -34,6 +34,10 @@ exports.comment = function() {
 <pre class="brush: jscript">
 function view_homepage() {
 	var self = this;
-	self.json(self.component('article').comment());
+
+	// GETTING THE MODEL
+	var model = self.model('article').comment();
+
+	self.empty();
 }
 </pre>
