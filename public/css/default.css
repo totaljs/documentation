@@ -54,7 +54,7 @@ body { padding:20px; margin:0; font:normal 12px Arial; background: #F0F0F0 url(.
 .high-code { position: relative; padding: 1px 5px; border-radius: 3px; background-color: #E0E0E0; color: #505050; font-family: 'Consolas', 'Courier New'; font-size: 11px; font-weight: bold; }
 
 h1 { margin: 0; padding: 0; letter-spacing: -1px; font: bold 33px Arial; color: black; }
-h2 { margin: 20px 0 10px 0; padding: 0; letter-spacing: -1px; font: bold 23px Arial; background-color: #F0F0F0; padding: 3px 5px; border-radius: 4px; color: #303030; }
+h2 { margin: 20px 0 10px 0; padding: 0; letter-spacing: -1px; font: bold 23px Arial; background-color: #D0D0D0; padding: 3px 5px; border-radius: 4px; color: black; }
 h3 { margin: 20px 0 10px 0; padding: 0; font: bold 18px Arial; color: #505050; }
 h4 { margin: 10px 0 10px 0; padding: 0; font: bold 14px Arial; color: gray; }
 
@@ -203,3 +203,6 @@ a.link:hover { color: #0092E6; }
 .syntaxhighlighter .keyword { font-weight: bold !important; }
 
 .fork { position: absolute; top: 0; right: 0; border: 0; }
+.keyvalue { height: 20px; border-bottom: 1px dotted #E0E0E0; margin-top: 3px; }
+.keyvalue > div { float: left; }
+.keyvalue > div:first-child { width: 200px; }

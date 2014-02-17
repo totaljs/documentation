@@ -111,10 +111,17 @@ default-websocket-request-length   : 5120
 // In milliseconds
 default-request-timeout            : 3000
  
+// gm = graphicsmagick (default) or im = imagemagick
+// otherwise is used ImageMagick (Heroku supports ImageMagick)
+default-image-converter            : gm
+
 allow-gzip                         : true
  
 // If you'll using Socket.io, set allow-websocket to false
 allow-websocket                    : true
+
+// IMPORTANT: experimental, default false
+allow-performance                  : false
 
 // enable/disable static compilation
 allow-compile-js                   : true
@@ -208,7 +215,7 @@ etag-version                      : 1
 </pre>
 		<br />
 		<div>
-			This option affects all etags (<a href="http://en.wikipedia.org/wiki/HTTP_ETag" class="link">HTTP ETag</a>) in static files. ETag-version value is added always at the end of generated etag. Example: framework generates etag <span class="high-code">1760</span> internally and automatically add <span class="high-code">:1</span> to the end of etag - result <span class="high-code">1760:1</span>.
+			This option affects all etags (<a href="http://en.wikipedia.org/wiki/HTTP_ETag" class="link">HTTP ETag</a>) in static files. ETag-version value is added at the end (always) of generated etag. Example: framework generates etag <span class="high-code">1760</span> internally and automatically adds <span class="high-code">:1</span> to the end of etag - result <span class="high-code">1760:1</span>.<br /><br />Default value: <b>is empty</b> (etags are affected <span class="high-code">config['version']</span>.
 		</div>
 		<br />
 		<div class="image">
@@ -270,6 +277,18 @@ static-accepts-custom              : .mp3,.flv
 <br />
 <div class="text">
 	<span class="high-code">framework.config[&#39;static-accepts-custom&#39;]</span> is parsed as Array and then is inserted into the <span class="high-code">framework.config[&#39;static-accepts&#39;]</span>.
+</div>
+<br />
+<hr />
+<h3>configuration: @default-image-converter</h3>
+<pre class="brush: plain">
+&nbsp;
+default-image-converter           : gm
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	<span class="high-code">framework.config[&#39;default-image-converter&#39;]</span> is used for image manipulation. This option was added for Heroku because as default Heroku supports only ImageMagick and the framework uses GraphicsMagick internally as default.
 </div>
 <br />
 <br />

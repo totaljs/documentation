@@ -68,7 +68,7 @@ function view_homepage() {
 }
 </pre>
 <br />
-<h3>In views</h3>
+<h3>In views and templates</h3>
 <pre class="brush: xml">&lt;div&gt;@&#123;component('test', [1, 2, 3, 4])&#125;&lt;/div&gt;
 
 &lt;!-- OR --&gt;
@@ -80,7 +80,7 @@ function view_homepage() {
 &lt;div&gt;@&#123;component('test', repository.customData)&#125;&lt;/div&gt;
 </pre>
 <br />
-<h2>Monitoring components</h2>
+<h2>Monitoring of components</h2>
 <br />
 <div class="text">
 	total.js supports monitoring of components via component usage. <a href="https://github.com/totaljs/examples/tree/master/framework-usage" class="link">Usage example</a>.
@@ -93,7 +93,7 @@ exports.install = function(framework, name) {
 };
 
 exports.usage = function() {
-	return 'Rendered: ' + counter;
+	return { count: counter };
 };
 
 // THIS EXPORTED FUNCTION IS REQUIRED

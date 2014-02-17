@@ -146,32 +146,6 @@
         },
         {
           "options": ["must return a String value"],
-          "name": "framework.onSettings",
-          "description": "Render custom settings into the view.",
-          "example": "https://github.com/totaljs/examples/tree/master/views-settings",
-          "default": "null",
-          "return": "String",
-          "params":
-          [
-            {
-              "name": "param1",
-              "description": "Custom parameter",
-              "type": "Any"
-            },
-            {
-              "name": "param2",
-              "description": "Custom parameter",
-              "type": "Any"
-            },
-            {
-              "name": "param...n",
-              "description": "Custom parameter",
-              "type": "Any"
-            }
-          ]
-        },
-        {
-          "options": ["must return a String value"],
           "name": "framework.onMeta",
           "description": "Render meta tags into the view.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -179,19 +153,24 @@
           "params":
           [
             {
-              "name": "param1",
-              "description": "Custom parameter",
-              "type": "Any"
+              "name": "title",
+              "description": "Meta title",
+              "type": "String"
             },
             {
-              "name": "param2",
-              "description": "Custom parameter",
-              "type": "Any"
+              "name": "description",
+              "description": "Meta description",
+              "type": "String"
             },
             {
-              "name": "param...n",
-              "description": "Custom parameter",
-              "type": "Any"
+              "name": "keywords",
+              "description": "META keywords.",
+              "type": "String"
+            },
+            {
+              "name": "image",
+              "description": "URL to social image.",
+              "type": "String"
             }
           ]
         },
@@ -614,6 +593,30 @@
               "name": "err",
               "type": "Error",
               "description": "Error handling."
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Controller / module name."
+            },
+            {
+              "options": ["optional"],
+              "name": "uri",
+              "type": "Object",
+              "description": "URI object."
+            }
+          ]
+        },
+        {
+          "name": "framework.problem",
+          "description": "Create a new framework problem.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "message",
+              "type": "String",
+              "description": "Problem description."
             },
             {
               "name": "name",
@@ -1813,6 +1816,29 @@
           ]
         },
         {
+          "name": "framework.on('problem')",
+          "description": "This event is triggered when is a problem.",
+          "example":"https://github.com/totaljs/examples/tree/master/problems",
+          "params":
+          [
+            {
+              "name": "message",
+              "description": "Problem description.",
+              "type": "String"
+            },
+            {
+              "name": "name",
+              "description": "Controller / Module name.",
+              "type": "String"
+            },
+            {
+              "name": "uri",
+              "description": "URI",
+              "type": "Object"
+            }
+          ]
+        },
+        {
           "name": "framework.on('expire')",
           "description": "This event is triggered when expired item in the cache. This item was removed from a cache.",
           "params":
@@ -1948,13 +1974,13 @@
         },
         {
           "options": ["readonly"],
-          "description": "Property return framework configuration. Property is readonly and it's has refreshed every 20 minutes.",
+          "description": "Property returns framework configuration. Property is readonly and it's has refreshed every 20 minutes.",
           "name": "framework.config",
           "go": "configuration",
           "return": "FrameworkConfig"
         },
         {
-          "description": "Property return framework custom functions. You can define your own functions over the framework.",
+          "description": "Property returns framework custom functions. You can define your own functions over the framework.",
           "name": "framework.functions",
           "example": "https://github.com/totaljs/examples/tree/master/framework-functions",
           "return": "Object"
@@ -1976,14 +2002,14 @@
         },
         {
           "options": ["readonly"],
-          "description": "This property serve for set request restrictions.",
+          "description": "This property serves for set request restrictions.",
           "name": "framework.restrictions",
           "go": "FrameworkRestrictions",
           "return": "FrameworkRestrictions"
         },
         {
           "options": ["readonly"],
-          "description": "Property return Async object for asynchronous work.",
+          "description": "Property returns Async object for asynchronous work.",
           "name": "framework.async",
           "go": "Async",
           "example": "https://github.com/totaljs/examples/tree/master/framework-async",
@@ -1991,19 +2017,19 @@
         },
         {
           "options": ["readonly"],
-          "description": "Property return HTTP or HTTPS object.",
+          "description": "Property returns HTTP or HTTPS object.",
           "name": "framework.server",
           "return": "Object"
         },
         {
           "options": ["readonly"],
-          "description": "Property return PORT number on the server listen.",
+          "description": "Property returns PORT number on the server listen.",
           "name": "framework.port",
           "return": "Number"
         },
         {
           "options": ["readonly"],
-          "description": "Property return IP address on the server listen.",
+          "description": "Property returns IP address on the server listen.",
           "default": "localhost",
           "name": "framework.ip",
           "return": "String"
@@ -2034,7 +2060,7 @@
           "return": "Object"
         },
         {
-          "description": "This property store all helpers for rendering views. Views support only function, that means - you must store only functions.",
+          "description": "This property stores all helpers for rendering views. Views support only function, that means - you must store only functions.",
           "example": "https://github.com/totaljs/examples/tree/master/views-custom-helper",
           "default": "{}",
           "name": "framework.helpers",
@@ -2042,32 +2068,39 @@
         },
         {
           "options": ["readonly"],
-          "description": "This property store all registered controllers.",
+          "description": "This property stores all registered controllers.",
           "name": "framework.controllers",
           "return": "Object"
         },
         {
           "options": ["internal"],
-          "description": "This property store all content from resource files. This property is cleaned every 20 minutes.",
+          "description": "This property stores all content from resource files. This property is cleaned every 20 minutes.",
           "default": "{}",
           "name": "framework.resources",
           "return": "Object"
         },
         {
           "options": ["internal"],
-          "description": "This property store internal information about paths and streaming static files. This property is cleaned every 20 minutes.",
+          "description": "This property stores internal informations about paths, streaming and views/templates. This property is cleaned every 20 minutes.",
           "name": "framework.temporary",
           "return": "Object"
         },
         {
           "options": ["readonly"],
-          "description": "This property store the last 50 errors.",
+          "description": "This property stores the last 50 errors.",
           "default": "[]",
           "name": "framework.errors",
           "return": "Array"
         },
         {
-          "description": "This property storing websocket connections. Each property in this object contain URL address into the websocket.",
+          "options": ["readonly"],
+          "description": "This property stores the last 50 problems.",
+          "default": "[]",
+          "name": "framework.errors",
+          "return": "Array"
+        },
+        {
+          "description": "This property stores a websocket connections. Each property in this object contain URL address into the websocket.",
           "default": "{}",
           "name": "framework.connections",
           "return": "Object"
@@ -3475,6 +3508,21 @@
         {
           "options": ["http", "websocket"],
           "return": "FrameworkController",
+          "name": "controller.problem",
+          "description": "Mark an problem.",
+          "example": "https://github.com/totaljs/examples/tree/master/problems",
+          "params":
+          [
+            {
+              "name": "message",
+              "type": "String",
+              "description": "Problem description."
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
           "name": "controller.wait",
           "description": "Add a function to async waiting list.",
           "example": "https://github.com/totaljs/examples/tree/master/async",
@@ -3628,6 +3676,57 @@
               "name": "keywords",
               "type": "String",
               "description": "META keywords."
+            },
+            {
+              "options": ["optional"],
+              "name": "picture",
+              "type": "String",
+              "description": "Image for social networks and image is routed via framework.routeImage()."
+            }
+          ]
+        },
+        {
+          "options": ["http"],
+          "return": "FrameworkController",
+          "name": "controller.title",
+          "description": "Set meta title.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta title."
+            }
+          ]
+        },
+        {
+          "options": ["http"],
+          "return": "FrameworkController",
+          "name": "controller.description",
+          "description": "Set meta description.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta description."
+            }
+          ]
+        },
+        {
+          "options": ["http"],
+          "return": "FrameworkController",
+          "name": "controller.keywords",
+          "description": "Set meta keywords.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta keywords."
             }
           ]
         },
@@ -4090,7 +4189,8 @@
               "options": ["optional"],
               "name": "repository",
               "type": "Object",
-              "description": "Repository object for adding additional information into template."
+              "description": "Custom repository for the template.",
+              "default": "controller.repository"
             }
           ]
         },
@@ -4310,6 +4410,13 @@
               "name": "headers",
               "type": "Object",
               "description": "Additional headers."
+            },
+            {
+              "name": "beautify",
+              "type": "Boolean",
+              "description": "Beautify JSON.",
+              "default": "false",
+              "options": ["optional"]
             }
           ]
         },
@@ -4628,6 +4735,43 @@
               "type": "Boolean",
               "description": "Move permament (302).",
               "default": "false"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.memorize",
+          "description": "Memorize output of controller.view() - layout is not cached (only view), controller.json() and controller.plain(). This function improves your response time. Data are saved into the memory.",
+          "return": "FrameworkController",
+          "example": "https://github.com/totaljs/examples/tree/master/controller-memorize",
+          "params":
+          [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Cache key."
+            },
+            {
+              "name": "expiration",
+              "type": "Date",
+              "description": "Expiration."
+            },
+            {
+              "options": ["optional"],
+              "name": "disabled",
+              "type": "Boolean",
+              "description": "Disable cache (e.g. for debug mode)."
+            },
+            {
+              "name": "fnTo",
+              "type": "Function",
+              "description": "Is executed when is cache empty."
+            },
+            {
+              "options": ["optional"],
+              "name": "fnFrom",
+              "type": "Function",
+              "description": "Is executed when is content read from the cache."
             }
           ]
         },
@@ -5050,8 +5194,9 @@
         {
           "return": "Object",
           "name": "@{repository.customKey}",
-          "description": "Get value from repository object.",
-          "example": "https://github.com/totaljs/examples/tree/master/views"
+          "description": "Get value from repository object. IMPORTANT: template contains other model than view.",
+          "example": "https://github.com/totaljs/examples/tree/master/views",
+          "options": ["different values between Views and Templates"]
         },
         {
           "return": "Object",
@@ -5061,7 +5206,8 @@
         {
           "return": "Object",
           "name": "@{model.customKey}",
-          "description": "Get value from model."
+          "description": "Get value from model. IMPORTANT: template contains other model than view.",
+          "options": ["different values between Views and Templates"]
         },
         {
           "return": "String",
@@ -5087,11 +5233,63 @@
           "return": "Object",
           "name": "@{session.customKey}",
           "description": "Get value from controller.session object."
+        },
+        {
+          "return": "Object",
+          "name": "@{controller.ip}",
+          "description": "Get value from controller object."
+        },
+        {
+          "return": "Object",
+          "name": "@{index}",
+          "description": "Get current index in template.",
+          "options": ["only templates"]
         }
-
       ],
       "methods":
       [
+        {
+          "return": "String",
+          "name": "@{title('New title')}",
+          "description": "Create title.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta title."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "@{title('New description')}",
+          "description": "Create description.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta description."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "@{title('New keywords')}",
+          "description": "Create keywords.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "New meta keywords."
+            }
+          ]
+        },
         {
           "return": "String",
           "name": "@{meta}",
@@ -5227,32 +5425,6 @@
               "name": "filename",
               "type": "String",
               "description": "Filename (relative)."
-            }
-          ]
-        },
-        {
-          "name": "@{settings}",
-          "description": "Add Create custom values.",
-          "example": "https://github.com/totaljs/examples/tree/master/views-settings",
-          "params":
-          [
-            {
-              "name": "param1",
-              "type": "Object",
-              "description": "Custom param",
-              "options": ["optional"]
-            },
-            {
-              "name": "param1",
-              "type": "Object",
-              "description": "Custom param",
-              "options": ["optional"]
-            },
-            {
-              "name": "param..n",
-              "type": "Object",
-              "description": "Custom param",
-              "options": ["optional"]
             }
           ]
         },
@@ -5661,6 +5833,13 @@
           ]
         },
         {
+          "name": "@{sitemap}",
+          "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
+          "description": "Get all links.",
+          "return": "Object Array",
+          "params":[]
+        },
+        {
           "name": "@{view}",
           "description": "Render view into current view.",
           "params":
@@ -5758,7 +5937,8 @@
               "options": ["optional"],
               "name": "repository",
               "type": "Object",
-              "description": "Repository object for the template. Example: paging informations."
+              "description": "Custom repository for the template.",
+              "default": "controller.repository"
             }
           ]
         },
@@ -5792,7 +5972,8 @@
               "options": ["optional"],
               "name": "repository",
               "type": "Object",
-              "description": "Repository object for the template. Example: paging informations."
+              "description": "Custom repository for the template.",
+              "default": "controller.repository"
             }
           ]
         },
@@ -5810,6 +5991,12 @@
               "name": "id",
               "type": "String",
               "description": "ID of script tag",
+              "options": ["optional"]
+            },
+            {
+              "name": "beautify",
+              "type": "Boolean",
+              "description": "Beautify JSON.",
               "options": ["optional"]
             }
           ]
@@ -7858,6 +8045,11 @@
           "return": "Object",
           "name": "request.data",
           "description": "Current request data (req.data.get = {}, req.data.post = {}, req.data.files = [])"
+        },
+        {
+          "return": "String",
+          "name": "request.language",
+          "description": "Parse accept-language."
         }
       ],
       "methods":
@@ -8164,6 +8356,20 @@
               "name": "salt",
               "type": "string",
               "description": "Salt for hash."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "String.prototype.hash",
+          "description": "Convert string to hash.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "type",
+              "type": "string",
+              "description": "empty = fast type, sha1, sha256, sha512 or md5"
             }
           ]
         },
@@ -8615,8 +8821,14 @@
         },
         {
           "return": "Array",
-          "name": "Array.prototype.waiting",
-          "description": "This function removed asynchronically first item and then executes onItem parameter. If array is empty then executes onComplete parameter.",
+          "name": "Array.prototype.trim",
+          "description": "Trim all strings in array.",
+          "params": []
+        },
+        {
+          "return": "Array",
+          "name": "Array.prototype.wait",
+          "description": "This function removed asynchronically first item and then is executes this item. If array is empty then is executes onComplete parameter.",
           "params":
           [
             {
@@ -8638,6 +8850,21 @@
                 }
               ]
             },
+            {
+              "options": ["optional"],
+              "name": "onComplete",
+              "type": "Function",
+              "description": "On complete function.",
+              "params": []
+            }
+          ]
+        },
+        {
+          "return": "Array",
+          "name": "Array.prototype.async",
+          "description": "This function removed asynchronically first item and then is executes this item. If array is empty then executes onComplete parameter. IMPORTANT: each item in array must be a function.\n\nvar arr = [];\n\narr.push(function(next) { console.log('OK'); next(); });\n\narr.async();",
+          "params":
+          [
             {
               "options": ["optional"],
               "name": "onComplete",
@@ -9073,21 +9300,114 @@
           "return": "ErrorBuilder",
           "name": "builder.json",
           "description": "Serialize ErrorBuilder into the JSON. Collection is serialized as array: [{ name: 'Property', error: 'Error message.'}].\nFramework supports:\n\ncontroller.json(ErrorBuilder);",
-          "params": []
+          "params":
+          [
+            {
+              "name": "beautify",
+              "type": "Boolean",
+              "description": "Beautify JSON.",
+              "default": "false",
+              "options": ["optional"]
+            }
+          ]
         }
       ]
     },
     {
-      "name": "Builders.PageBuilder",
-      "description": "Page builder is helpful for datasource paging.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.PageBuilder();\n===",
+      "name": "Builders.Pagination",
+      "description": "Pagination is helpful for datasource paging.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.Pagination();\n===",
       "group": "Builders",
+      "example": "https://github.com/totaljs/examples/tree/master/pagination",
+      "properties":
+      [
+        {
+          "return": "Boolean",
+          "name": "isNext",
+          "description": "Is next page?"
+        },
+        {
+          "return": "Boolean",
+          "name": "isPrev",
+          "description": "Is prev page?"
+        },
+        {
+          "return": "Number",
+          "name": "items",
+          "description": "Items count."
+        },
+        {
+          "return": "Number",
+          "name": "count",
+          "description": "Page count."
+        },
+        {
+          "return": "Number",
+          "name": "max",
+          "description": "Max items per page."
+        },
+        {
+          "return": "Number",
+          "name": "page",
+          "description": "Max items per page."
+        },
+        {
+          "return": "Number",
+          "name": "skip",
+          "description": "For DB: how many items to skip?"
+        },
+        {
+          "return": "Number",
+          "name": "take",
+          "description": "For DB: how many items to take?"
+        },
+        {
+          "return": "Boolean",
+          "name": "visible",
+          "description": "Contains pagination more pages than 1?"
+        },
+        {
+          "return": "String",
+          "name": "format",
+          "description": "Current format for build URL.",
+          "default": "'?page={0}'"
+        }
+      ],
       "methods":
       [
         {
-          "return": "PageBuilder",
-          "name": "new PageBuilder",
-          "description": "Create an instance.",
-          "example": "https://github.com/totaljs/examples/tree/master/paging",
+          "return": "Pagination",
+          "name": "Pagination",
+          "description": "Constructor. Create an instance.",
+          "params":
+          [
+            {
+              "name": "items",
+              "type": "Number",
+              "description": "Items count."
+            },
+            {
+              "name": "page",
+              "type": "Number",
+              "description": "Current page - (from 1)."
+            },
+            {
+              "name": "max",
+              "type": "Number",
+              "description": "Max items to page."
+            },
+            {
+              "options": ["optional"],
+              "name": "format",
+              "type": "string",
+              "description": "Format for build URL.",
+              "default": "'?page={0}'"
+            }
+          ]
+        },
+        {
+          "return": "Pagination",
+          "name": "builder.refresh",
+          "description": "Refresh Pagination informations about paging.",
           "params":
           [
             {
@@ -9108,26 +9428,32 @@
           ]
         },
         {
-          "return": "PageBuilder",
-          "name": "builder.refresh",
-          "description": "Refresh PageBuilder informations about paging.",
-          "example": "https://github.com/totaljs/examples/tree/master/paging",
+          "return": "Object",
+          "name": "builder.prev",
+          "description": "Get a prev page object. return { url: String, page: Number }.",
           "params":
           [
             {
-              "name": "items",
-              "type": "Number",
-              "description": "Items count."
-            },
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override current format for build URL address.",
+              "default": "undefined"
+            }
+          ]
+        },        
+        {
+          "return": "Object",
+          "name": "builder.next",
+          "description": "Get a next page object. return { url: String, page: Number }.",
+          "params":
+          [
             {
-              "name": "page",
-              "type": "Number",
-              "description": "Current page - (from 1)."
-            },
-            {
-              "name": "max",
-              "type": "Number",
-              "description": "Max items to page."
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override current format for build URL address.",
+              "default": "undefined"
             }
           ]
         },
@@ -9135,27 +9461,20 @@
           "return": "Object Array",
           "name": "builder.render",
           "description": "Prepare pagination to array datasource.",
-          "example": "https://github.com/totaljs/examples/tree/master/paging",
           "params":
           [
             {
-              "name": "fn",
-              "type": "Function",
-              "description": "Function to create an page item.",
-              "options": ["must return Object"],
-              "params":
-              [
-                {
-                  "name": "pageIndex",
-                  "type": "Number",
-                  "description": "Page index in collection."
-                }
-              ]
-            },
-            {
+              "options": ["optional"],
               "name": "max",
               "type": "Number",
-              "description": "Max page in pagination.",
+              "description": "Max pages to pagination (creates between interval).",
+              "default": "undefined"
+            },
+            {
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override current format for build URL address.",
               "default": "undefined"
             }
           ]
@@ -9194,7 +9513,7 @@
           ]
         },
         {
-          "return": "PageBuilder",
+          "return": "Pagination",
           "name": "builder.remove",
           "description": "Remove a parameter.",
           "params":
@@ -9221,7 +9540,7 @@
           ]
         },
         {
-          "return": "PageBuilder",
+          "return": "Pagination",
           "name": "builder.clear",
           "description": "Clear URL parameter collection.",
           "params": []
@@ -9301,7 +9620,7 @@
                 {
                   "name": "name",
                   "type": "String",
-                  "description": "Property name. By the property return default value. Return undefined is a default."
+                  "description": "Property name. By the property returns default value. Return undefined is a default."
                 },
                 {
                   "name": "isDefault",

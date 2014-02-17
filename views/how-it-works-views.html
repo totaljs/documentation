@@ -14,7 +14,6 @@
 		<li>Views support simple condition.</li>
 		<li>Views support custom helpers.</li>
 		<li>Each view has a layout (you can disable a layout).</li>
-		<li>View can render others views (therefore total.js).</li>
 		<li class="red">Views are synchronous.</li>
 		<li class="red">Views are compiled into the function.</li>
 		<li class="red">All views (HTML) are minimized under compilation (total.js saves memory).</li>
@@ -117,7 +116,7 @@
 	Views supports simple conditions. Example:
 </div>
 <div class="text mt10">
-	<pre class="brush: xml">@&#123;if (user === null)&#125;
+	<pre class="brush: xml">@&#123;if user === null&#125;
 	&lt;div>sign in&lt;/div&gt;
 @&#123;else&#125;
 	&lt;div&gt;sign up&lt;/div&gt;
@@ -126,14 +125,14 @@
 &lt;br /&gt;
 &lt;br /&gt;
 
-@&#123;if (model.name === 'Peter')&#125;
+@&#123;if model.name === 'Peter'&#125;
 	&lt;div>Here is Peter&lt;/div&gt;
 @&#123;endif&#125;
 
 &lt;br /&gt;
 &lt;br /&gt;
 
-@&#123;if (model.name !== 'Peter')&#125;
+@&#123;if model.name !== 'Peter'&#125;
 	&lt;div>Here is @&#123;model.name&#125;&lt;/div&gt;
 @&#123;endif&#125;
 
@@ -147,10 +146,10 @@
 <div class="text mt10">
 	<pre class="brush: xml">
 &lt;!-- VIEW --&gt;
-@&#123;view('<div><b>@&#123;model.name&#125;</b></div>', &#123; name: 'Peter Širka' &#125;)&#125;
+@&#123;view('&lt;div&gt;&lt;b&gt;@&#123;model.name&#125;&lt;/b&gt;&lt;/div&gt;', &#123; name: 'Peter Širka' &#125;)&#125;
 
 &lt;!-- TEMPLATE --&gt;
-@&#123;template('<div>&#123;name&#125;</div>', [&#123;name: 'Peter Širka'&#125;,&#123;name: 'Steve Jobs'&#125;])&#125;
+@&#123;template('&lt;div&gt;&#123;name&#125;&lt;/div&gt;', [&#123;name: 'Peter Širka'&#125;,&#123;name: 'Steve Jobs'&#125;])&#125;
 </pre>
 </div>
 

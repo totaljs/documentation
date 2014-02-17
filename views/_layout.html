@@ -27,7 +27,7 @@
         <br />
         <div class="menu">
             <form action="/search/" method="get" class="search">
-                <div><input type="text" name="q" placeholder="Search in documentation" value="@{get.q}" autofocus="autofocus" /></div>
+                <div><input type="text" name="q" placeholder="Search in documentation" value="@{get.q || ''}" autofocus="autofocus" /></div>
             </form>
             <ul>
                 <li><a href="/">Get started</a></li>

@@ -1,5 +1,5 @@
 <div class="search-result">
-	<a href="{document.url}" class="search-title"><strong>{document.name}</strong></a>
-	<div class="search-description">{!document.description}</div>
-	<div><a href="{document.url}" class="search-link">{document.url}</a></div>
+	<a href="@{model.document.url}" class="search-title"><strong>@{model.document.name}</strong></a>
+	<div class="search-description">@{!model.document.description}</div>
+	<div><a href="@{model.document.url}" class="search-link">@{model.document.url}</a></div>
 </div>

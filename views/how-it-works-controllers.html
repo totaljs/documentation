@@ -45,6 +45,23 @@ exports.install = function(framework, name) {
 
 }
 
+// Inline define a route
+framework.route('/account/{alias}/', { flags: ['+xhr'] }, function(alias) {
+	var self = this;
+	var model = { alias: alias };
+
+	if (self.xhr)
+		self.json(model);
+	else
+		self.view('account', model);
+});
+
+framework.route('/contact/', function() {
+	var self = this;
+	self.view('contact');
+});
+
+
 function view_homepage() {
 
 	// this === controller
@@ -179,7 +196,7 @@ function view_homepage() {
 }
 </pre>
 <br />
-<h2>Monitoring controllers</h2>
+<h2>Monitoring of controllers</h2>
 <br />
 <p class="text" style="margin-bottom:20px">
 	total.js supports monitoring of controllers via controller usage. <a href="https://github.com/totaljs/examples/tree/master/framework-usage" class="link">Usage example</a>.
@@ -192,7 +209,7 @@ exports.install = function(framework, name) {
 };
 
 exports.usage = function() {
-	return 'Visits: ' + counter;
+	return { visits: counter };
 };
 
 function view_homepage() {
@@ -203,7 +220,7 @@ function view_homepage() {
 
 function plain_usage() {
 	var self = this;
-	self.plain(self.framework.usage(true));
+	self.json(self.framework.usage(true));
 }
 </pre>
 <br />
@@ -220,6 +237,7 @@ function plain_usage() {
 	framework.route('#408', error408);
 	framework.route('#431', error431);
 	framework.route('#500', error500);
+	framework.route('#501', error501);
 };
 
 // Bad Request
@@ -268,5 +286,12 @@ function error431() {
 function error500() {
 	var self = this;
 	self.statusCode = 500;
+	self.plain(utils.httpStatus(self.statusCode));
+}
+
+// Not Implemented
+function error501() {
+	var self = this;
+	self.statusCode = 501;
 	self.plain(utils.httpStatus(self.statusCode));
 }</pre>
