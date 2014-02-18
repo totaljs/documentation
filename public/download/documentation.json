@@ -5187,6 +5187,11 @@
         },
         {
           "return": "String",
+          "name": "@{hostname}",
+          "description": "Get a hostname from current request."
+        },
+        {
+          "return": "String",
           "name": "@{settings}",
           "description": "Render all settings values.",
           "example": "https://github.com/totaljs/examples/tree/master/views-settings"
@@ -9441,7 +9446,7 @@
               "default": "undefined"
             }
           ]
-        },        
+        },
         {
           "return": "Object",
           "name": "builder.next",
