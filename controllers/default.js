@@ -1,5 +1,6 @@
 exports.install = function(framework) {    
     framework.route('/', view_homepage);
+    framework.route('/cmd/', view_cmd);
     framework.route('/configuration/', view_configuration);
     framework.route('/did-you-know/', view_didyouknow);
     framework.route('/directory/', view_directory);
@@ -19,6 +20,16 @@ exports.install = function(framework) {
 function view_homepage() {
     var self = this;
     self.view('homepage');
+}
+
+/*
+    Description: Command line
+    Output: view
+    Method: GET
+*/
+function view_cmd() {
+    var self = this;
+    self.view('cmd');    
 }
 
 /*
