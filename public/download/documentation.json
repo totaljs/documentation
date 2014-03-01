@@ -628,6 +628,42 @@
               "name": "uri",
               "type": "Object",
               "description": "URI object."
+            },
+            {
+              "options": ["optional"],
+              "name": "ip",
+              "type": "String",
+              "description": "IP address."
+            }
+          ]
+        },
+        {
+          "name": "framework.change",
+          "description": "Create a new change.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "message",
+              "type": "String",
+              "description": "Change description."
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Controller / module name."
+            },
+            {
+              "options": ["optional"],
+              "name": "uri",
+              "type": "Object",
+              "description": "URI object."
+            },
+            {
+              "options": ["optional"],
+              "name": "ip",
+              "type": "String",
+              "description": "IP address."
             }
           ]
         },
@@ -1827,14 +1863,53 @@
               "type": "String"
             },
             {
+              "options": ["optional"],
               "name": "name",
               "description": "Controller / Module name.",
               "type": "String"
             },
             {
+              "options": ["optional"],
               "name": "uri",
               "description": "URI",
               "type": "Object"
+            },
+            {
+              "options": ["optional"],
+              "name": "ip",
+              "description": "IP address",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('change')",
+          "description": "This event is triggered when is a change.",
+          "example":"https://github.com/totaljs/examples/tree/master/changes",
+          "params":
+          [
+            {
+              "name": "message",
+              "description": "Change description.",
+              "type": "String"
+            },
+            {
+              "options": ["optional"],
+              "name": "name",
+              "description": "Controller / Module name.",
+              "type": "String"
+            },
+            {
+              "options": ["optional"],
+              "name": "uri",
+              "description": "URI",
+              "type": "Object"
+            },
+            {
+              "options": ["optional"],
+              "name": "ip",
+              "description": "IP address",
+              "type": "String"
             }
           ]
         },
@@ -2097,6 +2172,13 @@
           "description": "This property stores the last 50 problems.",
           "default": "[]",
           "name": "framework.errors",
+          "return": "Array"
+        },
+        {
+          "options": ["readonly"],
+          "description": "This property stores the last 50 changes.",
+          "default": "[]",
+          "name": "framework.changes",
           "return": "Array"
         },
         {
@@ -3523,6 +3605,21 @@
         {
           "options": ["http", "websocket"],
           "return": "FrameworkController",
+          "name": "controller.change",
+          "description": "Mark an change.",
+          "example": "https://github.com/totaljs/examples/tree/master/changes",
+          "params":
+          [
+            {
+              "name": "message",
+              "type": "String",
+              "description": "Change description."
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
           "name": "controller.wait",
           "description": "Add a function to async waiting list.",
           "example": "https://github.com/totaljs/examples/tree/master/async",
@@ -3781,6 +3878,58 @@
               "name": "param..n",
               "type": "Any",
               "description": "Dynamic parameter"
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
+          "name": "controller.component",
+          "description": "Return rendered string.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Component name."
+            },
+            {
+              "options": ["optional"],
+              "name": "param1",
+              "type": "Object",
+              "description": "Component parameter."
+            },
+            {
+              "options": ["optional"],
+              "name": "param...n",
+              "type": "Object",
+              "description": "Component parameter."
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
+          "name": "controller.helper",
+          "description": "Return rendered string.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Helper name."
+            },
+            {
+              "options": ["optional"],
+              "name": "param1",
+              "type": "Object",
+              "description": "Helper parameter."
+            },
+            {
+              "options": ["optional"],
+              "name": "param...n",
+              "type": "Object",
+              "description": "Helper parameter."
             }
           ]
         },
@@ -5255,7 +5404,7 @@
       [
         {
           "return": "String",
-          "name": "@{title('New title')}",
+          "name": "@{title}",
           "description": "Create title.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "params":
@@ -5269,7 +5418,7 @@
         },
         {
           "return": "String",
-          "name": "@{title('New description')}",
+          "name": "@{description}",
           "description": "Create description.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "params":
@@ -5283,7 +5432,7 @@
         },
         {
           "return": "String",
-          "name": "@{title('New keywords')}",
+          "name": "@{keywords}",
           "description": "Create keywords.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "params":
@@ -5292,6 +5441,260 @@
               "name": "value",
               "type": "String",
               "description": "New meta keywords."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "@{component}",
+          "description": "Render component.",
+          "example": "https://github.com/totaljs/examples/tree/master/components",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Component name."
+            },
+            {
+              "options": ["optional"],
+              "name": "param1",
+              "type": "Object",
+              "description": "Component parameter."
+            },
+            {
+              "options": ["optional"],
+              "name": "paramN",
+              "type": "Object",
+              "description": "Component parameter."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "@{helper}",
+          "description": "Render helper.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Helper name."
+            },
+            {
+              "options": ["optional"],
+              "name": "param1",
+              "type": "Object",
+              "description": "Helper parameter."
+            },
+            {
+              "options": ["optional"],
+              "name": "paramN",
+              "type": "Object",
+              "description": "Helper parameter."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ng}",
+          "description": "Append Angular.js SCRIPT into the @{head}. If script path starts with ~ then is script loaded from common directory (app/common) else from CDN - cdnjs.cloudflare.",
+          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "String",
+          "name": "@{ngTemplate}",
+          "description": "Load template (from /app/templates/) into the <script tag>.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Filename with or without .html extension (this extension will be added automatically)."
+            },
+            {
+              "options": ["optional"],
+              "name": "id",
+              "type": "String",
+              "description": "Element id.",
+              "default": "name"
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngController}",
+          "description": "Append link to the controller SCRIPT (in app/controllers) into the @{head}.",
+          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Controller script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Controller script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngFilter}",
+          "description": "Append link to the filter SCRIPT (in app/filters) into the @{head}.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Filter script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Filter script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngService}",
+          "description": "Append link to the service SCRIPT (in app/services) into the @{head}.",
+          "example": "https://github.com/totaljs/examples/tree/master/angularjs-websocket",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Service script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Service script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngDirective}",
+          "description": "Append link to the directive SCRIPT (in app/directives) into the @{head}.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Directive script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Directive script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngResource}",
+          "description": "Append link to the resource SCRIPT (in app/resources) into the @{head}.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Resource script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Resource script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngCommon}",
+          "description": "Append link to the common SCRIPT (in app/commons) into the @{head}.",
+          "example": "https://github.com/totaljs/examples/tree/master/angularjs-common",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Common script name without .js."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Common script name without .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngInclude}",
+          "description": "Include <script ... into the current position in the view. This script is mapped to public (or /app/) directory.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Common script name with .js."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngLocale}",
+          "description": "Append Angular.js locale SCRIPT into the @{head}. If script path starts with ~ then is script loaded from the locale directory (app/locale) else from CDN - cdnjs.cloudflare.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Locale script name without .js and without \"angular-locale\"."
+            },
+            {
+              "options": ["optional"],
+              "name": "nameN",
+              "type": "String",
+              "description": "Locale script name without .js and without \"angular-locale\"."
+            }
+          ]
+        },
+        {
+          "return": "NOTHING",
+          "name": "@{ngStyle(name)}",
+          "description": "Append style (from app/css) into the @{head}.",
+          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Locale script name without .js and without \"angular-locale\"."
             }
           ]
         },
@@ -7903,14 +8306,21 @@
           "example": "https://github.com/totaljs/examples/tree/master/framework-xss-protection"
         },
         {
-          "options": ["optional", "http"],
+          "options": ["optional", "http", "websocket"],
+          "return": "String",
+          "name": "authorize",
+          "description": "Set route for logged users.",
+          "example": "https://github.com/totaljs/examples/tree/master/authorization"
+        },
+        {
+          "options": ["OBSOLETE", "optional", "http"],
           "return": "String",
           "name": "logged",
           "description": "Set route for logged users.",
           "example": "https://github.com/totaljs/examples/tree/master/authorization"
         },
         {
-          "options": ["optional", "http"],
+          "options": ["OBSOLETE", "optional", "http"],
           "return": "String",
           "name": "unlogged",
           "description": "Set route for unlogged users.",

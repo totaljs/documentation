@@ -15,7 +15,7 @@
 		<li>Authorization delegate is async.</li>
 		<li>You can authorize user by the cookies / headers or request data.</li>
 		<li>In this delegate you can set user roles.</li>
-		<li class="red b">Authorization delegate is adding logged or unlogged flag.</li>
+		<li class="red b">Authorization delegate adds [authorize] flag.</li>
 	</ul>
 </div>
 <div class="documentation-example">
@@ -65,7 +65,7 @@
 function error401() {
 	var self = this;
 
-	if (self.flags.indexOf('logged') === -1) {
+	if (self.flags.indexOf('authorize') === -1) {
 		self.redirect('/login/form/?r=' + encodeURIComponent(self.url));
 		return;
 	}
