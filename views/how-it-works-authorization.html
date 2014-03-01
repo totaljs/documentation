@@ -26,6 +26,7 @@
 <br />
 <pre class="brush: jscript">framework.onAuthorization = function(req, res, flags, next) {
 
+	// EXAMPLE:
 	var userId = req.cookie('user').parseInt();
 
 	if (userId === 0) {
@@ -55,9 +56,11 @@
 }
 </pre>
 <br />
-<h2>TIP: REDIRECTING OF USERS</h2>
+<h2>ROUTING + TIP: REDIRECTING OF USERS</h2>
 <br />
 <pre class="brush: jscript">exports.install = function(framework) {
+	framework.route('/', view_homepage_unlogged);
+	framework.route('/', view_homepage_logged, ['authorize']);
 	framework.route('#401', error401);
 };
 
@@ -71,5 +74,15 @@ function error401() {
 	}
 
 	self.redirect('/user/profile/');
+}
+
+function view_homepage_unlogged() {
+	var self = this;
+	self.plain('UNLOGGED');
+}
+
+function view_homepage_logged() {
+	var self = this;
+	self.plain('LOGGED: ' + JSON.stringify(self.user));
 }
 </pre>
