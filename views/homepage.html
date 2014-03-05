@@ -49,9 +49,10 @@ $ npm install total.js
 var http = require(&#39;http&#39;);
 
 var port = 8000;
+var ip = &#39;127.0.0.1&#39;;
 var debug = true;
 
-framework.run(http, debug, port, &#39;127.0.0.1&#39;);
+framework.run(http, debug, port, ip);
 </pre>
 <h4>HTTPS</h4>
 <pre class="brush: jscript">var framework = require(&#39;total.js&#39;);
@@ -64,9 +65,10 @@ var options = {
 };
 
 var port = 8000;
+var ip = &#39;127.0.0.1&#39;;
 var debug = true;
 
-framework.run(https, debug, port, &#39;127.0.0.1&#39;, options);
+framework.run(https, debug, port, ip, options);
 </pre>
 <br />
 <br />
