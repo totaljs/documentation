@@ -695,6 +695,20 @@
           ]
         },
         {
+          "name": "framework.source",
+          "description": "Get a business logic. Business logic is defined in config['directory-source']. This method is uses for global function: include(name) and source(name). Include and Source are alias for framework.source().",
+          "return": "Object",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Source name."
+            }
+          ]
+        },
+        {
           "name": "framework.model",
           "description": "Get a framework model. All models are defined in config['directory-models'].",
           "return": "Object",
@@ -719,6 +733,25 @@
               "name": "name",
               "type": "String",
               "description": "Module name."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A valid URL address."
+            }
+          ]
+        },
+        {
+          "name": "framework.injectSource",
+          "description": "Inject a source (business logic) from URL address. Source must be a 100% pure javascript file.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-business-logic-source",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Source name."
             },
             {
               "name": "url",
@@ -2043,6 +2076,18 @@
         },
         {
           "options": ["readonly"],
+          "description": "Is OS Windows?",
+          "return": "Boolean",
+          "name": "framework.isWindows"
+        },
+        {
+          "options": ["readonly"],
+          "description": "Is used coffescript?",
+          "return": "Boolean",
+          "name": "framework.isCoffee"
+        },
+        {
+          "options": ["readonly"],
           "description": "Return the node.js version.",
           "return": "Number",
           "name": "framework.versionNode"
@@ -2185,6 +2230,12 @@
           "description": "This property stores a websocket connections. Each property in this object contain URL address into the websocket.",
           "default": "{}",
           "name": "framework.connections",
+          "return": "Object"
+        },
+        {
+          "description": "This property stores all sources (business logic).",
+          "default": "{}",
+          "name": "framework.sources",
           "return": "Object"
         },
         {
@@ -5070,8 +5121,8 @@
           [
             {
               "name": "id",
-              "type": "String",
-              "description": "Id of client."
+              "type": "String/Function",
+              "description": "Id of client or prepare function."
             }
           ]
         }
@@ -5292,9 +5343,24 @@
         {
           "options": ["important"],
           "name": "client.close",
-          "description": "Close connection.",
+          "description": "Close a connection.",
           "return": "FrameworkWebSocketClient",
-          "params": []
+          "params":
+          [
+            {
+              "name": "message",
+              "type": "String",
+              "description": "Reason message.",
+              "options": ["optional"]
+            },
+            {
+              "name": "code",
+              "type": "Number",
+              "description": "Reason code. https://tools.ietf.org/html/rfc6455#section-7.4",
+              "options": ["optional"],
+              "default": "1000"
+            }
+          ]
         }
       ]
     },
@@ -6982,7 +7048,39 @@
             {
               "name": "target",
               "type": "Object",
-              "description": "Target object."
+              "description": "Target object.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "name": "utils.assign",
+          "description": "Assign value into the object property by the path.",
+          "return": "Object",
+          "params":
+          [
+            {
+              "name": "source",
+              "type": "Object",
+              "description": "Source object."
+            },
+            {
+              "name": "path",
+              "type": "String",
+              "description": "Path to property. Example: 'users.name'."
+            },
+            {
+              "name": "fn",
+              "type": "Function/Object",
+              "description": "Object can replace value and function too.",
+              "params":
+              [
+                {
+                  "name": "value",
+                  "type": "Object",
+                  "description": "Old value from object."
+                }
+              ]
             }
           ]
         },
@@ -9599,6 +9697,65 @@
       ]
     },
     {
+      "name": "global",
+      "description": "Get a global objects or functions.\n\n=== javascript\nvar user = include('user');\n\n//or\n\nvar builder = new builders.ErrorBuilder();\n===",
+      "group": "Globals",
+      "methods":
+      [
+        {
+          "return": "Object",
+          "name": "include",
+          "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Script name.",
+              "example": "https://github.com/totaljs/examples/tree/master/business-logic"
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "source",
+          "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Script name.",
+              "example": "https://github.com/totaljs/examples/tree/master/business-logic"
+            }
+          ]
+        }
+      ],
+      "properties":
+      [
+        {
+          "return": "FrameworkUtils",
+          "name": "utils",
+          "description": "Get FrameworkUtils.",
+          "go": "FrameworkUtils",
+          "options": ["or Utils"]
+        },
+        {
+          "return": "builders",
+          "name": "Builders",
+          "description": "Get Builders (schema, error, pagination, etc.).",
+          "options": ["or builders"]
+        },
+        {
+          "return": "FrameworkMail",
+          "name": "Mail",
+          "description": "Get FrameworkMail."
+        }
+      ]
+    },
+    {
       "name": "Builders.ErrorBuilder",
       "description": "Error builder is helpful for model error handling.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.ErrorBuilder();\n===",
       "group": "Builders",
@@ -9708,6 +9865,25 @@
               "name": "newValue",
               "type": "String",
               "description": "Text to replace."
+            }
+          ]
+        },
+        {
+          "return": "ErrorBuilder",
+          "name": "builder.resource",
+          "description": "Set resource file.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Resource name for error builder."
+            },
+            {
+              "name": "prefix",
+              "type": "String",
+              "options": ["optional"],
+              "description": "Prefix for replacing an error message."
             }
           ]
         },
@@ -10012,7 +10188,7 @@
           "return": "Object",
           "name": "builders.schema",
           "description": "Create a schema. Schema supports joining others schemas.",
-          "example": "https://github.com/totaljs/examples/tree/master/schema",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-schema",
           "params":
           [
             {
@@ -10043,6 +10219,78 @@
                   "description": "true === builders.defaults(), false === builders.prepare()"
                 }
               ]
+            },
+            {
+              "name": "validator",
+              "type": "Function",
+              "description": "Create a custom schema validation. This function is same as framework.onValidation delegate.",
+              "options": ["optional"],
+              "params":
+              [
+                {
+                  "name": "name",
+                  "type": "String",
+                  "description": "Property name. By the property returns default value. Return undefined is a default."
+                },
+                {
+                  "name": "value",
+                  "type": "Object",
+                  "description": "Value for to validate."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "builders.validation",
+          "description": "Set custom validation for the schema.",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Schema name."
+            },
+            {
+              "name": "validator",
+              "type": "Function",
+              "description": "Create a custom schema validation. This function is same as framework.onValidation delegate.",
+              "options": ["optional"],
+              "params":
+              [
+                {
+                  "name": "name",
+                  "type": "String",
+                  "description": "Property name. By the property returns default value. Return undefined is a default."
+                },
+                {
+                  "name": "value",
+                  "type": "Object",
+                  "description": "Value for to validate."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "ErrorBuilder",
+          "name": "builders.validate",
+          "description": "Validate a schema.",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
+          "go": "Builders.ErrorBuilder",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Schema name."
+            },
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "Object for validation."
             }
           ]
         },

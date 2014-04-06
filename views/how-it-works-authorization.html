@@ -42,15 +42,14 @@
 	self.database('users').one(function(doc) { return doc.id === userId; }, function(user) {
 
 		if (user === null) {
-
 			// unlogged user
 			next(false);
 			return;
 		}
 
+		// Documentation: http://docs.totaljs.com/Framework/#framework.onAuthorization
 		// user is logged
-		req.user = user;
-		next(true);
+		next(true, user);
 
 	});
 

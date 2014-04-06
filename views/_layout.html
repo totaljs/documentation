@@ -23,6 +23,7 @@
     <div class="container">
         <div>
             <a href="/">@{image('logo.png', 700, 90, 'total.js logo')}</a>
+            <div class="message message-alert help"><b>IMPORTANT:</b><div class="mt5 mb10">Source of documentation is on GitHub. If you see some bugs or wrong text, please update this documentation. Thanks.</div><a href="https://github.com/totaljs/documentation" class="fs12">Documentation on GitHub &rarr;</a></div>
         </div>
         <br />
         <div class="menu">
@@ -72,6 +73,9 @@
             <br />
             <div><strong>Additional</strong></div>
             @{template('menu', repository.menuAdditional)}
+            <br />
+            <div><strong>Globals</strong></div>
+            @{template('menu', repository.menuGlobals)}
         </div>    
         <div class="content">
             @{body}

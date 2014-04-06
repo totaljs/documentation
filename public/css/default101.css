@@ -72,6 +72,7 @@ p.text { margin: 0 0 20px 0; padding: 0; }
 .silver { color: silver; }
 .red { color: red; }
 .fs11 { font-size: 11px; }
+.fs12 { font-size: 12px; }
 .fl { float: left; }
 
 hr { border: 0; border-bottom: 1px solid #D0D0D0; border-top: 1px solid #F0F0F0; height: 1px; background-color: white; }
@@ -88,7 +89,7 @@ hr { border: 0; border-bottom: 1px solid #D0D0D0; border-top: 1px solid #F0F0F0
 .mt10 { margin-top: 10px !important; }
 .mt15 { margin-top: 15px !important; }
 .mt20 { margin-top: 20px !important; }
-
+.mb5 { margin-bottom: 5px; }
 .mb10 { margin-bottom: 10px !important; }
 .mb15 { margin-bottom: 15px !important; }
 .mb20 { margin-bottom: 20px !important; }
@@ -206,3 +207,4 @@ a.link:hover { color: #0092E6; }
 .keyvalue { height: 20px; border-bottom: 1px dotted #E0E0E0; margin-top: 3px; }
 .keyvalue > div { float: left; }
 .keyvalue > div:first-child { width: 200px; }
+.help { font-size:11px;padding:10px;width:300px;line-height:12px;position:absolute;margin:-90px 0 0 740px; }

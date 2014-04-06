@@ -75,6 +75,7 @@ directory-views                    : /views/
 directory-temp                     : /tmp/
 directory-templates                : /templates/
 directory-resources                : /resources/
+directory-source                   : /source/
 directory-public                   : /public/
 directory-modules                  : /modules/
 directory-logs                     : /logs/
@@ -116,6 +117,9 @@ default-layout                     : _layout
 // Default maximum request size / length (default 5 kB)
 default-request-length             : 5120
 default-websocket-request-length   : 5120
+
+// Auto encodeURIComponent &amp; decodeURIComponent text/JSON message
+default-websocket-encodedecode     : false
  
 // In milliseconds
 default-request-timeout            : 3000
