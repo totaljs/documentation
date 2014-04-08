@@ -105,6 +105,7 @@ a.link:hover { color: #0092E6; }
 .message-alert { background-color: #fcf8e3; border: 1px solid #fbeed5; color:#c09853; }
 .message-alert a { color: #9f793c; }
 .message-success { background-color: #dff0d8; border: 1px solid #d6e9c6; color:#458847; }
+.message-success a { color: #386D4E; }
 .message-info { background-color: #d9edf7; border: 1px solid #bce8f1; color:#3a87ad; }
 .message button { position: relative; right: 0; top: -6px; border: 0; background: transparent; font:normal 20px Arial; color: silver; float: right; cursor: pointer; width: 20px; }
 .message button:active { top:-5px; }
