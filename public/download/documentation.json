@@ -6018,6 +6018,25 @@
           ]
         },
         {
+          "name": "@{place}",
+          "description": "Create / Render a placeholder. If the value is not defined then function renders content into the current position.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-place",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Place ID."
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "description": "Place content.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "name": "@{header}",
           "description": "Set custom response header.",
           "example": "https://github.com/totaljs/examples/tree/master/custom-headers",
