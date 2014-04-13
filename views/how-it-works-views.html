@@ -45,12 +45,39 @@
 <pre class="brush: xml">@&#123;repository.firstname&#125; or @&#123;model.firstname&#125;</pre>
 <br />
 <h3>Layout: /views/_layout.html</h3>
-<div class="text"><span class="high-code">controller.repository</span> works also in a layout. Model doesn&#39;t work because model is for current view and view can contains many other views.</div>
+<div class="text">The <span class="high-code">self.repository.title = 'System Administration'; assignment in the previous example under "Repository vs Model"</span> displays the assigned value "System Administration" in the file specified by self.layout ('_layout'). This is common to all sub elements using _layout. This is collectively called the repository, e.g @&#123;repository.firstname&#125; output is "System Administration". Model variables (e.g: "@&#123;model.firstname&#125;") do not render its value in _layouts because models are responsible for displaying values in the current view only.</div>
 <br />
-<pre class="brush: xml">In layout only works: @&#123;repository.firstname&#125;
+<pre class="brush: xml">
+// In the controller the repository variable assignment is: 
+self.repository.title = 'System Administration'; 
 
-&lt;!-- The model can be only for current view, why? --&gt;
-&lt;div&gt;@&#123;view('footer', { company: '858project.com' })&#125;&lt;div&gt;</pre>
+// In the _layout the value assigned to self.repository.title is displayed :
+@&#123;repository.title&#125; outputs "System Administration" in view.
+
+&lt;!-- The model displays its value in current view only. Note: a view is a contextual file inside a repository. For example and administration system would have a title however the context of the its subpages would require sub titles. --&gt;
+
+// In the controller ("controllers/controller_name.js") the model variable assignments are in name value pairs: 
+self.view(
+           // views/site/dashboard.html
+           'dashboard',
+
+           // the model variables assigned to the "current view"
+           {  
+             dashboardtitle: '858project.com', // title in dashboard context
+             articletitle:   'total.js', // title in article context
+           }
+        );
+
+
+// In the view ('views/site/dashboard.html'), display the variables assigned to the view:
+@&#123;repository.dashboardtitle&#125; outputs "858project.com" in view.
+@&#123;repository.articletitle&#125; outputs "total.js" in view.
+
+// Why?
+
+&lt;div&gt;@&#123;view('footer',  { dashboard: '858project.com',  })&#125;&lt;div&gt;
+
+</pre>
 <br />
 <hr />
 <br />
