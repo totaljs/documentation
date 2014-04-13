@@ -56,7 +56,7 @@
 <br />
 <h2>Define a layout</h2>
 <div class="text">
-	You can define a lot of layout files.
+	You can create multiple layouts customizing them by name ('eg: _layout.html or _mycustomlayout.html').
 </div>
 <div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/views">Example</a></div>
 <br />
@@ -88,7 +88,7 @@
 <br />
 <h2>Define a view</h2>
 <div class="text">
-	You can create a lot of view files.
+	You can create multiple views ('e.g: index.html, custom.html').
 </div>
 <div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/views">Example</a></div>
 <br />
@@ -153,12 +153,12 @@
 </pre>
 </div>
 
-<h3>Defineing a custom helper</h3>
+<h3>Defining custom helpers</h3>
 <div class="text">
-	Write code into a definition.
+	Your "helper" code should be placed in the definitions directory.
 </div>
 <br />
-<pre class="brush: jscript">framewoker.helpers.customHelper = function(str, num) {
+<pre class="brush: jscript">framework.helpers.customHelper = function(str, num) {
 	// this === controller
 	return str + ' = ' + num;
 };
@@ -169,7 +169,7 @@
 @&#123;helper('customHelper', 'Peter', 25)&#125;
 </pre>
 <br />
-<h2>Defining views in Sub-Directories</h2>
+<h2>Defining views in sub-directories</h2>
 <div class="text"> 
     The default controller ( "default.js" ) self.view() includes views from the default views directory (e.g: "/views"). To modify this behaviour, rename the controller's file name (e.g: controllers/site.js ) to 
     match a directory of the same name under views (e.g: views/site/). The views contained within the "site" directory would be displayed.
