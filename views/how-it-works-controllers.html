@@ -225,6 +225,23 @@ function plain_usage() {
 }
 </pre>
 <br />
+<h2>Obscuring routes</h2>
+<br />
+<p class="text">
+	Routes can be obscured using a hash.
+</p>
+<pre class="brush: jscript">
+// In your controller
+exports.install = function(framework) {
+  framework.route('/register/{hash}/', view_register); 
+}
+
+function view_register(hash) {
+   console.log(hash);
+   this.plain('register –> ' + hash);
+} 
+</pre>
+<br />
 <h2>Define system routes</h2>
 <br />
 <p class="text">
