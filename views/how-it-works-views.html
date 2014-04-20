@@ -28,17 +28,31 @@
 <br />
 <h2>Repository vs. Model</h2>
 <div class="text">
-	Into views you can transfer variable through <span class="high-code">controller.repository</span> or <span class="high-code">controller.view('name', <b>model</b>)</span>.
+	Controller variables can be ouput to views <span class="high-code">controller.repository</span> or <span class="high-code">controller.view('name', <b>model</b>)</span>.
 </div>
 <br />
-<pre class="brush: jscript">function some_action() {
+<pre class="brush: jscript">
+// Using the controller.repository method.
+// Must be defined in each controller
+exports.install = function(framework, name) {
+    framework.route('/', view_homepage);
+    
+    //Repository variable
+    framework.on('controller', function(controller, name) {
+        controller.repository.title = 'Total.js framework.'; 
+    });
+
+}
+
+function view_homepage() {
 	var self = this;
 
 	self.repository.firstname = 'Peter';
 	self.repository.lastname = 'Sirka';
 
 	self.view('my-view', { firstname: 'Janko', lastname: 'Hrasko' });
-}</pre>
+}
+</pre>
 <br />
 <div class="center">@{image('repository-vs-model.png', 810, 170, 'Repository vs. Model')}</div>
 <h3>View: /views/my-view.html</h3>
