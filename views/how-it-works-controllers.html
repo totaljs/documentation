@@ -225,6 +225,24 @@ function plain_usage() {
 }
 </pre>
 <br />
+<h2>Obscuring routes</h2>
+<br />
+<p class="text">
+Routes can be obscured using a hash. You can generate short hashes from numbers (like YouTube and Bitly).
+to obfuscate database IDs, use them as forgotten password hashes, invitation codes, store shard numbers.
+</p>
+<pre class="brush: jscript">
+// In your controller
+exports.install = function(framework) {
+  framework.route('/register/{hash}/', view_register); 
+}
+
+function view_register(hash) {
+   console.log(hash);
+   this.plain('register –> ' + hash);
+} 
+</pre>
+<br />
 <h2>Define system routes</h2>
 <br />
 <p class="text">
