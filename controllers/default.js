@@ -1,4 +1,4 @@
-exports.install = function(framework) {    
+exports.install = function(framework) {
     framework.route('/', view_homepage);
     framework.route('/cmd/', view_cmd);
     framework.route('/configuration/', view_configuration);
@@ -29,7 +29,7 @@ function view_homepage() {
 */
 function view_cmd() {
     var self = this;
-    self.view('cmd');    
+    self.view('cmd');
 }
 
 /*
@@ -83,7 +83,7 @@ function view_howdoesitworks(name) {
         case 'validation':
         case 'views':
             self.view('how-it-works-' + name);
-            return;        
+            return;
     }
 
     self.view404();
@@ -172,7 +172,7 @@ function empty_internal_reindex() {
 
             var beg = '(';
             var end = '';
-            
+
             var last = name[name.length - 1];
             if (last === '}') {
                 end = '}';

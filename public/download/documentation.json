@@ -3453,6 +3453,13 @@
           "default": "''"
         },
         {
+          "options": ["readonly", "http"],
+          "return": "String",
+          "name": "controller.language",
+          "description": "Return request parsed HTTP header: accept-language.",
+          "default": "''"
+        },
+        {
           "options": ["important", "http", "websocket"],
           "return": "Object",
           "name": "controller.repository",
@@ -8430,6 +8437,13 @@
           "example": "https://github.com/totaljs/examples/tree/master/authorization"
         },
         {
+          "options": ["optional", "http", "websocket"],
+          "return": "String",
+          "name": "unauthorize",
+          "description": "Set route for unlogged users.",
+          "example": "https://github.com/totaljs/examples/tree/master/authorization"
+        },
+        {
           "options": ["OBSOLETE", "optional", "http"],
           "return": "String",
           "name": "logged",
@@ -9061,7 +9075,7 @@
         },
         {
           "return": "String",
-          "name": "String.prototype.link",
+          "name": "String.prototype.linker",
           "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'partial-js-web-application-framework-for-node-js'",
           "params":
           [
@@ -9723,9 +9737,10 @@
       [
         {
           "return": "Object",
-          "name": "include",
+          "name": "INCLUDE",
           "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
           "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "options": ["or include"],
           "params":
           [
             {
@@ -9738,9 +9753,10 @@
         },
         {
           "return": "Object",
-          "name": "source",
+          "name": "SOURCE",
           "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
           "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "options": ["or source"],
           "params":
           [
             {
@@ -9750,6 +9766,38 @@
               "example": "https://github.com/totaljs/examples/tree/master/business-logic"
             }
           ]
+        },
+        {
+          "return": "Object",
+          "name": "MODULE",
+          "description": "Load module. This function is linked to: framework.module().",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Module name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "MODEL",
+          "description": "Load model. This function is linked to: framework.model().",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Modul name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "DATABASE",
+          "description": "Get a database. This function is linked to: framework.database().",
+          "params": []
         }
       ],
       "properties":

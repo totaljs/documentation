@@ -44,10 +44,15 @@ $ npm install total.js
 <br />
 <hr />
 <h3>How to run framework?</h3>
+<div class="text">Empty project (<a href="https://github.com/totaljs/framework/releases" class="link b">download</a>) contains 3x files <b>debug.js</b> (for development), <b>release.js</b> (for production) and <b>test.js</b> (for assertion testing).</div>
+<br />
 <h4>HTTP</h4>
 <pre class="brush: jscript">var framework = require('total.js');
 var http = require(&#39;http&#39;);
 
+// BEST PRACTICE:
+// Define PORT and IP into the config files
+// Example: https://github.com/totaljs/examples/tree/master/config-debug-release
 var port = 8000;
 var ip = &#39;127.0.0.1&#39;;
 var debug = true;
@@ -74,7 +79,7 @@ framework.run(https, debug, port, ip, options);
 <br />
 <div><strong>OPEN COMMAND-LINE TOOLS AND WRITE:</strong></div>
 <br />
-<h4>Run app in a debug mode</h4>
+<h4>Run app in a development mode</h4>
 <pre class="brush: plain">node debug</pre>
 <br />
 <h4>Run tests</h4>
@@ -104,7 +109,7 @@ framework.run(https, debug, port, ip, options);
 <br />
 <hr />
 <h2 id="ngrok">Website testing on the internet (tunnel between localhost and internet)</h2>
-<div class="text" style="margin-top:20px">    
+<div class="text" style="margin-top:20px">
     <div>Homepage: <a href="https://ngrok.com/" class="link b">ngrok - secure introspectable tunnels to localhost</a></div>
     <div>Documentation: <a href="https://ngrok.com/usage" class="link">ngrok - documentation</a></div>
     <br />
@@ -182,7 +187,7 @@ http {
             access_log    off;
             log_not_found off;
             deny all;
-        }        
+        }
     }
 
     server {
@@ -218,8 +223,10 @@ http {
 <br />
 <div>Download and unzip to <span class="high-code">/user/</span>: @{download('nodejs.sublime-build.zip', 'nodejs.sublime-build.zip', '', 'link b')}</div>
 <br />
-<h2 id="sublime-syntax">Download Sublime Text 2 syntax</h2>
+<h2 id="sublime-syntax">Download Sublime Text Syntax</h2>
 <br />
-<div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax (4.9 kB)</a></div>
+<div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax for Sublime Text 2 (4.9 kB)</a></div>
+<div><a href="http://www.totaljs.com/download/sublime-text-highlighter-3.zip" class="link">Download syntax for Sublime Text 3 (4.9 kB)</a></div>
+<br />
 <div>Download the file, unpack and read <em class="b">readme.txt</em></div>
-<div>@{image('sublime.png', 820, 544, 'total.js syntax for Sublime TExt 2 editor')}</div>
+<div>@{image('sublime.png', 820, 544, 'total.js syntax for Sublime Text 2 editor')}</div>
