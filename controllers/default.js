@@ -1,3 +1,5 @@
+var reindexing = false;
+
 exports.install = function(framework) {
     framework.route('/', view_homepage);
     framework.route('/cmd/', view_cmd);
@@ -150,12 +152,20 @@ function view_documentation(name) {
     Method: GET
 */
 function empty_internal_reindex() {
+
     var self = this;
     var fulltext = self.fulltext('documentation');
+
+    if (reindexing) {
+        self.redirect('/');
+        return;
+    }
 
     var docs = self.module('docs').load();
     var md = self.module('md');
     var db = [];
+
+    reindexing = true;
 
     var add = function(obj, property) {
 
@@ -228,12 +238,14 @@ function empty_internal_reindex() {
     });
 
     fulltext.drop(function(err) {
-        db.waiting(function(item, next) {
+        db.wait(function(item, next) {
             fulltext.add(item.search, item.doc, function() {
                 setTimeout(next, 50);
             });
+        }, function() {
+            reindexing = false;
         });
     });
 
-    self.empty();
+    self.redirect('/');
 }
