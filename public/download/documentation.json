@@ -4887,21 +4887,45 @@
           "name": "controller.view401",
           "description": "Response 401 error - Unauthorized.",
           "return": "FrameworkController",
-          "params": []
+          "params":
+         [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
         },
         {
           "options": ["important", "http"],
           "name": "controller.view403",
           "description": "Response 403 error - Forbidden.",
           "return": "FrameworkController",
-          "params": []
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
         },
         {
           "options": ["important", "http"],
           "name": "controller.view404",
           "description": "Response 404 error - Not Found.",
           "return": "FrameworkController",
-          "params": []
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
         },
         {
           "options": ["important", "http"],
@@ -4922,7 +4946,15 @@
           "name": "controller.view501",
           "description": "Response 501 error - Not Implemented.",
           "return": "FrameworkController",
-          "params": []
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
         },
         {
           "options": ["important", "http"],
