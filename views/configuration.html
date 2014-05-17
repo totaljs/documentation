@@ -4,11 +4,11 @@
 
 <br />
 <div class="text">
-	Framework know two configuration files - <strong class="high">debug</strong> and <strong class="high">release</strong>. Debug configuration file is for development and release configuration file is for production. Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
+	Framework know three configuration files - <strong class="high">global (/config)</strong>, <strong class="high">debug (/config-debug)</strong> and <strong class="high">release (/config-release)</strong>. Debug configuration file is for development and release is for production. Global configuration is for both modes and is loaded as first (other configuration can rewritten global values). Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
 </div>
 <br />
 <div class="image">
-	@{image('config-files.png', 300, 256, 'Directory with config files')}
+	@{image('config-files.png', 314, 300, 'Directory with config files')}
 	<div>Sample of configuration files in website directory</div>
 </div>
 <br />
@@ -304,16 +304,5 @@ default-image-converter           : gm
 </pre>
 <br />
 <div class="text">
-	<span class="high-code">framework.config[&#39;default-image-converter&#39;]</span> is used for image manipulation. This option was added for Heroku because as default Heroku supports only ImageMagick and the framework uses GraphicsMagick internally as default.
-</div>
-<br />
-<br />
-<h2 id="debug-release-tip">Tip: automatically setting of debug / release mode</h2>
-<div class="mt15 text">
-	My development hostname machine is <span class="high-code">Peters.iMac.local</span>. If I&#39;ll copy application into the server then framework is running in a production mode (config-release).
-</div>
-<br />
-<div class="image">
-	@{image('debug-release.gif', 530, 205, 'Debug & Release')}
-	<div>How to automatically set up the debug &amp; release mode?</div>
+	<span class="high-code">framework.config[&#39;default-image-converter&#39;]</span> is used for image manipulation. This option was added for Heroku because as default Heroku supports only ImageMagick <span class="high">im</span> and the framework uses GraphicsMagick <span class="high">gm</span> internally as default.
 </div>

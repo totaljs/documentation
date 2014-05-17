@@ -62,7 +62,6 @@ framework.route('/contact/', function() {
 	self.view('contact');
 });
 
-
 function view_homepage() {
 
 	// this === controller
@@ -228,19 +227,18 @@ function plain_usage() {
 <h2>Obscuring routes</h2>
 <br />
 <p class="text">
-Routes can be obscured using a hash. You can generate short hashes from numbers (like YouTube and Bitly).
-to obfuscate database IDs, use them as forgotten password hashes, invitation codes, store shard numbers.
+Routes can be obscured using a hash. You can generate short hashes from numbers (like YouTube and Bitly). To obfuscate database IDs, use them as forgotten password hashes, invitation codes, store shard numbers.
 </p>
 <pre class="brush: jscript">
 // In your controller
 exports.install = function(framework) {
-  framework.route('/register/{hash}/', view_register); 
+  framework.route('/register/{hash}/', view_register);
 }
 
 function view_register(hash) {
    console.log(hash);
    this.plain('register –> ' + hash);
-} 
+}
 </pre>
 <br />
 <h2>Define system routes</h2>
@@ -315,70 +313,7 @@ function error501() {
 	self.plain(utils.httpStatus(self.statusCode));
 }</pre>
 <br />
-<h2>Advanced routing and controller directories</h2>
-<br />
-<p class="text">
-	Controllers can be redefined as your need requires. You can change the directory structure to manage your concerns.
-</p>
-<pre class="brush: jscript">
-
-//controllers/admin/dashboard.js
-exports.dashboard = function view_dashboard() {
-
-    var self = this;
-    var model = {
-        pagetitle: 'Dashboard',
-        pagesubtitle: 'Control Panel',
-    }
-
-    self.layout('_adminlayout');
-    self.view('dashboard', model);
-}
-
-//controllers/admin/articles.js
-exports.articles = function view_articles() {
-
-    var self = this;
-    var model = {
-        pagetitle: 'Dashboard',
-        pagesubtitle: 'Control Panel',
-    }
-
-    self.layout('_adminlayout');
-    self.view('articles', model);
-}
-
-//controllers/admin.route.js
-
-var admin = [
-    
-    require('./admin/dashboard'),
-    require('./admin/articles')
-    
-]
-
-exports.install = function (framework) {
-    
-    //Repository routes
-    framework.route('/admin/', admin[0].dashboard);
-    
-    framework.route('/admin/articles', admin[1].articles);
-    framework.route('/admin/articles', admin[1].articles, ['xhr', 'post']);    
-    
-};
-
-//The content of definitions/config.view.js to specify the admin view folder."
-framework.on('controller', function(controller, name) { 
-   
-    // Manage controller admin-folder/file-name.js associated views
-    if (name.indexOf('/admin.route') !== -1)
-        controller.currentView('/admin/'); 
-    
-});
-
-//The contents of the view/admin/ folder and structure"
-/views/
-    /admin/
-        dashboard.js
-        articles.js
-</pre>
+<h2>How to write controllers?</h2>
+<div class="documentation-example">
+	<a href="https://github.com/totaljs/examples/tree/master/project-structure">Project structure</a>
+</div>

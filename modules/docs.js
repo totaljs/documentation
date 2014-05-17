@@ -49,7 +49,7 @@ exports.load = function() {
 	if (documentation === null)
 		documentation = framework.cache.add('docs', JSON.parse(require('fs').readFileSync(framework.path.public('/download/documentation.json'), 'utf8').toString('utf8')));
 
-	return documentation;	
+	return documentation;
 };
 
 function naturalSorter(as, bs){

@@ -6,12 +6,15 @@ exports.install = function(framework) {
     framework.route('/configuration/', view_configuration);
     framework.route('/did-you-know/', view_didyouknow);
     framework.route('/directory/', view_directory);
+    framework.route('/installation/', view_installation);
     framework.route('/how-does-it-work/{name}/', view_howdoesitworks);
     framework.route('/search/', view_search);
     framework.route('/tutorial/', view_tutorial);
     framework.route('/videos/', view_videos);
+    framework.route('/total-package-manager/', view_tpm);
     framework.route('/{name}/', view_documentation);
     framework.route('/internal/reindex/', empty_internal_reindex);
+
 };
 
 /*
@@ -22,6 +25,16 @@ exports.install = function(framework) {
 function view_homepage() {
     var self = this;
     self.view('homepage');
+}
+
+function view_installation() {
+    var self = this;
+    self.view('installation');
+}
+
+function view_tpm() {
+    var self = this;
+    self.view('tpm');
 }
 
 /*

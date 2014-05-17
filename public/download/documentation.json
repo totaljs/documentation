@@ -887,9 +887,22 @@
           "params":
           [
             {
-              "name": "script",
+              "name": "script/url",
               "type": "String",
-              "description": "Valid JavaScript script."
+              "description": "Valid JavaScript script or valid URL address."
+            }
+          ]
+        },
+        {
+          "name": "framework.eval",
+          "description": "Eval function in framework context.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "User defined function."
             }
           ]
         },
@@ -1439,6 +1452,25 @@
               "type": "Boolean",
               "description": "if strict (true) then use equal date else use great than date.",
               "default": "false"
+            }
+          ]
+        },
+        {
+          "name": "framework.noCache",
+          "description": "Disable cache validation.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "req",
+              "type": "Object",
+              "description": "HTTP request."
+            },
+            {
+              "name": "res",
+              "type": "Object",
+              "description": "HTTP response.",
+              "options": ["optional"]
             }
           ]
         },
@@ -8673,6 +8705,12 @@
           "name": "Request.prototype.clear",
           "description": "Clear uploaded files. This function is executed automatically.",
           "params": []
+        },
+        {
+          "return": "Request",
+          "name": "Request.prototype.noCache",
+          "description": "Disable cache validation.",
+          "params": []
         }
       ]
     },
@@ -8714,6 +8752,12 @@
               "options": ["optional"]
             }
           ]
+        },
+        {
+          "return": "Response",
+          "name": "Response.prototype.noCache",
+          "description": "Disable HTTP cache.",
+          "params": []
         }
       ]
     },
@@ -8749,6 +8793,12 @@
           "params": []
         },
         {
+          "return": "Response",
+          "name": "Response.prototype.noCache",
+          "description": "Disable cache.",
+          "params": []
+        },
+        {
           "return": "Boolean",
           "name": "String.prototype.contains",
           "description": "Check if this string contain a value.",
@@ -8765,6 +8815,48 @@
               "type": "Boolean",
               "description": "This string must contain all values.",
               "default": "false"
+            }
+          ]
+        },
+        {
+          "return": "Boolean",
+          "name": "String.prototype.startsWith",
+          "description": "Check if string is started with text.",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "Value to compare."
+            },
+            {
+              "options": ["optional"],
+              "name": "ignoreCase",
+              "type": "Boolean",
+              "description": "Ignore case sensitive.",
+              "default": "false",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "return": "Boolean",
+          "name": "String.prototype.endsWith",
+          "description": "Check if string is ended with text.",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "Value to compare."
+            },
+            {
+              "options": ["optional"],
+              "name": "ignoreCase",
+              "type": "Boolean",
+              "description": "Ignore case sensitive.",
+              "default": "false",
+              "options": ["optional"]
             }
           ]
         },

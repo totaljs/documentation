@@ -32,17 +32,9 @@
 </div>
 <br />
 <pre class="brush: jscript">
-// Using the controller.repository method.
-// Must be defined in each controller
 exports.install = function(framework, name) {
     framework.route('/', view_homepage);
-    
-    //Repository variable
-    framework.on('controller', function(controller, name) {
-        controller.repository.title = 'Total.js framework.'; 
-    });
-
-}
+};
 
 function view_homepage() {
 	var self = this;
@@ -56,44 +48,10 @@ function view_homepage() {
 <br />
 <div class="center">@{image('repository-vs-model.png', 810, 170, 'Repository vs. Model')}</div>
 <h3>View: /views/my-view.html</h3>
-<pre class="brush: xml">@&#123;repository.firstname&#125; or @&#123;model.firstname&#125;</pre>
+<pre class="brush: jscript">@&#123;repository.firstname&#125; or @&#123;model.firstname&#125;</pre>
 <br />
 <h3>Layout: /views/_layout.html</h3>
-<div class="text">The <span class="high-code">self.repository.title = 'System Administration'; assignment in the previous example under "Repository vs Model"</span> displays the assigned value "System Administration" in the file specified by self.layout ('_layout'). This is common to all sub elements using _layout. This is collectively called the repository, e.g @&#123;repository.firstname&#125; output is "System Administration". Model variables (e.g: "@&#123;model.firstname&#125;") do not render its value in _layouts because models are responsible for displaying values in the current view only.</div>
-<br />
-<pre class="brush: xml">
-// In the controller the repository variable assignment is: 
-self.repository.title = 'System Administration'; 
-
-// In the _layout the value assigned to self.repository.title is displayed :
-@&#123;repository.title&#125; outputs "System Administration" in view.
-
-&lt;!-- The model displays its value in current view only. Note: a view is a contextual file inside a repository. For example and administration system would have a title however the context of the its subpages would require sub titles. --&gt;
-
-// In the controller ("controllers/controller_name.js") the model variable assignments are in name value pairs: 
-self.view(
-           // views/site/dashboard.html
-           'dashboard',
-
-           // the model variables assigned to the "current view"
-           {  
-             dashboardtitle: '858project.com', // title in dashboard context
-             articletitle:   'total.js', // title in article context
-           }
-        );
-
-
-// In the view ('views/site/dashboard.html'), display the variables assigned to the view:
-@&#123;repository.dashboardtitle&#125; outputs "858project.com" in view.
-@&#123;repository.articletitle&#125; outputs "total.js" in view.
-
-// Why?
-
-&lt;div&gt;@&#123;view('footer',  { dashboard: '858project.com',  })&#125;&lt;div&gt;
-
-</pre>
-<br />
-<hr />
+<div class="text">The <span class="high-code">self.repository.title = 'System Administration'; assignment in the previous example under "Repository vs Model"</span> displays the assigned value &quot;System Administration&quot; in the file specified by <span class="high-code">self.layout(&#39;_layout&#39;)</span>. This is common to all sub elements using _layout. This is collectively called the repository, e.g <span class="high-code">@&#123;repository.firstname&#125;</span> output is &quot;System Administration&quot;. Model variables (e.g: <span class="high-code">@&#123;model.firstname&#125;</span>) do not render its value in _layouts because models are responsible for displaying values in the current view only.</div>
 <br />
 <h2>Define a layout</h2>
 <div class="text">
@@ -261,5 +219,6 @@ Name: &lt;input type="text" name="Name" value="Ano&amp;lt;n&amp;gt;ym" /&gt;
 <h2>Download Sublime Text 2 syntax</h2>
 <br />
 <div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax (4.9 kB)</a></div>
+<div><a href="http://www.totaljs.com/download/sublime-text-highlighter-3.zip" class="link">Download syntax for Sublime Text 3 (4.9 kB)</a></div>
 <div>Download the file, unpack and read <em class="b">readme.txt</em></div>
 <div>@{image('sublime.png', 820, 544, 'total.js syntax for Sublime TExt 2 editor')}</div>
