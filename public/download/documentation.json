@@ -3079,7 +3079,7 @@
               "options": ["optional"],
               "name": "value",
               "type": "RegExp",
-              "description": "Value for testing match Header value otherwise framework compared IP address."
+              "description": "Value for header value (otherwise framework compares IP address)."
             }
           ]
         },
@@ -3099,7 +3099,7 @@
               "options": ["optional"],
               "name": "value",
               "type": "RegExp",
-              "description": "Value for testing match Header value otherwise will compared IP address."
+              "description": "Value for header testing (otherwise will compared IP address)."
             }
           ]
         },
