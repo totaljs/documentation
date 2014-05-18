@@ -6,7 +6,6 @@
 	total.js is doing the dirty job for you. Its core has implemented good tools to improve development<br />and rendering web site for all web browsers.
 </div>
 <br />
-<hr />
 <h2>In release mode ...</h2>
 <div class="text">
 	<ul>
@@ -29,14 +28,76 @@
 	<ul>
 		<li>All CSS code is minified (by default true) <span class="high-code">framework.config['allow-compile-css']</span></li>
 		<li>CSS supports - auto vendor prefixes - <a href="https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes" class="link">auto vendor prefixes example</a>.</li>
-		<li>CSS supports - LESS (<b>supports only constants and functions</b>) - <a href="https://github.com/totaljs/examples/tree/master/css-less" class="link">LESS example</a>.</li>
+		<li>CSS supports - JS CSS - <a href="https://github.com/totaljs/examples/tree/master/css-jscss" class="link">JS CSS example</a>.</li>
 		<li>You can disable auto-vendor-prefixes - remove the mark from CSS: <span class="high-code">/*auto*/</span></li>
 		<li class="b">All inline code in HTML <span class="high-code">&lt;style type=&quot;text/css&quot;&gt;...</span> is compiled and minified.</li>
 		<li>You can rewrite built-in compilation - <a href="https://github.com/totaljs/examples/tree/master/external-compile-sass" class="link">SASS example</a>.</li>
 		<li class="b red">If the filename contains &quot;.min&quot; then it will be not compiled.</li>
 	</ul>
 </div>
-<div class="center">@{image('css.png', 725, 766, 'CSS')}</div>
+<br />
+<h3 class="nmt" id="auto-vendor-prefixes">CSS - Auto vendor prefixes</h3>
+<br />
+<pre class="brush: css">/*auto*/
+
+.animate { animation: myfirst 5s; }
+
+@keyframes myfirst
+{
+    from { background: red; }
+    to { background: yellow; }
+}
+</pre>
+<br />
+<div><strong>Output</strong></div>
+<pre style="word-wrap: break-word;">.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}</pre>
+<br />
+<h3 class="nmt" id="jscss">JS CSS</h3>
+<br />
+<pre class="brush: css">/*
+	var color = 'color:red';
+	var smoke = '#D0D0D0';
+
+	function font(name, size) {
+		return 'font: normal normal ' + size + 'px ' + name;
+	}
+
+	function loop(max) {
+
+		var output = '';
+		for (var i = 0; i &lt; max; i++)
+			output += '.mt' + i + ' { margin-top: ' + i + 'px; }';
+
+		return output;
+	}
+*/
+
+body { $color; padding:0; margin:0; $font('Arial', 12); }
+p { $font('Verdana', 20); line-height: 20px; color: $smoke; }
+
+$loop(10);
+</pre>
+<br />
+<div><strong>Output</strong></div>
+<pre style="word-wrap: break-word;">body{color:red;padding:0;margin:0;font:normal normal 12px Arial;}p{font:normal normal 20px Verdana;line-height:20px;color:#D0D0D0;}.mt0{margin-top:0px;}.mt1{margin-top:1px;}.mt2{margin-top:2px;}.mt3{margin-top:3px;}.mt4{margin-top:4px;}.mt5{margin-top:5px;}.mt6{margin-top:6px;}.mt7{margin-top:7px;}.mt8{margin-top:8px;}.mt9{margin-top:9px;};</pre>
+<br />
+<h3 class="nmt">Both: Auto vendor prefixes + JS CSS</h3>
+<br />
+<pre class="brush: css">/*auto*/
+
+/*
+ 	// Auto vendor prefixes works with JS CSS :-)
+	var animation = 'animation: myfirst 5s';
+*/
+
+body { padding:0; margin:0; }
+.animation { $animation; }
+
+</pre>
+<br />
+
+<hr />
+<br />
 <h2>JavaScript</h2>
 <div class="text">
 	<ul>
