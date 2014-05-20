@@ -128,6 +128,9 @@ default-request-timeout            : 3000
 // otherwise is used ImageMagick (Heroku supports ImageMagick)
 default-image-converter            : gm
 
+// default image quality for framework.resize()
+default-image-quality              : 93
+
 allow-gzip                         : true
  
 // If you'll using Socket.io, set allow-websocket to false
@@ -280,7 +283,7 @@ static-accepts                     : .jpg,.png,.gif,.ico,.js,.css,.txt,.xml,.wof
 </pre>
 <br />
 <div class="text">
-	<span class="high-code">framework.config['static-accepts']</span> is parsed as Array and this option allows/disallows request which is routed into the static file. <b>Default accepts:</b> .jpg, .png, .gif, .ico, .js, .css, .txt, .xml, .woff, .ttf, .eot, .svg, .zip, .rar, .pdf, .docx, .xlsx, .doc, .xls, .html, .htm, .appcache, .map, .ogg, .mp3, .webp, .swf.
+	<span class="high-code">framework.config['static-accepts']</span> is parsed as Array and this option allows/disallows request which is routed into the static file. <b>Default accepts:</b> .jpg, .png, .gif, .ico, .js, .css, .txt, .xml, .woff, .ttf, .eot, .svg, .zip, .rar, .pdf, .docx, .xlsx, .doc, .xls, .html, .htm, .appcache, .map, .ogg, .mp3, .webp, .swf, .webm.
 </div>
 <br />
 <hr />

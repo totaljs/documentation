@@ -498,6 +498,40 @@
           ]
         },
         {
+          "name": "framework.resize",
+          "description": "Register a image resize route. Example:\n\nframework.resize('/img/small/*.jpg', '50%');\nframework.resize('/img/medium/', 300, 300, ['.png', '.jpg']);\nframework.resize('/img/responsive/', '50%', '50%', ['.png']);\nframework.resize('/img/height/', null, '50%');",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "url",
+              "type": "String",
+              "description": "The relative URL. Example: /img/small/*.jpg (only JPG) or /img/medium/ (all in extensions parameter)"
+            },
+            {
+              "options": ["optional"],
+              "name": "width",
+              "type": "Number/String",
+              "description": "New width. Supports percentage.",
+              "default": "null"
+            },
+            {
+              "options": ["optional"],
+              "name": "height",
+              "type": "Number/String",
+              "description": "New height. Supports percentage.",
+              "default": "null"
+            },
+            {
+              "options": ["optional"],
+              "name": "extension",
+              "type": "String Array",
+              "description": "Only extension in asterix path.",
+              "default": "['.jpg', '.png', '.gif']"
+            }
+          ]
+        },
+        {
           "name": "framework.websocket",
           "description": "Register a new Websocket route to controller or module. This function must be executed in a controller/module file. For more information look up to the example.",
           "return": "Framework",
@@ -6813,15 +6847,27 @@
       "methods":
       [
         {
-          "return": "Boolean",
           "name": "utils.download",
           "description": "Download content or file from an url address.",
+          "return": "Boolean",
           "params":
           [
             {
               "name": "url",
               "type": "String",
-              "description": "URL where send this this stream/file."
+              "description": "URL address."
+            },
+            {
+              "name": "flags",
+              "type": "String Array",
+              "description": "Request flags.",
+              "go": "HttpRouteOptionsFlags",
+              "options": ["optional"]
+            },
+            {
+              "name": "data",
+              "type": "Object",
+              "description": "Request data."
             },
             {
               "name": "callback",
@@ -6843,23 +6889,17 @@
             },
             {
               "options": ["optional"],
+              "name": "cookies",
+              "type": "Object",
+              "description": "Request cookies.",
+              "default": "{}"
+            },
+            {
+              "options": ["optional"],
               "name": "headers",
               "type": "Object",
-              "description": "Additional headers."
-            },
-            {
-              "options": ["optional"],
-              "name": "method",
-              "type": "String",
-              "description": "Request method (POST or PUT).",
-              "default": "'POST'"
-            },
-            {
-              "options": ["optional"],
-              "name": "params",
-              "type": "String",
-              "description": "Additional params (for POST or PUT method).",
-              "default": "''"
+              "description": "Additional / Custom headers.",
+              "default": "{}"
             },
             {
               "options": ["optional"],
@@ -6867,6 +6907,13 @@
               "type": "String",
               "description": "Request encoding.",
               "default": "'utf8'"
+            },
+            {
+              "options": ["optional"],
+              "name": "timeout",
+              "type": "Number",
+              "description": "Request timeout - in milliseconds.",
+              "default": "10000"
             }
           ]
         },
@@ -7000,14 +7047,16 @@
               "description": "URL address."
             },
             {
-              "name": "method",
-              "type": "String",
-              "description": "HTTP method - GET, POST, PUT or DELETE."
+              "name": "flags",
+              "type": "String Array",
+              "description": "Request flags.",
+              "go": "HttpRouteOptionsFlags",
+              "options": ["optional"]
             },
             {
               "name": "data",
-              "type": "String or Object",
-              "description": "Object will serialized to JSON format."
+              "type": "Object",
+              "description": "Request data."
             },
             {
               "name": "callback",
@@ -7041,18 +7090,27 @@
             },
             {
               "options": ["optional"],
+              "name": "cookies",
+              "type": "Object",
+              "description": "Request cookies.",
+              "default": "{}"
+            },
+            {
+              "options": ["optional"],
               "name": "headers",
               "type": "Object",
               "description": "Additional / Custom headers.",
               "default": "{}"
             },
             {
+              "options": ["optional"],
               "name": "encoding",
               "type": "String",
               "description": "Request encoding.",
               "default": "'utf8'"
             },
             {
+              "options": ["optional"],
               "name": "timeout",
               "type": "Number",
               "description": "Request timeout - in milliseconds.",
