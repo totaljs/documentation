@@ -79,19 +79,19 @@
 </pre>
 <br />
 <hr />
-<h3>Mode: repeat comment</h3>
+<h3>Mode: repeat block</h3>
 <div class="text">
-	Mode: &quot;repeat comment&quot; is repeating of all HTML code in the commented code.
+	Mode: &quot;repeat block&quot; is repeating of all HTML code in the commented code.
 </div>
 <br />
 <pre class="brush: xml">
 	&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 		&lt;li&gt;
 			&lt;div&gt;@&#123;model.name&#125;&lt;/div&gt;
 			&lt;div&gt;@&#123;model.registered.format('yyyy-MM-dd')&#125;&lt;/div&gt;
 		&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 	&lt;/ul&gt;
 </pre>
 <br />
@@ -117,12 +117,12 @@
 <h3>Mode: repeat the comment code with a repository object</h3>
 <pre class="brush: xml">
 	&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 		&lt;li&gt;
 			&lt;div&gt;@&#123;model.name&#125;&lt;/div&gt;
 			&lt;div&gt;@&#123;model.registered.format('yyyy-MM-dd')&#125;&lt;/div&gt;
 		&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 	&lt;/ul&gt;
 	&lt;div&gt;@&#123;repository.items.format('### ###')&#125; @&#123;repository.items.pluralize('items', 'item', 'items', 'items')&#125;&lt;/div&gt;
 </pre>
@@ -156,12 +156,12 @@
 	<div class="mb10">This mark uses: <a href="/Number.prototype/#Number.prototype.format" class="link">Number.prototype.format()</a>.</div>
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 				&lt;div&gt;@&#123;model.name}&lt;/div&gt;
 				&lt;div&gt;@&#123;model.price.format('### ###.##)}&lt;/div&gt;
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;
 	</pre>
 </div>
@@ -171,12 +171,12 @@
 	<div class="mb10">This mark uses: <a href="/Date.prototype/#Date.prototype.format" class="link">Date.prototype.format()</a>.</div>
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 				&lt;div&gt;@&#123;model.name}&lt;/div&gt;
 				&lt;div&gt;@&#123;model.date.format('dd.MM.yyyy')} at @&#123;model.date.format('HH:mm:ss')}&lt;/div&gt;
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;
 	</pre>
 </div>
@@ -186,11 +186,11 @@
 	<div class="mb10">This mark uses: <a href="/Number.prototype/#Number.prototype.pluralize" class="link">Number.prototype.pluralize()</a>.</div>
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 				&lt;div&gt;@&#123;model.count.pluralize('zero', 'one', 'few', 'other')}&lt;/div&gt;
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;
 	</pre>
 </div>
@@ -200,11 +200,11 @@
 	<div class="mb10">This mark uses: <a href="/String.prototype/#String.prototype.max" class="link">String.prototype.max()</a>.</div>
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 				&lt;div&gt;@&#123;model.name.max(20)}&lt;/div&gt;
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;
 	</pre>
 </div>
@@ -216,7 +216,7 @@
 <div class="text mt10">
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 
 				@&#123;if model.selected === true}
@@ -230,7 +230,7 @@
 				@&#123;endif}
 
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;
 	</pre>
 </div>
@@ -262,12 +262,12 @@
 	<br />
 	<pre class="brush: xml">
 		&lt;ul&gt;
-		&lt;!--
+		@&#123;foreach&#125;
 			&lt;li&gt;
 				&lt;div&gt;@&#123;model.alias}&lt;/div&gt;
 				&lt;div&gt;@&#123;view('user', model.information)&#125;&lt;/div&gt;
 				&lt;div&gt;@&#123;template('tags', model.tags)&#125;&lt;/div&gt;
 			&lt;/li&gt;
-		--&gt;
+		@&#123;end&#125;
 		&lt;/ul&gt;</pre>
 </div>

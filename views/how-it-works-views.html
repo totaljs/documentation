@@ -138,6 +138,34 @@ function view_homepage() {
 	</pre>
 </div>
 
+<h3>Looping</h3>
+<div class="text">
+	Views supports simple looping via <b>foreach</b> tag.<br />
+	<b class="red">IMPORTANT:</b> view engine doesn&#39;t support nested looping.
+</div>
+<div class="text mt10">
+	<pre class="brush: xml">@&#123;foreach m in [1, 2, 3, 4]&#125;
+	&lt;div&gt;@&#123;m&#125;&lt;/div&gt;
+@&#123;end&#125;
+
+&lt;br /&gt;
+&lt;br /&gt;
+
+@&#123;foreach property in model&#125;
+	&lt;div&gt;@&#123;property.name&#125;&lt;/div&gt;
+	&lt;div&gt;@&#123;property.age.format('### ###')&#125;&lt;/div&gt;
+@&#123;end&#125;
+	</pre>
+</div>
+
+<h3>Assignment values</h3>
+<div class="text">
+	<b class="red">IMPORTANT:</b> only for <b>repository</b>, <b>model</b>, <b>user</b>, <b>session</b>, <b>global</b>, <b>get</b>, <b>post</b> and <b>config</b> object.
+</div>
+<div class="text mt10">
+	<pre class="brush: xml">@&#123;repository.name = 'Peter'&#125;</pre>
+</div>
+
 <h3>Dynamic rendering</h3>
 <div class="text">
 	View function can compile a view template dynamically.

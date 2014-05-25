@@ -499,14 +499,14 @@
         },
         {
           "name": "framework.resize",
-          "description": "Register a image resize route. Example:\n\nframework.resize('/img/small/*.jpg', '50%');\nframework.resize('/img/medium/', 300, 300, ['.png', '.jpg']);\nframework.resize('/img/responsive/', '50%', '50%', ['.png']);\nframework.resize('/img/height/', null, '50%');",
+          "description": "Register a image resize route. Example:\n\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });",
           "return": "Framework",
           "params":
           [
             {
               "name": "url",
               "type": "String",
-              "description": "The relative URL. Example: /img/small/*.jpg (only JPG) or /img/medium/ (all in extensions parameter)"
+              "description": "The relative URL. Example: /img/small/*.jpg (only JPG) or /img/medium/ (all extensions argument)."
             },
             {
               "options": ["optional"],
@@ -521,6 +521,20 @@
               "type": "Number/String",
               "description": "New height. Supports percentage.",
               "default": "null"
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "Additional options.",
+              "default": "{}"
+            },
+            {
+              "options": ["optional"],
+              "name": "path",
+              "type": "String Array",
+              "description": "Only extension in asterix path.",
+              "default": "['.jpg', '.png', '.gif']"
             },
             {
               "options": ["optional"],
@@ -4950,6 +4964,21 @@
         },
         {
           "options": ["important", "http"],
+          "name": "controller.view400",
+          "description": "Response 400 error - Bad request.",
+          "return": "FrameworkController",
+          "params":
+         [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
           "name": "controller.view401",
           "description": "Response 401 error - Unauthorized.",
           "return": "FrameworkController",
@@ -5010,6 +5039,95 @@
         {
           "options": ["important", "http"],
           "name": "controller.view501",
+          "description": "Response 501 error - Not Implemented.",
+          "return": "FrameworkController",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw400",
+          "description": "Response 400 error - Bad request.",
+          "return": "FrameworkController",
+          "params":
+         [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw401",
+          "description": "Response 401 error - Unauthorized.",
+          "return": "FrameworkController",
+          "params":
+         [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw403",
+          "description": "Response 403 error - Forbidden.",
+          "return": "FrameworkController",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw404",
+          "description": "Response 404 error - Not Found.",
+          "return": "FrameworkController",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "problem",
+              "type": "String",
+              "description": "Why is restriction created? Read more: #controller.problem"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw500",
+          "description": "Response 500 error - Internal server error.",
+          "return": "FrameworkController",
+          "params":
+          [
+            {
+              "name": "err",
+              "type": "Error",
+              "description": "Error."
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.throw501",
           "description": "Response 501 error - Not Implemented.",
           "return": "FrameworkController",
           "params":
@@ -8759,6 +8877,12 @@
           ]
         },
         {
+          "return": "String",
+          "name": "Request.prototype.signature",
+          "description": "Create request signature.",
+          "params": []
+        },
+        {
           "return": "Request",
           "name": "Request.prototype.clear",
           "description": "Clear uploaded files. This function is executed automatically.",
@@ -8848,12 +8972,6 @@
           "return": "Date",
           "name": "String.prototype.parseDate",
           "description": "Parse date from this string.",
-          "params": []
-        },
-        {
-          "return": "Response",
-          "name": "Response.prototype.noCache",
-          "description": "Disable cache.",
           "params": []
         },
         {
