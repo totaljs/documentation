@@ -3420,6 +3420,12 @@
         },
         {
           "options": ["readonly", "http"],
+          "return": "Error",
+          "name": "controller.exception",
+          "description": "Last exception in controller."
+        },
+        {
+          "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.res",
           "description": "Current HTTP response."
@@ -10547,13 +10553,13 @@
     },
     {
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. By the schema you can validate a model.\n\n=== javascript\nvar builders = require('total.js/builders');\n\n// Example:\nbuilder.schema('user', { firstname: 'string(40)', lastname: String, created: Date }, function(name) {\n    if (name === 'created')\n        return new Date();\n});\n\n// Why?\ndb.insert(builders.prepare('user', controller.post));\n\n// Do you understand?\n\n===",
+      "description": "Schema builder is helpful for model definitions. By the schema you can validate a model.\n\n=== javascript\n// Example:\nBuilders.schema('user', { firstname: 'string(40)', lastname: String, created: Date }, function(name) {\n    if (name === 'created')\n        return new Date();\n});\n\n// Why?\ndb.insert(Builders.prepare('user', controller.post));\n\n===",
       "group": "Builders",
       "methods":
       [
         {
           "return": "Object",
-          "name": "builders.schema",
+          "name": "Builders.schema",
           "description": "Create a schema. Schema supports joining others schemas.",
           "example": "https://github.com/totaljs/examples/tree/master/framework-schema",
           "params":
@@ -10583,7 +10589,7 @@
                 {
                   "name": "isDefault",
                   "type": "Boolean",
-                  "description": "true === builders.defaults(), false === builders.prepare()"
+                  "description": "true === Builders.defaults(), false === Builders.prepare()"
                 }
               ]
             },
@@ -10610,7 +10616,7 @@
         },
         {
           "return": "Object",
-          "name": "builders.validation",
+          "name": "Builders.validation",
           "description": "Set custom validation for the schema.",
           "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
           "params":
@@ -10643,7 +10649,7 @@
         },
         {
           "return": "ErrorBuilder",
-          "name": "builders.validate",
+          "name": "Builders.validate",
           "description": "Validate a schema.",
           "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
           "go": "Builders.ErrorBuilder",
@@ -10663,7 +10669,7 @@
         },
         {
           "return": "Object",
-          "name": "builders.defaults",
+          "name": "Builders.defaults",
           "description": "Create a default object by the schema.",
           "example": "https://github.com/totaljs/examples/tree/master/schema",
           "params":
@@ -10677,8 +10683,8 @@
         },
         {
           "return": "Object",
-          "name": "builders.default",
-          "description": "This function is an alias for builders.defaults().",
+          "name": "Builders.create",
+          "description": "Create a default object by the schema. This function si same as Builders.defaults().",
           "example": "https://github.com/totaljs/examples/tree/master/schema",
           "params":
           [
@@ -10691,7 +10697,7 @@
         },
         {
           "return": "Object",
-          "name": "builders.prepare",
+          "name": "Builders.prepare",
           "description": "Prepare model by the schema. Properties which are not defined in schema will be removed. Long strings will be truncated by the schema definition.",
           "example": "https://github.com/totaljs/examples/tree/master/schema",
           "params":
@@ -10710,7 +10716,7 @@
         },
         {
           "return": "Object",
-          "name": "builders.validation",
+          "name": "Builders.validation",
           "description": "Create a schema validation.",
           "example": "https://github.com/totaljs/examples/tree/master/schema",
           "params":
