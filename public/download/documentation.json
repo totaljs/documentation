@@ -74,7 +74,7 @@
         {
           "options": ["must return a String value"],
           "name": "framework.onPrefix",
-          "description": "This delegate setup prefix for a request. By the prefix you can return view with the prefix without change code in the controller. IMPORTANT: you must return {String}. Empty string or null value show a view without prefix.",
+          "description": "This delegate sets a prefix for the request. By the prefix you can return view with the prefix without change the code in the controller. IMPORTANT: you must return {String}. Empty string or null value shows a view without prefix.",
           "example": "https://github.com/totaljs/examples/tree/master/mobile",
           "default": "null",
           "return": "String",
@@ -84,6 +84,43 @@
               "name": "req",
               "description": "HTTP request.",
               "type": "Object"
+            }
+          ]
+        },
+        {
+          "name": "framework.onMail",
+          "description": "This delegate sets a mail handler for sending emails.",
+          "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "address",
+              "description": "To address.",
+              "type": "String or Array"
+            },
+            {
+              "name": "subject",
+              "description": "E-mail subject.",
+              "type": "String"
+            },
+            {
+              "name": "body",
+              "description": "E-mail body.",
+              "type": "String"
+            },
+            {
+              "name": "callback",
+              "description": "Callback.",
+              "type": "function",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                }
+              ]
             }
           ]
         },
@@ -5283,6 +5320,51 @@
               "name": "headers",
               "type": "Object",
               "description": "Additional headers."
+            }
+          ]
+        },
+        {
+          "options": [],
+          "name": "controller.mail",
+          "description": "Send e-mail from a view.",
+          "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
+          "return": "FrameworkController",
+          "params":
+          [
+            {
+              "name": "address",
+              "type": "String or Array",
+              "description": "To e-mail."
+            },
+            {
+              "name": "subject",
+              "type": "String",
+              "description": "E-mail subject."
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Name of view."
+            },
+            {
+              "options": ["optional"],
+              "name": "model",
+              "type": "Object",
+              "description": "Model into the view."
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name":"err",
+                  "type":"Error",
+                  "description": "Error handling."
+                }
+              ]
             }
           ]
         },

@@ -141,7 +141,6 @@ function view_homepage() {
 <h3>Looping</h3>
 <div class="text">
 	Views supports simple looping via <b>foreach</b> tag.<br />
-	<b class="red">IMPORTANT:</b> view engine doesn&#39;t support nested looping.
 </div>
 <div class="text mt10">
 	<pre class="brush: xml">@&#123;foreach m in [1, 2, 3, 4]&#125;
@@ -156,6 +155,33 @@ function view_homepage() {
 	&lt;div&gt;@&#123;property.age.format('### ###')&#125;&lt;/div&gt;
 @&#123;end&#125;
 	</pre>
+</div>
+
+<h3>Sections</h3>
+<div class="text">
+	Views supports <b>sections</b> tag.<br />
+</div>
+<br />
+<div><strong>/views/homepage.html</strong></div>
+<div class="text mt10">
+	<pre class="brush: xml">@&#123;section footer&#125;
+	&lt;div&gt;THIS IS FOOTER FROM THE HOMEPAGE&lt;/div&gt;
+@&#123;end&#125;
+
+&lt;h1&gt;Homepage&lt;/h1&gt;
+&lt;br /&gt;</pre>
+</div>
+<br />
+<div><strong>/views/_layout.html</strong></div>
+<div class="text mt10">
+	<pre class="brush: xml">
+&lt;html&gt;
+....
+....
+	@&#123;section(&#39;footer&#39;)&#125;
+....
+....
+&lt;/html&gt;</pre>
 </div>
 
 <h3>Assignment values</h3>
