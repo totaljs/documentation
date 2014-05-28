@@ -57,7 +57,7 @@
 			<div class="online-container">
 				<h1>Online visitors</h1>
 				<div class="online">
-					@{online}
+					@{helper('online')}
 				</div>
 				<div><canvas id="canvas-today" width="350" height="350"></canvas></div>
 				<div class="last">...</div>
@@ -163,7 +163,7 @@
 		var title = document.title;
 
 		var chart = {
-			months: ['January','February','March','April','May','June','July','August','September','October','November','December'],			
+			months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
 			online: null,
 			devices: null,
 			count_unique: null,
@@ -214,7 +214,9 @@
 
 			cache[ip] = '...';
 
-	        $.ajax('http://freegeoip.net/json/' + ip, { success: function(data) {
+	        $.ajax('/stats/geoip/?ip=' + encodeURIComponent(ip), { success: function(data) {
+	        	if (data.r)
+	        		return;
 	        	cache[ip] = '!' + data.country_name + ((data.city || '').length > 0 ? ' (city: ' + data.city + ')' : '');
 	        }, dataType: 'json' });
 	    }
