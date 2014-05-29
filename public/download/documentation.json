@@ -3428,7 +3428,7 @@
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.$model",
-          "description": "Return the current model in current view."
+          "description": "Return the current model in current view. IMPORTANT: only for components or helpers."
         },
         {
           "options": ["readonly", "http", "websocket"],
@@ -5201,6 +5201,26 @@
               "type": "Boolean",
               "description": "Move permament (302).",
               "default": "false"
+            }
+          ]
+        },
+        {
+          "options": ["important", "http"],
+          "name": "controller.transfer",
+          "description": "Transfer current request to a new route.",
+          "return": "Boolean",
+          "params":
+          [
+            {
+              "name": "url",
+              "type": "String",
+              "description": "Relative URL address."
+            },
+            {
+              "options": ["optional"],
+              "name": "flags",
+              "type": "String Array",
+              "description": "Route flags."
             }
           ]
         },
