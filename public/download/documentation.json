@@ -1672,6 +1672,11 @@
               "params":
               [
                 {
+                  "name": "next",
+                  "type": "Function",
+                  "description": "Next test."
+                },
+                {
                   "name": "name",
                   "type": "String",
                   "description": "Name of test."
