@@ -424,9 +424,9 @@
           ]
         },
         {
-          "name": "framework.partial",
-          "description": "Register a partial content. Partial content is executed before executing Controller / Module. Private partial content (specified [name]) you must map into the route and global partial content is executed in each request to the controller. For more information look up to the example.",
-          "example": "https://github.com/totaljs/examples/tree/master/routing-partial",
+          "name": "framework.middleware",
+          "description": "Register a middleware. Middleware is executed before is executing a Controller / Module. Private middleware (specified [name]) must be mapped into the route and global middleware is executed for each request to the controller.",
+          "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "return": "Framework",
           "params":
           [
@@ -434,7 +434,7 @@
               "options": ["optional"],
               "name": "name",
               "type": "String",
-              "description": "Name of partial content. Without name - will set partial content as global."
+              "description": "Name of middleware. Middleware without name is a global middleware."
             },
             {
               "options": ["important"],
@@ -447,7 +447,7 @@
                   "options": ["important"],
                   "name": "next",
                   "type": "Function",
-                  "description": "Function to continue."
+                  "description": "Next step."
                 }
               ]
             }
@@ -2088,6 +2088,40 @@
         {
           "name": "framework.on('exit')",
           "description": "This event is triggered when framework is stopped. This event will not trigger when application stopped by force."
+        },
+        {
+          "name": "framework.on('request')",
+          "description": "This event is triggered when begin HTTP request.",
+          "params":
+          [
+            {
+              "name": "req",
+              "description": "HTTP request",
+              "type": "Object"
+            },
+            {
+              "name": "res",
+              "description": "HTTP response",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('websocket')",
+          "description": "This event is triggered when begin WebSocket request.",
+          "params":
+          [
+            {
+              "name": "req",
+              "description": "HTTP request",
+              "type": "Object"
+            },
+            {
+              "name": "socket",
+              "description": "Socket",
+              "type": "Object"
+            }
+          ]
         },
         {
           "name": "framework.on('request-begin')",
@@ -7548,6 +7582,19 @@
           ]
         },
         {
+          "name": "utils.parseXML",
+          "description": "Parse XML.",
+          "return": "Object",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "XML data."
+            }
+          ]
+        },
+        {
           "name": "utils.parseFloat",
           "description": "Safe parsing float number.",
           "return": "Number",
@@ -9488,8 +9535,23 @@
         },
         {
           "return": "String",
+          "name": "String.prototype.slug",
+          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'total-js-web-application-framework-for-node-js'",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "max",
+              "type": "Number",
+              "description": "Maximum characters.",
+              "default": "60"
+            }
+          ]
+        },
+        {
+          "return": "String",
           "name": "String.prototype.linker",
-          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'partial-js-web-application-framework-for-node-js'",
+          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'total-js-web-application-framework-for-node-js'",
           "params":
           [
             {
@@ -9762,6 +9824,25 @@
               "name": "count",
               "type": "Number",
               "description": "Maximum count."
+            }
+          ]
+        },
+        {
+          "return": "Array",
+          "name": "Array.prototype.orderBy",
+          "description": "Sort array.",
+          "params":
+          [
+            {
+              "name": "path",
+              "type": "String",
+              "description": "Path to property."
+            },
+            {
+              "name": "asc",
+              "type": "Boolean",
+              "description": "Asc (true), Desc (false)",
+              "default": "true"
             }
           ]
         },
@@ -10148,6 +10229,38 @@
       "group": "Globals",
       "methods":
       [
+        {
+          "return": "Object",
+          "name": "CONFIG",
+          "description": "Read value from framework.config.",
+          "params":
+          [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Key in config."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "RESOURCE",
+          "description": "Read value from framework.resource().",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Resource name."
+            },
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Key in resource file.",
+              "options": ["optional"]
+            }
+          ]
+        },
         {
           "return": "Object",
           "name": "INCLUDE",
