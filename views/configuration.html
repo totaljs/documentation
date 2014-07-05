@@ -312,3 +312,21 @@ default-image-converter           : gm
 <div class="text">
 	<span class="high-code">framework.config[&#39;default-image-converter&#39;]</span> is used for image manipulation. This option was added for Heroku because as default Heroku supports only ImageMagick <span class="high">im</span> and the framework uses GraphicsMagick <span class="high">gm</span> internally as default.
 </div>
+<br />
+<br />
+<h2>Mail settings for controller.mail()</h2>
+<br />
+<pre class="brush: plain">
+&nbsp;
+// Mail settings
+mail.smtp                       : smtp.yourwebsite.com
+mail.smtp.options               : {&quot;secure&quot;:false,&quot;port&quot;:25,&quot;user&quot;:&quot;&quot;,&quot;password&quot;:&quot;&quot;,&quot;timeout&quot;:10000}
+mail.address.from               : your@yourwebsite.com
+mail.address.reply              : your@yourwebsite.com
+mail.address.bcc                :
+&nbsp;
+</pre>
+<br />
+<div class="text">
+	<a href="/FrameworkController/#controller.mail" class="link">Controller.mail()</a> can send e-mail directly from the controller action. This function create a HTML e-mail from the specific view. The above settings is settings for mail sender. <a href="https://github.com/totaljs/examples/tree/master/controller-mail" class="link" target="_blank">Example</a>.
+</div>

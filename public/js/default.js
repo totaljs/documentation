@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	initSource();
+    setTimeout(gotoScrollTo, 1000);
 });
 
 function initSource() {
@@ -14,4 +15,10 @@ function initSource() {
     	url += '/';
 
     $('.menu').find('a[href="' + url + '"]').addClass('selected');
+}
+
+function gotoScrollTo() {
+    if (!window.location.hash)
+        return;
+    $('html,body').animate({ scrollTop: $('[id="'+window.location.hash.substring(1)+'"').offset().top }, 300);
 }

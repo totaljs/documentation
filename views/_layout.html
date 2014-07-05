@@ -66,7 +66,28 @@
                 <li><a href="/how-does-it-work/views/">Views / Render engine</a></li>
             </ul>
             <br />
+<<<<<<< HEAD
             @{view('menu', null, '10 minutes')}
+=======
+            <div><strong>Documentation</strong></div>
+            @{template('menu', repository.menu)}
+            <br />
+            <div><strong>Builders</strong></div>
+            @{template('menu', repository.menuBuilders)}
+            <br />
+            <div><strong>Prototypes</strong></div>
+            @{template('menu', repository.menuPrototypes)}
+            <br />
+            <div><strong>Additional</strong></div>
+            @{template('menu', repository.menuAdditional)}
+            <br />
+            <div><strong>Globals</strong></div>
+            @{template('menu', repository.menuGlobals)}
+            <br />
+            <div class="center">
+                <a href="http://opensource.org" target="_blank"><img src="/img/opensource.png" width="70" height="60" alt="Proud to be Open Source" border="0" /></a>
+            </div>
+>>>>>>> FETCH_HEAD
         </div>
         <div class="content">
             @{body}
