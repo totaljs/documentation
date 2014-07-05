@@ -72,22 +72,6 @@
           ]
         },
         {
-          "options": ["must return a String value"],
-          "name": "framework.onPrefix",
-          "description": "This delegate sets a prefix for the request. By the prefix you can return view with the prefix without change the code in the controller. IMPORTANT: you must return {String}. Empty string or null value shows a view without prefix.",
-          "example": "https://github.com/totaljs/examples/tree/master/mobile",
-          "default": "null",
-          "return": "String",
-          "params":
-          [
-            {
-              "name": "req",
-              "description": "HTTP request.",
-              "type": "Object"
-            }
-          ]
-        },
-        {
           "name": "framework.onMail",
           "description": "This delegate sets a mail handler for sending emails.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
@@ -424,17 +408,16 @@
           ]
         },
         {
-          "name": "framework.partial",
-          "description": "Register a partial content. Partial content is executed before executing Controller / Module. Private partial content (specified [name]) you must map into the route and global partial content is executed in each request to the controller. For more information look up to the example.",
-          "example": "https://github.com/totaljs/examples/tree/master/routing-partial",
+          "name": "framework.middleware",
+          "description": "Register a middleware. Middleware is executed before is executing a Request / Controller / Module. Middleware must be specified for use.",
+          "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "return": "Framework",
           "params":
           [
             {
-              "options": ["optional"],
               "name": "name",
               "type": "String",
-              "description": "Name of partial content. Without name - will set partial content as global."
+              "description": "Name of middleware."
             },
             {
               "options": ["important"],
@@ -444,10 +427,26 @@
               "params":
               [
                 {
+                  "name": "req",
+                  "type": "Request",
+                  "description": "HTTP Request."
+                },
+                {
+                  "name": "res",
+                  "type": "Response",
+                  "description": "HTTP Response."
+                },
+                {
                   "options": ["important"],
                   "name": "next",
                   "type": "Function",
-                  "description": "Function to continue."
+                  "description": "Next step."
+                },
+                {
+                  "options": ["optional"],
+                  "name": "options",
+                  "type": "Object",
+                  "description": "Route options."
                 }
               ]
             }
@@ -665,6 +664,12 @@
                   "description": "Is validation?"
                 }
               ]
+            },
+            {
+              "options": ["optional"],
+              "name": "middleware",
+              "type": "String Array",
+              "description": "Middleware."
             }
           ]
         },
@@ -804,6 +809,24 @@
               "name": "name",
               "type": "String",
               "description": "Model name."
+            }
+          ]
+        },
+        {
+          "name": "framework.precompile",
+          "description": "Precompile a view.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "View name."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A valid URL address."
             }
           ]
         },
@@ -1960,6 +1983,55 @@
           ]
         },
         {
+          "name": "framework.on('route-add')",
+          "description": "This event is triggered every when is added a new route.",
+          "params":
+          [
+            {
+              "name": "type",
+              "description": "A route type (web, websocket, file).",
+              "type": "String"
+            },
+            {
+              "name": "route",
+              "description": "Route.",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('eval')",
+          "description": "This event is triggered every when is executed JS code.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "url",
+              "description": "URL address.",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('include')",
+          "description": "This event is triggered every is included/injected JS code.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "url",
+              "description": "URL address.",
+              "type": "String"
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "description": "Initial options.",
+              "type": "Object"
+            }
+          ]
+        },
+        {
           "name": "framework.on('configure')",
           "description": "This event is triggered when is re-configured the framework.",
           "params":
@@ -2069,18 +2141,18 @@
           ]
         },
         {
-          "name": "framework.on('expire')",
+          "name": "framework.on('cache-expire')",
           "description": "This event is triggered when expired item in the cache. This item was removed from a cache.",
           "params":
           [
             {
-              "name": "name",
-              "description": "Name of cache key",
+              "name": "key",
+              "description": "Cache key",
               "type": "String"
             },
             {
               "name": "value",
-              "description": "Value from a cache",
+              "description": "Value from the cache.",
               "type": "Object"
             }
           ]
@@ -2088,6 +2160,40 @@
         {
           "name": "framework.on('exit')",
           "description": "This event is triggered when framework is stopped. This event will not trigger when application stopped by force."
+        },
+        {
+          "name": "framework.on('request')",
+          "description": "This event is triggered when begin HTTP request.",
+          "params":
+          [
+            {
+              "name": "req",
+              "description": "HTTP request",
+              "type": "Object"
+            },
+            {
+              "name": "res",
+              "description": "HTTP response",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('websocket')",
+          "description": "This event is triggered when begin WebSocket request.",
+          "params":
+          [
+            {
+              "name": "req",
+              "description": "HTTP request",
+              "type": "Object"
+            },
+            {
+              "name": "socket",
+              "description": "Socket",
+              "type": "Object"
+            }
+          ]
         },
         {
           "name": "framework.on('request-begin')",
@@ -3414,7 +3520,7 @@
     },
     {
       "name": "FrameworkController",
-      "description": "FrameworkController is created after is validate a route. The framework knows two types of controller: HTTP/HTTPS Controller and WebSocket Controller. For more informations about controllers click on [How do controllers work?](http://docs.partialjs.com/how-does-it-work/controllers/).\n\n_IMPORTANT MARKUPS_: http is for HTTP/HTTPS requests and WebSocket is for WebSocket connections. Some methods and properties support both options.",
+      "description": "FrameworkController is created after is validate a route. The framework knows two types of controller: HTTP/HTTPS Controller and WebSocket Controller. For more informations about controllers click on [How do controllers work?](http://docs.totaljs.com/how-does-it-work/controllers/).\n\n_IMPORTANT MARKUPS_: http is for HTTP/HTTPS requests and WebSocket is for WebSocket connections. Some methods and properties support both options.",
       "properties":
       [
         {
@@ -3489,17 +3595,38 @@
           "example": "https://github.com/totaljs/modules/tree/master/authorization"
         },
         {
+          "options": ["readonly", "http", "websocket"],
+          "return": "Booelan",
+          "name": "controller.isController",
+          "description": "A helper property.",
+          "default": "true"
+        },
+        {
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.get",
-          "description": "Parsed data from URL params.",
+          "description": "Parsed data from URL query.",
+          "default": "{}"
+        },
+        {
+          "options": ["readonly", "http"],
+          "return": "Object",
+          "name": "controller.query",
+          "description": "Parsed data from URL query.",
+          "default": "{}"
+        },
+        {
+          "options": ["readonly", "http"],
+          "return": "Object",
+          "name": "controller.body",
+          "description": "Parsed data from a request body.",
           "default": "{}"
         },
         {
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.post",
-          "description": "Parsed data from a request content.",
+          "description": "Parsed data from a request body.",
           "default": "{}"
         },
         {
@@ -4747,11 +4874,18 @@
               "description": "Additional headers."
             },
             {
+              "options": ["optional"],
               "name": "beautify",
               "type": "Boolean",
               "description": "Beautify JSON.",
               "default": "false",
               "options": ["optional"]
+            },
+            {
+              "options": ["optional"],
+              "name": "replacer",
+              "type": "Function",
+              "description": "Replacer function."
             }
           ]
         },
@@ -4784,15 +4918,20 @@
           "params":
           [
             {
-              "name": "name",
+              "name": "body",
               "type": "String",
-              "description": "Name of content (contents/{name}.html)."
+              "description": "Content body."
+            },
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Content type."
             },
             {
               "options": ["optional"],
-              "name": "isPartial",
-              "type": "Boolean",
-              "description": "If true - then function return rendered HTML."
+              "name": "headers",
+              "type": "Object",
+              "description": "Custom headers."
             }
           ]
         },
@@ -5798,8 +5937,7 @@
         {
           "return": "Object",
           "name": "@{index}",
-          "description": "Get current index in template.",
-          "options": ["only templates"]
+          "description": "Get current index in foreach loop."
         }
       ],
       "methods":
@@ -6684,6 +6822,12 @@
               "description": "Model for the view.",
               "options": ["optional"],
               "default": "undefined"
+            },
+            {
+              "options": ["optional"],
+              "name": "expire",
+              "type": "String",
+              "description": "Add to current view to cache. Example: 1 minute"
             }
           ]
         },
@@ -6708,101 +6852,12 @@
               "description": "Model for the view.",
               "options": ["optional"],
               "default": "undefined"
-            }
-          ]
-        },
-        {
-          "name": "@{content}",
-          "description": "Render static content from config['directory-contents'].",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of content."
-            }
-          ]
-        },
-        {
-          "name": "@{contentToggle}",
-          "description": "Render static content from config['directory-contents'].",
-          "params":
-          [
-            {
-              "name": "visible",
-              "type": "Boolean",
-              "description": "Set visibility."
-            },
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of content."
-            }
-          ]
-        },
-        {
-          "name": "@{template}",
-          "description": "Render template from config['directory-templates'].",
-          "example": "https://github.com/totaljs/examples/tree/master/templating",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of template."
-            },
-            {
-              "name": "arr",
-              "type": "Object Array",
-              "description": "Datasource for rendering."
             },
             {
               "options": ["optional"],
-              "name": "nameEmpty",
+              "name": "expire",
               "type": "String",
-              "description": "Name of empty content - content read from config['directory-contents']."
-            },
-            {
-              "options": ["optional"],
-              "name": "repository",
-              "type": "Object",
-              "description": "Custom repository for the template.",
-              "default": "controller.repository"
-            }
-          ]
-        },
-        {
-          "name": "@{templateToggle}",
-          "description": "Render template from config['directory-templates'].",
-          "params":
-          [
-            {
-              "name": "visible",
-              "type": "Boolean",
-              "description": "Set visibility."
-            },
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of template."
-            },
-            {
-              "name": "arr",
-              "type": "Object Array",
-              "description": "Datasource for rendering."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameEmpty",
-              "type": "String",
-              "description": "Name of empty content - content read from config['directory-contents']."
-            },
-            {
-              "options": ["optional"],
-              "name": "repository",
-              "type": "Object",
-              "description": "Custom repository for the template.",
-              "default": "controller.repository"
+              "description": "Add to current view to cache. Example: 1 minute"
             }
           ]
         },
@@ -7544,6 +7599,19 @@
               "name": "value",
               "type": "Object",
               "description": "Value for parsing."
+            }
+          ]
+        },
+        {
+          "name": "utils.parseXML",
+          "description": "Parse XML.",
+          "return": "Object",
+          "params":
+          [
+            {
+              "name": "value",
+              "type": "String",
+              "description": "XML data."
             }
           ]
         },
@@ -8661,6 +8729,12 @@
         },
         {
           "options": ["optional", "http", "websocket"],
+          "return": "Object",
+          "name": "options",
+          "description": "Custom options for middleware."
+        },
+        {
+          "options": ["optional", "http", "websocket"],
           "return": "Number",
           "name": "length",
           "description": "Maximum request length.",
@@ -8669,8 +8743,8 @@
         {
           "options": ["optional", "http"],
           "return": "String Array",
-          "name": "partials",
-          "description": "Names of partial content (private partial content).",
+          "name": "middleware",
+          "description": "Names of middleware.",
           "default": "[]"
         },
         {
@@ -8707,6 +8781,12 @@
           "return": "String",
           "name": "options",
           "description": "Request must contain: OPTIONS method."
+        },
+        {
+          "options": ["optional", "http"],
+          "return": "String",
+          "name": "xml",
+          "description": "Request body must be a valid XML."
         },
         {
           "options": ["optional", "http"],
@@ -8873,6 +8953,24 @@
           "default": "false"
         },
         {
+          "return": "Object",
+          "name": "request.body",
+          "description": "Request POST/PUT data.",
+          "default": "{}"
+        },
+        {
+          "return": "HttpFile Array",
+          "name": "request.files",
+          "description": "Uploaded files",
+          "default": "[]"
+        },
+        {
+          "return": "Object",
+          "name": "request.query",
+          "description": "Request query string.",
+          "default": "{}"
+        },
+        {
           "return": "Boolean",
           "name": "request.isSecure",
           "description": "Is secured request?",
@@ -8992,8 +9090,16 @@
         {
           "return": "String",
           "name": "Request.prototype.signature",
-          "description": "Create request signature.",
-          "params": []
+          "description": "Create a request signature.",
+          "params":
+          [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Custom key.",
+              "options": ["optional"]
+            }
+          ]
         },
         {
           "return": "Request",
@@ -9017,8 +9123,19 @@
       [
         {
           "return": "Boolean",
-          "name": "request.success",
+          "name": "response.success",
           "description": "Is sent a response?"
+        },
+        {
+          "return": "Controller",
+          "name": "response.controller",
+          "description": "Current controller.",
+          "default": "undefined"
+        },
+        {
+          "return": "Request",
+          "name": "response.req",
+          "description": "Current request."
         }
       ],
       "methods":
@@ -9053,6 +9170,105 @@
           "name": "Response.prototype.noCache",
           "description": "Disable HTTP cache.",
           "params": []
+        },
+        {
+          "name": "Response.prototype.send",
+          "description": "Send data.",
+          "return": "Response",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "code",
+              "type": "Number",
+              "description": "Response status code."
+            },
+            {
+              "name": "body",
+              "type": "String/Object",
+              "description": "Response body."
+            },
+            {
+              "options": ["optional"],
+              "name": "type",
+              "type": "String",
+              "description": "Response content type."
+            }
+          ]
+        },
+        {
+          "name": "Response.prototype.json",
+          "description": "Send JSON.",
+          "return": "Response",
+          "params":
+          [
+            {
+              "name": "body",
+              "type": "Object",
+              "description": "JSON body."
+            }
+          ]
+        },
+        {
+          "name": "Response.prototype.continue",
+          "description": "Continue process of request by the framework.",
+          "return": "Response",
+          "params": []
+        },
+        {
+          "name": "Response.prototype.file",
+          "description": "Send a file.",
+          "return": "Response",
+          "params":
+          [
+            {
+              "name": "filename",
+              "type": "String",
+              "description": "Filename."
+            },
+            {
+              "options": ["optional"],
+              "name": "downloadName",
+              "type": "String",
+              "description": "A download name."
+            },
+            {
+              "options": ["optional"],
+              "name": "headers",
+              "type": "Object",
+              "description": "Custom headers."
+            }
+          ]
+        },
+        {
+          "name": "Response.prototype.stream",
+          "description": "Send a stream.",
+          "return": "Response",
+          "params":
+          [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Content type."
+            },
+            {
+              "name": "stream",
+              "type": "ReadStream",
+              "description": "Stream to response."
+            },
+            {
+              "options": ["optional"],
+              "name": "downloadName",
+              "type": "String",
+              "description": "A download name."
+            },
+            {
+              "options": ["optional"],
+              "name": "headers",
+              "type": "Object",
+              "description": "Custom headers."
+            }
+          ]
         }
       ]
     },
@@ -9085,6 +9301,12 @@
           "return": "Date",
           "name": "String.prototype.parseDate",
           "description": "Parse date from this string.",
+          "params": []
+        },
+        {
+          "return": "Date",
+          "name": "String.prototype.parseDateExpire",
+          "description": "Parse expiration date.",
           "params": []
         },
         {
@@ -9151,7 +9373,7 @@
         },
         {
           "return": "Object",
-          "name": "String.prototype.configuration",
+          "name": "String.prototype.parseConfig",
           "description": "Parse configuration from a string (same configuration as framework configuration)",
           "params": []
         },
@@ -9488,8 +9710,23 @@
         },
         {
           "return": "String",
+          "name": "String.prototype.slug",
+          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'total-js-web-application-framework-for-node-js'",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "max",
+              "type": "Number",
+              "description": "Maximum characters.",
+              "default": "60"
+            }
+          ]
+        },
+        {
+          "return": "String",
           "name": "String.prototype.linker",
-          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'partial-js-web-application-framework-for-node-js'",
+          "description": "Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),\nresult: 'total-js-web-application-framework-for-node-js'",
           "params":
           [
             {
@@ -9762,6 +9999,25 @@
               "name": "count",
               "type": "Number",
               "description": "Maximum count."
+            }
+          ]
+        },
+        {
+          "return": "Array",
+          "name": "Array.prototype.orderBy",
+          "description": "Sort array.",
+          "params":
+          [
+            {
+              "name": "path",
+              "type": "String",
+              "description": "Path to property."
+            },
+            {
+              "name": "asc",
+              "type": "Boolean",
+              "description": "Asc (true), Desc (false)",
+              "default": "true"
             }
           ]
         },
@@ -10150,33 +10406,77 @@
       [
         {
           "return": "Object",
-          "name": "INCLUDE",
-          "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
-          "options": ["or include"],
+          "name": "CONFIG",
+          "description": "Read value from framework.config.",
+          "params":
+          [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Key in config."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "RESOURCE",
+          "description": "Read value from framework.resource().",
           "params":
           [
             {
               "name": "name",
               "type": "String",
+              "description": "Resource name."
+            },
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Key in resource file.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "INCLUDE",
+          "description": "Include script from framework.config['directory-source'] or from URL address. This function is alias for framework.source().",
+          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
+          "options": ["or include"],
+          "params":
+          [
+            {
+              "name": "name or URL",
+              "type": "String",
               "description": "Script name.",
               "example": "https://github.com/totaljs/examples/tree/master/business-logic"
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "Initial options."
             }
           ]
         },
         {
           "return": "Object",
           "name": "SOURCE",
-          "description": "Include script from framework.config['directory-source']. This function is alias for framework.source().",
+          "description": "Include script from framework.config['directory-source'] or from URL address. This function is alias for framework.source().",
           "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
           "options": ["or source"],
           "params":
           [
             {
-              "name": "name",
+              "name": "name or URL",
               "type": "String",
               "description": "Script name.",
               "example": "https://github.com/totaljs/examples/tree/master/business-logic"
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "Initial options."
             }
           ]
         },
@@ -10211,6 +10511,56 @@
           "name": "DATABASE",
           "description": "Get a database. This function is linked to: framework.database().",
           "params": []
+        },
+        {
+          "return": "Framework",
+          "name": "LOG",
+          "description": "Alias to framework.log()",
+          "params": []
+        },
+        {
+          "return": "Framework",
+          "name": "PRECOMPILE",
+          "description": "Alias to framework.precomfile()",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "View name."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "URL address to HTML/view."
+            }
+          ]
+        },
+        {
+          "return": "Framework",
+          "name": "FUNCTION",
+          "description": "Alias to framework.functions.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A function name."
+            }
+          ]
+        },
+        {
+          "return": "Framework",
+          "name": "COMPONENT",
+          "description": "Render component. Alias to framework.component().",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A component name."
+            }
+          ]
         }
       ],
       "properties":
@@ -10660,7 +11010,7 @@
     },
     {
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. By the schema you can validate a model.\n\n=== javascript\n// Example:\nBuilders.schema('user', { firstname: 'string(40)', lastname: String, created: Date }, function(name) {\n    if (name === 'created')\n        return new Date();\n});\n\n// Why?\ndb.insert(Builders.prepare('user', controller.post));\n\n===",
+      "description": "Schema builder is helpful for model definitions. By the schema you can validate a model.\n\n=== javascript\n// Example:\nBuilders.schema('user', { firstname: 'string(40)', lastname: String, created: Date }, function(name) {\n    if (name === 'created')\n        return new Date();\n});\n\n// Why?\ndb.insert(Builders.prepare('user', controller.body));\n\n===",
       "group": "Builders",
       "methods":
       [

@@ -4,7 +4,7 @@
 
 <br />
 <div class="text">
-	Framework know three configuration files - <strong class="high">global (/config)</strong>, <strong class="high">debug (/config-debug)</strong> and <strong class="high">release (/config-release)</strong>. Debug configuration file is for development and release is for production. Global configuration is for both modes and is loaded as first (other configuration can rewritten global values). Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
+	Framework knows four configuration files - <strong class="high">global (/config)</strong>, <strong class="high">debug (/config-debug)</strong>, <strong class="high">release (/config-release)</strong> and <strong class="high">test (/config-test)</strong>. Debug configuration file is for development, release is for production and test for assertion testing. Global configuration is for all modes and is loaded as first (other configuration can rewritten global values). Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
 </div>
 <br />
 <div class="image">
@@ -67,13 +67,11 @@ etag-version                       :
 
 // Default directory options
 directory-definitions              : /definitions/
-directory-contents                 : /contents/
 directory-controllers              : /controllers/
 directory-components               : /components/
 directory-models                   : /models/
 directory-views                    : /views/
 directory-temp                     : /tmp/
-directory-templates                : /templates/
 directory-resources                : /resources/
 directory-source                   : /source/
 directory-public                   : /public/
@@ -131,6 +129,16 @@ default-image-converter            : gm
 // default image quality for framework.resize()
 default-image-quality              : 93
 
+// default time (in minutes) for clearing cache of resources
+default-interval-clear-resources   : 20
+
+// default time (in minutes) for clearing internal cache
+default-interval-clear-cache       : 3
+
+// default time (in minutes) for re-compile of precomiled views
+// Read more: framework.precompile(name, url);
+default-interval-clear-precompile  : 61
+
 allow-gzip                         : true
  
 // If you'll using Socket.io, set allow-websocket to false
@@ -148,23 +156,20 @@ allow-compress-html                : true
 </pre>
 <br />
 <h2>How to get value from configuration?</h2>
-<h3>In the framework class</h3>
+<h3>Everywhere in *.js server scripts</h3>
 <pre class="brush: jscript">
+// "framework" is a global variable and you can use it everywhere
 var name = framework.config['name'];
 
 // or
 
 name = framework.config.name;
-</pre>
-		<h3>In the controller class</h3>
-<pre class="brush: jscript">
-var name = controller.config['name'];
 
-// or
+// or global variable (recommended)
 
-name = controller.config.name;
+name = CONFIG('name');
 </pre>
-		<h3>In the view</h3>
+		<h3>In the view engine</h3>
 <pre class="brush: xml">
 	@&#123;config[&#39;name&#39;]&#125;
 
@@ -173,12 +178,10 @@ name = controller.config.name;
 	@&#123;config.name&#125;
 </pre>
 		<br />
-		<br />
 		<h2>What should you know?</h2>
 		<div class="text mt15">
 			Configuration can be inject from URL address - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-config" class="link">Example</a>.
 		</div>
-
 		<h3 id="config.name">configuration: @name</h3>
 <pre class="brush: plain">
 &nbsp;
@@ -283,7 +286,7 @@ static-accepts                     : .jpg,.png,.gif,.ico,.js,.css,.txt,.xml,.wof
 </pre>
 <br />
 <div class="text">
-	<span class="high-code">framework.config['static-accepts']</span> is parsed as Array and this option allows/disallows request which is routed into the static file. <b>Default accepts:</b> .jpg, .png, .gif, .ico, .js, .css, .txt, .xml, .woff, .ttf, .eot, .svg, .zip, .rar, .pdf, .docx, .xlsx, .doc, .xls, .html, .htm, .appcache, .map, .ogg, .mp3, .webp, .swf, .webm.
+	<span class="high-code">framework.config['static-accepts']</span> is parsed as Array and this option allows/disallows request which is routed into the static file. <b>Default accepts:</b> .jpg, .png, .gif, .ico, .js, .css, .txt, .xml, .woff, .ttf, .eot, .svg, .zip, .rar, .pdf, .docx, .xlsx, .doc, .xls, .html, .htm, .appcache, .map, .ogg, .mp3, .webp, .swf, .webm, .json.
 </div>
 <br />
 <hr />

@@ -62,25 +62,11 @@
                 <li><a href="/how-does-it-work/modules/">Modules</a></li>
                 <li><a href="/how-does-it-work/resources/">Resources</a></li>
                 <li><a href="/how-does-it-work/security/">Security (XSS, CSRF)</a></li>
-                <li><a href="/how-does-it-work/templates/">Templates</a></li>
                 <li><a href="/how-does-it-work/validation/">Validation</a></li>
                 <li><a href="/how-does-it-work/views/">Views / Render engine</a></li>
             </ul>
             <br />
-            <div><strong>Documentation</strong></div>
-            @{template('menu', repository.menu)}
-            <br />
-            <div><strong>Builders</strong></div>
-            @{template('menu', repository.menuBuilders)}
-            <br />
-            <div><strong>Prototypes</strong></div>
-            @{template('menu', repository.menuPrototypes)}
-            <br />
-            <div><strong>Additional</strong></div>
-            @{template('menu', repository.menuAdditional)}
-            <br />
-            <div><strong>Globals</strong></div>
-            @{template('menu', repository.menuGlobals)}
+            @{view('menu', null, '10 minutes')}
         </div>
         <div class="content">
             @{body}

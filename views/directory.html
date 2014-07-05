@@ -1,25 +1,18 @@
 @{meta('Project directory')}
-
 <h1>Project directory</h1>
 <br />
 <div>
-	Website / Web application project has simply directory structure. Many directories are optional.
+    Website / Web application project has simply directory structure. Many directories are optional.
 </div>
 <br />
 <div class="image">
-	@{image('directory-structure.png', 389, 338, 'Directory structure')}
-	<div>total.js web project - directory structure</div>
+    @{image('directory-structure.png', 389, 338, 'Directory structure')}
+    <div>total.js web project - directory structure</div>
 </div>
-
 <br />
 <br />
 <h2>Directory: components</h2>
 <div class="mt20 text"><span class="high">optional</span> Directory contains all components files. Each component can render custom output and components you can use in other projects. Are very simple and effective.<br /><br /><a href="/how-does-it-work/components/" class="link">How do components work?</a><br /></div>
-<br />
-<hr />
-<br />
-<h2>Directory: contents</h2>
-<div class="mt20 text"><span class="high">optional</span> Directory contains content files. Content file is a plain HTML file with <span class="high-code">.html</span> extension and you can render it in views. Content file doesn't contain special markup, is render as a raw HTML and it serves for banners or static content.<br /><br /><a href="/FrameworkViews/#content" class="link">Documentation: view @&#123;content()&#125;</a></div>
 <br />
 <hr />
 <br />
@@ -39,7 +32,7 @@
 <hr />
 <br />
 <h2>Directory: logs</h2>
-<div class="mt20 text"><span class="high">optional</span> This directory is optional and contains all log files. Log file is a plain text file and the file name contains date about its creation <span class="high-code">yyyy-MM-dd.log</span>. You can create a log file with: <span class="high-code">framework.log('my description')</span> or<br /><span class="high-code">controller.log('my description')</span>.<br /><br /><a href="/Framework/#framework.log" class="link">Documentation: framework.log()</a><br /><a href="/FrameworkController/#controller.log" class="link">Documentation: controller.log()</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/logs">Example</a></div></div>
+<div class="mt20 text"><span class="high">optional</span> This directory is optional and contains all log files. Log file is a plain text file and the file name contains date about its creation <span class="high-code">yyyy-MM-dd.log</span>. You can create a log file with: <span class="high-code">framework.log('my description')</span> or<br /><span class="high-code">controller.log('my description')</span>.<br /><br /><a href="/Framework/#framework.log" class="link">Documentation: framework.log()</a><br /><a href="/FrameworkController/#controller.log" class="link">Documentation: controller.log()</a><br /><a href="/global/#LOG" class="link">Documentation: LOG()</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/logs">Example</a></div></div>
 <br />
 <hr />
 <br />
@@ -49,7 +42,7 @@
 <hr />
 <br />
 <h2>Directory: modules</h2>
-<div class="mt20 text"><span class="high">optional</span> Modules directory contains all application modules. The module can contain classes, functions or constants. Each controller can call module or module can create own route.<br /><br /><a href="/how-does-it-work/modules/" class="link">How do modules work?</a><br /><a href="/Framework/#framework.module" class="link">Documentation: framework.module()</a><br /><a href="/FrameworkController/#controller.module" class="link">Documentation: controller.module()</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/framework-modules">Example</a></div></div>
+<div class="mt20 text"><span class="high">optional</span> Modules directory contains all application modules. The module can contain classes, functions or constants. Each controller can call module or module can create own route.<br /><br /><a href="/how-does-it-work/modules/" class="link">How do modules work?</a><br /><a href="/Framework/#framework.module" class="link">Documentation: framework.module()</a><br /><a href="/FrameworkController/#controller.module" class="link">Documentation: controller.module()</a><br /><a href="/global/#MODULE" class="link">Documentation: MODULE()</a><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/framework-modules">Example</a></div></div>
 <br />
 <hr />
 <br />
@@ -59,17 +52,12 @@
 <hr />
 <br />
 <h2>Directory: resources</h2>
-<div class="mt20 text"><span class="high">optional</span> If you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. This way is resources. A resource file is a plain text file that contains the strings. Resource file has same syntax as a config file.<br /><br /><a href="/how-does-it-work/resources/" class="link">How do resources work?</a><br /><a href="/Framework/#framework.resource" class="link">Documentation: framework.resource()</a><br /><a href="/FrameworkController/#controller.resource" class="link">Documentation: controller.resource()</a><br /><a href="/FrameworkViews/#resource" class="link">Documentation: view @&#123;resource()&#125;</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/localization-resources">Example</a></div></div>
+<div class="mt20 text"><span class="high">optional</span> If you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. This way is resources. A resource file is a plain text file that contains the strings. Resource file has same syntax as a config file.<br /><br /><a href="/how-does-it-work/resources/" class="link">How do resources work?</a><br /><a href="/Framework/#framework.resource" class="link">Documentation: framework.resource()</a><br /><a href="/FrameworkController/#controller.resource" class="link">Documentation: controller.resource()</a><br /><a href="/FrameworkViews/#resource" class="link">Documentation: view @&#123;resource()&#125;</a><br /><a href="/global/#RESOURCE" class="link">Documentation: RESOURCE()</a><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/localization-resources">Example</a></div></div>
 <br />
 <hr />
 <br />
 <h2>Directory: source</h2>
 <div class="mt20 text"><span class="high">optional</span> This directory contains <b>business logic</b> of your application.<br /><br /><a href="/Framework/#framework.source" class="link">Documentation: framework.source()</a><br /><a href="/global/#SOURCE" class="link">Documentation: SOURCE()</a><br /><a href="/global/#INCLUDE" class="link">Documentation: INCLUDE()</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/framework-business-logic-source">Example</a></div></div>
-<br />
-<hr />
-<br />
-<h2>Directory: templates</h2>
-<div class="mt20 text"><span class="high">optional</span> This directory contains templates. Template is a HTML file with special marks. Templates are suitable for repeating data (such as list of products, comments, etc.).<br /><br /><a href="/how-does-it-work/templates/" class="link">How do templates work?</a><br /><a href="/FrameworkController/#controller.template" class="link">Documentation: controller.template()</a><br /><a href="/FrameworkViews/#template" class="link">Documentation: view @&#123;template()&#125;</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/templating">Example</a></div></div>
 <br />
 <hr />
 <br />
@@ -90,4 +78,3 @@
 <br />
 <h2>Directory: workers</h2>
 <div class="mt20 text"><span class="high">optional</span> Workers are used for other helper work.<br /><br /><a href="/Framework/#framework.worker" class="link">Documentation: framework.worker()</a><br /><div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/wokers">Example</a></div></div>
-
