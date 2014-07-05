@@ -409,11 +409,7 @@
         },
         {
           "name": "framework.middleware",
-<<<<<<< HEAD
           "description": "Register a middleware. Middleware is executed before is executing a Request / Controller / Module. Middleware must be specified for use.",
-=======
-          "description": "Register a middleware. Middleware is executed before is executing a Controller / Module. Private middleware (specified [name]) must be mapped into the route and global middleware is executed for each request to the controller.",
->>>>>>> FETCH_HEAD
           "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "return": "Framework",
           "params":
@@ -421,11 +417,7 @@
             {
               "name": "name",
               "type": "String",
-<<<<<<< HEAD
               "description": "Name of middleware."
-=======
-              "description": "Name of middleware. Middleware without name is a global middleware."
->>>>>>> FETCH_HEAD
             },
             {
               "options": ["important"],
@@ -449,15 +441,12 @@
                   "name": "next",
                   "type": "Function",
                   "description": "Next step."
-<<<<<<< HEAD
                 },
                 {
                   "options": ["optional"],
                   "name": "options",
                   "type": "Object",
                   "description": "Route options."
-=======
->>>>>>> FETCH_HEAD
                 }
               ]
             }
