@@ -47,34 +47,21 @@ $ npm install total.js
 <h3>How to run framework?</h3>
 <div class="text">Empty project (<a href="https://github.com/totaljs/framework/releases" class="link b">download</a>) contains 3x files <b>debug.js</b> (for development), <b>release.js</b> (for production) and <b>test.js</b> (for assertion testing).</div>
 <br />
-<h4>HTTP</h4>
-<pre class="brush: jscript">var framework = require('total.js');
-var http = require(&#39;http&#39;);
+<h4>Example</h4>
+<pre class="brush: jscript">var options = {};
 
-// BEST PRACTICE:
-// Define PORT and IP into the config files
-// Example: https://github.com/totaljs/examples/tree/master/config-debug-release
-var port = 8000;
-var ip = &#39;127.0.0.1&#39;;
-var debug = true;
+// options.ip = '127.0.0.1';
+// options.port = parseInt(process.argv[2]);
+// options.config = { name: 'total.js' };
+// options.https = { key: fs.readFileSync('keys/agent2-key.pem'), cert: fs.readFileSync('keys/agent2-cert.pem')};
 
-framework.run(http, debug, port, ip);
-</pre>
-<h4>HTTPS</h4>
-<pre class="brush: jscript">var framework = require(&#39;total.js&#39;);
-var https = require(&#39;https&#39;);
-var fs = require(&#39;fs&#39;);
+require('total.js').http('debug', options);
+// require('total.js').http('test', options);
+// require('total.js').http('release', options);
 
-var options = {
-	key: fs.readFileSync(&#39;path-to-key.pem&#39;),
-	cert: fs.readFileSync(&#39;path-to-cert.pem&#39;)
-};
-
-var port = 8000;
-var ip = &#39;127.0.0.1&#39;;
-var debug = true;
-
-framework.run(https, debug, port, ip, options);
+// require('total.js').https('debug', options);
+// require('total.js').https('test', options);
+// require('total.js').https('release', options);
 </pre>
 <br />
 <br />

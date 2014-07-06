@@ -51,9 +51,9 @@ function view_homepage() {
 <pre class="brush: jscript">@&#123;repository.firstname&#125; or @&#123;model.firstname&#125;</pre>
 <br />
 <h3>Layout: /views/_layout.html</h3>
-<div class="text">The <span class="high-code">self.repository.title = 'System Administration'; assignment in the previous example under "Repository vs Model"</span> displays the assigned value &quot;System Administration&quot; in the file specified by <span class="high-code">self.layout(&#39;_layout&#39;)</span>. This is common to all sub elements using _layout. This is collectively called the repository, e.g <span class="high-code">@&#123;repository.firstname&#125;</span> output is &quot;System Administration&quot;. Model variables (e.g: <span class="high-code">@&#123;model.firstname&#125;</span>) do not render its value in _layouts because models are responsible for displaying values in the current view only.</div>
+<div class="text">The <span class="high-code">self.repository.title = 'System Administration';</span> assignment in the previous example under "Repository vs Model" displays the assigned value &quot;System Administration&quot; in the file specified by <span class="high-code">self.layout(&#39;_layout&#39;)</span>. This is common to all sub elements using _layout. This is collectively called the repository, e.g <span class="high-code">@&#123;repository.firstname&#125;</span> output is &quot;System Administration&quot;. Model variables (e.g: <span class="high-code">@&#123;model.firstname&#125;</span>) do not render its value in _layouts because models are responsible for displaying values in the current view only.</div>
 <br />
-<h2>Define a layout</h2>
+<h2>Defining a layout</h2>
 <div class="text">
 	You can create multiple layouts customizing them by name ('eg: _layout.html or _mycustomlayout.html').
 </div>
@@ -77,6 +77,7 @@ function view_homepage() {
 &lt;body&gt;
 	@&#123;view('header')&#125;
 	&lt;div class=&quot;content&quot;&gt;
+		@&#123;section('panel')&#125;
 		&lt;!-- Here is rendered a content from views --&gt;
 		@&#123;body&#125;
 	&lt;/div&gt;
@@ -85,7 +86,7 @@ function view_homepage() {
 &lt;/html&gt;
 </pre>
 <br />
-<h2>Define a view</h2>
+<h2>Defining a view</h2>
 <div class="text">
 	You can create multiple views ('e.g: index.html, custom.html').
 </div>
@@ -95,22 +96,22 @@ function view_homepage() {
 
 &lt;div&gt;Hello World!&lt;/div&gt;
 
-@&#123;template('products', [&#123; name: 'A', price: 23.32 &#125;, &#123; name: 'B', price: 32.10 &#125;])&#125;
+@&#123;view('products', [&#123; name: 'A', price: 23.32 &#125;, &#123; name: 'B', price: 32.10 &#125;])&#125;
 @&#123;content('adv')&#125;
 
-@&#123;template('users', model)&#125;
+@&#123;view('users', model)&#125;
 
 &lt;!-- Look into definition of custom helper --&gt;
 @&#123;customHelper('Hello', 2 + 3)&#125;
 
 &lt;!-- You can define multi-line command --&gt;
 
-@&#123;template('products', [&#123; name: 'A', price: 23.32 &#125;,
+@&#123;view('products', [&#123; name: 'A', price: 23.32 &#125;,
                         &#123; name: 'B', price: 32.10 &#125;,
                         &#123; name: 'C', price: 15.22 &#125;])&#125;
 </pre>
 
-<h3>Adding conditional logic in Views</h3>
+<h3>Adding a conditional logic in Views</h3>
 <div class="text">
 	Views supports simple conditions. Example:
 </div>
@@ -157,7 +158,7 @@ function view_homepage() {
 
 <h3>Sections</h3>
 <div class="text">
-	Views supports <b>sections</b> tag.<br />
+	Views supports <b>section</b> tag.<br />
 </div>
 <br />
 <div><strong>/views/homepage.html</strong></div>
@@ -198,15 +199,11 @@ function view_homepage() {
 	<pre class="brush: xml">
 &lt;!-- VIEW --&gt;
 @&#123;view('&lt;div&gt;&lt;b&gt;@&#123;model.name&#125;&lt;/b&gt;&lt;/div&gt;', &#123; name: 'Peter Širka' &#125;)&#125;
-
-&lt;!-- TEMPLATE --&gt;
-@&#123;template('&lt;div&gt;&#123;name&#125;&lt;/div&gt;', [&#123;name: 'Peter Širka'&#125;,&#123;name: 'Steve Jobs'&#125;])&#125;
 </pre>
 </div>
-
 <h3>Defining custom helpers</h3>
 <div class="text">
-	Your "helper" code should be saved in the definitions directory.
+	Your &quot;helper&quot; code should be saved in the definitions directory.
 </div>
 <br />
 <pre class="brush: jscript">framework.helpers.customHelper = function(str, num) {
@@ -215,9 +212,30 @@ function view_homepage() {
 };
 </pre>
 <br />
-	<pre class="brush: xml">
+<pre class="brush: xml">
 &lt;!-- VIEW --&gt;
 @&#123;helper('customHelper', 'Peter', 25)&#125;
+
+&lt;!-- OR --&gt;
+@&#123;customHelper('Peter', 25)&#125;
+</pre>
+
+<h3>Defining inline helpers</h3>
+<div class="text">
+	Inline helper can by defined in views.
+</div>
+<br />
+	<pre class="brush: xml">@&#123;helper address(street, city)&#125;
+	&lt;h2&gt;Address&lt;/h2&gt;
+    &lt;div&gt;@&#123;street&#125;&lt;/div&gt;
+    &lt;div&gt;@&#123;city&#125;&lt;/div&gt;
+    &lt;br /&gt;
+@&#123;end&#125;
+
+&lt;div&gt;Address 1&lt;/div&gt;
+@&#123;address(&#039;Baker street 3&#039;, &#039;Wien&#039;)&#125;
+&lt;div&gt;Address 2&lt;/div&gt;
+@&#123;address(&#039;Galvaniho 3&#039;, &#039;Bratislava&#039;)&#125;
 </pre>
 <br />
 <h2>Defining views in sub-directories</h2>
@@ -244,12 +262,6 @@ function view_site() {
 }
 </pre>
 <br />
-<h2>Prefixes</h2>
-<div class="center">
-	@{image('prefixy.png', 800, 283, 'Prefixes for mobile devices')}
-</div>
-<div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/mobile"><b>EXAMPLE:</b> Prefixes (multi-devices development)</a></div>
-<br />
 <h2>Auto-bindings models</h2>
 <div class="center">
 	@{image('views-binding.png', 800, 517, 'Auto-bindings models')}
@@ -268,7 +280,7 @@ Name: @&#123;input('Name')&#125;
 Name: &lt;input type="text" name="Name" value="Ano&amp;lt;n&amp;gt;ym" /&gt;
 </pre>
 <br />
-<h2>Download Sublime Text 2 syntax</h2>
+<h2>Download Sublime Text 2 / Sublime Text 3 syntax</h2>
 <br />
 <div><a href="http://www.totaljs.com/download/sublime-text-highlighter.zip" class="link">Download syntax (4.9 kB)</a></div>
 <div><a href="http://www.totaljs.com/download/sublime-text-highlighter-3.zip" class="link">Download syntax for Sublime Text 3 (4.9 kB)</a></div>
