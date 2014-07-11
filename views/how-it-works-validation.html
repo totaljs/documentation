@@ -3,17 +3,17 @@
 <h1>How does validation work?</h1>
 <br />
 <div class="message message-alert">
-	Framework has simple validation logic for validating of models. You can use this logic for server side and<br />for the client side.
+	Framework has simple validation logic for validating of models. You can use this logic for a server-side and<br />for a client–side validation.
 </div>
 <br />
 <hr />
 <div class="text">
 	<ul>
-		<li>All logic of validation is in one delegate - framework.onValidation().</li>
-		<li>Validation can be used in controller.</li>
+		<li>All logic of validation is in one delegate - framework.onValidation() or <b>in custom schemas</b>.</li>
+		<li>A validation can be used everywhere.</li>
 		<li>Result of validation is <a href="/Builders.ErrorBuilder/" class="link">Builders.ErrorBuilder</a>.</li>
-		<li>For the validation use <a href="/Builders.SchemaBuilder/" class="link">Builders.SchemaBuilder</a> - <a href="https://github.com/totaljs/examples/tree/master/framework-schema" class="link">Schema validation example</a> or <a href="https://github.com/totaljs/examples/tree/master/framework-schema-validation" class="link">Schema custom validation example</a>.</li>
-		<li class="red">Result of validation can serialize into the JSON format.</li>
+		<li>For model validation use <a href="/Builders.SchemaBuilder/" class="link">Builders.SchemaBuilder</a> - <a href="https://github.com/totaljs/examples/tree/master/framework-schema" class="link">Schema validation example</a> or <a href="https://github.com/totaljs/examples/tree/master/framework-schema-validation" class="link">Schema custom validation example</a>.</li>
+		<li class="red">Result of validation can be serialized into the JSON format.</li>
 		<li>Documentation: <a href="/Framework/#framework.onValidation" class="link">framework.onValidation()</a>.</li>
 	</ul>
 </div>
@@ -24,9 +24,9 @@
 <br />
 <hr />
 <div class="center">@{image('partial-validation.png', 810, 290, 'Framework validation')}</div>
-<h2>Definition of validation</h2>
+<h2>Defining a global validation</h2>
 <div class="text mt15">
-	Delegate you can define in some definition file. <a href="/how-does-it-work/definitions/" class="link">How do definitions work?</a>.
+	You can define a validation delegate in some definition file. <a href="/how-does-it-work/definitions/" class="link">How do definitions work?</a>.
 </div>
 <br />
 <pre class="brush: jscript">framework.onValidation = function(name, value) {
@@ -44,9 +44,7 @@
     }
 }
 </pre>
-<br />
-<h2>Validate some model</h2>
-<br />
+<h3>Validate some model</h3>
 <pre class="brush: jscript">function someActionInController() {
 
 	var self = this;
@@ -71,14 +69,56 @@
 }
 </pre>
 <br />
+<h2>Defining a schema validation</h2>
+<div class="text mt15">
+    You can define a schema with validation.
+</div>
+<br />
+<pre class="brush: jscript">// Builders.schema('schema-name', 'definition', 'default/prepare fn', 'validate fn', 'properties to validate')
+Builders.schema('user', { name: String, age: Number, created: Date }, null, function(name, value) {
+    switch (name) {
+        case 'name':
+            return value.length > 0;
+        case 'age':
+            return Utils.parseInt(value) > 10;
+    }
+}, ['name', 'age']);
+</pre>
+<h3>Validate some model</h3>
+<pre class="brush: jscript">function someActionInController() {
+
+    var self = this;
+    var model = self.post;
+
+    var error = self.validate('users', model);
+    // or
+    // Builders.validate('users', model);
+
+    if (error.hasError()) {
+
+        // response error
+        // Example: [{ &quot;name&quot;: &quot;firstname&quot;, &quot;error&quot;: &quot;first name is required&quot; }]
+        self.json(error);
+        return;
+
+    }
+
+    // insert model into the DB
+    self.database('users').insert(model);
+
+    // response success
+    self.json({ r: true, message: 'success' });
+}
+</pre>
+<br />
 <h2>Benefits</h2>
 <br />
 <div class="text">
-	<b>This validation logic has several benefits:</b>
+	<b>This logic of validation has several benefits:</b>
 	<ul>
-		<li>You can use similar code for client side code.</li>
+		<li>You can use similar code for client-side code.</li>
 		<li>You can validate any model.</li>
-		<li>All conditions for validation are in one place.</li>
+		<li>All conditions are in one place.</li>
 		<li>You can use SchemaBuilder for preparing and cleaning of models.</li>
 		<li>The logic of validation is linked with resources.</li>
 		<li>You can modify errors in ErrorBuilder.</li>

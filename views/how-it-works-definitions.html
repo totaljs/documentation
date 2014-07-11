@@ -9,13 +9,12 @@
 <hr />
 <div class="text">
 	<ul>
-		<li>A <b>Definition</b> is plain JavaScript file.</li>
-		<li>Framework automatically loads each definition.</li>
+		<li><b>Definition</b> is plain JavaScript file.</li>
+		<li>Framework loads each definition automatically.</li>
 		<li>You can create unlimited definitions.</li>
-		<li class="red">Definitions can access framework functions, properties and events.</li>
-		<li class="red">Definitions can inject controller, config and module from URL.</li>
+		<li class="red">Definitions can access everywhere.</li>
 		<li class="red">Definitions can create files.</li>
-		<li><b>Definitions can be injected from a URL address</b> - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-definition" class="link">Example</a>.</li>
+		<li><b>Definitions can be installed from an URL address</b> - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-definition" class="link">Example</a>.</li>
 	</ul>
 </div>
 <!--
@@ -35,7 +34,7 @@
 // utils == FrameworkUtils
 
 // Example:
-framework.injectModule('test', 'http://www.totaljs.com/inject.js');
+framework.install('module', 'http://www.totaljs.com/framework/module.js');
 
 framework.custom = {};
 framework.custom.myName = 'Peter Širka';

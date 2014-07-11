@@ -9,13 +9,13 @@
 <hr />
 <div class="text">
 	<ul>
-		<li>Easy to use in each code.</li>
+		<li>Easy to use in each script.</li>
 		<li>The resource is plain text file.</li>
-		<li>Framework automatically load each resource when you need.</li>
+		<li>Framework automatically load each resource when is needed.</li>
 		<li>You can create unlimited count of resources.</li>
 		<li class="red">The resource is readonly.</li>
 		<li class="red">Resources are cached (in release mode) for 20 minutes.</li>
-		<li><span class="red b">Resources are used by the validation.</span> <a href="https://github.com/totaljs/examples/tree/master/validation" class="link">Example</a>.</li>
+		<li><span class="red b">Resources are used in validation.</span> <a href="https://github.com/totaljs/examples/tree/master/validation" class="link">Example</a>.</li>
 	</ul>
 </div>
 <div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/localization-resources">Resource example</a></div>
@@ -47,6 +47,18 @@ key3           : &lt;b&gt;with the tag-de&lt;/b&gt;
 <br />
 <h2>Reading from resources</h2>
 
+<h3>RESOURCE()</h3>
+<div class="text"><a href="/global/#RESOURCE" class="link">Documentation: RESOURCE()</a></div>
+<br />
+<pre class="brush: jscript">console.log(RESOURCE('key1'));
+// value1
+
+console.log(RESOURCE('en', 'key1'));
+// value1-en
+
+console.log(RESOURCE('de', 'key1'));
+// value1-de
+</pre>
 <h3>framework.resource()</h3>
 <div class="text"><a href="/Framework/#framework.resource" class="link">Documentation: framework.resource()</a></div>
 <br />

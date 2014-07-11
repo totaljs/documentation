@@ -758,19 +758,6 @@
           ]
         },
         {
-          "name": "framework.component",
-          "description": "Get a component object. This function returns all exported functions.",
-          "return": "Object",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Component name."
-            }
-          ]
-        },
-        {
           "name": "framework.module",
           "description": "Get a framework module. All modules are defined in config['directory-modules'].",
           "return": "Object",
@@ -795,6 +782,12 @@
               "name": "name",
               "type": "String",
               "description": "Source name."
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "Initial options."
             }
           ]
         },
@@ -809,181 +802,6 @@
               "name": "name",
               "type": "String",
               "description": "Model name."
-            }
-          ]
-        },
-        {
-          "name": "framework.precompile",
-          "description": "Precompile a view.",
-          "return": "Framework",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "View name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectModule",
-          "description": "Inject a module from URL address. Module must be a 100% pure javascript file.",
-          "return": "Framework",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-module",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Module name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectSource",
-          "description": "Inject a source (business logic) from URL address. Source must be a 100% pure javascript file.",
-          "return": "Framework",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-business-logic-source",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Source name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectComponent",
-          "description": "Inject a component from URL address. Component must be a 100% pure javascript file.",
-          "return": "Framework",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-component",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Component name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectModel",
-          "description": "Inject a model from URL address. Model must be a 100% pure javascript file.",
-          "return": "Framework",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-model",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Model name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectVersions",
-          "description": "Inject a versions from URL address.",
-          "return": "Framework",
-          "params":
-          [
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            },
-            {
-              "name": "rewrite",
-              "type": "Boolean",
-              "description": "Rewrite all values otherwise will add new values.",
-              "options": ["optional"],
-              "default": "true"
-            }
-          ]
-        },
-        {
-          "name": "framework.injectController",
-          "description": "Inject a controller from URL address. Controller must be a 100% pure javascript file.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-controller",
-          "return": "Framework",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Controller name."
-            },
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectDefinition",
-          "description": "Inject a definitions from URL address. Definition must be a 100% pure javascript file.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-definition",
-          "return": "Framework",
-          "params":
-          [
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            }
-          ]
-        },
-        {
-          "name": "framework.injectConfig",
-          "description": "Inject the configuration from URL address. configuration must be in total.js config format.",
-          "return": "Framework",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-inject-config",
-          "params":
-          [
-            {
-              "name": "url",
-              "type": "String",
-              "description": "A valid URL address."
-            },
-            {
-              "name": "debug",
-              "type": "Boolean",
-              "description": "For debugging. Undefined == both (debug/release).",
-              "options": ["optional"],
-              "default": "undefined"
-            },
-            {
-              "name": "rewrite",
-              "type": "Boolean",
-              "description": "Rewrite all values otherwise will add new values.",
-              "options": ["optional"],
-              "default": "true"
             }
           ]
         },
@@ -1583,7 +1401,7 @@
           ]
         },
         {
-          "name": "framework.accepts",
+          "name": "framework.accept",
           "description": "Add extension + ContentType into the accepts list.",
           "return": "Framework",
           "params":
@@ -1743,7 +1561,7 @@
         },
         {
           "name": "framework.controller",
-          "description": "Read or register (dynamic) controller. If you'll not define a controller then function returns existing controller object.",
+          "description": "Get a controller.",
           "return": "Framework",
           "params":
           [
@@ -1751,12 +1569,6 @@
               "name": "name",
               "type": "String",
               "description": "Controller name."
-            },
-            {
-              "options": ["optional"],
-              "name": "definition",
-              "type": "Function",
-              "description": "Controller definition."
             }
           ]
         },
@@ -3605,7 +3417,7 @@
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.get",
-          "description": "Parsed data from URL query.",
+          "description": "Parsed data from URL query. Is alias for controller.query.",
           "default": "{}"
         },
         {
@@ -3626,7 +3438,7 @@
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.post",
-          "description": "Parsed data from a request body.",
+          "description": "Parsed data from a request body. Is alias for controller.body.",
           "default": "{}"
         },
         {
@@ -3796,6 +3608,40 @@
               "name": "properties",
               "type": "String Array",
               "description": "Define properties for to validation."
+            },
+            {
+              "options": ["optional"],
+              "name": "prefix",
+              "type": "String",
+              "description": "Prefix for resource key.",
+              "default": "''"
+            },
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String",
+              "description": "A resource name.",
+              "default": "default"
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket", "important"],
+          "return": "Boolean",
+          "name": "controller.validate",
+          "description": "Validate an object model by the schema.",
+          "example": "https://github.com/totaljs/examples/tree/master/validation",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "string",
+              "description": "Name of schema (SchemaBuilder)"
+            },
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "Model to validate."
             },
             {
               "options": ["optional"],
@@ -8723,7 +8569,7 @@
           "options": ["optional", "http", "websocket"],
           "return": "String Array",
           "name": "flags",
-          "description": "Request flags.",
+          "description": "Request flags. If flag starts with # is loaded as middleware.",
           "default": "[]",
           "go": "HttpRouteOptionsFlags"
         },
@@ -10483,7 +10329,20 @@
         {
           "return": "Object",
           "name": "MODULE",
-          "description": "Load module. This function is linked to: framework.module().",
+          "description": "Get a module. This function is alias for: framework.module().",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Module name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "CONTROLLER",
+          "description": "Get a controller. This function is alias for: framework.controller().",
           "params":
           [
             {
@@ -10496,7 +10355,7 @@
         {
           "return": "Object",
           "name": "MODEL",
-          "description": "Load model. This function is linked to: framework.model().",
+          "description": "Get a model. This function is alias for: framework.model().",
           "params":
           [
             {
@@ -10509,7 +10368,7 @@
         {
           "return": "Object",
           "name": "DATABASE",
-          "description": "Get a database. This function is linked to: framework.database().",
+          "description": "Get a database. This function is alias for: framework.database().",
           "params": []
         },
         {
@@ -10520,45 +10379,74 @@
         },
         {
           "return": "Framework",
-          "name": "PRECOMPILE",
-          "description": "Alias to framework.precomfile()",
+          "name": "INSTALL",
+          "description": "Install some feature into the framework. This function is alias for: framework.install().",
           "params":
           [
             {
-              "name": "name",
+              "name": "type",
               "type": "String",
-              "description": "View name."
+              "description": "Can be: controller, module, model, view, definition, eval"
             },
             {
-              "name": "url",
+              "options": ["optional"],
+              "name": "name",
               "type": "String",
-              "description": "URL address to HTML/view."
+              "description": "A feature name."
+            },
+            {
+              "name": "declaration",
+              "type": "String/Function",
+              "description": "Can be: URL address, string to eval or function to execute."
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "A custom options for new feature."
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "type": "Function(err)",
+              "description": "A callback function."
+            }
+          ]
+        },
+        {
+          "return": "Framework",
+          "name": "UNINSTALL",
+          "description": "Uninstall some feature from the framework.  This function is alias for: framework.uninstall().",
+          "params":
+          [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Can be: controller, module, model or view"
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A feature name."
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "A custom options for new feature."
             }
           ]
         },
         {
           "return": "Framework",
           "name": "FUNCTION",
-          "description": "Alias to framework.functions.",
+          "description": "Alias to framework.functions. This function is alias for: framework.functions().",
           "params":
           [
             {
               "name": "name",
               "type": "String",
               "description": "A function name."
-            }
-          ]
-        },
-        {
-          "return": "Framework",
-          "name": "COMPONENT",
-          "description": "Render component. Alias to framework.component().",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "A component name."
             }
           ]
         }

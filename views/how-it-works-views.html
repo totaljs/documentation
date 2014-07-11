@@ -11,15 +11,15 @@
 	<ul>
 		<li>View is plain HTML file.</li>
 		<li><b class="red">IMPORTANT:</b> Server tags are represented as <span class="high-code">@&#123;keyword&#125;</span> (encoded) tag and <span class="high-code">@&#123;!keyword&#125;</span> (raw) tag.</li>
-		<li>Views support simple condition.</li>
-		<li>Views support custom helpers.</li>
+		<li>View engine supports simple.</li>
+		<li>View engine supports custom helpers (inline and defined by code).</li>
 		<li>Each view has a layout (you can disable a layout).</li>
 		<li class="red">Views are synchronous.</li>
 		<li class="red">Views are compiled into the function.</li>
 		<li class="red">All views (HTML) are minimized under compilation (total.js saves memory).</li>
 		<li class="red">Layout is rendered at the last (if it is not disabled).</li>
 		<li class="red">Render engine is fixed (the only option for changing render engine is rewriting its prototype).</li>
-		<li class="red">You can render view into the string in a controller.</li>
+		<li class="red">You can render view into the string some controller action.</li>
 	</ul>
 </div>
 <hr />
@@ -55,7 +55,7 @@ function view_homepage() {
 <br />
 <h2>Defining a layout</h2>
 <div class="text">
-	You can create multiple layouts customizing them by name ('eg: _layout.html or _mycustomlayout.html').
+	You can create multiple layouts customizing them by name ('eg: _layout.html or mycustomlayout.html').
 </div>
 <div class="documentation-example"><a href="https://github.com/totaljs/examples/tree/master/views">Example</a></div>
 <br />

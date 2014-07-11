@@ -30,37 +30,47 @@
 <br />
 <h2 class="nmt">Controller definition</h2>
 <br />
-<pre class="brush: jscript">// Must be defined in each controller
-exports.install = function(framework, name) {
+<pre class="brush: jscript">// =======================================================
+// IMPORTANT:
+// =======================================================
 
-	// this place is for definition routes (HTTP, CUSTOM STATIC FILES, WEBSOCKETS)
-	// http://docs.totaljs.com/Framework/#framework.route
-	framework.route('/', view_homepage);
-	framework.route('/xhr/contact-form/', json_contactform, ['post', 'xhr']);
+// optional
+exports.name = 'Module name';
+exports.version = '1.01';
 
-	// http://docs.totaljs.com/Framework/#framework.websocket
-	framework.websocket('/', socket_chat, ['json']);
+// optional
+exports.install = function(framework, options) {
 
-	// http://docs.totaljs.com/Framework/#framework.file
-	framework.file('*.pdf download counter', file_download);
+    // Is executed one time
 
-}
+    // The place for definition of routes (HTTP, CUSTOM STATIC FILES, WEBSOCKETS)
+    // http://docs.totaljs.com/Framework/#framework.route
+    framework.route('/', view_homepage);
+    framework.route('/xhr/contact-form/', json_contactform, ['post', 'xhr', '#middleware']);
 
-// Inline define a route
-framework.route('/account/{alias}/', { flags: ['+xhr'] }, function(alias) {
-	var self = this;
-	var model = { alias: alias };
+    // http://docs.totaljs.com/Framework/#framework.websocket
+    framework.websocket('/', socket_chat, ['json']);
 
-	if (self.xhr)
-		self.json(model);
-	else
-		self.view('account', model);
-});
+    // http://docs.totaljs.com/Framework/#framework.file
+    framework.file('*.pdf download counter', file_download);
+};
 
-framework.route('/contact/', function() {
-	var self = this;
-	self.view('contact');
-});
+// optional
+exports.uninstall = function(framework, options) {
+	// Example: framework.uninstall('controller', name, [options]);
+    // Is executed one time
+};
+
+// optional
+exports.usage = function() {
+	// Example: framework.usage(true) returns framework usage.
+    // Must return some object.
+    return {};
+};
+
+// =======================================================
+// USER DEFINED:
+// =======================================================
 
 function view_homepage() {
 
@@ -129,16 +139,32 @@ function file_download(req, res, isValidation) {
 	if (isValidation)
 		return req.url.toLowerCase().substring(req.url.length - 4) === '.pdf';
 
-	// this === framework
-	var self = this;
 	var filename = path.basename(req.url);
 
 	counter++;
 
-	// http://docs.totaljs.com//Framework/#framework.responseFile
-	self.responseFile(req, res, self.path.public(filename), filename);
+	// http://docs.totaljs.com/Response.prototype/#Response.prototype.file
+	res.file(framework.path.public(filename), filename);
 };
 
+// =======================================================
+// INLINE
+// =======================================================
+
+framework.route('/account/{alias}/', { flags: ['+xhr'] }, function(alias) {
+	var self = this;
+	var model = { alias: alias };
+
+	if (self.xhr)
+		self.json(model);
+	else
+		self.view('account', model);
+});
+
+framework.route('/contact/', function() {
+	var self = this;
+	self.view('contact');
+});
 </pre>
 <br />
 <h2>How to share functions and models between controllers?</h2>
@@ -151,38 +177,30 @@ function file_download(req, res, isValidation) {
 	In this controller we set functions and models for sharing.
 </div>
 <br />
-<pre class="brush: jscript">exports.install = function(framework, name) {
+<pre class="brush: jscript">exports.install = function(framework, options) {
 	framework.route('/users/', view_users);
 };
 
-exports.models = {
-	users: ['Peter', 'Lucia', 'Zuzana', 'Veronika']
-};
-
-exports.functions = {
-	exists: function(name) {
-		return exports.models.users.indexOf(name) &gt; -1;
-	}
-};
+exports.users = ['Peter', 'Lucia', 'Zuzana', 'Veronika'];
 
 function view_users() {
-	this.json(exports.models.users);
+	this.json(exports.users);
 }
 </pre>
 <h3>Controller: default.js</h3>
 <p class="text" style="margin-bottom:20px">
 	Look to line 8. In this line we load controller functions from 'users.js' controller.
 </p>
-<pre class="brush: jscript">exports.install = function(framework, name) {
+<pre class="brush: jscript">exports.install = function(framework, options) {
 	framework.route('/', view_homepage);
 };
 
 function view_homepage() {
 	var self = this;
 
-	var users = self.functions('users');
-
-	// console.log(self.models('users').users);
+	var users = CONTROLLER('users').users;
+	// or
+	// var users = framework.controller('users').users;
 
 	var builder = [];
 
@@ -203,7 +221,7 @@ function view_homepage() {
 </p>
 <pre class="brush: jscript">var counter = 0;
 
-exports.install = function(framework, name) {
+exports.install = function(framework, options) {
 	framework.route('/', view_homepage);
 	framework.route('/usage/', plain_usage);
 };
@@ -220,7 +238,7 @@ function view_homepage() {
 
 function plain_usage() {
 	var self = this;
-	self.json(self.framework.usage(true));
+	self.json(framework.usage(true));
 }
 </pre>
 <br />
@@ -246,7 +264,7 @@ function view_register(hash) {
 <p class="text">
 	All system routes are optional.
 </p>
-<pre class="brush: jscript">exports.install = function(framework) {
+<pre class="brush: jscript">exports.install = function(framework, options) {
 	framework.route('#400', error400);
 	framework.route('#401', error401);
 	framework.route('#403', error403);
@@ -260,57 +278,57 @@ function view_register(hash) {
 // Bad Request
 function error400() {
 	var self = this;
-	self.statusCode = 401;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 401;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Unauthorized
 function error401() {
 	var self = this;
-	self.statusCode = 401;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 401;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Forbidden
 function error403() {
 	var self = this;
-	self.statusCode = 403;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 403;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Not Found
 function error404() {
 	var self = this;
-	self.statusCode = 404;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 404;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Request Timeout
 function error408() {
 	var self = this;
-	self.statusCode = 408;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 408;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Request Header Fields Too Large
 function error431() {
 	var self = this;
-	self.statusCode = 431;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 431;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Internal Server Error
 function error500() {
 	var self = this;
-	self.statusCode = 500;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 500;
+	self.plain(utils.httpStatus(self.status));
 }
 
 // Not Implemented
 function error501() {
 	var self = this;
-	self.statusCode = 501;
-	self.plain(utils.httpStatus(self.statusCode));
+	self.status = 501;
+	self.plain(utils.httpStatus(self.status));
 }</pre>
 <br />
 <h2>How to write controllers?</h2>

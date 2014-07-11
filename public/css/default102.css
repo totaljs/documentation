@@ -14,7 +14,7 @@ body { padding:20px; margin:0; font:normal 12px Arial; background: #F0F0F0 url(.
 .menu .selected { background-color: black !important; color: white !important; }
 
 .documentation-container { margin-top: 20px; padding-bottom: 20px; border-bottom: 1px dotted #D0D0D0; }
-.documentation-name { font-weight: bold; color: black; font-size: 18px; }
+.documentation-name { font-weight: bold; color: black; font-size: 18px; cursor: pointer; }
 .documentation-name em { display: block; font-weight: normal; margin:15px 0; font-size: 14px; }
 .documentation-name span:first-child { float: left; color: black; }
 .documentation-name .high-code { float: right; }
@@ -23,7 +23,7 @@ body { padding:20px; margin:0; font:normal 12px Arial; background: #F0F0F0 url(.
 .documentation-return a { color: #49942A; font-weight: bold; text-decoration: none; border-bottom: 1px dotted #49942A; }
 .documentation-param { color: #166A94; margin: 10px 0 15px 0; padding: 8px 0 5px 0; list-style-type: none; background-color: #F0F0F0; border-radius: 5px; }
 .documentation-param li { margin: 0 0 0 20px; padding: 0; }
-.documentation-param-item { float: left; width: 180px; }
+.documentation-param-item { float: left; width: 180px; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .documentation-param-container { height: 20px; }
 .documentation-param span { float: left; }
 .documentation-param a { color: #166A94; font-weight: bold; text-decoration: none; border-bottom: 1px dotted #166A94; background-color: #D0D0D0; padding: 0 5px; }

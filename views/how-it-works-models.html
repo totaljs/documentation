@@ -12,7 +12,7 @@
 		<li>A <b>Model</b> is plain JavaScript file.</li>
 		<li>All models are stored in <span class="high-code">your-app/models/</span> directory.</li>
 		<li>You can create unlimited count of models.</li>
-		<li><b>Model can inject from URL address</b> - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-model" class="link">Example</a>.</li>
+		<li><b>Model can install from an URL address</b> - <a href="https://github.com/totaljs/examples/tree/master/framework-inject-model" class="link">Example</a>.</li>
 	</ul>
 </div>
 <hr />
@@ -20,7 +20,37 @@
 <br />
 <h2 class="nmt">Model definition</h2>
 <br />
-<pre class="brush: jscript">// Model name: article
+<pre class="brush: jscript">// =======================================================
+// IMPORTANT:
+// =======================================================
+
+// important
+exports.name = 'Model name';
+
+// optional
+exports.version = '1.01';
+
+// optional
+exports.install = function(framework, options) {
+    // Is executed one time
+};
+
+// optional
+exports.uninstall = function(framework, options) {
+    // Is executed one time
+};
+
+// optional
+exports.usage = function() {
+	// Example: framework.usage(true) returns framework usage.
+    // Must return some object.
+    return {};
+};
+
+// =======================================================
+// USER DEFINED:
+// =======================================================
+
 exports.comment = function() {
 	return { content: String, date: Date };
 };
@@ -28,15 +58,19 @@ exports.comment = function() {
 <br />
 <h2>Usage</h2>
 <h3>Universal usage</h3>
-<pre class="brush: jscript">var model = framework.model('article').comment();</pre>
+<pre class="brush: jscript">var model = framework.model('article').comment();
+// or
+var model = MODEL('article').comment();
+</pre>
 <br />
 <h3>In controllers</h3>
 <pre class="brush: jscript">
 function view_homepage() {
 	var self = this;
 
-	// GETTING THE MODEL
+	// GET A MODEL
 	var model = self.model('article').comment();
+	// var model = MODEL('article').comment();
 
 	self.empty();
 }

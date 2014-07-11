@@ -15,10 +15,15 @@ function initSource() {
     	url += '/';
 
     $('.menu').find('a[href="' + url + '"]').addClass('selected');
+    $('.documentation-name').on('click', function() {
+        window.location.href = '#' + this.id;
+    });
 }
 
 function gotoScrollTo() {
     if (!window.location.hash)
         return;
-    $('html,body').animate({ scrollTop: $('[id="'+window.location.hash.substring(1)+'"').offset().top }, 300);
+    var el = $('[id="'+window.location.hash.substring(1)+'"');
+    if (el.length > 0)
+        $('html,body').animate({ scrollTop: el.offset().top }, 300);
 }
