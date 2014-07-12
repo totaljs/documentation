@@ -1,6 +1,26 @@
 $(document).ready(function() {
 	initSource();
     setTimeout(gotoScrollTo, 1000);
+
+    setInterval(function() {
+        var doc = $(document);
+        var off = doc.scrollTop();
+        var el = $('.top');
+
+        if (off > 300) {
+            if (!el.is(':visible'))
+                el.fadeIn(300);
+        }
+        else {
+            if (el.is(':visible'))
+                el.fadeOut(300);
+        }
+
+    }, 5000);
+
+    $('.top').bind('click', function() {
+        $(this).fadeOut(300);
+    });
 });
 
 function initSource() {

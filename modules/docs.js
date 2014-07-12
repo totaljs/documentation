@@ -17,16 +17,16 @@ exports.render = function(version, name) {
 		output.description = framework.module('md').prepare(output.description);
 
 	if (doc.properties)
-		output.properties = render_children(doc.properties, false, version);
+		output.properties = render_children(doc.properties, false, version, 'properties');
 
 	if (doc.methods)
-		output.methods = render_children(doc.methods, false, version);
+		output.methods = render_children(doc.methods, false, version, 'methods');
 
 	if (doc.events)
-		output.events = render_children(doc.events, true, version);
+		output.events = render_children(doc.events, true, version, 'events');
 
 	if (doc.delegates)
-		output.delegates = render_children(doc.delegates, false, version);
+		output.delegates = render_children(doc.delegates, false, version, 'delegates');
 
 	return output;
 }
@@ -72,7 +72,7 @@ function naturalSorter(as, bs){
     return b[i]? -1:0;
 }
 
-function render_children(arr, events, version) {
+function render_children(arr, events, version, id) {
 
 	var builder = [];
 	var list = [];
@@ -186,7 +186,7 @@ function render_children(arr, events, version) {
 		if (item.example)
 			str += '<div class="documentation-example"><a href="' + item.example + '" target="_blank">example</a></div>';
 
-		builder.push('<div class="documentation-container">' + str + '</div>');
+		builder.push('<div class="documentation-container"><a href="#' + id + '" class="documentation-all"><span>&uarr;</span> List of all ' + id + '</a>' + str + '</div>');
 		list.push('<a href="#' + (ap.length > 0 ? name.substring(2) : name) + '">' + (events && params.length > 0 ? name.substring(0, name.length - 1) + ', ' : name) + (params.length > 0 ? '<span>' + (events ? '' : '(') + params.join(', ') + ')' + '</span>' + ap : item['return'] ? ' <span class="documentation-type">{'+item['return']+'}</span>' : '') + '</a>');
 
 	});

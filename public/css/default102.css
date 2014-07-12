@@ -209,3 +209,10 @@ a.link:hover { color: #0092E6; }
 .keyvalue > div { float: left; }
 .keyvalue > div:first-child { width: 200px; }
 .help { font-size:11px;padding:10px;width:300px;line-height:12px;position:absolute;margin:-90px 0 0 740px; }
+
+.top { position: fixed; bottom: 30px; margin-left: 800px; display: none; width: 64px; text-align: center; color: white; text-decoration: none; background-color: black; padding: 10px 0; border-radius: 100%; line-height: 22px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); z-index: 10; }
+.top:hover { background-color: #202020; }
+
+.documentation-all { display: block; text-decoration: none; font-size: 11px; color: gray; margin-bottom: 5px; }
+.documentation-all:hover { color: black; }
+.documentation-all span { font-size: 14px; margin-right: 4px; }

@@ -272,41 +272,39 @@
       "methods": [
         {
           "options": ["important"],
-          "name": "framework.run",
-          "description": "Run the framework.",
+          "name": "framework.http",
+          "description": "Run the framework (HTTP).",
           "return": "Framework",
           "params":
           [
             {
-              "name": "http",
-              "type": "HTTP or HTTPS",
-              "description": "HTTP or HTTPS."
-            },
-            {
-              "name": "debug",
-              "type": "Boolean",
-              "description": "Setup debug or release mode of framework."
-            },
-            {
-              "options": ["optional"],
-              "name": "port",
-              "type": "Number",
-              "default": "8000",
-              "description": "Setup of port for listening."
-            },
-            {
-              "options": ["optional"],
-              "name": "ip",
+              "name": "mode",
               "type": "String",
-              "default": "127.0.0.1",
-              "description": "Setup of IP address for listening."
+              "description": "Mode: debug, release, test, debug test or release test"
             },
             {
-              "options": ["optional"],
               "name": "options",
               "type": "Object",
-              "default": "{}",
-              "description": "Setup of HTTPS options."
+              "description": "Custom options. (port, ip, config, https: { key, cert })"
+            }
+          ]
+        },
+        {
+          "options": ["important"],
+          "name": "framework.https",
+          "description": "Run the framework (HTTPS).",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "mode",
+              "type": "String",
+              "description": "Mode: debug, release, test, debug test or release test"
+            },
+            {
+              "name": "options",
+              "type": "Object",
+              "description": "Custom options. (port, ip, config, https: { key, cert })"
             }
           ]
         },
@@ -1040,7 +1038,7 @@
                   "name": "image",
                   "type": "FrameworkImage",
                   "go": "FrameworkImage",
-                  "description": "Function for image modification."
+                  "description": "Function for image manipulation."
                 }
               ]
             },
@@ -1092,7 +1090,7 @@
                   "name": "image",
                   "type": "FrameworkImage",
                   "go": "FrameworkImage",
-                  "description": "Function for image modification."
+                  "description": "Function for image manipulation."
                 }
               ]
             },
@@ -1825,21 +1823,36 @@
           ]
         },
         {
-          "name": "framework.on('include')",
-          "description": "This event is triggered every is included/injected JS code.",
+          "name": "framework.on('install')",
+          "description": "This event is triggered when is installed some feature through framework.install().",
           "params":
           [
             {
-              "options": ["optional"],
-              "name": "url",
-              "description": "URL address.",
+              "name": "type",
+              "description": "Which type was installed? (module, controller, model, etc.)",
               "type": "String"
             },
             {
-              "options": ["optional"],
-              "name": "options",
-              "description": "Initial options.",
-              "type": "Object"
+              "name": "name",
+              "description": "Name.",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('uninstall')",
+          "description": "This event is triggered when is uninstalled some feature through framework.uninstall().",
+          "params":
+          [
+            {
+              "name": "type",
+              "description": "Which type was uninstalled? (module, controller, model, etc.)",
+              "type": "String"
+            },
+            {
+              "name": "name",
+              "description": "Name.",
+              "type": "String"
             }
           ]
         },
@@ -2156,13 +2169,13 @@
           "return": "Boolean"
         },
         {
-          "description": "Custom framework id. Serves for the cluster.",
+          "description": "Custom framework id. Very helpful for the cluster.",
           "name": "framework.id",
           "return": "String/Number"
         },
         {
           "options": ["readonly"],
-          "description": "This property serves for set request restrictions.",
+          "description": "This property is helpful for a request restrictions.",
           "name": "framework.restrictions",
           "go": "FrameworkRestrictions",
           "return": "FrameworkRestrictions"
@@ -2241,7 +2254,7 @@
         },
         {
           "options": ["internal"],
-          "description": "This property stores internal informations about paths, streaming and views/templates. This property is cleaned every 20 minutes.",
+          "description": "This property stores internal informations about paths, streaming and views. This property is cleaned every 20 minutes.",
           "name": "framework.temporary",
           "return": "Object"
         },
@@ -2256,7 +2269,7 @@
           "options": ["readonly"],
           "description": "This property stores the last 50 problems.",
           "default": "[]",
-          "name": "framework.errors",
+          "name": "framework.problems",
           "return": "Array"
         },
         {
@@ -2310,7 +2323,7 @@
     },
     {
       "name": "FrameworkCache",
-      "description": "The framework is using this class for storing views, templates, resources, etc..\n\n=== javascript\n\nframework.cache.add('key', 'value', new Date().add('day', 1));\nconsole.log(framework.read('key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.read('key'));\n===",
+      "description": "The framework is using this class for storing views, resources, etc..\n\n=== javascript\n\nframework.cache.add('key', 'value', new Date().add('day', 1));\nconsole.log(framework.read('key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.read('key'));\n===",
       "properties":
       [
         {
@@ -2465,7 +2478,7 @@
     },
     {
       "name": "FrameworkFileSystem",
-      "description": "This class helps with creating files (CSS, JavaScript, views, templates, etc.).",
+      "description": "This class helps with creating files (CSS, JavaScript, views, etc.).",
       "methods":
       [
         {
@@ -2504,38 +2517,6 @@
           "return": "Boolean",
           "name": "framework.fs.create.js",
           "description": "Create a JS file into the framework.config['directory-public'] + framework.config['static-url-js'].",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            },
-            {
-              "name": "content",
-              "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
-            },
-            {
-              "options": ["optional"],
-              "name": "rewrite",
-              "type": "Boolean",
-              "default": "false",
-              "description": "Rewrite an existing file."
-            },
-            {
-              "options": ["optional"],
-              "name": "append",
-              "type": "Boolean",
-              "default": "false",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
-            }
-          ]
-        },
-        {
-          "return": "Boolean",
-          "name": "framework.fs.create.template",
-          "description": "Create a template file into the framework.config['directory-templates'].",
           "params":
           [
             {
@@ -2667,38 +2648,6 @@
         },
         {
           "return": "Boolean",
-          "name": "framework.fs.create.content",
-          "description": "Create a content file into the framework.config['directory-contents'].",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            },
-            {
-              "name": "content",
-              "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
-            },
-            {
-              "options": ["optional"],
-              "name": "rewrite",
-              "type": "Boolean",
-              "default": "false",
-              "description": "Rewrite an existing file."
-            },
-            {
-              "options": ["optional"],
-              "name": "append",
-              "type": "Boolean",
-              "default": "false",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
-            }
-          ]
-        },
-        {
-          "return": "Boolean",
           "name": "framework.fs.create.resource",
           "description": "Create a resource file into the framework.config['directory-resources'].",
           "params":
@@ -2770,34 +2719,8 @@
         },
         {
           "return": "Boolean",
-          "name": "framework.fs.rm.template",
-          "description": "Delete a template file from framework.config['directory-templates'].",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            }
-          ]
-        },
-        {
-          "return": "Boolean",
           "name": "framework.fs.rm.view",
           "description": "Delete a view file from framework.config['directory-views'].",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            }
-          ]
-        },
-        {
-          "return": "Boolean",
-          "name": "framework.fs.rm.content",
-          "description": "Delete a content file from framework.config['directory-contents'].",
           "params":
           [
             {
@@ -2844,20 +2767,6 @@
           "return": "String",
           "name": "framework.path.public",
           "description": "Get the public path from framework.config['directory-public'].",
-          "params":
-          [
-            {
-              "options": ["optional"],
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            }
-          ]
-        },
-        {
-          "return": "String",
-          "name": "framework.path.components",
-          "description": "Get the public path from framework.config['directory-components'].",
           "params":
           [
             {
@@ -2942,34 +2851,6 @@
           "return": "String",
           "name": "framework.path.views",
           "description": "Get the views path from framework.config['directory-views'].",
-          "params":
-          [
-            {
-              "options": ["optional"],
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            }
-          ]
-        },
-        {
-          "return": "String",
-          "name": "framework.path.contents",
-          "description": "Get the contents path from framework.config['directory-contents'].",
-          "params":
-          [
-            {
-              "options": ["optional"],
-              "name": "name",
-              "type": "String",
-              "description": "File name without path."
-            }
-          ]
-        },
-        {
-          "return": "String",
-          "name": "framework.path.templates",
-          "description": "Get the templates path from framework.config['directory-templates'].",
           "params":
           [
             {
@@ -3351,20 +3232,13 @@
           "options": ["readonly", "http"],
           "return": "Object",
           "name": "controller.$model",
-          "description": "Return the current model in current view. IMPORTANT: only for components or helpers."
+          "description": "Return the current model in current view. IMPORTANT: only for helpers."
         },
         {
           "options": ["readonly", "http", "websocket"],
           "return": "FrameworkCache",
           "name": "controller.cache",
           "description": "Return the framework cache object."
-        },
-        {
-          "options": ["readonly", "http", "websocket"],
-          "return": "Framework",
-          "name": "controller.framework",
-          "description": "Return the framework object.",
-          "go": "Framework"
         },
         {
           "options": ["readonly", "http"],
@@ -3539,13 +3413,6 @@
           "name": "controller.isSecure",
           "description": "Is secured request?",
           "default": "false"
-        },
-        {
-          "options": ["readonly", "http"],
-          "return": "String",
-          "name": "controller.prefix",
-          "description": "Current prefix (framework.onPrefix).",
-          "default": "''"
         },
         {
           "options": ["readonly", "http", "websocket"],
@@ -4377,20 +4244,6 @@
         },
         {
           "options": ["http"],
-          "name": "controller.currentTemplate",
-          "description": "Set current path to templates folder.",
-          "return": "FrameworkController",
-          "params":
-          [
-            {
-              "name": "path",
-              "type": "String",
-              "description": "New path."
-            }
-          ]
-        },
-        {
-          "options": ["http"],
           "name": "controller.currentContent",
           "description": "Set current path to contents folder.",
           "return": "FrameworkController",
@@ -4467,38 +4320,6 @@
               "name": "key",
               "type": "String",
               "description": "Key in the resource file."
-            }
-          ]
-        },
-        {
-          "options": ["http"],
-          "name": "controller.template",
-          "description": "Render template into the string. If model is empty and nameEmpty is not defined then function return empty string.",
-          "return": "String",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Template name."
-            },
-            {
-              "name": "model",
-              "type": "Object Array",
-              "description": "Datasource for rendering."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameEmpty",
-              "type": "String",
-              "description": "Name of empty content (model.length == 0). Empty content is readed from config['directory-contents']."
-            },
-            {
-              "options": ["optional"],
-              "name": "repository",
-              "type": "Object",
-              "description": "Custom repository for the template.",
-              "default": "controller.repository"
             }
           ]
         },
@@ -4892,7 +4713,7 @@
                   "name": "image",
                   "type": "FrameworkImage",
                   "go": "FrameworkImage",
-                  "description": "Function for image modification."
+                  "description": "Function for image manipulation."
                 }
               ]
             },
@@ -5610,6 +5431,12 @@
           "options": ["readonly"],
           "name": "client.get",
           "return": "Object",
+          "description": "Parsed data from URL params. Alias for: client.query."
+        },
+        {
+          "options": ["readonly"],
+          "name": "client.query",
+          "return": "Object",
           "description": "Parsed data from URL params."
         },
         {
@@ -5735,9 +5562,9 @@
         {
           "return": "Object",
           "name": "@{repository.customKey}",
-          "description": "Get value from repository object. IMPORTANT: template contains other model than view.",
+          "description": "Get value from a repository object.",
           "example": "https://github.com/totaljs/examples/tree/master/views",
-          "options": ["different values between Views and Templates"]
+          "options": []
         },
         {
           "return": "Object",
@@ -5747,8 +5574,8 @@
         {
           "return": "Object",
           "name": "@{model.customKey}",
-          "description": "Get value from model. IMPORTANT: template contains other model than view.",
-          "options": ["different values between Views and Templates"]
+          "description": "Get value from model.",
+          "options": []
         },
         {
           "return": "String",
@@ -8764,13 +8591,6 @@
           "example": "https://github.com/totaljs/examples/tree/master/server-sent-events"
         },
         {
-          "options": ["optional", "http"],
-          "return": "String",
-          "name": "#prefix",
-          "description": "Set route by the prefix (framework.onPrefix). Example: #android, #ios, etc..",
-          "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
-        },
-        {
           "options": ["optional"],
           "return": "String",
           "name": "@role",
@@ -8885,11 +8705,6 @@
           "description": "Current request host."
         },
         {
-          "return": "Object",
-          "name": "request.data",
-          "description": "Current request data (req.data.get = {}, req.data.post = {}, req.data.files = [])"
-        },
-        {
           "return": "String",
           "name": "request.language",
           "description": "Parse accept-language."
@@ -8975,7 +8790,7 @@
         {
           "return": "Controller",
           "name": "response.controller",
-          "description": "Current controller.",
+          "description": "Current controller (if exists).",
           "default": "undefined"
         },
         {
@@ -9057,7 +8872,7 @@
         },
         {
           "name": "Response.prototype.continue",
-          "description": "Continue process of request by the framework.",
+          "description": "Continue to process of request by the framework.",
           "return": "Response",
           "params": []
         },
@@ -9077,6 +8892,39 @@
               "name": "downloadName",
               "type": "String",
               "description": "A download name."
+            },
+            {
+              "options": ["optional"],
+              "name": "headers",
+              "type": "Object",
+              "description": "Custom headers."
+            }
+          ]
+        },
+        {
+          "name": "Response.prototype.image",
+          "description": "Send a image.",
+          "return": "Response",
+          "params":
+          [
+            {
+              "name": "filename",
+              "type": "String",
+              "description": "Filename."
+            },
+            {
+              "name": "fnProcess",
+              "type": "Function",
+              "description": "Function to processed.",
+              "params":
+              [
+                {
+                  "name": "image",
+                  "type": "FrameworkImage",
+                  "go": "FrameworkImage",
+                  "description": "Function for image manipulation."
+                }
+              ]
             },
             {
               "options": ["optional"],
