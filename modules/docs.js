@@ -153,13 +153,13 @@ function render_children(arr, events, version, id) {
 							if (param['default'])
 								def = '<span class="documentation-param-default">Default: ' + param['default'].encode() + '</span>';
 
-							sub += '<li><div>&bull; ' + param.name + ' <b>' + param.type + '</b></div>' + options + (param.description ? ' <span class="documentation-param-description">' + param.description + '</span>' : '') + def + '</li>';
+							sub += '<li><div>&bull; ' + param.name + ' <b title="' + param.type + '">' + param.type + '</b></div>' + options + (param.description ? ' <span class="documentation-param-description">' + param.description + '</span>' : '') + def + '</li>';
 						});
 
 						sub += '</ul>';
 					}
 
-					str += '<li><div class="documentation-param-container"><div class="documentation-param-item">&bull; ' + param.name + (param.go ? ' <a href="/' + param.go + '/">' + param.type + '</a>' : ' <b>' + param.type + '</b>') + '</div>' + options + (param.description ? ' <span class="documentation-param-description">' + param.description + '</span>' : '') + def + '</div>' + sub + '</li>';
+					str += '<li><div class="documentation-param-container"><div class="documentation-param-item">&bull; ' + param.name + (param.go ? ' <a href="/' + param.go + '/">' + param.type + '</a>' : ' <b title="' + param.type + '">' + param.type + '</b>') + '</div>' + options + (param.description ? ' <span class="documentation-param-description">' + param.description + '</span>' : '') + def + '</div>' + sub + '</li>';
 
 				});
 

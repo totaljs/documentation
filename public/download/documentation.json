@@ -5215,14 +5215,14 @@
             {
               "options": ["optional"],
               "name": "id",
-              "type": "String Array",
+              "type": "String Array or Function(client)",
               "description": "Specify connection id."
             },
             {
               "options": ["optional"],
               "name": "blacklist",
-              "type": "String Array",
-              "description": "If message it sended to all connection, you can specify a blacklist."
+              "type": "String Array or Function(client)",
+              "description": "You can specify a client blacklist."
             }
           ]
         },
