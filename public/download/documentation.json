@@ -444,7 +444,13 @@
                   "options": ["optional"],
                   "name": "options",
                   "type": "Object",
-                  "description": "Route options."
+                  "description": "A route (user-defined) options."
+                },
+                {
+                  "options": ["optional"],
+                  "name": "controller",
+                  "type": "FrameworkController",
+                  "description": "Current controller (if exists)."
                 }
               ]
             }
