@@ -1,3 +1,5 @@
 name                        : total.js documentation
 author                      : Peter Širka
-version                     : 1.02
+version                     : 1.05
+secret                      : dOcToAL.js
+etag-version                : 5

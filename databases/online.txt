@@ -1,6 +1,0 @@
-{"day":17,"month":5,"year":2014,"hits":158,"unique":0,"count":50,"search":0,"direct":5,"social":0,"unknown":45,"advert":0,"mobile":0,"desktop":0}
-{"day":28,"month":5,"year":2014,"hits":22,"unique":0,"count":5,"search":0,"direct":0,"social":0,"unknown":5,"advert":0,"mobile":0,"desktop":0}
-{"day":29,"month":5,"year":2014,"hits":4,"unique":1,"count":1,"search":0,"direct":1,"social":0,"unknown":0,"advert":0,"mobile":0,"desktop":1}
-{"day":12,"month":6,"year":2014,"hits":3,"unique":1,"count":1,"search":0,"direct":0,"social":0,"unknown":0,"advert":0,"mobile":0,"desktop":1}
-{"day":5,"month":7,"year":2014,"hits":16,"unique":0,"count":8,"search":0,"direct":0,"social":0,"unknown":0,"advert":0,"mobile":0,"desktop":0}
-{"day":5,"month":7,"year":2014,"hits":16,"unique":0,"count":8,"search":0,"direct":0,"social":0,"unknown":0,"advert":0,"mobile":0,"desktop":0}
