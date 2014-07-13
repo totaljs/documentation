@@ -86,7 +86,7 @@ function view_howdoesitworks(name) {
     var self = this;
     switch (name) {
         case 'authorization':
-        case 'components':
+        // case 'components':
         case 'controllers':
         case 'definitions':
         case 'html-css-js':
@@ -94,7 +94,7 @@ function view_howdoesitworks(name) {
         case 'modules':
         case 'resources':
         case 'security':
-        case 'templates':
+        // case 'templates':
         case 'validation':
         case 'views':
             self.view('how-it-works-' + name);
