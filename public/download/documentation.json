@@ -3229,6 +3229,12 @@
           "description": "Is a request connected?"
         },
         {
+          "options": ["readonly", "http"],
+          "return": "Boolean",
+          "name": "controller.isTransfer",
+          "description": "Is an internal transfer? Example: controller.transfer('/url/') -> controller.isTransfer = true"
+        },
+        {
           "options": ["readonly", "http", "websocket"],
           "return": "String",
           "name": "controller.name",
