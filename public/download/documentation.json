@@ -8602,6 +8602,13 @@
           "name": "!flag",
           "description": "Set custom flag to route.",
           "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
+        },
+        {
+          "options": ["optional"],
+          "return": "String",
+          "name": "#middleware-name",
+          "description": "Add a middleware.",
+          "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
         }
       ]
     },
