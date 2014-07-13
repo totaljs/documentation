@@ -1875,19 +1875,6 @@
           ]
         },
         {
-          "options": ["onetime"],
-          "name": "framework.on('ready')",
-          "description": "This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..",
-          "params":
-          [
-            {
-              "name": "count",
-              "description": "Ran count",
-              "type": "Number"
-            }
-          ]
-        },
-        {
           "name": "framework.on('reconfigure')",
           "description": "This event is triggered when the framework refreshed a configuration file and mapping versions."
         },
