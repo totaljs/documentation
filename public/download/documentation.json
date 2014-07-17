@@ -7481,6 +7481,16 @@
                   "name": "value",
                   "type": "Object",
                   "description": "Property value."
+                },
+                {
+                  "name": "path",
+                  "type": "String",
+                  "description": "Current path in object."
+                },
+                {
+                  "name": "schema",
+                  "type": "String",
+                  "description": "Schema name."
                 }
               ]
             },
@@ -10788,7 +10798,12 @@
                 {
                   "name": "isDefault",
                   "type": "Boolean",
-                  "description": "true === Builders.defaults(), false === Builders.prepare()"
+                  "description": "true === Builders.create() or builders.defaults(), false === Builders.prepare()"
+                },
+                {
+                  "name": "schema",
+                  "type": "String",
+                  "description": "Schema name."
                 }
               ]
             },
@@ -10808,6 +10823,16 @@
                   "name": "value",
                   "type": "Object",
                   "description": "Value for to validate."
+                },
+                {
+                  "name": "path",
+                  "type": "String",
+                  "description": "Current path in object."
+                },
+                {
+                  "name": "schema",
+                  "type": "String",
+                  "description": "Schema name."
                 }
               ]
             }
@@ -10841,6 +10866,16 @@
                   "name": "value",
                   "type": "Object",
                   "description": "Value for to validate."
+                },
+                {
+                  "name": "path",
+                  "type": "String",
+                  "description": "Current path in object."
+                },
+                {
+                  "name": "schema",
+                  "type": "String",
+                  "description": "Schema name."
                 }
               ]
             }
