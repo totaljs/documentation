@@ -837,6 +837,66 @@
           ]
         },
         {
+          "return": "Framework",
+          "name": "framework.install",
+          "description": "Install some feature into the framework.",
+          "params":
+          [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Can be: controller, module, model, view, definition, eval"
+            },
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String",
+              "description": "A feature name."
+            },
+            {
+              "name": "declaration",
+              "type": "String/Function",
+              "description": "Can be: URL address, string to eval or function to execute."
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "A custom options for new feature."
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "type": "Function(err)",
+              "description": "A callback function."
+            }
+          ]
+        },
+        {
+          "return": "Framework",
+          "name": "framework.uninstall",
+          "description": "Uninstall some feature from the framework.",
+          "params":
+          [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Can be: controller, module, model, schema or view"
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A feature name."
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "Object",
+              "description": "A custom options for new feature."
+            }
+          ]
+        },
+        {
           "name": "framework.log",
           "description": "Write to the log file.",
           "return": "Framework",
@@ -10280,13 +10340,13 @@
         {
           "return": "Framework",
           "name": "UNINSTALL",
-          "description": "Uninstall some feature from the framework.  This function is alias for: framework.uninstall().",
+          "description": "Uninstall some feature from the framework. This function is alias for: framework.uninstall().",
           "params":
           [
             {
               "name": "type",
               "type": "String",
-              "description": "Can be: controller, module, model or view"
+              "description": "Can be: controller, module, model, schema or view"
             },
             {
               "name": "name",
