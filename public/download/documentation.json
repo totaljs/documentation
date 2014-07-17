@@ -10899,6 +10899,18 @@
           ]
         },
         {
+          "name": "Builders.remove",
+          "description": "Remove a schema.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Schema name."
+            }
+          ]
+        },
+        {
           "return": "Object",
           "name": "Builders.validation",
           "description": "Set custom validation for the schema.",
