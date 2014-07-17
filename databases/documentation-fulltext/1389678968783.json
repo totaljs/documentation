@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.connections","description":"This property storing websocket connections. Each property in this object contain URL address into the websocket.","name":"framework.connections","path":"Framework"}

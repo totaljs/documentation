@@ -1,1 +1,0 @@
-{"url":"/Async/#async.wait","description":"Add a function to async waiting list.","name":"async.wait(name, [waitingFor], fn, [cb])","path":"Async"}

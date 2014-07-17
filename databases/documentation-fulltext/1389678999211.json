@@ -1,1 +1,0 @@
-{"url":"/Builders.SchemaBuilder/#builders.prepare","description":"Prepare model by the schema. Properties which are not defined in schema will be removed. Long strings will be truncated by the schema definition.","name":"builders.prepare(name, model)","path":"Builders.SchemaBuilder"}

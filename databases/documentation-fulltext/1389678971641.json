@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.assert","description":"Check if ETag or Last Modified has modified. If @compare === {String} compare if-none-match .... if @compare === {Date} compare if-modified-since. This function automatically flush a response 304 (if not modified).","name":"framework.assert(name, url, callback, [method], [data], [headers], [xhr])","path":"Framework"}

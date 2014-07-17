@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#prerender","description":"Add prerender tag into the HTML head. This result is rendered via @{head} tag.<br />Output: &lt;link rel=&quot;prerender&quot; ...","name":"@{prerender(url)}","path":"FrameworkViews"}

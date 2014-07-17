@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.injectController","description":"Inject a controller from URL address. Controller must be a 100% pure javascript file.","name":"framework.injectController(name, url)","path":"Framework"}

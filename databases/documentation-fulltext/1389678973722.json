@@ -1,1 +1,0 @@
-{"url":"/FrameworkFileSystem/#framework.fs.create.template","description":"Create a template file into the framework.config['directory-templates'].","name":"framework.fs.create.template(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

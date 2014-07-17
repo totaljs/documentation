@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.template","description":"Render template into the string. If model is empty and nameEmpty is not defined then function return empty string.","name":"controller.template(name, model, [nameEmpty], [repository])","path":"FrameworkController"}

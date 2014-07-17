@@ -1,1 +1,0 @@
-{"url":"/Builders.ErrorBuilder/#builder.hasError","description":"Has collection an error? If name is not defined then ErrorBuilder check it if collection contains any error.","name":"builder.hasError([name])","path":"Builders.ErrorBuilder"}

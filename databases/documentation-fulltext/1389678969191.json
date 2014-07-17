@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.onVersion","description":"This delegate adjusted file name of static file. Into the delegate are inserted all static files (e.g.: JavaScript, CSS, images from IMG tags, images from CSS, etc.). IMPORTANT: you must return {String} - new file name. For understand delegate click on the example.","name":"framework.onVersion(name)","path":"Framework"}

@@ -1,1 +1,0 @@
-{"url":"/FrameworkRestrictions/#framework.restrictions.disallow","description":"Set an disallowed restrictions. This is blacklist for IP address or custom headers.","name":"framework.restrictions.disallow(key, [value])","path":"FrameworkRestrictions"}

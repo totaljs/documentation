@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.baa","description":"Basic access authentication (baa). Return object with user and password. If baa return null then function close a response (and sent authentification).","name":"controller.baa([name])","path":"FrameworkController"}

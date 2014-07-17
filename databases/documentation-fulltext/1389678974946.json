@@ -1,1 +1,0 @@
-{"url":"/FrameworkPath/#framework.path.definitions","description":"Get the definitions path from framework.config['directory-definitions'].","name":"framework.path.definitions([name])","path":"FrameworkPath"}

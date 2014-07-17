@@ -1,1 +1,0 @@
-{"url":"/FrameworkCache/#framework.cache.add","description":"Add a item into the cache and return a value.","name":"framework.cache.add(name, value, expire)","path":"FrameworkCache"}

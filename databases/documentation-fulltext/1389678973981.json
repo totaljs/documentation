@@ -1,1 +1,0 @@
-{"url":"/FrameworkFileSystem/#framework.fs.create.resource","description":"Create a resource file into the framework.config['directory-resources'].","name":"framework.fs.create.resource(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

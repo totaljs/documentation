@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.send","description":"Send message via websocket to online users. Message will be sended to all connections or specific connection.","name":"controller.send(message, [id], [blacklist])","path":"FrameworkController"}

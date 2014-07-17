@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.on('load')","description":"This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..","name":"framework.on('load', framework)","path":"Framework"}

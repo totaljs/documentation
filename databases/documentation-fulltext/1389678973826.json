@@ -1,1 +1,0 @@
-{"url":"/FrameworkFileSystem/#framework.fs.create.temporary","description":"Create a file into the framework.config['directory-temp'].","name":"framework.fs.create.temporary(name, stream, [callback])","path":"FrameworkFileSystem"}

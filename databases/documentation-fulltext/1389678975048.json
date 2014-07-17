@@ -1,1 +1,0 @@
-{"url":"/FrameworkPath/#framework.path.tests","description":"Get the tests path from framework.config['directory-tests'].","name":"framework.path.tests([name])","path":"FrameworkPath"}

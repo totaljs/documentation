@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#js","description":"Insert JS file into the webpage. Function return SCRIPT tag by the config['static-url-js'].","name":"@{js(filename)}","path":"FrameworkViews"}

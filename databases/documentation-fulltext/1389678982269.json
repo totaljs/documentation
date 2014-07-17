@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.destroy","description":"HTTP == destroy a request, WebSocket == destroy all conections.","name":"controller.destroy()","path":"FrameworkController"}

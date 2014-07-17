@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.validate","description":"Validate an object model.<br />IMPORTANT: If 'properties' is string then properties read by the schema validation. Read more in Builders.SchemaBuilder.","name":"controller.validate(model, properties, [prefix], [name])","path":"FrameworkController"}

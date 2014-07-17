@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.onCompileJS","description":"This delegate replace an internal JS compiler. For more information look up to the example. Delegate is not async.","name":"framework.onCompileJS(filename, content)","path":"Framework"}

@@ -1,1 +1,0 @@
-{"url":"/String.prototype/#String.prototype.params","description":"Simple string formatting like template formatting (keys are represent properties). Example:<br />'My name is {name} and I was born: {birthday | dd.MM.yyyy}'.params({ name: 'Peter', birthdate: new Date() })","name":"String.prototype.params(obj)","path":"String.prototype"}

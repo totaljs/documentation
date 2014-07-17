@@ -1,1 +1,0 @@
-{"url":"/Async/#async.timeout","description":"Set timeout for specific task. This function sets timeout into the future and for current (waiting/pending/running) task. You can disabled timeout: async.timeout('name'); or async.timeout('name', 0).","name":"async.timeout(name, [timeout])","path":"Async"}

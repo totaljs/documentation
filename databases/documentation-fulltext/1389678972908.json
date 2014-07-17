@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.on('websocket-end')","description":"This event is triggered when end WebSocket request from a controller.","name":"framework.on('websocket-end', controller, client)","path":"Framework"}

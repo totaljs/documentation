@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.file","description":"Response file. For load file from anywhere - file name must start with ~ char.","name":"controller.file(filename, [downloadName], [headers])","path":"FrameworkController"}

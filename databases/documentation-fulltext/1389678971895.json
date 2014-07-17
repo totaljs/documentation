@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.encrypt","description":"Internal cryptography function for encrypting of string or object. As sugar is config['secret'].","name":"framework.encrypt(value, key, [isUnique])","path":"Framework"}

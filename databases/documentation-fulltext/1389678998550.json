@@ -1,1 +1,0 @@
-{"url":"/Builders.UrlBuilder/","description":"<p>URL builder is helpful for dynamic creating URL address.</p><br /><pre class=\"brush: jscript\">var builders = require('total.js/builders');\nvar builder = new builders.UrlBuilder();</pre>","name":"Builders.UrlBuilder","path":"Builders.UrlBuilder"}

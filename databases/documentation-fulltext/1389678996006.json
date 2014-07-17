@@ -1,1 +1,0 @@
-{"url":"/String.prototype/#String.prototype.link","description":"Create link (URL address) from this string. Example: 'total.js - web application framework for node.js'.link(),<br />result: 'partial-js-web-application-framework-for-node-js'","name":"String.prototype.link([max])","path":"String.prototype"}

@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.pipe","description":"Create response from URL (copy response to a response without headers).","name":"controller.pipe(url, [headers], [callback])","path":"FrameworkController"}

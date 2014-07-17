@@ -1,1 +1,0 @@
-{"url":"/FrameworkFileSystem/#framework.fs.create.view","description":"Create a view file into the framework.config['directory-views'].","name":"framework.fs.create.view(name, content, [rewrite], [append])","path":"FrameworkFileSystem"}

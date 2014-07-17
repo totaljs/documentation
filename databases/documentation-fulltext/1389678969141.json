@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.onPrefix","description":"This delegate setup prefix for a request. By the prefix you can return view with the prefix without change code in the controller. IMPORTANT: you must return {String}. Empty string or null value show a view without prefix.","name":"framework.onPrefix(req)","path":"Framework"}

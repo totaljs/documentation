@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#textarea","description":"Render textarea &lt;textarea ... <br />\n@{textarea('Description', { class: 'form', placeholder: 'Your name', required: true })}","name":"@{textarea(name, [attr])}","path":"FrameworkViews"}

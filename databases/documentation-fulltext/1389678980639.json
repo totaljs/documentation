@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.routeUpload","description":"Route a upload file by the config['static-url-upload']. Returns relative URL address.","name":"controller.routeUpload(name)","path":"FrameworkController"}

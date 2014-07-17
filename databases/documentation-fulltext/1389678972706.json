@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.on('exit')","description":"This event is triggered when framework is stopped. This event will not trigger when application stopped by force.","name":"framework.on('exit')","path":"Framework"}

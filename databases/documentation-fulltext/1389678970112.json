@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.route","description":"Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.","name":"framework.route(url, fn, [options])","path":"Framework"}

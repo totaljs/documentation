@@ -1,1 +1,0 @@
-{"url":"/FrameworkPath/#framework.path.templates","description":"Get the templates path from framework.config['directory-templates'].","name":"framework.path.templates([name])","path":"FrameworkPath"}

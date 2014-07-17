@@ -1,1 +1,0 @@
-{"url":"/FrameworkPath/#framework.path.views","description":"Get the views path from framework.config['directory-views'].","name":"framework.path.views([name])","path":"FrameworkPath"}

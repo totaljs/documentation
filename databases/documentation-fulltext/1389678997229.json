@@ -1,1 +1,0 @@
-{"url":"/Async/","description":"<p>Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). FrameworkUtils is a global variable. </p><br /><p><b>Example:</b></p><br /><pre class=\"brush: jscript\">\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};</pre>","name":"Async","path":"Async"}

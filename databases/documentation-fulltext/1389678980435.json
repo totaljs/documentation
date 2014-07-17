@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.routeCSS","description":"Route a CSS file by the config['static-url-css']. Returns relative URL address.","name":"controller.routeCSS(name)","path":"FrameworkController"}

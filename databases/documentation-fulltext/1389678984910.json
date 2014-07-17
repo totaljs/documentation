@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#css","description":"Insert CSS file into the webpage. Function return LINK tag by the config['static-url-css'].","name":"@{css(filename)}","path":"FrameworkViews"}

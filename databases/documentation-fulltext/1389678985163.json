@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#prefetch","description":"Add prefetch tag into the HTML head. This result is rendered via @{head} tag.<br />Output: &lt;link rel=&quot;prefetch&quot; ...","name":"@{prefetch(filename1, [filename2], [filename..n])}","path":"FrameworkViews"}

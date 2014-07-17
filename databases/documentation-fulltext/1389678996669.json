@@ -1,1 +1,0 @@
-{"url":"/Date.prototype/#Date.prototype.add","description":"Add years / months / days / hours / minutes / seconds to Date object.<br />Example: new Date().add('day', 1) or new Date().add('month', -1)","name":"Date.prototype.add(type, count)","path":"Date.prototype"}

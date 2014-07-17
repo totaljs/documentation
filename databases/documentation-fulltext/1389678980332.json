@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.head","description":"Append TAG to HTML head. The function supports append more string arguments. If function haven't arguments then return stored values as one string.","name":"controller.head(value)","path":"FrameworkController"}

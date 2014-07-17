@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#options","description":"Render option tags from array.<br />\n&lt;select&gt;\n@{options([{ name: 'All', value: 0 }, { name: 'One', value: 1 }], 1)}\n&lt;/select&gt;","name":"@{options(arr, selectedValue, [propertyText], [propertyValue])}","path":"FrameworkViews"}

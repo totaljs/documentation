@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.injectModule","description":"Inject a module from URL address. Module must be a 100% pure javascript file.","name":"framework.injectModule(name, url)","path":"Framework"}

@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#view","description":"Render view into current view.","name":"@{view(name, [model])}","path":"FrameworkViews"}

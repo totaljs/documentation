@@ -1,1 +1,0 @@
-{"url":"/Request.prototype/#Request.prototype.authorization","description":"Read authorization data from the request. Method return { name: 'username', password: 'password' } - if it contains the request.","name":"Request.prototype.authorization()","path":"Request.prototype"}

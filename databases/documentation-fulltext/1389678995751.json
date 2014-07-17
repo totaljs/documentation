@@ -1,1 +1,0 @@
-{"url":"/String.prototype/#String.prototype.base64ToFile","description":"Parse base64 to buffer and save to file.","name":"String.prototype.base64ToFile(filename, [callback])","path":"String.prototype"}

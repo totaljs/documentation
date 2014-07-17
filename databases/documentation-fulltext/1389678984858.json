@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#download","description":"Create an A TAG. URL address routes into the config['static-url-upload'] (by the currentUpload).","name":"@{download(filename, innerHTML, [downloadName], [className])}","path":"FrameworkViews"}

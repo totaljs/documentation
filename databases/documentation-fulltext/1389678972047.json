@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.routeJS","description":"Route a JS file accoring the config['static-url-js']. Returns the relative URL address.","name":"framework.routeJS(name)","path":"Framework"}

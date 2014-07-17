@@ -1,1 +1,0 @@
-{"url":"/Response.prototype/#Response.prototype.cookie","description":"Set value into the cookie. For read cookies read Request.prototype. Default cookie path is '/'.<br />\nCookie options:\n{ Expires: Date, Domain: String, Path: String, Secure: Boolean, httpOnly: Boolean }","name":"Response.prototype.cookie(name, value, [options])","path":"Response.prototype"}

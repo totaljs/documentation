@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#next","description":"Add next (NEXT PAGE) tag into the HTML head. This result is rendered via @{head} tag.<br />Output: &lt;link rel=&quot;next&quot; ...","name":"@{next(url)}","path":"FrameworkViews"}

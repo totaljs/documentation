@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#sitemap","description":"Add link to sitemap collection.","name":"@{sitemap(name, [url], [index])}","path":"FrameworkViews"}

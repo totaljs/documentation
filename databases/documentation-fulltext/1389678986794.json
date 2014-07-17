@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#json","description":"Serialize object into the JSON. If is set id attribute then is generate: &lt;script type=&quot;application/json&quot; ...","name":"@{json(obj, [id])}","path":"FrameworkViews"}

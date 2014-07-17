@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.on('service')","description":"This event is triggered every 60 seconds and is used for cleaning temporary data / cache.","name":"framework.on('service', count)","path":"Framework"}

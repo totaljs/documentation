@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.responseImageWithoutCache","description":"Response image without cache (slowly than responseImage()). A file extension must exists in config['static-accepts'].","name":"framework.responseImageWithoutCache(req, res, filename, fnProcess, [headers], [useImageMagick])","path":"Framework"}

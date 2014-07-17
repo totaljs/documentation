@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.close","description":"Close a response (controller.mmr() or controller.sse() or by the custom response flushing). In the WebSocket close all connections or specific connection (by the names).","name":"controller.close([names])","path":"FrameworkController"}

@@ -1,1 +1,0 @@
-{"url":"/FrameworkStats/#framework.stats.request.xss","description":"Return a count of XSS requests (for example: Request data contain illegal characters).","name":"framework.stats.request.xss","path":"FrameworkStats"}

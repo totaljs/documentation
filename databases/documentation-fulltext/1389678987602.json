@@ -1,1 +1,0 @@
-{"url":"/FrameworkUtils/#utils.request","description":"Create a request (GET/POST/DELETE/PUT) to URL address with custom params and headers.","name":"utils.request(url, method, data, callback, [headers], encoding, timeout)","path":"FrameworkUtils"}

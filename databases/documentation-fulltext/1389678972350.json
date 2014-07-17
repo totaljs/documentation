@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.routeStatic","description":"Route a static file accoring the config['static-url']. Returns relative URL address.","name":"framework.routeStatic(name)","path":"Framework"}

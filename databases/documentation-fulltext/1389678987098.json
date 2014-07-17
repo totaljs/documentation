@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#checkbox","description":"Render checkbox &lt;input type=&quot;checkbox&quot; ... <br />\n@{checkbox('Terms', { label: 'I agree', class: 'terms' })}\n@{checkbox('Terms', 'I agree')}","name":"@{checkbox(name, [label])}","path":"FrameworkViews"}

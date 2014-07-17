@@ -1,1 +1,0 @@
-{"url":"/Framework/#framework.on('expire')","description":"This event is triggered when expired item in the cache. This item was removed from a cache.","name":"framework.on('expire', name, value)","path":"Framework"}

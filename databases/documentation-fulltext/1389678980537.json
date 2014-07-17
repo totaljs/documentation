@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.routeVideo","description":"Route a video file by the config['static-url-video']. Returns relative URL address.","name":"controller.routeVideo(name)","path":"FrameworkController"}

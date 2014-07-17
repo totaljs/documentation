@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#routeVideo","description":"Route URL to Video directory by the config['static-url-video'].","name":"@{routeVideo(name)}","path":"FrameworkViews"}

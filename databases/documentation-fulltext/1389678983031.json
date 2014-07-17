@@ -1,1 +1,0 @@
-{"url":"/FrameworkController/#controller.on('message')","description":"This event is triggered when recieved a message.","name":"controller.on('message', client, message)","path":"FrameworkController"}

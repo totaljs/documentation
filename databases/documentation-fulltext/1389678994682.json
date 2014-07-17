@@ -1,1 +1,0 @@
-{"url":"/String.prototype/#String.prototype.format","description":"Formatting string like C#. Example: 'My name is {0} {1}'.format('Peter', 'Širka');","name":"String.prototype.format([param..1], [param..2], [param..n])","path":"String.prototype"}

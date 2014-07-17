@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#favicon","description":"Insert favicon into the webpage. Function return LINK tag by the config['static-url'].","name":"@{favicon(filename)}","path":"FrameworkViews"}

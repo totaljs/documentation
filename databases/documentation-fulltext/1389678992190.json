@@ -1,1 +1,0 @@
-{"url":"/HttpRouteOptionsFlags/","description":"<p>Using:</p><br /><pre class=\"brush: jscript\">\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, ['xhr', 'post']);\n};\n</pre>","name":"HttpRouteOptionsFlags","path":"HttpRouteOptionsFlags"}

@@ -1,1 +1,0 @@
-{"url":"/FrameworkViews/#resource","description":"Read value from resource file.","name":"@{resource([name], key, [default])}","path":"FrameworkViews"}
