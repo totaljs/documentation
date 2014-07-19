@@ -3690,6 +3690,32 @@
         {
           "options": ["http", "websocket"],
           "return": "FrameworkController",
+          "name": "controller.date",
+          "description": "Compare dates. This method can be used in views.",
+          "params":
+          [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Compare type ('<', '<=', '>', '>=', '=')"
+            },
+            {
+              "options": ["optional"],
+              "default": "new Date()",
+              "name": "d1",
+              "type": "String or Date",
+              "description": "Date 1 to compare."
+            },
+            {
+              "name": "d2",
+              "type": "String or Date",
+              "description": "Date 2 to compare."
+            }
+          ]
+        },
+        {
+          "options": ["http", "websocket"],
+          "return": "FrameworkController",
           "name": "controller.change",
           "description": "Mark an change.",
           "example": "https://github.com/totaljs/examples/tree/master/changes",
@@ -9070,7 +9096,7 @@
         {
           "return": "Date",
           "name": "String.prototype.parseDate",
-          "description": "Parse date from this string.",
+          "description": "Parse date from this string. String must be in this format: yyyy-MM-dd HH:mm:ss while time or date is optional.",
           "params": []
         },
         {
@@ -9748,6 +9774,37 @@
               "name": "format",
               "type": "String",
               "description": "Format."
+            }
+          ]
+        },
+        {
+          "return": "Number",
+          "name": "Date.prototype.compare",
+          "description": "Compare dates. Results: -1 = current date is earlier than @date, 0 = current date is same as @date, 1 = current date is later than @date.",
+          "params":
+          [
+            {
+              "name": "date",
+              "type": "String or Date",
+              "description": "Date to compare."
+            }
+          ]
+        },
+        {
+          "return": "Number",
+          "name": "Date.compare",
+          "description": "Compare dates. Results: -1 = @d1 is earlier than @d2, 0 = @d1 is same as @d2, 1 = @d1 is later than @d2.",
+          "params":
+          [
+            {
+              "name": "d1",
+              "type": "String or Date",
+              "description": "Date 1 to compare."
+            },
+            {
+              "name": "d2",
+              "type": "String or Date",
+              "description": "Date 2 to compare."
             }
           ]
         }

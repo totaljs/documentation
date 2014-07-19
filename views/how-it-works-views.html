@@ -238,6 +238,19 @@ function view_homepage() {
 @&#123;address(&#039;Galvaniho 3&#039;, &#039;Bratislava&#039;)&#125;
 </pre>
 <br />
+
+<h3>Date feature</h3>
+<pre class="brush: xml">@&#123;if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')&#125;
+	&lt;div&gt;! Happy new year !&lt;/div&gt;
+@&#123;endif&#125;
+</pre>
+<br />
+<div>or</div>
+<br />
+<pre class="brush: xml">
+	@&#123;viewToggle(date('=', '2014-08-08'), 'important-partial-view')&#125;
+</pre>
+<br />
 <h2>Defining views in sub-directories</h2>
 <div class="text">
     The default controller (&quot;default.js&quot;) self.view() includes views from the default views directory (e.g: &quot;/views&quot;). To modify this behaviour, rename the controller's file name (e.g: controllers/site.js) to match a directory of the same name under views (e.g: views/site/). The views contained within the "site" directory would be displayed.
