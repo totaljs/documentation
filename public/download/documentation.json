@@ -3688,6 +3688,21 @@
           ]
         },
         {
+          "options": ["http"],
+          "return": "Function",
+          "name": "controller.callback",
+          "description": "Returns a function for classic node.js callback(err, some_data).\n\nExample:\n\nframework.database('some_db').all(controller.callback());\n\n// or\n\nframework.database('some_db').all(controller.callback('my-view'))",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "view_name",
+              "type": "String",
+              "description": "A view name or is responses controller.json(some_data)."
+            }
+          ]
+        },
+        {
           "options": ["http", "websocket"],
           "return": "FrameworkController",
           "name": "controller.date",
