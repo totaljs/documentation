@@ -2388,15 +2388,15 @@
         {
           "options": ["readonly"],
           "return": "Object",
-          "name": "framework.cache.repository",
-          "description": "All cache items collection."
+          "name": "framework.cache.items",
+          "description": "All cached items."
         }
       ],
       "methods":
       [
         {
           "name": "framework.cache.add",
-          "description": "Add a item into the cache and return a value.",
+          "description": "Add an item into the cache and return a value.",
           "return": "Object",
           "params":
           [
@@ -2433,7 +2433,7 @@
         },
         {
           "name": "framework.cache.remove",
-          "description": "Remove item from the cache.",
+          "description": "Remove an item from the cache.",
           "return": "Object",
           "default": "null",
           "params":
@@ -2454,7 +2454,7 @@
             {
               "name": "search",
               "type": "String",
-              "description": "Search text in all cache keys."
+              "description": "Search text in all cached keys."
             }
           ]
         },
@@ -2471,8 +2471,8 @@
             },
             {
               "name": "expire",
-              "type": "Date",
-              "description": "New item expiration."
+              "type": "Date/String",
+              "description": "A new item expiration."
             }
           ]
         },
@@ -2483,7 +2483,7 @@
         },
         {
           "name": "framework.cache.fn",
-          "description": "Simply cache for storing a function.",
+          "description": "Simply cache for storing output from some function.",
           "return": "FrameworkCache",
           "example": "https://github.com/totaljs/examples/tree/master/cache-partial",
           "params":
