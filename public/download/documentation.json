@@ -3068,197 +3068,197 @@
       "properties":
       [
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.timeout",
           "description": "Return a count of timeout requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.pending",
           "description": "Return a count of pending requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.web",
           "description": "Return a count of classic requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.xhr",
           "description": "Return a count of XHR requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.file",
           "description": "Return a count of file requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.websocket",
           "description": "Return a count of websocket requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.get",
           "description": "Return a count of GET (method) requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.post",
           "description": "Return a count of POST (method) requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.put",
           "description": "Return a count of PUT (method) requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.upload",
           "description": "Return a count of upload (multipart) requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.xss",
           "description": "Return a count of XSS requests (for example: Request data contain illegal characters)."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request.blocked",
           "description": "Return a count of blocked requests (for example: POST request into the GET route)."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.request['delete']",
           "description": "Return a count of DELETE (method) requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.view",
           "description": "Return a count of VIEW responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.json",
           "description": "Return a count of JSON responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.websocket",
           "description": "Return a count of WebSocket messages."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.file",
           "description": "Return a count of File responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.plain",
           "description": "Return a count of Plain responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.empty",
           "description": "Return a count of Empty responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.binary",
           "description": "Return a count of Binary responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.redirect",
           "description": "Return a count of Redirect responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.timeout",
           "description": "Return a count of Timeout responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.custom",
           "description": "Return a count of Custom responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.forwarding",
           "description": "Return a count of Host redirect responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.stream",
           "description": "Return a count of Stream responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.streaming",
           "description": "Return a count of Streaming responses (http range request)."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.restriction",
           "description": "Return a count of Restriction responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.notModified",
           "description": "Return a count of not modified responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.mmr",
           "description": "Return a count of Multipart-Mixed-Replace responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.destroy",
           "description": "Return a count of destroyed requests."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.sse",
           "description": "Return a count of Server Sent Events responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error400",
           "description": "Return a count of Error (400) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error401",
           "description": "Return a count of Error (401) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error403",
           "description": "Return a count of Error (403) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error404",
           "description": "Return a count of Error (404) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error408",
           "description": "Return a count of Error (408) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error431",
           "description": "Return a count of Error (431) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error500",
           "description": "Return a count of Error (500) responses."
         },
         {
-          "return": "int",
+          "return": "Number",
           "name": "framework.stats.response.error501",
           "description": "Return a count of Error (501)) responses."
         }
@@ -10034,7 +10034,7 @@
       [
         {
           "options": ["readonly"],
-          "return": "int",
+          "return": "Number",
           "name": "async.count",
           "description": "How many tasks are waiting?",
           "default": "0"
