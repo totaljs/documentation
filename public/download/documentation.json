@@ -1,4 +1,6 @@
 {
+  "version": "1.7.0",
+  "modified": "2014-10-06 15:31:00",
   "children": [
     {
       "name": "Framework",
@@ -678,9 +680,113 @@
           ]
         },
         {
-          "name": "framework.error",
-          "description": "Create a new framework error.",
+          "name": "framework.view",
+          "description": "Render a view. This method simulate a controller and renders HTML to string.",
+          "return": "String",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Name of view."
+            },
+            {
+              "options": ["optional"],
+              "name": "model",
+              "type": "Object",
+              "description": "Model for this view."
+            },
+            {
+              "options": ["optional"],
+              "name": "layout",
+              "type": "String",
+              "description": "Layout for view."
+            },
+            {
+              "options": ["optional"],
+              "name": "repository",
+              "type": "Object",
+              "description": "A repository object."
+            }
+          ]
+        },
+        {
+          "options": [],
+          "name": "framework.mail",
+          "description": "Send e-mail from a view.",
           "return": "Framework",
+          "params":
+          [
+            {
+              "name": "address",
+              "type": "String or Array",
+              "description": "To e-mail."
+            },
+            {
+              "name": "subject",
+              "type": "String",
+              "description": "E-mail subject."
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Name of view."
+            },
+            {
+              "options": ["optional"],
+              "name": "model",
+              "type": "Object",
+              "description": "Model into the view."
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name":"err",
+                  "type":"Error",
+                  "description": "Error handling."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "framework.merge",
+          "description": "Create a virtual route for merging of static files. Currently method supports merging: JavaScript or CSS.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A relative url for listening."
+            },
+            {
+              "name": "filename1",
+              "type": "String",
+              "description": "File to merge (is read from public directory (for other reading use: ~)."
+            },
+            {
+              "name": "filename2",
+              "type": "String",
+              "description": ".... ...."
+            },
+            {
+              "options": ["optional"],
+              "name": "filenameN",
+              "type": "String",
+              "description": ".... ...."
+            }
+          ]
+        },
+        {
+          "name": "framework.error",
+          "description": "Create a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
+          "return": "Framework/Function",
           "params":
           [
             {
@@ -1860,7 +1966,7 @@
         },
         {
           "name": "framework.on('route-add')",
-          "description": "This event is triggered every when is added a new route.",
+          "description": "This event is triggered when is added a new route.",
           "params":
           [
             {
@@ -1958,7 +2064,7 @@
         },
         {
           "name": "framework.on('problem')",
-          "description": "This event is triggered when is a problem.",
+          "description": "This event is triggered when is created some problem.",
           "example":"https://github.com/totaljs/examples/tree/master/problems",
           "params":
           [
@@ -2145,14 +2251,13 @@
           "options": ["onetime"],
           "name": "framework.on('load')",
           "description": "This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..",
-          "params":
-          [
-            {
-              "name": "framework",
-              "description": "Framework",
-              "type": "Object"
-            }
-          ]
+          "params": []
+        },
+        {
+          "options": ["onetime"],
+          "name": "framework.on('init')",
+          "description": "This event is triggered before are loaded all dependencies.",
+          "params": []
         },
         {
           "name": "framework.on('controller')",
@@ -2169,6 +2274,30 @@
               "name": "name",
               "description": "Name of controller",
               "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('controller-render-head')",
+          "description": "This event is triggered when the controller renders head tags.",
+          "params":
+          [
+            {
+              "name": "controller",
+              "description": "Current controller",
+              "type": "FrameworkController"
+            }
+          ]
+        },
+        {
+          "name": "framework.on('controller-render-meta')",
+          "description": "This event is triggered when the controller renders meta tags.",
+          "params":
+          [
+            {
+              "name": "controller",
+              "description": "Current controller",
+              "type": "FrameworkController"
             }
           ]
         }
@@ -3662,7 +3791,7 @@
           "options": ["http", "websocket"],
           "return": "FrameworkController",
           "name": "controller.error",
-          "description": "Mark an error.",
+          "description": "Create a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
           "params":
           [
             {
@@ -4556,7 +4685,7 @@
           "name": "controller.proxy",
           "description": "Proxy request to other total.js website.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-proxy",
-          "return": "FrameworkController",
+          "return": "EventEmitter(begin, end, data(chunk, percentage))",
           "params":
           [
             {
@@ -5809,209 +5938,6 @@
           ]
         },
         {
-          "return": "NOTHING",
-          "name": "@{ng}",
-          "description": "Append Angular.js SCRIPT into the @{head}. If script path starts with ~ then is script loaded from common directory (app/common) else from CDN - cdnjs.cloudflare.",
-          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "String",
-          "name": "@{ngTemplate}",
-          "description": "Load template (from /app/templates/) into the <script tag>.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Filename with or without .html extension (this extension will be added automatically)."
-            },
-            {
-              "options": ["optional"],
-              "name": "id",
-              "type": "String",
-              "description": "Element id.",
-              "default": "name"
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngController}",
-          "description": "Append link to the controller SCRIPT (in app/controllers) into the @{head}.",
-          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Controller script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Controller script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngFilter}",
-          "description": "Append link to the filter SCRIPT (in app/filters) into the @{head}.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Filter script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Filter script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngService}",
-          "description": "Append link to the service SCRIPT (in app/services) into the @{head}.",
-          "example": "https://github.com/totaljs/examples/tree/master/angularjs-websocket",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Service script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Service script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngDirective}",
-          "description": "Append link to the directive SCRIPT (in app/directives) into the @{head}.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Directive script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Directive script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngResource}",
-          "description": "Append link to the resource SCRIPT (in app/resources) into the @{head}.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Resource script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Resource script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngCommon}",
-          "description": "Append link to the common SCRIPT (in app/commons) into the @{head}.",
-          "example": "https://github.com/totaljs/examples/tree/master/angularjs-common",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Common script name without .js."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Common script name without .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngInclude}",
-          "description": "Include <script ... into the current position in the view. This script is mapped to public (or /app/) directory.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Common script name with .js."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngLocale}",
-          "description": "Append Angular.js locale SCRIPT into the @{head}. If script path starts with ~ then is script loaded from the locale directory (app/locale) else from CDN - cdnjs.cloudflare.",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Locale script name without .js and without \"angular-locale\"."
-            },
-            {
-              "options": ["optional"],
-              "name": "nameN",
-              "type": "String",
-              "description": "Locale script name without .js and without \"angular-locale\"."
-            }
-          ]
-        },
-        {
-          "return": "NOTHING",
-          "name": "@{ngStyle(name)}",
-          "description": "Append style (from app/css) into the @{head}.",
-          "example": "https://github.com/totaljs/examples/tree/master/angularjs",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Locale script name without .js and without \"angular-locale\"."
-            }
-          ]
-        },
-        {
           "return": "String",
           "name": "@{meta}",
           "description": "Create META tags.",
@@ -6908,7 +6834,7 @@
         {
           "name": "utils.download",
           "description": "Download content or file from an url address.",
-          "return": "Boolean",
+          "return": "EventEmitter(begin, end, data(chunk, percentage))",
           "params":
           [
             {
@@ -7095,9 +7021,56 @@
           ]
         },
         {
+          "return": "Boolean",
+          "name": "utils.isEqual",
+          "description": "Compares properties.",
+          "params":
+          [
+            {
+              "name": "obj1",
+              "type": "Object",
+              "description": "Object 1 to compare."
+            },
+            {
+              "name": "obj2",
+              "type": "Object",
+              "description": "Object 2 to compare."
+            },
+            {
+              "name": "properties",
+              "type": "String Array",
+              "description": "Properties to compare.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "return": "Boolean",
+          "name": "utils.queue",
+          "description": "A queue list. Usage for e.g. EMFILE, too many open files. Argument 'fn' is executed when running count of 'fn' is less than 'maximum' argument.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Name / Identificator."
+            },
+            {
+              "name": "maximum",
+              "type": "Number",
+              "description": "A maximum calls."
+            },
+            {
+              "name": "fn",
+              "type": "Function(next)",
+              "description": "A caller/delegate to execute."
+            }
+          ]
+        },
+        {
           "name": "utils.request",
           "description": "Create a request (GET/POST/DELETE/PUT) to URL address with custom params and headers.",
-          "return": "Boolean",
+          "return": "EventEmitter(begin, end, data(chunk, percentage))",
           "params":
           [
             {
@@ -7144,6 +7117,12 @@
                   "name": "headers",
                   "type": "Object",
                   "description": "Response headers."
+                },
+                {
+                  "name": "timeout",
+                  "type": "Number",
+                  "description": "Request timeout.",
+                  "options": ["optional"]
                 }
               ]
             },
@@ -7690,6 +7669,11 @@
       "properties":
       [
         {
+          "name": "mail.rejectUnauthorized",
+          "description": "If true the server will reject any connection which is not authorized with the list of supplied CAs. This option only has an effect if requestCert is true. Default: false.",
+          "return": "Booelan"
+        },
+        {
           "return": "String",
           "name": "message.subject",
           "description": "Subject of e-mail."
@@ -7914,8 +7898,8 @@
           [
             {
               "name": "filename",
-              "type": "String/Stream",
-              "description": "Image filename or Image readable stream."
+              "type": "String/Stream/Buffer",
+              "description": "Image filename or Image readable stream or Image buffer."
             },
             {
               "options": ["optional"],
@@ -8581,14 +8565,21 @@
           "options": ["optional", "http"],
           "return": "String",
           "name": "xhr",
-          "description": "Request must be a XMLHttpRequest.",
+          "description": "Request must be XMLHttpRequest.",
           "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
         },
         {
           "options": ["optional", "http"],
           "return": "String",
-          "name": "+xhr",
-          "description": "Request can be a XMLHttpRequest or classic GET request.",
+          "name": "-xhr",
+          "description": "This flag removes a listening of route for XMLHttpRequest.",
+          "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
+        },
+        {
+          "options": ["optional", "http"],
+          "return": "String",
+          "name": "noxhr",
+          "description": "This flag removes a listening of route for XMLHttpRequest. This flag is alias for -xhr.",
           "example": "https://github.com/totaljs/examples/tree/master/routing-flags"
         },
         {
@@ -9096,6 +9087,18 @@
           "params": []
         },
         {
+          "return": "Object",
+          "name": "String.prototype.parseXML",
+          "description": "This method parses XML from string to Object.",
+          "params": []
+        },
+        {
+          "return": "String",
+          "name": "String.prototype.toSearch",
+          "description": "This method lowers chars, removes diacritics and all operators without spaces.",
+          "params": []
+        },
+        {
           "return": "String",
           "name": "String.prototype.count",
           "description": "Word counter.",
@@ -9113,6 +9116,24 @@
           "name": "String.prototype.parseDate",
           "description": "Parse date from this string. String must be in this format: yyyy-MM-dd HH:mm:ss while time or date is optional.",
           "params": []
+        },
+        {
+          "return": "Date",
+          "name": "String.prototype.replaceAt",
+          "description": "Replace string according the index.",
+          "params":
+          [
+            {
+                "name": "index",
+                "type": "Number",
+                "description": "Index where to start replacing."
+            },
+            {
+                "name": "text",
+                "type": "String",
+                "description": "Text to replace. A replacement will be: index + text.length."
+            }
+          ]
         },
         {
           "return": "Date",
@@ -9702,13 +9723,29 @@
         {
           "return": "String",
           "name": "Number.prototype.format",
-          "description": "Formatting number. Example: (230230.34).format('### ###.##'), result: 230 230.34",
+          "description": "A simple number formatting.",
           "params":
           [
             {
-              "name": "format",
+              "name": "decimals",
+              "type": "Number",
+              "description": "Count of decimal numbers.",
+              "default": "0",
+              "options": ["optional"]
+            },
+            {
+              "name": "separator",
               "type": "String",
-              "description": "Format."
+              "default": "' '",
+              "description": "Number separator.",
+              "options": ["optional"]
+            },
+            {
+              "name": "decimalSeparator",
+              "type": "String",
+              "default": "'.'",
+              "description": "Decimal separator.",
+              "options": ["optional"]
             }
           ]
         },
@@ -9782,13 +9819,14 @@
         {
           "return": "String",
           "name": "Date.prototype.format",
-          "description": "Formatting date. Example: new Date().format('dd.MM.yyyy HH:mm:ss')",
+          "description": "A date/time formatting. Example: new Date().format('dd.MM.yyyy HH:mm:ss') or new Date().format() -> returns ISO date without 'Z'.",
           "params":
           [
             {
               "name": "format",
               "type": "String",
-              "description": "Format."
+              "description": "Date/time format.",
+              "options": ["optional"]
             }
           ]
         },
@@ -9904,6 +9942,13 @@
                   "name": "next",
                   "type": "Function",
                   "description": "Next function."
+                },
+                {
+                  "options": ["optional"],
+                  "name": "removeItems",
+                  "type": "Boolean",
+                  "default": "false",
+                  "description": "Remove items."
                 }
               ]
             },
