@@ -187,7 +187,7 @@ function render_children(arr, events, version, id) {
 			str += '<div class="documentation-example"><a href="' + item.example + '" target="_blank">example</a></div>';
 
 		builder.push('<div class="documentation-container"><a href="#' + id + '" class="documentation-all"><span>&uarr;</span> List of all ' + id + '</a>' + str + '</div>');
-		list.push('<a href="#' + (ap.length > 0 ? name.substring(2) : name) + '">' + (events && params.length > 0 ? name.substring(0, name.length - 1) + ', ' : name) + (params.length > 0 ? '<span>' + (events ? '' : '(') + params.join(', ') + ')' + '</span>' + ap : item['return'] ? ' <span class="documentation-type">{'+item['return']+'}</span>' : '') + '</a>');
+		list.push('<a href="#' + (ap.length > 0 ? name.substring(2) : name) + '">' + (events && params.length > 0 ? name.substring(0, name.length - 1) + ', ' : name) + (params.length > 0 ? '<span>' + (events ? '' : '(') + params.join(', ') + ')' + '</span>' + ap + (item['return'] ? ' <i>--> ' + item['return'] + '</i>' : '') : item['return'] ? ' <span class="documentation-type">{'+item['return']+'}</span>' : '') + '</a>');
 
 	});
 

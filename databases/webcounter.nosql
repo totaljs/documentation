@@ -205,3 +205,4 @@
 {"day":11,"month":7,"year":2014,"hits":556,"unique":274,"count":392,"search":120,"direct":97,"social":0,"unknown":175,"advert":0,"mobile":17,"desktop":257}
 {"day":12,"month":7,"year":2014,"hits":528,"unique":276,"count":414,"search":111,"direct":111,"social":0,"unknown":192,"advert":0,"mobile":24,"desktop":252}
 {"desktop":0,"mobile":0,"advert":0,"unknown":0,"social":0,"direct":1,"search":0,"count":1,"unique":0,"hits":4,"year":2014,"month":7,"day":17}
+{"desktop":1,"mobile":0,"advert":0,"unknown":0,"social":0,"direct":1,"search":0,"count":1,"unique":1,"hits":1,"year":2014,"month":7,"day":19,"visitors":null}

@@ -45,6 +45,7 @@ body { padding:20px; margin:0; font:normal 12px Arial; background: #F0F0F0 url(.
 .doc-important { background-color: #FFDBD8 !important; }
 .documentation-list a { font-size: 16px; color: black; text-decoration: none; border-bottom: 1px dotted gray; padding-bottom: 2px; display: block; margin-bottom: 3px; }
 .documentation-list a:hover { border-bottom: 1px dotted #505050; color: #505050; }
+.documentation-list i { font-size: 11px; color: silver; }
 .documentation-list span { color: gray; }
 .documentation-example { height: 30px; }
 .documentation-example a { border:1px solid #D3D37D; border-radius: 4px; border-bottom: 2px solid #D3D37D; padding: 2px 10px; text-decoration: none; margin: 10px 0 0 0; color: #898951; float: left; font-size: 12px; background-color: #FFFE97; margin-right: 10px; }

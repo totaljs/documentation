@@ -1180,7 +1180,7 @@
         },
         {
           "name": "framework.responseImage",
-          "description": "Response image. A file extension must exists in config['static-accepts']. This function sets up HTTP cache (accoring the framework config mode - debug/release) and processed image is saved into the temporary directory.",
+          "description": "Response image. A file extension must exists in config['static-accepts']. This function sets up HTTP cache (according the framework config mode - debug/release) and processed image is saved into the temporary directory.",
           "return": "Framework",
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
           "params":
@@ -1859,7 +1859,7 @@
         },
         {
           "name": "framework.routeJS",
-          "description": "Route a JS file accoring the config['static-url-js']. Returns the relative URL address.",
+          "description": "Route a JS file according the config['static-url-js']. Returns the relative URL address.",
           "return": "String",
           "params":
           [
@@ -1872,7 +1872,7 @@
         },
         {
           "name": "framework.routeCSS",
-          "description": "Route a CSS file accoring the config['static-url-css']. Returns the relative URL address.",
+          "description": "Route a CSS file according the config['static-url-css']. Returns the relative URL address.",
           "return": "String",
           "params":
           [
@@ -1885,7 +1885,7 @@
         },
         {
           "name": "framework.routeImage",
-          "description": "Route a image file accoring the config['static-url-image']. Returns the relative URL address.",
+          "description": "Route a image file according the config['static-url-image']. Returns the relative URL address.",
           "return": "String",
           "params":
           [
@@ -1898,7 +1898,7 @@
         },
         {
           "name": "framework.routeVideo",
-          "description": "Route a video file accoring the config['static-url-video']. Returns the relative URL address.",
+          "description": "Route a video file according the config['static-url-video']. Returns the relative URL address.",
           "return": "String",
           "params":
           [
@@ -1911,7 +1911,7 @@
         },
         {
           "name": "framework.routeFont",
-          "description": "Route a font file accoring the config['static-url-font']. Returns the relative URL address.",
+          "description": "Route a font file according the config['static-url-font']. Returns the relative URL address.",
           "return": "String",
           "params":
           [
@@ -1937,7 +1937,7 @@
         },
         {
           "name": "framework.routeStatic",
-          "description": "Route a static file accoring the config['static-url']. Returns relative URL address.",
+          "description": "Route a static file according the config['static-url']. Returns relative URL address.",
           "return": "String",
           "params":
           [
@@ -10543,6 +10543,88 @@
           ]
         },
         {
+          "options": ["static method"],
+          "return": "Object",
+          "name": "ErrorBuilder.addTransform",
+          "description": "Add a new transformation for ErrorBuilder.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            },
+            {
+              "options": ["must return some object"],
+              "name": "fn",
+              "type": "Function",
+              "description": "A transformation function.",
+              "return": "Object",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder (error writer) for transformation."
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "Boolean",
+              "default": "false",
+              "description": "Set this transformation as default?"
+            }
+          ]
+        },
+        {
+          "return": "ErrorBuilder",
+          "name": "builder.setTransform",
+          "description": "Set default transform for CURRENT ErrorBuilder.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "builder.transform",
+          "description": "Transform current ErrorBuilder.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            }
+          ]
+        },
+        {
+          "options": ["static method"],
+          "return": "ErrorBuilder",
+          "name": "ErrorBuilder.setDefaultTransform",
+          "description": "Set default transform for all ErrorBuilders.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "builder.output",
+          "description": "Returns prepared (transformed) errors.",
+          "params": []
+        },
+        {
           "return": "ErrorBuilder",
           "name": "builder.add",
           "description": "Add an error to ErrorBuilder. You can add other ErrorBuilder - builder.add(new builders.ErrorBuilder()).\n\nbuilder.add('Name'); // load: builder.onResource('Name');\nbuilder.add('Name', '@NameMinimum'); // load: builder.onResource('NameMinimum');\nbuilder.add('Name', 'You must enter your name.');",
@@ -10612,7 +10694,7 @@
         {
           "return": "ErrorBuilder",
           "name": "builder.replace",
-          "description": "Replace error message.",
+          "description": "Replace some text error message. Example: builder.replace('#email', 'yourmail@yourdomain.com'). Important: 'replace' is valid for all new values. This function is applied at the transform/output/json/etc..",
           "params":
           [
             {
@@ -10939,132 +11021,662 @@
     },
     {
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. By the schema you can validate a model.\n\n=== javascript\n// Example:\nBuilders.schema('user', { firstname: 'string(40)', lastname: String, created: Date }, function(name) {\n    if (name === 'created')\n        return new Date();\n});\n\n// Why?\ndb.insert(Builders.prepare('user', controller.body));\n\n===",
+      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformation, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n=== javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage').get('user').get(100, function(err, result) { ... });\n\n===\n\nIMPORTANT:\n\n=== plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n===",
       "group": "Builders",
       "methods":
       [
         {
-          "return": "Object",
+          "return": "SchemaBuilder",
           "name": "Builders.schema",
-          "description": "Create a schema. Schema supports joining others schemas.",
+          "description": "Create a schema group. Schema supports joining entities in same group.",
           "example": "https://github.com/totaljs/examples/tree/master/framework-schema",
           "params":
           [
             {
               "name": "name",
               "type": "String",
-              "description": "Schema name."
+              "description": "Group name."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilder.add",
+          "description": "Add an entity into the current group.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Entity name."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilder.create",
+          "description": "Alias for SchemaBuilder.add()",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Entity name."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilder",
+          "name": "SchemaBuilder.remove",
+          "description": "Remove the entity or current group. If is not defined 'name' then will removed a group.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String",
+              "description": "Entity name."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilder.get",
+          "description": "Get the entity in current group.",
+          "default": "undefined",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Entity name."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.define",
+          "description": "Define a property into the entity.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name."
             },
             {
-              "name": "definition",
+              "name": "type",
               "type": "Object",
-              "description": "Object definition."
+              "description": "A property type."
             },
             {
-              "name": "defaults",
-              "type": "Function",
-              "description": "Create a default value.",
               "options": ["optional"],
+              "default": "false",
+              "name": "required",
+              "type": "Boolean",
+              "description": "Is required?"
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setValidation",
+          "description": "Set entity validation. This delegate is called at the validation of entity.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "String Array",
+              "description": "Properties to validate. Optional for: SchemaBuilderEntity.add(name, type, [>>REQUIRED<<])"
+            },
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A validation function.",
               "params":
               [
                 {
-                  "name": "name",
+                  "name": "propertyName",
                   "type": "String",
-                  "description": "Property name. By the property returns default value. Return undefined is a default."
-                },
-                {
-                  "name": "isDefault",
-                  "type": "Boolean",
-                  "description": "true === Builders.create() or builders.defaults(), false === Builders.prepare()"
-                },
-                {
-                  "name": "schema",
-                  "type": "String",
-                  "description": "Schema name."
-                }
-              ]
-            },
-            {
-              "name": "validator",
-              "type": "Function",
-              "description": "Create a custom schema validation. This function is same as framework.onValidation delegate.",
-              "options": ["optional"],
-              "params":
-              [
-                {
-                  "name": "name",
-                  "type": "String",
-                  "description": "Property name. By the property returns default value. Return undefined is a default."
+                  "description": "A current property name in the entity."
                 },
                 {
                   "name": "value",
                   "type": "Object",
-                  "description": "Value for to validate."
+                  "description": "A current value of the property."
                 },
                 {
                   "name": "path",
                   "type": "String",
-                  "description": "Current path in object."
+                  "description": "A current path in the model."
                 },
                 {
-                  "name": "schema",
+                  "name": "entityName",
                   "type": "String",
-                  "description": "Schema name."
+                  "description": "A current entity name (for using one handler to multiple entities)."
+                },
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "A whole model."
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "default": "false",
+              "name": "required",
+              "type": "Boolean",
+              "description": "Is required?"
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setDefault",
+          "description": "Set default values or set values in preparing to current model/entity.",
+          "params":
+          [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A validation function.",
+              "params":
+              [
+                {
+                  "name": "propertyName",
+                  "type": "String",
+                  "description": "A current property name in the entity."
+                },
+                {
+                  "name": "isntPreparing",
+                  "type": "Boolean",
+                  "description": "(Is not preparing) Is in creating mode and the method wants a default value."
+                },
+                {
+                  "name": "entityName",
+                  "type": "String",
+                  "description": "A current entity name (for using one handler to multiple entities)."
                 }
               ]
             }
           ]
         },
         {
-          "name": "Builders.remove",
-          "description": "Remove a schema.",
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setSave",
+          "description": "Set a save delegate.",
           "params":
           [
             {
-              "name": "name",
-              "type": "String",
-              "description": "Schema name."
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "Prepared object."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "done",
+                  "type": "Function",
+                  "description": "Done."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setGet",
+          "description": "Set a get delegate.",
+          "params":
+          [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "A default object."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "done",
+                  "type": "Function",
+                  "description": "Done."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setQuery",
+          "description": "Set an query delegate.",
+          "params":
+          [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "done(results)",
+                  "type": "Function",
+                  "description": "Done with results."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.setRemove",
+          "description": "Set a remove delegate.",
+          "params":
+          [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "Prepared object."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "done",
+                  "type": "Function",
+                  "description": "Done."
+                }
+              ]
             }
           ]
         },
         {
           "return": "Object",
-          "name": "Builders.validation",
-          "description": "Set custom validation for the schema.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
+          "name": "SchemaBuilderEntity.clean",
+          "description": "Clean model (remove state of all schemas in model).",
+          "params":
+          [
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "Some model for cleaning."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.addRule",
+          "description": "Add some rule to entity. Rule can be a constant or function.",
           "params":
           [
             {
               "name": "name",
               "type": "String",
-              "description": "Schema name."
+              "description": "A rule name."
             },
             {
-              "name": "validator",
+              "name": "value",
+              "type": "Object",
+              "description": "A rule value."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.addTransform",
+          "description": "Add a new transformation for the entity.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            },
+            {
+              "name": "fn",
               "type": "Function",
-              "description": "Create a custom schema validation. This function is same as framework.onValidation delegate.",
-              "options": ["optional"],
+              "description": "A delegate.",
               "params":
               [
                 {
-                  "name": "name",
-                  "type": "String",
-                  "description": "Property name. By the property returns default value. Return undefined is a default."
-                },
-                {
-                  "name": "value",
+                  "name": "model",
                   "type": "Object",
-                  "description": "Value for to validate."
+                  "description": "Prepared object."
                 },
                 {
-                  "name": "path",
-                  "type": "String",
-                  "description": "Current path in object."
+                  "name": "done([output])",
+                  "type": "Function",
+                  "description": "Done."
                 },
                 {
-                  "name": "schema",
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "entityName",
                   "type": "String",
-                  "description": "Schema name."
+                  "description": "An entity name."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.addWorkflow",
+          "description": "Add a new workflow for the entity.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A workflow name."
+            },
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "Prepared object."
+                },
+                {
+                  "name": "done([output])",
+                  "type": "Function",
+                  "description": "Done."
+                },
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "entityName",
+                  "type": "String",
+                  "description": "An entity name."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.addCompose",
+          "description": "Add a new composer for the entity.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A composer name."
+            },
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A delegate.",
+              "params":
+              [
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "Prepared object."
+                },
+                {
+                  "name": "done([output])",
+                  "type": "Function",
+                  "description": "Done."
+                },
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder for manage errors."
+                },
+                {
+                  "name": "helper",
+                  "type": "Object",
+                  "description": "A helper argument."
+                },
+                {
+                  "name": "entityName",
+                  "type": "String",
+                  "description": "An entity name."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.find",
+          "description": "Find entity in current group.",
+          "default": "undefined",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A composer name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "SchemaBuilderEntity.rule",
+          "description": "Get an entity rule.",
+          "default": "undefined",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A rule name."
+            }
+          ]
+        },
+        {
+          "return": "undefined",
+          "name": "SchemaBuilderEntity.destroy",
+          "description": "Destroy current entity.",
+          "params": []
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.save",
+          "description": "Invoke a save. The method prepares (if not) a model, validates (if not) and then invokes save.",
+          "params":
+          [
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "Model/Data to save."
+            },
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler.",
+                  "default": "null"
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "Result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.get",
+          "description": "Invoke a get. The method gets a model.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler.",
+                  "default": "null"
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "Result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.remove",
+          "description": "Invoke a remove. The method removes a model.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler.",
+                  "default": "null"
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "Result."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.query",
+          "description": "Invoke a query.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler.",
+                  "default": "null"
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "Result."
                 }
               ]
             }
@@ -11072,87 +11684,194 @@
         },
         {
           "return": "ErrorBuilder",
-          "name": "Builders.validate",
-          "description": "Validate a schema.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-schema-validation",
-          "go": "Builders.ErrorBuilder",
+          "name": "SchemaBuilderEntity.validate",
+          "description": "Invoke a validation.",
+          "params":
+          [
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "An object to validate."
+            },
+            {
+              "options": ["optional"],
+              "name": "resourcePrefix",
+              "type": "String",
+              "description": "A prefix.",
+              "default": "''"
+            },
+            {
+              "options": ["optional"],
+              "name": "resourceName",
+              "type": "String",
+              "description": "A resource name (filename).",
+              "default": "'default'"
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "SchemaBuilderEntity.create",
+          "description": "Create an empty object according to schema. Alias for SchemaBuilderEntity.default().",
+          "params": []
+        },
+        {
+          "return": "Object",
+          "name": "SchemaBuilderEntity.default",
+          "description": "Create an empty object according to entity schema.",
+          "params": []
+        },
+        {
+          "return": "Object",
+          "name": "SchemaBuilderEntity.prepare",
+          "description": "Prepare data according to entity schema.",
+          "params":
+          [
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "An object to prepare."
+            }
+          ]
+        },
+        {
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.transform",
+          "description": "Invoke a transform. The method prepares (if not) a model, validates (if not) and then invokes transform.",
           "params":
           [
             {
               "name": "name",
               "type": "String",
-              "description": "Schema name."
+              "description": "A transform name."
             },
             {
               "name": "model",
               "type": "Object",
-              "description": "Object for validation."
+              "description": "An object to transform."
+            },
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler."
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "A result of transform."
+                },
+                {
+                  "name": "err",
+                  "type": "model",
+                  "description": "A result of transform (model)."
+                }
+              ]
             }
           ]
         },
         {
-          "return": "Object",
-          "name": "Builders.defaults",
-          "description": "Create a default object by the schema.",
-          "example": "https://github.com/totaljs/examples/tree/master/schema",
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.compose",
+          "description": "Invoke a compose.",
           "params":
           [
             {
               "name": "name",
               "type": "String",
-              "description": "Schema name."
-            }
-          ]
-        },
-        {
-          "return": "Object",
-          "name": "Builders.create",
-          "description": "Create a default object by the schema. This function si same as Builders.defaults().",
-          "example": "https://github.com/totaljs/examples/tree/master/schema",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Schema name."
-            }
-          ]
-        },
-        {
-          "return": "Object",
-          "name": "Builders.prepare",
-          "description": "Prepare model by the schema. Properties which are not defined in schema will be removed. Long strings will be truncated by the schema definition.",
-          "example": "https://github.com/totaljs/examples/tree/master/schema",
-          "params":
-          [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Schema name."
+              "description": "A compose name."
             },
             {
               "name": "model",
               "type": "Object",
-              "description": "Object to prepare."
+              "description": "An object for compose."
+            },
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler."
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "A result of compose."
+                },
+                {
+                  "name": "err",
+                  "type": "model",
+                  "description": "A result of compose (model)."
+                }
+              ]
             }
           ]
         },
         {
-          "return": "Object",
-          "name": "Builders.validation",
-          "description": "Create a schema validation.",
-          "example": "https://github.com/totaljs/examples/tree/master/schema",
+          "return": "SchemaBuilderEntity",
+          "name": "SchemaBuilderEntity.workflow",
+          "description": "Invoke a workflow.",
           "params":
           [
             {
               "name": "name",
               "type": "String",
-              "description": "Schema name."
+              "description": "A workflow name."
             },
             {
-              "name": "definition",
-              "type": "String Array",
-              "description": "Properties, example: ['firstname', 'lastname', 'age']."
+              "name": "model",
+              "type": "Object",
+              "description": "An object for workflow."
+            },
+            {
+              "options": ["optional"],
+              "name": "helper",
+              "type": "Object",
+              "description": "A helper object."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handler."
+                },
+                {
+                  "name": "result",
+                  "type": "Object",
+                  "description": "A result of workflow."
+                },
+                {
+                  "name": "err",
+                  "type": "model",
+                  "description": "A result of workflow (model)."
+                }
+              ]
             }
           ]
         }
