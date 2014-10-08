@@ -10516,7 +10516,7 @@
     },
     {
       "name": "Builders.ErrorBuilder",
-      "description": "Error builder is helpful for model error handling.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.ErrorBuilder();\n===",
+      "description": "Error builder is helpful for model error handling.\n\n=== javascript\n// \"Builders\" is a global variable\nvar builder = new Builders.ErrorBuilder();\n===",
       "group": "Builders",
       "methods":
       [
@@ -10747,60 +10747,60 @@
     },
     {
       "name": "Builders.Pagination",
-      "description": "Pagination is helpful for datasource paging.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.Pagination();\n===",
+      "description": "Pagination is helpful for datasource paging.\n\n=== javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.Pagination();\n===",
       "group": "Builders",
       "example": "https://github.com/totaljs/examples/tree/master/pagination",
       "properties":
       [
         {
           "return": "Boolean",
-          "name": "isNext",
+          "name": "instance.isNext",
           "description": "Is next page?"
         },
         {
           "return": "Boolean",
-          "name": "isPrev",
+          "name": "instance.isPrev",
           "description": "Is prev page?"
         },
         {
           "return": "Number",
-          "name": "items",
+          "name": "instance.items",
           "description": "Items count."
         },
         {
           "return": "Number",
-          "name": "count",
+          "name": "instance.count",
           "description": "Page count."
         },
         {
           "return": "Number",
-          "name": "max",
+          "name": "instance.max",
           "description": "Max items per page."
         },
         {
           "return": "Number",
-          "name": "page",
-          "description": "Max items per page."
+          "name": "instance.page",
+          "description": "A current page."
         },
         {
           "return": "Number",
-          "name": "skip",
+          "name": "instance.skip",
           "description": "For DB: how many items to skip?"
         },
         {
           "return": "Number",
-          "name": "take",
+          "name": "instance.take",
           "description": "For DB: how many items to take?"
         },
         {
           "return": "Boolean",
-          "name": "visible",
-          "description": "Contains pagination more pages than 1?"
+          "name": "instance.visible",
+          "description": "Has pagination more pages than one?"
         },
         {
           "return": "String",
-          "name": "format",
-          "description": "Current format for build URL.",
+          "name": "instance.format",
+          "description": "A current format for building URL.",
           "default": "'?page={0}'"
         }
       ],
@@ -10808,7 +10808,7 @@
       [
         {
           "return": "Pagination",
-          "name": "Pagination",
+          "name": "new Builders.Pagination",
           "description": "Constructor. Create an instance.",
           "params":
           [
@@ -10820,7 +10820,7 @@
             {
               "name": "page",
               "type": "Number",
-              "description": "Current page - (from 1)."
+              "description": "A current page - (from 1)."
             },
             {
               "name": "max",
@@ -10831,15 +10831,15 @@
               "options": ["optional"],
               "name": "format",
               "type": "string",
-              "description": "Format for build URL.",
+              "description": "A format for building URL.",
               "default": "'?page={0}'"
             }
           ]
         },
         {
           "return": "Pagination",
-          "name": "builder.refresh",
-          "description": "Refresh Pagination informations about paging.",
+          "name": "instance.refresh",
+          "description": "Refresh all informations about the paging.",
           "params":
           [
             {
@@ -10850,7 +10850,7 @@
             {
               "name": "page",
               "type": "Number",
-              "description": "Current page - (from 1)."
+              "description": "A current page - (from 1)."
             },
             {
               "name": "max",
@@ -10861,37 +10861,67 @@
         },
         {
           "return": "Object",
-          "name": "builder.prev",
-          "description": "Get a prev page object. return { url: String, page: Number }.",
+          "name": "instance.prev",
+          "description": "Get a previous page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
           "params":
           [
             {
               "options": ["optional"],
               "name": "format",
               "type": "String",
-              "description": "Override current format for build URL address.",
+              "description": "Override a current format for building URL address.",
               "default": "undefined"
             }
           ]
         },
         {
           "return": "Object",
-          "name": "builder.next",
-          "description": "Get a next page object. return { url: String, page: Number }.",
+          "name": "instance.next",
+          "description": "Get a next page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
           "params":
           [
             {
               "options": ["optional"],
               "name": "format",
               "type": "String",
-              "description": "Override current format for build URL address.",
+              "description": "Override a current format for building URL address.",
+              "default": "undefined"
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "instance.last",
+          "description": "Get a last page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override a current format for building URL address.",
+              "default": "undefined"
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "instance.first",
+          "description": "Get a first page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override a current format for building URL address.",
               "default": "undefined"
             }
           ]
         },
         {
           "return": "Object Array",
-          "name": "builder.render",
+          "name": "instance.prepare",
           "description": "Prepare pagination to array datasource.",
           "params":
           [
@@ -10899,15 +10929,113 @@
               "options": ["optional"],
               "name": "max",
               "type": "Number",
-              "description": "Max pages to pagination (creates between interval).",
+              "description": "Max pages in pagination (interval).",
               "default": "undefined"
             },
             {
               "options": ["optional"],
               "name": "format",
               "type": "String",
-              "description": "Override current format for build URL address.",
+              "description": "Override a current format for building URL address.",
               "default": "undefined"
+            }
+          ]
+        },
+        {
+          "return": "Object Array",
+          "name": "instance.render",
+          "description": "Prepare pagination to array datasource. Alias for pagination.prepare().",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "max",
+              "type": "Number",
+              "description": "Max pages in pagination (interval).",
+              "default": "undefined"
+            },
+            {
+              "options": ["optional"],
+              "name": "format",
+              "type": "String",
+              "description": "Override a current format for building URL address.",
+              "default": "undefined"
+            }
+          ]
+        },
+        {
+          "options": ["static method"],
+          "return": "Object",
+          "name": "Pagination.addTransform",
+          "description": "Add a new transformation for Pagination.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            },
+            {
+              "options": ["must return some object"],
+              "name": "fn",
+              "type": "Function",
+              "description": "A transformation function.",
+              "return": "Object",
+              "params":
+              [
+                {
+                  "name": "error",
+                  "type": "ErrorBuilder",
+                  "description": "ErrorBuilder (error writer) for transformation."
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "name": "name",
+              "type": "Boolean",
+              "default": "false",
+              "description": "Set this transformation as default?"
+            }
+          ]
+        },
+        {
+          "return": "Pagination",
+          "name": "instance.setTransform",
+          "description": "Set default transform for CURRENT Pagination.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "instance.transform",
+          "description": "Transform current Pagination.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
+            }
+          ]
+        },
+        {
+          "options": ["static method"],
+          "return": "Pagination",
+          "name": "Pagination.setDefaultTransform",
+          "description": "Set default transform for all Paginations.",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A transformation name."
             }
           ]
         }
@@ -11021,7 +11149,7 @@
     },
     {
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformation, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n=== javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage').get('user').get(100, function(err, result) { ... });\n\n===\n\nIMPORTANT:\n\n=== plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n===",
+      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformations, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n=== javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage').get('user').get(100, function(err, result) { ... });\n\n===\n\nIMPORTANT:\n\n=== plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n===",
       "group": "Builders",
       "methods":
       [
@@ -11228,7 +11356,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "done",
@@ -11264,7 +11393,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "done",
@@ -11295,7 +11425,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "done(results)",
@@ -11331,7 +11462,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "done",
@@ -11408,7 +11540,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "entityName",
@@ -11454,7 +11587,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "entityName",
@@ -11500,7 +11634,8 @@
                 {
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "A helper argument.",
+                  "default": "undefined"
                 },
                 {
                   "name": "entityName",
@@ -11848,7 +11983,8 @@
               "options": ["optional"],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "A helper object.",
+              "default": "undefined"
             },
             {
               "name": "callback",
