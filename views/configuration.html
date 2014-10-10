@@ -7,6 +7,8 @@
 	Framework knows four configuration files - <strong class="high">global (/config)</strong>, <strong class="high">debug (/config-debug)</strong>, <strong class="high">release (/config-release)</strong> and <strong class="high">test (/config-test)</strong>. Debug configuration file is for development, release is for production and test for assertion testing. Global configuration is for all modes and is loaded as first (other configuration can rewritten global values). Config files are in application directory and they haven't any file extension. <b>Configuration files are optional and they may not exist.</b>
 </div>
 <br />
+<div>Documentation: <a href="/FrameworkConfiguration/" class="link">FrameworkConfiguration</a></div>
+<br />
 <div class="image">
 	@{image('config-files.png', 314, 300, 'Directory with config files')}
 	<div>Sample of configuration files in website directory</div>
@@ -20,6 +22,8 @@
 <br />
 <div class="important"><b>Important note:</b></div class="red">
 <div class="mt3 text">All values obtained from the framework are readonly. Framework doesn't store back changed values into the config file. <b>Configuration file is loaded at the start once.</b></div>
+<br />
+<div>Documentation: <a href="/FrameworkConfiguration/" class="link">FrameworkConfiguration</a></div>
 <br />
 <hr />
 <h3>How does framework parse a configuration file?</h3>
@@ -53,109 +57,7 @@ console.log(framework.config.value);                 // OUTPUT: key
 <div class="text">
 	The framework has built-in String.prototype for parsing configuration from string into the object <a href="/String.prototype/#String.prototype.parseConfig" class="link">String.prototype.parseConfig()</a>.
 </div>
-<br />
-<h2>Framework optional options</h2>
-<br />
-<pre class="brush: plain">
-// framework options
-name                               : totaljs.com
-version                            : 1.01
-secret                             : secret-key-for-web
-author							   : Your company name
- 
-etag-version                       :
-
-// Default directory options
-directory-definitions              : /definitions/
-directory-controllers              : /controllers/
-directory-models                   : /models/
-directory-views                    : /views/
-directory-temp                     : /tmp/
-directory-resources                : /resources/
-directory-source                   : /source/
-directory-public                   : /public/
-directory-modules                  : /modules/
-directory-logs                     : /logs/
-directory-tests                    : /tests/
-directory-workers                  : /workers/
-
-// This directory is a "virtual directory" and has the same function as directory-public
-// This feature is for Angular.js applications
-directory-angular                  : /app/
-
-// These properties serve for CDN (cdnjs.cloudflare)
-// So according these properties are mapped scripts
-angular-version                    : 1.2.10
-angular-i18n-version               : 1.2.10
-
-// Default url for static routing
-static-url                         :
-static-url-js                      : /js/
-static-url-css                     : /css/
-static-url-image                   : /img/
-static-url-video                   : /video/
-static-url-font                    : /font/
-static-url-upload                  : /upload/
-
-// Default extensions for accepting files
-static-accepts                     : .jpg,.png,.gif,.ico,.js,.css,.txt,.xml,.woff,.ttf,.eot,.svg,.zip,.rar,.pdf,....
-
-// Static-accepts-custom: add your own values into the static-accepts
-static-accepts-custom              : .mp3,.flv
-
-// Default configuration of listening
-// If you set IP and PORT manually in the code, then is skipped this setting.
-default-ip                         : 127.0.0.1
-default-port					   : 8000
-
-// Default view layout - {directory-views}/{_layout}.html
-default-layout                     : _layout
- 
-// Default maximum request size / length (default 5 kB)
-default-request-length             : 5120
-default-websocket-request-length   : 5120
-
-// Auto encodeURIComponent &amp; decodeURIComponent text/JSON message
-default-websocket-encodedecode     : false
- 
-// In milliseconds
-default-request-timeout            : 3000
- 
-// gm = graphicsmagick (default) or im = imagemagick
-// otherwise is used ImageMagick (Heroku supports ImageMagick)
-default-image-converter            : gm
-
-// default image quality for framework.resize()
-default-image-quality              : 93
-
-// default time (in minutes) for clearing cache of resources
-default-interval-clear-resources   : 20
-
-// default time (in minutes) for clearing internal cache
-default-interval-clear-cache       : 3
-
-// default time (in minutes) for re-compile of precomiled views
-// Read more: framework.install('view', name, url);
-default-interval-precompile-views  : 61
-
-allow-gzip                         : true
- 
-// If you'll using Socket.io, set allow-websocket to false
-allow-websocket                    : true
-
-// IMPORTANT: experimental, default false
-allow-performance                  : false
-
-// enable/disable static compilation
-allow-compile-js                   : true
-allow-compile-css                  : true
-
-// Custom titles (this option adds config['name'] to meta title)
-allow-custom-titles                : true
-
-// enable/disable HTML compression
-allow-compress-html                : true
-</pre>
+<div>Documentation: <a href="/FrameworkConfiguration/" class="link">FrameworkConfiguration</a></div>
 <br />
 <h2>How to get value from configuration?</h2>
 <h3>Everywhere in *.js server scripts</h3>

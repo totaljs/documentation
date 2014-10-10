@@ -2504,6 +2504,355 @@
       ]
     },
     {
+      "name": "FrameworkConfiguration",
+      "description": "FrameworkConfiguration contains all options of framework configuration.",
+      "properties":
+      [
+        {
+          "options": ["important"],
+          "name": "name",
+          "description": "An application name. This name is used on many place (META, process name, etc.).",
+          "return": "String",
+          "default": "'total.js'"
+        },
+        {
+          "name": "version",
+          "description": "An application version.",
+          "return": "String",
+          "default": "'1.01'"
+        },
+        {
+          "name": "secret",
+          "description": "An application secret. This option is used in framework.encrypt(), framework.decrypt() and framework.hash() (default salt).",
+          "return": "String",
+          "default": "os.hostname() + '-' + os.platform() + '-' + os.arch()"
+        },
+        {
+          "options": ["important"],
+          "name": "author",
+          "description": "A company name or author name. This option is used as meta author tag.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "name": "etag-version",
+          "description": "Custom ETag version for handling of static files. Is used as part of key for caching static files on client-side.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "name": "directory-definitions",
+          "description": "A default directory for definitions.",
+          "return": "String",
+          "default": "'/definitions/'"
+        },
+        {
+          "name": "directory-controllers",
+          "description": "A default directory for controllers.",
+          "return": "String",
+          "default": "'/controllers/'"
+        },
+        {
+          "name": "directory-models",
+          "description": "A default directory for models.",
+          "return": "String",
+          "default": "'/models/'"
+        },
+        {
+          "name": "directory-models",
+          "description": "A default directory for views.",
+          "return": "String",
+          "default": "'/views/'"
+        },
+        {
+          "name": "directory-temp",
+          "description": "A default directory for temporary.",
+          "return": "String",
+          "default": "'/tmp/'"
+        },
+        {
+          "name": "directory-resources",
+          "description": "A default directory for resources.",
+          "return": "String",
+          "default": "'/resources/'"
+        },
+        {
+          "name": "directory-source",
+          "description": "A default directory for business logic.",
+          "return": "String",
+          "default": "'/source/'"
+        },
+        {
+          "name": "directory-public",
+          "description": "A default directory for publishing.",
+          "return": "String",
+          "default": "'/public/'"
+        },
+        {
+          "name": "directory-public-virtual",
+          "description": "A default virtual directory for publishing.",
+          "return": "String",
+          "default": "'/app/'"
+        },
+        {
+          "name": "directory-modules",
+          "description": "A default directory for modules.",
+          "return": "String",
+          "default": "'/modules/'"
+        },
+        {
+          "name": "directory-logs",
+          "description": "A default directory for logs.",
+          "return": "String",
+          "default": "'/logs/'"
+        },
+        {
+          "name": "directory-tests",
+          "description": "A default directory for tests.",
+          "return": "String",
+          "default": "'/tests/'"
+        },
+        {
+          "name": "directory-workers",
+          "description": "A default directory for workers.",
+          "return": "String",
+          "default": "'/workers/'"
+        },
+        {
+          "name": "static-url",
+          "description": "A default url routing of static files. Is used in view engine and framework.routeStatic().",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "name": "static-url-js",
+          "description": "A default url routing of static files (JavaScript) routing. Is used in view engine and framework.routeJS().",
+          "return": "String",
+          "default": "'/js/'"
+        },
+        {
+          "name": "static-url-css",
+          "description": "A default url routing of static files (CSS) routing. Is used in view engine and framework.routeCSS().",
+          "return": "String",
+          "default": "'/css/'"
+        },
+        {
+          "name": "static-url-image",
+          "description": "A default url routing of static files (Images/Pictures) routing. Is used in view engine and framework.routeImage().",
+          "return": "String",
+          "default": "'/img/'"
+        },
+        {
+          "name": "static-url-font",
+          "description": "A default url routing of static files (Fonts) routing. Is used in view engine and framework.routeFont().",
+          "return": "String",
+          "default": "'/fonts/'"
+        },
+        {
+          "name": "static-url-video",
+          "description": "A default url routing of static files (Videos) routing. Is used in view engine and framework.routeVideo().",
+          "return": "String",
+          "default": "'/video/'"
+        },
+        {
+          "name": "static-url-download",
+          "description": "A default url routing of static files (Downloads) routing. Is used in view engine and framework.routeDownload().",
+          "return": "String",
+          "default": "'/download/'"
+        },
+        {
+          "name": "static-accepts",
+          "description": "Which file extensions (static files) handles framework? Values in config files must be separated with comma (on one line).\n\nDefault accepts:\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json'].",
+          "return": "String Array"
+        },
+        {
+          "options": ["auxiliary"],
+          "name": "static-accepts-custom",
+          "description": "This option adds all own values into \"static-accepts\" and it's not visible in \"framework.config\". Values in config files must be separated with comma (on one line).",
+          "return": "String Array",
+          "default": "[]"
+        },
+        {
+          "name": "default-ip",
+          "description": "A default IP address for listening of server.",
+          "return": "String",
+          "default": "'127.0.0.1'"
+        },
+        {
+          "name": "default-port",
+          "description": "A default PORT for listening of server.",
+          "return": "Number",
+          "default": "8000"
+        },
+        {
+          "name": "default-layout",
+          "description": "A default layout name for all views. Framework loads layout in the form: \"{directory-views}/{_layout}.html\"",
+          "return": "String",
+          "default": "'_layout'"
+        },
+        {
+          "name": "default-request-length",
+          "description": "A default request length in kB (kilobajt). Framework calculates POST/PUT data and length of uploaded files.",
+          "return": "Number",
+          "default": "5"
+        },
+        {
+          "name": "default-websocket-request-length",
+          "description": "A default WebSocket message length in kB (kilobajt). Framework calculates received message.",
+          "return": "Number",
+          "default": "2"
+        },
+        {
+          "name": "default-websocket-encodedecode",
+          "description": "Encode/Decode WebSocket messages. Framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On client-side is needed creating encode/decode too.\n\nExmaple (client-side):\nSending: encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' }));\nReceiving: JSON.parse(decodeURIComponent(message))",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "default-request-timeout",
+          "description": "A default request timeout in milliseconds (websocket doesn't support it).",
+          "return": "Number",
+          "default": "3000"
+        },
+        {
+          "name": "default-image-converter",
+          "description": "A default image/picture converter. Value: \"gm\" is GraphicsMagick and \"im\" is ImageMagick. Your server must have installed one of them.",
+          "return": "String",
+          "default": "'gm'"
+        },
+        {
+          "name": "default-image-quality",
+          "description": "A default image/picture quality after processing (percentage for JPEG files only).",
+          "return": "Number",
+          "default": "90"
+        },
+        {
+          "name": "allow-gzip",
+          "description": "Allow using GZIP compression (for responses). GZIP is used when this option is true and browser supports compression.",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "allow-websocket",
+          "description": "Allow websocket listening. If you want to use e.g. Socket.io, this option must be false.",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "allow-compile-js",
+          "description": "Allow compile (clean and compress) JavaScript files and inline scripts in views.",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "allow-compile-css",
+          "description": "Allow compile (process, clean and compress) CSS files and inline styles in views.",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "allow-compile-html",
+          "description": "Allow compile (clean and compress) HTML of views.",
+          "return": "Boolean",
+          "default": "true"
+        },
+        {
+          "name": "allow-performance",
+          "description": "Allow increasing a HTTP performance.",
+          "return": "Boolean",
+          "default": "false"
+        },
+        {
+          "name": "allow-custom-titles",
+          "description": "Disable appending an application name into meta tags.",
+          "return": "Boolean",
+          "default": "false"
+        },
+        {
+          "name": "disable-strict-server-certificate-validation",
+          "description": "This option sets: process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0",
+          "return": "Boolean",
+          "default": "false"
+        },
+        {
+          "name": "disable-strict-server-certificate-validation",
+          "description": "This option sets: process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0",
+          "return": "Boolean",
+          "default": "false"
+        },
+        {
+          "name": "default-interval-clear-resources",
+          "description": "Interval (minutes) for clearing of resources from the memory. Resources are read if are needed.",
+          "return": "Number",
+          "default": "20"
+        },
+        {
+          "name": "default-interval-clear-cache",
+          "description": "Interval (minutes) for clearing of cache from the memory.",
+          "return": "Number",
+          "default": "3"
+        },
+        {
+          "name": "default-interval-precompile-views",
+          "description": "Interval (minutes) for precompiling of external views.",
+          "return": "Number",
+          "default": "61"
+        },
+        {
+          "name": "default-interval-websocket-ping",
+          "description": "Interval (minutes) for websocket pinging.",
+          "return": "Number",
+          "default": "1"
+        },
+        {
+          "name": "default-errorbuilder-resource-name",
+          "description": "A default resource name for ErrorBuilder. ErrorBuilder is using framework.resource().",
+          "return": "String",
+          "default": "'default'"
+        },
+        {
+          "name": "default-errorbuilder-resource-prefix",
+          "description": "A default prefix for ErrorBuilder. Prefix is added before property name.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "options": ["important"],
+          "name": "mail.address.from",
+          "description": "Mail settings for framework.mail() / controller.mail(): this option sets e-mail sender address.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "options": ["optional"],
+          "name": "mail.address.reply",
+          "description": "Mail settings for framework.mail() / controller.mail(): this option sets replyTo e-mail address.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "options": ["optional"],
+          "name": "mail.address.copy",
+          "description": "Mail settings for framework.mail() / controller.mail(): this option sets e-mail BCC address.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "options": ["important"],
+          "name": "mail.smtp",
+          "description": "Mail settings for framework.mail() / controller.mail(): this option sets SMTP server HOST address.",
+          "return": "String",
+          "default": "''"
+        },
+        {
+          "options": ["important"],
+          "name": "mail.smtp.options",
+          "description": "Mail settings for framework.mail() / controller.mail(): this option sets SMTP options (secure, user, password and timeout).\n\nExample:\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}",
+          "return": "String"
+        }
+      ]
+    },
+    {
       "name": "FrameworkCache",
       "description": "The framework is using this class for storing views, resources, etc..\n\n=== javascript\n\nframework.cache.add('key', 'value', new Date().add('day', 1));\nconsole.log(framework.read('key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.read('key'));\n===",
       "properties":
