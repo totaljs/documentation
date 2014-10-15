@@ -4031,7 +4031,7 @@
       [
         {
           "options": ["http", "websocket"],
-          "return": "Boolean",
+          "return": "ErrorBuilder",
           "name": "controller.validate",
           "description": "Validate an object model.\nIMPORTANT: If 'properties' is string then properties read by the schema validation. Read more in Builders.SchemaBuilder.",
           "example": "https://github.com/totaljs/examples/tree/master/validation",
