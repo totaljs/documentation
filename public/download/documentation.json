@@ -2662,7 +2662,7 @@
         },
         {
           "name": "static-accepts",
-          "description": "Which file extensions (static files) handles framework? Values in config files must be separated with comma (on one line).\n\nDefault accepts:\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json'].",
+          "description": "Which file extensions (static files) handles framework? Values in config files must be separated with comma (on one line).\n\nDefault accepts:\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md'].",
           "return": "String Array"
         },
         {
@@ -2725,6 +2725,13 @@
           "description": "A default image/picture quality after processing (percentage for JPEG files only).",
           "return": "Number",
           "default": "90"
+        },
+        {
+          "options": ["important"],
+          "name": "allow-handle-static-files",
+          "description": "Framework handles all static files if this options is true.",
+          "return": "Boolean",
+          "default": "true"
         },
         {
           "name": "allow-gzip",
@@ -2896,8 +2903,8 @@
           ]
         },
         {
-          "name": "framework.cache.read",
-          "description": "Read value from the cache.",
+          "name": "framework.cache.get",
+          "description": "Read a value from the cache.",
           "return": "Object",
           "default": "null",
           "params":
@@ -2906,6 +2913,33 @@
               "name": "name",
               "type": "String",
               "description": "Identificator name."
+            },
+            {
+              "options": ["optional"],
+              "name": "def",
+              "type": "Object",
+              "description": "A default value."
+            }
+          ]
+        },
+        {
+          "options": ["alias"],
+          "name": "framework.cache.read",
+          "description": "Read a value from the cache. Alias for cache.get().",
+          "return": "Object",
+          "default": "null",
+          "params":
+          [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Key."
+            },
+            {
+              "options": ["optional"],
+              "name": "def",
+              "type": "Object",
+              "description": "A default value."
             }
           ]
         },
@@ -10845,10 +10879,10 @@
       [
         {
           "return": "FrameworkUtils",
-          "name": "utils",
+          "name": "Utils",
           "description": "Get FrameworkUtils.",
           "go": "FrameworkUtils",
-          "options": ["or Utils"]
+          "options": ["or utils"]
         },
         {
           "return": "builders",

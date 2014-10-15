@@ -43,7 +43,7 @@ body { padding:20px; margin:0; font:normal 12px Arial; background: #F0F0F0 url(.
 .documentation-options span { float: left; padding: 1px 7px; background-color: #E0E0E0; color: #505050; text-shadow: 1px 1px 1px white; font-size: 11px; margin-right: 5px; border-radius: 4px; border-bottom: 2px solid silver; }
 .doc-internal { background-color: #FFDBD8 !important; }
 .doc-important { background-color: #FFDBD8 !important; }
-.documentation-list a { font-size: 16px; color: black; text-decoration: none; border-bottom: 1px dotted gray; padding-bottom: 2px; display: block; margin-bottom: 3px; }
+.documentation-list a { font-size: 16px; color: black; text-decoration: none; border-bottom: 1px dotted gray; padding-bottom: 2px; display: block; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .documentation-list a:hover { border-bottom: 1px dotted #505050; color: #505050; }
 .documentation-list i { font-size: 11px; color: silver; }
 .documentation-list span { color: gray; }

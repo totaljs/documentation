@@ -94,6 +94,7 @@ function view_howdoesitworks(name) {
         case 'modules':
         case 'resources':
         case 'security':
+        case 'reverse-proxy':
         // case 'templates':
         case 'validation':
         case 'views':
