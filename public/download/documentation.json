@@ -4938,7 +4938,7 @@
         {
           "options": ["http"],
           "name": "controller.baa",
-          "description": "Basic access authentication (baa). Return object with user and password. If baa return null then function close a response (and sent authentification).",
+          "description": "Basic access authentication (baa). Return object with user name and password. If baa return null then function close a response (and sent authentification).\n\n{ name: 'petersirka', password: 'asdfghjikl' }",
           "return": "Object",
           "example": "https://github.com/totaljs/examples/tree/master/authorization-www-basic",
           "params":
