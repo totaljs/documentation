@@ -784,6 +784,24 @@
           ]
         },
         {
+          "name": "framework.mapping",
+          "description": "A custom mapping of static files. You can easily change a mapping static file.",
+          "return": "Framework",
+          "params":
+          [
+            {
+              "name": "url",
+              "type": "String",
+              "description": "A relative url."
+            },
+            {
+              "name": "filename",
+              "type": "String",
+              "description": "Filename for response."
+            }
+          ]
+        },
+        {
           "name": "framework.error",
           "description": "Create a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
           "return": "Framework/Function",
