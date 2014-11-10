@@ -532,7 +532,7 @@
             {
               "options": ["optional"],
               "name": "options",
-              "type": "Object",
+              "type": "HttpRouteOptions",
               "description": "Define more options for the route.",
               "default": "{}",
               "go": "HttpRouteOptions"
@@ -618,6 +618,14 @@
                   "description": "Framework object."
                 }
               ]
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "HttpRouteOptions",
+              "description": "Define more options for the route.",
+              "default": "{}",
+              "go": "HttpRouteOptions"
             }
           ]
         },
@@ -2559,6 +2567,12 @@
           "default": "''"
         },
         {
+          "name": "directory-packages",
+          "description": "A default directory for packages.",
+          "return": "String",
+          "default": "'/packages/'"
+        },
+        {
           "name": "directory-definitions",
           "description": "A default directory for definitions.",
           "return": "String",
@@ -3599,198 +3613,203 @@
       [
         {
           "return": "Number",
+          "name": "framework.stats.request.request",
+          "description": "Returns a count of requests."
+        },
+        {
+          "return": "Number",
           "name": "framework.stats.request.timeout",
-          "description": "Return a count of timeout requests."
+          "description": "Returns a count of timeout requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.pending",
-          "description": "Return a count of pending requests."
+          "description": "Returns a count of pending requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.web",
-          "description": "Return a count of classic requests."
+          "description": "Returns a count of classic requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.xhr",
-          "description": "Return a count of XHR requests."
+          "description": "Returns a count of XHR requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.file",
-          "description": "Return a count of file requests."
+          "description": "Returns a count of file requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.websocket",
-          "description": "Return a count of websocket requests."
+          "description": "Returns a count of websocket requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.get",
-          "description": "Return a count of GET (method) requests."
+          "description": "Returns a count of GET (method) requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.post",
-          "description": "Return a count of POST (method) requests."
+          "description": "Returns a count of POST (method) requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.put",
-          "description": "Return a count of PUT (method) requests."
+          "description": "Returns a count of PUT (method) requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.upload",
-          "description": "Return a count of upload (multipart) requests."
+          "description": "Returns a count of upload (multipart) requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.xss",
-          "description": "Return a count of XSS requests (for example: Request data contain illegal characters)."
+          "description": "Returns a count of XSS requests (for example: Request data contain illegal characters)."
         },
         {
           "return": "Number",
           "name": "framework.stats.request.blocked",
-          "description": "Return a count of blocked requests (for example: POST request into the GET route)."
+          "description": "Returns a count of blocked requests (for example: POST request into the GET route)."
         },
         {
           "return": "Number",
           "name": "framework.stats.request['delete']",
-          "description": "Return a count of DELETE (method) requests."
+          "description": "Returns a count of DELETE (method) requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.view",
-          "description": "Return a count of VIEW responses."
+          "description": "Returns a count of VIEW responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.json",
-          "description": "Return a count of JSON responses."
+          "description": "Returns a count of JSON responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.websocket",
-          "description": "Return a count of WebSocket messages."
+          "description": "Returns a count of WebSocket messages."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.file",
-          "description": "Return a count of File responses."
+          "description": "Returns a count of File responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.plain",
-          "description": "Return a count of Plain responses."
+          "description": "Returns a count of Plain responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.empty",
-          "description": "Return a count of Empty responses."
+          "description": "Returns a count of Empty responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.binary",
-          "description": "Return a count of Binary responses."
+          "description": "Returns a count of Binary responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.redirect",
-          "description": "Return a count of Redirect responses."
+          "description": "Returns a count of Redirect responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.timeout",
-          "description": "Return a count of Timeout responses."
+          "description": "Returns a count of Timeout responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.custom",
-          "description": "Return a count of Custom responses."
+          "description": "Returns a count of Custom responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.forwarding",
-          "description": "Return a count of Host redirect responses."
+          "description": "Returns a count of Host redirect responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.stream",
-          "description": "Return a count of Stream responses."
+          "description": "Returns a count of Stream responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.streaming",
-          "description": "Return a count of Streaming responses (http range request)."
+          "description": "Returns a count of Streaming responses (http range request)."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.restriction",
-          "description": "Return a count of Restriction responses."
+          "description": "Returns a count of Restriction responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.notModified",
-          "description": "Return a count of not modified responses."
+          "description": "Returns a count of not modified responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.mmr",
-          "description": "Return a count of Multipart-Mixed-Replace responses."
+          "description": "Returns a count of Multipart-Mixed-Replace responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.destroy",
-          "description": "Return a count of destroyed requests."
+          "description": "Returns a count of destroyed requests."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.sse",
-          "description": "Return a count of Server Sent Events responses."
+          "description": "Returns a count of Server Sent Events responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error400",
-          "description": "Return a count of Error (400) responses."
+          "description": "Returns a count of Error (400) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error401",
-          "description": "Return a count of Error (401) responses."
+          "description": "Returns a count of Error (401) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error403",
-          "description": "Return a count of Error (403) responses."
+          "description": "Returns a count of Error (403) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error404",
-          "description": "Return a count of Error (404) responses."
+          "description": "Returns a count of Error (404) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error408",
-          "description": "Return a count of Error (408) responses."
+          "description": "Returns a count of Error (408) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error431",
-          "description": "Return a count of Error (431) responses."
+          "description": "Returns a count of Error (431) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error500",
-          "description": "Return a count of Error (500) responses."
+          "description": "Returns a count of Error (500) responses."
         },
         {
           "return": "Number",
           "name": "framework.stats.response.error501",
-          "description": "Return a count of Error (501)) responses."
+          "description": "Returns a count of Error (501)) responses."
         }
       ]
     },
