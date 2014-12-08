@@ -225,6 +225,22 @@
             {
               "name": "value",
               "type": "Any"
+            },
+            {
+              "name": "path",
+              "type": "String"
+            },
+            {
+              "name": "path",
+              "type": "String"
+            },
+            {
+              "name": "schemaName",
+              "type": "String"
+            },
+            {
+              "name": "model",
+              "type": "Object"
             }
           ]
         },
@@ -540,6 +556,87 @@
           ]
         },
         {
+          "options": ["alternative"],
+          "name": "framework.route",
+          "description": "Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/routing",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Route name for searching."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/"
+            },
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "Function to execute.",
+              "params":
+              [
+                {
+                  "options": ["optional"],
+                  "name": "param..1",
+                  "type": "String",
+                  "description": "Dynamic parameter"
+                },
+                {
+                  "options": ["optional"],
+                  "name": "param..2",
+                  "type": "String",
+                  "description": "Dynamic parameter"
+                },
+                {
+                  "options": ["optional"],
+                  "name": "param..n",
+                  "type": "String",
+                  "description": "Dynamic parameter"
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "name": "options",
+              "type": "HttpRouteOptions",
+              "description": "Define more options for the route.",
+              "default": "{}",
+              "go": "HttpRouteOptions"
+            }
+          ]
+        },
+        {
+          "options": ["alternative"],
+          "name": "framework.route",
+          "description": "Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.",
+          "return": "Framework",
+          "example": "https://github.com/totaljs/examples/tree/master/routing",
+          "params":
+          [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "Route name for searching."
+            },
+            {
+              "name": "url",
+              "type": "String",
+              "description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/"
+            },
+            {
+              "options": ["optional"],
+              "name": "viewName",
+              "type": "String",
+              "description": "Function to execute.",
+              "default": "According to URL."
+            }
+          ]
+        },
+        {
           "name": "framework.resize",
           "description": "Register a image resize route. Example:\n\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });",
           "return": "Framework",
@@ -759,6 +856,12 @@
                   "description": "Error handling."
                 }
               ]
+            },
+            {
+              "options": ["optional"],
+              "name": "replyTo",
+              "type": "String",
+              "description": "A reply to address."
             }
           ]
         },
@@ -7467,7 +7570,7 @@
         {
           "return": "Boolean",
           "name": "utils.queue",
-          "description": "A queue list. Usage for e.g. EMFILE, too many open files. Argument 'fn' is executed when running count of 'fn' is less than 'maximum' argument.",
+          "description": "A queue list. Usage for e.g. EMFILE, too many open files. Argument 'fn' is executed when running count of 'fn' is less than 'maximum' argument. Function returns true if it's processed at time.",
           "params":
           [
             {
@@ -8520,6 +8623,30 @@
         },
         {
           "return": "FrameworkImage",
+          "name": "image.miniature",
+          "description": "Create a minuature.",
+          "params":
+          [
+            {
+              "name": "width",
+              "type": "String",
+              "description": "New image width."
+            },
+            {
+              "name": "height",
+              "type": "String",
+              "description": "New image height."
+            },
+            {
+              "name": "bgColor",
+              "type": "String",
+              "description": "Background color.",
+              "default": "'white'"
+            }
+          ]
+        },
+        {
+          "return": "FrameworkImage",
           "name": "image.resizeCenter",
           "description": "Resize image with align: center center.",
           "params":
@@ -8913,6 +9040,12 @@
           "description": "Request flags. If flag starts with # is loaded as middleware.",
           "default": "[]",
           "go": "HttpRouteOptionsFlags"
+        },
+        {
+          "options": ["optional", "http", "websocket"],
+          "return": "String",
+          "name": "name",
+          "description": "Route name for searching."
         },
         {
           "options": ["optional", "http", "websocket"],
@@ -9753,7 +9886,7 @@
         },
         {
           "return": "Number",
-          "name": "String.prototype.parseFLoat",
+          "name": "String.prototype.parseFloat",
           "description": "Parse float number from string.",
           "params":
           [
@@ -9765,6 +9898,12 @@
               "default": "0"
             }
           ]
+        },
+        {
+          "return": "Number",
+          "name": "String.prototype.parseBool",
+          "description": "Parse boolean from string.",
+          "params": []
         },
         {
           "return": "String",
@@ -10420,6 +10559,36 @@
                   "description": "Current index in array."
                 }
               ]
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "Array.prototype.first",
+          "description": "First item in array.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "def",
+              "type": "Object",
+              "description": "Default value.",
+              "default": "null"
+            }
+          ]
+        },
+        {
+          "return": "Object",
+          "name": "Array.prototype.last",
+          "description": "Last item in array.",
+          "params":
+          [
+            {
+              "options": ["optional"],
+              "name": "def",
+              "type": "Object",
+              "description": "Default value.",
+              "default": "null"
             }
           ]
         },
