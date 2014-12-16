@@ -1,5 +1,5 @@
 {
-  "default": "pages/Getting started",
+  "default": "pages~Getting started",
   "api": [
     {
       "events": [
@@ -13595,15 +13595,106 @@
   ],
   "links": [
     {
-      "name": "+100 examples",
+      "name": "Download examples",
       "url": "http://www.google.sk"
+    },
+    {
+      "name": "Download modules",
+      "url": "https://github.com/totaljs/modules"
+    },
+    {
+      "name": "Issues",
+      "url": "https://github.com/totaljs/framework/issues"
+    },
+    {
+      "name": "Chat & Discussion",
+      "url": "https://gitter.im/totaljs/framework"
+    },
+    {
+      "name": "Videos",
+      "url": "https://www.youtube.com/results?search_query=%22total.js%22"
     }
   ],
   "pages": [
     {
       "group": "",
       "name": "Getting started",
-      "body": "Welcome to the total.js documentation. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS.\n\n## Installation options\n\n- NPM (Node package manager)\n- NPM (Node package manager) installation as global module\n- Run the framework without installation\n- Run empty project\n\n**NPM (Node package manager)**\n\n```bash\n$ npm install total.js\n```\n\n**NPM (Node package manager) installation as global module**\n\n```bash\n$ npm install total.js\n```\n\n**Run the framework without installation**\n\nCreate `index.js` file, put below content and run `node index.js`.\n\n```javascript\nfunction init() {\n    framework.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(init) !== 'undefined') init(); });\n});\n```"
+      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` file, put below content into the file and run `node index.js`.\n\n```javascript\nfunction init() {\n\n    framework.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    framework.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(init) !== 'undefined') init(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory+Structure)\n- [Total.js - Configuration](#pages~Configuration)"
+    },
+    {
+      "group": "",
+      "name": "Tutorial",
+      "body": "- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    framework.route('/', view_index);\n    framework.route('/services/{name}/', view_services);\n    framework.route('/contact/', view_contact);\n    framework.route('/contact/', json_contact, ['post', 'json']);\n}\n\n// Define action\nfunction view_index() {\n    var self = this;\n    // \"index\" view is routed to views/index.html\n    // ---> and return response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // \"services\" view is routed to views/services.html\n    // second argument is a model\n    // ---> and return response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> and return response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // get a posted JSON\n    var model = self.body;\n\n    // send e-mail to our company\n    self.mail('info@company.com', 'Contact form', 'mail-template', model);\n\n    // ---> and return response in JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit views\n\n### Edit view: views/layout.html\n\nLayout view is a special view which contains page layout for rendering other views from actions. You can create unlimited count of layout views or you can disabled layout.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{js('default.js')}\n    @{css('bootstrap.min.css', 'default.css', 'font-awesome.min.css')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `@{meta}` tag renders meta tags\n- `@{js('...')}` tag renders links to scripts\n- `@{css('...')}` tag renders links to styles\n- `@{favicon('...')}` tag renders favicon\n- `@{body}` tag renders views from actions (__IMPORTANT__ for layout views)\n\nMore about view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is content from view.</p>\n```\n\n### Create a view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{endif}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{endif}\n```\n\n### Create a view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$ node debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n### Read more:\n\n- [Total.js - Directory structure](#pages~Directory+Structure)\n- [Total.js - Configuration](#pages~Configuration)"
+    },
+    {
+      "group": "",
+      "name": "Directory structure",
+      "body": "> __Total.js__ project has a _simple directory structure_. All directories are optional and you can rewrite each path of directory in the framework configuration file.\n\n## Directories\n\n```markdown\ncontrollers\ndatabases\ndefinitions\nlogs\nmodels\nmodules\npublic\nresources\nsource\npackages\ntests\ntmp\nviews\nworkers\n```\n\n### Directory: controllers\n\nDirectory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.\n\n- [How do controllers work?](#pages~Controllers)\n\n---\n\n### Directory: databases\n\nDirectory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.\n\n- [How does NoSQL database work?](#pages~NoSQL)\n- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)\n\n---\n\n### Directory: definitions\n\nDirectory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.\n\n- [How do definitions work?](#pages~Definitions)\n\n---\n\n### Directory: logs\n\nDirectory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.\n\n- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)\n\n---\n\n### Directory: models\n\nDirectory contains models. The model can contain functions or some [schemas](#api~Builders.SchemaBuilder). Recommended for database models.\n\n- [How do models work?](#pages~Models)\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n### Directory: modules\n\nDirectory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.\n\n- [How do modules work?](#pages~Modules)\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n- [Download 3rd modules](https://github.com/totaljs/modules)\n\n---\n\n### Directory: public\n\nThis directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.\n\n---\n\n### Directory: resources\n\nIf you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.\n\n- [How do resources work?](#pages~Resources)\n- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)\n\n---\n\n### Directory: source\n\nThis directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.\n\n- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)\n\n---\n\n### Directory: packages\n\nThis directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).\n\n- [How do packages work?](#pages~Packages)\n\n---\n\n### Directory: tests\n\nTest directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.\n\n- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)\n\n---\n\n### Directory: tmp\n\nThis directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.\n\n---\n\n### Directory: views\n\nThis directory contains views and layouts.\n\n---\n\n### Directory: workers\n\nThis directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.\n\n- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)\n- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)"
+    },
+    {
+      "group": "",
+      "name": "Developer tools",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Controllers",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Definitions",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Modules",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Models",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Resources",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "View engine",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Localization",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Databases",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Authorization",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Validation",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "HTML, JS, CSS",
+      "body": ""
+    },
+    {
+      "group": "How does it work?",
+      "name": "Security (XSS, CSRF)",
+      "body": ""
     }
   ],
   "modified": "2014-10-06 15:31:00",

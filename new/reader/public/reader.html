@@ -49,7 +49,7 @@
         var documentation;
 
         function reload() {
-            var linker = decodeURIComponent(window.location.hash.substring(1)).split('/');
+            var linker = decodeURIComponent(window.location.hash.substring(1)).split('~');
             render(linker[0], linker[1]);
         }
 
@@ -65,7 +65,7 @@
                 var obj = pages[i];
                 if (!obj.group)
                     obj.group = '';
-                obj.linker = '#' + encodeURIComponent(obj.group + '/' + obj.name);
+                obj.linker = '#' + encodeURIComponent('pages~' + obj.name);
                 if (gp[obj.group] === undefined)
                     gp[obj.group] = [obj];
                 else
@@ -74,7 +74,7 @@
 
             for (var i = 0, length = api.length; i < length; i++) {
                 var obj = api[i];
-                obj.linker = '#' + encodeURIComponent(obj.group + '/' + obj.name);
+                obj.linker = '#' + encodeURIComponent('api~' + obj.name);
                 if (!obj.group)
                     obj.group = '';
                 if (ga[obj.group] === undefined)
@@ -107,7 +107,8 @@
 
         $.get('documentation.json', function(data) {
             documentation = data;
-            window.location.href = '#' + encodeURIComponent(documentation['default']);
+            if ((window.location.hash || '').length < 2)
+                window.location.href = '#' + encodeURIComponent(documentation['default']);
             configure();
             reload();
         });
@@ -128,6 +129,12 @@
 
             if (!item)
                 return;
+
+            var menu = $('.menu');
+
+            menu.find('.selected').removeClass('selected');
+            menu.find('a[href="' + item.linker + '"]').addClass('selected');
+
             $('#content').html('<h1>' + item.name + '</h1><div class="markdown">' + marked(item.body.replace(/‘|’/g, '\'')) + '</div>');
             highlight();
         }
