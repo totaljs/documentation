@@ -1,131 +1,142 @@
-> __Total.js__ project has a _simple directory structure_. All directories are optional and you can rewrite each path of directory in the framework configuration file.
+The controller supports 3x types of route _classic_, _websocket_ and _file route_. The controller with modules are the main features of the framework logic.
 
-## Directories
+- The classic route handles classic requests to dynamic contents (views).
+- The websocket route handles WebSockets connections.
+- The file route handles static files.
 
-```markdown
-controllers
-databases
-definitions
-logs
-models
-modules
-public
-resources
-source
-packages
-tests
-tmp
-views
-workers
+__More informations__
+
+- The controller is plain JavaScript file.
+- The framework automatically loads controller into the memory.
+- `exports.install` is executed automatically and one time.
+- Views are loaded according to the controller name from `your-app/views/your-controller-name/`.
+- You can create unlimited count of controllers.
+- Controller can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).
+- Routing supports routing according to subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).
+- The controller can communicate with other controller.
+
+---
+
+## Examples
+
+- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)
+- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)
+- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)
+- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)
+- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)
+- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)
+- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)
+- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)
+- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)
+- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)
+- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)
+- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)
+- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)
+- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)
+- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)
+- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)
+
+---
+
+## The definition
+
+### PROPERTY: exports.id;
+
+`optional` Can contain only controller name (it's an identificator name). A __default value__ for this property is controller filename without extension.
+
+```javascript
+exports.id = 'Controller name';
 ```
 
-### Directory: controllers
+### METHOD: exports.install;
 
-Directory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.
+`optional` `important` This is the initialization function of the controller. This function is executed when framework loads controllers and and this function is a scope for define routes. A route can be defined inline, outside of install function.
 
-- [How do controllers work?](#pages~Controllers)
+```javascript
+exports.install = function() {
+    framework.route('/');
+    framework.route('/api/{type}/', json_api, ['put', 'json']);
+};
+```
 
----
+### METHOD: exports.uninstall;
 
-### Directory: databases
+`optional` This function is executed when framework uninstalls the controller.
 
-Directory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.
+```javascript
+exports.uninstall = function() {
+    console.log('This controller is uninstalled.');
+};
+```
 
-- [How does NoSQL database work?](#pages~NoSQL)
-- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)
+### METHOD: exports.usage;
 
----
+`optional` This function may return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).
 
-### Directory: definitions
+```javascript
+exports.usage = function() {
+    return { requests: counter };
+};
+```
 
-Directory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.
+### Full example of controller
 
-- [How do definitions work?](#pages~Definitions)
+Filename: `controllers/default.js`
 
----
+```javascript
+exports.install = function() {
+    framework.route('/', view_index);
+    framework.route('/contact/', view_contact);
+    framework.route('/hello/', plain_hello);
+    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);
+};
 
-### Directory: logs
+function view_index() {
+    this.layout('layouts/homepage');
+    this.view('index');
+}
 
-Directory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.
+function view_contact() {
+    this.view('contact', { email: '@' });
+}
 
-- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)
+function plain_hello() {
+    this.plain('Hello world!');
+}
 
----
+function json_codelist() {
+    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');
+    this.json([1, 2, 3, 4, 5]);
+}
 
-### Directory: models
+// or inline route
+framework.route('/services/', function() {
+    this.view('services');
+});
+```
 
-Directory contains models. The model can contain functions or some [schemas](#api~Builders.SchemaBuilder). Recommended for database models.
+## Routing
 
-- [How do models work?](#pages~Models)
-- [Example: Models](https://github.com/totaljs/examples/tree/master/models)
+- Method: [framework.route()](#api~framework.route)
+- Method: [framework.websocket()](#api~framework.websocket)
+- Method: [framework.file()](#api~framework.file)
+- List: [route flags](#api~HttpRouteOptionsFlags)
 
----
+### System routing
 
-### Directory: modules
+```javascript
+exports.install = function() {
+    framework.route('#400', custom); // Bad Request
+    framework.route('#401', custom); // Unauthorized
+    framework.route('#403', custom); // Forbidden
+    framework.route('#404', custom); // Not Found
+    framework.route('#408', custom); // Request Timeout
+    framework.route('#431', custom); // Request Header Fields Too Large
+    framework.route('#500', custom); // Internal Server Error
+    framework.route('#501', custom); // Not Implemented
+}
 
-Directory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.
-
-- [How do modules work?](#pages~Modules)
-- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)
-- [Download 3rd modules](https://github.com/totaljs/modules)
-
----
-
-### Directory: public
-
-This directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.
-
----
-
-### Directory: resources
-
-If you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.
-
-- [How do resources work?](#pages~Resources)
-- [How do localization work?](#pages~Localization)
-- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)
-
----
-
-### Directory: source
-
-This directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.
-
-- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)
-
----
-
-### Directory: packages
-
-This directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).
-
-- [How do packages work?](#pages~Packages)
-
----
-
-### Directory: tests
-
-Test directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.
-
-- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)
-
----
-
-### Directory: tmp
-
-This directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.
-
----
-
-### Directory: views
-
-This directory contains views and layouts.
-
----
-
-### Directory: workers
-
-This directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.
-
-- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)
-- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)
+function custom() {
+    this.view('http-error-view');
+}
+```
