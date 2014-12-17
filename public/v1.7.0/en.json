@@ -3299,7 +3299,8 @@
         {
           "name": "framework.cache.clear",
           "return": "FrameworkCache",
-          "description": "Clear cache items."
+          "description": "Clear cache items.",
+          "params": []
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/cache-partial",

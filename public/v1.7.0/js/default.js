@@ -267,7 +267,7 @@ function prepare(type, name, arr) {
         }
 
         if (!item.name_params)
-            item.name_params = names.length > 0 ? '(' + names.join(', ').replace(/\s$/g, '') + ')' : '';
+            item.name_params = '(' + names.join(', ').replace(/\s$/g, '') + ')';
     }
 
     arr.sort(sort);
