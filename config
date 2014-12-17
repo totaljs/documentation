@@ -1,6 +1,3 @@
 name                                  : total.js documentation
 author                                : Peter Širka
-version                               : 1.05
-secret                                : dOcToAL.js
-etag-version                          : 5
-default-interval-precompile-views     : 2
+version                               : 1.7.0
