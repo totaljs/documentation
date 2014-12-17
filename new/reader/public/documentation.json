@@ -727,7 +727,7 @@
           ],
           "description": "Property returns Async object for asynchronous work.",
           "name": "framework.async",
-          "go": "Async"
+          "go": "api~Async"
         },
         {
           "options": [
@@ -886,7 +886,7 @@
         }
       ],
       "group": "Framework",
-      "description": "The main class (core) of total.js. This class is singleton and is set as global variable.\n\n=== javascript\n\nconsole.log(framework.version);\n\n// In a defintion, module, etc.:\nframework.on('load', function() {\n\n\t// ...\n\t// ...\n\n});\n===",
+      "description": "The main class (core) of total.js. This class is singleton and is set as global variable.\n\n```javascript\nconsole.log(framework.version);\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n```",
       "name": "Framework",
       "methods": [
         {
@@ -1516,7 +1516,7 @@
               ],
               "name": "replyTo",
               "type": "String",
-              "description": "A reply to address."
+              "description": "Reply address."
             }
           ],
           "options": [
@@ -3348,7 +3348,7 @@
         }
       ],
       "name": "FrameworkCache",
-      "description": "The framework is using this class for storing views, resources, etc..\n\n=== javascript\n\nframework.cache.add('key', 'value', new Date().add('day', 1));\nconsole.log(framework.read('key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.read('key'));\n==="
+      "description": "The framework is using this class for storing views, resources, etc..\n\n```javascript\nframework.cache.add('key', 'value', ‘5 minutes’);\nconsole.log(framework.get(‘key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.get(‘key'));\n```"
     },
     {
       "group": "Framework",
@@ -4612,7 +4612,7 @@
         }
       ],
       "group": "Framework",
-      "description": "FrameworkController is created after is validate a route. The framework knows two types of controller: HTTP/HTTPS Controller and WebSocket Controller. For more informations about controllers click on [How do controllers work?](http://docs.totaljs.com/how-does-it-work/controllers/).\n\n_IMPORTANT MARKUPS_: http is for HTTP/HTTPS requests and WebSocket is for WebSocket connections. Some methods and properties support both options.",
+      "description": "FrameworkController is created after is validate a route. The framework knows two types of controller: HTTP/HTTPS Controller and WebSocket Controller. For more informations about controllers click on [How do controllers work?](#pages~Controllers).\n\n__IMPORTANT MARKUPS__: http is for HTTP/HTTPS requests and WebSocket is for WebSocket connections. Some methods and properties support both options.",
       "name": "FrameworkController",
       "methods": [
         {
@@ -8061,7 +8061,7 @@
         }
       ],
       "name": "FrameworkViews",
-      "description": "For more informations about views click on [How do views work?](http://docs.partialjs.com/how-does-it-work/views/). Views support simple conditions and custom helpers."
+      "description": "For more informations about views click on [How do views work?](#pages~Views). Views support simple conditions and custom helpers."
     },
     {
       "group": "Framework",
@@ -8927,7 +8927,7 @@
         }
       ],
       "name": "FrameworkUtils",
-      "description": "FrameworkUtils contain helper functions and important prototypes. FrameworkUtils are available in each node.js script according the keyword utils.[method]() (utils is a global variable):\n\n=== javascript\n// utils.[method]\n\nutils.trim({ name: '  PETER SIRKA  ' });\nutils.isEmpty({});\n==="
+      "description": "FrameworkUtils contain helper functions and important prototypes. FrameworkUtils are available in each node.js script according the keyword `Utils.` (it’s a global variable):\n\n```javascript\n// Utils.[method]\n\nUtils.trim({ name: '  PETER SIRKA  ' });\nUtils.isEmpty({});\n```"
     },
     {
       "group": "Framework",
@@ -9111,7 +9111,7 @@
         }
       ],
       "name": "FrameworkMail",
-      "description": "This class supports sending e-mails via SMTP protocol. FrameworkMail supports TLS. For more informations click on the example.\n\n_Example:_\n<https://github.com/totaljs/examples/tree/master/email-send>\n\n=== javascript\nvar mail = require('total.js/mail');\nvar message = new mail.Message('subject', 'body');\n\n// Set e-mail sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n===",
+      "description": "This class supports sending e-mails via SMTP protocol. FrameworkMail supports TLS. For more informations click on the example.\n\n- [Example: Email send](https://github.com/totaljs/examples/tree/master/email)\n- [Example: Controller email](https://github.com/totaljs/examples/tree/master/controller-mail)\n\n```js\nvar mail = require('total.js/mail');\nvar message = new mail.Message('subject', 'body');\n\n// Set e-mail sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n```",
       "events": [
         {
           "name": "mail.on('error')",
@@ -9588,7 +9588,7 @@
         }
       ],
       "name": "FrameworkImage",
-      "description": "This class contains functions for manipulation of images. For using of FrameworkImage you must have on server installed ImageMagick or GraphicsMagick plugin.\n\n__Example:__\n\n=== javascript\nvar Image = require('total.js/image');\nvar image = Image.load('filename', [imageMagick]);\n\n// OR \n\nvar image = Image.load(fs.createReadStream('/users/petersirka/desktop/header.jpg'));\n\nimage.resizeCenter(200, 200);\nimage.grayscale();\nimage.save('filename');\n==="
+      "description": "This class contains functions for manipulation of images. For using of FrameworkImage you must have on server installed ImageMagick or GraphicsMagick plugin.\n\n__Example:__\n\n```javascript\nvar Image = require('total.js/image');\nvar image = Image.load('filename', [imageMagick]);\n\n// OR \n\nvar image = Image.load(fs.createReadStream('/users/petersirka/desktop/header.jpg'));\n\nimage.resizeCenter(200, 200);\nimage.grayscale();\nimage.save('filename');\n```"
     },
     {
       "group": "Additional",
@@ -9784,7 +9784,7 @@
         }
       ],
       "name": "HttpFile",
-      "description": "This class is created after is uploaded a file on the server. Usage: [Controller.files](http://docs.totaljs.com/FrameworkController/#controller.files)."
+      "description": "This class is created after is uploaded a file on the server, reference: [Controller.files](#api~FrameworkController~controller.files)."
     },
     {
       "group": "Additional",
@@ -9874,7 +9874,7 @@
         }
       ],
       "name": "HttpRouteOptions",
-      "description": "Usage:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, { flags: ['post', 'json'], timeout: 10000 });\n};\n\n==="
+      "description": "```javascript\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, { flags: ['post', 'json'], timeout: 10000 });\n};\n```"
     },
     {
       "group": "Additional",
@@ -10129,7 +10129,7 @@
         }
       ],
       "name": "HttpRouteOptionsFlags",
-      "description": "Usage:\n\n=== javascript\n\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, ['xhr', 'post']);\n};\n\n==="
+      "description": "```javascript\nexports.install = function(framework) {\n\tframework.route('/contact/', json_contact, ['xhr', 'post']);\n};\n```"
     },
     {
       "group": "Prototypes",
@@ -11840,7 +11840,7 @@
         }
       ],
       "name": "Async",
-      "description": "Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). FrameworkUtils is a global variable. \n\n_Example:_\n\n=== javascript\n\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};\n==="
+      "description": "Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). FrameworkUtils is a global variable. \n\n_Example:_\n\n```javascript\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};\n```"
     },
     {
       "group": "Additional",
@@ -11848,7 +11848,7 @@
         {
           "go": "FrameworkUtils",
           "options": [
-            "or utils"
+            "alias"
           ],
           "return": "FrameworkUtils",
           "name": "Utils",
@@ -11856,13 +11856,32 @@
         },
         {
           "options": [
-            "or builders"
+            "alias"
           ],
-          "return": "builders",
+          "return": "Framework",
+          "name": "framework",
+          "description": "Get **instance** of framework."
+        },
+        {
+          "options": [
+            "alias"
+          ],
+          "return": "Framework",
+          "name": "F",
+          "description": "Get **instance** of framework."
+        },
+        {
+          "options": [
+            "alias"
+          ],
+          "return": "Builders",
           "name": "Builders",
           "description": "Get Builders (schema, error, pagination, etc.)."
         },
         {
+          "options": [
+            "alias"
+          ],
           "name": "Mail",
           "return": "FrameworkMail",
           "description": "Get FrameworkMail."
@@ -12083,7 +12102,7 @@
         }
       ],
       "name": "global",
-      "description": "Get a global objects or functions.\n\n=== javascript\nvar user = include('user');\n\n//or\n\nvar builder = new builders.ErrorBuilder();\n==="
+      "description": "Get a global objects or functions.\n\n```javascript\nvar user = INCLUDE(‘user');\n\n//or\n\nvar error = new Builders.ErrorBuilder();\n```"
     },
     {
       "group": "Builders",
@@ -12321,7 +12340,7 @@
         }
       ],
       "name": "Builders.ErrorBuilder",
-      "description": "Error builder is helpful for model error handling.\n\n=== javascript\n// \"Builders\" is a global variable\nvar builder = new Builders.ErrorBuilder();\n==="
+      "description": "Error builder is helpful for model error handling.\n\n```javascript\n// \"Builders\" is a global variable\nvar builder = new Builders.ErrorBuilder();\n```"
     },
     {
       "group": "Builders",
@@ -12627,7 +12646,7 @@
         }
       ],
       "name": "Builders.Pagination",
-      "description": "Pagination is helpful for datasource paging.\n\n=== javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.Pagination();\n===",
+      "description": "Pagination is helpful for datasource paging.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.Pagination();\n```",
       "example": "https://github.com/totaljs/examples/tree/master/pagination"
     },
     {
@@ -12737,7 +12756,7 @@
         }
       ],
       "name": "Builders.UrlBuilder",
-      "description": "URL builder is helpful for dynamic creating URL address.\n\n=== javascript\nvar builders = require('total.js/builders');\nvar builder = new builders.UrlBuilder();\n==="
+      "description": "URL builder is helpful for dynamic creating URL address.\n\n```javascript\nvar builder = new Builders.UrlBuilder();\n```"
     },
     {
       "group": "Builders",
@@ -13590,10 +13609,14 @@
         }
       ],
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformations, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n=== javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage').get('user').get(100, function(err, result) { ... });\n\n===\n\nIMPORTANT:\n\n=== plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n==="
+      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformations, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n```javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage’, ‘user’).get(100, function(err, result) { ... });\n```\n\n__IMPORTANT:__\n\n```plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n```"
     }
   ],
   "links": [
+    {
+      "name": "Source code",
+      "url": "https://github.com/totaljs/framework/"
+    },
     {
       "name": "Download examples",
       "url": "https://github.com/totaljs/examples/"
@@ -13634,37 +13657,37 @@
     {
       "group": "",
       "name": "Developer tools",
-      "body": ""
+      "body": "This page describes some utilities for creating web application in total.js.\n\n__Content:__\n\n- Publishing a website - REVERSE PROXY\n- Creating a tunnel between localhost and internet\n- Sublime Text 3 node.js build system\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Publishing a website - REVERSE PROXY\n\n![NGINX reverse proxy](img/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    #keepalive_timeout  0;\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_redirect     off;\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates a tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](img/ngrok-run.jpg)\n\n![ngrok running](img/ngrok-running.jpg)\n\n![ngrok web public](img/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](download/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](img/sublime-menu.png)\n![Sublime packages](img/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-build-nodejs.zip](download/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](img/sublime-viewengine.png)"
     },
     {
       "group": "How does it work?",
       "name": "Controllers",
-      "body": "The controller supports 3x types of route _classic_, _websocket_ and _file route_. The controller with modules are the main features of the framework logic.\n\n- The classic route handles classic requests to dynamic contents (views).\n- The websocket route handles WebSockets connections.\n- The file route handles static files.\n\n__More informations__\n\n- The controller is plain JavaScript file.\n- The framework automatically loads controller into the memory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/your-controller-name/`.\n- You can create unlimited count of controllers.\n- Controller can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).\n- Routing supports routing according to subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).\n- The controller can communicate with other controller.\n\n---\n\n## Examples\n\n- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)\n- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)\n- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)\n- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)\n- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)\n- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)\n- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)\n- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)\n- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)\n- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)\n- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)\n- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)\n- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)\n- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)\n- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)\n- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only controller name (it's an identificator name). A __default value__ for this property is controller filename without extension.\n\n```javascript\nexports.id = 'Controller name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the controller. This function is executed when framework loads controllers and and this function is a scope for define routes. A route can be defined inline, outside of install function.\n\n```javascript\nexports.install = function() {\n    framework.route('/');\n    framework.route('/api/{type}/', json_api, ['put', 'json']);\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the controller.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This controller is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function may return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of controller\n\nFilename: `controllers/default.js`\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n    framework.route('/contact/', view_contact);\n    framework.route('/hello/', plain_hello);\n    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);\n};\n\nfunction view_index() {\n    this.layout('layouts/homepage');\n    this.view('index');\n}\n\nfunction view_contact() {\n    this.view('contact', { email: '@' });\n}\n\nfunction plain_hello() {\n    this.plain('Hello world!');\n}\n\nfunction json_codelist() {\n    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');\n    this.json([1, 2, 3, 4, 5]);\n}\n\n// or inline route\nframework.route('/services/', function() {\n    this.view('services');\n});\n```\n\n## Routing\n\n- Method: [framework.route()](#api~framework.route)\n- Method: [framework.websocket()](#api~framework.websocket)\n- Method: [framework.file()](#api~framework.file)\n- List: [route flags](#api~HttpRouteOptionsFlags)\n\n### System routing\n\n```javascript\nexports.install = function() {\n    framework.route('#400', custom); // Bad Request\n    framework.route('#401', custom); // Unauthorized\n    framework.route('#403', custom); // Forbidden\n    framework.route('#404', custom); // Not Found\n    framework.route('#408', custom); // Request Timeout\n    framework.route('#431', custom); // Request Header Fields Too Large\n    framework.route('#500', custom); // Internal Server Error\n    framework.route('#501', custom); // Not Implemented\n}\n\nfunction custom() {\n    this.view('http-error-view');\n}\n```"
+      "body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped to some action and the action responds to requests. The controller with modules are the main features of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\nThe controller __knows 3x types of routes__: _classic_, _websocket_ and _file route_.\n\n- The classic route handles classic requests to dynamic contents (views).\n- The websocket route handles WebSockets connections.\n- The file route handles static files.\n\n---\n\n__More informations__\n\n- The controller is plain JavaScript file with `.js` extension.\n- The framework automatically loads controller into the memory.\n- All controllers are stored in `your-app/controllers/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/your-controller-name/`.\n- You can create unlimited count of controllers.\n- Controller can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).\n- Routing supports routing according to subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).\n- The controller can communicate with other controller.\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain controllers.\n\n- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)\n- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)\n- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)\n- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)\n- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)\n- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)\n- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)\n- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)\n- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)\n- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)\n- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)\n- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)\n- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)\n- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)\n- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)\n- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)\n\n---\n\n## The definition\n\n- Class: [FrameworkController](#api~FrameworkController)\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only controller name (it's an identificator name). A __default value__ for this property is controller filename without extension.\n\n```javascript\nexports.id = 'Controller name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the controller. This function is executed when framework loads controllers and this function is a scope for define routes. A route can be defined inline, outside of install function.\n\n```javascript\nexports.install = function() {\n    framework.route('/');\n    framework.route('/api/{type}/', json_api, ['put', 'json']);\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the controller.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This controller is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of controller\n\nFilename: `controllers/default.js`\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n    framework.route('/contact/', view_contact);\n    framework.route('/hello/', plain_hello);\n    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);\n};\n\nfunction view_index() {\n    this.view('index');\n}\n\nfunction view_contact() {\n    this.layout('layouts/subpage');\n    this.view('contact', { email: '@' });\n}\n\nfunction plain_hello() {\n    this.plain('Hello world!');\n}\n\nfunction json_codelist() {\n    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');\n    this.json([1, 2, 3, 4, 5]);\n}\n\n// or inline route\nframework.route('/services/', function() {\n    this.view('services');\n});\n```\n\n## Routing\n\n- Method: [framework.route()](#api~Framework~framework.route)\n- Method: [framework.websocket()](#api~Framework~framework.websocket)\n- Method: [framework.file()](#api~Framework~framework.file)\n- List: [route flags](#api~HttpRouteOptionsFlags)\n\n### System routing\n\n```javascript\nexports.install = function() {\n    framework.route('#400', custom); // Bad Request\n    framework.route('#401', custom); // Unauthorized\n    framework.route('#403', custom); // Forbidden\n    framework.route('#404', custom); // Not Found\n    framework.route('#408', custom); // Request Timeout\n    framework.route('#431', custom); // Request Header Fields Too Large\n    framework.route('#500', custom); // Internal Server Error\n    framework.route('#501', custom); // Not Implemented\n}\n\nfunction custom() {\n    this.view('http-error-view');\n}\n```"
     },
     {
       "group": "How does it work?",
       "name": "Definitions",
-      "body": ""
+      "body": "Definitions can rewrite existing functionality or add new. The definition can define the framework behavior and it doesn't have any other logic. __In short__: the definition is a coded configuration file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The definitions is plain JavaScript file with `.js` extension.\n- All definitions are stored in `your-app/definitions/` directory.\n- Each definitions executed automatically and one time.\n- You can create unlimited count of definitions\n- The definition can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-definition).\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain definitions.\n\n- [Example: Install definition from URL](https://github.com/totaljs/examples/tree/master/framework-install-definition)\n- [Example: Definition with MongoDB driver](https://github.com/totaljs/examples/tree/master/mongodb)\n\n---\n\n## The definition\n\nThe definition file contains only code to run, nothing more.\n\n### Full example of definition\n\nE.g. create: `definitions/database.js`\n\n```javascript\nvar DB = null;\n\nrequire('mongodb').MongoClient.connect('connection-string-to-database', function(err, db) {\n    if (err)\n        throw err;\n    DB = db;\n});\n\n// Rewrite built-in functionality\nframework.database = function(collection) {\n    if (collection)\n        return DB.collection(collection);\n    return DB;\n};\n```"
     },
     {
       "group": "How does it work?",
       "name": "Modules",
-      "body": ""
+      "body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped to some action and the action responds to requests. The controller with modules are the main features of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is plain JavaScript file with `.js` extension.\n- The framework automatically loads modules into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only module name (it's an identificator name). A __default value__ for this property is module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only array of module names. Framework waits for all dependencies and then installs pending modules. The installation is meant execution: `exports.install`.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__\n\n```javascript\nexports.install = function() {\n    console.log('Hello from module.');\n    framework.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the module.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function() {\n    framework.on('request', increment);\n    framework.route('/stats/', json_stats);\n};\n\nexports.uninstall = function() {\n    framework.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```"
     },
     {
       "group": "How does it work?",
       "name": "Models",
-      "body": ""
+      "body": "Models are good for databases schema.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The model is plain JavaScript file with `.js` extension.\n- The framework automatically loads models into the memory.\n- All modules are stored in `your-app/models/` directory.\n- `exports.install` is executed automatically and one time.\n- You can create unlimited count of models.\n- Model can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-model).\n\n---\n\n## Examples\n\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only model name (it's an identificator name). A __default value__ for this property is model filename without extension.\n\n```javascript\nexports.id = 'Model name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads models.\n\n```javascript\nexports.install = function() {\n    console.log('Hello from model.');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the model.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This model is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of model\n\nFilename: `models/user.js`\n\n```javascript\nexports.id = 'user';\nexports.version = '1.01';\n\nexports.create = function(user) {\n    // NoSQL embedded database\n    DATABASE('users').insert(user);\n};\n\nexports.load = function(id, callback) {\n    // NoSQL embedded database\n    DATABASE('users').one(function(doc) {\n        return doc.id === id;\n    }, callback);\n}\n```\n\nGet the model in e.g. controller action:\n\n```javascript\nfunction json_create_user() {\n    var user = { id: Utils.GUID(5), alias: 'Peter Sirka' };\n\n    // global alias:\n    MODEL('user').create(user);\n\n    // or\n    framework.model('user').create(user);\n\n    this.json(user);\n}\n```"
     },
     {
       "group": "How does it work?",
       "name": "Resources",
-      "body": ""
+      "body": "Resources are very good solution  for multi-language website. Are simple and effective. On resources is builded [localization](#pages~Localization).\n\n- The resource is plain text file with `.resource` extension.\n- Framework loads each resource when is needed.\n- You can create unlimited count of resources.\n- Resources are readonly.\n- Resources are cached (in release mode) for 20 minutes.\n- Resources are used for validation. [Example](https://github.com/totaljs/examples/tree/master/validation)\n\n## Examples\n\n- [Example: Localization](https://github.com/totaljs/examples/tree/master/localization-resources)\n- [Example: Schema validation](https://github.com/totaljs/examples/tree/master/framework-schema-validation)\n- [Example: Validation](https://github.com/totaljs/examples/tree/master/validation)\n- [Example: Custom validation](https://github.com/totaljs/examples/tree/master/validation-custom)\n\n---\n\n## The definition\n\n### resources/default.resource\n\n```plain\nkey1           : value1\n\n// comment\nkey2           : value2\nkey3           : <b>with the tag</b>\n```\n\n### resources/en.resource\n\n```plain\nkey1           : value1-en\n\n// comment\nkey2           : value2-en\nkey3           : <b>with the tag-en</b>\n```\n\n### resources/de.resource\n\n```plain\nkey1           : value1-de\n\n// comment\nkey2           : value2-de\nkey3           : <b>with the tag-de</b>\n```\n\n\n## Reading values from resources\n\n- [Documentation: RESOURCE()](#api~global~RESOURCE)\n- [Documentation: framework.resource()](#api~Framework~framework.resource)\n- [Documentation: controller.resource()](#api~FrameworkController~controller.resource)\n\n```javascript\nconsole.log(RESOURCE('key1'));\nconsole.log(framework.resource('key1'));\n// value1\n\nconsole.log(RESOURCE('en', 'key1'));\n// value1-en\n\nconsole.log(RESOURCE('de', 'key1'));\n// value1-de\n```\n\n### View engine\n\n```html\n@{resource('key3')}\n<!-- Encoded: &lt;b&gt;with the tag&lt;/b&gt; -->\n\n@{!resource('key3')}\n<!-- Raw: <b>with the tag</b> -->\n\n@{resource('en', 'key3')}\n<!-- Encoded: &lt;b&gt;with the tag-en&lt;/b&gt; -->\n\n@{!resource('en', 'key3')}\n<!-- Raw: <b>with the tag-en</b> -->\n\n@{resource('de', 'key3')}\n<!-- Encoded: &lt;b&gt;with the tag-de&lt;/b&gt; -->\n\n@{!resource('de', 'key3')}\n<!-- Raw: <b>with the tag-de</b> -->\n```"
     },
     {
       "group": "How does it work?",
       "name": "View engine",
-      "body": ""
+      "body": "\"Views\" render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. View engine supports conditions, loops and inline helpers.\n\n__More informations__\n\n- View is plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under compilation (total.js saves memory).\n- Layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- Class: [FrameworkViews](#api~FrameworkViews)\n\n### Examples\n\nMost [examples](https://github.com/totaljs/examples) contain views.\n\n---\n\n![View engine](img/viewengine.png)\n\n---\n\n## Repository vs. Model\n\nExist many ways how to send some values between views and controllers. You can transfer data between controller and view via `controller.repository` or `controller.view('name', model)` (model).\n\n![Repository vs. model](img/viewengine-repository-vs-model.png)\n"
     },
     {
       "group": "How does it work?",
