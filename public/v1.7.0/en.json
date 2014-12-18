@@ -708,7 +708,7 @@
         },
         {
           "default": "{}",
-          "description": "This property contains all opened NoSQL embedded database.",
+          "description": "This property contains all opened NoSQL embedded databases.",
           "name": "framework.databases",
           "return": "Object",
           "options": [
@@ -764,7 +764,7 @@
           "options": [
             "internal"
           ],
-          "description": "This property stores internal informations (small cache) about paths, streaming, views, etc.. It's cleaned every 20 minutes.",
+          "description": "This property stores internal informations (small cache): paths, streaming informations, views, etc.. It's cleaned every 20 minutes.",
           "name": "framework.temporary",
           "return": "Object"
         },
@@ -2381,10 +2381,10 @@
             }
           ],
           "name": "framework.accept",
-          "description": "Add extension + ContentType into the accepts list."
+          "description": "It adds file extension and `content-type` into the acceptable list."
         },
         {
-          "description": "Add \"test request\" into the assertion testing.",
+          "description": "Add a test request into the assertion testing.",
           "return": "Framework",
           "params": [
             {
@@ -2395,30 +2395,30 @@
             {
               "name": "url",
               "type": "String",
-              "description": "Relative URL to a controller."
+              "description": "A relative URL to the controller."
             },
             {
-              "description": "Callback of the request.",
+              "description": "Callback.",
               "params": [
                 {
                   "name": "err",
                   "type": "Error",
-                  "description": "Error handling."
+                  "description": "Error class."
                 },
                 {
                   "name": "data",
                   "type": "String",
-                  "description": "Content of response."
+                  "description": "Response content."
                 },
                 {
                   "name": "code",
                   "type": "Number",
-                  "description": "HTTP status code of response."
+                  "description": "HTTP status code."
                 },
                 {
                   "name": "headers",
                   "type": "Object",
-                  "description": "HTTP headers of response."
+                  "description": "HTTP headers."
                 }
               ],
               "name": "callback",
@@ -2431,7 +2431,7 @@
               "default": "GET",
               "name": "method",
               "type": "String",
-              "description": "HTTP method - GET, POST, PUT, DELETE or OPTIONS"
+              "description": "HTTP method - GET, POST, PUT, DELETE or OPTIONS."
             },
             {
               "options": [
@@ -2440,7 +2440,7 @@
               "default": "''",
               "name": "data",
               "type": "String",
-              "description": "Data for the request."
+              "description": "Data to send."
             },
             {
               "options": [
@@ -2458,14 +2458,14 @@
               "default": "false",
               "name": "xhr",
               "type": "Boolean",
-              "description": "XHR request"
+              "description": "Add XHR header."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/assertion-testing",
           "name": "framework.assert"
         },
         {
-          "description": "Add \"test functions\" into the assertion testing.",
+          "description": "Add a test function into the assertion testing.",
           "return": "Framework",
           "params": [
             {
@@ -2479,12 +2479,12 @@
                 {
                   "name": "next",
                   "type": "Function",
-                  "description": "Next test."
+                  "description": "Continue."
                 },
                 {
                   "name": "name",
                   "type": "String",
-                  "description": "Name of test."
+                  "description": "Test name."
                 }
               ],
               "name": "fn",
@@ -2495,14 +2495,14 @@
           "name": "framework.assert"
         },
         {
-          "description": "Run all tests in config['directory-tests'] (or only specific tests).",
+          "description": "Run all tests in `config['directory-tests']` or only specific tests.",
           "return": "Framework",
           "params": [
             {
               "default": "true",
               "name": "stop",
               "type": "Boolean",
-              "description": "Stop framework after tests completed."
+              "description": "Stop the framework when tests will be completed."
             },
             {
               "options": [
@@ -2510,7 +2510,7 @@
               ],
               "name": "names",
               "type": "String Array",
-              "description": "Specify test names for run."
+              "description": "Specify names of tests."
             },
             {
               "options": [
@@ -2518,7 +2518,7 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Callback after tests end."
+              "description": "Callback."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/assertion-testing",
@@ -2530,7 +2530,7 @@
 
           ],
           "name": "framework.clear",
-          "description": "Clear temporary directory - remove all files in config['directory-temp']."
+          "description": "Clear temporary directory. This function removes all files in `config['directory-temp']`."
         },
         {
           "return": "Framework",
@@ -2538,7 +2538,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Controller name."
+              "description": "The controller name."
             }
           ],
           "name": "framework.controller",
@@ -2550,7 +2550,7 @@
             {
               "name": "list",
               "type": "String Array",
-              "description": "Collection of file names."
+              "description": "Filenames collection."
             },
             {
               "options": [
@@ -2558,11 +2558,12 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Complete callback."
+              "params": [],
+              "description": "Callback."
             }
           ],
           "name": "framework.unlink",
-          "description": "Remove files."
+          "description": "Remove files in collection."
         },
         {
           "return": "String",
@@ -2570,12 +2571,12 @@
             {
               "name": "type",
               "type": "String",
-              "description": "Type of hash algorithmus. Example: sha1, sha256, sha512, md5."
+              "description": "A hash algorithmus. Example: sha1, sha256, sha512, md5."
             },
             {
               "name": "value",
               "type": "String",
-              "description": "Value to hash."
+              "description": "The value for hashing."
             },
             {
               "options": [
@@ -2584,7 +2585,7 @@
               "default": "config['secret']",
               "name": "salt",
               "type": "String/Boolean",
-              "description": "Salt for hash. String == custom salt, Boolean (default: true), false == disable salt."
+              "description": "A salt for hash. Boolean (default: true), false == disables the salt."
             }
           ],
           "name": "framework.hash",
@@ -2596,7 +2597,7 @@
             {
               "name": "value",
               "type": "String or Object",
-              "description": "Value to encrypt into the string."
+              "description": "The value to encrypt into the string."
             },
             {
               "name": "key",
@@ -2610,11 +2611,11 @@
               "default": "true",
               "name": "isUnique",
               "type": "Boolean",
-              "description": "Every encoded string will a other."
+              "description": "Each result will be other."
             }
           ],
           "name": "framework.encrypt",
-          "description": "Internal cryptography function for encrypting of string or object. As sugar is config['secret']."
+          "description": "Internal cryptography function for encrypting strings or objects. The salt is `config['secret']`."
         },
         {
           "return": "String or Object",
@@ -2627,7 +2628,7 @@
             {
               "name": "key",
               "type": "String",
-              "description": "Key."
+              "description": "The key."
             },
             {
               "options": [
@@ -2643,7 +2644,7 @@
           "description": "Internal cryptography function for decrypting of string or object."
         },
         {
-          "description": "Read value from resource file.",
+          "description": "Read a value from the resource.",
           "return": "String",
           "params": [
             {
@@ -2653,12 +2654,12 @@
               "default": "'default'",
               "name": "name",
               "type": "String",
-              "description": "Name of resource file."
+              "description": "Resource filename."
             },
             {
               "name": "key",
               "type": "String",
-              "description": "Key in the resource file."
+              "description": "Key."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/localization-resources",
