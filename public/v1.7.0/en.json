@@ -600,7 +600,7 @@
           "options": [
             "readonly"
           ],
-          "description": "Returns the framework version. Example: `1700`.",
+          "description": "Returns the framework version. Example: `1700` (1.7.0).",
           "return": "Number",
           "name": "framework.version"
         },
@@ -624,7 +624,7 @@
           "options": [
             "readonly"
           ],
-          "description": "Returns node.js version.",
+          "description": "Returns node.js version. Example: `1033` (10.33).",
           "return": "Number",
           "name": "framework.versionNode"
         },
@@ -671,7 +671,7 @@
             "readonly"
           ],
           "return": "FrameworkRestrictions",
-          "description": "This property can set restrictions to requests.",
+          "description": "A reference to the restriction class.",
           "name": "framework.restrictions"
         },
         {
@@ -686,7 +686,7 @@
           "options": [
             "readonly"
           ],
-          "description": "Returns current PORT number.",
+          "description": "Returns the current PORT number.",
           "name": "framework.port",
           "return": "Number"
         },
@@ -695,7 +695,7 @@
             "readonly"
           ],
           "default": "localhost",
-          "description": "Returns current IP address.",
+          "description": "Returns the current IP address.",
           "name": "framework.ip",
           "return": "String"
         },
@@ -806,7 +806,7 @@
           ]
         },
         {
-         "options": [
+          "options": [
             "internal"
           ],
           "default": "{}",
@@ -817,7 +817,7 @@
         {
           "go": "#api~FrameworkStats",
           "return": "FrameworkStats",
-          "description": "The framework internal stats and contains request / response stats.",
+          "description": "The framework internal stats and contains request or response stats.",
           "name": "framework.stats"
         },
         {
@@ -836,7 +836,7 @@
             "readonly"
           ],
           "return": "FrameworkFileSystem",
-          "description": "The framework file system class for manipulating files.",
+          "description": "A reference to the file system class for manipulating files.",
           "name": "framework.fs"
         },
         {
@@ -845,7 +845,7 @@
             "readonly"
           ],
           "return": "FrameworkPath",
-          "description": "The framework path class for manipulating paths.",
+          "description": "A reference to the framework path class for manipulating paths.",
           "name": "framework.path"
         }
       ],
@@ -910,34 +910,13 @@
           "description": "Refresh internal information (re-configure) and clear temporary data, resources, etc.."
         },
         {
-          "return": "Framework",
-          "params": [
-            {
-              "name": "value",
-              "type": "String or Array",
-              "description": "Reconfigure framework. String === filename / String Array === new settings."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "default": "true",
-              "name": "rewrite",
-              "type": "Boolean",
-              "description": "Rewrite old values."
-            }
-          ],
-          "name": "framework.configure",
-          "description": "Configure framework."
-        },
-        {
-          "description": "Get a NoSQL embedded database connection.",
+          "description": "Gets a NoSQL embedded database connection.",
           "return": "FrameworkNoSQL",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name of the NoSQL database."
+              "description": "The database filename."
             }
           ],
           "name": "framework.database",
@@ -1340,47 +1319,31 @@
           "name": "framework.websocket"
         },
         {
-          "description": "Register a new file route to controller or module. This function can handle static files in a controller. This function must be executed in a controller/module file. For more information look up to the example.",
+          "description": "Registers a new file route. This function can handle static files.\n\n__Example__:\n\n```js\nframework.file(‘*.jpg’, function(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf(‘.jpg’) !== -1;\n    // ... transform\n    res.file('new-file-name.jpg');\n});\n```",
           "return": "Framework",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of route to the file."
+              "description": "The route name (description)."
             },
             {
-              "type": "Function",
-              "description": "Request validation. This function must return {Boolean}. If true then will executed @fnExec",
-              "options": [
-                "optional"
-              ],
-              "return": "Boolean",
+              "description": "A delegate with validation.",
               "params": [
                 {
                   "name": "req",
                   "type": "Object",
-                  "description": "HTTP request."
-                }
-              ],
-              "name": "fnValid"
-            },
-            {
-              "description": "If valid @fnValid then will be executed @fnExec.",
-              "params": [
-                {
-                  "name": "req",
-                  "type": "Object",
-                  "description": "HTTP request."
+                  "description": "The HTTP request."
                 },
                 {
                   "name": "res",
                   "type": "Object",
-                  "description": "HTTP response."
+                  "description": "The HTTP response."
                 },
                 {
                   "name": "isValidation",
                   "type": "Boolean",
-                  "description": "Is validation?"
+                  "description": "The validation checker."
                 }
               ],
               "name": "fnExec",
@@ -1560,7 +1523,7 @@
             }
           ],
           "name": "framework.error",
-          "description": "Create a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist))."
+          "description": "Appends a new error. If this method does not contain any arguments then returns a function.\n\n__Example: framework.error() as delegate__:\n\n```js\ndb.update({}, framework.error());\n\n// Is same as:\n/*\ndb.update({}, function(err) {\n   if (err)\n      framework.error(err);\n});\n*/\n```"
         },
         {
           "return": "Framework",
@@ -1601,12 +1564,12 @@
             {
               "name": "message",
               "type": "String",
-              "description": "Change description."
+              "description": "The change description."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Controller / module name."
+              "description": "Controller / Module name."
             },
             {
               "options": [
@@ -1676,14 +1639,14 @@
           "name": "framework.model"
         },
         {
-          "description": "Eval script (live scripting).",
+          "description": "Evals script (live scripting).",
           "example": "https://github.com/totaljs/examples/tree/master/framework-eval",
           "return": "Framework",
           "params": [
             {
               "name": "script/url",
               "type": "String",
-              "description": "Valid JavaScript script or valid URL address."
+              "description": "A valid JavaScript script or valid URL address."
             }
           ],
           "name": "framework.eval"
@@ -1694,11 +1657,11 @@
             {
               "name": "fn",
               "type": "Function",
-              "description": "User defined function."
+              "description": "A user-defined function."
             }
           ],
           "name": "framework.eval",
-          "description": "Eval function in framework context."
+          "description": "Evals function in the framework context."
         },
         {
           "description": "Install some feature into the framework.",
@@ -1888,7 +1851,7 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "File name of static file."
+              "description": "The filename."
             },
             {
               "options": [
@@ -1897,7 +1860,7 @@
               "default": "null",
               "name": "downloadName",
               "type": "String",
-              "description": "Name for download name."
+              "description": "The name for download."
             },
             {
               "options": [
@@ -1979,7 +1942,7 @@
             {
               "name": "filename",
               "type": "String/Stream",
-              "description": "File name or stream of image."
+              "description": "The filename or stream of image."
             },
             {
               "description": "Function to processed.",
@@ -2033,7 +1996,7 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "File name of image."
+              "description": "The filename of image."
             },
             {
               "description": "Function to processed.",
@@ -2381,10 +2344,10 @@
             }
           ],
           "name": "framework.accept",
-          "description": "It adds file extension and `content-type` into the acceptable list."
+          "description": "Adds file extension and `content-type` into the acceptable list."
         },
         {
-          "description": "Add a test request into the assertion testing.",
+          "description": "Adds a test request into the assertion testing.",
           "return": "Framework",
           "params": [
             {
@@ -2530,7 +2493,7 @@
 
           ],
           "name": "framework.clear",
-          "description": "Clear temporary directory. This function removes all files in `config['directory-temp']`."
+          "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`."
         },
         {
           "return": "Framework",
@@ -2558,7 +2521,9 @@
               ],
               "name": "callback",
               "type": "Function",
-              "params": [],
+              "params": [
+
+              ],
               "description": "Callback."
             }
           ],
@@ -2589,7 +2554,7 @@
             }
           ],
           "name": "framework.hash",
-          "description": "Hashing strings."
+          "description": "This function can hash strings."
         },
         {
           "return": "String",
@@ -2602,7 +2567,7 @@
             {
               "name": "key",
               "type": "String",
-              "description": "Key."
+              "description": "The key."
             },
             {
               "options": [
@@ -2611,7 +2576,7 @@
               "default": "true",
               "name": "isUnique",
               "type": "Boolean",
-              "description": "Each result will be other."
+              "description": "Each result will be different."
             }
           ],
           "name": "framework.encrypt",
@@ -2637,14 +2602,14 @@
               "default": "true",
               "name": "jsonConvert",
               "type": "Boolean",
-              "description": "If decrypt value as JSON then is parsed into the object."
+              "description": "Auto-JSON convertor."
             }
           ],
           "name": "framework.decrypt",
-          "description": "Internal cryptography function for decrypting of string or object."
+          "description": "Internal cryptography function for decrypting strings or objects."
         },
         {
-          "description": "Read a value from the resource.",
+          "description": "Gets a value.",
           "return": "String",
           "params": [
             {
@@ -2671,7 +2636,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeJS",
@@ -2683,7 +2648,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeCSS",
@@ -2695,7 +2660,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeImage",
@@ -2707,7 +2672,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeVideo",
@@ -2719,7 +2684,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeFont",
@@ -2731,7 +2696,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeDownload",
@@ -2743,7 +2708,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "framework.routeStatic",
@@ -2760,7 +2725,7 @@
           ],
           "default": "'total.js'",
           "name": "name",
-          "description": "An application name. This name is used on many place (META, process name, etc.).",
+          "description": "An application name. The name is used on many places (META, process name, etc.).",
           "return": "String"
         },
         {
@@ -2772,7 +2737,7 @@
         {
           "default": "os.hostname() + '-' + os.platform() + '-' + os.arch()",
           "name": "secret",
-          "description": "An application secret. This option is used in framework.encrypt(), framework.decrypt() and framework.hash() (default salt).",
+          "description": "An application secret. This secret is used in `framework.encrypt()`, `framework.decrypt()` and `framework.hash()` - as default salt.",
           "return": "String"
         },
         {
@@ -2787,7 +2752,7 @@
         {
           "default": "''",
           "name": "etag-version",
-          "description": "Custom ETag version for handling of static files. Is used as part of key for caching static files on client-side.",
+          "description": "Custom `etag-version` for handling static files, that is used as part of the key for caching static files on client-side.",
           "return": "String"
         },
         {
@@ -2919,7 +2884,7 @@
         {
           "name": "static-accepts",
           "return": "String Array",
-          "description": "Which file extensions (static files) handles framework? Values in config files must be separated with comma (on one line).\n\nDefault accepts:\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']."
+          "description": "Which files are allowed by the framework for handling static files? Values in config files must be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic-accepts            : .jpg, .ico, .js\n```"
         },
         {
           "options": [
@@ -2927,7 +2892,7 @@
           ],
           "default": "[]",
           "name": "static-accepts-custom",
-          "description": "This option adds all own values into \"static-accepts\" and it's not visible in \"framework.config\". Values in config files must be separated with comma (on one line).",
+          "description": "This option adds all own values into `static-accepts` and it's not visible in `framework.config`. Values in config files must be separated with comma `,` (on one line). \n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql\n```",
           "return": "String Array"
         },
         {
@@ -2945,13 +2910,13 @@
         {
           "default": "'_layout'",
           "name": "default-layout",
-          "description": "A default layout name for all views. Framework loads layout in the form: \"{directory-views}/{_layout}.html\"",
+          "description": "A default layout name for views. Framework loads the layout in this format: `{directory-views}/{layout}.html`",
           "return": "String"
         },
         {
           "default": "5",
           "name": "default-request-length",
-          "description": "A default request length in kB (kilobajt). Framework calculates POST/PUT data and length of uploaded files.",
+          "description": "A default request length in `kB` (kilobajt). Framework calculates POST/PUT data and length of uploaded files.",
           "return": "Number"
         },
         {
@@ -2975,13 +2940,13 @@
         {
           "default": "'gm'",
           "name": "default-image-converter",
-          "description": "A default image/picture converter. Value: \"gm\" is GraphicsMagick and \"im\" is ImageMagick. Your server must have installed one of them.",
+          "description": "A default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server must have installed one of them.",
           "return": "String"
         },
         {
           "default": "90",
           "name": "default-image-quality",
-          "description": "A default image/picture quality after processing (percentage for JPEG files only).",
+          "description": "A default image/picture quality for JPEG files only.",
           "return": "Number"
         },
         {
@@ -2990,7 +2955,7 @@
           ],
           "default": "true",
           "name": "allow-handle-static-files",
-          "description": "Framework handles all static files if this options is true.",
+          "description": "Framework handles all static files if this option is true.",
           "return": "Boolean"
         },
         {
@@ -3008,19 +2973,19 @@
         {
           "default": "true",
           "name": "allow-compile-js",
-          "description": "Allow compile (clean and compress) JavaScript files and inline scripts in views.",
+          "description": "Allow compiling (compression) JavaScript files and inline scripts in views.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-compile-css",
-          "description": "Allow compile (process, clean and compress) CSS files and inline styles in views.",
+          "description": "Allow compiling (compression, auto-vendor-prefixes) CSS files and inline styles in views.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-compile-html",
-          "description": "Allow compile (clean and compress) HTML of views.",
+          "description": "Allow compiling (compression) HTML of views.",
           "return": "Boolean"
         },
         {
@@ -3042,27 +3007,21 @@
           "return": "Boolean"
         },
         {
-          "default": "false",
-          "name": "disable-strict-server-certificate-validation",
-          "description": "This option sets: process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0",
-          "return": "Boolean"
-        },
-        {
           "default": "20",
           "name": "default-interval-clear-resources",
-          "description": "Interval (minutes) for clearing of resources from the memory. Resources are read if are needed.",
+          "description": "Interval (minutes) for clearing resources from the memory. Resources are read if are needed.",
           "return": "Number"
         },
         {
           "default": "3",
           "name": "default-interval-clear-cache",
-          "description": "Interval (minutes) for clearing of cache from the memory.",
+          "description": "Interval (minutes) for clearing cache from the memory.",
           "return": "Number"
         },
         {
           "default": "61",
           "name": "default-interval-precompile-views",
-          "description": "Interval (minutes) for precompiling of external views.",
+          "description": "Interval (minutes) for precompiling external views.",
           "return": "Number"
         },
         {
@@ -3074,13 +3033,13 @@
         {
           "default": "'default'",
           "name": "default-errorbuilder-resource-name",
-          "description": "A default resource name for ErrorBuilder. ErrorBuilder is using framework.resource().",
+          "description": "A default resource name for `ErrorBuilder`. `ErrorBuilder` uses framework.resource().",
           "return": "String"
         },
         {
           "default": "''",
           "name": "default-errorbuilder-resource-prefix",
-          "description": "A default prefix for ErrorBuilder. Prefix is added before property name.",
+          "description": "A default prefix for `ErrorBuilder`. Prefix is added before the property name.",
           "return": "String"
         },
         {
@@ -3089,7 +3048,7 @@
           ],
           "default": "''",
           "name": "mail.address.from",
-          "description": "Mail settings for framework.mail() / controller.mail(): this option sets e-mail sender address.",
+          "description": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets sender address.",
           "return": "String"
         },
         {
@@ -3098,7 +3057,7 @@
           ],
           "default": "''",
           "name": "mail.address.reply",
-          "description": "Mail settings for framework.mail() / controller.mail(): this option sets replyTo e-mail address.",
+          "description": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets replyTo address.",
           "return": "String"
         },
         {
@@ -3107,7 +3066,7 @@
           ],
           "default": "''",
           "name": "mail.address.copy",
-          "description": "Mail settings for framework.mail() / controller.mail(): this option sets e-mail BCC address.",
+          "description": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets BCC address.",
           "return": "String"
         },
         {
@@ -3116,7 +3075,7 @@
           ],
           "default": "''",
           "name": "mail.smtp",
-          "description": "Mail settings for framework.mail() / controller.mail(): this option sets SMTP server HOST address.",
+          "description": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP server (HOST).",
           "return": "String"
         },
         {
@@ -3124,12 +3083,12 @@
             "important"
           ],
           "name": "mail.smtp.options",
-          "description": "Mail settings for framework.mail() / controller.mail(): this option sets SMTP options (secure, user, password and timeout).\n\nExample:\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}",
+          "description": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- secure (optional, default: `false`)\n- user (optional, default: empty)\n- password (optional, default: empty)\n- timeout (optional, default: `10000`)\n\nExample:\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}\n```",
           "return": "String"
         }
       ],
       "name": "FrameworkConfiguration",
-      "description": "FrameworkConfiguration contains all options of framework configuration."
+      "description": "FrameworkConfiguration contains the framework settings. Settings can be stored in these files:\n\n- /app/config\n- /app/config-debug\n- /app/config-release\n- /app/config-rest\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode.\n\n__Example__:\n\n```html\nname                     : My Web Site name\nversion                  : 1.01\nauthor                   : Peter Sirka\nsecret                   : mySECRET1.01\ndefault-image-quality    : 96\n...\n...\n...\n```"
     },
     {
       "group": "Framework",
@@ -4749,7 +4708,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Create a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
+          "description": "Creates a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
           "options": [
             "http",
             "websocket"
@@ -5387,7 +5346,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeJS",
@@ -5402,7 +5361,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeCSS",
@@ -5417,7 +5376,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeImage",
@@ -5432,7 +5391,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeVideo",
@@ -5447,7 +5406,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeFont",
@@ -5462,7 +5421,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeUpload",
@@ -5477,7 +5436,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "File name."
+              "description": "The filename."
             }
           ],
           "name": "controller.routeStatic",
@@ -5776,7 +5735,7 @@
             }
           ],
           "name": "controller.noClear",
-          "description": "Enable/Disable auto clearing of uploaded files. For manual clearing of uploaded files use: controller.clear()."
+          "description": "Enable/Disable auto clearing uploaded files. For manual clearing uploaded files use: controller.clear()."
         },
         {
           "description": "Proxy request to other total.js website.",
@@ -13611,7 +13570,7 @@
     {
       "group": "",
       "name": "Getting started",
-      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` file, put below content into the file and run `node index.js`.\n\n```javascript\nfunction init() {\n\n    framework.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    framework.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(init) !== 'undefined') init(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory+Structure)\n- [Total.js - Configuration](#pages~Configuration)"
+      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` file, put below content into the file and run `node index.js`.\n\n```javascript\nfunction init() {\n\n    framework.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    framework.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(init) !== 'undefined') init(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory+Structure)\n- [Total.js - Configuration](#pages~Configuration)"
     },
     {
       "group": "",
@@ -13626,7 +13585,7 @@
     {
       "group": "",
       "name": "Developer tools",
-      "body": "This page describes some utilities for creating web application in total.js.\n\n__Content:__\n\n- Publishing a website - REVERSE PROXY\n- Creating a tunnel between localhost and internet\n- Sublime Text 3 node.js build system\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Publishing a website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    #keepalive_timeout  0;\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_redirect     off;\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates a tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](download/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-build-nodejs.zip](download/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)"
+      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- Publishing a website - REVERSE PROXY\n- Creating a tunnel between localhost and internet\n- Sublime Text 3 node.js build system\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Publishing a website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    #keepalive_timeout  0;\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_redirect     off;\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates a tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](download/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-build-nodejs.zip](download/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)"
     },
     {
       "group": "How does it work?",

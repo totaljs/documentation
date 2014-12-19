@@ -35,11 +35,13 @@ blockquote { padding: 5px 15px; margin: 0; border-radius: 4px; background-color:
 blockquote b, blockquote strong { color: #796034 !important; }
 
 .members { display: block; margin: 0; padding: 0; list-style-type: none; font-size: 12px; }
-.members li { margin: 0; border-bottom: 1px solid #E0E0E0; padding: 0; }
+.members > li { margin: 0; border-bottom: 1px solid #E0E0E0; padding: 0; }
 .members a { text-decoration: none; display: block; padding: 0; color: #2E86B3; font-size: 13px; }
 .members span { text-decoration: none; }
 .members a:hover { color: #39A7DC; }
 .members-return { color: silver; font-size: 11px; }
+.members-default { float: right; font-size: 11px; color: silver; }
+.members-default b { color: silver; }
 .members-params { color: #8DBCCF; }
 .members .markdown { margin: 5px 0 10px 0; padding: 0 8px; border: 1px solid #E0E0E0; border-radius: 4px; }
 .body { padding: 20px; border-radius: 4px; margin: 5px 0 10px; border: 4px solid #E0E0E0; }
@@ -62,6 +64,8 @@ blockquote b, blockquote strong { color: #796034 !important; }
 .member-body-params td span { background-color: #F0F0F0; border-radius: 4px; padding: 1px 3px; margin-right: 4px; }
 .member-body-params td div { margin-top: 5px; border-top: 1px solid #E0E0E0; padding-top: 5px; }
 .member-body-params table { margin: 5px 0 !important; }
+.member-body-default { color: #F05A42; font-size: 11px; }
+.member-body-default b { color: #F05A42; }
 .member { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 .member-links { font-size: 14px; list-style-type: square; }
 .member-links li { border-bottom: 1px solid #E0E0E0; padding: 3px 0; }

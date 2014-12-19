@@ -26,7 +26,7 @@ Tangular.register('params', function(value) {
             }
         }
 
-        builder.push('<td>' + (param.options ? '<span>' + param.options.join(',') + '</span>' : '') + (param.description || '') + (param.params ? '<div><b>function ' + param.name + '(' + callback + ') {}</b>' + Thelpers['params'](param.params) + '</div>' : '') + '</td>');
+        builder.push('<td>' + (param.options ? '<span>' + param.options.join(',') + '</span>' : '') + (param.description || '') + (param.default ? '<div class="member-body-default"><b>Default value</b>: ' + param.default + '</div>' : '') + (param.params ? '<div><b>function ' + param.name + '(' + callback + ') {}</b>' + Thelpers['params'](param.params) + '</div>' : '') + '</td>');
         builder.push('</tr>');
     }
     builder.push('</table>');
@@ -44,6 +44,8 @@ function reload() {
     var linker = decodeURIComponent(window.location.hash.substring(1)).split('~');
     if (linker[0] === '#' || linker[0] === '')
         return;
+    if (linker[2] === undefined)
+        $('html,body').scrollTop(0);
     render(linker[0], linker[1], linker[2]);
 }
 
@@ -257,7 +259,7 @@ function prepare(type, name, arr) {
             item.name = item.name.substring(0, item.name.length - 1);
             if (!item['return'])
                 item['return'] = 'Framework';
-            item.name_params = ', function(' + names.join(', ').replace(/\s$/g, '') + '){})';
+            item.name_params = ', function(' + names.join(', ').replace(/\s$/g, '') + ') { /* body */ })';
         } else {
             index = item.name.indexOf('}');
             if (index !== -1) {

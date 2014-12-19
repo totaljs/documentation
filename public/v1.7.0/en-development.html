@@ -57,8 +57,9 @@
         <ul class="members">
             {{ foreach m in members }}
                 <li data-id="{{ m.linker }}">
-                    <a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span></a>
+                    <a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span> {{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ endif }}</a>
                     <div class="body hidden">
+                        {{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ endif }}
                         <div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }};</div>
                         {{ if m.params && m.params.length > 0 }}
                             <div class="member-body-params">
