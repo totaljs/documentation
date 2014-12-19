@@ -12,7 +12,7 @@
             {
               "name": "count",
               "type": "Number",
-              "description": "Counter."
+              "description": "The counter."
             }
           ]
         },
@@ -23,64 +23,64 @@
             {
               "name": "type",
               "type": "String",
-              "description": "A route type (web, websocket, file)."
+              "description": "The route type (web, websocket, file)."
             },
             {
               "name": "route",
               "type": "Object",
-              "description": "Route."
+              "description": "The route object."
             }
           ]
         },
         {
           "name": "framework.on('eval')",
-          "description": "This event is triggered every when is executed JS code.",
+          "description": "This event is triggered when is evaluated the JavaScript code.",
           "params": [
             {
               "options": [
                 "optional"
               ],
               "name": "url",
-              "description": "URL address.",
+              "description": "The URL address.",
               "type": "String"
             }
           ]
         },
         {
           "name": "framework.on('install')",
-          "description": "This event is triggered when is installed some feature through framework.install().",
+          "description": "This event is triggered when is installed some feature through `framework.install()`.",
           "params": [
             {
               "name": "type",
               "type": "String",
-              "description": "What type was installed? (module, controller, model, etc.)"
+              "description": "What type has been installed? (module, controller, model, etc.)"
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Name."
+              "description": "The name."
             }
           ]
         },
         {
           "name": "framework.on('uninstall')",
-          "description": "This event is triggered when is uninstalled some feature through framework.uninstall().",
+          "description": "This event is triggered when is uninstalled some feature via `framework.uninstall()`.",
           "params": [
             {
               "name": "type",
               "type": "String",
-              "description": "Which type was uninstalled? (module, controller, model, etc.)"
+              "description": "Which type has been uninstalled? (module, controller, model, etc.)"
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Name."
+              "description": "The name."
             }
           ]
         },
         {
           "name": "framework.on('configure')",
-          "description": "This event is triggered when is re-configured the framework.",
+          "description": "This event is triggered when is the framework re-configured.",
           "params": [
             {
               "name": "config",
@@ -91,23 +91,23 @@
         },
         {
           "name": "framework.on('reconfigure')",
-          "description": "This event is triggered when the framework refreshed a configuration file and mapping versions."
+          "description": "This event is triggered when the framework refreshes the configuration file."
         },
         {
           "name": "framework.on('clear')",
-          "description": "This event is triggered when framework clears internal information.",
+          "description": "This event is triggered when the framework clears internal informations.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of the internal information: refresh, resources or temporary"
+              "description": "The internal information name: refresh, resources or temporary."
             },
             {
               "options": [
                 "optional"
               ],
               "name": "value",
-              "description": "Value of the internal information: temporary: Object, resources and refresh = undefined",
+              "description": "The value of the information: \"temporary\" returns object, \"resources\" and \"refresh\" returns undefined",
               "type": "Object"
             }
           ]
@@ -118,14 +118,14 @@
             {
               "name": "message",
               "type": "String",
-              "description": "Problem description."
+              "description": "The message."
             },
             {
               "options": [
                 "optional"
               ],
               "name": "name",
-              "description": "Controller / Module name.",
+              "description": "The controller or module name.",
               "type": "String"
             },
             {
@@ -133,7 +133,7 @@
                 "optional"
               ],
               "name": "uri",
-              "description": "URI",
+              "description": "The URI object.",
               "type": "Object"
             },
             {
@@ -141,12 +141,12 @@
                 "optional"
               ],
               "name": "ip",
-              "description": "IP address",
+              "description": "The IP address.",
               "type": "String"
             }
           ],
           "name": "framework.on('problem')",
-          "description": "This event is triggered when is created some problem."
+          "description": "This event is triggered when is created the problem."
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/changes",
@@ -186,7 +186,7 @@
         },
         {
           "name": "framework.on('cache-expire')",
-          "description": "This event is triggered when expired an item in the cache.",
+          "description": "This event is triggered when the item is removed from the cache.",
           "params": [
             {
               "name": "key",
@@ -206,87 +206,87 @@
         },
         {
           "name": "framework.on('request')",
-          "description": "This event is triggered when HTTP request begins.",
+          "description": "This event is triggered when the HTTP request begins.",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request"
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response"
+              "description": "The HTTP response."
             }
           ]
         },
         {
           "name": "framework.on('websocket')",
-          "description": "This event is triggered when WebSocket request begins.",
+          "description": "This event is triggered when the WebSocket begins the request.",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request"
+              "description": "The HTTP request."
             },
             {
               "name": "socket",
               "type": "Object",
-              "description": "Socket"
+              "description": "The socket object."
             }
           ]
         },
         {
           "name": "framework.on('request-begin')",
-          "description": "This event is triggered when HTTP request begins __(It's not valid for static file)__.",
+          "description": "This event is triggered when the HTTP request beings __(It's not valid for static file)__.",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request"
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response"
+              "description": "The HTTP response."
             }
           ]
         },
         {
           "name": "framework.on('request-end')",
-          "description": "This event is triggered when HTTP request ends __(It's not valid for static file)__.",
+          "description": "This event is triggered when the HTTP request ends __(It's not valid for static file)__.",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request"
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response"
+              "description": "The HTTP response."
             }
           ]
         },
         {
           "name": "framework.on('websocket-begin')",
-          "description": "This event is triggered when Websocket request begins.",
+          "description": "This event is triggered when the Websocket begins the request.",
           "params": [
             {
               "name": "controller",
               "type": "FrameworkController",
-              "description": "Controller object."
+              "description": "The controller object."
             },
             {
               "name": "client",
               "type": "Object",
-              "description": "FrameworkWebSocketClient object."
+              "description": "The FrameworkWebSocketClient object."
             }
           ]
         },
         {
           "name": "framework.on('websocket-end')",
-          "description": "This event is triggered when WebSocket request ends.",
+          "description": "This event is triggered when the WebSocket ends the request.",
           "params": [
             {
               "name": "controller",
@@ -315,7 +315,7 @@
             "onetime"
           ],
           "name": "framework.on('init')",
-          "description": "This event is triggered before are loaded all dependencies.",
+          "description": "This event is triggered at first.",
           "params": [
 
           ]
@@ -335,7 +335,7 @@
             }
           ],
           "name": "framework.on('controller')",
-          "description": "This event is called every Request to Controller. In this event you can cancel request to the controller through controller.cancel()."
+          "description": "This event is called every `request` to the `controller`. In this event you can cancel the request to the controller via `controller.cancel()`."
         },
         {
           "name": "framework.on('controller-render-head')",
@@ -393,17 +393,17 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request"
+              "description": "The HTTP request"
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response"
+              "description": "The HTTP response"
             },
             {
               "name": "flags",
               "type": "Array",
-              "description": "Current request flags."
+              "description": "The current request flags."
             },
             {
               "params": [
@@ -418,7 +418,7 @@
                   ],
                   "name": "user",
                   "type": "Object",
-                  "description": "Custom user object. This object will be associated with req.user."
+                  "description": "The custom user object. This object will be associated with req.user."
                 }
               ],
               "options": [
@@ -427,11 +427,11 @@
               ],
               "type": "Function",
               "name": "callback",
-              "description": "Callback function."
+              "description": "The callback function."
             }
           ],
           "name": "framework.onAuthorization",
-          "description": "The authorization delegate is for user authorization. According to the callback values framework sets flag `authorize` or `unauthorize` to current request and then is evaluated a route condition. Don't forget execute the callback.",
+          "description": "The authorization delegate is for the user authorization. According to the callback values the framework sets flag `authorize` or `unauthorize` to the current request and then evaluates a route condition. Don't forget execute the callback.",
           "return": "Framework"
         },
         {
@@ -447,12 +447,12 @@
             {
               "name": "subject",
               "type": "String",
-              "description": "E-mail subject."
+              "description": "The subject."
             },
             {
               "name": "body",
               "type": "String",
-              "description": "E-mail body."
+              "description": "The mail body."
             },
             {
               "type": "function",
@@ -467,7 +467,7 @@
                 "optional"
               ],
               "name": "callback",
-              "description": "Callback."
+              "description": "The callback."
             },
             {
               "options": [
@@ -475,24 +475,10 @@
               ],
               "name": "replyTo",
               "type": "String",
-              "description": "ReplyTo address."
+              "description": "The replyTo address."
             }
           ],
           "name": "framework.onMail"
-        },
-        {
-          "return": "String",
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "A relative name of static file."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/static-version",
-          "description": "The delegate can change filename of static file. For more informations click to the example.",
-          "name": "framework.onVersion",
-          "default": "null"
         },
         {
           "description": "This delegate renders meta tags into the string.",
@@ -502,22 +488,22 @@
             {
               "name": "title",
               "type": "String",
-              "description": "Meta title"
+              "description": "The title."
             },
             {
               "name": "description",
               "type": "String",
-              "description": "Meta description"
+              "description": "The description."
             },
             {
               "name": "keywords",
               "type": "String",
-              "description": "Meta keywords."
+              "description": "The keywords."
             },
             {
               "name": "image",
               "type": "String",
-              "description": "URL (can be relative) to image."
+              "description": "The URL address (can be relative) to an image/picture."
             }
           ],
           "name": "framework.onMeta"
@@ -562,17 +548,17 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "CSS filename."
+              "description": "The filename."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "CSS content."
+              "description": "The file content."
             }
           ],
-          "description": "This delegate replaces an internal CSS compiler. For more informations click to the example. Delegate is synchronous because is used in a view engine.",
+          "description": "This delegate replaces an internal CSS compiler. Delegate is synchronous because is used in a view engine.",
           "example": "https://github.com/totaljs/examples/tree/master/external-compile-sass",
-          "name": "framework.onCompileCSS",
+          "name": "framework.onCompileStyle",
           "default": "null"
         },
         {
@@ -581,17 +567,17 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "JS filename."
+              "description": "The filename."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "JS content."
+              "description": "The file content."
             }
           ],
-          "description": "This delegate replaces an internal JS compiler. For more informations click to the example. Delegate is synchronous because is used in a view engine.",
+          "description": "This delegate replaces an internal JS compiler. Delegate is synchronous because is used in a view engine.",
           "example": "https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs",
-          "name": "framework.onCompileJS",
+          "name": "framework.onCompileScript",
           "default": "null"
         }
       ],
@@ -949,7 +935,8 @@
             }
           ],
           "name": "framework.worker",
-          "description": "Create worker."
+          "description": "Creates a worker. In other words: a __new thread__.",
+          "example": "https://github.com/totaljs/examples/tree/master/workers"
         },
         {
           "return": "Framework",
@@ -960,7 +947,7 @@
           "description": "Reconnects HTTP/HTTPS again."
         },
         {
-          "description": "Stop the framework",
+          "description": "Stops the framework",
           "return": "Framework",
           "params": [
             {
@@ -1273,7 +1260,7 @@
           "description": "Creates a `image resize` route.\n\n__Example__:\n\n```javascript\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });\n```"
         },
         {
-          "description": "Creates a new Websocket route to controller or module. For more information look up to the example.",
+          "description": "Creates a Websocket route to the controller or module.",
           "return": "Framework",
           "params": [
             {
@@ -1282,30 +1269,38 @@
               "description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/"
             },
             {
-              "description": "Initialization function",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
-                    "important"
+                    "optional"
                   ],
-                  "name": "controller",
-                  "type": "Object",
-                  "description": "Controller object for specific socket events."
+                  "name": "param..1",
+                  "type": "String",
+                  "description": "A dynamic parameter."
                 },
                 {
                   "options": [
                     "optional"
                   ],
-                  "name": "framework",
-                  "type": "Object",
-                  "description": "Framework object."
+                  "name": "param..2",
+                  "type": "String",
+                  "description": "A dynamic parameter."
+                },
+                {
+                  "options": [
+                    "optional"
+                  ],
+                  "name": "param..n",
+                  "type": "String",
+                  "description": "A dynamic parameter."
                 }
               ],
               "name": "fn",
               "type": "Function"
             },
             {
-              "description": "Define more options for the route.",
+              "description": "Additional options.",
               "options": [
                 "optional"
               ],
@@ -1367,7 +1362,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Name of view."
+              "description": "The view name."
             },
             {
               "options": [
@@ -1375,7 +1370,7 @@
               ],
               "name": "model",
               "type": "Object",
-              "description": "Model for this view."
+              "description": "The model for this view."
             },
             {
               "options": [
@@ -1383,7 +1378,7 @@
               ],
               "name": "layout",
               "type": "String",
-              "description": "Layout for view."
+              "description": "The layout for the view."
             },
             {
               "options": [
@@ -1395,7 +1390,7 @@
             }
           ],
           "name": "framework.view",
-          "description": "Render a view. This method simulate a controller and renders HTML to string."
+          "description": "Renders a view into the string. This method simulates the controller and renders HTML into the string."
         },
         {
           "return": "Framework",
@@ -1605,13 +1600,13 @@
           "name": "framework.module"
         },
         {
-          "description": "Get a business logic. Business logic is defined in config['directory-source']. This method is uses for global function: include(name) and source(name). Include and Source are alias for framework.source().",
+          "description": "Gets a business logic object. The business logic directory is defined in `config['directory-source']`.",
           "return": "Object",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Source name."
+              "description": "The source name."
             },
             {
               "options": [
@@ -1705,17 +1700,17 @@
           "name": "framework.install"
         },
         {
-          "description": "Uninstall some feature from the framework.",
+          "description": "Uninstalls a feature from the framework.",
           "params": [
             {
               "name": "type",
               "type": "String",
-              "description": "Can be: controller, module, model, schema or view"
+              "description": "Can be: controller, module, model, schema or view."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "A feature name."
+              "description": "The feature name."
             },
             {
               "options": [
@@ -1723,7 +1718,7 @@
               ],
               "name": "options",
               "type": "Object",
-              "description": "A custom options for new feature."
+              "description": "The custom options."
             }
           ],
           "return": "Framework",
@@ -1762,7 +1757,7 @@
           "name": "framework.log"
         },
         {
-          "description": "Returned string is the Markdown syntax and contains usage informations. Look at this: http://www.partialjs.com/usage/",
+          "description": "Returns an object which contains an informations of usage of the framework. Try: [www.totaljs.com - usage](https://www.totaljs.com/usage/).",
           "example": "https://github.com/totaljs/examples/tree/master/framework-usage",
           "return": "String",
           "params": [
@@ -1773,7 +1768,7 @@
               "default": "false",
               "name": "detailed",
               "type": "Boolean",
-              "description": "Create a detailed information."
+              "description": "Creates a detailed informations."
             }
           ],
           "name": "framework.usage"
@@ -2039,7 +2034,7 @@
             {
               "name": "stream",
               "type": "Object",
-              "description": "A readable stream."
+              "description": "The readable stream."
             },
             {
               "options": [
@@ -2311,7 +2306,7 @@
             }
           ],
           "name": "framework.setModified",
-          "description": "Sets `last modified` or `ETag` header."
+          "description": "Sets `last-modified` or `etag` header."
         },
         {
           "return": "Boolean",
@@ -2499,7 +2494,7 @@
           "name": "framework.assert"
         },
         {
-          "description": "Run all tests in `config['directory-tests']` or only specific tests.",
+          "description": "Runs all tests in `config['directory-tests']` or only specific tests.",
           "return": "Framework",
           "params": [
             {
@@ -2565,11 +2560,11 @@
               "params": [
 
               ],
-              "description": "Callback."
+              "description": "The callback."
             }
           ],
           "name": "framework.unlink",
-          "description": "Remove files in collection."
+          "description": "Removes files in collection."
         },
         {
           "return": "String",
@@ -2680,8 +2675,8 @@
               "description": "The filename."
             }
           ],
-          "name": "framework.routeJS",
-          "description": "Route a JS file according the config['static-url-js']. Returns the relative URL address."
+          "name": "framework.routeScript",
+          "description": "Creates the relative URL according to `config['static-url-js']`."
         },
         {
           "return": "String",
@@ -2692,8 +2687,8 @@
               "description": "The filename."
             }
           ],
-          "name": "framework.routeCSS",
-          "description": "Route a CSS file according the config['static-url-css']. Returns the relative URL address."
+          "name": "framework.routeStyle",
+          "description": "Creates the relative URL according to `config['static-url-css']`."
         },
         {
           "return": "String",
@@ -2705,7 +2700,7 @@
             }
           ],
           "name": "framework.routeImage",
-          "description": "Route a image file according the config['static-url-image']. Returns the relative URL address."
+          "description": "Creates the relative URL according to `config['static-url-image']`."
         },
         {
           "return": "String",
@@ -2717,7 +2712,7 @@
             }
           ],
           "name": "framework.routeVideo",
-          "description": "Route a video file according the config['static-url-video']. Returns the relative URL address."
+          "description": "Creates the relative URL according to `config['static-url-video']`."
         },
         {
           "return": "String",
@@ -2729,7 +2724,7 @@
             }
           ],
           "name": "framework.routeFont",
-          "description": "Route a font file according the config['static-url-font']. Returns the relative URL address."
+          "description": "Creates the relative URL according to `config['static-url-font']`."
         },
         {
           "return": "String",
@@ -2741,7 +2736,7 @@
             }
           ],
           "name": "framework.routeDownload",
-          "description": "Route to download directory according the config['static-url-download']. Returns the relative URL address."
+          "description": "Creates the relative URL according to `config['static-url-download']`."
         },
         {
           "return": "String",
@@ -2753,7 +2748,7 @@
             }
           ],
           "name": "framework.routeStatic",
-          "description": "Route a static file according the config['static-url']. Returns relative URL address."
+          "description": "Creates the relative URL according to `config['static-url']`."
         }
       ]
     },
@@ -2889,13 +2884,13 @@
         {
           "default": "'/js/'",
           "name": "static-url-js",
-          "description": "A default url routing of static files (JavaScript) routing. Is used in view engine and framework.routeJS().",
+          "description": "A default url routing of static files (JavaScript) routing. Is used in view engine and framework.routeScript().",
           "return": "String"
         },
         {
           "default": "'/css/'",
           "name": "static-url-css",
-          "description": "A default url routing of static files (CSS) routing. Is used in view engine and framework.routeCSS().",
+          "description": "A default url routing of static files (CSS) routing. Is used in view engine and framework.routeStyle().",
           "return": "String"
         },
         {
@@ -3002,43 +2997,43 @@
         {
           "default": "true",
           "name": "allow-gzip",
-          "description": "Allow using GZIP compression (for responses). GZIP is used when this option is true and browser supports compression.",
+          "description": "Allows to use GZIP compression (for responses). GZIP is used when this option is true and browser supports compression.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-websocket",
-          "description": "Allow websocket listening. If you want to use e.g. Socket.io, this option must be false.",
+          "description": "Allows the websocket listening. If you want to use e.g. Socket.io, this option must be false.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-compile-js",
-          "description": "Allow compiling (compression) JavaScript files and inline scripts in views.",
+          "description": "Allows to compile (compression) JavaScript files and inline scripts in views.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-compile-css",
-          "description": "Allow compiling (compression, auto-vendor-prefixes) CSS files and inline styles in views.",
+          "description": "Allows to compile (compression, auto-vendor-prefixes) CSS files and inline styles in views.",
           "return": "Boolean"
         },
         {
           "default": "true",
           "name": "allow-compile-html",
-          "description": "Allow compiling (compression) HTML of views.",
+          "description": "Allows to compile (compression) HTML of views.",
           "return": "Boolean"
         },
         {
           "default": "false",
           "name": "allow-performance",
-          "description": "Allow increasing a HTTP performance.",
+          "description": "Allows to increase the HTTP performance.",
           "return": "Boolean"
         },
         {
           "default": "false",
           "name": "allow-custom-titles",
-          "description": "Disable appending an application name into meta tags.",
+          "description": "Disables to append an application name into meta tags.",
           "return": "Boolean"
         },
         {
@@ -3068,19 +3063,19 @@
         {
           "default": "1",
           "name": "default-interval-websocket-ping",
-          "description": "Interval (minutes) for websocket pinging.",
+          "description": "Interval (minutes) for the websocket pinging.",
           "return": "Number"
         },
         {
           "default": "'default'",
           "name": "default-errorbuilder-resource-name",
-          "description": "A default resource name for `ErrorBuilder`. `ErrorBuilder` uses framework.resource().",
+          "description": "The default resource name for `ErrorBuilder`. `ErrorBuilder` uses framework.resource().",
           "return": "String"
         },
         {
           "default": "''",
           "name": "default-errorbuilder-resource-prefix",
-          "description": "A default prefix for `ErrorBuilder`. Prefix is added before the property name.",
+          "description": "The default prefix for `ErrorBuilder`. Prefix is added before the property name.",
           "return": "String"
         },
         {
@@ -3129,7 +3124,7 @@
         }
       ],
       "name": "FrameworkConfiguration",
-      "description": "FrameworkConfiguration contains the framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode.\n\n__Example__:\n\n```html\nname                     : My Web Site name\nversion                  : 1.01\nauthor                   : Peter Sirka\nsecret                   : mySECRET1.01\ndefault-image-quality    : 96\n...\n...\n...\n```"
+      "description": "`FrameworkConfiguration` contains the framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode.\n\n__Example__:\n\n```html\nname                     : My Web Site name\nversion                  : 1.01\nauthor                   : Peter Sirka\nsecret                   : mySECRET1.01\ndefault-image-quality    : 96\n...\n...\n...\n```"
     },
     {
       "group": "Framework",
@@ -3140,7 +3135,7 @@
           ],
           "return": "Number",
           "name": "framework.cache.count",
-          "description": "Count of cache recycle."
+          "description": "The counter for cache recycling."
         },
         {
           "options": [
@@ -3148,7 +3143,7 @@
           ],
           "return": "Object",
           "name": "framework.cache.items",
-          "description": "All cached items."
+          "description": "Cached items."
         }
       ],
       "methods": [
@@ -3158,21 +3153,21 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Identificator name."
+              "description": "The name."
             },
             {
               "name": "value",
               "type": "Object",
-              "description": "Item value."
+              "description": "The value."
             },
             {
               "name": "expire",
               "type": "Date",
-              "description": "Item expiration."
+              "description": "The expiration."
             }
           ],
           "name": "framework.cache.add",
-          "description": "Add an item into the cache and return a value."
+          "description": "Adds the item into the cache and returns the value."
         },
         {
           "return": "Object",
@@ -3181,7 +3176,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Identificator name."
+              "description": "The name."
             },
             {
               "options": [
@@ -3189,35 +3184,11 @@
               ],
               "name": "def",
               "type": "Object",
-              "description": "A default value."
+              "description": "The default value."
             }
           ],
           "name": "framework.cache.get",
-          "description": "Read a value from the cache."
-        },
-        {
-          "return": "Object",
-          "options": [
-            "alias"
-          ],
-          "default": "null",
-          "params": [
-            {
-              "name": "key",
-              "type": "String",
-              "description": "Key."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "def",
-              "type": "Object",
-              "description": "A default value."
-            }
-          ],
-          "name": "framework.cache.read",
-          "description": "Read a value from the cache. Alias for cache.get()."
+          "description": "Gets the value from the cache."
         },
         {
           "return": "Object",
@@ -3226,11 +3197,11 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Identificator name."
+              "description": "The name."
             }
           ],
           "name": "framework.cache.remove",
-          "description": "Remove an item from the cache."
+          "description": "Removes the item from the cache."
         },
         {
           "return": "Number",
@@ -3238,11 +3209,11 @@
             {
               "name": "search",
               "type": "String",
-              "description": "Search text in all cached keys."
+              "description": "Searchs text in cached names / keys."
             }
           ],
           "name": "framework.cache.removeAll",
-          "description": "Remove items from the cache."
+          "description": "Removes multiple items from the cache."
         },
         {
           "return": "FrameworkCache",
@@ -3250,7 +3221,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Identificator name."
+              "description": "The name."
             },
             {
               "name": "expire",
@@ -3259,7 +3230,7 @@
             }
           ],
           "name": "framework.cache.setExpire",
-          "description": "Set item expiration."
+          "description": "Sets expiration for the item."
         },
         {
           "params": [
@@ -3267,36 +3238,36 @@
           ],
           "name": "framework.cache.clear",
           "return": "FrameworkCache",
-          "description": "Clear cache items."
+          "description": "Clears cached items in the cache."
         },
         {
-          "description": "Simply cache for storing output from some function.",
+          "description": "Caches output from the function.",
           "return": "FrameworkCache",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Identificator name."
+              "description": "The name."
             },
             {
-              "description": "Setting value.",
+              "description": "Sets value to the cache.",
               "params": [
                 {
                   "name": "value",
                   "type": "Object",
-                  "description": "This value will be stored in the cache."
+                  "description": "The value will be stored in the cache."
                 },
                 {
                   "name": "expire",
                   "type": "Date",
-                  "description": "Item expiration."
+                  "description": "The expiration."
                 }
               ],
               "name": "fnCache",
               "type": "Function"
             },
             {
-              "description": "A callback after storing.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
@@ -3304,7 +3275,7 @@
                 {
                   "name": "value",
                   "type": "Object",
-                  "description": "Stored value in the cache."
+                  "description": "The value from the cache."
                 }
               ],
               "name": "fnCallback",
@@ -3322,17 +3293,17 @@
       "group": "Framework",
       "methods": [
         {
-          "description": "Create a CSS file into the framework.config['directory-public'] + framework.config['static-url-css'].",
+          "description": "Creates the CSS file into  `framework.config['directory-public'] + framework.config['static-url-css']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
+              "description": "The file content or the valid URL address (the framework downloads the content automatically)."
             },
             {
               "options": [
@@ -3341,7 +3312,7 @@
               "default": "false",
               "name": "rewrite",
               "type": "Boolean",
-              "description": "Rewrite an existing file."
+              "description": "Rewrites the existing file."
             },
             {
               "options": [
@@ -3350,24 +3321,24 @@
               "default": "false",
               "name": "append",
               "type": "Boolean",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
+              "description": "Appends the content into end of file if not exist. (IMPORTANT: the framework tries to find same content)."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.create.css"
         },
         {
-          "description": "Create a JS file into the framework.config['directory-public'] + framework.config['static-url-js'].",
+          "description": "Creates the JavaScript file into `framework.config['directory-public'] + framework.config['static-url-js']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
+              "description": "The file content or the valid URL address (the framework downloads the content automatically)."
             },
             {
               "options": [
@@ -3385,24 +3356,24 @@
               "default": "false",
               "name": "append",
               "type": "Boolean",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
+              "description": "Appends the content into end of file if not exist. (IMPORTANT: the framework tries to find same content)."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.create.js"
         },
         {
-          "description": "Create a worker file into the framework.config['directory-workers'].",
+          "description": "Creates the worker file into `framework.config['directory-workers']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
+              "description": "The file content or the valid URL address (the framework downloads the content automatically)."
             },
             {
               "options": [
@@ -3420,27 +3391,27 @@
               "default": "false",
               "name": "append",
               "type": "Boolean",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
+              "description": "Appends the content into end of file if not exist. (IMPORTANT: the framework tries to find same content)."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.create.worker"
         },
         {
-          "description": "Create a file into the framework.config['directory-temp'].",
+          "description": "Creates the file into `framework.config['directory-temp']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "stream",
               "type": "Stream",
-              "description": "Readable stream."
+              "description": "The readable stream."
             },
             {
-              "description": "Callback.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
@@ -3453,7 +3424,7 @@
                 {
                   "name": "filename",
                   "type": "String",
-                  "description": "Filename with path."
+                  "description": "The filename with path."
                 }
               ],
               "name": "callback",
@@ -3464,17 +3435,17 @@
           "name": "framework.fs.create.temporary"
         },
         {
-          "description": "Create a view file into the framework.config['directory-views'].",
+          "description": "Creates the view file into `framework.config['directory-views']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
+              "description": "The file content or the valid URL address (the framework downloads the content automatically)."
             },
             {
               "options": [
@@ -3492,24 +3463,24 @@
               "default": "false",
               "name": "append",
               "type": "Boolean",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
+              "description": "Appends the content into end of file if not exist. (IMPORTANT: the framework tries to find same content)."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.create.view"
         },
         {
-          "description": "Create a resource file into the framework.config['directory-resources'].",
+          "description": "Creates the resource file into `framework.config['directory-resources']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             },
             {
               "name": "content",
               "type": "String",
-              "description": "A content of file or valid URL address (framework download content automatically)."
+              "description": "The file content or the valid URL address (the framework downloads the content automatically)."
             },
             {
               "options": [
@@ -3527,79 +3498,79 @@
               "default": "false",
               "name": "append",
               "type": "Boolean",
-              "description": "Append content into end of file (IMPORTANT: if content doesn't exist in this file)."
+              "description": "Appends the content into end of file if not exist. (IMPORTANT: the framework tries to find same content)."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.create.resource"
         },
         {
-          "description": "Delete a CSS file from framework.config['directory-public'] + framework.config['static-url-css'].",
+          "description": "Removes the file from `framework.config['directory-public'] + framework.config['static-url-css']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.rm.css"
         },
         {
-          "description": "Delete a JS file from framework.config['directory-public'] + framework.config['static-url-js'].",
+          "description": "Removes the file from `framework.config['directory-public'] + framework.config['static-url-js']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.rm.js"
         },
         {
-          "description": "Delete a worker file from framework.config['directory-workers'].",
+          "description": "Removes the file from `framework.config['directory-workers']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.rm.worker"
         },
         {
-          "description": "Delete a view file from framework.config['directory-views'].",
+          "description": "Removes the file from `framework.config['directory-views']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.rm.view"
         },
         {
-          "description": "Delete a temporary file from framework.config['directory-temp'].",
+          "description": "Removes the file from `framework.config['directory-temp']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
           "name": "framework.fs.rm.temporary"
         },
         {
-          "description": "Delete a resource file from framework.config['directory-resources'].",
+          "description": "Removes the file from `framework.config['directory-resources']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "Boolean",
@@ -3607,13 +3578,13 @@
         }
       ],
       "name": "FrameworkFileSystem",
-      "description": "This class helps with creating files (CSS, JavaScript, views, etc.)."
+      "description": "This class is useful for creating files (CSS, JavaScript, views, etc.)."
     },
     {
       "group": "Framework",
       "methods": [
         {
-          "description": "Get the public path from framework.config['directory-public'].",
+          "description": "Gets the path from `framework.config['directory-public']`.",
           "params": [
             {
               "options": [
@@ -3621,14 +3592,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.public"
         },
         {
-          "description": "Get the public path from framework.config['directory-models'].",
+          "description": "Gets the path from `framework.config['directory-models']`.",
           "params": [
             {
               "options": [
@@ -3636,14 +3607,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.models"
         },
         {
-          "description": "Get the public path from framework.config['directory-databases'].",
+          "description": "Gets the path from `framework.config['directory-databases']`.",
           "params": [
             {
               "options": [
@@ -3651,14 +3622,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.databases"
         },
         {
-          "description": "Get the logs path from framework.config['directory-logs'].",
+          "description": "Get the path from `framework.config['directory-logs']`.",
           "params": [
             {
               "options": [
@@ -3666,14 +3637,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.logs"
         },
         {
-          "description": "Get the temp path from framework.config['directory-temp'].",
+          "description": "Gets the path from `framework.config['directory-temp']`.",
           "params": [
             {
               "options": [
@@ -3681,14 +3652,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.temp"
         },
         {
-          "description": "Get the workers path from framework.config['directory-workers'].",
+          "description": "Gets the path from `framework.config['directory-workers']`.",
           "params": [
             {
               "options": [
@@ -3696,14 +3667,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.workers"
         },
         {
-          "description": "Get the views path from framework.config['directory-views'].",
+          "description": "Gets the path from `framework.config['directory-views']`.",
           "params": [
             {
               "options": [
@@ -3711,14 +3682,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.views"
         },
         {
-          "description": "Get the modules path from framework.config['directory-modules'].",
+          "description": "Gets the path from `framework.config['directory-modules']`.",
           "params": [
             {
               "options": [
@@ -3726,14 +3697,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.modules"
         },
         {
-          "description": "Get the definitions path from framework.config['directory-definitions'].",
+          "description": "Gets the definitions path from `framework.config['directory-definitions']`.",
           "params": [
             {
               "options": [
@@ -3741,14 +3712,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.definitions"
         },
         {
-          "description": "Get the controllers path from framework.config['directory-controllers'].",
+          "description": "Gets the path from `framework.config['directory-controllers']`.",
           "params": [
             {
               "options": [
@@ -3756,14 +3727,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.controllers"
         },
         {
-          "description": "Get the tests path from framework.config['directory-tests'].",
+          "description": "Gets the path from `framework.config['directory-tests']`.",
           "params": [
             {
               "options": [
@@ -3771,14 +3742,14 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.tests"
         },
         {
-          "description": "Get the resources path from framework.config['directory-resources'].",
+          "description": "Gets the path from `framework.config['directory-packages']`.",
           "params": [
             {
               "options": [
@@ -3786,14 +3757,29 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
+            }
+          ],
+          "return": "String",
+          "name": "framework.path.packages"
+        },
+        {
+          "description": "Gets the path from `framework.config['directory-resources']`.",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "name",
+              "type": "String",
+              "description": "The filename without path."
             }
           ],
           "return": "String",
           "name": "framework.path.resources"
         },
         {
-          "description": "Get the root path.",
+          "description": "Gets the root path.",
           "params": [
             {
               "options": [
@@ -3801,7 +3787,7 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "File name without path."
+              "description": "The filename without path."
             }
           ],
           "return": "String",
@@ -3809,19 +3795,19 @@
         }
       ],
       "name": "FrameworkPath",
-      "description": "This class helps with getting all framework paths. All paths reads from the framework configuration."
+      "description": "This class is useful for getting all paths of the framework. The function reads all paths according to the framework configuration."
     },
     {
       "group": "Framework",
       "methods": [
         {
           "name": "framework.restrictions.allow",
-          "description": "Set an allowed restrictions.",
+          "description": "Sets allowed restrictions.",
           "params": [
             {
               "name": "key",
               "type": "String",
-              "description": "Header name or IMPORTANT: IP address."
+              "description": "The header name or IMPORTANT: the IP address."
             },
             {
               "options": [
@@ -3829,20 +3815,21 @@
               ],
               "name": "value",
               "type": "RegExp",
-              "description": "Value for header value (otherwise framework compares IP address)."
+              "description": "The value for the header value (otherwise the framework compares the IP address)."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
-          "return": "Framework"
+          "return": "Framework",
+          "go": "#api~Framework"
         },
         {
           "name": "framework.restrictions.disallow",
-          "description": "Set an disallowed restrictions. This is blacklist for IP address or custom headers.",
+          "description": "Sets disallowed restrictions. This is a blacklist for the IP address or custom header.",
           "params": [
             {
               "name": "key",
               "type": "String",
-              "description": "Header name or IMPORTANT: IP address."
+              "description": "The header name or IMPORTANT: the IP address."
             },
             {
               "options": [
@@ -3850,33 +3837,36 @@
               ],
               "name": "value",
               "type": "RegExp",
-              "description": "Value for header testing (otherwise will compared IP address)."
+              "description": "The value for header testing (otherwise the framework compares the IP address)."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
+          "go": "#api~Framework",
           "return": "Framework"
         },
         {
           "name": "framework.restrictions.clearIP",
-          "description": "Clear all restrictions to IP.",
+          "description": "Clears all restrictions.",
           "params": [
 
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
+          "go": "#api~Framework",
           "return": "Framework"
         },
         {
           "name": "framework.restrictions.clearHeaders",
-          "description": "Clear all restrictions to headers.",
+          "description": "Clear all restrictions.",
           "params": [
 
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
+          "go": "#api~Framework",
           "return": "Framework"
         }
       ],
       "name": "FrameworkRestrictions",
-      "description": "This class creates framework restrictions. You can allow/disallow IP or custom headers."
+      "description": "This class creates the framework restrictions. You can allow/disallow IP or custom headers."
     },
     {
       "group": "Additional",
@@ -4083,7 +4073,7 @@
         }
       ],
       "name": "FrameworkStats",
-      "description": "This stats are filled automatically. You can change/resets stats any time."
+      "description": "This stats are filled automatically. You can change/resets stats every time."
     },
     {
       "events": [
@@ -4092,12 +4082,12 @@
             "websocket"
           ],
           "name": "controller.on('open')",
-          "description": "This event is triggered when is user connected.",
+          "description": "This event is triggered when is the user connected.",
           "params": [
             {
               "name": "client",
               "type": "Object",
-              "description": "FrameworkWebSocketClient object."
+              "description": "The FrameworkWebSocketClient."
             }
           ]
         },
@@ -4106,12 +4096,12 @@
             "websocket"
           ],
           "name": "controller.on('close')",
-          "description": "This event is triggered when is user disconnect.",
+          "description": "This event is triggered when is the user disconnect.",
           "params": [
             {
               "name": "client",
               "type": "Object",
-              "description": "FrameworkWebSocketClient object."
+              "description": "The FrameworkWebSocketClient."
             }
           ]
         },
@@ -4120,7 +4110,7 @@
             "websocket"
           ],
           "name": "controller.on('message')",
-          "description": "This event is triggered when recieved a message.",
+          "description": "This event is triggered when it received the message.",
           "params": [
             {
               "name": "client",
@@ -4130,7 +4120,7 @@
             {
               "name": "message",
               "type": "String or Object",
-              "description": "Recieved message."
+              "description": "The message."
             }
           ]
         },
@@ -4139,22 +4129,22 @@
             "websocket"
           ],
           "name": "controller.on('send')",
-          "description": "This event is triggered when is sended a message.",
+          "description": "This event is triggered when it sends the message.",
           "params": [
             {
               "name": "message",
               "type": "Object",
-              "description": "Sent message."
+              "description": "The message."
             },
             {
               "name": "id",
               "type": "String",
-              "description": "Id of client."
+              "description": "The id of the client."
             },
             {
               "name": "blacklist",
               "type": "String Array",
-              "description": "Id of clients."
+              "description": "The id collection."
             }
           ]
         },
@@ -4163,7 +4153,7 @@
             "websocket"
           ],
           "name": "controller.on('destroy')",
-          "description": "This event is triggered when is WebSocket destroyed.",
+          "description": "This event is triggered when is the WebSocket destroyed.",
           "params": [
 
           ]
@@ -4183,7 +4173,7 @@
             {
               "name": "client",
               "type": "Object",
-              "description": "FrameworkWebSocketClient object."
+              "description": "The FrameworkWebSocketClient."
             }
           ]
         }
@@ -4869,7 +4859,7 @@
               "description": "Name of another task."
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
@@ -4901,7 +4891,7 @@
               "description": "Name of task."
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
@@ -5390,8 +5380,8 @@
               "description": "The filename."
             }
           ],
-          "name": "controller.routeJS",
-          "description": "Route a JS file by the config['static-url-js']. Returns relative URL address."
+          "name": "controller.routeScript",
+          "description": "Route a JS file by the config['static-url-js']."
         },
         {
           "return": "String",
@@ -5405,8 +5395,8 @@
               "description": "The filename."
             }
           ],
-          "name": "controller.routeCSS",
-          "description": "Route a CSS file by the config['static-url-css']. Returns relative URL address."
+          "name": "controller.routeStyle",
+          "description": "Route a CSS file by the config['static-url-css']."
         },
         {
           "return": "String",
@@ -5421,7 +5411,7 @@
             }
           ],
           "name": "controller.routeImage",
-          "description": "Route a image file by the config['static-url-image']. Returns relative URL address."
+          "description": "Route a image file by the config['static-url-image']."
         },
         {
           "return": "String",
@@ -5436,7 +5426,7 @@
             }
           ],
           "name": "controller.routeVideo",
-          "description": "Route a video file by the config['static-url-video']. Returns relative URL address."
+          "description": "Route a video file by the config['static-url-video']."
         },
         {
           "return": "String",
@@ -5451,7 +5441,7 @@
             }
           ],
           "name": "controller.routeFont",
-          "description": "Route a font file by the config['static-url-font']. Returns relative URL address."
+          "description": "Route a font file by the config['static-url-font']."
         },
         {
           "return": "String",
@@ -5466,7 +5456,7 @@
             }
           ],
           "name": "controller.routeUpload",
-          "description": "Route a upload file by the config['static-url-upload']. Returns relative URL address."
+          "description": "Route a upload file by the config['static-url-upload']."
         },
         {
           "return": "String",
@@ -5481,7 +5471,7 @@
             }
           ],
           "name": "controller.routeStatic",
-          "description": "Route a static file by the config['static-url']. Returns relative URL address."
+          "description": "Route a static file by the config['static-url']."
         },
         {
           "description": "Set current path to image.",
@@ -6759,7 +6749,7 @@
           ],
           "return": "String",
           "name": "client.id",
-          "description": "ID of connection / client. You can change this id by yourself."
+          "description": "The connection / client id. You can change this id by yourself."
         },
         {
           "options": [
@@ -6783,27 +6773,19 @@
           ],
           "name": "client.isClosed",
           "return": "Boolean",
-          "description": "Is connection closed?"
+          "description": "Is the connection closed?"
         },
         {
           "default": "null",
           "name": "client.session",
           "return": "Object",
-          "description": "Current custom session object."
+          "description": "The custom session object."
         },
         {
           "default": "null",
           "name": "client.user",
           "return": "Object",
-          "description": "Current custom user object."
-        },
-        {
-          "options": [
-            "readonly"
-          ],
-          "name": "client.get",
-          "return": "Object",
-          "description": "Parsed data from URL params. Alias for: client.query."
+          "description": "The custom user object."
         },
         {
           "options": [
@@ -6811,7 +6793,7 @@
           ],
           "name": "client.query",
           "return": "Object",
-          "description": "Parsed data from URL params."
+          "description": "A parsed query parameters from the URL address. Example: `chat/?my-custom-param=1`."
         },
         {
           "options": [
@@ -6819,7 +6801,7 @@
           ],
           "name": "client.ip",
           "return": "String",
-          "description": "Current IP address."
+          "description": "The IP address (host)."
         },
         {
           "options": [
@@ -6827,7 +6809,7 @@
           ],
           "name": "client.protocol",
           "return": "String Array",
-          "description": "Current protocol."
+          "description": "The protocol (Reads value from the header: `sec-websocket-protocol`)."
         },
         {
           "options": [
@@ -6835,18 +6817,18 @@
           ],
           "name": "client.uri",
           "return": "URI",
-          "description": "Current URI address."
+          "description": "The URI address."
         }
       ],
       "methods": [
         {
-          "description": "Get cookie.",
+          "description": "Gets the cookie value.",
           "default": "''",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of cookie."
+              "description": "The cookie name."
             }
           ],
           "return": "String",
@@ -6861,11 +6843,11 @@
             {
               "name": "message",
               "type": "String or Object",
-              "description": "Message to send."
+              "description": "The message."
             }
           ],
           "name": "client.send",
-          "description": "Send message via websocket to client."
+          "description": "Sends the message via websocket to the current client."
         },
         {
           "return": "FrameworkWebSocketClient",
@@ -6879,7 +6861,7 @@
               ],
               "name": "message",
               "type": "String",
-              "description": "Reason message."
+              "description": "The message as reason."
             },
             {
               "options": [
@@ -6888,20 +6870,21 @@
               "default": "1000",
               "name": "code",
               "type": "Number",
-              "description": "Reason code. https://tools.ietf.org/html/rfc6455#section-7.4"
+              "description": "The reasong code."
             }
           ],
           "name": "client.close",
-          "description": "Close a connection."
+          "description": "Closes the connection for current client. The reason codes: <https://tools.ietf.org/html/rfc6455#section-7.4>"
         }
       ],
-      "name": "FrameworkWebSocketClient"
+      "name": "FrameworkWebSocketClient",
+      "description": "Is created when a request is received into the WebSocket controller.\n\n__Example__:\n\n```javascript\ncontroller.on('open', function(client) {\n    console.log('FrameworkWebSocketClient -->', client);\n};\n\ncontroller.on('close', function(client) {\n    console.log('FrameworkWebSocketClient -->', client);\n};\n\ncontroller.on('message', function(client, message) {\n    console.log('FrameworkWebSocketClient -->', client);\n};\n```"
     },
     {
       "group": "Framework",
       "properties": [
         {
-          "description": "Render all head values.",
+          "description": "Renders head values.",
           "return": "String",
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
           "name": "@{head}"
@@ -6909,41 +6892,35 @@
         {
           "name": "@{meta}",
           "return": "String",
-          "description": "Render all meta tags."
+          "description": "Renders meta tags."
         },
         {
           "name": "@{title}",
           "return": "String",
-          "description": "Render title value. Title is set via @{meta('title')} method."
+          "description": "Renders the title."
         },
         {
           "name": "@{description}",
           "return": "String",
-          "description": "Render description value. Description is set via @{meta('title', 'description')} method."
+          "description": "Renders the description."
         },
         {
           "name": "@{keywords}",
           "return": "String",
-          "description": "Render keywords value. Keywords is set via @{meta('title', 'description', 'keywords')} method."
+          "description": "Renders keywords."
         },
         {
           "name": "@{body}",
           "return": "String",
-          "description": "This tag is available in a layout. Into this tag are render all views."
+          "description": "The tag is available only for the layout. Into this tag framework renders view."
         },
         {
           "name": "@{hostname}",
           "return": "String",
-          "description": "Get a hostname from current request."
+          "description": "Gets the hostname from current request."
         },
         {
-          "description": "Render all settings values.",
-          "return": "String",
-          "example": "https://github.com/totaljs/examples/tree/master/views-settings",
-          "name": "@{settings}"
-        },
-        {
-          "description": "Get value from a repository object.",
+          "description": "Gets the value from the repository object.",
           "options": [
 
           ],
@@ -6954,7 +6931,7 @@
         {
           "name": "@{global.customKey}",
           "return": "Object",
-          "description": "Get value fromframework global object."
+          "description": "Gets the value from the framework global object."
         },
         {
           "options": [
@@ -6962,42 +6939,42 @@
           ],
           "return": "Object",
           "name": "@{model.customKey}",
-          "description": "Get value from model."
+          "description": "Gets the value from the model."
         },
         {
           "name": "@{get.customKey}",
           "return": "String",
-          "description": "Get value from GET data."
+          "description": "Gets the value from the GET data."
         },
         {
           "name": "@{post.customKey}",
           "return": "String",
-          "description": "Get value from POST data."
+          "description": "Gets the value from the POST data."
         },
         {
           "name": "@{config.customKey}",
           "return": "Object",
-          "description": "Get value from configuration."
+          "description": "Gets the value from the framework configuration."
         },
         {
           "name": "@{user.customKey}",
           "return": "Object",
-          "description": "Get value from controller.user object."
+          "description": "Gets the value from the `controller.user` object."
         },
         {
           "name": "@{session.customKey}",
           "return": "Object",
-          "description": "Get value from controller.session object."
+          "description": "Gets the value from the `controller.session` object."
         },
         {
           "name": "@{controller.ip}",
           "return": "Object",
-          "description": "Get value from controller object."
+          "description": "Gets the value from the controller object."
         },
         {
           "name": "@{index}",
           "return": "Object",
-          "description": "Get current index in foreach loop."
+          "description": "Gets the current index in the current loop."
         }
       ],
       "methods": [
@@ -7432,7 +7409,7 @@
             }
           ],
           "return": "String",
-          "name": "@{routeJS}"
+          "name": "@{routeScript}"
         },
         {
           "name": "@{currentView}",
@@ -7489,7 +7466,7 @@
             }
           ],
           "return": "String",
-          "name": "@{routeCSS}"
+          "name": "@{routeStyle}"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
@@ -8903,22 +8880,23 @@
         {
           "name": "mail.rejectUnauthorized",
           "return": "Booelan",
-          "description": "If true the server will reject any connection which is not authorized with the list of supplied CAs. This option only has an effect if requestCert is true. Default: false."
+          "description": "If true the server will reject any connection which is not authorized with the list of supplied CAs. This option only has an effect if requestCert is true.",
+          "default": "false"
         },
         {
           "name": "message.subject",
           "return": "String",
-          "description": "Subject of e-mail."
+          "description": "The mail subject."
         },
         {
           "name": "message.body",
           "return": "String",
-          "description": "Body of e-mail. Body can be HTML."
+          "description": "The mail body. Body can be HTML."
         }
       ],
       "methods": [
         {
-          "description": "Set sender of mail.",
+          "description": "Sets the sender address.",
           "params": [
             {
               "name": "address",
@@ -8928,67 +8906,67 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Name of sender. Example: total.js"
+              "description": "The sender name. Example: total.js"
             }
           ],
           "return": "MailMessage",
           "name": "message.from"
         },
         {
-          "description": "Add a to e-mail address.",
+          "description": "Sets the \"to\" e-mail address.",
           "params": [
             {
               "name": "address",
               "type": "String",
-              "description": "A valid e-mail address."
+              "description": "The valid e-mail address."
             }
           ],
           "return": "MailMessage",
           "name": "message.to"
         },
         {
-          "description": "Add a CC e-mail address.",
+          "description": "Sets the CC e-mail address.",
           "params": [
             {
               "name": "address",
               "type": "String",
-              "description": "A valid e-mail address."
+              "description": "The valid e-mail address."
             }
           ],
           "return": "MailMessage",
           "name": "message.cc"
         },
         {
-          "description": "Add a BCC e-mail address.",
+          "description": "Add the \"BCC\" e-mail address.",
           "params": [
             {
               "name": "address",
               "type": "String",
-              "description": "A valid e-mail address."
+              "description": "The valid e-mail address."
             }
           ],
           "return": "MailMessage",
           "name": "message.bcc"
         },
         {
-          "description": "Add a reply e-mail address.",
+          "description": "Sets \"replyTo\" e-mail address.",
           "params": [
             {
               "name": "address",
               "type": "String",
-              "description": "A valid e-mail address."
+              "description": "The valid e-mail address."
             }
           ],
           "return": "MailMessage",
           "name": "message.reply"
         },
         {
-          "description": "Add a attachment.",
+          "description": "Adds the attachment.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename of attachment."
+              "description": "The filename."
             },
             {
               "options": [
@@ -8996,22 +8974,22 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "Name of attachment (name must be with the extension)."
+              "description": "The attachment name (IMPORTANT: name must be with the extension)."
             }
           ],
           "return": "MailMessage",
           "name": "message.attachment"
         },
         {
-          "description": "Send a message.",
+          "description": "Sends the message.",
           "params": [
             {
               "name": "smtp",
               "type": "String",
-              "description": "SMTP server - host address."
+              "description": "The SMTP server - host address."
             },
             {
-              "description": "SMTP options.",
+              "description": "The SMTP options.",
               "options": [
                 "optional"
               ],
@@ -9023,7 +9001,7 @@
                   "default": "false",
                   "name": "secure",
                   "type": "Boolean",
-                  "description": "Is a secure connection? (HTTPS/TLS)"
+                  "description": "Is secured connection? (HTTPS/TLS)"
                 },
                 {
                   "options": [
@@ -9032,7 +9010,7 @@
                   "default": "25",
                   "name": "port",
                   "type": "Number",
-                  "description": "Port number."
+                  "description": "The port number."
                 },
                 {
                   "options": [
@@ -9041,7 +9019,7 @@
                   "default": "''",
                   "name": "user",
                   "type": "String",
-                  "description": "SMTP user name."
+                  "description": "The SMTP user name."
                 },
                 {
                   "options": [
@@ -9050,7 +9028,7 @@
                   "default": "''",
                   "name": "password",
                   "type": "String",
-                  "description": "SMTP password."
+                  "description": "The SMTP password."
                 },
                 {
                   "options": [
@@ -9059,7 +9037,7 @@
                   "default": "10000",
                   "name": "timeout",
                   "type": "Number",
-                  "description": "Connection timeout in milliseconds."
+                  "description": "The connection timeout in milliseconds."
                 }
               ],
               "name": "options",
@@ -9071,7 +9049,7 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Callback."
+              "description": "The callback."
             }
           ],
           "return": "MailMessage",
@@ -9079,10 +9057,11 @@
         }
       ],
       "name": "FrameworkMail",
-      "description": "This class supports sending e-mails via SMTP protocol. FrameworkMail supports TLS. For more informations click on the example.\n\n- [Example: Email send](https://github.com/totaljs/examples/tree/master/email)\n- [Example: Controller email](https://github.com/totaljs/examples/tree/master/controller-mail)\n\n```js\nvar mail = require('total.js/mail');\nvar message = new mail.Message('subject', 'body');\n\n// Set e-mail sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n```",
+      "description": "This class supports sending e-mails via SMTP protocol. `FrameworkMail` supports TLS.\n\n- [Example: Email send](https://github.com/totaljs/examples/tree/master/email)\n- [Example: Controller email](https://github.com/totaljs/examples/tree/master/controller-mail)\n\n```js\nvar mail = require('total.js/mail');\nvar message = new mail.Message('subject', 'body');\n\n// Set e-mail sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n```",
       "events": [
         {
           "name": "mail.on('error')",
+          "return": "undefined",
           "description": "Error handling.",
           "params": [
             {
@@ -9093,29 +9072,31 @@
             {
               "name": "message",
               "type": "MailMessage",
-              "description": "Mail message."
+              "description": "The message object."
             }
           ]
         },
         {
           "name": "mail.on('success')",
           "description": "Message was sent.",
+          "return": "undefined",
           "params": [
             {
               "name": "message",
               "type": "MailMessage",
-              "description": "Mail message."
+              "description": "The message object."
             }
           ]
         },
         {
           "name": "mail.on('sending')",
-          "description": "Sending message.",
+          "return": "undefined",
+          "description": "Sending the message.",
           "params": [
             {
               "name": "message",
               "type": "MailMessage",
-              "description": "Mail message."
+              "description": "The message object."
             }
           ]
         }
@@ -9124,30 +9105,6 @@
     {
       "group": "Framework",
       "methods": [
-        {
-          "description": "Create an Image instance.",
-          "options": [
-            "important"
-          ],
-          "params": [
-            {
-              "name": "filename",
-              "type": "String/Stream/Buffer",
-              "description": "Image filename or Image readable stream or Image buffer."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "default": "false",
-              "name": "imagemagick",
-              "type": "Boolean",
-              "description": "Use ImageMagick (true) or GraphicsMagick (false)?"
-            }
-          ],
-          "return": "FrameworkImage",
-          "name": "require('total.js/image').load"
-        },
         {
           "description": "Get image size.",
           "params": [
@@ -9186,31 +9143,31 @@
           "name": "image.output"
         },
         {
-          "description": "Set bit depth of image.",
+          "description": "Sets the image `bit depth`.",
           "params": [
             {
               "name": "value",
               "type": "Number",
-              "description": "Image bitdepth."
+              "description": "The value."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.bitdepth"
         },
         {
-          "description": "Set colors of image.",
+          "description": "Color reduction.",
           "params": [
             {
               "name": "value",
               "type": "Number",
-              "description": "Color reduction."
+              "description": "The value."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.colors"
         },
         {
-          "description": "Create stream from an Image.",
+          "description": "Creates a stream from the image.",
           "params": [
             {
               "options": [
@@ -9219,19 +9176,20 @@
               "default": "'jpg'",
               "name": "type",
               "type": "String",
-              "description": "Image type: 'jpg', 'png' or 'gif'."
+              "description": "The image can be type: 'jpg', 'png' or 'gif'."
             }
           ],
-          "return": "FrameworkImage",
+          "go":"http://nodejs.org/api/stream.html#stream_class_stream_readable",
+          "return": "ReadableStream",
           "name": "image.stream"
         },
         {
-          "description": "Pipe stream to stream.",
+          "description": "Creates a pipe between streams.",
           "params": [
             {
               "name": "stream",
               "type": "WriteStream",
-              "description": "Writable stream."
+              "description": "The writable stream."
             },
             {
               "options": [
@@ -9247,14 +9205,14 @@
               ],
               "name": "options",
               "type": "Object",
-              "description": "Stream options."
+              "description": "The stream options."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.pipe"
         },
         {
-          "description": "Save image modification into the file. This function run all defined/called image commands.",
+          "description": "Saves the image modification into the file. This function runs all commands.",
           "options": [
             "important"
           ],
@@ -9262,10 +9220,10 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename for save changed image."
+              "description": "The filename."
             },
             {
-              "description": "Completed callback.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
@@ -9278,7 +9236,7 @@
                 {
                   "name": "filename",
                   "type": "String",
-                  "description": "Filename of image."
+                  "description": "The filename."
                 }
               ],
               "name": "callback",
@@ -9289,10 +9247,10 @@
           "name": "image.save"
         },
         {
-          "description": "Get image informations (type, width, height).",
+          "description": "Gets the image informations (type, width, height).",
           "params": [
             {
-              "description": "Completed callback.",
+              "description": "The callback.",
               "params": [
                 {
                   "name": "err",
@@ -9313,7 +9271,7 @@
           "name": "image.identify"
         },
         {
-          "description": "Resize image.",
+          "description": "Resizes the image.",
           "params": [
             {
               "name": "width",
@@ -9335,7 +9293,7 @@
           "name": "image.resize"
         },
         {
-          "description": "Create a minuature.",
+          "description": "Creates a minuature.",
           "params": [
             {
               "name": "width",
@@ -9351,14 +9309,14 @@
               "default": "'white'",
               "name": "bgColor",
               "type": "String",
-              "description": "Background color."
+              "description": "The background color."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.miniature"
         },
         {
-          "description": "Resize image with align: center center.",
+          "description": "Resizes the image with align: center center.",
           "params": [
             {
               "name": "width",
@@ -9375,7 +9333,7 @@
           "name": "image.resizeCenter"
         },
         {
-          "description": "Scale image.",
+          "description": "Scales the image.",
           "params": [
             {
               "name": "width",
@@ -9397,7 +9355,7 @@
           "name": "image.scale"
         },
         {
-          "description": "Crop image.",
+          "description": "Crops the image.",
           "params": [
             {
               "name": "width",
@@ -9424,19 +9382,19 @@
           "name": "image.crop"
         },
         {
-          "description": "Set image quality.",
+          "description": "Sets the image quality.",
           "params": [
             {
               "name": "percentage",
               "type": "Number",
-              "description": "Quality in percent."
+              "description": "The quality in percent."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.quality"
         },
         {
-          "description": "Set align of image.",
+          "description": "Sets the image align.",
           "params": [
             {
               "name": "type",
@@ -9448,19 +9406,19 @@
           "name": "image.align"
         },
         {
-          "description": "Set blur of image.",
+          "description": "Sets the image blur.",
           "params": [
             {
               "name": "radius",
               "type": "Number",
-              "description": "Blur radius."
+              "description": "The blur radius."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.blur"
         },
         {
-          "description": "Set normalize of image.",
+          "description": "Sets image normalization.",
           "params": [
 
           ],
@@ -9468,19 +9426,19 @@
           "name": "image.normalize"
         },
         {
-          "description": "Rotate image.",
+          "description": "Rotates the image.",
           "params": [
             {
-              "name": "deg",
+              "name": "degrees",
               "type": "Number",
-              "description": "Degree of rotation."
+              "description": "Rotation degrees."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.rotate"
         },
         {
-          "description": "Flip image.",
+          "description": "Flips the image.",
           "params": [
 
           ],
@@ -9488,7 +9446,7 @@
           "name": "image.flip"
         },
         {
-          "description": "Flop image (opposite flip).",
+          "description": "Flops the image (opposite the flip).",
           "params": [
 
           ],
@@ -9496,7 +9454,7 @@
           "name": "image.flop"
         },
         {
-          "description": "Minify image.",
+          "description": "Minify the image.",
           "params": [
 
           ],
@@ -9504,7 +9462,7 @@
           "name": "image.minify"
         },
         {
-          "description": "Grayscale of image.",
+          "description": "Creates a grayscale from the image..",
           "params": [
 
           ],
@@ -9512,7 +9470,7 @@
           "name": "image.grayscale"
         },
         {
-          "description": "Sepia of image.",
+          "description": "Creates a sepia from the image.",
           "params": [
 
           ],
@@ -9520,19 +9478,19 @@
           "name": "image.sepia"
         },
         {
-          "description": "Set background of image.",
+          "description": "Sets the image background.",
           "params": [
             {
               "name": "color",
               "type": "String",
-              "description": "Color of background."
+              "description": "The background color."
             }
           ],
           "return": "FrameworkImage",
           "name": "image.background"
         },
         {
-          "description": "Add a custom command.",
+          "description": "Adds a custom command.",
           "options": [
             "internal"
           ],
@@ -9540,7 +9498,7 @@
             {
               "name": "arg",
               "type": "String",
-              "description": "Argument of command."
+              "description": "The command argument."
             },
             {
               "options": [
@@ -9548,7 +9506,7 @@
               ],
               "name": "priority",
               "type": "Number",
-              "description": "Priority of command."
+              "description": "The command priority."
             }
           ],
           "return": "FrameworkImage",
@@ -9556,7 +9514,7 @@
         }
       ],
       "name": "FrameworkImage",
-      "description": "This class contains functions for manipulation of images. For using of FrameworkImage you must have on server installed ImageMagick or GraphicsMagick plugin.\n\n__Example:__\n\n```javascript\nvar Image = require('total.js/image');\nvar image = Image.load('filename', [imageMagick]);\n\n// OR \n\nvar image = Image.load(fs.createReadStream('/users/petersirka/desktop/header.jpg'));\n\nimage.resizeCenter(200, 200);\nimage.grayscale();\nimage.save('filename');\n```"
+      "description": "This class contains functions for manipulation with images. For using `FrameworkImage` you must have installed `ImageMagick` or `GraphicsMagick` on server.\n\n__Example:__\n\n```javascript\nvar Image = require('total.js/image');\nvar image = Image.load('filename', [imageMagick]);\n\n// OR \n\nvar image = Image.load(fs.createReadStream('/users/petersirka/desktop/header.jpg'));\n\nimage.resizeCenter(200, 200);\nimage.grayscale();\nimage.save('filename');\n```"
     },
     {
       "group": "Additional",
@@ -11627,7 +11585,7 @@
               "description": "Name of another task."
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
@@ -11670,7 +11628,7 @@
               "description": "Name of task."
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
@@ -12032,7 +11990,7 @@
           "name": "INSTALL"
         },
         {
-          "description": "Uninstall some feature from the framework. This function is alias for: framework.uninstall().",
+          "description": "Uninstalls a feature from the framework. This function is alias for: framework.uninstall().",
           "params": [
             {
               "name": "type",
