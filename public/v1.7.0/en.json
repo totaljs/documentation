@@ -850,7 +850,7 @@
         }
       ],
       "group": "Framework",
-      "description": "The main class (core) of total.js. This class is singleton and is set as global variable.\n\n```javascript\nconsole.log(framework.version);\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n```",
+      "description": "The main class (core) of total.js. This class is singleton and is set as global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http(‘debug’);\n```",
       "name": "Framework",
       "methods": [
         {
@@ -903,11 +903,11 @@
               "default": "false",
               "name": "clear",
               "type": "Boolean",
-              "description": "Clear temporary directory"
+              "description": "Removes all files from temporary directory."
             }
           ],
           "name": "framework.refresh",
-          "description": "Refresh internal information (re-configure) and clear temporary data, resources, etc.."
+          "description": "Reconfigures and clears temporary data, resources, etc.."
         },
         {
           "description": "Gets a NoSQL embedded database connection.",
@@ -957,7 +957,7 @@
 
           ],
           "name": "framework.reconnect",
-          "description": "Reconnect HTTP/HTTPS."
+          "description": "Reconnects HTTP/HTTPS again."
         },
         {
           "description": "Stop the framework",
@@ -977,17 +977,17 @@
           "name": "framework.stop"
         },
         {
-          "description": "Register a middleware. Middleware is executed before is executing a Request / Controller / Module. Middleware must be specified for use.",
+          "description": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware must be specified for usage.",
           "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "return": "Framework",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of middleware."
+              "description": "The middleware name."
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "options": [
                 "important"
               ],
@@ -995,12 +995,12 @@
                 {
                   "name": "req",
                   "type": "Request",
-                  "description": "HTTP Request."
+                  "description": "The HTTP Request."
                 },
                 {
                   "name": "res",
                   "type": "Response",
-                  "description": "HTTP Response."
+                  "description": "The HTTP Response."
                 },
                 {
                   "options": [
@@ -1008,7 +1008,7 @@
                   ],
                   "name": "next",
                   "type": "Function",
-                  "description": "Next step."
+                  "description": "The next step."
                 },
                 {
                   "options": [
@@ -1024,7 +1024,7 @@
                   ],
                   "name": "controller",
                   "type": "FrameworkController",
-                  "description": "Current controller (if exists)."
+                  "description": "The current controller (if exists)."
                 }
               ],
               "name": "fn",
@@ -1034,19 +1034,19 @@
           "name": "framework.middleware"
         },
         {
-          "description": "Register route for HOST redirecting. This feature you can define in definitions.",
+          "description": "Creates a route for HOST redirecting.",
           "example": "https://github.com/totaljs/examples/tree/master/redirect-host",
           "return": "Framework",
           "params": [
             {
               "name": "oldHost",
               "type": "String",
-              "description": "Old host with procotol. Example: http://www.domain.com"
+              "description": "The old host with procotol. Example: http://www.domain.com"
             },
             {
               "name": "newHost",
               "type": "String",
-              "description": "Hew host with procotol. Example: http://domain.com"
+              "description": "The new host with procotol. Example: http://domain.com"
             },
             {
               "options": [
@@ -1055,7 +1055,7 @@
               "default": "true",
               "name": "copyPath",
               "type": "Boolean",
-              "description": "Copy full path with URL params?"
+              "description": "Copies the full path into the new host."
             },
             {
               "options": [
@@ -1064,13 +1064,13 @@
               "default": "false",
               "name": "permanent",
               "type": "Boolean",
-              "description": "Permanent redirect?"
+              "description": "Sets permanent redirects."
             }
           ],
           "name": "framework.redirect"
         },
         {
-          "description": "Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.",
+          "description": "Creates a new HTTP/HTTPS route.",
           "return": "Framework",
           "params": [
             {
@@ -1124,7 +1124,7 @@
           "name": "framework.route"
         },
         {
-          "description": "Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.",
+          "description": "Creates a new HTTP/HTTPS route.",
           "return": "Framework",
           "options": [
             "alternative"
@@ -1133,7 +1133,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Route name for searching."
+              "description": "The route name."
             },
             {
               "name": "url",
@@ -1141,7 +1141,7 @@
               "description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/"
             },
             {
-              "description": "Function to execute.",
+              "description": "The function to execute.",
               "params": [
                 {
                   "options": [
@@ -1149,7 +1149,7 @@
                   ],
                   "name": "param..1",
                   "type": "String",
-                  "description": "Dynamic parameter"
+                  "description": "A dynamic parameter."
                 },
                 {
                   "options": [
@@ -1157,7 +1157,7 @@
                   ],
                   "name": "param..2",
                   "type": "String",
-                  "description": "Dynamic parameter"
+                  "description": "A dynamic parameter."
                 },
                 {
                   "options": [
@@ -1165,28 +1165,28 @@
                   ],
                   "name": "param..n",
                   "type": "String",
-                  "description": "Dynamic parameter"
+                  "description": "A dynamic parameter."
                 }
               ],
               "name": "fn",
               "type": "Function"
             },
             {
-              "description": "Define more options for the route.",
+              "description": "Additional options.",
               "options": [
                 "optional"
               ],
               "default": "{}",
               "name": "options",
               "type": "HttpRouteOptions",
-              "go": "HttpRouteOptions"
+              "go": "#api~HttpRouteOptions"
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "framework.route"
         },
         {
-          "description": "Register a new HTTP/HTTPS route. This function must be executed in a controller/module file.",
+          "description": "Creates a new HTTP/HTTPS route.",
           "return": "Framework",
           "options": [
             "alternative"
@@ -1221,7 +1221,7 @@
             {
               "name": "url",
               "type": "String",
-              "description": "The relative URL. Example: /img/small/*.jpg (only JPG) or /img/medium/ (all extensions argument)."
+              "description": "The relative URL. Example: \"/img/small/*.jpg\" (only JPG) or \"/img/medium/\" (all extensions argument)."
             },
             {
               "options": [
@@ -1230,7 +1230,7 @@
               "default": "null",
               "name": "width",
               "type": "Number/String",
-              "description": "New width. Supports percentage."
+              "description": "The size of width. It supports percentage."
             },
             {
               "options": [
@@ -1239,7 +1239,7 @@
               "default": "null",
               "name": "height",
               "type": "Number/String",
-              "description": "New height. Supports percentage."
+              "description": "The size of height. It supports percentage."
             },
             {
               "options": [
@@ -1248,16 +1248,16 @@
               "default": "{}",
               "name": "options",
               "type": "Object",
-              "description": "Additional options."
+              "description": "The additional options."
             },
             {
               "options": [
                 "optional"
               ],
-              "default": "['.jpg', '.png', '.gif']",
+              "default": "url",
               "name": "path",
-              "type": "String Array",
-              "description": "Only extension in asterix path."
+              "type": "String",
+              "description": "The relative path."
             },
             {
               "options": [
@@ -1266,14 +1266,14 @@
               "default": "['.jpg', '.png', '.gif']",
               "name": "extension",
               "type": "String Array",
-              "description": "Only extension in asterix path."
+              "description": "Only extensions."
             }
           ],
           "name": "framework.resize",
-          "description": "Register a image resize route. Example:\n\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });"
+          "description": "Creates a `image resize` route.\n\n__Example__:\n\n```javascript\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });\n```"
         },
         {
-          "description": "Register a new Websocket route to controller or module. This function must be executed in a controller/module file. For more information look up to the example.",
+          "description": "Creates a new Websocket route to controller or module. For more information look up to the example.",
           "return": "Framework",
           "params": [
             {
@@ -1319,7 +1319,7 @@
           "name": "framework.websocket"
         },
         {
-          "description": "Registers a new file route. This function can handle static files.\n\n__Example__:\n\n```js\nframework.file(‘*.jpg’, function(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf(‘.jpg’) !== -1;\n    // ... transform\n    res.file('new-file-name.jpg');\n});\n```",
+          "description": "Creates a new file route. This function can handle static files.\n\n__Example__:\n\n```js\nframework.file(‘*.jpg’, function(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf(‘.jpg’) !== -1;\n    // ... transform\n    res.file('new-file-name.jpg');\n});\n```",
           "return": "Framework",
           "params": [
             {
@@ -1411,12 +1411,12 @@
             {
               "name": "subject",
               "type": "String",
-              "description": "E-mail subject."
+              "description": "The subject."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Name of view."
+              "description": "The view name."
             },
             {
               "options": [
@@ -1424,10 +1424,10 @@
               ],
               "name": "model",
               "type": "Object",
-              "description": "Model into the view."
+              "description": "The view model."
             },
             {
-              "description": "Callback.",
+              "description": "The callback function.",
               "options": [
                 "optional"
               ],
@@ -1447,11 +1447,11 @@
               ],
               "name": "replyTo",
               "type": "String",
-              "description": "Reply address."
+              "description": "The reply address."
             }
           ],
           "name": "framework.mail",
-          "description": "Send e-mail from a view."
+          "description": "Creates the HTML from some view and sends the e-mail."
         },
         {
           "return": "Framework",
@@ -1459,12 +1459,12 @@
             {
               "name": "url",
               "type": "String",
-              "description": "A relative url for listening."
+              "description": "The relative url for listening."
             },
             {
               "name": "filename1",
               "type": "String",
-              "description": "File to merge (is read from public directory (for other reading use: ~)."
+              "description": "A file to merge. The file is read from a \"public\" directory. If the path starts \"~\" the function returns the path from the root directory."
             },
             {
               "name": "filename2",
@@ -1481,7 +1481,7 @@
             }
           ],
           "name": "framework.merge",
-          "description": "Create a virtual route for merging of static files. Currently method supports merging: JavaScript or CSS."
+          "description": "Creates a virtual route for merging static files. Method supports merging: JavaScript or CSS."
         },
         {
           "return": "Framework",
@@ -1489,12 +1489,12 @@
             {
               "name": "url",
               "type": "String",
-              "description": "A relative url."
+              "description": "The relative url."
             },
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename for response."
+              "description": "The filename for response."
             }
           ],
           "name": "framework.mapping",
@@ -1531,12 +1531,12 @@
             {
               "name": "message",
               "type": "String",
-              "description": "Problem description."
+              "description": "A problem description."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Controller / module name."
+              "description": "The controller or module name."
             },
             {
               "options": [
@@ -1544,7 +1544,7 @@
               ],
               "name": "uri",
               "type": "Object",
-              "description": "URI object."
+              "description": "The URI object."
             },
             {
               "options": [
@@ -1552,11 +1552,11 @@
               ],
               "name": "ip",
               "type": "String",
-              "description": "IP address."
+              "description": "The IP address."
             }
           ],
           "name": "framework.problem",
-          "description": "Create a new framework problem."
+          "description": "Creates a new framework problem."
         },
         {
           "return": "Framework",
@@ -1592,13 +1592,13 @@
           "description": "Create a new change."
         },
         {
-          "description": "Get a framework module. All modules are defined in config['directory-modules'].",
+          "description": "Gets the module instance.",
           "return": "Object",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Module name."
+              "description": "The module name."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-modules",
@@ -1626,13 +1626,13 @@
           "name": "framework.source"
         },
         {
-          "description": "Get a framework model. All models are defined in config['directory-models'].",
+          "description": "Gets the model instance.",
           "return": "Object",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Model name."
+              "description": "The model name."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/models",
@@ -1664,7 +1664,7 @@
           "description": "Evals function in the framework context."
         },
         {
-          "description": "Install some feature into the framework.",
+          "description": "Installs a new feature into the framework.",
           "params": [
             {
               "name": "type",
@@ -1730,7 +1730,7 @@
           "name": "framework.uninstall"
         },
         {
-          "description": "Write to the log file.",
+          "description": "Writes message to a log file. The log file will contain date + time.",
           "return": "Framework",
           "params": [
             {
@@ -1739,7 +1739,7 @@
               ],
               "name": "param..1",
               "type": "Any",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             },
             {
               "options": [
@@ -1747,7 +1747,7 @@
               ],
               "name": "param..2",
               "type": "Any",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             },
             {
               "options": [
@@ -1755,7 +1755,7 @@
               ],
               "name": "param..n",
               "type": "Any",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/logs",
@@ -1779,22 +1779,6 @@
           "name": "framework.usage"
         },
         {
-          "description": "Indicates whether the static file is processed internally. This function is bounded with framework.responseFile() or framework.responseImage().",
-          "return": "Boolean",
-          "options": [
-            "internal"
-          ],
-          "params": [
-            {
-              "name": "filename",
-              "type": "String",
-              "description": "Static filename."
-            }
-          ],
-          "example": "https://github.com/totaljs/modules/tree/master/less/less.js",
-          "name": "framework.isProcessed"
-        },
-        {
           "return": "Framework",
           "options": [
             "internal"
@@ -1803,16 +1787,16 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             }
           ],
           "name": "framework.responseStatic",
-          "description": "Response static file by the request path."
+          "description": "Returns the static file according to the request url."
         },
         {
           "return": "Framework",
@@ -1823,30 +1807,30 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             }
           ],
           "name": "framework.responseCustom",
-          "description": "Custom response. This function clears uploaded files, creates request/response stats and emits event - request-end."
+          "description": "__The response must be closed by manually.__ This methods triggers `request-end` event and stops the timeout."
         },
         {
-          "description": "Response file. A file extension must exists in config['static-accepts']. This function sets up HTTP cache (by the framework config mode - debug/release). If file is CSS or JS then will compiled. This function automatically supports HTTP RANGE streaming.",
+          "description": "Writes the file into the response. A file extension must exist in `config['static-accepts']`. This function sets up the HTTP cache (according to the framework config mode - `debug` or `release`). If the file is CSS or JS then it will be compiled. This function supports HTTP RANGE (streaming) automatically.",
           "return": "Framework",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "filename",
@@ -1885,17 +1869,17 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "url",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             },
             {
               "options": [
@@ -1911,7 +1895,7 @@
               ],
               "name": "timeout",
               "type": "Number",
-              "description": "Set timeout for the request."
+              "description": "Sets the timeout for the request."
             },
             {
               "options": [
@@ -1919,25 +1903,25 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Callback for end of request."
+              "description": "The callback."
             }
           ],
           "name": "framework.responsePipe",
-          "description": "Create response from URL (copy response to a response without headers)."
+          "description": "Creates the response from the URL (The function joins response with response without headers)."
         },
         {
-          "description": "Response image. A file extension must exists in config['static-accepts']. This function sets up HTTP cache (according the framework config mode - debug/release) and processed image is saved into the temporary directory.",
+          "description": "Writes the image/picture into the response. A file extension must exist in `config['static-accepts']`. This function sets up HTTP cache (according to the framework config mode - `debug` or `release`) and the processed image is saved into the temporary directory.\n\n__Examples__:\n\n```javascript\nframework.responseImage(req, res, stream, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
           "return": "Framework",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "filename",
@@ -1945,11 +1929,11 @@
               "description": "The filename or stream of image."
             },
             {
-              "description": "Function to processed.",
+              "description": "The function for processing.",
               "params": [
                 {
                   "go": "FrameworkImage",
-                  "description": "Function for image manipulation.",
+                  "description": "The function for image manipulation.",
                   "name": "image",
                   "type": "FrameworkImage"
                 }
@@ -1973,25 +1957,25 @@
               "default": "false",
               "name": "useImageMagick",
               "type": "Boolean",
-              "description": "For an image manipulation the framework will use ImageMagick."
+              "description": "For the image manipulation the framework uses ImageMagick (or GraphicsMagick)."
             }
           ],
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
           "name": "framework.responseImage"
         },
         {
-          "description": "Response image without cache (slowly than responseImage()). A file extension must exists in config['static-accepts'].",
+          "description": "Writes the image/picture without cache, slowly than `responseImage()`. A file extension must exist in `config['static-accepts']`.\n\n__Examples__:\n\n```javascript\nframework.responseImageWithoutCache(req, res, stream, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
           "return": "Framework",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "filename",
@@ -1999,11 +1983,11 @@
               "description": "The filename of image."
             },
             {
-              "description": "Function to processed.",
+              "description": "The function for processing.",
               "params": [
                 {
                   "go": "FrameworkImage",
-                  "description": "Function for image manipulation.",
+                  "description": "The function for image manipulation.",
                   "name": "image",
                   "type": "FrameworkImage"
                 }
@@ -2027,35 +2011,35 @@
               "default": "false",
               "name": "useImageMagick",
               "type": "Boolean",
-              "description": "For an image manipulation the framework will use ImageMagick."
+              "description": "For the image manipulation the framework uses ImageMagick (or GraphicsMagick)."
             }
           ],
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
           "name": "framework.responseImageWithoutCache"
         },
         {
-          "description": "Response stream. All text/* content-types are compressed via GZIP (if is enabled config['allow-gzip']).",
+          "description": "Writes the stream into the response. All `text/*` (content-types) are compressed via GZIP (if is enabled `config['allow-gzip']`).",
           "return": "Framework",
           "params": [
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "contentType",
               "type": "String",
-              "description": "Content type for this stream."
+              "description": "The content type."
             },
             {
               "name": "stream",
               "type": "Object",
-              "description": "Readable stream."
+              "description": "A readable stream."
             },
             {
               "options": [
@@ -2064,7 +2048,7 @@
               "default": "null",
               "name": "downloadName",
               "type": "String",
-              "description": "Name for download name."
+              "description": "The download name."
             },
             {
               "options": [
@@ -2085,16 +2069,24 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "What's happen?"
             }
           ],
           "name": "framework.response401",
-          "description": "Response 401 - Unauthorized."
+          "description": "Writes 401 status into the response - Unauthorized."
         },
         {
           "return": "Framework",
@@ -2102,16 +2094,49 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "What's happen?"
+            }
+          ],
+          "name": "framework.response400",
+          "description": "Writes 400 status into the response - Bad request."
+        },
+        {
+          "return": "Framework",
+          "params": [
+            {
+              "name": "req",
+              "type": "Object",
+              "description": "The HTTP request."
+            },
+            {
+              "name": "res",
+              "type": "Object",
+              "description": "The HTTP response."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "What's happen?"
             }
           ],
           "name": "framework.response403",
-          "description": "Response 403 - Forbidden."
+          "description": "Writes 403 status into the response - Forbidden."
         },
         {
           "return": "Framework",
@@ -2119,16 +2144,24 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "What's happen?"
             }
           ],
           "name": "framework.response404",
-          "description": "Response 404 - Not Found."
+          "description": "Writes 404 status into the response - Not Found."
         },
         {
           "return": "Framework",
@@ -2136,12 +2169,12 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "err",
@@ -2150,7 +2183,7 @@
             }
           ],
           "name": "framework.response500",
-          "description": "Response 500 - Internal server error."
+          "description": "Writes 500 status into the response - Internal server error."
         },
         {
           "return": "Framework",
@@ -2158,16 +2191,24 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "What's happen?"
             }
           ],
           "name": "framework.response501",
-          "description": "Response 501 - Not Implemented."
+          "description": "Writes 501 status into the response - Not Implemented."
         },
         {
           "return": "Framework",
@@ -2175,12 +2216,12 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "code",
@@ -2190,12 +2231,12 @@
             {
               "name": "contentBody",
               "type": "String",
-              "description": "Content body."
+              "description": "The content body."
             },
             {
               "name": "contentType",
               "type": "String",
-              "description": "Content type."
+              "description": "The content type."
             },
             {
               "options": [
@@ -2204,7 +2245,7 @@
               "default": "false",
               "name": "compress",
               "type": "Boolean",
-              "description": "GZIP compress."
+              "description": "Enables GZIP compression."
             },
             {
               "options": [
@@ -2217,7 +2258,7 @@
             }
           ],
           "name": "framework.responseContent",
-          "description": "Response custom content."
+          "description": "Writes the content into the response."
         },
         {
           "return": "Framework",
@@ -2225,17 +2266,17 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "url",
               "type": "String",
-              "description": "URL to redirect."
+              "description": "The URL to redirect."
             },
             {
               "options": [
@@ -2244,11 +2285,11 @@
               "default": "false",
               "name": "permament",
               "type": "Boolean",
-              "description": "Set permament redirect (add 301 status code)."
+              "description": "Sets the permament redirect (adds 301 status code to response)."
             }
           ],
           "name": "framework.responseRedirect",
-          "description": "Response redirect"
+          "description": "Writes the redirect into the response."
         },
         {
           "return": "Framework",
@@ -2256,12 +2297,12 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "name": "value",
@@ -2270,7 +2311,7 @@
             }
           ],
           "name": "framework.setModified",
-          "description": "Set last modified or Etag header."
+          "description": "Sets `last modified` or `ETag` header."
         },
         {
           "return": "Boolean",
@@ -2278,12 +2319,12 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             },
             {
               "options": [
@@ -2300,11 +2341,11 @@
               "default": "false",
               "name": "strict",
               "type": "Boolean",
-              "description": "if strict (true) then use equal date else use great than date."
+              "description": "strict: equals date (else compares greater the date)."
             }
           ],
           "name": "framework.notModified",
-          "description": "Check if ETag or Last Modified has modified. If @compare === {String} compare if-none-match .... if @compare === {Date} compare if-modified-since. This function automatically flush a response 304 (if not modified). If content is not modified then return true."
+          "description": "Checks if `ETag` or `Last Modified` header is modified.\n\n```javascript\n    if (compare === String)\n        console.log('The framework compares ETag with the compare value.');\n    else if (compare === Date)\n        console.log('The framework compares Date with the compare date.');\n```\n\nIf framework doesn't find a difference then responds 304 (not modified). If the content is modified then function returns `true`."
         },
         {
           "return": "Framework",
@@ -2312,7 +2353,7 @@
             {
               "name": "req",
               "type": "Object",
-              "description": "HTTP request."
+              "description": "The HTTP request."
             },
             {
               "options": [
@@ -2320,11 +2361,11 @@
               ],
               "name": "res",
               "type": "Object",
-              "description": "HTTP response."
+              "description": "The HTTP response."
             }
           ],
           "name": "framework.noCache",
-          "description": "Disable cache validation."
+          "description": "Removes headers `Etag` and `Last-Modified` in the request and response."
         },
         {
           "return": "Framework",
@@ -2332,7 +2373,7 @@
             {
               "name": "extension",
               "type": "String",
-              "description": "Extension name. Example: .hbs"
+              "description": "The extension name. Example: .hbs"
             },
             {
               "options": [
@@ -2340,7 +2381,7 @@
               ],
               "name": "contentType",
               "type": "String",
-              "description": "This ContentType will be added into utils.getContentType(). Example: text/html"
+              "description": "The content-type will be added into \"utils.getContentType()\". Example: text/html"
             }
           ],
           "name": "framework.accept",
@@ -2554,7 +2595,7 @@
             }
           ],
           "name": "framework.hash",
-          "description": "This function can hash strings."
+          "description": "This function hashs strings."
         },
         {
           "return": "String",
@@ -2619,12 +2660,12 @@
               "default": "'default'",
               "name": "name",
               "type": "String",
-              "description": "Resource filename."
+              "description": "The resource filename."
             },
             {
               "name": "key",
               "type": "String",
-              "description": "Key."
+              "description": "The key."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/localization-resources",
@@ -3088,7 +3129,7 @@
         }
       ],
       "name": "FrameworkConfiguration",
-      "description": "FrameworkConfiguration contains the framework settings. Settings can be stored in these files:\n\n- /app/config\n- /app/config-debug\n- /app/config-release\n- /app/config-rest\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode.\n\n__Example__:\n\n```html\nname                     : My Web Site name\nversion                  : 1.01\nauthor                   : Peter Sirka\nsecret                   : mySECRET1.01\ndefault-image-quality    : 96\n...\n...\n...\n```"
+      "description": "FrameworkConfiguration contains the framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode.\n\n__Example__:\n\n```html\nname                     : My Web Site name\nversion                  : 1.01\nauthor                   : Peter Sirka\nsecret                   : mySECRET1.01\ndefault-image-quality    : 96\n...\n...\n...\n```"
     },
     {
       "group": "Framework",
@@ -6581,7 +6622,7 @@
           "name": "controller.viewAsync"
         },
         {
-          "description": "Send e-mail from a view.",
+          "description": "Creates the HTML from some view and sends the e-mail.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
           "options": [
 
@@ -6596,7 +6637,7 @@
             {
               "name": "subject",
               "type": "String",
-              "description": "E-mail subject."
+              "description": "Subject."
             },
             {
               "name": "name",
@@ -6734,7 +6775,7 @@
           ],
           "name": "client.req",
           "return": "Object",
-          "description": "HTTP request."
+          "description": "The HTTP request."
         },
         {
           "options": [

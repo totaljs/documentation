@@ -1,10 +1,11 @@
-Registers a new file route. This function can handle static files. For more informations look for the example.
+Writes the image/picture without cache, slowly than `responseImage()`. A file extension must exist in `config['static-accepts']`.
 
-```js
-framework.file(‘*.jpg’, function(req, res, isValidation) {
-    if (isValidation)
-        return req.url.lastIndexOf(‘.jpg’) !== -1;
-    // ... transform
-    res.file('new-file-name.jpg');
+__Examples__:
+
+```javascript
+framework.responseImage(req, res, stream, function(image) {
+    image.resize('50%');
+    image.output('png');
+    image.minify();
 });
 ```
