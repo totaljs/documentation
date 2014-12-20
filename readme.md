@@ -1,11 +1,7 @@
-Writes the image/picture without cache, slowly than `responseImage()`. A file extension must exist in `config['static-accepts']`.
-
-__Examples__:
+Replaces the error message in the error collection. 
 
 ```javascript
-framework.responseImage(req, res, stream, function(image) {
-    image.resize('50%');
-    image.output('png');
-    image.minify();
-});
+builder.replace('#email', 'yourmail@yourdomain.com');
 ```
+
+__IMPORTANT__:  Replacement is applied only for: `errorbuilder.transform()`, `errorbuilder.output()`, `errorbuilder.json()`, etc..

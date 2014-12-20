@@ -140,7 +140,7 @@ function render(type, name, linker) {
     latest = current;
 
     setTimeout(function() {
-        var el = $('li[data-id="' + type + '~' + name + '~' + linker + '"]');
+        var el = $('li[data-id="' + type + '~' + encodeURIComponent(name) + '~' + encodeURIComponent(linker) + '"]');
         if (el.length === 0) {
             $('html,body').scrollTop(0);
             return;

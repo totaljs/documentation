@@ -307,7 +307,7 @@
           "name": "framework.on('load')",
           "description": "This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..",
           "params": [
-            
+
           ]
         },
         {
@@ -317,7 +317,7 @@
           "name": "framework.on('init')",
           "description": "This event is triggered at first.",
           "params": [
-            
+
           ]
         },
         {
@@ -941,7 +941,7 @@
         {
           "return": "Framework",
           "params": [
-            
+
           ],
           "name": "framework.reconnect",
           "description": "Reconnects HTTP/HTTPS again."
@@ -1395,7 +1395,7 @@
         {
           "return": "Framework",
           "options": [
-            
+
           ],
           "params": [
             {
@@ -1725,7 +1725,7 @@
           "name": "framework.uninstall"
         },
         {
-          "description": "Writes message to a log file. The log file will contain date + time.",
+          "description": "Writes the message into the log file. The log file will contain date + time.",
           "return": "Framework",
           "params": [
             {
@@ -2376,7 +2376,7 @@
               ],
               "name": "contentType",
               "type": "String",
-              "description": "The content-type will be added into \"utils.getContentType()\". Example: text/html"
+              "description": "The content-type will be added into \"Utils.getContentType()\". Example: text/html"
             }
           ],
           "name": "framework.accept",
@@ -2526,7 +2526,7 @@
         {
           "return": "Framework",
           "params": [
-            
+
           ],
           "name": "framework.clear",
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`."
@@ -2558,7 +2558,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-                
+
               ],
               "description": "The callback."
             }
@@ -2794,127 +2794,127 @@
         {
           "default": "'/packages/'",
           "name": "directory-packages",
-          "description": "A default directory for packages.",
+          "description": "The default directory for packages.",
           "return": "String"
         },
         {
           "default": "'/definitions/'",
           "name": "directory-definitions",
-          "description": "A default directory for definitions.",
+          "description": "The default directory for definitions.",
           "return": "String"
         },
         {
           "default": "'/controllers/'",
           "name": "directory-controllers",
-          "description": "A default directory for controllers.",
+          "description": "The default directory for controllers.",
           "return": "String"
         },
         {
           "default": "'/models/'",
           "name": "directory-models",
-          "description": "A default directory for models.",
+          "description": "The default directory for models.",
           "return": "String"
         },
         {
           "default": "'/views/'",
           "name": "directory-models",
-          "description": "A default directory for views.",
+          "description": "The default directory for views.",
           "return": "String"
         },
         {
           "default": "'/tmp/'",
           "name": "directory-temp",
-          "description": "A default directory for temporary.",
+          "description": "The default directory for temporary.",
           "return": "String"
         },
         {
           "default": "'/resources/'",
           "name": "directory-resources",
-          "description": "A default directory for resources.",
+          "description": "The default directory for resources.",
           "return": "String"
         },
         {
           "default": "'/source/'",
           "name": "directory-source",
-          "description": "A default directory for business logic.",
+          "description": "The default directory for business logic.",
           "return": "String"
         },
         {
           "default": "'/public/'",
           "name": "directory-public",
-          "description": "A default directory for publishing.",
+          "description": "The default directory for publishing.",
           "return": "String"
         },
         {
           "default": "'/app/'",
           "name": "directory-public-virtual",
-          "description": "A default virtual directory for publishing.",
+          "description": "The default virtual directory for publishing.",
           "return": "String"
         },
         {
           "default": "'/modules/'",
           "name": "directory-modules",
-          "description": "A default directory for modules.",
+          "description": "The default directory for modules.",
           "return": "String"
         },
         {
           "default": "'/logs/'",
           "name": "directory-logs",
-          "description": "A default directory for logs.",
+          "description": "The default directory for logs.",
           "return": "String"
         },
         {
           "default": "'/tests/'",
           "name": "directory-tests",
-          "description": "A default directory for tests.",
+          "description": "The default directory for tests.",
           "return": "String"
         },
         {
           "default": "'/workers/'",
           "name": "directory-workers",
-          "description": "A default directory for workers.",
+          "description": "The default directory for workers.",
           "return": "String"
         },
         {
           "default": "''",
           "name": "static-url",
-          "description": "A default url routing of static files. Is used in view engine and framework.routeStatic().",
+          "description": "The default url routing of static files. Is used in view engine and framework.routeStatic().",
           "return": "String"
         },
         {
           "default": "'/js/'",
           "name": "static-url-js",
-          "description": "A default url routing of static files (JavaScript) routing. Is used in view engine and framework.routeScript().",
+          "description": "The default url routing of static files (JavaScript) routing. Is used in view engine and framework.routeScript().",
           "return": "String"
         },
         {
           "default": "'/css/'",
           "name": "static-url-css",
-          "description": "A default url routing of static files (CSS) routing. Is used in view engine and framework.routeStyle().",
+          "description": "The default url routing of static files (CSS) routing. Is used in view engine and framework.routeStyle().",
           "return": "String"
         },
         {
           "default": "'/img/'",
           "name": "static-url-image",
-          "description": "A default url routing of static files (Images/Pictures) routing. Is used in view engine and framework.routeImage().",
+          "description": "The default url routing of static files (Images/Pictures) routing. Is used in view engine and framework.routeImage().",
           "return": "String"
         },
         {
           "default": "'/fonts/'",
           "name": "static-url-font",
-          "description": "A default url routing of static files (Fonts) routing. Is used in view engine and framework.routeFont().",
+          "description": "The default url routing of static files (Fonts) routing. Is used in view engine and framework.routeFont().",
           "return": "String"
         },
         {
           "default": "'/video/'",
           "name": "static-url-video",
-          "description": "A default url routing of static files (Videos) routing. Is used in view engine and framework.routeVideo().",
+          "description": "The default url routing of static files (Videos) routing. Is used in view engine and framework.routeVideo().",
           "return": "String"
         },
         {
           "default": "'/download/'",
           "name": "static-url-download",
-          "description": "A default url routing of static files (Downloads) routing. Is used in view engine and framework.routeDownload().",
+          "description": "The default url routing of static files (Downloads) routing. Is used in view engine and framework.routeDownload().",
           "return": "String"
         },
         {
@@ -2934,55 +2934,55 @@
         {
           "default": "'127.0.0.1'",
           "name": "default-ip",
-          "description": "A default IP address for listening of server.",
+          "description": "The default IP address for listening of server.",
           "return": "String"
         },
         {
           "default": "8000",
           "name": "default-port",
-          "description": "A default PORT for listening of server.",
+          "description": "The default PORT for listening of server.",
           "return": "Number"
         },
         {
-          "default": "'_layout'",
+          "default": "'layout'",
           "name": "default-layout",
-          "description": "A default layout name for views. Framework loads the layout in this format: `{directory-views}/{layout}.html`",
+          "description": "The default layout name for the views. The framework loads the layout in this format: `{directory-views}/{layout}.html`",
           "return": "String"
         },
         {
           "default": "5",
           "name": "default-request-length",
-          "description": "A default request length in `kB` (kilobajt). Framework calculates POST/PUT data and length of uploaded files.",
+          "description": "The default request length in `kB` (kilobajt). The framework calculates POST/PUT data and length of uploaded files.",
           "return": "Number"
         },
         {
           "default": "2",
           "name": "default-websocket-request-length",
-          "description": "A default WebSocket message length in kB (kilobajt). Framework calculates received message.",
+          "description": "The default WebSocket message length in kB (kilobajt). The framework calculates received message.",
           "return": "Number"
         },
         {
           "default": "true",
           "name": "default-websocket-encodedecode",
-          "description": "Encode/Decode WebSocket messages. Framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On client-side is needed creating encode/decode too.\n\nExmaple (client-side):\nSending: encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' }));\nReceiving: JSON.parse(decodeURIComponent(message))",
+          "description": "Encode/Decode WebSocket messages. The framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On client-side is needed creating encode/decode too.\n\nExmaple (client-side):\nSending: encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' }));\nReceiving: JSON.parse(decodeURIComponent(message))",
           "return": "Boolean"
         },
         {
           "default": "3000",
           "name": "default-request-timeout",
-          "description": "A default request timeout in milliseconds (websocket doesn't support it).",
+          "description": "The default request timeout in milliseconds (websocket doesn't support it).",
           "return": "Number"
         },
         {
           "default": "'gm'",
           "name": "default-image-converter",
-          "description": "A default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server must have installed one of them.",
+          "description": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server must have installed one of them.",
           "return": "String"
         },
         {
           "default": "90",
           "name": "default-image-quality",
-          "description": "A default image/picture quality for JPEG files only.",
+          "description": "The default image/picture quality for JPEG files only.",
           "return": "Number"
         },
         {
@@ -3234,7 +3234,7 @@
         },
         {
           "params": [
-            
+
           ],
           "name": "framework.cache.clear",
           "return": "FrameworkCache",
@@ -3848,7 +3848,7 @@
           "name": "framework.restrictions.clearIP",
           "description": "Clears all restrictions.",
           "params": [
-            
+
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
           "go": "#api~Framework",
@@ -3858,7 +3858,7 @@
           "name": "framework.restrictions.clearHeaders",
           "description": "Clear all restrictions.",
           "params": [
-            
+
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
           "go": "#api~Framework",
@@ -4155,7 +4155,7 @@
           "name": "controller.on('destroy')",
           "description": "This event is triggered when is the WebSocket destroyed.",
           "params": [
-            
+
           ]
         },
         {
@@ -4198,7 +4198,7 @@
           "name": "exports.request",
           "description": "Delegate for capture each request into this controller.",
           "params": [
-            
+
           ]
         }
       ],
@@ -4327,7 +4327,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.get",
-          "description": "Parsed data from URL query. Is an alias for controller.query."
+          "description": "Parsed data from URL query. Is the alias for controller.query."
         },
         {
           "options": [
@@ -4357,7 +4357,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.post",
-          "description": "Parsed data from a request body. Is an alias for controller.body."
+          "description": "Parsed data from a request body. Is the alias for controller.body."
         },
         {
           "go": "HttpFile",
@@ -4656,7 +4656,7 @@
         },
         {
           "name": "controller.header",
-          "description": "Set response header.",
+          "description": "Sets the response header.",
           "options": [
             "http"
           ],
@@ -5732,7 +5732,7 @@
             "http"
           ],
           "params": [
-            
+
           ],
           "name": "controller.clear",
           "description": "Clear uploaded files. Important: for prevent auto clearing use controller.noClear()."
@@ -5745,7 +5745,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ],
           "example": "https://github.com/totaljs/examples/tree/master/xml-large",
           "name": "controller.custom"
@@ -5829,7 +5829,7 @@
           "name": "controller.proxy"
         },
         {
-          "description": "Return a database object. This function is an alias for framework.database().",
+          "description": "Return a database object. This function is the alias for framework.database().",
           "return": "FrameworkNoSQL",
           "options": [
             "http",
@@ -6192,7 +6192,7 @@
             "websocket"
           ],
           "params": [
-            
+
           ],
           "name": "controller.destroy",
           "description": "HTTP == destroy a request, WebSocket == destroy all conections."
@@ -6615,7 +6615,7 @@
           "description": "Creates the HTML from some view and sends the e-mail.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
           "options": [
-            
+
           ],
           "return": "FrameworkController",
           "params": [
@@ -6922,7 +6922,7 @@
         {
           "description": "Gets the value from the repository object.",
           "options": [
-            
+
           ],
           "return": "Object",
           "example": "https://github.com/totaljs/examples/tree/master/views",
@@ -6935,21 +6935,26 @@
         },
         {
           "options": [
-            
+
           ],
           "return": "Object",
           "name": "@{model.customKey}",
           "description": "Gets the value from the model."
         },
         {
-          "name": "@{get.customKey}",
+          "name": "@{query.customKey}",
           "return": "String",
-          "description": "Gets the value from the GET data."
+          "description": "Gets the value from the GET/DELETE query string."
         },
         {
-          "name": "@{post.customKey}",
+          "name": "@{body.customKey}",
           "return": "String",
-          "description": "Gets the value from the POST data."
+          "description": "Gets the value from the POST/PUT request body."
+        },
+        {
+          "name": "@{files}",
+          "return": "Array",
+          "description": "Gets the collection of uploaded files."
         },
         {
           "name": "@{config.customKey}",
@@ -6974,18 +6979,190 @@
         {
           "name": "@{index}",
           "return": "Object",
-          "description": "Gets the current index in the current loop."
+          "description": "Gets the current index in current loop."
         }
       ],
       "methods": [
         {
+          "name": "@{cookie}",
+          "description": "Reads the cookie value.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "The name."
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Writes the message into the log file. The log file will contain date + time.",
+          "return": "String",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..1",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..2",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..n",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            }
+          ],
+          "name": "@{log}",
+          "return": "String"
+        },
+        {
+          "description": "Access to the `console`.",
+          "return": "String",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..1",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..2",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..n",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            }
+          ],
+          "name": "@{console.log}",
+          "return": "String"
+        },
+        {
+          "description": "Access to the `console`.",
+          "return": "String",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..1",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..2",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..n",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            }
+          ],
+          "name": "@{console.warn}",
+          "return": "String"
+        },
+        {
+          "description": "Access to the `console`.",
+          "return": "String",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..1",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..2",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..n",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            }
+          ],
+          "name": "@{console.info}",
+          "return": "String"
+        },
+        {
+          "description": "Access to the `console`.",
+          "return": "String",
+          "params": [
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..1",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..2",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "param..n",
+              "type": "Any",
+              "description": "A dynamic parameter."
+            }
+          ],
+          "name": "@{console.error}",
+          "return": "String"
+        },
+        {
           "name": "@{title}",
-          "description": "Create title.",
+          "description": "Creates the title for the META tags.",
           "params": [
             {
               "name": "value",
               "type": "String",
-              "description": "New meta title."
+              "description": "The value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -6993,12 +7170,12 @@
         },
         {
           "name": "@{description}",
-          "description": "Create description.",
+          "description": "Creates the description for the META tags.",
           "params": [
             {
               "name": "value",
               "type": "String",
-              "description": "New meta description."
+              "description": "The value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -7006,82 +7183,25 @@
         },
         {
           "name": "@{keywords}",
-          "description": "Create keywords.",
+          "description": "Creates the keywords for META tags.",
           "params": [
             {
               "name": "value",
               "type": "String",
-              "description": "New meta keywords."
+              "description": "The value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "return": "String"
         },
         {
-          "name": "@{component}",
-          "description": "Render component.",
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Component name."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param1",
-              "type": "Object",
-              "description": "Component parameter."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "paramN",
-              "type": "Object",
-              "description": "Component parameter."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/components",
-          "return": "String"
-        },
-        {
-          "description": "Render helper.",
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Helper name."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param1",
-              "type": "Object",
-              "description": "Helper parameter."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "paramN",
-              "type": "Object",
-              "description": "Helper parameter."
-            }
-          ],
-          "return": "String",
-          "name": "@{helper}"
-        },
-        {
           "name": "@{meta}",
-          "description": "Create META tags.",
+          "description": "Creates the META tags.",
           "params": [
             {
               "name": "title",
               "type": "String",
-              "description": "META title."
+              "description": "The title."
             },
             {
               "options": [
@@ -7089,7 +7209,7 @@
               ],
               "name": "description",
               "type": "String",
-              "description": "META description."
+              "description": "The description."
             },
             {
               "options": [
@@ -7097,7 +7217,7 @@
               ],
               "name": "keywords",
               "type": "String",
-              "description": "META keywords."
+              "description": "The keywords."
             },
             {
               "options": [
@@ -7105,19 +7225,19 @@
               ],
               "name": "imageURL",
               "type": "String",
-              "description": "Social image href (URL with hostname) - og:image, twitter:image."
+              "description": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:imagey\"."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "return": "String"
         },
         {
-          "description": "Create IMG tag. URL address routes into the config['static-url-image'] (by the currentImage).",
+          "description": "Creates the `IMG` tag according to the `config['static-url-image']`.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Image filename (relative)."
+              "description": "The relative filename."
             },
             {
               "options": [
@@ -7125,7 +7245,7 @@
               ],
               "name": "width",
               "type": "Number",
-              "description": "Image width."
+              "description": "The image width."
             },
             {
               "options": [
@@ -7133,7 +7253,7 @@
               ],
               "name": "height",
               "type": "Number",
-              "description": "Image height."
+              "description": "The image height."
             },
             {
               "options": [
@@ -7141,7 +7261,7 @@
               ],
               "name": "alt",
               "type": "String",
-              "description": "IMG alt attribute."
+              "description": "The alt attribute."
             },
             {
               "options": [
@@ -7149,24 +7269,24 @@
               ],
               "name": "className",
               "type": "String",
-              "description": "IMG class attribute."
+              "description": "The class attribute."
             }
           ],
           "return": "String",
           "name": "@{image}"
         },
         {
-          "description": "Create an A TAG. URL address routes into the config['static-url-upload'] (by the currentUpload).",
+          "description": "Creates the `A` tag, the `href` attribute will be according to the `config['static-url-upload']`.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename (relative)."
+              "description": "The relative filename."
             },
             {
               "name": "innerHTML",
               "type": "String",
-              "description": "Tag content / HTML."
+              "description": "The inner HTML."
             },
             {
               "options": [
@@ -7174,7 +7294,7 @@
               ],
               "name": "downloadName",
               "type": "String",
-              "description": "Download name - is added into the download attribute."
+              "description": "The download name."
             },
             {
               "options": [
@@ -7182,43 +7302,43 @@
               ],
               "name": "className",
               "type": "String",
-              "description": "A class attribute."
+              "description": "The name for the class attribute."
             }
           ],
           "return": "String",
           "name": "@{download}"
         },
         {
-          "description": "Insert CSS file into the webpage. Function return LINK tag by the config['static-url-css'].",
+          "description": "Creates the `<link rel=\"stylesheet\" ...` tag with `href` according to the `config['static-url-css']`.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename (relative)."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
           "name": "@{css}"
         },
         {
-          "description": "Insert JS file into the webpage. Function return SCRIPT tag by the config['static-url-js'].",
+          "description": "Creates the `<script>` tag with `src` according to the `config['static-url-js']`.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename (relative)."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
           "name": "@{js}"
         },
         {
-          "description": "Insert favicon into the webpage. Function return LINK tag by the config['static-url'].",
+          "description": "Creates the `favicon` tag according to the `config['static-url']`.",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "description": "Filename (relative)."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7226,107 +7346,114 @@
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
-              "name": "filename1",
+              "name": "url1",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address (can be a relative)."
             },
             {
               "options": [
                 "optional"
               ],
-              "name": "filename2",
+              "name": "url2",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address (can be a relative)."
             },
             {
               "options": [
                 "optional"
               ],
-              "name": "filename..n",
+              "name": "url..n",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address (can be a relative)."
             }
           ],
           "name": "@{dns}",
-          "description": "Add dns prefetch tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"dns-prefetch\" ..."
+          "description": "Adds the DNS prefetch URL address into the `@{head}`. Output: `<link rel=\"dns-prefetch\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
-              "name": "filename1",
+              "name": "url1",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             },
             {
               "options": [
                 "optional"
               ],
-              "name": "filename2",
+              "name": "url2",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             },
             {
               "options": [
                 "optional"
               ],
-              "name": "filename..n",
+              "name": "url..n",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             }
           ],
           "name": "@{prefetch}",
-          "description": "Add prefetch tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"prefetch\" ..."
+          "description": "Adds the prefetch URL address into the `@{head}`. Output: `<link rel=\"prefetch\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
               "name": "url",
               "type": "String",
-              "description": "URL address (can be a relative)."
+              "description": "The URL address (can be a relative)."
             }
           ],
           "name": "@{prerender}",
-          "description": "Add prerender tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"prerender\" ..."
+          "description": "Adds the prerender URL address into the `@{head}`. Output: `<link rel=\"prerender\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
               "name": "url",
               "type": "String",
-              "description": "URL address (can be a relative)."
+              "description": "The URL address (can be a relative)."
             }
           ],
           "name": "@{next}",
-          "description": "Add next (NEXT PAGE) tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"next\" ..."
+          "description": "Adds the next URL address into the `@{head}`. Output: `<link rel=\"next\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
               "name": "url",
               "type": "String",
-              "description": "URL address (can be a relative)."
+              "description": "The URL address (can be a relative)."
             }
           ],
           "name": "@{prev}",
-          "description": "Add prev (PREVIOUS PAGE) tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"prev\" ..."
+          "description": "Adds the previous URL address into the `@{head}`. Output: `<link rel=\"prev\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
+          "return": "String",
           "params": [
             {
               "name": "url",
               "type": "String",
-              "description": "URL address (can be a relative)."
+              "description": "The URL address (can be a relative)."
             }
           ],
           "name": "@{canonical}",
-          "description": "Add canonical tag into the HTML head. This result is rendered via @{head} tag.\nOutput: <link rel=\"canonical\" ..."
+          "return": "String",
+          "description": "Adds the canonical tag into the `@{head}`. Output: `<link rel=\"canonical\" ...`"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
@@ -7334,11 +7461,12 @@
             {
               "name": "value",
               "type": "String",
-              "description": "Add a value into the HTML head."
+              "description": "The value. The method creates tags automatically according to the URL address extension e.g. for the JavaScripts creates automatically \"&lt;script ...\" tag."
             }
           ],
           "name": "@{head}",
-          "description": "Add value into the HTML head. This result is rendered via @{head} - without arguments."
+          "return": "String",
+          "description": "Adds the value into the `@{head}`."
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/views-place",
@@ -7346,7 +7474,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Place ID."
+              "description": "The placeholder name."
             },
             {
               "options": [
@@ -7354,11 +7482,12 @@
               ],
               "name": "value",
               "type": "String",
-              "description": "Place content."
+              "description": "The placeholder value."
             }
           ],
           "name": "@{place}",
-          "description": "Create / Render a placeholder. If the value is not defined then function renders content into the current position."
+          "return": "String",
+          "description": "Creates the placeholder."
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/custom-headers",
@@ -7366,46 +7495,49 @@
             {
               "name": "key",
               "type": "String",
-              "description": "Header key."
+              "description": "The header key."
             },
             {
               "name": "value",
               "type": "String",
-              "description": "Header value."
+              "description": "The header value."
             }
           ],
           "name": "@{header}",
-          "description": "Set custom response header."
+          "return": "String",
+          "description": "Sets the response header."
         },
         {
           "name": "@{modified}",
-          "description": "Set Last-Modified value - this function create response header.",
+          "return": "String",
+          "description": "Sets the `Last-Modified` to the response header.",
           "params": [
             {
               "name": "value",
               "type": "Date",
-              "description": "Last-Modified date."
+              "description": "The Last-Modified date value."
             }
           ]
         },
         {
           "name": "@{etag}",
-          "description": "Set ETag value - this function create response header.",
+          "return": "String",
+          "description": "Sets the `ETag` to the response header.",
           "params": [
             {
               "name": "value",
               "type": "String",
-              "description": "ETag value."
+              "description": "The ETag value."
             }
           ]
         },
         {
-          "description": "Route URL to JavaScript directory by the config['static-url-js'].",
+          "description": "Creates the URL address according to the `config['static-url-js']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7413,34 +7545,14 @@
         },
         {
           "name": "@{currentView}",
-          "description": "Set additional path. This path will add into the default path.",
+          "description": "Sets the additional path for the views.",
+          "default": "''",
+          "return": "String",
           "params": [
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
-            }
-          ]
-        },
-        {
-          "name": "@{currentContent}",
-          "description": "Set additional path. This path will add into the default path.",
-          "params": [
-            {
-              "name": "path",
-              "type": "String",
-              "description": "Additional path."
-            }
-          ]
-        },
-        {
-          "name": "@{currentTemplate}",
-          "description": "Set additional path. This path will add into the default path.",
-          "params": [
-            {
-              "name": "path",
-              "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ]
         },
@@ -7450,19 +7562,21 @@
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ],
-          "name": "@{currentJS}",
-          "description": "Set additional path. This path will add into the default path."
+          "name": "@{currentScript}",
+          "default": "''",
+          "return": "String",
+          "description": "Sets the additional path for the scripts (JavaScripts)."
         },
         {
-          "description": "Route URL to CSS directory by the config['static-url-css'].",
+          "description": "Creates the URL address according to the `config['static-url-css']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7474,19 +7588,21 @@
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ],
-          "name": "@{currentCSS}",
-          "description": "Set additional path. This path will add into the default path."
+          "default": "''",
+          "return": "String",
+          "name": "@{currentStyle}",
+          "description": "Sets the additional path for the styles (CSS)."
         },
         {
-          "description": "Route URL to Upload directory by the config['static-url-upload'].",
+          "description": "Creates the URL address according to the `config['static-url-upload']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7498,19 +7614,21 @@
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ],
+          "default": "''",
+          "return": "String",
           "name": "@{currentUpload}",
-          "description": "Set additional path. This path will add into the default path."
+          "description": "Sets the additional path for the uploads."
         },
         {
-          "description": "Route URL to Image directory by the config['static-url-image'].",
+          "description": "Creates the URL address according to the `config['static-url-image']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7522,19 +7640,21 @@
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ],
+          "default": "''",
+          "return": "String",
           "name": "@{currentImage}",
-          "description": "Set additional path. This path will add into the default path."
+          "description": "Sets the additional path for the images."
         },
         {
-          "description": "Route URL to Video directory by the config['static-url-video'].",
+          "description": "Creates the URL address according to the `config['static-url-video']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7546,19 +7666,21 @@
             {
               "name": "path",
               "type": "String",
-              "description": "Additional path."
+              "description": "The additional path."
             }
           ],
+          "default": "''",
+          "return": "String",
           "name": "@{currentVideo}",
-          "description": "Set additional path. This path will add into the default path."
+          "description": "Sets the additional path for the videos."
         },
         {
-          "description": "Route URL to static directory by the config['static-url'].",
+          "description": "Creates the URL address according to the `config['static-url']`.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The relative filename."
             }
           ],
           "return": "String",
@@ -7566,7 +7688,7 @@
         },
         {
           "name": "@{resource}",
-          "description": "Read value from resource file.",
+          "description": "Gets the value from the resources.",
           "params": [
             {
               "options": [
@@ -7575,12 +7697,12 @@
               "default": "'default.resource'",
               "name": "name",
               "type": "String",
-              "description": "Resource name."
+              "description": "The resource name."
             },
             {
               "name": "key",
               "type": "String",
-              "description": "Key in resource."
+              "description": "The key."
             },
             {
               "options": [
@@ -7589,31 +7711,31 @@
               "default": "''",
               "name": "default",
               "type": "String",
-              "description": "Default value."
+              "description": "The default value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/localization-resources",
           "return": "String"
         },
         {
-          "description": "Change layout of view.",
+          "description": "Sets the new layout for current view.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Filename."
+              "description": "The layout filename."
             }
           ],
           "name": "@{layout}",
           "example": "https://github.com/totaljs/examples/tree/master/views"
         },
         {
-          "description": "Add link to sitemap collection.",
+          "description": "Adds the link into the sitemap collection.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of link."
+              "description": "The link name."
             },
             {
               "options": [
@@ -7622,7 +7744,7 @@
               "default": "current URL address",
               "name": "url",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             },
             {
               "options": [
@@ -7631,29 +7753,31 @@
               "default": "sitemap.length",
               "name": "index",
               "type": "Number",
-              "description": "Sort index."
+              "description": "The sort index."
             }
           ],
           "name": "@{sitemap}",
+          "return": "String",
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
-          "description": "Get all links.",
+          "description": "Gets the links in the sitemap.",
           "return": "Object Array",
           "params": [
-            
+
           ],
           "name": "@{sitemap}"
         },
         {
           "name": "@{view}",
-          "description": "Render view into current view.",
+          "return": "String",
+          "description": "Renders the partial view.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of view."
+              "description": "The view name."
             },
             {
               "options": [
@@ -7662,7 +7786,7 @@
               "default": "undefined",
               "name": "model",
               "type": "Object",
-              "description": "Model for the view."
+              "description": "The model."
             },
             {
               "options": [
@@ -7670,23 +7794,24 @@
               ],
               "name": "expire",
               "type": "String",
-              "description": "Add to current view to cache. Example: 1 minute"
+              "description": "The cache expiration. This method supports caching of the view output."
             }
           ]
         },
         {
           "name": "@{viewToggle}",
-          "description": "Render view into current view.",
+          "description": "Renders the view.",
+          "return": "String",
           "params": [
             {
               "name": "visible",
               "type": "Boolean",
-              "description": "Set visibility."
+              "description": "Sets the visibility."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Name of view."
+              "description": "The view name."
             },
             {
               "options": [
@@ -7695,7 +7820,7 @@
               "default": "undefined",
               "name": "model",
               "type": "Object",
-              "description": "Model for the view."
+              "description": "The model."
             },
             {
               "options": [
@@ -7703,18 +7828,19 @@
               ],
               "name": "expire",
               "type": "String",
-              "description": "Add to current view to cache. Example: 1 minute"
+              "description": "The cache expiration. This method supports caching of the view output."
             }
           ]
         },
         {
           "name": "@{json}",
-          "description": "Serialize object into the JSON. If is set id attribute then is generate: <script type=\"application/json\" ...",
+          "return": "String",
+          "description": "Serializes object into the JSON format. This method creates `<script type=\"application/json\" ...` if is added `id` argument.",
           "params": [
             {
               "name": "obj",
               "type": "Object",
-              "description": "Object for serialize."
+              "description": "The object."
             },
             {
               "options": [
@@ -7722,7 +7848,7 @@
               ],
               "name": "id",
               "type": "String",
-              "description": "ID of script tag"
+              "description": "The script id."
             },
             {
               "options": [
@@ -7730,23 +7856,24 @@
               ],
               "name": "beautify",
               "type": "Boolean",
-              "description": "Beautify JSON."
+              "description": "Beautifies JSON."
             }
           ]
         },
         {
           "name": "@{options}",
-          "description": "Render option tags from array.\n\n<select>\n@{options([{ name: 'All', value: 0 }, { name: 'One', value: 1 }], 1)}\n</select>",
+          "return": "String",
+          "description": "Renders the select tag from the array.\n\n```html\n<select>\n    @{options([{ name: 'All', value: 0 }, { name: 'One', value: 1 }], 1)}\n</select>\n```",
           "params": [
             {
               "name": "arr",
               "type": "Object Array",
-              "description": "Datasource for rendering."
+              "description": "The datasource."
             },
             {
               "name": "selectedValue",
               "type": "Object",
-              "description": "Selected value."
+              "description": "The selected value."
             },
             {
               "options": [
@@ -7755,7 +7882,7 @@
               "default": "'name'",
               "name": "propertyText",
               "type": "String",
-              "description": "Property name of option text."
+              "description": "The property name for getting the text."
             },
             {
               "options": [
@@ -7764,13 +7891,14 @@
               "default": "'value'",
               "name": "propertyValue",
               "type": "String",
-              "description": "Property name of option value."
+              "description": "The property name for getting the value."
             }
           ]
         },
         {
           "name": "@{checked}",
-          "description": "Render checked attribute: checked=\"checked\"",
+          "description": "Renders the checked attribute: `checked=\"checked\"`",
+          "return": "String",
           "params": [
             {
               "name": "checked",
@@ -7784,7 +7912,7 @@
               "default": "' '",
               "name": "charBeg",
               "type": "String",
-              "description": "Begin characters."
+              "description": "The begin characters."
             },
             {
               "options": [
@@ -7793,13 +7921,13 @@
               "default": "''",
               "name": "charEnd",
               "type": "String",
-              "description": "End characters."
+              "description": "The end characters."
             }
           ]
         },
         {
           "name": "@{disabled}",
-          "description": "Render disabled attribute: disabled=\"disabled\"",
+          "description": "Renders the disabled attribute: `disabled=\"disabled\"`",
           "params": [
             {
               "name": "disabled",
@@ -7813,7 +7941,7 @@
               "default": "' '",
               "name": "charBeg",
               "type": "String",
-              "description": "Begin characters."
+              "description": "The begin characters."
             },
             {
               "options": [
@@ -7822,13 +7950,13 @@
               "default": "''",
               "name": "charEnd",
               "type": "String",
-              "description": "End characters."
+              "description": "The end characters."
             }
           ]
         },
         {
           "name": "@{readonly}",
-          "description": "Render readonly attribute: readonly=\"readonly\"",
+          "description": "Renders the readonly attribute: `readonly=\"readonly\"`",
           "params": [
             {
               "name": "readonly",
@@ -7842,7 +7970,7 @@
               "default": "' '",
               "name": "charBeg",
               "type": "String",
-              "description": "Begin characters."
+              "description": "The begin characters."
             },
             {
               "options": [
@@ -7851,13 +7979,13 @@
               "default": "''",
               "name": "charEnd",
               "type": "String",
-              "description": "End characters."
+              "description": "The end characters."
             }
           ]
         },
         {
           "name": "@{selected}",
-          "description": "Render selected attribute: selected=\"selected\"",
+          "description": "Renders the selected attribute: `selected=\"selected\"`",
           "params": [
             {
               "name": "selected",
@@ -7871,7 +7999,7 @@
               "default": "' '",
               "name": "charBeg",
               "type": "String",
-              "description": "Begin characters."
+              "description": "The begin characters."
             },
             {
               "options": [
@@ -7880,20 +8008,20 @@
               "default": "''",
               "name": "charEnd",
               "type": "String",
-              "description": "End characters."
+              "description": "The end characters."
             }
           ]
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/forms",
           "options": [
-            "auto model binding"
+            "auto-binding"
           ],
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Input name and id."
+              "description": "The input name and id."
             },
             {
               "options": [
@@ -7905,23 +8033,24 @@
             }
           ],
           "name": "@{checkbox}",
-          "description": "Render checkbox <input type=\"checkbox\" ... \n\n@{checkbox('Terms', { label: 'I agree', class: 'terms' })}\n@{checkbox('Terms', 'I agree')}"
+          "return": "String",
+          "description": "Renders the checkbox `<input type=\"checkbox\" ...`\n\n```html\n@{checkbox('Terms', { label: 'I agree', class: 'terms' })}\n@{checkbox('Terms', 'I agree')}\n```"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/forms",
           "options": [
-            "auto model binding"
+            "auto-binding"
           ],
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Input name and id."
+              "description": "The input name and id."
             },
             {
               "name": "value",
               "type": "String",
-              "description": "Value for radio button."
+              "description": "The value."
             },
             {
               "options": [
@@ -7933,18 +8062,19 @@
             }
           ],
           "name": "@{radio}",
-          "description": "Render radio <input type=\"radio\" ... \n\n@{radio('Sex', 'man', { label: 'Man', class: 'sex' })}\n@{radio('Sex', 'woman', 'Woman')}"
+          "return": "String",
+          "description": "Renders the radiobutton `<input type=\"radio\" ...`\n\n```html\n@{radio('Sex', 'man', { label: 'Man', class: 'sex' })}\n@{radio('Sex', 'woman', 'Woman')}\n```"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/forms",
           "options": [
-            "auto model binding"
+            "auto-binding"
           ],
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Input name and id."
+              "description": "The input name and id."
             },
             {
               "options": [
@@ -7952,22 +8082,23 @@
               ],
               "name": "attr",
               "type": "Object",
-              "description": "Additional attributes."
+              "description": "The additional attributes."
             }
           ],
           "name": "@{text}",
-          "description": "Render text box <input type=\"text\" ... \n\n@{text('Name', { class: 'form', maxlength: 30, placeholder: 'Your name', required: true })}"
+          "return": "String",
+          "description": "Renders the text `<input type=\"text\" ...` \n\n```html\n@{text('Name', { class: 'form', maxlength: 30, placeholder: 'Your name', required: true })}\n```"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/forms",
           "options": [
-            "auto model binding"
+            "auto-binding"
           ],
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Input name and id."
+              "description": "The input name and id."
             },
             {
               "options": [
@@ -7975,22 +8106,23 @@
               ],
               "name": "attr",
               "type": "Object",
-              "description": "Additional attributes."
+              "description": "The additional attributes."
             }
           ],
           "name": "@{hidden}",
-          "description": "Render hidden box <input type=\"hidden\" ... \n\n@{hidden('Custom')}"
+          "return": "String",
+          "description": "Renders the hidden `<input type=\"hidden\" ...`\n\n```html\n@{hidden('Custom')}\n```"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/forms",
           "options": [
-            "auto model binding"
+            "auto-binding"
           ],
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Textarea name and id."
+              "description": "The textarea name and id."
             },
             {
               "options": [
@@ -7998,15 +8130,16 @@
               ],
               "name": "attr",
               "type": "Object",
-              "description": "Additional attributes."
+              "description": "The additional attributes."
             }
           ],
           "name": "@{textarea}",
-          "description": "Render textarea <textarea ... \n\n@{textarea('Description', { class: 'form', placeholder: 'Your name', required: true })}"
+          "return": "String",
+          "description": "Renders textarea `<textarea ... `\n\n```html\n@{textarea('Description', { class: 'form', placeholder: 'Your name', required: true })}\n```"
         }
       ],
       "name": "FrameworkViews",
-      "description": "For more informations about views click on [How do views work?](#pages~Views). Views support simple conditions and custom helpers."
+      "description": "[How does view engine work?](#pages~View%20engine)"
     },
     {
       "group": "Framework",
@@ -8087,50 +8220,49 @@
               "description": "Request timeout - in milliseconds."
             }
           ],
-          "name": "utils.download",
+          "name": "Utils.download",
           "description": "Download content or file from an url address."
         },
         {
-          "description": "Lists the contents of a directory.",
+          "description": "Reads files and directories from HDD.",
           "params": [
             {
               "name": "path",
               "type": "String",
-              "description": "Path."
+              "description": "The path."
             },
             {
-              "description": "Callback.",
+              "description": "The callback.",
               "params": [
                 {
                   "name": "files",
                   "type": "String Array",
-                  "description": "List of files."
+                  "description": "The file collection."
                 },
                 {
                   "name": "directories",
                   "type": "String Array",
-                  "description": "List of directories."
+                  "description": "The directory collection."
                 }
               ],
               "name": "callback",
               "type": "Function"
             },
             {
-              "description": "Prepare function.",
+              "description": "The filter function.",
               "options": [
-                "optional",
-                "must return Boolean"
+                "optional"
               ],
               "params": [
                 {
                   "name": "path",
                   "type": "String",
-                  "description": "Current path."
+                  "description": "The path."
                 },
                 {
                   "name": "isDirectory",
                   "type": "Boolean",
-                  "description": "Is current path a directory?"
+                  "description": "Determines whether the current path is the file or directory."
                 }
               ],
               "name": "filter",
@@ -8138,28 +8270,28 @@
             }
           ],
           "return": "undefined",
-          "name": "utils.ls"
+          "name": "Utils.ls"
         },
         {
-          "description": "Send stream or file to an url address.",
+          "description": "Sends the stream or file to the URL address.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of file with extension."
+              "description": "The filename with extension."
             },
             {
               "name": "stream",
               "type": "Stream/String",
-              "description": "Stream or Filename (filename must exist)."
+              "description": "The stream or full path to the file."
             },
             {
               "name": "url",
               "type": "String",
-              "description": "URL where send this this stream/file."
+              "description": "The URL address where to send the stream."
             },
             {
-              "description": "Callback.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
@@ -8172,7 +8304,7 @@
                 {
                   "name": "response",
                   "type": "String",
-                  "description": "Response string."
+                  "description": "The response body."
                 }
               ],
               "name": "callback",
@@ -8184,7 +8316,7 @@
               ],
               "name": "headers",
               "type": "Object",
-              "description": "Additional headers."
+              "description": "The additional headers."
             },
             {
               "options": [
@@ -8193,36 +8325,36 @@
               "default": "'POST'",
               "name": "method",
               "type": "String",
-              "description": "Request method (POST or PUT)."
+              "description": "The request method (POST/PUT)."
             }
           ],
           "return": "Boolean",
-          "name": "utils.send"
+          "name": "Utils.send"
         },
         {
-          "description": "Is empty object?",
+          "description": "Is empty the object?",
           "params": [
             {
               "name": "obj",
               "type": "Object",
-              "description": "Object to valid."
+              "description": "The object."
             }
           ],
           "return": "Boolean",
-          "name": "utils.isEmpty"
+          "name": "Utils.isEmpty"
         },
         {
-          "description": "Compares properties.",
+          "description": "Compares the properties.",
           "params": [
             {
               "name": "obj1",
               "type": "Object",
-              "description": "Object 1 to compare."
+              "description": "The object 1."
             },
             {
               "name": "obj2",
               "type": "Object",
-              "description": "Object 2 to compare."
+              "description": "The object 2."
             },
             {
               "options": [
@@ -8230,14 +8362,14 @@
               ],
               "name": "properties",
               "type": "String Array",
-              "description": "Properties to compare."
+              "description": "The properties to comparing."
             }
           ],
           "return": "Boolean",
-          "name": "utils.isEqual"
+          "name": "Utils.isEqual"
         },
         {
-          "description": "A queue list. Usage for e.g. EMFILE, too many open files. Argument 'fn' is executed when running count of 'fn' is less than 'maximum' argument. Function returns true if it's processed at time.",
+          "description": "A queue list. Useful for e.g. `EMFILE, too many open files`. The argument `fn` is executed when the running count of `fn` is less than `maximum` argument. Function returns `true` if the waiting list is empty.",
           "params": [
             {
               "name": "name",
@@ -8247,16 +8379,23 @@
             {
               "name": "maximum",
               "type": "Number",
-              "description": "A maximum calls."
+              "description": "The maximum calls."
             },
             {
               "name": "fn",
-              "type": "Function(next)",
-              "description": "A caller/delegate to execute."
+              "type": "Function",
+              "description": "The caller/delegate to execute.",
+              "params": [
+                {
+                  "name": "next",
+                  "type": "Function",
+                  "description": "Continue."
+                }
+              ]
             }
           ],
           "return": "Boolean",
-          "name": "utils.queue"
+          "name": "Utils.queue"
         },
         {
           "return": "EventEmitter(begin, end, data(chunk, percentage))",
@@ -8264,10 +8403,10 @@
             {
               "name": "url",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             },
             {
-              "description": "Request flags.",
+              "description": "The request flags.",
               "options": [
                 "optional"
               ],
@@ -8278,10 +8417,10 @@
             {
               "name": "data",
               "type": "Object",
-              "description": "Request data."
+              "description": "The request data."
             },
             {
-              "description": "Completed callback.",
+              "description": "The callback.",
               "params": [
                 {
                   "default": "null",
@@ -8292,26 +8431,18 @@
                 {
                   "name": "data",
                   "type": "String or Object",
-                  "description": "JSON (by the content type) is deserialized to object."
+                  "description": "The response data. JSON is deserialized automatically into the object."
                 },
                 {
                   "default": "0",
                   "name": "status",
                   "type": "Number",
-                  "description": "Response status code."
+                  "description": "The response status code."
                 },
                 {
                   "name": "headers",
                   "type": "Object",
-                  "description": "Response headers."
-                },
-                {
-                  "options": [
-                    "optional"
-                  ],
-                  "name": "timeout",
-                  "type": "Number",
-                  "description": "Request timeout."
+                  "description": "The response headers."
                 }
               ],
               "name": "callback",
@@ -8324,7 +8455,7 @@
               "default": "{}",
               "name": "cookies",
               "type": "Object",
-              "description": "Request cookies."
+              "description": "The request cookies."
             },
             {
               "options": [
@@ -8333,7 +8464,7 @@
               "default": "{}",
               "name": "headers",
               "type": "Object",
-              "description": "Additional / Custom headers."
+              "description": "The additional headers."
             },
             {
               "options": [
@@ -8342,7 +8473,7 @@
               "default": "'utf8'",
               "name": "encoding",
               "type": "String",
-              "description": "Request encoding."
+              "description": "The request encoding."
             },
             {
               "options": [
@@ -8351,11 +8482,11 @@
               "default": "10000",
               "name": "timeout",
               "type": "Number",
-              "description": "Request timeout - in milliseconds."
+              "description": "The request timeout - in milliseconds."
             }
           ],
-          "name": "utils.request",
-          "description": "Create a request (GET/POST/DELETE/PUT) to URL address with custom params and headers."
+          "name": "Utils.request",
+          "description": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers."
         },
         {
           "return": "Object",
@@ -8363,19 +8494,19 @@
             {
               "name": "obj",
               "type": "Object",
-              "description": "Object to trim."
+              "description": "The object."
             }
           ],
-          "name": "utils.trim",
-          "description": "TRIM all string properties in an object."
+          "name": "Utils.trim",
+          "description": "Trims all string properties in the object."
         },
         {
           "return": "undefined",
           "params": [
-            
+
           ],
-          "name": "utils.noop",
-          "description": "Empty function."
+          "name": "Utils.noop",
+          "description": "The empty function."
         },
         {
           "return": "String",
@@ -8383,7 +8514,7 @@
             {
               "name": "code",
               "type": "Number",
-              "description": "HTTP status code."
+              "description": "The HTTP status code."
             },
             {
               "options": [
@@ -8392,11 +8523,11 @@
               "default": "true",
               "name": "addCode",
               "type": "Boolean",
-              "description": "Add code to the description."
+              "description": "Adds the status code to the description."
             }
           ],
-          "name": "utils.httpStatus",
-          "description": "Get HTTP status code description."
+          "name": "Utils.httpStatus",
+          "description": "Gets the HTTP status code description."
         },
         {
           "return": "Object",
@@ -8404,12 +8535,12 @@
             {
               "name": "target",
               "type": "Object",
-              "description": "Target object."
+              "description": "The target object."
             },
             {
               "name": "source",
               "type": "Object",
-              "description": "Source object."
+              "description": "The source object."
             },
             {
               "options": [
@@ -8418,11 +8549,11 @@
               "default": "false",
               "name": "rewrite",
               "type": "Boolean",
-              "description": "Rewrite existing values."
+              "description": "Rewrites the existing values."
             }
           ],
-          "name": "utils.extend",
-          "description": "Extend object. Function return extended target object."
+          "name": "Utils.extend",
+          "description": "Extends the object. The function returns the extended target object."
         },
         {
           "return": "Object",
@@ -8430,7 +8561,7 @@
             {
               "name": "source",
               "type": "Object",
-              "description": "Source object."
+              "description": "The source object."
             },
             {
               "options": [
@@ -8438,11 +8569,11 @@
               ],
               "name": "target",
               "type": "Object",
-              "description": "Target object."
+              "description": "The target object."
             }
           ],
-          "name": "utils.copy",
-          "description": "Copy values between objects. Function return target object."
+          "name": "Utils.copy",
+          "description": "Copies the values between objects. Function returns the target object."
         },
         {
           "return": "Object",
@@ -8450,28 +8581,28 @@
             {
               "name": "source",
               "type": "Object",
-              "description": "Source object."
+              "description": "The source object."
             },
             {
               "name": "path",
               "type": "String",
-              "description": "Path to property. Example: 'users.name'."
+              "description": "The path to the property. Example: \"users.name\"."
             },
             {
-              "description": "Object can replace value and function too.",
+              "description": "The object replaces the old value.",
               "params": [
                 {
                   "name": "value",
                   "type": "Object",
-                  "description": "Old value from object."
+                  "description": "The old value."
                 }
               ],
               "name": "fn",
-              "type": "Function/Object"
+              "type": "Object or Function"
             }
           ],
-          "name": "utils.assign",
-          "description": "Assign value into the object property by the path."
+          "name": "Utils.assign",
+          "description": "Assigns the value into the object according to the path.\n\n```javascript\nvar obj = { user: { name: 'Peter', age: 30 }, categories: [1, 2, 3, 4] };\n\nUtils.assign(obj, 'user.name', 'John');\nUtils.assign(obj, 'categories', function(arr) {\n    arr.push(5);\n    return arr;\n});\n```"
         },
         {
           "return": "Object",
@@ -8479,16 +8610,16 @@
             {
               "name": "source",
               "type": "Object",
-              "description": "Source object."
+              "description": "The source object."
             },
             {
               "name": "prop",
               "type": "String Array or Object",
-              "description": "Reduce an object properties by the array or object."
+              "description": "Leaves the properties."
             }
           ],
-          "name": "utils.reduce",
-          "description": "Reduce object properties by the array or object. This function is helpful for received model from a form."
+          "name": "Utils.reduce",
+          "description": "Reduces the object properties according to the array or object."
         },
         {
           "return": "Boolean",
@@ -8496,47 +8627,47 @@
             {
               "name": "url",
               "type": "String",
-              "description": "URL address."
+              "description": "The URL address."
             }
           ],
-          "name": "utils.isRelative",
-          "description": "Check if relative URL address."
+          "name": "Utils.isRelative",
+          "description": "Checks the relative URL address."
         },
         {
           "return": "String",
           "params": [
             {
-              "name": "str",
+              "name": "value",
               "type": "String",
-              "description": "Text to encode."
+              "description": "The value."
             }
           ],
-          "name": "utils.htmlEncode",
-          "description": "Encode string to HTML safe characters."
+          "name": "Utils.htmlEncode",
+          "description": "Encodes the string into the HTML safe characters."
         },
         {
           "return": "String",
           "params": [
             {
-              "name": "str",
+              "name": "value",
               "type": "String",
-              "description": "Text to decode."
+              "description": "The value."
             }
           ],
-          "name": "utils.htmlDecode",
-          "description": "Decode string from HTML safe characters."
+          "name": "Utils.htmlDecode",
+          "description": "Decodes the HTML safe characters into the string."
         },
         {
           "return": "Boolean",
           "params": [
             {
-              "name": "str",
+              "name": "value",
               "type": "String",
-              "description": "String to valid."
+              "description": "The value."
             }
           ],
-          "name": "utils.isNullOrEmpty",
-          "description": "Is null or empty string?"
+          "name": "Utils.isNullOrEmpty",
+          "description": "Is the string `null` or empty?"
         },
         {
           "return": "Number",
@@ -8545,11 +8676,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Value for parsing."
+              "description": "The value."
             }
           ],
-          "name": "utils.parseInt",
-          "description": "Safe parsing int number."
+          "name": "Utils.parseInt",
+          "description": " Parses the `int` number."
         },
         {
           "return": "Object",
@@ -8557,11 +8688,11 @@
             {
               "name": "value",
               "type": "String",
-              "description": "XML data."
+              "description": "The value"
             }
           ],
-          "name": "utils.parseXML",
-          "description": "Parse XML."
+          "name": "Utils.parseXML",
+          "description": "Parses the XML."
         },
         {
           "return": "Number",
@@ -8570,11 +8701,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Value for parsing."
+              "description": "The value."
             }
           ],
-          "name": "utils.parseFloat",
-          "description": "Safe parsing float number."
+          "name": "Utils.parseFloat",
+          "description": "Parses the `float` number."
         },
         {
           "return": "Boolean",
@@ -8582,11 +8713,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Value for checking."
+              "description": "The value"
             }
           ],
-          "name": "utils.isArray",
-          "description": "Check if value is Array."
+          "name": "Utils.isArray",
+          "description": "Checks if the value is the array."
         },
         {
           "return": "Boolean",
@@ -8594,11 +8725,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Value for checking."
+              "description": "The value"
             }
           ],
-          "name": "utils.isDate",
-          "description": "Check if value is Date."
+          "name": "Utils.isDate",
+          "description": "Checks if the value is the Date object."
         },
         {
           "return": "String",
@@ -8609,11 +8740,11 @@
             {
               "name": "extension",
               "type": "String",
-              "description": "File extension."
+              "description": "The file extension."
             }
           ],
-          "name": "utils.getContentType",
-          "description": "Get content type from file extension."
+          "name": "Utils.getContentType",
+          "description": "Gets the `content-type` according to the file extension."
         },
         {
           "return": "String",
@@ -8622,9 +8753,9 @@
           ],
           "params": [
             {
-              "name": "text",
+              "name": "value",
               "type": "String",
-              "description": "Text for generating ETag."
+              "description": "The value."
             },
             {
               "options": [
@@ -8632,11 +8763,11 @@
               ],
               "name": "version",
               "type": "String",
-              "description": "Additional version."
+              "description": "The version."
             }
           ],
-          "name": "utils.etag",
-          "description": "Create ETag from a text."
+          "name": "Utils.etag",
+          "description": "Creates the ETag hash from the string."
         },
         {
           "return": "String",
@@ -8647,7 +8778,7 @@
             {
               "name": "url",
               "type": "String",
-              "description": "URL address (without any extension)"
+              "description": "The URL address (without any extension)"
             },
             {
               "options": [
@@ -8656,11 +8787,11 @@
               "default": "'/'",
               "name": "delimiter",
               "type": "String",
-              "description": "Delimiter to add."
+              "description": "The delimiter."
             }
           ],
-          "name": "utils.path",
-          "description": "Correct an URL path. Function will add a delimiter to end of path - if not exist."
+          "name": "Utils.path",
+          "description": "Corrects the URL address path. The function will add the delimiter to end of path (if not exist)."
         },
         {
           "return": "Number",
@@ -8672,7 +8803,7 @@
               "default": "100000",
               "name": "max",
               "type": "Number",
-              "description": "Maximum of number."
+              "description": "The maximum number."
             },
             {
               "options": [
@@ -8681,11 +8812,11 @@
               "default": "0",
               "name": "min",
               "type": "Number",
-              "description": "Minimum of number."
+              "description": "The minimum  number."
             }
           ],
-          "name": "utils.random",
-          "description": "Get a random number."
+          "name": "Utils.random",
+          "description": "Returns a random number."
         },
         {
           "return": "String",
@@ -8697,11 +8828,11 @@
               "default": "40",
               "name": "max",
               "type": "Number",
-              "description": "Maximum length of string."
+              "description": "The maximum length."
             }
           ],
-          "name": "utils.GUID",
-          "description": "Create an unique identifier."
+          "name": "Utils.GUID",
+          "description": "Creates the unique identifier."
         },
         {
           "return": "Number",
@@ -8709,69 +8840,66 @@
             {
               "name": "lat1",
               "type": "Number",
-              "description": "Latitude."
+              "description": "The latitude."
             },
             {
               "name": "lon1",
               "type": "Number",
-              "description": "Longitude."
+              "description": "The longitude."
             },
             {
               "name": "lat2",
               "type": "Number",
-              "description": "Latitude."
+              "description": "The latitude."
             },
             {
               "name": "lon2",
               "type": "Number",
-              "description": "Longitude."
+              "description": "The longitude."
             }
           ],
-          "name": "utils.distance",
-          "description": "Get distance (KM) from two GPS coordinates."
+          "name": "Utils.distance",
+          "description": "Returns the distance (KM) from the two GPS coordinates."
         },
         {
           "return": "ErrorBuilder",
-          "name": "utils.validate",
-          "go": "Builders.ErrorBuilder",
-          "description": "Validate an object model.\nIMPORTANT: If 'properties' is string then properties read by the schema validation. Read more in Builders.SchemaBuilder.",
+          "name": "Utils.validate",
+          "go": "#api~Builders.ErrorBuilder",
+          "description": "Validates the object.\nIMPORTANT: If `properties` is the string then properties are read according to schema.",
           "example": "https://github.com/totaljs/examples/tree/master/validation-custom",
           "params": [
             {
               "name": "model",
               "type": "Object",
-              "description": "Object to valid."
+              "description": "The model."
             },
             {
               "name": "properties",
               "type": "String Array",
-              "description": "Define properties for to validation."
+              "description": "The properties to validation."
             },
             {
-              "description": "This function must return Boolean or utils.isValid().",
-              "options": [
-                "must return Boolean"
-              ],
+              "description": "Expects String / Boolean / undefined.",
               "params": [
                 {
                   "name": "name",
                   "type": "String",
-                  "description": "Property name."
+                  "description": "The property name."
                 },
                 {
                   "name": "value",
                   "type": "Object",
-                  "description": "Property value."
+                  "description": "The property value."
                 },
                 {
                   "name": "path",
                   "type": "String",
-                  "description": "Current path in object."
+                  "description": "The current path in the object."
                 },
                 {
                   "name": "schema",
                   "type": "String",
-                  "description": "Schema name."
+                  "description": "The schema name."
                 }
               ],
               "name": "prepare",
@@ -8783,19 +8911,18 @@
               ],
               "name": "builder",
               "type": "ErrorBuilder",
-              "description": "Error builder for storing error collection."
+              "description": "The Errorbuilder stores errors."
             },
             {
-              "description": "Resource function.",
+              "description": "The resource getter.",
               "options": [
-                "optional",
-                "must return String"
+                "optional"
               ],
               "params": [
                 {
                   "name": "key",
                   "type": "String",
-                  "description": "Property name."
+                  "description": "The key."
                 }
               ],
               "name": "resource",
@@ -8809,11 +8936,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Is value valid e-mail address?"
+              "description": "The value."
             }
           ],
-          "name": "utils.isEmail",
-          "description": "E-mail validation."
+          "name": "Utils.isEmail",
+          "description": "The e-mail validation."
         },
         {
           "return": "Boolean",
@@ -8821,11 +8948,11 @@
             {
               "name": "value",
               "type": "Object",
-              "description": "Is value valid URL address?"
+              "description": "The value."
             }
           ],
-          "name": "utils.isURL",
-          "description": "URL address validation."
+          "name": "Utils.isURL",
+          "description": "The URL address validation."
         },
         {
           "return": "String",
@@ -8836,7 +8963,7 @@
               ],
               "name": "param..1",
               "type": "String",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             },
             {
               "options": [
@@ -8844,7 +8971,7 @@
               ],
               "name": "param..2",
               "type": "String",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             },
             {
               "options": [
@@ -8852,11 +8979,11 @@
               ],
               "name": "param..n",
               "type": "String",
-              "description": "Dynamic parameter"
+              "description": "A dynamic parameter."
             }
           ],
-          "name": "utils.combine",
-          "description": "Combine paths."
+          "name": "Utils.combine",
+          "description": "Combines paths."
         },
         {
           "return": "String",
@@ -8864,15 +8991,15 @@
             {
               "name": "value",
               "type": "String",
-              "description": "Remove diacritics from this value."
+              "description": "The value."
             }
           ],
-          "name": "utils.removeDiacritics",
-          "description": "Remove string diacritics."
+          "name": "Utils.removeDiacritics",
+          "description": "Removes string diacritics."
         }
       ],
       "name": "FrameworkUtils",
-      "description": "FrameworkUtils contain helper functions and important prototypes. FrameworkUtils are available in each node.js script according the keyword `Utils.` (it’s a global variable):\n\n```javascript\n// Utils.[method]\n\nUtils.trim({ name: '  PETER SIRKA  ' });\nUtils.isEmpty({});\n```"
+      "description": "The __FrameworkUtils__ contains useful functions and important prototypes. The __FrameworkUtils__ class is available in each node.js script according to the keyword `Utils.` (it’s a global variable):\n\n```javascript\n// Utils.[method]\nUtils.trim({ name: '  PETER SIRKA  ' });\nUtils.isEmpty({});\n```"
     },
     {
       "group": "Framework",
@@ -9420,7 +9547,7 @@
         {
           "description": "Sets image normalization.",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.normalize"
@@ -9440,7 +9567,7 @@
         {
           "description": "Flips the image.",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.flip"
@@ -9448,7 +9575,7 @@
         {
           "description": "Flops the image (opposite the flip).",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.flop"
@@ -9456,7 +9583,7 @@
         {
           "description": "Minify the image.",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.minify"
@@ -9464,7 +9591,7 @@
         {
           "description": "Creates a grayscale from the image..",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.grayscale"
@@ -9472,7 +9599,7 @@
         {
           "description": "Creates a sepia from the image.",
           "params": [
-            
+
           ],
           "return": "FrameworkImage",
           "name": "image.sepia"
@@ -9579,7 +9706,7 @@
         {
           "description": "Reads the file content __synchronous__.",
           "params": [
-            
+
           ],
           "return": "Buffer",
           "name": "file.readSync"
@@ -9587,7 +9714,7 @@
         {
           "description": "Checks the content type whether is an image.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "file.isImage"
@@ -9595,7 +9722,7 @@
         {
           "description": "Checks the content type whether is a video.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "file.isVideo"
@@ -9603,7 +9730,7 @@
         {
           "description": "Checks the content type whether is an audio.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "file.isAudio"
@@ -10125,7 +10252,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "default": "{ user: '', password: '' }",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "Request.prototype.authorization"
@@ -10177,7 +10304,7 @@
         {
           "description": "Clears the uploaded files. This function is executed automatically.",
           "params": [
-            
+
           ],
           "return": "Request",
           "name": "Request.prototype.clear"
@@ -10185,7 +10312,7 @@
         {
           "description": "Disables the cache validation.",
           "params": [
-            
+
           ],
           "return": "Request",
           "name": "Request.prototype.noCache"
@@ -10244,7 +10371,7 @@
         {
           "description": "Disables HTTP cache.",
           "params": [
-            
+
           ],
           "return": "Response",
           "name": "Response.prototype.noCache"
@@ -10292,7 +10419,7 @@
         {
           "return": "Response",
           "params": [
-            
+
           ],
           "name": "Response.prototype.continue",
           "description": "Continues in processing of the request."
@@ -10401,7 +10528,7 @@
         {
           "description": "Trims the white characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.trim"
@@ -10409,7 +10536,7 @@
         {
           "description": "Parses XML from the string to Object.",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "String.prototype.parseXML"
@@ -10417,7 +10544,7 @@
         {
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.toSearch"
@@ -10437,7 +10564,7 @@
         {
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "params": [
-            
+
           ],
           "return": "Date",
           "name": "String.prototype.parseDate"
@@ -10462,7 +10589,7 @@
         {
           "description": "Parses expiration date.",
           "params": [
-            
+
           ],
           "return": "Date",
           "name": "String.prototype.parseDateExpire"
@@ -10482,7 +10609,7 @@
               "default": "false",
               "name": "all",
               "type": "Boolean",
-              "description": "If the value (for searching) is an array then the function tries to find all values from the array in the current string."
+              "description": "If the value (for searching) is an array then the function tries to find all values from the array in current string."
             }
           ],
           "return": "Boolean",
@@ -10533,7 +10660,7 @@
         {
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "String.prototype.parseConfig"
@@ -10572,7 +10699,7 @@
         {
           "description": "Encodes the string to the HTML safe characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.encode"
@@ -10580,7 +10707,7 @@
         {
           "description": "Decodes the string from the HTML safe characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.decode"
@@ -10588,7 +10715,7 @@
         {
           "description": "Encodes the string to URL the safe characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.urlEncode"
@@ -10596,7 +10723,7 @@
         {
           "description": "Decodes the string from URL the safe characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.urlDecode"
@@ -10625,7 +10752,7 @@
         {
           "description": "Checks if the string contains the valid JSON.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "String.prototype.isJSON"
@@ -10633,7 +10760,7 @@
         {
           "description": "Checks if the string contains the valid URL address.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "String.prototype.isURL"
@@ -10641,7 +10768,7 @@
         {
           "description": "Checks if the string contains the valid e-mail address.",
           "params": [
-            
+
           ],
           "return": "Boolean",
           "name": "String.prototype.isEmail"
@@ -10649,7 +10776,7 @@
         {
           "description": "Checks if the string contains the valid boolean value.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.isBoolean"
@@ -10689,7 +10816,7 @@
         {
           "description": "Parses a boolean from the string.",
           "params": [
-            
+
           ],
           "return": "Number",
           "name": "String.prototype.parseBool"
@@ -10697,7 +10824,7 @@
         {
           "description": "Converts the string to unicode (HTML) characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.toUnicode"
@@ -10705,7 +10832,7 @@
         {
           "description": "Parses the unicode (HTML) characters.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.fromUnicode"
@@ -10848,7 +10975,7 @@
         {
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.base64ContentType"
@@ -10856,7 +10983,7 @@
         {
           "description": "Removes diacritics from the string.",
           "params": [
-            
+
           ],
           "return": "String",
           "name": "String.prototype.removeDiacritics"
@@ -11285,7 +11412,7 @@
         {
           "description": "Trims all strings in the array.",
           "params": [
-            
+
           ],
           "return": "Array",
           "name": "Array.prototype.trim"
@@ -11328,7 +11455,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "name": "callback",
               "type": "Function"
@@ -11346,7 +11473,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "name": "onComplete",
               "type": "Function"
@@ -11468,7 +11595,7 @@
         {
           "description": "Gets the one item (randomly) from the array.",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "Array.prototype.random"
@@ -11476,7 +11603,7 @@
         {
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "params": [
-            
+
           ],
           "return": "Array",
           "name": "Array.prototype.randomize"
@@ -11511,7 +11638,7 @@
         {
           "description": "Cancel work.",
           "params": [
-            
+
           ],
           "return": "Async",
           "name": "async.cancel"
@@ -11555,7 +11682,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "name": "cb",
               "type": "Function"
@@ -11572,7 +11699,7 @@
               "options": [
                 "optional"
               ],
-              "default": "utils.GUID(5)",
+              "default": "Utils.GUID(5)",
               "name": "name",
               "type": "String",
               "description": "Name of task."
@@ -11598,7 +11725,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "name": "cb",
               "type": "Function"
@@ -11617,7 +11744,7 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Complete function for all tasks. This function is an alias for async.run([fn])."
+              "description": "Complete function for all tasks. This function is the alias for async.run([fn])."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/async",
@@ -11716,7 +11843,7 @@
         }
       ],
       "name": "Async",
-      "description": "Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). FrameworkUtils is a global variable. \n\n_Example:_\n\n```javascript\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};\n```"
+      "description": "Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). The frameworkUtils is a global variable. \n\n_Example:_\n\n```javascript\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};\n```"
     },
     {
       "group": "Additional",
@@ -11763,6 +11890,21 @@
           "go": "#api~FrameworkMail",
           "return": "FrameworkMail",
           "description": "Gets the FrameworkMail."
+        },
+        {
+          "description": "Is the framework running in debug mode?",
+          "return": "Boolean",
+          "name": "DEBUG"
+        },
+        {
+          "description": "Is the framework running in release mode?",
+          "return": "Boolean",
+          "name": "RELEASE"
+        },
+        {
+          "description": "Is the framework running in test mode?",
+          "return": "Boolean",
+          "name": "TEST"
         }
       ],
       "methods": [
@@ -11800,7 +11942,7 @@
         },
         {
           "name": "INCLUDE",
-          "description": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is an alias for `framework.source()`.",
+          "description": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is the alias for `framework.source()`.",
           "options": [
             "or include"
           ],
@@ -11825,7 +11967,7 @@
         },
         {
           "name": "SOURCE",
-          "description": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is an alias for `framework.source()`.",
+          "description": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is the alias for `framework.source()`.",
           "options": [
             "or source"
           ],
@@ -11849,7 +11991,7 @@
           "return": "Object"
         },
         {
-          "description": "Gets the module. This function is an alias for `framework.module()`.",
+          "description": "Gets the module. This function is the alias for `framework.module()`.",
           "params": [
             {
               "name": "name",
@@ -11861,7 +12003,26 @@
           "name": "MODULE"
         },
         {
-          "description": "Gets the controller. This function is an alias for `framework.controller()`.",
+          "description": "The empty function.",
+          "params": [
+          ],
+          "return": "Object",
+          "name": "NOOP"
+        },
+        {
+          "description": "Gets the route. This function is the alias for `framework.routing()`.",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "description": "The identificator."
+            }
+          ],
+          "return": "Object",
+          "name": "ROUTING"
+        },
+        {
+          "description": "Gets the controller. This function is the alias for `framework.controller()`.",
           "params": [
             {
               "name": "name",
@@ -11873,7 +12034,7 @@
           "name": "CONTROLLER"
         },
         {
-          "description": "Gets the model. This function is an alias for `framework.model()`.",
+          "description": "Gets the model. This function is the alias for `framework.model()`.",
           "params": [
             {
               "name": "name",
@@ -11885,9 +12046,9 @@
           "name": "MODEL"
         },
         {
-          "description": "Gets the database instance. This function is an alias for `framework.database()`.",
+          "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "DATABASE"
@@ -11925,7 +12086,7 @@
           "name": "LOG"
         },
         {
-          "description": "This function is an alias for `framework.install()`.",
+          "description": "This function is the alias for `framework.install()`.",
           "params": [
             {
               "name": "type",
@@ -11967,7 +12128,7 @@
           "name": "INSTALL"
         },
         {
-          "description": "Uninstalls a feature from the framework. This function is an alias for `framework.uninstall()`.",
+          "description": "Uninstalls a feature from the framework. This function is the alias for `framework.uninstall()`.",
           "params": [
             {
               "name": "type",
@@ -11992,7 +12153,7 @@
           "name": "UNINSTALL"
         },
         {
-          "description": "This function is an alias for `framework.functions()`.",
+          "description": "This function is the alias for `framework.functions()`.",
           "params": [
             {
               "name": "name",
@@ -12011,7 +12172,7 @@
       "group": "Builders",
       "methods": [
         {
-          "description": "Create an instance.",
+          "description": "Create a new instance of the ErrorBuilder.",
           "params": [
             {
               "description": "Resource reader.",
@@ -12033,7 +12194,7 @@
           "name": "new ErrorBuilder"
         },
         {
-          "description": "Add a new transformation for ErrorBuilder.",
+          "description": "Adds a new transformation for current ErrorBuilder.",
           "options": [
             "static method"
           ],
@@ -12041,20 +12202,17 @@
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             },
             {
               "type": "Function",
-              "description": "A transformation function.",
-              "options": [
-                "must return some object"
-              ],
+              "description": "The transformation function. This function must return a transformed object.",
               "return": "Object",
               "params": [
                 {
-                  "name": "error",
+                  "name": "builder",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder (error writer) for transformation."
+                  "description": "The ErrorBuilder for the transformation."
                 }
               ],
               "name": "fn"
@@ -12066,38 +12224,38 @@
               "default": "false",
               "name": "name",
               "type": "Boolean",
-              "description": "Set this transformation as default?"
+              "description": "Sets the default transformation for all ErrorBuilders."
             }
           ],
           "return": "Object",
           "name": "ErrorBuilder.addTransform"
         },
         {
-          "description": "Set default transform for CURRENT ErrorBuilder.",
+          "description": "Sets the default transformation for the current ErrorBuilder.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.setTransform"
+          "name": "instance.setTransform"
         },
         {
-          "description": "Transform current ErrorBuilder.",
+          "description": "Transforms the current ErrorBuilder. __It returns an transformed object.__",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "Object",
-          "name": "builder.transform"
+          "name": "instance.transform"
         },
         {
-          "description": "Set default transform for all ErrorBuilders.",
+          "description": "Sets the default transformation for all ErrorBuilders.",
           "options": [
             "static method"
           ],
@@ -12105,27 +12263,27 @@
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "ErrorBuilder",
           "name": "ErrorBuilder.setDefaultTransform"
         },
         {
-          "description": "Returns prepared (transformed) errors.",
+          "description": "Returns the transformed errors.",
           "params": [
-            
+
           ],
           "return": "Object",
-          "name": "builder.output"
+          "name": "instance.output"
         },
         {
-          "description": "Add an error to ErrorBuilder. You can add other ErrorBuilder - builder.add(new builders.ErrorBuilder()).\n\nbuilder.add('Name'); // load: builder.onResource('Name');\nbuilder.add('Name', '@NameMinimum'); // load: builder.onResource('NameMinimum');\nbuilder.add('Name', 'You must enter your name.');",
+          "description": "Adds the error into the __ErrorBuilder__.\n\n```javascript\nvar builder = new ErrorBuilder();\n\n// Into the ErrorBuilder you can add the instance of ErrorBuilder.\ninstance.add(new builders.ErrorBuilder());\n\ninstance.add(‘name’, ‘@‘); // Gets the error message according to: instance.onResource(‘name');\n// is same as\ninstance.add(‘name'); // Gets the error message according to: instance.onResource(‘name');\n\ninstance.add(‘name', ‘@name-minimum'); // Gets the error message according to: instance.onResource(‘name-minimum');\ninstance.add(‘name', 'You must enter your name.'); // Skips getting of the value from the resource.\n```",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Property name / Item identificator."
+              "description": "The property name."
             },
             {
               "options": [
@@ -12134,26 +12292,26 @@
               "default": "'@'",
               "name": "errorMessage",
               "type": "String",
-              "description": "Error message. @ is automatically loaded from a resource by the name."
+              "description": "The error message. If the error starts with \"@\" then builders loads error message from the resource file."
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.add"
+          "name": "instance.add"
         },
         {
-          "description": "Remove error from ErrorBuilder.",
+          "description": "Removes the error from the ErrorBuilder.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Property name / Item identificator."
+              "description": "The property name."
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.remove"
+          "name": "instance.remove"
         },
         {
-          "description": "Has collection an error? If name is not defined then ErrorBuilder check it if collection contains any error.",
+          "description": "Checks if the instance contains some error.",
           "params": [
             {
               "options": [
@@ -12161,11 +12319,11 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "Property name / Item identificator."
+              "description": "The property name. The function checks the error according to the property name."
             }
           ],
           "return": "Boolean",
-          "name": "builder.hasError"
+          "name": "instance.hasError"
         },
         {
           "description": "Read error message",
@@ -12178,55 +12336,56 @@
             }
           ],
           "return": "String",
-          "name": "builder.read"
+          "name": "instance.read"
         },
         {
-          "description": "Clear error collections.",
+          "description": "Clears all errors.",
           "params": [
-            
+
           ],
           "return": "ErrorBuilder",
-          "name": "builder.clear"
+          "name": "instance.clear"
         },
         {
-          "description": "Replace some text error message. Example: builder.replace('#email', 'yourmail@yourdomain.com'). Important: 'replace' is valid for all new values. This function is applied at the transform/output/json/etc..",
+          "description": "Replaces the error message in the error collection. \n\n```javascript\ninstance.replace('#email', 'yourmail@yourdomain.com');\n```\n\n__IMPORTANT__:  Replacement is applied only for: `errorinstance.transform()`, `errorinstance.output()`, `errorinstance.json()`, etc..",
           "params": [
             {
               "name": "search",
               "type": "String",
-              "description": "Search text in error message."
+              "description": "The text to search."
             },
             {
               "name": "newValue",
               "type": "String",
-              "description": "Text to replace."
+              "description": "The value to replace."
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.replace"
+          "name": "instance.replace"
         },
         {
-          "description": "Set resource file.",
+          "description": "Sets the resource file.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Resource name for error builder."
+              "description": "The resource name."
             },
             {
               "options": [
                 "optional"
               ],
+              "default": "''",
               "name": "prefix",
               "type": "String",
-              "description": "Prefix for replacing an error message."
+              "description": "The prefix will added at the beginning of the key."
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.resource"
+          "name": "instance.resource"
         },
         {
-          "description": "Serialize ErrorBuilder into the JSON. Collection is serialized as array: [{ name: 'Property', error: 'Error message.'}].\nFramework supports:\n\ncontroller.json(ErrorBuilder);",
+          "description": "Serializes the ErrorBuilder into the JSON format. The collection is serialized as array (by default, it’s dependent on the __ErrorBuilder__ transformation):\n\n```javascript\n[{ name: 'Property', error: 'Error message.'}]\n```\n\n__The framework supports:__\n\n```javascript\ncontroller.json(ErrorBuilder);\n```",
           "params": [
             {
               "default": "false",
@@ -12239,11 +12398,11 @@
             }
           ],
           "return": "ErrorBuilder",
-          "name": "builder.json"
+          "name": "instance.json"
         }
       ],
       "name": "Builders.ErrorBuilder",
-      "description": "Error builder is helpful for model error handling.\n\n```javascript\n// \"Builders\" is a global variable\nvar builder = new Builders.ErrorBuilder();\n```"
+      "description": "The __ErrorBuilder__ is helpful for the model error handling.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.ErrorBuilder();\n```"
     },
     {
       "group": "Builders",
@@ -12251,22 +12410,22 @@
         {
           "name": "instance.isNext",
           "return": "Boolean",
-          "description": "Is next page?"
+          "description": "Is allowed a next page?"
         },
         {
           "name": "instance.isPrev",
           "return": "Boolean",
-          "description": "Is prev page?"
+          "description": "Is allowed a previous page?"
         },
         {
           "name": "instance.items",
           "return": "Number",
-          "description": "Items count."
+          "description": "The items count."
         },
         {
           "name": "instance.count",
           "return": "Number",
-          "description": "Page count."
+          "description": "The page count."
         },
         {
           "name": "instance.max",
@@ -12276,7 +12435,7 @@
         {
           "name": "instance.page",
           "return": "Number",
-          "description": "A current page."
+          "description": "The current page."
         },
         {
           "name": "instance.skip",
@@ -12291,18 +12450,18 @@
         {
           "name": "instance.visible",
           "return": "Boolean",
-          "description": "Has pagination more pages than one?"
+          "description": "Has got the pagination more pages than one?"
         },
         {
           "default": "'?page={0}'",
           "return": "String",
           "name": "instance.format",
-          "description": "A current format for building URL."
+          "description": "The current format for the building URL address."
         }
       ],
       "methods": [
         {
-          "description": "Constructor. Create an instance.",
+          "description": "Create a new instance of the Pagination.",
           "params": [
             {
               "name": "items",
@@ -12333,12 +12492,12 @@
           "name": "new Builders.Pagination"
         },
         {
-          "description": "Refresh all informations about the paging.",
+          "description": "Refresh all informations in the pagination.",
           "params": [
             {
               "name": "items",
               "type": "Number",
-              "description": "Items count."
+              "description": "The count of items."
             },
             {
               "name": "page",
@@ -12348,14 +12507,14 @@
             {
               "name": "max",
               "type": "Number",
-              "description": "Max items to page."
+              "description": "Max items per page."
             }
           ],
           "return": "Pagination",
           "name": "instance.refresh"
         },
         {
-          "description": "Get a previous page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "description": "Gets the previous page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
           "params": [
             {
               "options": [
@@ -12364,14 +12523,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object",
           "name": "instance.prev"
         },
         {
-          "description": "Get a next page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "description": "Gets the next page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
           "params": [
             {
               "options": [
@@ -12380,14 +12539,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object",
           "name": "instance.next"
         },
         {
-          "description": "Get a last page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "description": "Gets the last page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
           "params": [
             {
               "options": [
@@ -12396,14 +12555,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object",
           "name": "instance.last"
         },
         {
-          "description": "Get a first page. Returns { url: String, page: Number, selected: Boolean, enabled: Boolean }.",
+          "description": "Gets the first page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
           "params": [
             {
               "options": [
@@ -12412,14 +12571,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object",
           "name": "instance.first"
         },
         {
-          "description": "Prepare pagination to array datasource.",
+          "description": "Prepares the Pagination to the array.",
           "params": [
             {
               "options": [
@@ -12428,7 +12587,7 @@
               "default": "undefined",
               "name": "max",
               "type": "Number",
-              "description": "Max pages in pagination (interval)."
+              "description": "Max pages in the pagination."
             },
             {
               "options": [
@@ -12437,14 +12596,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object Array",
           "name": "instance.prepare"
         },
         {
-          "description": "Prepare pagination to array datasource. Alias for pagination.prepare().",
+          "description": "Alias for pagination.prepare().",
           "params": [
             {
               "options": [
@@ -12453,7 +12612,7 @@
               "default": "undefined",
               "name": "max",
               "type": "Number",
-              "description": "Max pages in pagination (interval)."
+              "description": "Max pages in the pagination."
             },
             {
               "options": [
@@ -12462,14 +12621,14 @@
               "default": "undefined",
               "name": "format",
               "type": "String",
-              "description": "Override a current format for building URL address."
+              "description": "Overrides the current format for building the URL address."
             }
           ],
           "return": "Object Array",
           "name": "instance.render"
         },
         {
-          "description": "Add a new transformation for Pagination.",
+          "description": "Adds a new transformation for the current Pagination.",
           "options": [
             "static method"
           ],
@@ -12477,11 +12636,11 @@
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             },
             {
               "type": "Function",
-              "description": "A transformation function.",
+              "description": "The transformation function.",
               "options": [
                 "must return some object"
               ],
@@ -12489,8 +12648,8 @@
               "params": [
                 {
                   "name": "error",
-                  "type": "ErrorBuilder",
-                  "description": "ErrorBuilder (error writer) for transformation."
+                  "type": "Pagination",
+                  "description": "The Pagination instance for the transformation."
                 }
               ],
               "name": "fn"
@@ -12502,38 +12661,38 @@
               "default": "false",
               "name": "name",
               "type": "Boolean",
-              "description": "Set this transformation as default?"
+              "description": "Sets this transformation as default."
             }
           ],
           "return": "Object",
           "name": "Pagination.addTransform"
         },
         {
-          "description": "Set default transform for CURRENT Pagination.",
+          "description": "Sets the default transformation for the current Pagination.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "Pagination",
           "name": "instance.setTransform"
         },
         {
-          "description": "Transform current Pagination.",
+          "description": "Transforms the current Pagination.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "Object",
           "name": "instance.transform"
         },
         {
-          "description": "Set default transform for all Paginations.",
+          "description": "Sets the default transform for all Paginations.",
           "options": [
             "static method"
           ],
@@ -12541,7 +12700,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             }
           ],
           "return": "Pagination",
@@ -12549,100 +12708,118 @@
         }
       ],
       "name": "Builders.Pagination",
-      "description": "Pagination is helpful for datasource paging.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.Pagination();\n```",
+      "description": "The __Pagination__ is helpful for datasource paging.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.Pagination(1343, 1, 50);\nconsole.log(instance.render());\n```",
       "example": "https://github.com/totaljs/examples/tree/master/pagination"
     },
     {
       "group": "Builders",
       "methods": [
         {
-          "description": "Create an instance.",
+          "description": "Creates a new instance of the UrlBuilder.",
           "params": [
-            
+
           ],
           "return": "UrlBuilder",
           "name": "new UrlBuilder"
         },
         {
-          "description": "Add a parameter.",
+          "description": "Adds a new parameter into the UrlBuilder.",
           "params": [
             {
-              "name": "name",
+              "name": "key",
               "type": "String",
-              "description": "Parameter name."
+              "description": "The key."
             },
             {
               "name": "value",
               "type": "Object",
-              "description": "Parameter value (is serialized to STRING)."
+              "description": "The parameter value (is serialized into the String)."
             }
           ],
           "return": "UrlBuilder",
-          "name": "builder.add"
+          "name": "instance.add"
         },
         {
-          "description": "Remove a parameter.",
+          "description": "Removes the parameter.",
           "params": [
             {
-              "name": "name",
+              "name": "key",
               "type": "String",
-              "description": "Parameter name."
+              "description": "The key."
             }
           ],
-          "return": "Pagination",
-          "name": "builder.remove"
+          "return": "UrlBuilder",
+          "name": "instance.remove"
         },
         {
-          "description": "Read value from a parameter.",
+          "description": "Gets the value.",
           "default": "null",
           "params": [
             {
-              "name": "name",
+              "name": "key",
               "type": "String",
-              "description": "Parameter name."
+              "description": "The key."
             }
           ],
           "return": "String",
-          "name": "builder.read"
+          "name": "instance.read"
         },
         {
-          "description": "Clear URL parameter collection.",
+          "description": "Clears all parameters.",
           "params": [
-            
+
           ],
-          "return": "Pagination",
-          "name": "builder.clear"
+          "return": "UrlBuilder",
+          "name": "instance.clear"
         },
         {
-          "description": "Check if collection contain value.",
+          "description": "Checks if the collection contains some value.",
           "params": [
             {
+              "options": [
+                "optional"
+              ],
               "name": "keys",
-              "type": "String Array",
-              "description": "Parameter names (String Array) or Parameter name (String)."
+              "type": "String or Array",
+              "description": "The parameter name (String) or names (String Array)."
             }
           ],
           "return": "Boolean",
-          "name": "builder.hasValue"
+          "name": "instance.hasValue"
         },
         {
-          "description": "Serialize parameters. Example: key1=value1&key2=value2",
+          "description": "Serializes the parameters. Example: `key1=value1&key2=value2`.",
           "options": [
             "important"
           ],
           "params": [
-            
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "url",
+              "description": "The parameters will added into the URL address.",
+              "default": "''"
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "skipEmpty",
+              "description": "Skips empty values.",
+              "default": "''"
+            }
           ],
           "return": "String",
-          "name": "builder.toString"
+          "name": "instance.toString"
         },
         {
-          "description": "Serialize parameters by the keys.",
+          "description": "Serializes the parameters according to the keys.",
           "params": [
             {
               "name": "keys",
               "type": "String Array",
-              "description": "Parameter names (String Array) or Parameter name (String)."
+              "description": "The keys (String Array)."
             },
             {
               "options": [
@@ -12651,39 +12828,46 @@
               "default": "'&'",
               "name": "delimiter",
               "type": "String",
-              "description": "Parameters delimiter."
+              "description": "The delimiter."
             }
           ],
           "return": "String",
-          "name": "builder.toOne"
+          "name": "instance.toOne"
         }
       ],
       "name": "Builders.UrlBuilder",
-      "description": "URL builder is helpful for dynamic creating URL address.\n\n```javascript\nvar builder = new Builders.UrlBuilder();\n```"
+      "description": "The __UrlBuilder__ is helpful for create query parameters into the URL address.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.UrlBuilder();\nconsole.log(instance.toString());\n```"
     },
     {
       "group": "Builders",
+      "properties": [
+        {
+          "name": "SchemaBuilderEntity.schema",
+          "description": "Returns the schema definition.",
+          "return": "Object"
+        }
+      ],
       "methods": [
         {
           "name": "Builders.schema",
-          "description": "Create a schema group. Schema supports joining entities in same group.",
+          "description": "Creates the schema group. The schema supports joining entities in the same group.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Group name."
+              "description": "The group name."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-schema",
           "return": "SchemaBuilder"
         },
         {
-          "description": "Add an entity into the current group.",
+          "description": "Adds the entity into current group.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Entity name."
+              "description": "The entity name. Example: User, Product, etc.."
             }
           ],
           "return": "SchemaBuilderEntity",
@@ -12702,7 +12886,7 @@
           "name": "SchemaBuilder.create"
         },
         {
-          "description": "Remove the entity or current group. If is not defined 'name' then will removed a group.",
+          "description": "Removes the entity or current group. If the `name` is not defined then will be removed the current group.",
           "params": [
             {
               "options": [
@@ -12710,37 +12894,37 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "Entity name."
+              "description": "The entity name."
             }
           ],
           "return": "SchemaBuilder",
           "name": "SchemaBuilder.remove"
         },
         {
-          "description": "Get the entity in current group.",
+          "description": "Gets the entity in current group.",
           "default": "undefined",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Entity name."
+              "description": "The entity name."
             }
           ],
           "return": "SchemaBuilderEntity",
           "name": "SchemaBuilder.get"
         },
         {
-          "description": "Define a property into the entity.",
+          "description": "Defines the property for current entity.\n\n```javascript\nvar User = Builders.schema('ecommerce').add('User');\n\nUser.define('id', 'string(24)'); // The framework trims long strings automatically\nUser.define('name', 'string(30)', true);\nUser.define('email', String);\nUser.define('age', Number);\n// ...\n// ...\n```",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A property name."
+              "description": "The property name."
             },
             {
               "name": "type",
               "type": "Object",
-              "description": "A property type."
+              "description": "The property type."
             },
             {
               "options": [
@@ -12812,25 +12996,25 @@
           "name": "SchemaBuilderEntity.setValidation"
         },
         {
-          "description": "Set default values or set values in preparing to current model/entity.",
+          "description": "Sets the default values.",
           "params": [
             {
-              "description": "A validation function.",
+              "description": "The function.",
               "params": [
                 {
-                  "name": "propertyName",
+                  "name": "name",
                   "type": "String",
-                  "description": "A current property name in the entity."
+                  "description": "The property name."
                 },
                 {
-                  "name": "isntPreparing",
+                  "name": "create",
                   "type": "Boolean",
-                  "description": "(Is not preparing) Is in creating mode and the method wants a default value."
+                  "description": "The function is assigning a value for an new object or existing object."
                 },
                 {
                   "name": "entityName",
                   "type": "String",
-                  "description": "A current entity name (for using one handler to multiple entities)."
+                  "description": "The current entity name."
                 }
               ],
               "name": "fn",
@@ -12841,31 +13025,44 @@
           "name": "SchemaBuilderEntity.setDefault"
         },
         {
-          "description": "Set a save delegate.",
+          "description": "Sets the save delegate.",
           "params": [
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "Prepared object."
+                  "description": "The model."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
-                  "name": "done",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback.",
+                  "params": [
+                    {
+                      "name": "err",
+                      "type": "ErrorBuilder",
+                      "default": "null",
+                      "description": "Error handler"
+                    },
+                    {
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 }
               ],
               "name": "fn",
@@ -12876,31 +13073,44 @@
           "name": "SchemaBuilderEntity.setSave"
         },
         {
-          "description": "Set a get delegate.",
+          "description": "Sets the get delegate.",
           "params": [
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "A default object."
+                  "description": "The model object."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
-                  "name": "done",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback.",
+                  "params": [
+                    {
+                      "name": "err",
+                      "type": "ErrorBuilder",
+                      "default": "null",
+                      "description": "Error handler"
+                    },
+                    {
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 }
               ],
               "name": "fn",
@@ -12911,26 +13121,39 @@
           "name": "SchemaBuilderEntity.setGet"
         },
         {
-          "description": "Set an query delegate.",
+          "description": "Sets the query delegate.",
           "params": [
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
-                  "name": "done(results)",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done with results."
+                  "description": "The callback.",
+                  "params": [
+                    {
+                      "name": "err",
+                      "type": "ErrorBuilder",
+                      "default": "null",
+                      "description": "Error handler"
+                    },
+                    {
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 }
               ],
               "name": "fn",
@@ -12941,31 +13164,45 @@
           "name": "SchemaBuilderEntity.setQuery"
         },
         {
-          "description": "Set a remove delegate.",
+          "description": "Sets the remove delegate.",
           "params": [
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors.",
+                  "default": "''"
                 },
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "Prepared object."
+                  "description": "The prepared object."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
-                  "name": "done",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback.",
+                  "params": [
+                    {
+                      "name": "err",
+                      "type": "ErrorBuilder",
+                      "default": "null",
+                      "description": "Error handler"
+                    },
+                    {
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 }
               ],
               "name": "fn",
@@ -12976,70 +13213,110 @@
           "name": "SchemaBuilderEntity.setRemove"
         },
         {
-          "description": "Clean model (remove state of all schemas in model).",
+          "description": "Cleans the model (removes a helper functions from the model).",
           "params": [
             {
               "name": "model",
               "type": "Object",
-              "description": "Some model for cleaning."
+              "description": "The model."
             }
           ],
           "return": "Object",
           "name": "SchemaBuilderEntity.clean"
         },
         {
-          "description": "Add some rule to entity. Rule can be a constant or function.",
+          "description": "Prepares the model and adds into it the helpful functions.\n\n```javascript\nSCHEMA('group', 'User').make(user, function(err, model) {\n    if (err)\n        return;\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$rule(name);\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n});\n```",
+          "params": [
+            {
+              "name": "model",
+              "type": "Object",
+              "description": "The model."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "The callback",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "default": "null",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "model",
+                  "type": "Object",
+                  "description": "The prepared model."
+                }
+              ]
+            }
+          ],
+          "return": "Object",
+          "name": "SchemaBuilderEntity.make"
+        },
+        {
+          "description": "Adds a new rule to entity. Rule can be the constant or function.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A rule name."
+              "description": "The rule name."
             },
             {
               "name": "value",
               "type": "Object",
-              "description": "A rule value."
+              "description": "The rule value."
             }
           ],
           "return": "SchemaBuilderEntity",
           "name": "SchemaBuilderEntity.addRule"
         },
         {
-          "description": "Add a new transformation for the entity.",
+          "description": "Adds a new transformation.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transformation name."
+              "description": "The transformation name."
             },
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "Prepared object."
+                  "description": "The model object (prepared and validated)."
                 },
                 {
-                  "name": "done([output])",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback without the ErrorBuilder (The ErrorBuilder will added automatically if will contain some errors).",
+                  "params": [
+                    {
+                      "options": [
+                        "optional"
+                      ],
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 },
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
                   "name": "entityName",
                   "type": "String",
-                  "description": "An entity name."
+                  "description": "The entity name."
                 }
               ],
               "name": "fn",
@@ -13050,41 +13327,51 @@
           "name": "SchemaBuilderEntity.addTransform"
         },
         {
-          "description": "Add a new workflow for the entity.",
+          "description": "Adds a new workflow.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A workflow name."
+              "description": "The workflow name."
             },
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "Prepared object."
+                  "description": "The model (prepared and validated)."
                 },
                 {
-                  "name": "done([output])",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback without the ErrorBuilder (The ErrorBuilder will added automatically if will contain some errors).",
+                  "params": [
+                    {
+                      "options": [
+                        "optional"
+                      ],
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 },
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
                   "name": "entityName",
                   "type": "String",
-                  "description": "An entity name."
+                  "description": "The entity name."
                 }
               ],
               "name": "fn",
@@ -13095,41 +13382,51 @@
           "name": "SchemaBuilderEntity.addWorkflow"
         },
         {
-          "description": "Add a new composer for the entity.",
+          "description": "Adds a new composer.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A composer name."
+              "description": "The composer name."
             },
             {
-              "description": "A delegate.",
+              "description": "The delegate.",
               "params": [
                 {
                   "name": "model",
                   "type": "Object",
-                  "description": "Prepared object."
+                  "description": "The model object."
                 },
                 {
-                  "name": "done([output])",
+                  "name": "callback",
                   "type": "Function",
-                  "description": "Done."
+                  "description": "The callback without the ErrorBuilder (The ErrorBuilder will added automatically if will contain some errors).",
+                  "params": [
+                    {
+                      "options": [
+                        "optional"
+                      ],
+                      "name": "result",
+                      "type": "Object",
+                      "description": "The result."
+                    }
+                  ]
                 },
                 {
                   "name": "error",
                   "type": "ErrorBuilder",
-                  "description": "ErrorBuilder for manage errors."
+                  "description": "ErrorBuilder for managing errors."
                 },
                 {
                   "default": "undefined",
                   "name": "helper",
                   "type": "Object",
-                  "description": "A helper argument."
+                  "description": "The helper object."
                 },
                 {
                   "name": "entityName",
                   "type": "String",
-                  "description": "An entity name."
+                  "description": "The entity name."
                 }
               ],
               "name": "fn",
@@ -13140,46 +13437,46 @@
           "name": "SchemaBuilderEntity.addCompose"
         },
         {
-          "description": "Find entity in current group.",
+          "description": "Finds the entity in current group.",
           "default": "undefined",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A composer name."
+              "description": "The entity name."
             }
           ],
           "return": "SchemaBuilderEntity",
           "name": "SchemaBuilderEntity.find"
         },
         {
-          "description": "Get an entity rule.",
+          "description": "Gets the rule.",
           "default": "undefined",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A rule name."
+              "description": "The rule name."
             }
           ],
           "return": "Object",
           "name": "SchemaBuilderEntity.rule"
         },
         {
-          "description": "Destroy current entity.",
+          "description": "Destroys the entity.",
           "params": [
-            
+
           ],
           "return": "undefined",
           "name": "SchemaBuilderEntity.destroy"
         },
         {
-          "description": "Invoke a save. The method prepares (if not) a model, validates (if not) and then invokes save.",
+          "description": "Invokes a save with validation.",
           "params": [
             {
               "name": "model",
               "type": "Object",
-              "description": "Model/Data to save."
+              "description": "The model."
             },
             {
               "options": [
@@ -13187,10 +13484,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "default": "null",
@@ -13201,7 +13498,7 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "Result."
+                  "description": "The result."
                 }
               ],
               "name": "callback",
@@ -13212,7 +13509,7 @@
           "name": "SchemaBuilderEntity.save"
         },
         {
-          "description": "Invoke a get. The method gets a model.",
+          "description": "Invokes a get.",
           "params": [
             {
               "options": [
@@ -13220,10 +13517,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "default": "null",
@@ -13234,7 +13531,7 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "Result."
+                  "description": "The result."
                 }
               ],
               "name": "callback",
@@ -13245,7 +13542,7 @@
           "name": "SchemaBuilderEntity.get"
         },
         {
-          "description": "Invoke a remove. The method removes a model.",
+          "description": "Invokes a remove.",
           "params": [
             {
               "options": [
@@ -13253,10 +13550,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "default": "null",
@@ -13267,7 +13564,7 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "Result."
+                  "description": "The result."
                 }
               ],
               "name": "callback",
@@ -13278,7 +13575,7 @@
           "name": "SchemaBuilderEntity.remove"
         },
         {
-          "description": "Invoke a query.",
+          "description": "Invokes a query.",
           "params": [
             {
               "options": [
@@ -13286,10 +13583,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "default": "null",
@@ -13300,7 +13597,7 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "Result."
+                  "description": "The result."
                 }
               ],
               "name": "callback",
@@ -13311,12 +13608,12 @@
           "name": "SchemaBuilderEntity.query"
         },
         {
-          "description": "Invoke a validation.",
+          "description": "Invokes a validation.",
           "params": [
             {
               "name": "model",
               "type": "Object",
-              "description": "An object to validate."
+              "description": "The object for validation."
             },
             {
               "options": [
@@ -13325,7 +13622,7 @@
               "default": "''",
               "name": "resourcePrefix",
               "type": "String",
-              "description": "A prefix."
+              "description": "The prefix."
             },
             {
               "options": [
@@ -13334,52 +13631,44 @@
               "default": "'default'",
               "name": "resourceName",
               "type": "String",
-              "description": "A resource name (filename)."
+              "description": "The resource name."
             }
           ],
           "return": "ErrorBuilder",
           "name": "SchemaBuilderEntity.validate"
         },
         {
-          "description": "Create an empty object according to schema. Alias for SchemaBuilderEntity.default().",
+          "description": "Creates the empty object according to the schema.",
           "params": [
-            
+
           ],
           "return": "Object",
           "name": "SchemaBuilderEntity.create"
         },
         {
-          "description": "Create an empty object according to entity schema.",
-          "params": [
-            
-          ],
-          "return": "Object",
-          "name": "SchemaBuilderEntity.default"
-        },
-        {
-          "description": "Prepare data according to entity schema.",
+          "description": "Prepares data according to the schema.",
           "params": [
             {
               "name": "model",
               "type": "Object",
-              "description": "An object to prepare."
+              "description": "The object."
             }
           ],
           "return": "Object",
           "name": "SchemaBuilderEntity.prepare"
         },
         {
-          "description": "Invoke a transform. The method prepares (if not) a model, validates (if not) and then invokes transform.",
+          "description": "Invokes a transformation with validation.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A transform name."
+              "description": "The transformation name."
             },
             {
               "name": "model",
               "type": "Object",
-              "description": "An object to transform."
+              "description": "The model for transformation."
             },
             {
               "options": [
@@ -13387,10 +13676,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "name": "err",
@@ -13400,12 +13689,12 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "A result of transform."
+                  "description": "The transformation result."
                 },
                 {
-                  "name": "err",
-                  "type": "model",
-                  "description": "A result of transform (model)."
+                  "name": "model",
+                  "type": "Object",
+                  "description": "The model."
                 }
               ],
               "name": "callback",
@@ -13416,17 +13705,17 @@
           "name": "SchemaBuilderEntity.transform"
         },
         {
-          "description": "Invoke a compose.",
+          "description": "Invokes a composers.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A compose name."
+              "description": "The composer name."
             },
             {
               "name": "model",
               "type": "Object",
-              "description": "An object for compose."
+              "description": "The model for composer."
             },
             {
               "options": [
@@ -13434,10 +13723,10 @@
               ],
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "name": "err",
@@ -13447,12 +13736,12 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "A result of compose."
+                  "description": "The composer result."
                 },
                 {
-                  "name": "err",
-                  "type": "model",
-                  "description": "A result of compose (model)."
+                  "name": "model",
+                  "type": "Object",
+                  "description": "The model."
                 }
               ],
               "name": "callback",
@@ -13463,17 +13752,17 @@
           "name": "SchemaBuilderEntity.compose"
         },
         {
-          "description": "Invoke a workflow.",
+          "description": "Invokes a workflow.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "A workflow name."
+              "description": "The workflow name."
             },
             {
               "name": "model",
               "type": "Object",
-              "description": "An object for workflow."
+              "description": "The model."
             },
             {
               "options": [
@@ -13482,10 +13771,10 @@
               "default": "undefined",
               "name": "helper",
               "type": "Object",
-              "description": "A helper object."
+              "description": "The helper object."
             },
             {
-              "description": "A callback function.",
+              "description": "The callback function.",
               "params": [
                 {
                   "name": "err",
@@ -13495,12 +13784,12 @@
                 {
                   "name": "result",
                   "type": "Object",
-                  "description": "A result of workflow."
+                  "description": "The workflow result."
                 },
                 {
                   "name": "err",
                   "type": "model",
-                  "description": "A result of workflow (model)."
+                  "description": "The model."
                 }
               ],
               "name": "callback",
@@ -13512,7 +13801,7 @@
         }
       ],
       "name": "Builders.SchemaBuilder",
-      "description": "Schema builder is helpful for model definitions. According the schema you can validate and prepare some data. SchemaBuilder supports transformations, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n```javascript\n// Create group of entities:\nvar group = Builders.schema('webpage');\n\n// Create entity\nvar user = group.add('user');\n\n// Define properties\nuser.define('alias', 'string(30)', true);\nuser.define('age', Number, true);\nuser.define('token', String);\nuser.define('created', Date);\n\n// Define validation\nuser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Define default values\nuser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nuser.setSave(function(...){ });\nuser.setGet(function(...){ });\nuser.setRemove(function(...){ });\nuser.setQuery(function(...){ });\n\n// USAGE:\n\nSCHEMA('webpage’, ‘user’).get(100, function(err, result) { ... });\n```\n\n__IMPORTANT:__\n\n```plain\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n```"
+      "description": "The __SchemaBuilder__ is helpful for model definitions. You can validate and prepare some data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations, rules and standard operations (READ, SAVE, REMOVE, QUERY, GET).\n\n```javascript\n// \"Builders\" is a global variable\n// Creating the group of entities\nvar group = Builders.schema('webpage');\n\n// Creating the entity\nvar User = group.add('User');\n\n// Definition of properties\nUser.define('alias', 'string(30)', true);\nUser.define('age', Number, true);\nUser.define('token', String);\nUser.define('created', Date);\n\n// Definition of validation\nUser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Definition of default values\nUser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nUser.setSave(function(...){ });\nUser.setGet(function(...){ });\nUser.setRemove(function(...){ });\nUser.setQuery(function(...){ });\n\n// Usage:\nSCHEMA('webpage', 'User').get(100, function(err, result) { ... });\n\n// or\n\nSCHEMA('webpage', 'User').make(SOME_OBJECT, function(err, model) {\n    if (err)\n        return;\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$rule(name);\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n});\n```\n\n__IMPORTANT:__\n\n```html\ngroup   = SchemaBuilder\nentity  = SchemaBuilderEntity\n```"
     }
   ],
   "links": [
@@ -13576,7 +13865,7 @@
     {
       "group": "How does it work?",
       "name": "Modules",
-      "body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped to some action and the action responds to requests. The controller with modules are the main features of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is plain JavaScript file with `.js` extension.\n- The framework automatically loads modules into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only module name (it's an identificator name). A __default value__ for this property is module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only array of module names. Framework waits for all dependencies and then installs pending modules. The installation is meant execution: `exports.install`.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__\n\n```javascript\nexports.install = function() {\n    console.log('Hello from module.');\n    framework.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the module.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function() {\n    framework.on('request', increment);\n    framework.route('/stats/', json_stats);\n};\n\nexports.uninstall = function() {\n    framework.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```"
+      "body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped to some action and the action responds to requests. The controller with modules are the main features of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is plain JavaScript file with `.js` extension.\n- The framework automatically loads modules into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only module name (it's an identificator name). A __default value__ for this property is module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only array of module names. The framework waits for all dependencies and then installs pending modules. The installation is meant execution: `exports.install`.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__\n\n```javascript\nexports.install = function() {\n    console.log('Hello from module.');\n    framework.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when framework uninstalls the module.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### Full example of module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function() {\n    framework.on('request', increment);\n    framework.route('/stats/', json_stats);\n};\n\nexports.uninstall = function() {\n    framework.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```"
     },
     {
       "group": "How does it work?",
