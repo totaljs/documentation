@@ -1,10 +1,13 @@
-Checks if `ETag` or `Last Modified` header is modified.
+Sorts the array. Supports the alphabetical sorting.
 
 ```javascript
-    if (compare === String)
-        console.log('The framework compares ETag with the compare value.');
-    else if (compare === Date)
-        console.log('The framework compares Date with the compare date.');
-```
+var arr = [];
 
-If framework doesn't find a difference then responds 304 (not modified). If the content is modified then function returns `true`.
+arr.push({ user: { name: 'Peter', age: 30 }});
+arr.push({ user: { name: 'Lucia', age: 33 }});
+arr.push({ user: { name: 'John', age: 18 });
+arr.push({ user: { name: 'Denis', age: 35 });
+
+console.log(arr.orderBy('user.name'));
+console.log(arr.orderBy('user.name', false));
+```
