@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/default.css" />
     <link rel="stylesheet" href="css/github.min.css" />
+    <link rel="shortcut icon" href="resources/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="resources/favicon.ico" type="image/x-icon" />
     <!--
     <link rel="stylesheet" href="docs.min.css" />
     -->
@@ -24,6 +26,8 @@
                         <li><a href="en.html">EN</a></li>
                     </ul>
                     <div id="menu"></div>
+                    <br />
+                    <div class="offline">Offline mode: <b>ON</b></div>
                 </div>
             </div>
             <div class="col-md-9 m">
@@ -41,6 +45,7 @@
     </div>
 
     <script type="text/html" id="template-menu">
+        <br />
         {{ if name }}
             <strong class="menu-group">{{ name }}</strong>
         {{ endif }}
@@ -49,7 +54,6 @@
             <li><a href="{{ m.linker }}">{{ m.name }}</a></li>
             {{ end }}
         </ul>
-        <br />
     </script>
 
     <script type="text/html" id="template-api-members">

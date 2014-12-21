@@ -112,7 +112,7 @@ $.get($('body').attr('data-json'), function(data) {
     documentation = data;
     if ((window.location.hash || '').length < 2)
         window.location.href = '#' + encodeURIComponent(documentation['default']);
-    $('#version').html('v' + data.version);
+    $('#version').html('v' + data.version + (data.build ? ' (' + data.build + ')' : ''));
     configure();
     $('#logo').attr('href', '#' + encodeURIComponent(documentation['default']));
     reload();
@@ -278,12 +278,15 @@ function prepare(type, name, arr) {
 
 $(document).ready(function() {
 
+    $('.offline').toggle(!navigator.onLine);
+    $('#fork').toggle(navigator.onLine);
+
     var timeout;
     var index = window.location.pathname.lastIndexOf('/');
     var selected = window.location.pathname.substring(index + 1);
     $('.language').find('a[href="' + selected + '"]').addClass('selected');
 
-    $('#search').bind('keypress', function(e) {
+    $('#search').bind('keydown', function(e) {
         clearTimeout(timeout);
         timeout = setTimeout(function() {
             $('#search').trigger('change');
