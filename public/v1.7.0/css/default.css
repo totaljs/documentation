@@ -44,6 +44,7 @@ blockquote b, blockquote strong { color: #796034 !important; }
 .members-default b { color: silver; }
 .members-params { color: #8DBCCF; }
 .members .markdown { margin: 5px 0 10px 0; padding: 0 8px; border: 1px solid #E0E0E0; border-radius: 4px; }
+.members-option { font-size: 10px; color: gray; background-color: #F0F0F0; padding: 1px 5px; border-radius: 4px; margin-right: 3px; }
 .body { padding: 20px; border-radius: 4px; margin: 5px 0 10px; border: 4px solid #E0E0E0; }
 .body .markdown { line-height: 15px; background-color: white; }
 .body .markdown a { display: inline; }
