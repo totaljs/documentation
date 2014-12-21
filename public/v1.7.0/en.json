@@ -369,7 +369,7 @@
             {
               "name": "err",
               "type": "Error",
-              "description": "Error object."
+              "description": "The error object."
             },
             {
               "name": "name",
@@ -1944,19 +1944,68 @@
               "name": "headers",
               "type": "Object",
               "description": "Additional headers."
+            }
+          ],
+          "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
+          "name": "framework.responseImage"
+        },
+        {
+          "description": "Writes the image/picture into the response. The function checks if the same image was processed (according to the URL address). It sets up HTTP cache (according to the framework config mode - `debug` or `release`) and the processed image is saved into the temporary directory.\n\n__Examples__:\n\n```javascript\nframework.responseImagePrepare(req, res, function(next) {\n    // The MongoDB GridFS\n    // db === A some connection of MongoDB\n    var reader = new GridStore(db, new ObjectID(id), 'r');\n    reader.open(function(err, fs) {\n\n    if (err) {\n        reader.close();\n        return next();\n    }\n\n    var filename = F.path.temp(Utils.GUID(5) + '.jpg');\n    var stream = fs.stream(true);\n    var writer = require('fs').createWriteStream(filename);\n\n    stream.pipe(writer);\n\n    writer.on('close', function() {\n\n        reader.close();\n        writer.end();\n\n        // IMPORTANT:\n        next(filename);\n    });\n\n}, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
+          "return": "Framework",
+          "params": [
+            {
+              "name": "req",
+              "type": "Object",
+              "description": "The HTTP request."
+            },
+            {
+              "name": "res",
+              "type": "Object",
+              "description": "The HTTP response."
+            },
+            {
+              "name": "fnPrepare",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "next",
+                  "type": "Function",
+                  "description": "Continue.",
+                  "params": [
+                    {
+                      "name": "filename",
+                      "type": "String",
+                      "description": "The filename for processing."
+                    }
+                  ]
+                }
+              ],
+              "description": "The preparing function."
+            },
+            {
+              "description": "The function for processing.",
+              "params": [
+                {
+                  "go": "FrameworkImage",
+                  "description": "The function for image manipulation.",
+                  "name": "image",
+                  "type": "FrameworkImage"
+                }
+              ],
+              "name": "fnProcess",
+              "type": "Function"
             },
             {
               "options": [
                 "optional"
               ],
-              "default": "false",
-              "name": "useImageMagick",
-              "type": "Boolean",
-              "description": "For the image manipulation the framework uses ImageMagick (or GraphicsMagick)."
+              "default": "{}",
+              "name": "headers",
+              "type": "Object",
+              "description": "Additional headers."
             }
           ],
-          "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
-          "name": "framework.responseImage"
+          "name": "framework.responseImagePrepare"
         },
         {
           "description": "Writes the image/picture without cache, slowly than `responseImage()`. A file extension must exist in `config['static-accepts']`.\n\n__Examples__:\n\n```javascript\nframework.responseImageWithoutCache(req, res, stream, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
@@ -1998,15 +2047,6 @@
               "name": "headers",
               "type": "Object",
               "description": "Additional headers."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "default": "false",
-              "name": "useImageMagick",
-              "type": "Boolean",
-              "description": "For the image manipulation the framework uses ImageMagick (or GraphicsMagick)."
             }
           ],
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
@@ -3163,7 +3203,7 @@
             {
               "name": "expire",
               "type": "Date",
-              "description": "The expiration."
+              "description": "The expiration and it can be the string, example: \"5 minutes\" or \"1 hour\"."
             }
           ],
           "name": "framework.cache.add",
@@ -4210,7 +4250,7 @@
           ],
           "return": "Boolean",
           "name": "controller.isConnected",
-          "description": "Is a request connected?"
+          "description": "Checks whether the request is still connected."
         },
         {
           "options": [
@@ -4219,7 +4259,7 @@
           ],
           "return": "Boolean",
           "name": "controller.isTransfer",
-          "description": "Is an internal transfer? Example: controller.transfer('/url/') -> controller.isTransfer = true"
+          "description": "Checks whether was created the internal transfer.\n```javascript\ncontroller.transfer('/url/');\n// controller.isTransfer === true\n```"
         },
         {
           "options": [
@@ -4229,7 +4269,7 @@
           ],
           "return": "String",
           "name": "controller.name",
-          "description": "Return name of controller."
+          "description": "Gets the controller name."
         },
         {
           "options": [
@@ -4238,7 +4278,7 @@
           ],
           "return": "Object",
           "name": "controller.$model",
-          "description": "Return the current model in current view. IMPORTANT: only for helpers."
+          "description": "Gets the current model for helpers."
         },
         {
           "options": [
@@ -4247,8 +4287,9 @@
             "websocket"
           ],
           "return": "FrameworkCache",
+          "go": "#api~FrameworkCache",
           "name": "controller.cache",
-          "description": "Return the framework cache object."
+          "description": "Gets the framework cache object."
         },
         {
           "options": [
@@ -4257,7 +4298,7 @@
           ],
           "return": "String Array",
           "name": "controller.subdomain",
-          "description": "Current subdomain."
+          "description": "Gets the subdomain."
         },
         {
           "options": [
@@ -4266,7 +4307,7 @@
           ],
           "return": "Object",
           "name": "controller.req",
-          "description": "Current HTTP request."
+          "description": "Gets the HTTP request."
         },
         {
           "options": [
@@ -4275,7 +4316,7 @@
           ],
           "return": "Error",
           "name": "controller.exception",
-          "description": "Last exception in controller."
+          "description": "Gets the last exception in the controller."
         },
         {
           "options": [
@@ -4284,10 +4325,10 @@
           ],
           "return": "Object",
           "name": "controller.res",
-          "description": "Current HTTP response."
+          "description": "Gets the HTTP response."
         },
         {
-          "description": "Current HTTP session.",
+          "description": "Gets the session instance (if exist).",
           "options": [
             "http",
             "websocket"
@@ -4298,7 +4339,7 @@
           "name": "controller.session"
         },
         {
-          "description": "Current HTTP user.",
+          "description": "Gets the user instance (if exist).",
           "options": [
             "http",
             "websocket"
@@ -4317,17 +4358,7 @@
           "default": "true",
           "return": "Booelan",
           "name": "controller.isController",
-          "description": "A helper property."
-        },
-        {
-          "options": [
-            "readonly",
-            "http"
-          ],
-          "default": "{}",
-          "return": "Object",
-          "name": "controller.get",
-          "description": "Parsed data from URL query. Is the alias for controller.query."
+          "description": "The helper property. The property always returns __true__."
         },
         {
           "options": [
@@ -4337,7 +4368,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.query",
-          "description": "Parsed data from URL query."
+          "description": "Gets the parsed data from the URL address query. Only for the GET/DELETE/POST/PUT methods."
         },
         {
           "options": [
@@ -4347,17 +4378,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.body",
-          "description": "Parsed data from a request body."
-        },
-        {
-          "options": [
-            "readonly",
-            "http"
-          ],
-          "default": "{}",
-          "return": "Object",
-          "name": "controller.post",
-          "description": "Parsed data from a request body. Is the alias for controller.body."
+          "description": "Gets the parsed data from the request body. Only for the POST/PUT methods."
         },
         {
           "go": "HttpFile",
@@ -4366,7 +4387,7 @@
             "http"
           ],
           "default": "[]",
-          "description": "Parsed files from a request content.",
+          "description": "Gets the collection of uploaded files.",
           "return": "HttpFile Array",
           "name": "controller.files"
         },
@@ -4377,7 +4398,7 @@
           ],
           "return": "Boolean",
           "name": "controller.xhr",
-          "description": "Check if request is XMLHttpRequest."
+          "description": "Checks whether the request contains header with __XMLHttpRequest__."
         },
         {
           "go": "configuration",
@@ -4386,8 +4407,9 @@
             "http",
             "websocket"
           ],
-          "description": "Return the framework config.",
+          "description": "Gets the framework configuration.",
           "return": "FrameworkConfig",
+          "go": "#api~FrameworkConfiguration",
           "name": "controller.config"
         },
         {
@@ -4397,7 +4419,7 @@
           ],
           "return": "String",
           "name": "controller.ip",
-          "description": "Current HTTP host address."
+          "description": "Gets the HTTP host address."
         },
         {
           "options": [
@@ -4407,7 +4429,7 @@
           ],
           "return": "String",
           "name": "controller.url",
-          "description": "Current relative URL address without params and hash tags."
+          "description": "Gets the relative URL address without params and hash tags."
         },
         {
           "options": [
@@ -4416,7 +4438,7 @@
           ],
           "return": "Object",
           "name": "controller.uri",
-          "description": "Current URI object."
+          "description": "Gets the URI."
         },
         {
           "options": [
@@ -4425,7 +4447,7 @@
           ],
           "return": "Boolean",
           "name": "controller.isProxy",
-          "description": "Is total.js proxy request?"
+          "description": "Checks whether is current the proxy request."
         },
         {
           "options": [
@@ -4434,7 +4456,7 @@
           ],
           "return": "Boolean",
           "name": "controller.isTest",
-          "description": "Is assertion testing of request?"
+          "description": "Checks whether is the framework in the test mode."
         },
         {
           "options": [
@@ -4444,7 +4466,7 @@
           ],
           "return": "Boolean",
           "name": "controller.isDebug",
-          "description": "Is debug mode?"
+          "description": "Checks whether is the framework in the debug mode."
         },
         {
           "options": [
@@ -4454,7 +4476,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.global",
-          "description": "Get the framework global variables."
+          "description": "Gets the __framework global__ property."
         },
         {
           "options": [
@@ -4464,7 +4486,7 @@
           "default": "[]",
           "return": "String Array",
           "name": "controller.flags",
-          "description": "Get all route flags."
+          "description": "Gets the route flags."
         },
         {
           "options": [
@@ -4474,7 +4496,7 @@
           "default": "''",
           "return": "String",
           "name": "controller.sseID",
-          "description": "Get lastEventID for Server Sent Events."
+          "description": "Gets the lastEventID (only for __Server Sent Events__)."
         },
         {
           "options": [
@@ -4484,7 +4506,7 @@
           "default": "''",
           "return": "String",
           "name": "controller.language",
-          "description": "Return request parsed HTTP header: accept-language."
+          "description": "Gets/Sets the controller language for the localization."
         },
         {
           "options": [
@@ -4495,7 +4517,7 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.repository",
-          "description": "Controller repository object for storing current request values."
+          "description": "Gets/Sets items in the repository."
         },
         {
           "options": [
@@ -4506,7 +4528,7 @@
           "default": "false",
           "return": "Boolean",
           "name": "controller.isSecure",
-          "description": "Is the request secured?"
+          "description": "Checks whether is the connection secured (HTTPS or WSS)."
         },
         {
           "options": [
@@ -4516,7 +4538,7 @@
           ],
           "return": "FrameworkPath",
           "name": "controller.path",
-          "description": "Alias for `framework.path`."
+          "description": "Gets the `FrameworkPath` instance."
         },
         {
           "options": [
@@ -4526,18 +4548,7 @@
           ],
           "return": "FrameworkFileSystem",
           "name": "controller.fs",
-          "description": "return file system for dynamic manipulating web application files."
-        },
-        {
-          "name": "controller.async",
-          "go": "Async",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "description": "Async class for async work.",
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "Async"
+          "description": "Gets the `FrameworkFileSystem` instance."
         },
         {
           "options": [
@@ -4546,7 +4557,7 @@
           "default": "200",
           "return": "Number",
           "name": "controller.status",
-          "description": "Gets / Sets status code of response."
+          "description": "Gets/Sets response status code."
         },
         {
           "options": [
@@ -4556,7 +4567,7 @@
           "default": "0",
           "return": "Number",
           "name": "controller.online",
-          "description": "Online user count (websocket)."
+          "description": "Gets the count of online/connected users (only for __WebSocket__)."
         },
         {
           "options": [
@@ -4566,11 +4577,11 @@
           "default": "{}",
           "return": "Object",
           "name": "controller.connections",
-          "description": "All connection of users."
+          "description": "All connected users."
         }
       ],
       "group": "Framework",
-      "description": "FrameworkController is created after is validate a route. The framework knows two types of controller: HTTP/HTTPS Controller and WebSocket Controller. For more informations about controllers click on [How do controllers work?](#pages~Controllers).\n\n__IMPORTANT MARKUPS__: http is for HTTP/HTTPS requests and WebSocket is for WebSocket connections. Some methods and properties support both options.",
+      "description": "The __FrameworkController__ is created when the route executes an action. The framework knows two types of controllers: the `HTTP/HTTPS` controller and the `WebSocket` controller but the framework presents them as one.",
       "name": "FrameworkController",
       "methods": [
         {
@@ -4664,19 +4675,19 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Header name."
+              "description": "The header name."
             },
             {
               "name": "value",
               "type": "String",
-              "description": "Header value."
+              "description": "The header value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/custom-headers",
           "return": "FrameworkController"
         },
         {
-          "description": "Get host name.",
+          "description": "Gets the hostname.",
           "options": [
             "http"
           ],
@@ -4696,7 +4707,7 @@
         },
         {
           "name": "controller.cors",
-          "description": "Cross-origin resource sharing.",
+          "description": "The Cross-origin resource sharing.",
           "options": [
             "http"
           ],
@@ -4705,7 +4716,7 @@
               "default": "['*']",
               "name": "allow",
               "type": "String Array",
-              "description": "Allow origin."
+              "description": "Allows origin."
             },
             {
               "options": [
@@ -4714,7 +4725,7 @@
               "default": "[]",
               "name": "method",
               "type": "String Array",
-              "description": "Allow methods."
+              "description": "Allows methods."
             },
             {
               "options": [
@@ -4723,7 +4734,7 @@
               "default": "[]",
               "name": "header",
               "type": "String Array",
-              "description": "Allow additional headers."
+              "description": "Allows headers."
             },
             {
               "options": [
@@ -4732,14 +4743,14 @@
               "default": "false",
               "name": "credentials",
               "type": "Boolean",
-              "description": "Allow credentials."
+              "description": "Allows credentials."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/cors",
           "return": "Boolean"
         },
         {
-          "description": "Creates a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).",
+          "description": "Creates a new framework error. If this method doesn't contain any arguments then returns a function (A simple wrapper (callback function) for capturing only errors (if exist)).\n\n```javascript\nfunction some_action() {\n    var self = this;\n    DATABASE('logs').insert({ message: 'I do not know.' }, self.error());\n    self.json({ success: true });\n}\n```",
           "options": [
             "http",
             "websocket"
@@ -4747,8 +4758,8 @@
           "params": [
             {
               "name": "err",
-              "type": "Error",
-              "description": "Error object."
+              "type": "Error or String",
+              "description": "The error object or the error message."
             }
           ],
           "return": "FrameworkController",
@@ -4772,7 +4783,7 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Returns a function for classic node.js callback(err, some_data).\n\nExample:\n\nframework.database('some_db').all(controller.callback());\n\n// or\n\nframework.database('some_db').all(controller.callback('my-view'))",
+          "description": "Returns the wrapped function `callback(err, some_data)`. In case of the error the framework throws `throw500(error)` and if the error is `ErroBuidler` the framework responds with `json(error)`.\n\n```javascript\n// Returns the JSON\nframework.database('some_db').all(controller.callback());\n\n// Returns the \"my-view\" view\nframework.database('some_db').all(controller.callback('my-view'))\n```",
           "options": [
             "http"
           ],
@@ -4790,7 +4801,7 @@
           "name": "controller.callback"
         },
         {
-          "description": "Compare dates. This method can be used in views.",
+          "description": "Compares two dates. This method can be used in views.",
           "options": [
             "http",
             "websocket"
@@ -4799,7 +4810,7 @@
             {
               "name": "type",
               "type": "String",
-              "description": "Compare type ('<', '<=', '>', '>=', '=')"
+              "description": "Compares type ('<', '<=', '>', '>=', '=')"
             },
             {
               "options": [
@@ -4808,20 +4819,20 @@
               "default": "new Date()",
               "name": "d1",
               "type": "String or Date",
-              "description": "Date 1 to compare."
+              "description": "The date 1 to compare."
             },
             {
               "name": "d2",
               "type": "String or Date",
-              "description": "Date 2 to compare."
+              "description": "The date 2 to compare."
             }
           ],
-          "return": "FrameworkController",
+          "return": "Boolean",
           "name": "controller.date"
         },
         {
           "name": "controller.change",
-          "description": "Mark an change.",
+          "description": "Creates the change.",
           "options": [
             "http",
             "websocket"
@@ -4830,173 +4841,27 @@
             {
               "name": "message",
               "type": "String",
-              "description": "Change description."
+              "description": "The change message."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/changes",
           "return": "FrameworkController"
         },
         {
-          "name": "controller.wait",
-          "description": "Add a function to async waiting list.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of task."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "default": "",
-              "name": "waitingFor",
-              "type": "String",
-              "description": "Name of another task."
-            },
-            {
-              "description": "The function to execute.",
-              "params": [
-                {
-                  "options": [
-                    "important"
-                  ],
-                  "name": "next",
-                  "description": "Completed function.",
-                  "type": "Function"
-                }
-              ],
-              "name": "fn",
-              "type": "Function"
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "FrameworkController"
-        },
-        {
-          "name": "controller.await",
-          "description": "Add a function to async list.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Name of task."
-            },
-            {
-              "description": "The function to execute.",
-              "params": [
-                {
-                  "options": [
-                    "important"
-                  ],
-                  "name": "next",
-                  "description": "Completed function.",
-                  "type": "Function"
-                }
-              ],
-              "name": "fn",
-              "type": "Function"
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "FrameworkController"
-        },
-        {
-          "name": "controller.complete",
-          "description": "Run async functions.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "callback",
-              "type": "Function",
-              "description": "Complete function."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "FrameworkController"
-        },
-        {
-          "name": "controller.run",
-          "description": "Run async functions. This function is same as controller.complete().",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "callback",
-              "type": "Function",
-              "description": "Complete function."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "FrameworkController"
-        },
-        {
-          "description": "Cancel executing controller.",
+          "description": "Cancels the action execution.",
           "options": [
             "http"
+          ],
+          "params": [
+
           ],
           "return": "FrameworkController",
           "example": "https://github.com/totaljs/examples/tree/master/controller-cancel",
           "name": "controller.cancel"
         },
         {
-          "name": "controller.log",
-          "description": "Append to log file.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param..1",
-              "type": "Any",
-              "description": "Dynamic parameter"
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param..2",
-              "type": "Any",
-              "description": "Dynamic parameter"
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param..n",
-              "type": "Any",
-              "description": "Dynamic parameter"
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/logs",
-          "return": "FrameworkController"
-        },
-        {
           "name": "controller.meta",
-          "description": "Create a meta tags.",
+          "description": "Creates the META tags.",
           "options": [
             "http"
           ],
@@ -5004,7 +4869,7 @@
             {
               "name": "title",
               "type": "String",
-              "description": "META title."
+              "description": "The title."
             },
             {
               "options": [
@@ -5012,7 +4877,7 @@
               ],
               "name": "description",
               "type": "String",
-              "description": "META description."
+              "description": "The description."
             },
             {
               "options": [
@@ -5020,7 +4885,7 @@
               ],
               "name": "keywords",
               "type": "String",
-              "description": "META keywords."
+              "description": "The keywords."
             },
             {
               "options": [
@@ -5028,7 +4893,7 @@
               ],
               "name": "picture",
               "type": "String",
-              "description": "Image for social networks and image is routed via framework.routeImage()."
+              "description": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\"."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -5036,7 +4901,7 @@
         },
         {
           "name": "controller.title",
-          "description": "Set meta title.",
+          "description": "Sets the meta title.",
           "options": [
             "http"
           ],
@@ -5044,7 +4909,7 @@
             {
               "name": "value",
               "type": "String",
-              "description": "New meta title."
+              "description": "The title."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -5052,7 +4917,7 @@
         },
         {
           "name": "controller.description",
-          "description": "Set meta description.",
+          "description": "Sets the meta description.",
           "options": [
             "http"
           ],
@@ -5060,7 +4925,7 @@
             {
               "name": "value",
               "type": "String",
-              "description": "New meta description."
+              "description": "The value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -5068,7 +4933,7 @@
         },
         {
           "name": "controller.keywords",
-          "description": "Set meta keywords.",
+          "description": "Sets the meta keywords.",
           "options": [
             "http"
           ],
@@ -5076,7 +4941,7 @@
             {
               "name": "value",
               "type": "String",
-              "description": "New meta keywords."
+              "description": "The value."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -5084,7 +4949,7 @@
         },
         {
           "name": "controller.sitemap",
-          "description": "Add URL to sitemap. Sitemap is stored in: controller.repository.sitemap.",
+          "description": "Adds the URL address into the sitemap. The sitemap is stored in: `controller.repository.sitemap`.",
           "options": [
             "http"
           ],
@@ -5147,105 +5012,7 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Return rendered string.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Component name."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param1",
-              "type": "Object",
-              "description": "Component parameter."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param...n",
-              "type": "Object",
-              "description": "Component parameter."
-            }
-          ],
-          "return": "FrameworkController",
-          "name": "controller.component"
-        },
-        {
-          "description": "Return rendered string.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Helper name."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param1",
-              "type": "Object",
-              "description": "Helper parameter."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "param...n",
-              "type": "Object",
-              "description": "Helper parameter."
-            }
-          ],
-          "return": "FrameworkController",
-          "name": "controller.helper"
-        },
-        {
-          "name": "controller.module",
-          "description": "Return a module object.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Module name."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/framework-modules",
-          "return": "FrameworkController"
-        },
-        {
-          "name": "controller.model",
-          "description": "Return a model object.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Model name."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/models",
-          "return": "FrameworkController"
-        },
-        {
-          "description": "Set layout for current view.",
+          "description": "Sets the layout for the current view.",
           "options": [
             "http"
           ],
@@ -5253,45 +5020,11 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Layout name."
+              "description": "The layout name."
             }
           ],
           "return": "FrameworkController",
           "name": "controller.layout"
-        },
-        {
-          "name": "controller.models",
-          "description": "Return a controller models.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Controller name."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/controller-sharing",
-          "return": "Object"
-        },
-        {
-          "name": "controller.functions",
-          "description": "Return a controller functions.",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "name": "name",
-              "type": "String",
-              "description": "Controller name."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/controller-sharing",
-          "return": "Object"
         },
         {
           "description": "Check if ETag or Last Modified has modified. If @compare === {String} compare if-none-match .... if @compare === {Date} compare if-modified-since. This function automatically flush a response 304 (if not modified). If content is not modified then return true.",
@@ -5353,7 +5086,7 @@
           "description": "Set expires header"
         },
         {
-          "description": "Append TAG to HTML head. The function supports append more string arguments. If function haven't arguments then return stored values as one string.",
+          "description": "Appends content into the `@{head}` tag. The function supports appending more strings arguments. If function doesn't have any arguments then returns its content.",
           "return": "String",
           "options": [
             "http"
@@ -5362,7 +5095,7 @@
             {
               "name": "value",
               "type": "String",
-              "description": "Meta tag or URL."
+              "description": "The value or URL address."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
@@ -5474,7 +5207,7 @@
           "description": "Route a static file by the config['static-url']."
         },
         {
-          "description": "Set current path to image.",
+          "description": "Sets the additional path for the images.",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5483,14 +5216,14 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
           "name": "controller.currentImage"
         },
         {
-          "description": "Set current path to download folder.",
+          "description": "Sets the additional path for the downloads.",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5499,7 +5232,7 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
@@ -5514,13 +5247,14 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "name": "controller.currentView",
-          "description": "Set current path to views folder."
+          "description": "Sets the additional path for the views."
         },
         {
+          "description": "Sets the additional path for the styles (CSS).",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5529,30 +5263,14 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
-            }
-          ],
-          "name": "controller.currentContent",
-          "description": "Set current path to contents folder."
-        },
-        {
-          "description": "Set current path to CSS.",
-          "return": "FrameworkController",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "name": "path",
-              "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
-          "name": "controller.currentCSS"
+          "name": "controller.currentStyle"
         },
         {
-          "description": "Set current path to JS.",
+          "description": "Sets the additional path for the scripts (JS).",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5561,14 +5279,14 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
-          "name": "controller.currentJS"
+          "name": "controller.currentStyle"
         },
         {
-          "description": "Set current path to video.",
+          "description": "Sets the additional path for the videos.",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5577,14 +5295,14 @@
             {
               "name": "path",
               "type": "String",
-              "description": "New path."
+              "description": "The path."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-route-to-file",
           "name": "controller.currentVideo"
         },
         {
-          "description": "Read from resource file.",
+          "description": "Gets the value from the resource.",
           "return": "String",
           "options": [
             "http",
@@ -5598,19 +5316,18 @@
               "default": "'default'",
               "name": "name",
               "type": "String",
-              "description": "Name of resource file."
+              "description": "The resource name."
             },
             {
               "name": "key",
               "type": "String",
-              "description": "Key in the resource file."
+              "description": "The key."
             }
           ],
-          "example": "https://github.com/totaljs/examples/tree/master/localization-resources",
           "name": "controller.resource"
         },
         {
-          "description": "Basic access authentication (baa). Return object with user name and password. If baa return null then function close a response (and sent authentification).\n\n{ name: 'petersirka', password: 'asdfghjikl' }",
+          "description": "Gets/Sets the basic access authentication (baa). It returns the object with username and password.\n\n```javascript\nvar user = controller.baa();\nif (user.empty) {\n    // The request doesn't contain auth informations.\n    // The framework sends the response automatically:\n    controller.baa('Administration');\n    return;\n}\n\nconsole.log(user);\n// example:\n// { name: 'petersirka', password: '123456', empty: false }\n```",
           "return": "Object",
           "options": [
             "http"
@@ -5620,10 +5337,9 @@
               "options": [
                 "optional"
               ],
-              "default": "'Administrator'",
               "name": "name",
               "type": "String",
-              "description": "Basic realm name."
+              "description": "The basic realm name."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/authorization-www-basic",
@@ -5673,7 +5389,7 @@
           "name": "controller.sse"
         },
         {
-          "description": "Send a file or stream via [m]ultipart/x-[m]ixed-[r]eplace.",
+          "description": "Sends the file or stream via `multipart/x-mixed-replace`.",
           "return": "FrameworkController",
           "options": [
             "http"
@@ -5682,7 +5398,7 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "File to a response."
+              "description": "The filename."
             },
             {
               "options": [
@@ -5691,23 +5407,23 @@
               "default": "undefined",
               "name": "stream",
               "type": "ReadStream",
-              "description": "If undefined then function read file from disk."
+              "description": "If is undefined then function reads file from HDD."
             },
             {
               "options": [
                 "optional"
               ],
               "default": "undefined",
-              "name": "cb",
+              "name": "callback",
               "type": "Function",
-              "description": "Completed callback."
+              "description": "The callback."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/live-streaming",
           "name": "controller.mmr"
         },
         {
-          "description": "Close a response (controller.mmr() or controller.sse() or by the custom response flushing). In the WebSocket close all connections or specific connection (by the names).",
+          "description": "Closes the response/request (`controller.mmr()` and `controller.sse()`). The function closes all connections or specific connection (according the names) in the __WebSocket__.",
           "return": "FrameworkController",
           "options": [
             "http",
@@ -5735,10 +5451,10 @@
 
           ],
           "name": "controller.clear",
-          "description": "Clear uploaded files. Important: for prevent auto clearing use controller.noClear()."
+          "description": "Clears the uploaded files. __IMPORTANT:__ for force stop auto-clear uploaded files use `controller.noClear()` and then you must execute `controller.clear()` manually."
         },
         {
-          "description": "Set custom responses.",
+          "description": "Sets the custom response. The controller will be terminated.",
           "return": "Boolean",
           "options": [
             "http",
@@ -5766,7 +5482,7 @@
             }
           ],
           "name": "controller.noClear",
-          "description": "Enable/Disable auto clearing uploaded files. For manual clearing uploaded files use: controller.clear()."
+          "description": "Enables/Disables auto-clearing uploaded files. The manual clearing through: `controller.clear()`."
         },
         {
           "description": "Proxy request to other total.js website.",
@@ -5829,7 +5545,7 @@
           "name": "controller.proxy"
         },
         {
-          "description": "Return a database object. This function is the alias for framework.database().",
+          "description": "Gets the database instance. The function is the alias for `framework.database()`.",
           "return": "FrameworkNoSQL",
           "options": [
             "http",
@@ -5839,7 +5555,7 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Name of database"
+              "description": "The database name."
             }
           ],
           "name": "controller.database",
@@ -5855,7 +5571,7 @@
             {
               "name": "obj",
               "type": "Object",
-              "description": "Object to serialize or ErrorBuilder."
+              "description": "The object."
             },
             {
               "options": [
@@ -5872,7 +5588,7 @@
               "default": "false",
               "name": "beautify",
               "type": "Boolean",
-              "description": "Beautify JSON."
+              "description": "Beautifies JSON."
             },
             {
               "options": [
@@ -5880,36 +5596,11 @@
               ],
               "name": "replacer",
               "type": "Function",
-              "description": "Replacer function."
+              "description": "The replacer function."
             }
           ],
           "name": "controller.json",
-          "description": "Response JSON."
-        },
-        {
-          "description": "Response JSON (async). This method is called when all operation in async (controller.await(), controller.wait()) are completed.",
-          "return": "FrameworkController",
-          "options": [
-            "important",
-            "http"
-          ],
-          "params": [
-            {
-              "name": "obj",
-              "type": "Object",
-              "description": "Object to serialize or ErrorBuilder."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "headers",
-              "type": "Object",
-              "description": "Additional headers."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "name": "controller.jsonAsync"
+          "description": "Sends the JSON."
         },
         {
           "return": "FrameworkController",
@@ -5921,12 +5612,12 @@
             {
               "name": "body",
               "type": "String",
-              "description": "Content body."
+              "description": "The content body."
             },
             {
               "name": "type",
               "type": "String",
-              "description": "Content type."
+              "description": "The content type."
             },
             {
               "options": [
@@ -5934,11 +5625,11 @@
               ],
               "name": "headers",
               "type": "Object",
-              "description": "Custom headers."
+              "description": "Additional headers."
             }
           ],
           "name": "controller.content",
-          "description": "Response custom content."
+          "description": "Sends the response with the custom content."
         },
         {
           "return": "FrameworkController",
@@ -5981,7 +5672,7 @@
             }
           ],
           "name": "controller.empty",
-          "description": "Response empty content (text/plain)."
+          "description": "Sends the empty response (text/plain)."
         },
         {
           "return": "FrameworkController",
@@ -6016,7 +5707,7 @@
           "description": "Create response from URL (copy response to a response without headers)."
         },
         {
-          "description": "Response file. For load file from anywhere - file name must start with ~ char.",
+          "description": "Sends the file into the response.",
           "return": "FrameworkController",
           "options": [
             "important",
@@ -6026,7 +5717,7 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "File in config['directory-public'] or by the rule ~."
+              "description": "The filename accoding to the \"config['directory-public']\" or skip the default path with \"~\"."
             },
             {
               "options": [
@@ -6034,7 +5725,7 @@
               ],
               "name": "downloadName",
               "type": "String",
-              "description": "This value will added into Content-Disposition header."
+              "description": "The value will added into \"Content-Disposition\" header."
             },
             {
               "options": [
@@ -6049,7 +5740,7 @@
           "name": "controller.file"
         },
         {
-          "description": "Response image. For load file from anywhere - file name must start with ~ char.",
+          "description": "Sends the image.",
           "return": "FrameworkController",
           "options": [
             "important",
@@ -6059,14 +5750,14 @@
             {
               "name": "filename",
               "type": "String",
-              "description": "File name of image."
+              "description": "The filename."
             },
             {
-              "description": "Function to processed.",
+              "description": "The function for processing.",
               "params": [
                 {
-                  "go": "FrameworkImage",
-                  "description": "Function for image manipulation.",
+                  "go": "#api~FrameworkImage",
+                  "description": "The function for image manipulation.",
                   "name": "image",
                   "type": "FrameworkImage"
                 }
@@ -6082,51 +5773,10 @@
               "name": "headers",
               "type": "Object",
               "description": "Additional headers."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "default": "false",
-              "name": "useImageMagick",
-              "type": "Boolean",
-              "description": "For an image manipulation the framework will use ImageMagick."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/download-file",
           "name": "controller.image"
-        },
-        {
-          "return": "FrameworkController",
-          "options": [
-            "important",
-            "http"
-          ],
-          "params": [
-            {
-              "name": "filename",
-              "type": "String",
-              "description": "File in config['directory-public'] or by the rule ~."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "downloadName",
-              "type": "String",
-              "description": "This value will added into Content-Disposition header."
-            },
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "headers",
-              "type": "Object",
-              "description": "Additional headers."
-            }
-          ],
-          "name": "controller.fileAsync",
-          "description": "Response file (Async). For load file from anywhere - file name must start with ~ char. This method is called when all operation in async (controller.await(), controller.wait()) are completed."
         },
         {
           "return": "FrameworkController",
@@ -6174,16 +5824,16 @@
             {
               "name": "buffer",
               "type": "Buffer",
-              "description": "Buffer for the response."
+              "description": "The buffer."
             },
             {
               "name": "contentType",
               "type": "String",
-              "description": "Content type."
+              "description": "The content-type."
             }
           ],
           "name": "controller.binary",
-          "description": "Binary response."
+          "description": "Sends the binary response."
         },
         {
           "return": "FrameworkController",
@@ -6192,10 +5842,17 @@
             "websocket"
           ],
           "params": [
-
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "problem",
+              "type": "String",
+              "description": "The problem description."
+            }
           ],
           "name": "controller.destroy",
-          "description": "HTTP == destroy a request, WebSocket == destroy all conections."
+          "description": "Destroys the controller."
         },
         {
           "return": "FrameworkController",
@@ -6469,7 +6126,7 @@
           "description": "Transfer current request to a new route."
         },
         {
-          "description": "Memorize output of controller.view() - layout is not cached (only view), controller.json() and controller.plain(). This function improves your response time. Data are saved into the memory.",
+          "description": "The function caches the output from `controller.view()` - the layout is not cached (only view), `controller.json()` and `controller.plain()`. It improves your response time. Data are saved into the memory.\n\n```javascript\nfunction some_action() {\n    var self = this;\n    self.memorize('top-products', '5 minutes', function() {\n        // Is executes only once in 5 minutes\n        DATABASE('products').find({ top:1 }, function(err, docs) {\n            self.view('top-products', docs);\n        });\n    });\n}\n```",
           "return": "FrameworkController",
           "options": [
             "important",
@@ -6479,12 +6136,12 @@
             {
               "name": "key",
               "type": "String",
-              "description": "Cache key."
+              "description": "The key."
             },
             {
               "name": "expiration",
-              "type": "Date",
-              "description": "Expiration."
+              "type": "Date or String",
+              "description": "The expiration."
             },
             {
               "options": [
@@ -6492,12 +6149,12 @@
               ],
               "name": "disabled",
               "type": "Boolean",
-              "description": "Disable cache (e.g. for debug mode)."
+              "description": "Disables the cache (e.g. for the debug mode)."
             },
             {
               "name": "fnTo",
               "type": "Function",
-              "description": "Is executed when is cache empty."
+              "description": "Is executed when is the cache empty."
             },
             {
               "options": [
@@ -6505,7 +6162,7 @@
               ],
               "name": "fnFrom",
               "type": "Function",
-              "description": "Is executed when is content read from the cache."
+              "description": "Is executed when is the content read from the cache."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/controller-memorize",
@@ -6614,9 +6271,6 @@
         {
           "description": "Creates the HTML from some view and sends the e-mail.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
-          "options": [
-
-          ],
           "return": "FrameworkController",
           "params": [
             {
@@ -6627,12 +6281,12 @@
             {
               "name": "subject",
               "type": "String",
-              "description": "Subject."
+              "description": "The subject."
             },
             {
               "name": "name",
               "type": "String",
-              "description": "Name of view."
+              "description": "The view name."
             },
             {
               "options": [
@@ -6640,10 +6294,10 @@
               ],
               "name": "model",
               "type": "Object",
-              "description": "Model into the view."
+              "description": "The view model."
             },
             {
-              "description": "Callback.",
+              "description": "The callback function.",
               "options": [
                 "optional"
               ],
@@ -6656,6 +6310,14 @@
               ],
               "name": "callback",
               "type": "Function"
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "name": "replyTo",
+              "type": "String",
+              "description": "The reply address."
             }
           ],
           "name": "controller.mail"
@@ -6701,17 +6363,18 @@
           ],
           "params": [
             {
-              "description": "This function is called in each client.",
+              "description": "The function is executed for each client.",
               "params": [
                 {
                   "name": "connection",
-                  "type": "Object",
-                  "description": "A client connection FrameworkWebSocketClient."
+                  "type": "FrameworkWebSocketClient",
+                  "go": "#api~FrameworkWebSocketClient",
+                  "description": "The client connection."
                 },
                 {
                   "name": "index",
                   "type": "Number",
-                  "description": "Client index in collection."
+                  "description": "The index in collection."
                 }
               ],
               "name": "fn",
@@ -6719,10 +6382,10 @@
             }
           ],
           "name": "controller.all",
-          "description": "Get each client connection."
+          "description": "Invokes the iterator function once for each item in the client collection (only for __WebSocket__)."
         },
         {
-          "description": "Find client connection.",
+          "description": "Finds the client connection (only for __WebSocket__).",
           "return": "FrameworkWebSocketClient",
           "options": [
             "important",
@@ -7225,7 +6888,7 @@
               ],
               "name": "imageURL",
               "type": "String",
-              "description": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:imagey\"."
+              "description": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\"."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
@@ -7794,7 +7457,7 @@
               ],
               "name": "expire",
               "type": "String",
-              "description": "The cache expiration. This method supports caching of the view output."
+              "description": "The cache expiration. This method supports caching of the view output. The expiration can be the string, example: \"5 minutes\" or \"1 hour\"."
             }
           ]
         },
@@ -7828,7 +7491,7 @@
               ],
               "name": "expire",
               "type": "String",
-              "description": "The cache expiration. This method supports caching of the view output."
+              "description": "The cache expiration. This method supports caching of the view output. The expiration can be the string, example: \"5 minutes\" or \"1 hour\"."
             }
           ]
         },
@@ -9194,7 +8857,7 @@
             {
               "name": "err",
               "type": "Error",
-              "description": "Error object."
+              "description": "The error object."
             },
             {
               "name": "message",
@@ -10183,7 +9846,7 @@
           "default": "false",
           "return": "Boolean",
           "name": "request.isSecure",
-          "description": "Is secured the request?"
+          "description": "Is secure the request?"
         },
         {
           "name": "request.uri",
@@ -10422,7 +10085,7 @@
 
           ],
           "name": "Response.prototype.continue",
-          "description": "Continues in processing of the request."
+          "description": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```"
         },
         {
           "return": "Response",
@@ -10587,12 +10250,12 @@
           "name": "String.prototype.replaceAt"
         },
         {
-          "description": "Parses expiration date.",
+          "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "params": [
 
           ],
           "return": "Date",
-          "name": "String.prototype.parseDateExpire"
+          "name": "String.prototype.parseDateExpiration"
         },
         {
           "description": "Checks if the string contains the value.",
@@ -11631,12 +11294,12 @@
           "default": "0",
           "return": "Number",
           "name": "async.percentage",
-          "description": "Working percentage."
+          "description": "The work percentage."
         }
       ],
       "methods": [
         {
-          "description": "Cancel work.",
+          "description": "Cancels the work.",
           "params": [
 
           ],
@@ -11645,31 +11308,31 @@
         },
         {
           "name": "async.wait",
-          "description": "Add a function to async waiting list.",
+          "description": "Adds a new function into the waiting list. All tasks are run in order and with except await tasks.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The name."
             },
             {
               "options": [
                 "optional"
               ],
               "default": "",
-              "name": "waitingFor",
+              "name": "dependency",
               "type": "String",
-              "description": "Name of another task."
+              "description": "The dependency name."
             },
             {
-              "description": "The function to execute.",
+              "description": "The function for execution.",
               "params": [
                 {
                   "options": [
                     "important"
                   ],
                   "name": "next",
-                  "description": "Completed function.",
+                  "description": "Continue.",
                   "type": "Function"
                 }
               ],
@@ -11677,14 +11340,14 @@
               "type": "Function"
             },
             {
-              "description": "Complete function for this task.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
               "params": [
 
               ],
-              "name": "cb",
+              "name": "callback",
               "type": "Function"
             }
           ],
@@ -11693,7 +11356,7 @@
         },
         {
           "name": "async.await",
-          "description": "Add a function to async list.",
+          "description": "Adds a new function into the waiting list. All tasks are run in order and at the same time.",
           "params": [
             {
               "options": [
@@ -11702,17 +11365,17 @@
               "default": "Utils.GUID(5)",
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             },
             {
-              "description": "The function to execute.",
+              "description": "The function for execution.",
               "params": [
                 {
                   "options": [
                     "important"
                   ],
                   "name": "next",
-                  "description": "Completed function.",
+                  "description": "Continue.",
                   "type": "Function"
                 }
               ],
@@ -11720,14 +11383,14 @@
               "type": "Function"
             },
             {
-              "description": "Complete function for this task.",
+              "description": "The callback.",
               "options": [
                 "optional"
               ],
               "params": [
 
               ],
-              "name": "cb",
+              "name": "callback",
               "type": "Function"
             }
           ],
@@ -11735,24 +11398,8 @@
           "return": "Async"
         },
         {
-          "name": "async.complete",
-          "description": "Run async functions.",
-          "params": [
-            {
-              "options": [
-                "optional"
-              ],
-              "name": "callback",
-              "type": "Function",
-              "description": "Complete function for all tasks. This function is the alias for async.run([fn])."
-            }
-          ],
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "return": "Async"
-        },
-        {
           "name": "async.run",
-          "description": "Run async functions.",
+          "description": "Runs the functions.",
           "params": [
             {
               "options": [
@@ -11760,14 +11407,14 @@
               ],
               "name": "callback",
               "type": "Function",
-              "description": "Complete function for all tasks."
+              "description": "The callback."
             }
           ],
           "example": "https://github.com/totaljs/examples/tree/master/async",
           "return": "Async"
         },
         {
-          "description": "Cancel specific task or cancel all tasks.",
+          "description": "Cancels the specific task or cancels all tasks.",
           "params": [
             {
               "options": [
@@ -11775,19 +11422,19 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             }
           ],
           "return": "Async",
           "name": "async.cancel"
         },
         {
-          "description": "Set timeout for specific task. This function sets timeout into the future and for current (waiting/pending/running) task. You can disabled timeout: async.timeout('name'); or async.timeout('name', 0).",
+          "description": "Sets the timeout for the specific task. This function sets `timeout` into the future and current (waiting/pending/running) tasks. You can disabled the timeout: `async.timeout('name');` or `async.timeout('name', 0).`",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             },
             {
               "options": [
@@ -11796,14 +11443,14 @@
               "default": "undefined",
               "name": "timeout",
               "type": "Number",
-              "description": "Timeout in milliseconds."
+              "description": "The timeout in milliseconds."
             }
           ],
           "return": "Async",
           "name": "async.timeout"
         },
         {
-          "description": "Is running specific task or is running are tasks?",
+          "description": "Determines whether the task is/tasks are running.",
           "params": [
             {
               "options": [
@@ -11811,7 +11458,7 @@
               ],
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             }
           ],
           "return": "Boolean",
@@ -11823,19 +11470,19 @@
             {
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             }
           ],
           "return": "Boolean",
           "name": "async.isWaiting"
         },
         {
-          "description": "Check if task is in async task collection.",
+          "description": "Determines whether the task waits for other task.",
           "params": [
             {
               "name": "name",
               "type": "String",
-              "description": "Name of task."
+              "description": "The task name."
             }
           ],
           "return": "Boolean",
@@ -11843,7 +11490,7 @@
         }
       ],
       "name": "Async",
-      "description": "Async class is helpful for asynchronous work. Is defined in FrameworkUtils (utils.js). The frameworkUtils is a global variable. \n\n_Example:_\n\n```javascript\nvar async = new utils.Async();\n\nasync.await(function(next) {\n\tnext();\n};\n```"
+      "description": "The __Async__ class is helpful for asynchronous work. Is defined in the __FrameworkUtils__ `utils.js`. The __FrameworkUtils__ is a global variable. \n\n__Example:__\n\n```javascript\nvar async = new Utils.Async();\n\nasync.await('1', function(next) {\n    setTimeout(function() {\n        console.log('1');\n        next();\n    }, 1000);\n});\n\nasync.await(function(next) {\n    console.log('2');\n    next();\n});\n\nasync.wait('3', '1', function(next) {\n    console.log('3');\n    next();\n});\n\nasync.run(function() {\n    console.log('DONE');\n});\n```\n\n__Output__:\n\n```html\n2\n1\n3\nDONE\n```"
     },
     {
       "group": "Additional",
@@ -11864,6 +11511,14 @@
           "return": "Framework",
           "name": "framework",
           "description": "Gets the framework **instance**."
+        },
+        {
+          "options": [
+            "alias"
+          ],
+          "return": "assert",
+          "name": "assert",
+          "description": "Gets the __node.js__ assert module."
         },
         {
           "options": [
@@ -12005,6 +11660,7 @@
         {
           "description": "The empty function.",
           "params": [
+
           ],
           "return": "Object",
           "name": "NOOP"
