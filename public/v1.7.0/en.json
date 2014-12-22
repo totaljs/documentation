@@ -307,7 +307,7 @@
           "name": "framework.on('load')",
           "description": "This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..",
           "params": [
-
+            
           ]
         },
         {
@@ -317,7 +317,7 @@
           "name": "framework.on('init')",
           "description": "This event is triggered at first.",
           "params": [
-
+            
           ]
         },
         {
@@ -941,7 +941,7 @@
         {
           "return": "Framework",
           "params": [
-
+            
           ],
           "name": "framework.reconnect",
           "description": "Reconnects HTTP/HTTPS again."
@@ -1021,7 +1021,7 @@
           "name": "framework.middleware"
         },
         {
-          "description": "Creates a route for HOST redirecting.",
+          "description": "Creates a route for HOST redirecting.\n\n```javascript\nframework.redirect('http://totaljs.com', 'https://www.totaljs.com', true, true);\n```",
           "example": "https://github.com/totaljs/examples/tree/master/redirect-host",
           "return": "Framework",
           "params": [
@@ -1051,7 +1051,33 @@
               "default": "false",
               "name": "permanent",
               "type": "Boolean",
-              "description": "Sets permanent redirects."
+              "description": "Sets the permanent redirect."
+            }
+          ],
+          "name": "framework.redirect"
+        },
+        {
+          "description": "Creates a route for relative redirecting.\n\n```javascript\nframework.redirect('/contact/', '/contacts/', true);\n```",
+          "return": "Framework",
+          "params": [
+            {
+              "name": "url",
+              "type": "String",
+              "description": "The relative URL address. Example: /contact/"
+            },
+            {
+              "name": "redirectTo",
+              "type": "String",
+              "description": "The relative URL address. Example: /contacts/"
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "default": "false",
+              "name": "permanent",
+              "type": "Boolean",
+              "description": "Sets the permanent redirect."
             }
           ],
           "name": "framework.redirect"
@@ -1395,7 +1421,7 @@
         {
           "return": "Framework",
           "options": [
-
+            
           ],
           "params": [
             {
@@ -1492,7 +1518,7 @@
               "description": "The filename for response."
             }
           ],
-          "name": "framework.mapping",
+          "name": "framework.map",
           "description": "A custom mapping of static files. You can easily change a mapping static file."
         },
         {
@@ -2566,7 +2592,7 @@
         {
           "return": "Framework",
           "params": [
-
+            
           ],
           "name": "framework.clear",
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`."
@@ -2598,7 +2624,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "description": "The callback."
             }
@@ -3274,7 +3300,7 @@
         },
         {
           "params": [
-
+            
           ],
           "name": "framework.cache.clear",
           "return": "FrameworkCache",
@@ -3888,7 +3914,7 @@
           "name": "framework.restrictions.clearIP",
           "description": "Clears all restrictions.",
           "params": [
-
+            
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
           "go": "#api~Framework",
@@ -3898,7 +3924,7 @@
           "name": "framework.restrictions.clearHeaders",
           "description": "Clear all restrictions.",
           "params": [
-
+            
           ],
           "example": "https://github.com/totaljs/examples/tree/master/framework-restrictions",
           "go": "#api~Framework",
@@ -4195,7 +4221,7 @@
           "name": "controller.on('destroy')",
           "description": "This event is triggered when is the WebSocket destroyed.",
           "params": [
-
+            
           ]
         },
         {
@@ -4234,7 +4260,7 @@
         {
           "return": "undefined",
           "params": [
-
+            
           ],
           "name": "exports.install",
           "description": "The controller installer. The delegate is executed only one time."
@@ -4242,7 +4268,7 @@
         {
           "return": "undefined",
           "params": [
-
+            
           ],
           "name": "exports.uninstall",
           "description": "The controller uninstaller. The delegate is executed only one time."
@@ -4818,7 +4844,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController",
           "example": "https://github.com/totaljs/examples/tree/master/controller-cancel",
@@ -5378,7 +5404,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "name": "controller.clear",
           "description": "Clears the uploaded files. __IMPORTANT:__ for force stop auto-clear uploaded files use `controller.noClear()` and then you must execute `controller.clear()` manually."
@@ -5391,7 +5417,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "example": "https://github.com/totaljs/examples/tree/master/xml-large",
           "name": "controller.custom"
@@ -5631,7 +5657,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "description": "The callback."
             }
@@ -6460,7 +6486,7 @@
         {
           "description": "Gets the value from the repository object.",
           "options": [
-
+            
           ],
           "return": "Object",
           "example": "https://github.com/totaljs/examples/tree/master/views",
@@ -6473,7 +6499,7 @@
         },
         {
           "options": [
-
+            
           ],
           "return": "Object",
           "name": "@{model.customKey}",
@@ -7303,7 +7329,7 @@
           "description": "Gets the links in the sitemap.",
           "return": "Object Array",
           "params": [
-
+            
           ],
           "name": "@{sitemap}"
         },
@@ -8041,7 +8067,7 @@
         {
           "return": "undefined",
           "params": [
-
+            
           ],
           "name": "Utils.noop",
           "description": "The empty function."
@@ -9085,7 +9111,7 @@
         {
           "description": "Sets image normalization.",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.normalize"
@@ -9105,7 +9131,7 @@
         {
           "description": "Flips the image.",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.flip"
@@ -9113,7 +9139,7 @@
         {
           "description": "Flops the image (opposite the flip).",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.flop"
@@ -9121,7 +9147,7 @@
         {
           "description": "Minify the image.",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.minify"
@@ -9129,7 +9155,7 @@
         {
           "description": "Creates a grayscale from the image..",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.grayscale"
@@ -9137,7 +9163,7 @@
         {
           "description": "Creates a sepia from the image.",
           "params": [
-
+            
           ],
           "return": "FrameworkImage",
           "name": "image.sepia"
@@ -9244,7 +9270,7 @@
         {
           "description": "Reads the file content __synchronous__.",
           "params": [
-
+            
           ],
           "return": "Buffer",
           "name": "file.readSync"
@@ -9252,7 +9278,7 @@
         {
           "description": "Checks the content type whether is an image.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "file.isImage"
@@ -9260,7 +9286,7 @@
         {
           "description": "Checks the content type whether is a video.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "file.isVideo"
@@ -9268,7 +9294,7 @@
         {
           "description": "Checks the content type whether is an audio.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "file.isAudio"
@@ -9790,7 +9816,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "default": "{ user: '', password: '' }",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "Request.prototype.authorization"
@@ -9842,7 +9868,7 @@
         {
           "description": "Clears the uploaded files. This function is executed automatically.",
           "params": [
-
+            
           ],
           "return": "Request",
           "name": "Request.prototype.clear"
@@ -9850,7 +9876,7 @@
         {
           "description": "Disables the cache validation.",
           "params": [
-
+            
           ],
           "return": "Request",
           "name": "Request.prototype.noCache"
@@ -9909,7 +9935,7 @@
         {
           "description": "Disables HTTP cache.",
           "params": [
-
+            
           ],
           "return": "Response",
           "name": "Response.prototype.noCache"
@@ -9957,7 +9983,7 @@
         {
           "return": "Response",
           "params": [
-
+            
           ],
           "name": "Response.prototype.continue",
           "description": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```"
@@ -10066,7 +10092,7 @@
         {
           "description": "Trims the white characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.trim"
@@ -10074,7 +10100,7 @@
         {
           "description": "Parses XML from the string to Object.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "String.prototype.parseXML"
@@ -10082,7 +10108,7 @@
         {
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.toSearch"
@@ -10102,7 +10128,7 @@
         {
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "params": [
-
+            
           ],
           "return": "Date",
           "name": "String.prototype.parseDate"
@@ -10127,7 +10153,7 @@
         {
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "params": [
-
+            
           ],
           "return": "Date",
           "name": "String.prototype.parseDateExpiration"
@@ -10198,7 +10224,7 @@
         {
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "String.prototype.parseConfig"
@@ -10237,7 +10263,7 @@
         {
           "description": "Encodes the string to the HTML safe characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.encode"
@@ -10245,7 +10271,7 @@
         {
           "description": "Decodes the string from the HTML safe characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.decode"
@@ -10253,7 +10279,7 @@
         {
           "description": "Encodes the string to URL the safe characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.urlEncode"
@@ -10261,7 +10287,7 @@
         {
           "description": "Decodes the string from URL the safe characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.urlDecode"
@@ -10290,7 +10316,7 @@
         {
           "description": "Checks if the string contains the valid JSON.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "String.prototype.isJSON"
@@ -10298,7 +10324,7 @@
         {
           "description": "Checks if the string contains the valid URL address.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "String.prototype.isURL"
@@ -10306,7 +10332,7 @@
         {
           "description": "Checks if the string contains the valid e-mail address.",
           "params": [
-
+            
           ],
           "return": "Boolean",
           "name": "String.prototype.isEmail"
@@ -10314,7 +10340,7 @@
         {
           "description": "Checks if the string contains the valid boolean value.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.isBoolean"
@@ -10354,7 +10380,7 @@
         {
           "description": "Parses a boolean from the string.",
           "params": [
-
+            
           ],
           "return": "Number",
           "name": "String.prototype.parseBool"
@@ -10362,7 +10388,7 @@
         {
           "description": "Converts the string to unicode (HTML) characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.toUnicode"
@@ -10370,7 +10396,7 @@
         {
           "description": "Parses the unicode (HTML) characters.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.fromUnicode"
@@ -10513,7 +10539,7 @@
         {
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.base64ContentType"
@@ -10521,7 +10547,7 @@
         {
           "description": "Removes diacritics from the string.",
           "params": [
-
+            
           ],
           "return": "String",
           "name": "String.prototype.removeDiacritics"
@@ -10950,7 +10976,7 @@
         {
           "description": "Trims all strings in the array.",
           "params": [
-
+            
           ],
           "return": "Array",
           "name": "Array.prototype.trim"
@@ -10993,7 +11019,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "name": "callback",
               "type": "Function"
@@ -11011,7 +11037,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "name": "onComplete",
               "type": "Function"
@@ -11133,7 +11159,7 @@
         {
           "description": "Gets the one item (randomly) from the array.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "Array.prototype.random"
@@ -11141,7 +11167,7 @@
         {
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "params": [
-
+            
           ],
           "return": "Array",
           "name": "Array.prototype.randomize"
@@ -11176,7 +11202,7 @@
         {
           "description": "Cancels the work.",
           "params": [
-
+            
           ],
           "return": "Async",
           "name": "async.cancel"
@@ -11220,7 +11246,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "name": "callback",
               "type": "Function"
@@ -11263,7 +11289,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "name": "callback",
               "type": "Function"
@@ -11535,7 +11561,7 @@
         {
           "description": "The empty function.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "NOOP"
@@ -11579,7 +11605,7 @@
         {
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "DATABASE"
@@ -11803,7 +11829,7 @@
         {
           "description": "Returns the transformed errors.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "instance.output"
@@ -11896,7 +11922,7 @@
         {
           "description": "Clears all errors.",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder",
           "name": "instance.clear"
@@ -12272,7 +12298,7 @@
         {
           "description": "Creates a new instance of the UrlBuilder.",
           "params": [
-
+            
           ],
           "return": "UrlBuilder",
           "name": "new UrlBuilder"
@@ -12322,7 +12348,7 @@
         {
           "description": "Clears all parameters.",
           "params": [
-
+            
           ],
           "return": "UrlBuilder",
           "name": "instance.clear"
@@ -13020,7 +13046,7 @@
         {
           "description": "Destroys the entity.",
           "params": [
-
+            
           ],
           "return": "undefined",
           "name": "SchemaBuilderEntity.destroy"
@@ -13195,7 +13221,7 @@
         {
           "description": "Creates the empty object according to the schema.",
           "params": [
-
+            
           ],
           "return": "Object",
           "name": "SchemaBuilderEntity.create"
@@ -13421,6 +13447,11 @@
       "group": "How does it work?",
       "name": "Modules",
       "body": "```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the module into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the module name (it's an identificator name). A __default value__ for this property is the module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only the array of module names. The framework waits for all dependencies and then installs the pending modules.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__\n\n```javascript\nexports.install = function() {\n    console.log('Hello from the module.');\n    framework.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the module.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function() {\n    framework.on('request', increment);\n    framework.route('/stats/', json_stats);\n};\n\nexports.uninstall = function() {\n    framework.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in the controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```"
+    },
+    {
+      "group": "How does it work?",
+      "name": "Packages",
+      "body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.id = 'helloworld';\n\nexports.install = function() {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    framework.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    framework.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser."
     },
     {
       "group": "How does it work?",
