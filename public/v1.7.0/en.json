@@ -1283,7 +1283,7 @@
             }
           ],
           "name": "framework.resize",
-          "description": "Creates a `image resize` route.\n\n__Example__:\n\n```javascript\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });\n```"
+          "description": "Creates a `image resize` route.\n\n__Options__:\n```html\ngrayscale     : Boolean\nblur          : Boolean\nflip          : Boolean\nflop          : Boolean\nsepia         : Boolean\nrotate        : Number\nquality       : Number (the image quality, for JPEG only)\ncache         : Boolean (enable (default) / disable cache for resized images)\n```\n\n__Example__:\n\n```javascript\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80 });\n```"
         },
         {
           "description": "Creates a Websocket route to the controller or module.",
