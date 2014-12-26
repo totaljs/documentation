@@ -5283,16 +5283,13 @@
           "name": "controller.resource"
         },
         {
-          "description": "Gets/Sets the basic access authentication (baa). It returns the object with username and password.\n\n```javascript\nvar user = controller.baa();\nif (user.empty) {\n    // The request doesn't contain auth informations.\n    // The framework sends the response automatically:\n    controller.baa('Administration');\n    return;\n}\n\nconsole.log(user);\n// example:\n// { name: 'petersirka', password: '123456', empty: false }\n```",
+          "description": "Gets/Sets the basic access authentication (baa). It returns the object with username and password.\n\n```javascript\nvar auth = controller.baa('Administration');\nif (!auth) {\n    // The request doesn't contain auth informations.\n    // The framework sends the response automatically:\n    return;\n}\n\nconsole.log(auth);\n// example:\n// { name: 'petersirka', password: '123456', empty: false }\n```",
           "return": "Object",
           "options": [
             "http"
           ],
           "params": [
             {
-              "options": [
-                "optional"
-              ],
               "name": "name",
               "type": "String",
               "description": "The basic realm name."
