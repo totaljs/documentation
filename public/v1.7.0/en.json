@@ -10643,6 +10643,14 @@
             }
           ],
           "return": "String"
+        },        
+        {
+          "description": "Capitalize the first letter of string (eg : test -> Test)",
+          "name": "String.prototype.capitalize",
+          "params": [
+            
+          ],
+          "return": "String"
         }
       ],
       "name": "String.prototype"
