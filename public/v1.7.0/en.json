@@ -529,7 +529,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -539,7 +539,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -687,7 +687,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -1167,7 +1167,7 @@
           "description": "Creates the HTML from some view and sends the e-mail.",
           "name": "framework.mail",
           "options": [
-            
+
           ],
           "params": [
             {
@@ -2338,7 +2338,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -2370,7 +2370,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -3282,7 +3282,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-            
+
           ],
           "return": "FrameworkCache"
         },
@@ -3914,7 +3914,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -3924,7 +3924,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-            
+
           ],
           "return": "Framework"
         }
@@ -4156,7 +4156,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -4164,7 +4164,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-            
+
           ],
           "return": "undefined"
         }
@@ -4249,7 +4249,7 @@
             "websocket"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -4504,7 +4504,7 @@
             "http"
           ],
           "params": [
-            
+
           ],
           "return": "FrameworkController"
         },
@@ -5063,7 +5063,7 @@
             "http"
           ],
           "params": [
-            
+
           ],
           "return": "FrameworkController"
         },
@@ -5076,7 +5076,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -5316,7 +5316,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -7220,7 +7220,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-            
+
           ],
           "return": "Object Array"
         },
@@ -7636,7 +7636,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-            
+
           ],
           "return": "Object"
         },
@@ -7649,7 +7649,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-            
+
           ],
           "return": "Object"
         },
@@ -8059,7 +8059,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -9103,7 +9103,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9123,7 +9123,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9131,7 +9131,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9139,7 +9139,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9147,7 +9147,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9155,7 +9155,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -9225,7 +9225,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-            
+
           ],
           "return": "Buffer"
         },
@@ -9233,7 +9233,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -9241,7 +9241,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -9249,7 +9249,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -9715,7 +9715,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -9767,7 +9767,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-            
+
           ],
           "return": "Request"
         },
@@ -9775,7 +9775,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-            
+
           ],
           "return": "Request"
         }
@@ -9909,7 +9909,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-            
+
           ],
           "return": "Response"
         },
@@ -9957,7 +9957,7 @@
           "description": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```",
           "name": "Response.prototype.continue",
           "params": [
-            
+
           ],
           "return": "Response"
         },
@@ -10084,7 +10084,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10092,7 +10092,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -10100,7 +10100,7 @@
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "name": "String.prototype.toSearch",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10120,7 +10120,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-            
+
           ],
           "return": "Date"
         },
@@ -10145,7 +10145,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-            
+
           ],
           "return": "Date"
         },
@@ -10216,7 +10216,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -10255,7 +10255,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10263,7 +10263,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10271,7 +10271,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10279,7 +10279,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10308,7 +10308,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10316,7 +10316,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10324,7 +10324,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10332,7 +10332,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10372,7 +10372,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-            
+
           ],
           "return": "Number"
         },
@@ -10380,7 +10380,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10388,7 +10388,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10531,7 +10531,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10539,7 +10539,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -10643,12 +10643,12 @@
             }
           ],
           "return": "String"
-        },        
+        },
         {
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-            
+
           ],
           "return": "String"
         }
@@ -10976,7 +10976,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-            
+
           ],
           "return": "Array"
         },
@@ -11020,7 +11020,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -11038,7 +11038,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -11159,7 +11159,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11167,7 +11167,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-            
+
           ],
           "return": "Array"
         }
@@ -11182,7 +11182,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-            
+
           ],
           "return": "Async"
         },
@@ -11227,7 +11227,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -11270,7 +11270,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -11493,7 +11493,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11537,7 +11537,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11829,7 +11829,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11922,7 +11922,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-            
+
           ],
           "return": "ErrorBuilder"
         },
@@ -12298,7 +12298,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-            
+
           ],
           "return": "UrlBuilder"
         },
@@ -12348,7 +12348,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-            
+
           ],
           "return": "UrlBuilder"
         },
@@ -13039,7 +13039,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -13214,7 +13214,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -13464,7 +13464,7 @@
       "name": "Resources"
     },
     {
-      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The char `~` maps the current path of the view into the views root directory\n- [View properties and methods](#api~FrameworkViews)\n\n---\n\n### Examples\n\nMost [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nExist many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function(framework, name) {\n    framework.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n    var self = this;\n    self.repository.firstname = 'Peter';\n    self.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according to the name. The layout is same as the view but only one different is tag `@{body}`. Into this tag is rendered the view.\n\n### The ayout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{head}\n    @{css('default.css')}\n    @{js('default.js')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n\n    <div class=\"content\">\n        @{section('panel')}\n        @{body}\n    </div>\n\n    @{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n                    { name: 'B', price: 32.10 },\n                    { name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n```html\n@{if user === null}\n    <div>sign in</div>\n@{else}\n    <div>sign up</div>\n@{endif}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n    @{if model.name === 'Lucia'}\n        <div>Here is Lucia.</div>\n        @{else}\n        <div>Here is Peter.</div>\n    @{endif}\n@{endif}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n    <div>Here is @{model.name}</div>\n@{endif}\n```\n\n## Looping\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n    <div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n    <div>@{index}</div>\n    <div>@{property.name}</div>\n    <div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n    @{body}\n....\n....\n    @{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n    <h1>Homepage</h1>\n    <br />\n....\n....\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n```javascript\nframework.helpers.custom = function(str, num) {\n    // this === controller\n    return str + ' = ' + num;\n};\n```\n\n```html\n<!-- OR -->\n@{custom('Peter', 25)}\n```\n\n## Defining inline helpers\n\nThe inline helper must by defined in the view.\n\n```html\n@{helper address(street, city)\n    <h2>Address</h2>\n    <div>@{street}</div>\n    <div>@{city}</div>\n    <br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n    <div>! Happy new year !</div>\n@{endif}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n```\n\n## Auto binding values\n\n![Auto binding values](resources/viewengine-binding.png)\n\n__Controller__:\n\n```javascript\nfunction view_contactform() {\n    this.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n---\n\n[Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)",
+      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions it has been `_layout.html`.\n- The char `~` maps the current path of the view into the views root directory\n- [View properties and methods](#api~FrameworkViews)\n\n---\n\n### Examples\n\nMost [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nExist many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function(framework, name) {\n    framework.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n    var self = this;\n    self.repository.firstname = 'Peter';\n    self.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according to the name. The layout is same as the view but only one different is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{head}\n    @{css('default.css')}\n    @{js('default.js')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n\n    <div class=\"content\">\n        @{section('panel')}\n        @{body}\n    </div>\n\n    @{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n                    { name: 'B', price: 32.10 },\n                    { name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n```html\n@{if user === null}\n    <div>sign in</div>\n@{else}\n    <div>sign up</div>\n@{endif}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n    @{if model.name === 'Lucia'}\n        <div>Here is Lucia.</div>\n        @{else}\n        <div>Here is Peter.</div>\n    @{endif}\n@{endif}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n    <div>Here is @{model.name}</div>\n@{endif}\n```\n\n## Looping\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n    <div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n    <div>@{index}</div>\n    <div>@{property.name}</div>\n    <div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n    @{body}\n....\n....\n    @{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n    <h1>Homepage</h1>\n    <br />\n....\n....\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n```javascript\nframework.helpers.custom = function(str, num) {\n    // this === controller\n    return str + ' = ' + num;\n};\n```\n\n```html\n<!-- OR -->\n@{custom('Peter', 25)}\n```\n\n## Defining inline helpers\n\nThe inline helper must by defined in the view.\n\n```html\n@{helper address(street, city)\n    <h2>Address</h2>\n    <div>@{street}</div>\n    <div>@{city}</div>\n    <br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n    <div>! Happy new year !</div>\n@{endif}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n```\n\n## Auto binding values\n\n![Auto binding values](resources/viewengine-binding.png)\n\n__Controller__:\n\n```javascript\nfunction view_contactform() {\n    this.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n---\n\n[Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)",
       "group": "How does it work?",
       "name": "View engine"
     },
