@@ -585,6 +585,48 @@
       "group": "Framework",
       "methods": [
         {
+          "description": "Adds a new scheduler.",
+          "name": "framework.schedule",
+          "params": [
+            {
+              "description": "Date/Time or DateTime.",
+              "name": "dt",
+              "type": "Date/String/Number"
+            },
+            {
+              "description": "The function to executed.",
+              "name": "fn",
+              "type": "Function",
+              "params": []
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "description": "Reads configuration from the file.",
+          "name": "framework.useConfig",
+          "params": [
+            {
+              "description": "The filename. The path starts from the application root directory.",
+              "name": "filename",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "description": "Adds a middleware into the each request into the controller action.",
+          "name": "framework.use",
+          "params": [
+            {
+              "description": "The middleware name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "description": "Run the framework (HTTP).",
           "name": "framework.http",
           "options": [
@@ -597,7 +639,7 @@
               "type": "String"
             },
             {
-              "description": "Custom options. (port, ip, config, https: { key, cert })",
+              "description": "Custom options. (port, ip, config, sleep, https: { key, cert })",
               "name": "options",
               "type": "Object"
             }
@@ -617,7 +659,7 @@
               "type": "String"
             },
             {
-              "description": "Custom options. (port, ip, config, https: { key, cert })",
+              "description": "Custom options. (port, ip, config, sleep, https: { key, cert })",
               "name": "options",
               "type": "Object"
             }
@@ -8044,13 +8086,13 @@
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
         },
         {
-          "description": "Trims all string properties in the object.",
+          "description": "Trims all string properties in the object. The method trims also array values.",
           "name": "Utils.trim",
           "params": [
             {
-              "description": "The object.",
+              "description": "The object or array.",
               "name": "obj",
-              "type": "Object"
+              "type": "Object/Array"
             }
           ],
           "return": "Object"
@@ -13494,5 +13536,5 @@
       "name": "Security (XSS, CSRF, CORS)"
     }
   ],
-  "version": "1.7.0"
+  "version": "1.7.1"
 }
