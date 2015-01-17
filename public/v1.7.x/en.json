@@ -13536,5 +13536,5 @@
       "name": "Security (XSS, CSRF, CORS)"
     }
   ],
-  "version": "1.7.1"
+  "version": "1.7.x"
 }
