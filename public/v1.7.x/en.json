@@ -12793,11 +12793,6 @@
                   "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The prepared object.",
-                  "name": "model",
-                  "type": "Object"
-                },
-                {
                   "default": "undefined",
                   "description": "The helper object.",
                   "name": "helper",
