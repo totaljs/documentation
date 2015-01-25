@@ -585,12 +585,13 @@
       "group": "Framework",
       "methods": [
         {
+          "options": ["v1.7.1"],
           "description": "Adds a new scheduler.",
           "name": "framework.schedule",
           "params": [
             {
               "description": "Date/Time or DateTime.",
-              "name": "dt",
+              "name": "date",
               "type": "Date/String/Number"
             },
             {
@@ -603,7 +604,8 @@
           "return": "Framework"
         },
         {
-          "description": "Reads configuration from the file.",
+          "description": "Reads the configuration from the file.",
+          "options": ["v1.7.1"],
           "name": "framework.useConfig",
           "params": [
             {
@@ -8232,7 +8234,7 @@
         },
         {
           "description": "Encodes the string into the HTML safe characters.",
-          "name": "Utils.htmlEncode",
+          "name": "Utils.encode",
           "params": [
             {
               "description": "The value.",
@@ -8244,10 +8246,49 @@
         },
         {
           "description": "Decodes the HTML safe characters into the string.",
-          "name": "Utils.htmlDecode",
+          "name": "Utils.decode",
           "params": [
             {
               "description": "The value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Minifies the style (CSS).",
+          "name": "Utils.minifyStyle",
+          "options": ["v1.7.2"],
+          "params": [
+            {
+              "description": "The content.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Minifies the script (JS).",
+          "name": "Utils.minifyScript",
+          "options": ["v1.7.2"],
+          "params": [
+            {
+              "description": "The content.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Minifies the HTML (HTML).",
+          "options": ["v1.7.2"],
+          "name": "Utils.minifyScript",
+          "params": [
+            {
+              "description": "The content.",
               "name": "value",
               "type": "String"
             }
@@ -11019,6 +11060,51 @@
           "name": "Array.prototype.trim",
           "params": [
 
+          ],
+          "return": "Array"
+        },
+        {
+          "options": ["v1.7.2"],
+          "description": "Extend object items in the array.",
+          "name": "Array.prototype.extend",
+          "params": [
+            {
+              "description": "Object which extends the array item.",
+              "name": "obj",
+              "type": "Object"
+            },
+            {
+              "options": ["optional"],
+              "default": "false",
+              "description": "Rewrites existing value.",
+              "name": "rewrite",
+              "type": "Boolean"
+            }
+          ],
+          "return": "Array"
+        },
+        {
+          "options": ["v1.7.2"],
+          "description": "Extend object items in the array.",
+          "name": "Array.prototype.extend",
+          "params": [
+            {
+              "description": "Function to extend. This function must return some value.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "item",
+                  "type": "String",
+                  "description": "Current item in array."
+                },
+                {
+                  "name": "index",
+                  "type": "Number",
+                  "description": "Current index in array."
+                }
+              ]
+            }
           ],
           "return": "Array"
         },
