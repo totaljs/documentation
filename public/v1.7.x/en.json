@@ -529,7 +529,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -539,7 +539,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -585,7 +585,9 @@
       "group": "Framework",
       "methods": [
         {
-          "options": ["v1.7.1"],
+          "options": [
+            "v1.7.1"
+          ],
           "description": "Adds a new scheduler.",
           "name": "framework.schedule",
           "params": [
@@ -598,14 +600,18 @@
               "description": "The function to executed.",
               "name": "fn",
               "type": "Function",
-              "params": []
+              "params": [
+                
+              ]
             }
           ],
           "return": "Framework"
         },
         {
           "description": "Reads the configuration from the file.",
-          "options": ["v1.7.1"],
+          "options": [
+            "v1.7.1"
+          ],
           "name": "framework.useConfig",
           "params": [
             {
@@ -731,7 +737,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -1211,7 +1217,7 @@
           "description": "Creates the HTML from some view and sends the e-mail.",
           "name": "framework.mail",
           "options": [
-
+            
           ],
           "params": [
             {
@@ -2382,7 +2388,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2414,7 +2420,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -3072,7 +3078,7 @@
         },
         {
           "default": "true",
-          "description": "Encode/Decode WebSocket messages. The framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On client-side is needed creating encode/decode too.\n\nExmaple (client-side):\nSending: encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' }));\nReceiving: JSON.parse(decodeURIComponent(message))",
+          "description": "Encodes/Decodes WebSocket messages automatically. The framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On the client-side is need to perform encode/decode too.\n\n### Example (client-side):\n\n__Sending:__\n```javascript\nwebsocket.send(encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' })));\n```\n\n__Receiving:__\n```javascrip\nwebsocket.onmessage = function(e) {\n    var message = JSON.parse(decodeURIComponent(e.data));\n};\n```",
           "name": "default-websocket-encodedecode",
           "return": "Boolean"
         },
@@ -3326,7 +3332,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -3958,7 +3964,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -3968,7 +3974,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4200,7 +4206,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4208,7 +4214,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -4293,7 +4299,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -4548,7 +4554,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5107,7 +5113,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5120,7 +5126,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -5360,7 +5366,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -7264,7 +7270,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -7680,7 +7686,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -7693,7 +7699,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8103,7 +8109,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -8259,7 +8265,9 @@
         {
           "description": "Minifies the style (CSS).",
           "name": "Utils.minifyStyle",
-          "options": ["v1.7.2"],
+          "options": [
+            "v1.7.2"
+          ],
           "params": [
             {
               "description": "The content.",
@@ -8272,7 +8280,9 @@
         {
           "description": "Minifies the script (JS).",
           "name": "Utils.minifyScript",
-          "options": ["v1.7.2"],
+          "options": [
+            "v1.7.2"
+          ],
           "params": [
             {
               "description": "The content.",
@@ -8284,7 +8294,9 @@
         },
         {
           "description": "Minifies the HTML (HTML).",
-          "options": ["v1.7.2"],
+          "options": [
+            "v1.7.2"
+          ],
           "name": "Utils.minifyScript",
           "params": [
             {
@@ -9186,7 +9198,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9206,7 +9218,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9214,7 +9226,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9222,7 +9234,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9230,7 +9242,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9238,7 +9250,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9308,7 +9320,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -9316,7 +9328,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9324,7 +9336,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9332,7 +9344,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9798,7 +9810,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -9850,7 +9862,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -9858,7 +9870,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -9992,7 +10004,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10040,7 +10052,7 @@
           "description": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```",
           "name": "Response.prototype.continue",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10167,7 +10179,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10175,7 +10187,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10183,7 +10195,7 @@
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10203,7 +10215,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10228,7 +10240,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10299,7 +10311,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10338,7 +10350,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10346,7 +10358,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10354,7 +10366,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10362,7 +10374,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10391,7 +10403,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10399,7 +10411,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10407,7 +10419,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10415,7 +10427,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10455,7 +10467,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -10463,7 +10475,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10471,7 +10483,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10614,7 +10626,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10622,7 +10634,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10731,7 +10743,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -11059,12 +11071,14 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
         {
-          "options": ["v1.7.2"],
+          "options": [
+            "v1.7.2"
+          ],
           "description": "Extend object items in the array.",
           "name": "Array.prototype.extend",
           "params": [
@@ -11074,7 +11088,9 @@
               "type": "Object"
             },
             {
-              "options": ["optional"],
+              "options": [
+                "optional"
+              ],
               "default": "false",
               "description": "Rewrites existing value.",
               "name": "rewrite",
@@ -11084,7 +11100,9 @@
           "return": "Array"
         },
         {
-          "options": ["v1.7.2"],
+          "options": [
+            "v1.7.2"
+          ],
           "description": "Extend object items in the array.",
           "name": "Array.prototype.extend",
           "params": [
@@ -11148,7 +11166,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11166,7 +11184,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11287,7 +11305,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11295,7 +11313,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -11310,7 +11328,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -11355,7 +11373,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11398,7 +11416,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11621,7 +11639,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11665,7 +11683,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11957,7 +11975,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12050,7 +12068,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -12426,7 +12444,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -12476,7 +12494,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13162,7 +13180,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -13337,7 +13355,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
