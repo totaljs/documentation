@@ -26,6 +26,23 @@
         },
         {
           "default": "null",
+          "description": "A locate delegate. This delegate sets the language for current request (controller) for translation.",
+          "name": "framework.onLocate",
+          "params": [
+            {
+              "description": "The request.",
+              "name": "req",
+              "type": "Request"
+            },
+            {
+              "description": "The response.",
+              "name": "res",
+              "type": "Response"
+            }
+          ]
+        },
+        {
+          "default": "null",
           "description": "The authorization delegate is for the user authorization. According to the callback values the framework sets flag `authorize` or `unauthorize` to the current request and then evaluates a route condition. Don't forget execute the callback.",
           "example": "https://github.com/totaljs/examples/tree/master/authorization",
           "name": "framework.onAuthorization",
@@ -239,7 +256,7 @@
           ]
         },
         {
-          "description": "This event is triggered when is added a new route.",
+          "description": "This event is triggered when a new route is added.",
           "name": "framework.on('route-add')",
           "params": [
             {
@@ -255,7 +272,7 @@
           ]
         },
         {
-          "description": "This event is triggered when is evaluated the JavaScript code.",
+          "description": "This event is triggered when the JavaScript code is evaluated.",
           "name": "framework.on('eval')",
           "params": [
             {
@@ -269,7 +286,27 @@
           ]
         },
         {
-          "description": "This event is triggered when is installed some feature through `framework.install()`.",
+          "description": "This event is triggered when a new module is installed.",
+          "name": "framework.on('module#name')",
+          "params": []
+        },
+        {
+          "description": "This event is triggered when a new controller is installed.",
+          "name": "framework.on('controller#name')",
+          "params": []
+        },
+        {
+          "description": "This event is triggered when a new model is installed.",
+          "name": "framework.on('model#name')",
+          "params": []
+        },
+        {
+          "description": "This event is triggered when a new config is installed.",
+          "name": "framework.on('config#name')",
+          "params": []
+        },
+        {
+          "description": "This event is triggered when some feature through is installed `framework.install()`.",
           "name": "framework.on('install')",
           "params": [
             {
@@ -2522,6 +2559,48 @@
             {
               "description": "The key.",
               "name": "key",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Translates the text according to language.",
+          "name": "framework.translate",
+          "params": [
+            {
+              "default": "'default'",
+              "description": "The language (resource name).",
+              "name": "language",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "description": "Text to translate.",
+              "name": "text",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Translates the text according to language like view engine `Some text @(ONLY THIS TEXT WILL BE TRANSLATED) bla bla`.",
+          "name": "framework.translator",
+          "params": [
+            {
+              "default": "'default'",
+              "description": "The language (resource name).",
+              "name": "language",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "description": "Text to translate.",
+              "name": "text",
               "type": "String"
             }
           ],
@@ -7937,6 +8016,42 @@
           "return": "Boolean"
         },
         {
+          "description": "Minifies HTML.",
+          "name": "Utils.minifyHTML",
+          "params": [
+            {
+              "description": "The value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Minifies JavaScript.",
+          "name": "Utils.minifyScript",
+          "params": [
+            {
+              "description": "The value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Minifies CSS (Style).",
+          "name": "Utils.minifyStyle",
+          "params": [
+            {
+              "description": "The value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "Is empty the object?",
           "name": "Utils.isEmpty",
           "params": [
@@ -11787,6 +11902,60 @@
           "return": "Framework"
         },
         {
+          "description": "Translates the text according to language. This function is the alias for `framework.translate()`.",
+          "name": "TRANSLATE",
+          "params": [
+            {
+              "description": "The language (resource name).",
+              "name": "language",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "description": "Text to translate.",
+              "name": "text",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Translates the text according to language like view engine `Some text @(ONLY THIS TEXT WILL BE TRANSLATED) bla bla`. This function is the alias for `framework.translate()`.",
+          "name": "TRANSLATOR",
+          "params": [
+            {
+              "description": "The language (resource name).",
+              "name": "language",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "description": "Text to translate.",
+              "name": "text",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Creates object like this `{ success: Booelan, [value: value ]}`. This method is helpful for JSON responses and you can rewrite it.",
+          "name": "SUCCESS",
+          "params": [
+            {
+              "description": "Is success?",
+              "name": "success",
+              "type": "Boolean"
+            },
+            {
+              "description": "Additional value.",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Object"
+        },
+        {
           "description": "This function is the alias for `framework.functions()`.",
           "name": "FUNCTION",
           "params": [
@@ -13181,6 +13350,25 @@
               "description": "The rule name.",
               "name": "name",
               "type": "String"
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "default": "undefined",
+          "description": "Sets or Gets the constant value.",
+          "name": "SchemaBuilderEntity.constant",
+          "params": [
+            {
+              "description": "The constant name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "The constant value.",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
             }
           ],
           "return": "Object"

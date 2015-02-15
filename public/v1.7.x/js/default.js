@@ -302,7 +302,7 @@ $(document).ready(function() {
 
         latest = '';
 
-        if (value.length > 4) {
+        if (value.length > 2) {
             var builder = {};
 
             each(documentation.api, function(item) {
@@ -344,8 +344,8 @@ $(document).ready(function() {
             });
         }
 
-        if (output.length > 50)
-            output = output.splice(0, 50);
+        if (output.length > 100)
+            output = output.splice(0, 100);
 
         $('#content').html(Tsearch({ members: output }));
         isSearch = true;
