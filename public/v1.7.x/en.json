@@ -11261,15 +11261,6 @@
                     "important"
                   ],
                   "type": "Function"
-                },
-                {
-                  "default": "false",
-                  "description": "Should it be to remove the item in the array?",
-                  "name": "removeItems",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Boolean"
                 }
               ],
               "type": "Function"
@@ -11284,6 +11275,15 @@
 
               ],
               "type": "Function"
+            },
+            {
+              "default": "false",
+              "description": "Should it be to remove the item in the array?",
+              "name": "removeItems",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
             }
           ],
           "return": "Array"
@@ -11938,7 +11938,7 @@
           "return": "String"
         },
         {
-          "description": "Creates object like this `{ success: Booelan, [value: value ]}`. This method is helpful for JSON responses and you can rewrite it.",
+          "description": "Creates object like this `{ success: Boolean, [value: value ]}`. This method is helpful for JSON responses and you can rewrite it.",
           "name": "SUCCESS",
           "params": [
             {
