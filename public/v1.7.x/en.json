@@ -12050,6 +12050,13 @@
     {
       "description": "The __ErrorBuilder__ is helpful for the model error handling.\n\n```javascript\n// \"Builders\" is a global variable\nvar instance = new Builders.ErrorBuilder();\n```",
       "group": "Builders",
+      "properties": [
+        {
+          "description": "Contains all errors [{ name, error, path, index }]",
+          "name": "items",
+          "return": "Array"
+        }
+      ],
       "methods": [
         {
           "description": "Create a new instance of the ErrorBuilder.",
@@ -12086,14 +12093,9 @@
               "type": "String"
             },
             {
-              "description": "The transformation function. This function must return a transformed object.",
+              "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-                {
-                  "description": "The ErrorBuilder for the transformation.",
-                  "name": "builder",
-                  "type": "ErrorBuilder"
-                }
               ],
               "return": "Object",
               "type": "Function"
@@ -12101,7 +12103,7 @@
             {
               "default": "false",
               "description": "Sets the default transformation for all ErrorBuilders.",
-              "name": "name",
+              "name": "def",
               "options": [
                 "optional"
               ],
