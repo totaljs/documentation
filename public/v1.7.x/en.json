@@ -26,8 +26,9 @@
         },
         {
           "default": "null",
-          "description": "A locate delegate. This delegate sets the language for current request (controller) for translation.",
+          "description": "A locate delegate. This delegate sets the language for current request (controller) for translation and must return a string with resource name.",
           "name": "framework.onLocate",
+          "return": "String",
           "params": [
             {
               "description": "The request.",
@@ -8118,7 +8119,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers.",
+          "description": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).",
           "name": "Utils.request",
           "params": [
             {
@@ -8127,7 +8128,7 @@
               "type": "String"
             },
             {
-              "description": "The request flags.",
+              "description": "The request flags (json (sets application/json), post, put, delete, get, options, head, xhr (sets XMLHttpRequest), upload, xml (sets text/xml)).",
               "go": "#api~HttpRouteOptionsFlags",
               "name": "flags",
               "options": [
