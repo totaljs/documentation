@@ -289,22 +289,30 @@
         {
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
-          "params": []
+          "params": [
+            
+          ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
-          "params": []
+          "params": [
+            
+          ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
-          "params": []
+          "params": [
+            
+          ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
-          "params": []
+          "params": [
+            
+          ]
         },
         {
           "description": "This event is triggered when some feature through is installed `framework.install()`.",
@@ -567,7 +575,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -577,7 +585,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -639,7 +647,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -775,7 +783,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -1255,7 +1263,7 @@
           "description": "Creates the HTML from some view and sends the e-mail.",
           "name": "framework.mail",
           "options": [
-
+            
           ],
           "params": [
             {
@@ -2426,7 +2434,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2458,7 +2466,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -3412,7 +3420,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -4044,7 +4052,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -4054,7 +4062,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4286,7 +4294,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4294,7 +4302,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -4379,7 +4387,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -4634,7 +4642,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5193,7 +5201,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5206,7 +5214,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -5446,7 +5454,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -7350,7 +7358,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -7766,7 +7774,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -7779,7 +7787,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8225,7 +8233,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -9314,7 +9322,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9334,7 +9342,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9342,7 +9350,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9350,7 +9358,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9358,7 +9366,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9366,7 +9374,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9436,7 +9444,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -9444,7 +9452,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9452,7 +9460,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9460,7 +9468,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9926,7 +9934,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -9978,7 +9986,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -9986,7 +9994,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -10120,7 +10128,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10168,7 +10176,7 @@
           "description": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```",
           "name": "Response.prototype.continue",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10295,7 +10303,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10303,7 +10311,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10311,7 +10319,7 @@
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10331,7 +10339,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10356,7 +10364,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10427,7 +10435,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10466,7 +10474,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10474,7 +10482,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10482,7 +10490,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10490,7 +10498,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10519,7 +10527,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10527,7 +10535,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10535,7 +10543,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10543,7 +10551,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10583,7 +10591,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -10591,7 +10599,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10599,7 +10607,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10742,7 +10750,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10750,7 +10758,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10859,7 +10867,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -11187,7 +11195,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
@@ -11273,7 +11281,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             },
@@ -11300,7 +11308,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11421,7 +11429,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11429,7 +11437,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -11444,7 +11452,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -11489,7 +11497,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11532,7 +11540,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11755,7 +11763,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11799,7 +11807,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11910,7 +11918,9 @@
               "description": "The language (resource name).",
               "name": "language",
               "type": "String",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             },
             {
               "description": "Text to translate.",
@@ -11928,7 +11938,9 @@
               "description": "The language (resource name).",
               "name": "language",
               "type": "String",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             },
             {
               "description": "Text to translate.",
@@ -11951,7 +11963,9 @@
               "description": "Additional value.",
               "name": "value",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "Object"
@@ -12097,6 +12111,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
+                
               ],
               "return": "Object",
               "type": "Function"
@@ -12156,7 +12171,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12249,7 +12264,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -12625,7 +12640,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -12675,7 +12690,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13371,7 +13386,9 @@
               "description": "The constant value.",
               "name": "value",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "Object"
@@ -13380,7 +13397,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -13555,7 +13572,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13770,7 +13787,7 @@
       "name": "Directory structure"
     },
     {
-      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- Really simple\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Really simple\n\nThe framework is really simple, you can create website in few lines:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\nnode myapp.js\n```\n\nIn the above code you have available a full web server with all total.js features.\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    #keepalive_timeout  0;\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_redirect     off;\n            break;\n        }\n\n        location / {\n            try_files $uri.html $uri $uri/ @proxy;\n        }\n\n        location ~ /. {\n            access_log    off;\n            log_not_found off;\n            deny all;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
+      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- Really simple\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Really simple\n\nThe framework is really simple, you can create website in few lines:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\nnode myapp.js\n```\n\nIn the above code you have available a full web server with all total.js features.\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
       "group": "",
       "name": "Developer tools"
     },
