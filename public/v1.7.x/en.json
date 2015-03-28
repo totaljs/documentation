@@ -345,28 +345,28 @@
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
           "params": [
-
+            
           ]
         },
         {
@@ -630,7 +630,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -640,7 +640,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -702,7 +702,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -838,7 +838,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2613,7 +2613,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2645,7 +2645,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -2753,7 +2753,7 @@
           "return": "String"
         },
         {
-          "description": "Translates the text according to language.",
+          "description": "Translates the text according to the language. __IMPORTANT__: if the text starts with `#SOMETEXT` the function doesn't convert the text to the __hash__ and it reads the value directly from the resource file.",
           "name": "framework.translate",
           "params": [
             {
@@ -2774,7 +2774,7 @@
           "return": "String"
         },
         {
-          "description": "Translates the text according to language like view engine `Some text @(ONLY THIS TEXT WILL BE TRANSLATED) bla bla`.",
+          "description": "Translates the text according to language like view engine `Some text @(ONLY THIS TEXT WILL BE TRANSLATED) bla bla @(#DIRECTREADING) bla bla`.",
           "name": "framework.translator",
           "params": [
             {
@@ -3605,7 +3605,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -4237,7 +4237,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -4247,7 +4247,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4479,7 +4479,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4487,7 +4487,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -4572,7 +4572,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -4827,7 +4827,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5023,7 +5023,7 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Appends content into the `@{head}` tag. The function supports appending more strings arguments. If function doesn't have any arguments then returns its content.",
+          "description": "Appends content into the `@{head}` tag. The function supports appending more strings arguments. If it doesn't have any arguments then returns its content. __IMPORTANT:__ the function adds `<script>` and `<style>` tag automatically for `.js` and `.css` extensions.",
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
           "name": "controller.head",
           "options": [
@@ -5386,7 +5386,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5399,7 +5399,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -5639,7 +5639,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -7268,7 +7268,7 @@
           "return": "String"
         },
         {
-          "description": "Adds the value into the `@{head}`.",
+          "description": "Adds the value into the `@{head}`. __IMPORTANT:__ the function adds `<script>` and `<style>` tag automatically for `.js` and `.css` extensions.",
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
           "name": "@{head}",
           "params": [
@@ -7577,7 +7577,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -7993,7 +7993,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8006,7 +8006,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8452,7 +8452,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -9408,7 +9408,9 @@
               "description": "Resize options.",
               "name": "options",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "FrameworkImage"
@@ -9432,14 +9434,18 @@
               "description": "The background color.",
               "name": "bgColor",
               "type": "String",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             },
             {
               "default": "'Box'",
               "description": "The resize filter.",
               "name": "filter",
               "type": "String",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "FrameworkImage"
@@ -9479,7 +9485,9 @@
               "description": "Resize options.",
               "name": "options",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "FrameworkImage"
@@ -9551,7 +9559,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9571,7 +9579,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9579,7 +9587,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9587,7 +9595,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9595,7 +9603,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9603,7 +9611,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9625,7 +9633,9 @@
               "description": "Options.",
               "name": "options",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "FrameworkImage"
@@ -9648,7 +9658,9 @@
               "description": "Options.",
               "name": "options",
               "type": "Object",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "FrameworkImage"
@@ -9732,7 +9744,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -9740,7 +9752,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9748,7 +9760,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9756,7 +9768,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10222,7 +10234,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10274,7 +10286,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -10282,7 +10294,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -10416,7 +10428,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10622,7 +10634,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10630,7 +10642,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10638,7 +10650,7 @@
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10658,7 +10670,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10683,7 +10695,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10754,7 +10766,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10793,7 +10805,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10801,7 +10813,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10809,7 +10821,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10817,7 +10829,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10846,7 +10858,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10854,7 +10866,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10862,7 +10874,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10870,7 +10882,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10910,7 +10922,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -10918,7 +10930,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10926,7 +10938,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11069,7 +11081,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11077,7 +11089,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11186,7 +11198,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -11511,7 +11523,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "optional"
@@ -11554,7 +11566,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
@@ -11640,7 +11652,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             },
@@ -11667,7 +11679,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11815,7 +11827,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11823,7 +11835,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -11838,7 +11850,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -11883,7 +11895,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11926,7 +11938,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -12149,7 +12161,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12193,7 +12205,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12505,7 +12517,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-
+                
               ],
               "return": "Object",
               "type": "Function"
@@ -12565,7 +12577,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12658,7 +12670,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -13034,7 +13046,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13084,7 +13096,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13902,7 +13914,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -14077,7 +14089,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -14328,12 +14340,12 @@
   "modified": "2014-30-12 12:00:00",
   "pages": [
     {
-      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` file, put below content into the file and run `node index.js`.\n\n```javascript\nfunction main() {\n\n    framework.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    framework.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(main) !== 'undefined') main(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
+      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` filea and put below content into the file. Run it: `node index.js`.\n\n```javascript\nfunction main() {\n\n    F.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    F.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(main) !== 'undefined') main(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Getting started"
     },
     {
-      "body": "- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    framework.route('/', view_index);\n    framework.route('/services/{name}/', view_services);\n    framework.route('/contact/', view_contact);\n    framework.route('/contact/', json_contact, ['post', 'json']);\n}\n\n// The action\nfunction view_index() {\n    var self = this;\n    // The \"index\" view is routed into the views/index.html\n    // ---> Send the response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // The \"services\" view is routed into the views/services.html\n    // A second argument is the model\n    // ---> Send the response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> Send the response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // Get the data from the request body.\n    // The data are parsed into the object automatically.\n    var model = self.body;\n\n    // e.g.\n    // model.email\n    // model.name\n\n    // Send the mail to our company\n    self.mail('info@company.com', 'Contact form', 'mail-template', model);\n\n    // ---> and send the response in the JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit the views\n\n### Edit view: views/layout.html\n\nThe layout view is the special view which it contains the layout. Into the view are rendered other views. You can create unlimited count of layouts.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{js('default.js')}\n    @{css('bootstrap.min.css', 'default.css', 'font-awesome.min.css')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `@{meta}` tag renders meta tags\n- `@{js('...')}` tag renders links to scripts\n- `@{css('...')}` tag renders links to styles\n- `@{favicon('...')}` tag renders favicon\n- `@{body}` tag renders views from actions (__IMPORTANT__ for layout views)\n\nMore about the view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit the view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is the content from the view.</p>\n```\n\n### Create the view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{fi}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{fi}\n```\n\n### Create the view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run the application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$ node debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n### Read more:\n\n- [Total.js - Directory structure](#pages~Directory%20structure)",
+      "body": "- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    F.route('/', view_index);\n    F.route('/services/{name}/', view_services);\n    F.route('/contact/', view_contact);\n    F.route('/contact/', json_contact, ['post', 'json']);\n}\n\n// The action\nfunction view_index() {\n    var self = this;\n    // The \"index\" view is routed into the views/index.html\n    // ---> Send the response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // The \"services\" view is routed into the views/services.html\n    // A second argument is the model\n    // ---> Send the response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> Send the response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // Get the data from the request body.\n    // The data are parsed into the object automatically.\n    var model = self.body;\n\n    // e.g.\n    // model.email\n    // model.name\n\n    // Send the mail to our company\n    self.mail('info@company.com', 'Contact form', 'mail-template', model);\n\n    // ---> and send the response in the JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit the views\n\n### Edit view: views/layout.html\n\nThe layout view is the special view which it contains the layout. Into the view are rendered other views. You can create unlimited count of layouts.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{js('default.js')}\n    @{css('bootstrap.min.css', 'default.css', 'font-awesome.min.css')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `@{meta}` tag renders meta tags\n- `@{js('...')}` tag renders links to scripts\n- `@{css('...')}` tag renders links to styles\n- `@{favicon('...')}` tag renders favicon\n- `@{body}` tag renders views from actions (__IMPORTANT__ for layout views)\n\nMore about the view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit the view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is the content from the view.</p>\n```\n\n### Create the view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{fi}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{fi}\n```\n\n### Create the view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run the application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$ node debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n### Read more:\n\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Tutorial"
     },
@@ -14363,7 +14375,7 @@
       "name": "Modules"
     },
     {
-      "body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.id = 'helloworld';\n\nexports.install = function() {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    framework.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    framework.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.",
+      "body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.id = 'helloworld';\n\nexports.install = function() {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.",
       "group": "How does it work?",
       "name": "Packages"
     },
@@ -14383,7 +14395,7 @@
       "name": "View engine"
     },
     {
-      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: controller.translate()](#api~FrameworkController~controller.translate)\n- [Documentation: framework.translate()](#api~Framework~framework.translate)\n\n---\n\n## Full example\n\n### First step\n\nYou must install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe controller:\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n};\n\nfunction view_index() {\n    var self = this;\n\n    // Set the language according to the query parameter in URI:\n    self.language = self.query.language || '';\n    // or accoding to the request header: Accept-Language\n    // self.language = self.req.language;\n\n    self.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(total.js is web application framework for node.js)</p>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM).\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : total.js is web application framework for node.js\n```\n\n__2.__\n\nI copy the content from `translate.resource` to the new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : total.js je webový framework pre node.js\n```\n\n### Run\n\n`http://127.0.0.1:8000`\n\n```html\n...\n...\n    <title>Title</title>\n...\n...\n    <h1>Hello world!</h1>\n    <p>total.js is web application framework for node.js</p>\n...\n...\n```\n\n`http://127.0.0.1:8000/?language=sk`\n\n```html\n...\n...\n    <title>Titulok</title>\n...\n...\n    <h1>Ahoj svet!</h1>\n    <p>total.js je webový framework pre node.js</p>\n...\n...\n```\n\n## New changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -diff en.resource de.resource\n```\n\n## Create a new translation identificator\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -translate \"Hello World!\"\n```\n\nOutput:\n\n```\n-862545276       : Hello World\n```\n",
+      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: F.translate()](#api~Framework~framework.translate)\n- For setting the language for the current request use [F.onLocate()](#api~Framework~framework.onLocate) delegate\n\n__IMPORTANT__:\n\n- The localized text doesn't start with `#sometext` because for the framework is `sometext` key and the framework reads this key directly from the resource file.\n\n---\n\n## Full example\n\n### First step\n\nYou must install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe controller:\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction view_index() {\n    var self = this;\n\n    // Set the language according to the query parameter in URI:\n    self.language = self.query.language || '';\n    // or accoding to the request header: Accept-Language\n    // self.language = self.req.language;\n\n    self.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(total.js is web application framework for node.js)</p>\n\n<!-- READS THE TITLE DIRECTLY FROM THE RESOURCE FILE -->\n<!-- YOU CAN USE OWN CUSTOM KEY -->\n<div>@(#message)</div>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM).\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : total.js is web application framework for node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Direct reading.\n```\n\n__2.__\n\nI copy the content from `translate.resource` to the new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : total.js je webový framework pre node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Priame čítanie.\n```\n\n### Run\n\n`http://127.0.0.1:8000`\n\n```html\n...\n...\n    <title>Title</title>\n...\n...\n    <h1>Hello world!</h1>\n    <p>total.js is web application framework for node.js</p>\n    <div>Direct reading.</div>\n...\n...\n```\n\n`http://127.0.0.1:8000/?language=sk`\n\n```html\n...\n...\n    <title>Titulok</title>\n...\n...\n    <h1>Ahoj svet!</h1>\n    <p>total.js je webový framework pre node.js</p>\n    <div>Priame čítanie</div>\n...\n...\n```\n\n## Translation tools\n\nIf you installed __total.js__ from NPM as global module then you have available translation tools.\n\n### Tracking of new changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -diff en.resource de.resource\n```\n\n### Translating of text files\n\nContent of __my-translation.txt__:\n\n```\nHello World!\nI help you\nMy name is Peter.\nTotal.js is the web application framework\n```\n\nOpen terminal or command-line:\n\n```bash\n$ total --translate my-translation.txt\n```\n\n### Translate custom phrase\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate \"Hello World\"\n```\n\nOutput:\n\n```\nT-862545276       : Hello World\n```",
       "group": "How does it work?",
       "name": "Localization"
     },

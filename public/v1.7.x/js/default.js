@@ -287,6 +287,8 @@ $(document).ready(function() {
     $('.language').find('a[href="' + selected + '"]').addClass('selected');
 
     $('#search').bind('keydown', function(e) {
+        if (this.value === '')
+            return;
         clearTimeout(timeout);
         timeout = setTimeout(function() {
             $('#search').trigger('change');
