@@ -223,7 +223,9 @@
         {
           "default": "null",
           "description": "This delegate compiles a custom content in views `@{compile jade}....@{end}`. This function must return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controler\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "name": "framework.onCompileView",
           "params": [
             {
@@ -299,7 +301,9 @@
         {
           "description": "This event is triggered when the request contains a file (begin).",
           "name": "framework.on('upload-begin')",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The HTTP Request.",
@@ -316,7 +320,9 @@
         {
           "description": "This event is triggered when the request contains a file (end).",
           "name": "framework.on('upload-end')",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The HTTP Request.",
@@ -348,28 +354,28 @@
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
           "params": [
-
+            
           ]
         },
         {
@@ -633,7 +639,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -643,7 +649,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -705,7 +711,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -841,7 +847,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -1130,7 +1136,9 @@
         {
           "description": "This function is very important for custom handling of files. It creates an queue list for files.\n\n### Example\n\n```javascript\n// Example with MongoDB\nF.exists(req, res, function(next, filename) {\n    var db = DATABASE();\n    var reader = new GridStore(db, ObjectID.parse(id), 'r');\n\n    reader.open(function(err, fs) {\n\n        if (err) {\n            reader.close();\n            F.responseFile(req, res, framework.path.public('/img/empty.jpg'), undefined, undefined, next);\n            return;\n        }\n\n        var stream = fs.stream(true);\n        var writer = Fs.createWriteStream(filename);\n\n        stream.pipe(writer);\n\n        writer.on('close', function() {\n            reader.close();\n            F.responseImage(req, res, filename, function(img) {\n                img.output('jpg');\n                img.quality(90);\n            }, undefined, next);\n        });\n    });\n});\n```",
           "name": "framework.exists",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The HTTP Request.",
@@ -1725,7 +1733,9 @@
         {
           "description": "Writes the message into the specific log file. The log file will contain date + time.",
           "name": "framework.logger",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The filename.",
@@ -2618,7 +2628,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2650,7 +2660,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -3346,7 +3356,9 @@
           "default": "0",
           "description": "The maximum opened file descriptors. The feature is disable when the value is `0`.",
           "name": "default-maximum-file-descriptors",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "return": "Number"
         },
         {
@@ -3444,7 +3456,9 @@
         },
         {
           "default": "2880",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "description": "Interval (minutes) for clearing DNS CACHE from the memory. For manual clearing use `Utils.clearDNS()`.",
           "name": "default-interval-clear-dnscache",
           "return": "Number"
@@ -3618,7 +3632,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -4250,7 +4264,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -4260,7 +4274,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4492,7 +4506,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4500,7 +4514,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -4585,7 +4599,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -4840,7 +4854,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5399,7 +5413,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5412,7 +5426,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -5652,7 +5666,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -7591,7 +7605,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -8007,7 +8021,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8020,7 +8034,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8272,7 +8286,9 @@
         {
           "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on(U.streamer('</CD>', function(value, index) {\n    if (index === 0)\n        value = value.substring(value.indexOf('<CD'));\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "Utils.streamer",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "A string delimiter.",
@@ -8327,15 +8343,20 @@
         {
           "description": "Clears DNS cache.",
           "name": "Utils.clearDNS",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
+            
           ],
           "return": "undefined"
         },
         {
           "description": "Resolves IPv4 from DNS and then it stores to the cache.",
           "name": "Utils.resolve",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "name": "url",
@@ -8498,7 +8519,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -9605,7 +9626,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9625,7 +9646,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9633,7 +9654,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9641,7 +9662,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9649,7 +9670,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -9657,13 +9678,15 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
         {
           "description": "Performs a geometry.",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "name": "image.geometry",
           "params": [
             {
@@ -9690,7 +9713,9 @@
         {
           "description": "Creates a thumbnail.",
           "name": "image.thumbnail",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "New image width.",
@@ -9792,7 +9817,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -9800,7 +9825,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9808,7 +9833,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -9816,7 +9841,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10282,7 +10307,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10334,7 +10359,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -10342,7 +10367,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -10476,7 +10501,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -10682,7 +10707,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10690,7 +10715,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10698,7 +10723,7 @@
           "description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10718,7 +10743,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10743,7 +10768,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -10814,7 +10839,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10853,7 +10878,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10861,7 +10886,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10869,7 +10894,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10877,7 +10902,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10906,7 +10931,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10914,7 +10939,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10922,7 +10947,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10930,7 +10955,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10970,7 +10995,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -10978,7 +11003,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -10986,7 +11011,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11129,7 +11154,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11137,7 +11162,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11246,7 +11271,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -11571,7 +11596,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "optional",
@@ -11615,7 +11640,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
@@ -11701,7 +11726,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             },
@@ -11728,7 +11753,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11824,7 +11849,9 @@
         {
           "description": "Finds the first item in array.\n\n```javascript\nvar arr = [{ age: 30, name: 'Peter' }, { age: 64, name: 'Ann' }, { age: 18, name: 'John' }]\n\nconsole.log(arr.findIndex('age', 30));\n\n// or\nconsole.log(arr.findIndex(function(item, index) {\n    return item.name === 'Ann';\n}));\n```",
           "name": "Array.prototype.findIndex",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "Prepare function.",
@@ -11877,7 +11904,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11885,7 +11912,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -11900,7 +11927,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -11945,7 +11972,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -11988,7 +12015,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -12211,7 +12238,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12255,7 +12282,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12567,7 +12594,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-
+                
               ],
               "return": "Object",
               "type": "Function"
@@ -12627,7 +12654,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12720,7 +12747,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -13096,7 +13123,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13146,7 +13173,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -13398,7 +13425,9 @@
         {
           "description": "Prepares the values. Must return a prepared object.",
           "name": "SchemaBuilderEntity.setPrepare",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The function.",
@@ -13428,7 +13457,9 @@
         {
           "description": "Sets the prefix for the ErrorBuilder.",
           "name": "SchemaBuilderEntity.setPrefix",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The prefix.",
@@ -13441,7 +13472,9 @@
         {
           "description": "Sets the resource for the ErrorBuilder.",
           "name": "SchemaBuilderEntity.setResource",
-          "options": ["v1.7.3"],
+          "options": [
+            "v1.7.3"
+          ],
           "params": [
             {
               "description": "The resource name.",
@@ -13967,7 +14000,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -14142,7 +14175,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -14393,7 +14426,7 @@
   "modified": "2014-30-12 12:00:00",
   "pages": [
     {
-      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into terminal or command line after installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` filea and put below content into the file. Run it: `node index.js`.\n\n```javascript\nfunction main() {\n\n    F.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    F.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(main) !== 'undefined') main(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
+      "body": "> Welcome to the **total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating rich, scalable web applications.\n\n## Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n## Other ways for installation\n\n### 1. NPM (Node package manager)\n\nNode.js platform includes [Node package manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node package manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating total.js applications.\n\n```bash\n$ npm sudo install -g total.js\n```\n\n__Try to write__ into the terminal or command-line after the installation:\n\n```bash\n$ total -help\n```\n\n### 3. Run the framework without installation\n\nCreate `index.js` filea and put below content into the file. Run it: `node index.js`.\n\n```javascript\nfunction main() {\n\n    F.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (debug mode), release (release mode), test (test mode)\n    F.http('debug');\n}\n\nrequire('http').get('http://modules.totaljs.com/total.js/v1.7.0/total.js', function(res) {\n    var buffer = [];\n    res.on('data', function(buf) { buffer.push(buf.toString('utf8')); });\n    res.on('end', function() { eval(buffer.join('')); if (typeof(main) !== 'undefined') main(); });\n});\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Getting started"
     },
@@ -14408,7 +14441,7 @@
       "name": "Directory structure"
     },
     {
-      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- Really simple\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## Really simple\n\nThe framework is really simple, you can create website in few lines:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\nnode myapp.js\n```\n\nIn the above code you have available a full web server with all total.js features.\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
+      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- A minimal configuration for running\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- SOAP with total.js\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## A minimal configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\nnode myapp.js\n```\n\nYou have a full web server with all total.js features in the above code.\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```nginx\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## SOAP with total.js\n\nHow to create the SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__A result which we must send to the service in total.js__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n    <SOAP-ENV:Body>\n        <tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n            <tns1:countryCode>SK</tns1:countryCode>\n            <tns1:vatNumber>0000000000</tns1:vatNumber>\n        </tns1:checkVat>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n    console.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
       "group": "",
       "name": "Developer tools"
     },
@@ -14463,7 +14496,7 @@
       "name": "Validation"
     },
     {
-      "body": "> total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering web site for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n### CSS\n\n- All CSS code is minified `framework.config['allow-compile-css']`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` - remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n__Output__:\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `framework.config['allow-compile-js']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```",
+      "body": "> total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering web site for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n### CSS\n\n- All CSS code is minified `framework.config['allow-compile-css']`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` - remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n__Output__:\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `framework.config['allow-compile-js']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.7.3`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of total.js project.\n\n__Example__:\n\n```bash\n$ total --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$ total --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$ total --minify example.css\n```\n\n__Output:__ example.min.css",
       "group": "How does it work?",
       "name": "HTML, JS, CSS"
     },
