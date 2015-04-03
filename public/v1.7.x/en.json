@@ -224,7 +224,7 @@
           "default": "null",
           "description": "This delegate compiles a custom content in views `@{compile jade}....@{end}`. This function must return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controler\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "name": "framework.onCompileView",
           "params": [
@@ -302,7 +302,7 @@
           "description": "This event is triggered when the request contains a file (begin).",
           "name": "framework.on('upload-begin')",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -321,7 +321,7 @@
           "description": "This event is triggered when the request contains a file (end).",
           "name": "framework.on('upload-end')",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -696,7 +696,7 @@
       "methods": [
         {
           "options": [
-            "v1.7.1"
+            "+v1.7.1"
           ],
           "description": "Adds a new scheduler.",
           "name": "framework.schedule",
@@ -720,7 +720,7 @@
         {
           "description": "Reads the configuration from the file.",
           "options": [
-            "v1.7.1"
+            "+v1.7.1"
           ],
           "name": "framework.useConfig",
           "params": [
@@ -1137,7 +1137,7 @@
           "description": "This function is very important for custom handling of files. It creates an queue list for files.\n\n### Example\n\n```javascript\n// Example with MongoDB\nF.exists(req, res, function(next, filename) {\n    var db = DATABASE();\n    var reader = new GridStore(db, ObjectID.parse(id), 'r');\n\n    reader.open(function(err, fs) {\n\n        if (err) {\n            reader.close();\n            F.responseFile(req, res, framework.path.public('/img/empty.jpg'), undefined, undefined, next);\n            return;\n        }\n\n        var stream = fs.stream(true);\n        var writer = Fs.createWriteStream(filename);\n\n        stream.pipe(writer);\n\n        writer.on('close', function() {\n            reader.close();\n            F.responseImage(req, res, filename, function(img) {\n                img.output('jpg');\n                img.quality(90);\n            }, undefined, next);\n        });\n    });\n});\n```",
           "name": "framework.exists",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -1734,7 +1734,7 @@
           "description": "Writes the message into the specific log file. The log file will contain date + time.",
           "name": "framework.logger",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -3357,7 +3357,7 @@
           "description": "The maximum opened file descriptors. The feature is disable when the value is `0`.",
           "name": "default-maximum-file-descriptors",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "return": "Number"
         },
@@ -3457,7 +3457,7 @@
         {
           "default": "2880",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "description": "Interval (minutes) for clearing DNS CACHE from the memory. For manual clearing use `Utils.clearDNS()`.",
           "name": "default-interval-clear-dnscache",
@@ -6374,7 +6374,7 @@
           "description": "Gets the route for the controller.",
           "name": "controller.route",
           "options": [
-            "v1.7.3",
+            "+v1.7.3",
             "readonly",
             "http",
             "websocket"
@@ -8292,7 +8292,7 @@
           "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on(U.streamer('</CD>', function(value, index) {\n    if (index === 0)\n        value = value.substring(value.indexOf('<CD'));\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "Utils.streamer",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -8349,7 +8349,7 @@
           "description": "Clears DNS cache.",
           "name": "Utils.clearDNS",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
 
@@ -8360,7 +8360,7 @@
           "description": "Resolves IPv4 from DNS and then it stores to the cache.",
           "name": "Utils.resolve",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -8681,7 +8681,7 @@
           "description": "Minifies the style (CSS).",
           "name": "Utils.minifyStyle",
           "options": [
-            "v1.7.2"
+            "+v1.7.2"
           ],
           "params": [
             {
@@ -8696,7 +8696,7 @@
           "description": "Minifies the script (JS).",
           "name": "Utils.minifyScript",
           "options": [
-            "v1.7.2"
+            "+v1.7.2"
           ],
           "params": [
             {
@@ -8710,7 +8710,7 @@
         {
           "description": "Minifies the HTML (HTML).",
           "options": [
-            "v1.7.2"
+            "+v1.7.2"
           ],
           "name": "Utils.minifyHTML",
           "params": [
@@ -9690,7 +9690,7 @@
         {
           "description": "Performs a geometry.",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "name": "image.geometry",
           "params": [
@@ -9719,7 +9719,7 @@
           "description": "Creates a thumbnail.",
           "name": "image.thumbnail",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -11605,7 +11605,7 @@
               ],
               "options": [
                 "optional",
-                "v1.7.3"
+                "+v1.7.3"
               ]
             }
           ],
@@ -11651,7 +11651,7 @@
         },
         {
           "options": [
-            "v1.7.2"
+            "+v1.7.2"
           ],
           "description": "Extend object items in the array.",
           "name": "Array.prototype.extend",
@@ -11675,7 +11675,7 @@
         },
         {
           "options": [
-            "v1.7.2"
+            "+v1.7.2"
           ],
           "description": "Extend object items in the array.",
           "name": "Array.prototype.extend",
@@ -11855,7 +11855,7 @@
           "description": "Finds the first item in array.\n\n```javascript\nvar arr = [{ age: 30, name: 'Peter' }, { age: 64, name: 'Ann' }, { age: 18, name: 'John' }]\n\nconsole.log(arr.findIndex('age', 30));\n\n// or\nconsole.log(arr.findIndex(function(item, index) {\n    return item.name === 'Ann';\n}));\n```",
           "name": "Array.prototype.findIndex",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -12449,6 +12449,92 @@
             }
           ],
           "return": "Object"
+        },
+        {
+          "description": "A simple shortcut for getting the schema (or group) in the specific group. If is not defined a `schema` name then the function returns __SchemaBuilder__ otherwise __SchemaBuilderEntity__.",
+          "name": "SCHEMA",
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "SchemaBuilder or SchemaBuilderEntity"
+        },
+        {
+          "description": "A simple shortcut for getting the schema in the specific group (as a default group is used `default` group).",
+          "name": "NEWSCHEMA",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "description": "This method can track a real end of the stream/response/request. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\n\nFINISHED(stream, function(err) {\n    console.log('This stream is really finished.');\n    DESTROY(stream);\n});\n```",
+          "name": "FINISHED",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A source for tracking of end. It can be a Stream, Response or Request.",
+              "name": "stream",
+              "type": "Stream"
+            },
+            {
+              "description": "",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                }
+              ]
+            }
+          ],
+          "return": "undefined"
+        },
+        {
+          "description": "This method destroy the stream/response/request. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\n\nFINISHED(stream, function(err) {\n    console.log('This stream is really finished.');\n    DESTROY(stream);\n});\n```",
+          "name": "DESTROY",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A source: Stream/Response/Request.",
+              "name": "stream",
+              "type": "Stream"
+            }
+          ],
+          "return": "undefined"
         },
         {
           "description": "This function is the alias for `framework.functions()`.",
@@ -13431,7 +13517,7 @@
           "description": "Prepares the values. Must return a prepared object.",
           "name": "SchemaBuilderEntity.setPrepare",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -13463,7 +13549,7 @@
           "description": "Sets the prefix for the ErrorBuilder.",
           "name": "SchemaBuilderEntity.setPrefix",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
@@ -13478,7 +13564,7 @@
           "description": "Sets the resource for the ErrorBuilder.",
           "name": "SchemaBuilderEntity.setResource",
           "options": [
-            "v1.7.3"
+            "+v1.7.3"
           ],
           "params": [
             {
