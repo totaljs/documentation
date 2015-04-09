@@ -12370,6 +12370,44 @@
           "return": "Framework"
         },
         {
+          "description": "Writes the message into the specific log file. The log file will contain date + time.",
+          "name": "LOGGER",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "The filename.",
+              "name": "filename",
+              "type": "String"
+            },
+            {
+              "description": "A dynamic parameter.",
+              "name": "param..1",
+              "options": [
+                "optional"
+              ],
+              "type": "Any"
+            },
+            {
+              "description": "A dynamic parameter.",
+              "name": "param..2",
+              "options": [
+                "optional"
+              ],
+              "type": "Any"
+            },
+            {
+              "description": "A dynamic parameter.",
+              "name": "param..n",
+              "options": [
+                "optional"
+              ],
+              "type": "Any"
+            }
+          ]
+        },
+        {
           "description": "This function is the alias for `framework.install()`.",
           "go": "#api~Framework",
           "name": "INSTALL",
