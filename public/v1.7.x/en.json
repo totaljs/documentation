@@ -222,7 +222,7 @@
         },
         {
           "default": "null",
-          "description": "This delegate compiles a custom content in views `@{compile jade}....@{end}`. This function must return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controler\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
+          "description": "This delegate compiles a custom content in views `@{compile jade}....@{end}`. This function must return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controller\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
           "options": [
             "+v1.7.3"
           ],
@@ -347,6 +347,32 @@
                 "optional"
               ],
               "type": "String"
+            }
+          ]
+        },
+        {
+          "description": "This event is triggered when is set a new item into the cache.",
+          "name": "framework.on('cache-set')",
+          "params": [
+            {
+              "description": "The cache key",
+              "name": "key",
+              "type": "String"
+            },
+            {
+              "description": "The cache value.",
+              "name": "value",
+              "type": "Object"
+            },
+            {
+              "description": "The expiration.",
+              "name": "expiration",
+              "type": "Date"
+            },
+            {
+              "description": "Is the value synchronized?",
+              "name": "sync",
+              "type": "Boolean"
             }
           ]
         },
@@ -3544,8 +3570,8 @@
       "group": "Framework",
       "methods": [
         {
-          "description": "Adds the item into the cache and returns the value.",
-          "name": "framework.cache.add",
+          "description": "Sets the item into the cache and returns the value.",
+          "name": "framework.cache.set",
           "params": [
             {
               "description": "The name.",
@@ -3561,6 +3587,14 @@
               "description": "The expiration and it can be the string, example: \"5 minutes\" or \"1 hour\".",
               "name": "expire",
               "type": "Date"
+            },
+            {
+              "description": "Is the value synchronized? Used for the cluster synchronization.",
+              "name": "sync",
+              "type": "Booelan",
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "Object"
@@ -4524,7 +4558,7 @@
           "return": "undefined"
         }
       ],
-      "description": "The __FrameworkController__ is created when the route executes an action. The framework knows two types of controllers: the `HTTP/HTTPS` controller and the `WebSocket` controller but the framework presents them as one.\n\n```javascript\n// Sets the controller name (default value: the contorller filename)\n// Optional\nexports.id = 'My-Controller-Name';\n\n// Sets the controller dependencies. The controller can be depends on modules.\n// Optional\nexports.dependencies = ['module-name-A', 'module-name-B'];\n\n// Optional\nexports.install = function() {\n    framework.route('/products/', view_products);\n    framework.route('/api/', json_api, ['post', 'json']);\n};\n\n// Optional\nexports.uninstall = function() {\n    // uninstall delegate\n};\n```",
+      "description": "The __FrameworkController__ is created when the route executes an action. The framework knows two types of controllers: the `HTTP/HTTPS` controller and the `WebSocket` controller but the framework presents them as one.\n\n```javascript\n// Sets the controller name (default value: the controller filename)\n// Optional\nexports.id = 'My-Controller-Name';\n\n// Sets the controller dependencies. The controller can be depends on modules.\n// Optional\nexports.dependencies = ['module-name-A', 'module-name-B'];\n\n// Optional\nexports.install = function() {\n    framework.route('/products/', view_products);\n    framework.route('/api/', json_api, ['post', 'json']);\n};\n\n// Optional\nexports.uninstall = function() {\n    // uninstall delegate\n};\n```",
       "events": [
         {
           "description": "This event is triggered when is the user connected.",
@@ -8785,6 +8819,18 @@
           "return": "Boolean"
         },
         {
+          "description": "Checks if the value is plain object.",
+          "name": "Utils.isObject",
+          "params": [
+            {
+              "description": "The value.",
+              "name": "value",
+              "type": "Object"
+            }
+          ],
+          "return": "Boolean"
+        },
+        {
           "description": "Checks if the value is the Date object.",
           "name": "Utils.isDate",
           "params": [
@@ -12495,6 +12541,91 @@
           "return": "SchemaBuilderEntity"
         },
         {
+          "description": "Alias for global.NEWSCHEMA().",
+          "name": "NEW",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "description": "Usage:\n\n```javascript\n// var a = yield sync(ASYNC_FUNCTION)(ASYNC_FUNCTION_ARGUMENTS);\nvar a = yield sync(fs.readFile)(self.path.root('index.js'));\n```\n\n__IMPORTANT:__ the last argument in `ASYNC_FUNCTION` __must be__ a CALLBACK delegate like this: `callback(err, value)`.\n\n### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *() {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then controller executes view500(error)\n})(self);\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
+          "example": "https://github.com/totaljs/examples/tree/master/generators",
+          "name": "sync",
+          "params": [
+            {
+              "description": "A function to execute.",
+              "name": "fn",
+              "type": "Function"
+            },
+            {
+              "description": "An owner, object context.",
+              "name": "owner",
+              "type": "Object"
+            }
+          ],
+          "return": "Function"
+        },
+        {
+          "description": "### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *() {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then the controller executes view500(error)\n})(self);\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
+          "name": "async",
+          "example": "https://github.com/totaljs/examples/tree/master/generators",
+          "params": [
+            {
+              "description": "A function to execute.",
+              "name": "fn",
+              "type": "Function"
+            },
+            {
+              "description": "A callback or Controller (it invokes throw500 when is error).",
+              "name": "callback",
+              "type": "Function/Controller",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Function"
+        },
+        {
+          "description": "A simple shortcut for getting the schema.",
+          "name": "GET",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
           "description": "This method can track a real end of the stream/response/request. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\n\nFINISHED(stream, function(err) {\n    console.log('This stream is really finished.');\n    DESTROY(stream);\n});\n```",
           "name": "FINISHED",
           "options": [
@@ -14567,12 +14698,12 @@
       "name": "Resources"
     },
     {
-      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions it has been `_layout.html`.\n- The char `~` maps the current path of the view into the views root directory\n- [View properties and methods](#api~FrameworkViews)\n\n---\n\n### Examples\n\nMost [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nExist many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function(framework, name) {\n    framework.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n    var self = this;\n    self.repository.firstname = 'Peter';\n    self.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according to the name. The layout is same as the view but only one different is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{head}\n    @{css('default.css')}\n    @{js('default.js')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n\n    <div class=\"content\">\n        @{section('panel')}\n        @{body}\n    </div>\n\n    @{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n                    { name: 'B', price: 32.10 },\n                    { name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n```html\n@{if user === null}\n    <div>sign in</div>\n@{else}\n    <div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n    @{if model.name === 'Lucia'}\n        <div>Here is Lucia.</div>\n        @{else}\n        <div>Here is Peter.</div>\n    @{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n    <div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n    <div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n    <div>@{index}</div>\n    <div>@{property.name}</div>\n    <div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n    @{body}\n....\n....\n    @{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n    <h1>Homepage</h1>\n    <br />\n....\n....\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n```javascript\nframework.helpers.custom = function(str, num) {\n    // this === controller\n    return str + ' = ' + num;\n};\n```\n\n```html\n<!-- OR -->\n@{custom('Peter', 25)}\n```\n\n## Defining inline helpers\n\nThe inline helper must by defined in the view.\n\n```html\n@{helper address(street, city)\n    <h2>Address</h2>\n    <div>@{street}</div>\n    <div>@{city}</div>\n    <br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n    <div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n```\n\n## Auto binding values\n\n![Auto binding values](resources/viewengine-binding.png)\n\n__Controller__:\n\n```javascript\nfunction view_contactform() {\n    this.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n---\n\n[Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)",
+      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions it has been `_layout.html`.\n- The char `~` maps the current path of the view into the views root directory\n- [View properties and methods](#api~FrameworkViews)\n\n---\n\n### Examples\n\nMost [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nExist many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function(framework, name) {\n    framework.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n    var self = this;\n    self.repository.firstname = 'Peter';\n    self.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according to the name. The layout is same as the view but only one different is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{head}\n    @{css('default.css')}\n    @{js('default.js')}\n    @{favicon('favicon.ico')}\n</head>\n<body>\n\n    <div class=\"content\">\n        @{section('panel')}\n        @{body}\n    </div>\n\n    @{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n                    { name: 'B', price: 32.10 },\n                    { name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n```html\n@{if user === null}\n    <div>sign in</div>\n@{else}\n    <div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n    @{if model.name === 'Lucia'}\n        <div>Here is Lucia.</div>\n        @{else}\n        <div>Here is Peter.</div>\n    @{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n    <div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n    <div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n    <div>@{index}</div>\n    <div>@{property.name}</div>\n    <div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n    @{body}\n....\n....\n    @{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n    <h1>Homepage</h1>\n    <br />\n....\n....\n    <div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n```javascript\nframework.helpers.custom = function(str, num) {\n    // this === controller\n    return str + ' = ' + num;\n};\n```\n\n```html\n<!-- OR -->\n@{custom('Peter', 25)}\n```\n\n## Defining inline helpers\n\nThe inline helper must by defined in the view.\n\n```html\n@{helper address(street, city)\n    <h2>Address</h2>\n    <div>@{street}</div>\n    <div>@{city}</div>\n    <br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n    <div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n\n<!--\n    Or you can translate by the resource key with @(#KEY).\n    Example:\n-->\n\n<h1>@(#T-3403403030)</h1>\n<p>@(#T34930203922)</p>\n```\n\n## Auto binding values\n\n![Auto binding values](resources/viewengine-binding.png)\n\n__Controller__:\n\n```javascript\nfunction view_contactform() {\n    this.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n---\n\n[Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)",
       "group": "How does it work?",
       "name": "View engine"
     },
     {
-      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: F.translate()](#api~Framework~framework.translate)\n- For setting the language for the current request use [F.onLocate()](#api~Framework~framework.onLocate) delegate\n\n__IMPORTANT__:\n\n- The localized text doesn't start with `#sometext` because for the framework is `sometext` key and the framework reads this key directly from the resource file.\n\n---\n\n## Full example\n\n### First step\n\nYou must install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe controller:\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction view_index() {\n    var self = this;\n\n    // Set the language according to the query parameter in URI:\n    self.language = self.query.language || '';\n    // or accoding to the request header: Accept-Language\n    // self.language = self.req.language;\n\n    self.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(total.js is web application framework for node.js)</p>\n\n<!-- READS THE TITLE DIRECTLY FROM THE RESOURCE FILE -->\n<!-- YOU CAN USE OWN CUSTOM KEY -->\n<div>@(#message)</div>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM).\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : total.js is web application framework for node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Direct reading.\n```\n\n__2.__\n\nI copy the content from `translate.resource` to the new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : total.js je webový framework pre node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Priame čítanie.\n```\n\n### Run\n\n`http://127.0.0.1:8000`\n\n```html\n...\n...\n    <title>Title</title>\n...\n...\n    <h1>Hello world!</h1>\n    <p>total.js is web application framework for node.js</p>\n    <div>Direct reading.</div>\n...\n...\n```\n\n`http://127.0.0.1:8000/?language=sk`\n\n```html\n...\n...\n    <title>Titulok</title>\n...\n...\n    <h1>Ahoj svet!</h1>\n    <p>total.js je webový framework pre node.js</p>\n    <div>Priame čítanie</div>\n...\n...\n```\n\n## Translation tools\n\nIf you installed __total.js__ from NPM as global module then you have available translation tools.\n\n### Tracking of new changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -diff en.resource de.resource\n```\n\n### Translating of text files\n\nContent of __my-translation.txt__:\n\n```\nHello World!\nI help you\nMy name is Peter.\nTotal.js is the web application framework\n```\n\nOpen terminal or command-line:\n\n```bash\n$ total --translate my-translation.txt\n```\n\n### Translate custom phrase\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate \"Hello World\"\n```\n\nOutput:\n\n```\nT-862545276       : Hello World\n```",
+      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: F.translate()](#api~Framework~framework.translate)\n- For setting the language for the current request use [F.onLocate()](#api~Framework~framework.onLocate) delegate\n\n__IMPORTANT__:\n\n- The localized text doesn't start with `#sometext` because for the framework is `sometext` key and the framework reads this key directly from the resource file.\n\n---\n\n## Full example\n\n### First step\n\nYou must install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe controller:\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction view_index() {\n    var self = this;\n\n    // Set the language according to the query parameter in URI:\n    self.language = self.query.language || '';\n    // or accoding to the request header: Accept-Language\n    // self.language = self.req.language;\n\n    self.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(total.js is web application framework for node.js)</p>\n\n<!-- READS THE TITLE DIRECTLY FROM THE RESOURCE FILE -->\n<!-- YOU CAN USE OWN CUSTOM KEY -->\n<div>@(#message) or @(#T80818744) is same as @(Title) (read below)</div>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM).\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : total.js is web application framework for node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Direct reading\n```\n\n__2.__\n\nI copy the content from `translate.resource` to the new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : total.js je webový framework pre node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Priame čítanie\n```\n\n### Run\n\n`http://127.0.0.1:8000`\n\n```html\n...\n...\n    <title>Title</title>\n...\n...\n    <h1>Hello world!</h1>\n    <p>total.js is web application framework for node.js</p>\n    <div>Direct reading or Title is same as Title (read below)</div>\n...\n...\n```\n\n`http://127.0.0.1:8000/?language=sk`\n\n```html\n...\n...\n    <title>Titulok</title>\n...\n...\n    <h1>Ahoj svet!</h1>\n    <p>total.js je webový framework pre node.js</p>\n    <div>Priame čítanie or Titulok is same as Titulok (read below)</div>\n...\n...\n```\n\n## Translation tools\n\nIf you installed __total.js__ from NPM as global module then you have available translation tools.\n\n### Tracking of new changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total -diff en.resource de.resource\n```\n\n### Translating of text files\n\nContent of __my-translation.txt__:\n\n```\nHello World!\nI help you\nMy name is Peter.\nTotal.js is the web application framework\n```\n\nOpen terminal or command-line:\n\n```bash\n$ total --translate my-translation.txt\n```\n\n### Translate custom phrase\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ total --translate \"Hello World\"\n```\n\nOutput:\n\n```\nT-862545276       : Hello World\n```",
       "group": "How does it work?",
       "name": "Localization"
     },
