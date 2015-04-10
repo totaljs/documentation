@@ -11617,6 +11617,71 @@
           "return": "Array"
         },
         {
+          "description": "Creates an object from the array.\n\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.toObject());\n// OUTPUT: { 1: true, 2: true, 3: true, 4: true }\n\narr = [{ id: 1, name: 'Peter' }, { id: 2, name: 'Lucia' }];\nconsole.log(arr.toObject('name'));\n// OUTPUT: { 'Peter': { id: 1, name: 'Peter'}, 'Peter': { id: 1, name: 'Lucia'}}\n```",
+          "name": "Array.prototype.toObject",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A property name.",
+              "name": "name",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "description": "Compares two arrays.\n\n```javascript\n\n// Items from e.g. Database\nvar a = [{ id: 1, name: 'Peter' },\n         { id: 2, name: 'Lucia' }]\n\n// Items from e.g. Form\nvar b = [{ id: 1, name: 'Peter' },\n         { id: 3, name: 'Anna' }];\n\nvar arr_new = [];\nvar arr_del = [];\nvar arr_upd = [];\n\na.compare('id', b, function(itemA, itemB, indexA, indexB) {\n    \n    if (!itemA) {\n        // itemA not found in \"b\"\n        arr_del.push(itemA);\n        return;\n    }\n\n    if (!itemB) {\n        // itemB not found in \"a\"\n        arr_new.push(itemB);\n        return;\n    }\n\n    if (itemA.name !== itemB.name) {\n        // A change:\n        arr_upd.push(itemB);\n        return;\n    }\n\n    // any change\n});\n\nconsole.log('NEW–>DB:', arr_new);\nconsole.log('UPD->DB:', arr_upd);\nconsole.log('DEL–>DB:', arr_del);\n```",
+          "name": "Array.prototype.compare",
+          "options": [
+            "+v1.7.3"
+          ],
+          "params": [
+            {
+              "description": "A property name: __identificator__.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "description": "A second array.",
+              "name": "arr",
+              "type": "Array"
+            },
+            {
+              "description": "comparer",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "description": "An item from base array.",
+                  "name": "itemA",
+                  "type": "Object"
+                },
+                {
+                  "description": "An item from array (argument).",
+                  "name": "itemB",
+                  "type": "Object"
+                },
+                {
+                  "description": "An item index from base array",
+                  "name": "indexA",
+                  "type": "Number"
+                },
+                {
+                  "description": "An item index from array (argument).",
+                  "name": "indexB",
+                  "type": "Number"
+                }
+              ]
+            }
+          ],
+          "return": "undefined"
+        },
+        {
           "description": "Takes items according to the limit.",
           "name": "Array.prototype.limit",
           "params": [
@@ -12621,7 +12686,7 @@
           "return": "Function"
         },
         {
-          "description": "### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *() {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then the controller executes view500(error)\n})(self);\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
+          "description": "__IMPORTANT__: The custom attributes must be added after the callback.\n\n### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *(custom_attr) {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then the controller executes view500(error)\n})(self, 'CUSTOM_ATTR');\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
           "name": "async",
           "example": "https://github.com/totaljs/examples/tree/master/generators",
           "params": [
@@ -12631,10 +12696,28 @@
               "type": "Function"
             },
             {
-              "description": "A callback or Controller (it invokes throw500 when is error).",
+              "description": "A callback or Controller (it invokes throw500 when is an unexpected error).",
               "name": "callback",
               "type": "Function/Controller",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "description": "A custom attribute.",
+              "name": "custom1",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "description": "A custom attribute.",
+              "name": "custom..n",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
             }
           ],
           "return": "Function"
