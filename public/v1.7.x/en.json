@@ -1160,7 +1160,7 @@
           "return": "Framework"
         },
         {
-          "description": "This function is very important for custom handling of files. It creates an queue list for files.\n\n### Example\n\n```javascript\n// Example with MongoDB\nF.exists(req, res, function(next, filename) {\n    var db = DATABASE();\n    var reader = new GridStore(db, ObjectID.parse(id), 'r');\n\n    reader.open(function(err, fs) {\n\n        if (err) {\n            reader.close();\n            F.responseFile(req, res, framework.path.public('/img/empty.jpg'), undefined, undefined, next);\n            return;\n        }\n\n        var stream = fs.stream(true);\n        var writer = Fs.createWriteStream(filename);\n\n        stream.pipe(writer);\n\n        writer.on('close', function() {\n            reader.close();\n            F.responseImage(req, res, filename, function(img) {\n                img.output('jpg');\n                img.quality(90);\n            }, undefined, next);\n        });\n    });\n});\n```",
+          "description": "This function is very important for custom handling of files. It creates an queue list for files.\n\n### Example\n\n```javascript\n// Example with MongoDB\nF.exists(req, res, function(next, filename) {\n    var db = DATABASE();\n    var reader = new GridStore(db, ObjectID.parse(id), 'r');\n\n    reader.open(function(err, fs) {\n\n        if (err) {\n            reader.close();\n            F.responseFile(req, res, framework.path.public('/img/empty.jpg'), undefined, undefined, next);\n            return;\n        }\n\n        var stream = fs.stream(true);\n        var writer = Fs.createWriteStream(filename);\n\n        stream.on('close', function() {\n            reader.close();\n            FINISHED(writer, function() {\n                DESTROY(writer);\n                F.responseImage(req, res, filename, function(img) {\n                    img.output('jpg');\n                    img.quality(90);\n                }, undefined, next);\n            });\n        });\n    }); \n});\n```",
           "name": "framework.exists",
           "options": [
             "+v1.7.3"
@@ -8323,7 +8323,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on(U.streamer('</CD>', function(value, index) {\n    if (index === 0)\n        value = value.substring(value.indexOf('<CD'));\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
+          "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('</CD>', function(value, index) {\n    if (index === 0)\n        value = value.substring(value.indexOf('<CD'));\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "Utils.streamer",
           "options": [
             "+v1.7.3"
