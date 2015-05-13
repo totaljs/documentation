@@ -10569,7 +10569,7 @@
       "group": "Prototypes",
       "methods": [
         {
-          "description": "Sets the value into the cookie. For reading cookies use `Request.cookie().` The __default path__ is `/`.\n\n__Cookie options__:\n\n```javascript\n{ Expires: Date, Domain: String, Path: String, Secure: Boolean, httpOnly: Boolean }\n```",
+          "description": "Sets the value into the cookie. For reading cookies use `Request.cookie().` The __default path__ is `/`.\n\n__Cookie options__:\n\n```javascript\n{ expires: Date, domain: String, path: String, secure: Boolean, httpOnly: Boolean }\n```",
           "example": "https://github.com/totaljs/examples/tree/master/cookies",
           "name": "Response.prototype.cookie",
           "params": [
