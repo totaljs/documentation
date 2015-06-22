@@ -3241,7 +3241,7 @@
         {
           "default": "'/views/'",
           "description": "The default directory for views.",
-          "name": "directory-models",
+          "name": "directory-views",
           "return": "String"
         },
         {
