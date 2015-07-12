@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>total.js documentation</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/github.min.css" />
+    <link rel="shortcut icon" href="resources/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="resources/favicon.ico" type="image/x-icon" />
+    <!--
+    <link rel="stylesheet" href="docs.min.css" />
+    -->
+</head>
+<body data-json="en.json">
+
+    <div class="container hidden" id="container">
+        <div class="row">
+            <div class="col-md-3 m">
+                <div class="menu">
+                    <div class="center"><a href="javascript:void(0)" id="logo"><img src="resources/logo.png" class="image-responsive" alt="total.js web application framework for node.js" width="180" /></a></div>
+                    <div id="version"></div>
+                    <div class="search">
+                        <input type="text" id="search" placeholder="Search in API ..." autofocus="autofocus" />
+                    </div>
+                    <!--
+                    <ul class="language">
+                        <li><a href="en.html">EN</a></li>
+                    </ul>
+                    -->
+                    <div id="menu"></div>
+                    <br />
+                    <div class="offline">Offline mode: <b>ON</b></div>
+                </div>
+            </div>
+            <div class="col-md-9 m">
+                <div class="content" id="content"></div>
+                <div class="footer">
+                    <div>Code and documentation licensed under <a href="https://github.com/totaljs/framework/blob/master/license.txt">MIT</a>.</div>
+                    <div>&copy; 2012-2015 <a href="http://www.petersirka.eu">Peter Širka</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading">
+        <div>Loading ...</div>
+    </div>
+
+    <script type="text/html" id="template-menu">
+        <br />
+        {{ if name }}
+            <strong class="menu-group">{{ name }}</strong>
+        {{ endif }}
+        <ul>
+            {{ foreach m in items }}
+            <li><a href="{{ m.linker }}">{{ m.name }}</a></li>
+            {{ end }}
+        </ul>
+    </script>
+
+    <script type="text/html" id="template-api-members">
+        <h2 id="{{ name | lower }}">{{ name }} ({{ members.length }})</h2>
+        <ul class="members">
+            {{ foreach m in members }}
+                <li data-id="{{ m.linker }}">
+                    <a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span> {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option">{{ o }}</span>{{ end }}{{ endif }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ endif }}</a>
+                    <div class="body hidden">
+                        {{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ endif }}
+                        <div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }};</div>
+                        {{ if m.params && m.params.length > 0 }}
+                            <div class="member-body-params">
+                                {{ m.params | params }}
+                            </div>
+                        {{ endif }}
+                        {{ if m.options && m.options.length > 0 }}
+                            <div class="member-body-flags">
+                            {{ foreach f in m.options }}
+                                <span>{{ f }}</span>
+                            {{ end }}
+                            </div>
+                        {{ endif }}
+                        <div class="member-body-return">returns {{ if m.go }}<a href="{{ m.go }}">{{ m.return }}</a>{{ else }}{{ m.return }}{{ endif }};</div>
+                        <div class="markdown">{{ m.body | raw }}</div>
+                        {{ if m.example }}
+                        <div class="member-body-example"><a href="{{ m.example }}" target="_blank">Example</a></div>
+                        {{ endif }}
+                    </div>
+                </li>
+            {{ end }}
+        </ul>
+    </script>
+
+    <script type="text/html" id="template-api-links">
+        <h3>List of all members</h3>
+        <ul class="member-links">
+            {{ if properties }}<li><a href="javascript:go('properties')">Properties</a></li>{{ endif }}
+            {{ if methods }}<li><a href="javascript:go('methods')">Methods</a></li>{{ endif }}
+            {{ if delegates }}<li><a href="javascript:go('delegates')">Delegates</a></li>{{ endif }}
+            {{ if events }}<li><a href="javascript:go('events')">Events</a></li>{{ endif }}
+        </ul>
+    </script>
+
+    <script type="text/html" id="template-search">
+        <h1>Search results ({{ members.length }})</h1>
+        <ul class="members">
+            {{ foreach m in members }}
+                <li data-id="{{ m.linker }}">
+                    <a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span></a>
+                </li>
+            {{ end }}
+        </ul>
+        {{ if members.length === 0 }}
+            <div class="noresult">Try to change a search phrase. Search engine is searching in properties, methods, delegates and events.</div>
+        {{ endif }}
+    </script>
+    <a href="https://github.com/totaljs/framework"><img class="fork" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <!--
+    <script src="docs.min.js"></script>
+    -->
+
+    <script src="js/highlight.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tangular.min.js"></script>
+    <script src="js/marked.min.js"></script>
+    <script src="js/default.js"></script>
+
+</body>
+</html>
