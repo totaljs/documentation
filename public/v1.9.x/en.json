@@ -189,14 +189,14 @@
 							"type": "String"
 						},
 						{
-							"description": "A schema name if exists.",
-							"name": "schemaName",
-							"type": "String"
-						},
-						{
 							"description": "The model instance.",
 							"name": "model",
 							"type": "Object"
+						},
+						{
+							"description": "A schema name if exists.",
+							"name": "schemaName",
+							"type": "String"
 						}
 					],
 					"return": "Boolean"
@@ -380,28 +380,28 @@
 					"description": "This event is triggered when a new module is installed.",
 					"name": "framework.on('module#name')",
 					"params": [
-						
+
 					]
 				},
 				{
 					"description": "This event is triggered when a new controller is installed.",
 					"name": "framework.on('controller#name')",
 					"params": [
-						
+
 					]
 				},
 				{
 					"description": "This event is triggered when a new model is installed.",
 					"name": "framework.on('model#name')",
 					"params": [
-						
+
 					]
 				},
 				{
 					"description": "This event is triggered when a new config is installed.",
 					"name": "framework.on('config#name')",
 					"params": [
-						
+
 					]
 				},
 				{
@@ -665,7 +665,7 @@
 						"onetime"
 					],
 					"params": [
-						
+
 					]
 				},
 				{
@@ -675,7 +675,7 @@
 						"onetime"
 					],
 					"params": [
-						
+
 					]
 				},
 				{
@@ -721,10 +721,12 @@
 			"group": "Framework",
 			"methods": [
 				{
+					"changetype": 2,
+					"changelog": "added [repeat] argument.",
 					"options": [
 						"+v1.7.1"
 					],
-					"description": "Adds a new scheduler.",
+					"description": "Adds a new scheduler.\n\n```javascript\n// The schedule executes function each day at 12:00\nF.schedule('12:00', '1 day', function() {\n\n});\n\n// The schedule executes function one time at 12:00\nF.schedule('12:00', function() {\n\n});\n```",
 					"name": "framework.schedule",
 					"params": [
 						{
@@ -733,11 +735,19 @@
 							"type": "Date/String/Number"
 						},
 						{
+							"description": "Expression which it added to current date after is scheduler executed. E.g. <b>1 day</b>.",
+							"name": "repeat",
+							"type": "String",
+							"options": [
+								"optional"
+							]
+						},
+						{
 							"description": "The function to executed.",
 							"name": "fn",
 							"type": "Function",
 							"params": [
-								
+
 							]
 						}
 					],
@@ -873,7 +883,7 @@
 					"description": "Reconnects HTTP/HTTPS again.",
 					"name": "framework.reconnect",
 					"params": [
-						
+
 					],
 					"return": "Framework"
 				},
@@ -1360,6 +1370,8 @@
 					"return": "Framework"
 				},
 				{
+					"changetype": 2,
+					"changelog": "added new argument [language].",
 					"description": "Renders a view into the string. This method simulates the controller and renders HTML into the string.",
 					"name": "framework.view",
 					"params": [
@@ -1391,11 +1403,21 @@
 								"optional"
 							],
 							"type": "Object"
+						},
+						{
+							"description": "Localization for the view.",
+							"name": "language",
+							"options": [
+								"optional"
+							],
+							"type": "String"
 						}
 					],
 					"return": "String"
 				},
 				{
+					"changetype": 2,
+					"changelog": "we have replaced [replyTo] argument for [language] argument.",
 					"description": "Creates the HTML from some view and sends the e-mail.",
 					"name": "framework.mail",
 					"params": [
@@ -1438,11 +1460,12 @@
 							"type": "Function"
 						},
 						{
-							"description": "The reply address.",
-							"name": "replyTo",
+							"description": "Localization for the view.",
+							"name": "language",
 							"options": [
 								"optional"
 							],
+							"default": "'default'",
 							"type": "String"
 						}
 					],
@@ -1479,7 +1502,9 @@
 					"return": "Framework"
 				},
 				{
-					"description": "A custom mapping of static files. You can easily change a mapping static file.",
+					"changetype": 2,
+					"changelog": "added full directory mapping.",
+					"description": "A custom mapping of static files. You can easily change a mapping static file.\n\n### Mapping files\n\n```javascript\n// http://127.0.0.1:8000/app.js --> server responds with app-homepage.js script\nF.map('/app.js', '/hidden-in-public-directory/app-homepage.js');\nF.map('/app.js', F.path.private('/app-homepage.js'));\n```\n\n### Mapping directories\n\n```javascript\n// all files\nF.map('/custom/', '/hidden-in-public-directory/');\n\n// only images\nF.map('/custom/', '/hidden-in-public-directory/', ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', F.path.private(), function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for packages\n\n```javascript\n// all files\nF.map('/custom/', '@package_name');\n\n// only images\nF.map('/custom/', '@package_name', ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', '@pcakge_name', function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for isomorphic code\n\n```javascript\n// below file is linked to /isomorphic/my-isomorphic.js\nF.map('/serverside.js', '#my-isomorphic');\n```",
 					"name": "framework.map",
 					"params": [
 						{
@@ -1491,6 +1516,14 @@
 							"description": "The filename for response.",
 							"name": "filename",
 							"type": "String"
+						},
+						{
+							"description": "The filter for file extension. This argument can be `Function` as filter.",
+							"name": "extension",
+							"type": "String Array",
+							"options": [
+								"optional"
+							]
 						}
 					],
 					"return": "Framework"
@@ -2652,7 +2685,7 @@
 					"description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
 					"name": "framework.clear",
 					"params": [
-						
+
 					],
 					"return": "Framework"
 				},
@@ -2684,7 +2717,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						}
@@ -3455,7 +3488,9 @@
 					"return": "Boolean"
 				},
 				{
-					"default": "false",
+					"changetype": 2,
+					"changelog": "changed default value to <b>true</b>.",
+					"default": "true",
 					"description": "Allows to increase the HTTP performance.",
 					"name": "allow-performance",
 					"return": "Boolean"
@@ -3500,7 +3535,9 @@
 					"return": "Number"
 				},
 				{
-					"default": "0",
+					"changetype": 2,
+					"changelog": "changed the default value from <b>0</b> to <b>3</b>.",
+					"default": "3",
 					"description": "Interval (minutes) for the websocket pinging. `0` is disabled.",
 					"name": "default-interval-websocket-ping",
 					"return": "Number"
@@ -3664,7 +3701,7 @@
 					"description": "Clears cached items in the cache.",
 					"name": "framework.cache.clear",
 					"params": [
-						
+
 					],
 					"return": "FrameworkCache"
 				},
@@ -4296,7 +4333,7 @@
 					"go": "#api~Framework",
 					"name": "framework.restrictions.clearIP",
 					"params": [
-						
+
 					],
 					"return": "Framework"
 				},
@@ -4306,7 +4343,7 @@
 					"go": "#api~Framework",
 					"name": "framework.restrictions.clearHeaders",
 					"params": [
-						
+
 					],
 					"return": "Framework"
 				}
@@ -4376,11 +4413,6 @@
 				{
 					"description": "Returns a count of upload (multipart) requests.",
 					"name": "framework.stats.request.upload",
-					"return": "Number"
-				},
-				{
-					"description": "Returns a count of XSS requests (for example: if the request data contains an illegal characters).",
-					"name": "framework.stats.request.xss",
 					"return": "Number"
 				},
 				{
@@ -4543,7 +4575,7 @@
 					"description": "The controller installer. The delegate is executed only one time.",
 					"name": "exports.install",
 					"params": [
-						
+
 					],
 					"return": "undefined"
 				},
@@ -4551,7 +4583,7 @@
 					"description": "The controller uninstaller. The delegate is executed only one time.",
 					"name": "exports.uninstall",
 					"params": [
-						
+
 					],
 					"return": "undefined"
 				}
@@ -4636,7 +4668,7 @@
 						"websocket"
 					],
 					"params": [
-						
+
 					]
 				},
 				{
@@ -4891,7 +4923,7 @@
 						"http"
 					],
 					"params": [
-						
+
 					],
 					"return": "FrameworkController"
 				},
@@ -5450,7 +5482,7 @@
 						"http"
 					],
 					"params": [
-						
+
 					],
 					"return": "FrameworkController"
 				},
@@ -5463,7 +5495,7 @@
 						"onetime"
 					],
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -5703,7 +5735,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						}
@@ -6239,6 +6271,8 @@
 					"return": "FrameworkController or String"
 				},
 				{
+					"changetype": 2,
+					"changelog": "we have replaced [replyTo] argument for [language] argument.",
 					"description": "Creates the HTML from some view and sends the e-mail.",
 					"example": "https://github.com/totaljs/examples/tree/master/controller-mail",
 					"name": "controller.mail",
@@ -6282,8 +6316,8 @@
 							"type": "Function"
 						},
 						{
-							"description": "The reply address.",
-							"name": "replyTo",
+							"description": "Localization for the view.",
+							"name": "language",
 							"options": [
 								"optional"
 							],
@@ -7665,7 +7699,7 @@
 					"example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
 					"name": "@{sitemap}",
 					"params": [
-						
+
 					],
 					"return": "Object Array"
 				},
@@ -8081,7 +8115,7 @@
 					"example": "https://github.com/totaljs/examples/tree/master/views",
 					"name": "@{repository.customKey}",
 					"options": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -8094,7 +8128,7 @@
 					"description": "Gets the value from the model.",
 					"name": "@{model.customKey}",
 					"options": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -8408,7 +8442,7 @@
 						"+v1.8.0"
 					],
 					"params": [
-						
+
 					],
 					"return": "undefined"
 				},
@@ -8482,7 +8516,7 @@
 							"name": "validator",
 							"type": "Function",
 							"params": [
-								
+
 							],
 							"options": [
 								"must return Boolean"
@@ -8633,7 +8667,7 @@
 					"description": "The empty function.",
 					"name": "Utils.noop",
 					"params": [
-						
+
 					],
 					"return": "undefined"
 				},
@@ -8659,6 +8693,8 @@
 					"return": "String"
 				},
 				{
+					"changetype": 2,
+					"changelog": "updated a default value for [rewrite] argument.",
 					"description": "Extends the object. The function returns the extended target object.",
 					"name": "Utils.extend",
 					"params": [
@@ -8673,7 +8709,7 @@
 							"type": "Object"
 						},
 						{
-							"default": "false",
+							"default": "true",
 							"description": "Rewrites the existing values.",
 							"name": "rewrite",
 							"options": [
@@ -9791,7 +9827,7 @@
 					"description": "Sets image normalization.",
 					"name": "image.normalize",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9811,7 +9847,7 @@
 					"description": "Flips the image.",
 					"name": "image.flip",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9819,7 +9855,7 @@
 					"description": "Flops the image (opposite the flip).",
 					"name": "image.flop",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9827,7 +9863,7 @@
 					"description": "Minify the image.",
 					"name": "image.minify",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9835,7 +9871,7 @@
 					"description": "Creates a grayscale from the image..",
 					"name": "image.grayscale",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9843,7 +9879,7 @@
 					"description": "Creates a sepia from the image.",
 					"name": "image.sepia",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				},
@@ -9982,7 +10018,7 @@
 					"description": "Reads the file content __synchronous__.",
 					"name": "file.readSync",
 					"params": [
-						
+
 					],
 					"return": "Buffer"
 				},
@@ -9990,7 +10026,7 @@
 					"description": "Checks the content type whether is an image.",
 					"name": "file.isImage",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -9998,7 +10034,7 @@
 					"description": "Checks the content type whether is a video.",
 					"name": "file.isVideo",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -10006,7 +10042,7 @@
 					"description": "Checks the content type whether is an audio.",
 					"name": "file.isAudio",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -10098,7 +10134,7 @@
 					"go": "#api~FrameworkImage",
 					"name": "file.image",
 					"params": [
-						
+
 					],
 					"return": "FrameworkImage"
 				}
@@ -10256,8 +10292,17 @@
 					"return": "String"
 				},
 				{
-					"description": "The referer must have the value from the host header.",
-					"name": "referer",
+					"description": "The request body can be anything. The content of `req.body` is the raw string of the request body.",
+					"name": "raw",
+					"options": [
+						"optional",
+						"http"
+					],
+					"return": "String"
+				},
+				{
+					"description": "The referrer must have the value from the host header.",
+					"name": "referrer",
 					"options": [
 						"optional",
 						"http"
@@ -10350,16 +10395,6 @@
 					"description": "The request must contain: __POST method__ and the content-type must be: `multipart/form-data`.",
 					"example": "https://github.com/totaljs/examples/tree/master/routing-flags",
 					"name": "upload",
-					"options": [
-						"optional",
-						"http"
-					],
-					"return": "String"
-				},
-				{
-					"description": "The framework doesn't check the XSS attack.",
-					"example": "https://github.com/totaljs/examples/tree/master/framework-xss-protection",
-					"name": "xss",
 					"options": [
 						"optional",
 						"http"
@@ -10464,7 +10499,7 @@
 					"description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
 					"name": "Request.prototype.authorization",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -10516,7 +10551,7 @@
 					"description": "Clears the uploaded files. This function is executed automatically.",
 					"name": "Request.prototype.clear",
 					"params": [
-						
+
 					],
 					"return": "Request"
 				},
@@ -10524,7 +10559,7 @@
 					"description": "Disables the cache validation.",
 					"name": "Request.prototype.noCache",
 					"params": [
-						
+
 					],
 					"return": "Request"
 				}
@@ -10663,7 +10698,7 @@
 					"description": "Disables HTTP cache.",
 					"name": "Response.prototype.noCache",
 					"params": [
-						
+
 					],
 					"return": "Response"
 				},
@@ -10871,7 +10906,7 @@
 					"description": "Trims the white characters.",
 					"name": "String.prototype.trim",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -10879,11 +10914,12 @@
 					"description": "Parses XML from the string to Object.",
 					"name": "String.prototype.parseXML",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
 				{
+					"changetype": 1,
 					"description": "Simple string templating.\n\n```javascript\nvar string = 'My name is {{ name }} and I have {{ age }} years old. Created: {{ created | dd.MM.yyyy }} and credits: {{ credits | ## ### }} credits.'\nconsole.log(string.params({ name: 'Peter', age: 31, created: new Date(), credits: 1000 }));\n```",
 					"name": "String.prototype.params",
 					"params": [
@@ -10899,7 +10935,7 @@
 					"description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
 					"name": "String.prototype.toSearch",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -10919,7 +10955,7 @@
 					"description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
 					"name": "String.prototype.parseDate",
 					"params": [
-						
+
 					],
 					"return": "Date"
 				},
@@ -10944,7 +10980,7 @@
 					"description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
 					"name": "String.prototype.parseDateExpiration",
 					"params": [
-						
+
 					],
 					"return": "Date"
 				},
@@ -11015,7 +11051,7 @@
 					"description": "Parses the configuration from a string (the same configuration as the framework configuration)",
 					"name": "String.prototype.parseConfig",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -11054,7 +11090,7 @@
 					"description": "Encodes the string to the HTML safe characters.",
 					"name": "String.prototype.encode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11062,7 +11098,7 @@
 					"description": "Decodes the string from the HTML safe characters.",
 					"name": "String.prototype.decode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11070,7 +11106,7 @@
 					"description": "Encodes the string to URL the safe characters.",
 					"name": "String.prototype.urlEncode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11078,7 +11114,7 @@
 					"description": "Decodes the string from URL the safe characters.",
 					"name": "String.prototype.urlDecode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11107,7 +11143,7 @@
 					"description": "Checks if the string contains the valid JSON.",
 					"name": "String.prototype.isJSON",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -11115,7 +11151,7 @@
 					"description": "Checks if the string contains the valid URL address.",
 					"name": "String.prototype.isURL",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -11123,7 +11159,7 @@
 					"description": "Checks if the string contains the valid e-mail address.",
 					"name": "String.prototype.isEmail",
 					"params": [
-						
+
 					],
 					"return": "Boolean"
 				},
@@ -11131,7 +11167,7 @@
 					"description": "Checks if the string contains the valid boolean value.",
 					"name": "String.prototype.isBoolean",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11171,7 +11207,7 @@
 					"description": "Parses a boolean from the string.",
 					"name": "String.prototype.parseBool",
 					"params": [
-						
+
 					],
 					"return": "Number"
 				},
@@ -11179,7 +11215,7 @@
 					"description": "Converts the string to unicode (HTML) characters.",
 					"name": "String.prototype.toUnicode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11187,7 +11223,7 @@
 					"description": "Parses the unicode (HTML) characters.",
 					"name": "String.prototype.fromUnicode",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11330,7 +11366,7 @@
 					"description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
 					"name": "String.prototype.base64ContentType",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11338,7 +11374,7 @@
 					"description": "Removes diacritics from the string.",
 					"name": "String.prototype.removeDiacritics",
 					"params": [
-						
+
 					],
 					"return": "String"
 				},
@@ -11447,7 +11483,7 @@
 					"description": "Capitalize the first letter of string (eg : test -> Test)",
 					"name": "String.prototype.capitalize",
 					"params": [
-						
+
 					],
 					"return": "String"
 				}
@@ -11676,6 +11712,7 @@
 					"return": "Date"
 				},
 				{
+					"changetype": 1,
 					"description": "Adds years / months / days / hours / minutes / seconds to the Date object.\n\n__Example__:\n\n```javascript\nnew Date().add('2 days');\nnew Date().add('-1 month');\n```",
 					"name": "Date.prototype.add",
 					"params": [
@@ -11849,7 +11886,7 @@
 							"name": "callback",
 							"type": "Function",
 							"params": [
-								
+
 							],
 							"options": [
 								"optional",
@@ -11893,7 +11930,7 @@
 					"description": "Trims all strings in the array.",
 					"name": "Array.prototype.trim",
 					"params": [
-						
+
 					],
 					"return": "Array"
 				},
@@ -11979,7 +12016,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						},
@@ -12006,7 +12043,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						}
@@ -12157,7 +12194,7 @@
 					"description": "Gets the one item (randomly) from the array.",
 					"name": "Array.prototype.random",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -12165,7 +12202,7 @@
 					"description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
 					"name": "Array.prototype.randomize",
 					"params": [
-						
+
 					],
 					"return": "Array"
 				}
@@ -12180,7 +12217,7 @@
 					"description": "Cancels the work.",
 					"name": "async.cancel",
 					"params": [
-						
+
 					],
 					"return": "Async"
 				},
@@ -12225,7 +12262,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						}
@@ -12268,7 +12305,7 @@
 								"optional"
 							],
 							"params": [
-								
+
 							],
 							"type": "Function"
 						}
@@ -12491,7 +12528,7 @@
 					"description": "The empty function.",
 					"name": "NOOP",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -12535,7 +12572,7 @@
 					"description": "Gets the database instance. This function is the alias for `framework.database()`.",
 					"name": "DATABASE",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -13074,7 +13111,7 @@
 							"description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
 							"name": "fn",
 							"params": [
-								
+
 							],
 							"return": "Object",
 							"type": "Function"
@@ -13134,7 +13171,7 @@
 					"description": "Returns the transformed errors.",
 					"name": "instance.output",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -13227,7 +13264,7 @@
 					"description": "Clears all errors.",
 					"name": "instance.clear",
 					"params": [
-						
+
 					],
 					"return": "ErrorBuilder"
 				},
@@ -13603,7 +13640,7 @@
 					"description": "Creates a new instance of the UrlBuilder.",
 					"name": "new UrlBuilder",
 					"params": [
-						
+
 					],
 					"return": "UrlBuilder"
 				},
@@ -13653,7 +13690,7 @@
 					"description": "Clears all parameters.",
 					"name": "instance.clear",
 					"params": [
-						
+
 					],
 					"return": "UrlBuilder"
 				},
@@ -14483,7 +14520,7 @@
 					"description": "Destroys the entity.",
 					"name": "SchemaBuilderEntity.destroy",
 					"params": [
-						
+
 					],
 					"return": "undefined"
 				},
@@ -14658,7 +14695,7 @@
 					"description": "Creates the empty object according to the schema.",
 					"name": "SchemaBuilderEntity.create",
 					"params": [
-						
+
 					],
 					"return": "Object"
 				},
@@ -14943,22 +14980,22 @@
 			"name": "Controllers"
 		},
 		{
-			"body": "The definitions can rewrite existing functionality or add a new. The definition can define the framework behavior and it does not have any other logic. __In short__: the definition is a coded configuration file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The definitions is the plain JavaScript file with `.js` extension.\n- All definitions are stored in `your-app/definitions/` directory.\n- Each definitions is executed automatically and one time.\n- You can create unlimited count of definitions\n- The definition can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-definition).\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain definitions.\n\n- [Example: Install the definition from URL](https://github.com/totaljs/examples/tree/master/framework-install-definition)\n- [Example: The definition with MongoDB driver](https://github.com/totaljs/examples/tree/master/mongodb)\n\n---\n\n## The definition\n\nThe definition file contains only the code to run, nothing more.\n\n### A full example of definition\n\nE.g. create: `definitions/database.js`\n\n```javascript\nvar DB = null;\n\nrequire('mongodb').MongoClient.connect('connection-string-to-database', function(err, db) {\n    if (err)\n        throw err;\n    DB = db;\n});\n\n// Rewrite built-in functionality\nframework.database = function(collection) {\n    if (collection)\n        return DB.collection(collection);\n    return DB;\n};\n```",
+			"body": "The definitions can rewrite existing functionality or add a new. The definition can define the framework behavior and it does not have any other logic. __In short__: the definition is a coded configuration file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The definitions is the plain JavaScript file with `.js` extension.\n- All definitions are stored in `your-app/definitions/` directory.\n- Each definitions is executed automatically and one time.\n- You can create unlimited count of definitions\n- The definition can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-definition).\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain definitions.\n\n- [Example: Install the definition from URL](https://github.com/totaljs/examples/tree/master/framework-install-definition)\n- [Example: The definition with MongoDB driver](https://github.com/totaljs/examples/tree/master/mongodb)\n\n---\n\n## The definition\n\nThe definition file contains only the code to run, nothing more.\n\n### A full example of definition\n\nE.g. create: `definitions/database.js`\n\n```javascript\nvar DB = null;\n\nrequire('mongodb').MongoClient.connect('connection-string-to-database', function(err, db) {\n    if (err)\n        throw err;\n    DB = db;\n});\n\n// Rewrite built-in functionality\nF.database = function(collection) {\n    if (collection)\n        return DB.collection(collection);\n    return DB;\n};\n```",
 			"group": "How does it work?",
 			"name": "Definitions"
 		},
 		{
-			"body": "```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the module into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the module name (it's the identificator name). A __default value__ for this property is the module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only the array of module names. The framework waits for all dependencies and then installs the pending modules.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__\n\n```javascript\nexports.install = function() {\n    console.log('Hello from the module.');\n    framework.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the module.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function() {\n    framework.on('request', increment);\n    framework.route('/stats/', json_stats);\n};\n\nexports.uninstall = function() {\n    framework.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in the controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```",
+			"body": "```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the module into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the module name (it's the identificator name). A __default value__ for this property is the module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only the array of module names. The framework waits for all dependencies and then installs the pending modules.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__ Argument: `options` can contain custom settings for the module, is optional.\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the module.');\n    F.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the module. Argument: `options` can contain custom settings for the module, is optional.\n\n```javascript\nexports.uninstall = function(options) {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function(options) {\n    F.on('request', increment);\n    F.route('/stats/', json_stats);\n};\n\nexports.uninstall = function(options) {\n    F.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in the controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```",
 			"group": "How does it work?",
 			"name": "Modules"
 		},
 		{
-			"body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.id = 'helloworld';\n\nexports.install = function() {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.",
+			"body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.id = 'helloworld';\n\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.",
 			"group": "How does it work?",
 			"name": "Packages"
 		},
 		{
-			"body": "Models are good for databases schema.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The model is the plain JavaScript file with `.js` extension.\n- The framework automatically loads model into the memory.\n- All modules are stored in `your-app/models/` directory.\n- `exports.install` is executed automatically and one time.\n- You can create unlimited count of models.\n- Model can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-model).\n\n---\n\n## Examples\n\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the model name (it's the identificator name). A __default value__ for this property is the model filename without extension.\n\n```javascript\nexports.id = 'Model name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when the framework loads models.\n\n```javascript\nexports.install = function() {\n    console.log('Hello from the model.');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the model.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This model is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of model\n\nThe filename: `models/user.js`\n\n```javascript\nexports.id = 'user';\nexports.version = '1.01';\n\nexports.create = function(user) {\n    // NoSQL embedded database\n    DATABASE('users').insert(user);\n};\n\nexports.load = function(id, callback) {\n    // NoSQL embedded database\n    DATABASE('users').one(function(doc) {\n        return doc.id === id;\n    }, callback);\n}\n```\n\nGet the model in e.g. the controller action:\n\n```javascript\nfunction json_create_user() {\n    var user = { id: Utils.GUID(5), alias: 'Peter Sirka' };\n\n    // global alias:\n    MODEL('user').create(user);\n\n    // or\n    framework.model('user').create(user);\n\n    this.json(user);\n}\n```",
+			"body": "Models are good for databases schema.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The model is the plain JavaScript file with `.js` extension.\n- The framework automatically loads model into the memory.\n- All modules are stored in `your-app/models/` directory.\n- `exports.install` is executed automatically and one time.\n- You can create unlimited count of models.\n- Model can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-model).\n\n---\n\n## Examples\n\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the model name (it's the identificator name). A __default value__ for this property is the model filename without extension.\n\n```javascript\nexports.id = 'Model name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when the framework loads models.\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the model.');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the model.\n\n```javascript\nexports.uninstall = function(options) {\n    console.log('This model is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of model\n\nThe filename: `models/user.js`\n\n```javascript\nexports.id = 'user';\nexports.version = '1.01';\n\nexports.create = function(user) {\n    // NoSQL embedded database\n    DATABASE('users').insert(user);\n};\n\nexports.load = function(id, callback) {\n    // NoSQL embedded database\n    DATABASE('users').one(function(doc) {\n        return doc.id === id;\n    }, callback);\n}\n```\n\nGet the model in e.g. the controller action:\n\n```javascript\nfunction json_create_user() {\n    var user = { id: Utils.GUID(5), alias: 'Peter Sirka' };\n\n    // global alias:\n    MODEL('user').create(user);\n\n    // or\n    F.model('user').create(user);\n\n    this.json(user);\n}\n```",
 			"group": "How does it work?",
 			"name": "Models"
 		},
@@ -14983,7 +15020,7 @@
 			"name": "Authorization"
 		},
 		{
-			"body": "The framework has a simple validation logic. The result from the validation is [Builders.ErrorBuilder](#api~Builders.ErrorBuilder) and contains all informations about the errors. The framework knows two types of validation:\n\n1. The objects validation.\n2. The schemas validation (recommended).\n\n---\n\n## The objects validation\n\n- [Documentation: framework.onValidation()](#api~Framework~framework.onValidation)\n- [Documentation: controller.validate()](#api~FrameworkController~controller.validate)\n- [Documentation: Utils.validate()](#api~FrameworkUtils~utils.validate)\n- [Example: Validation](https://github.com/totaljs/examples/tree/master/validation)\n- [Example: Custom validation](https://github.com/totaljs/examples/tree/master/validation-custom)\n\nThe objects validation uses `framework.onValidation()` delegate for checking values according to the property name. The validation is linked with the resources.\n\n### Example\n\nCreate e.g. definition:\n\n```javascript\nframework.onValidation = function(name, value, path, schema, model) {\n    switch (name) {\n        case 'firstname':\n        case 'lastname':\n            return value.length > 0 ? 'Name is too short.' : true;\n        case 'terms':\n            return value.toString().parseBool();\n        case 'age':\n            var age = value.toString().parseInt();\n            return age > 10 && age < 90;\n        case 'email':\n            return value.isEmail();\n    }\n}\n```\n\nSome action in some controller:\n\n```javascript\nfunction some_action_in_controller() {\n    var self = this;\n    var model = self.body; // POSTed data\n\n    // Validate only: firstname, lastname\n    // ErrorBuilder is linked with resources\n    var error = self.validate(model, ['firstname', 'lastname'], 'error-');\n\n    if (error.hasError()) {\n        // Response: [{ \"name\": \"firstname\", \"error\": \"First name is not valid.\", path: \"\" }]\n        // You can create a transformation for the output of ErrorBuilder.\n        self.json(error);\n        return;\n    }\n\n    // Insert the model into the DB\n    self.database('users').insert(model);\n\n    // Success\n    self.json({ success: true });\n}\n```\n\nResource `default.resource`:\n\n```html\nerror-firstname        : First name is not valid.\nerror-lastname         : Last name is not valid.\n```\n\n## The schemas validation\n\n- [Documentation: Builders.SchemaBuilder](#api~Builders.SchemaBuilder)\n- [Example: Schema validation](https://github.com/totaljs/examples/tree/master/framework-schema-validation)\n\n### Example\n\nCreate e.g. definition:\n\n```javascript\nvar schema = SCHEMA('my-group');\nvar User = schema.add('User');\n\nUser.define('alias', 'string(50)', true); // The framework trims long strings according to the schema\nUser.define('age', Number);\nUser.define('email', String, true);\nUser.define('datecreated', Date);\n\n// Set the validation\nUser.setValidation(function(name, value, path, schema, model) {\n    switch (name) {\n        case 'alias':\n            return value.length > 0;\n        case 'age':\n            return value > 15 && value < 80;\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// User.setDefault(...)\n// User.setSave(...)\n// User.setGet(...)\n// User.setQuery(...)\n// User.setRemove(...)\n```\n\nSome action in some controller:\n\n```javascript\nexports.install = function() {\n    framework.route('/add/', json_custom_schema, ['post']);\n    framework.route('/add/schema/', json_schema, ['*my-group/User', 'post']);\n}\n\nfunction json_custom_schema() {\n    var self = this;\n    var model = self.body; // POSTed data\n\n    SCHEMA('my-group', 'User').make(model, function(error, entity) {\n\n        // Error === ErrorBuilder\n        // Error can be null\n        if (error) {\n            self.json(error);\n            return;\n        }\n\n        self.json(entity);\n    });\n}\n\n// The framework automatically converts the request data according to the schema and automatically handles errors\nfunction json_schema() {\n    var self = this;\n    var entity = self.body; // A prepared entity\n\n    // schema.setSave() must be defined\n    entity.$save(function(error, result) {\n        // schema.addWorkflow() must be defined\n        entity.$workflow('email', function() {\n            self.json({ success: true });\n        });\n    });\n}\n```\n\n## Note: ErrorBuilder transformation\n\nAs default are errors in `ErrorBuilder` serialized into the JSON like Object Array. You can rewrite this transformations via [ErrorBuilder.addTransform()](#api~Builders.ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~Builders.ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in current object\"}]\n```\n\n### How to check errors on client-side?\n\n```javascript\n$.ajax('/add/', { type: 'POST', data: JSON.stringify({ age: 100 }), success: function(response) {\n\n    if (typeof(response) === 'string')\n        response = JSON.parse(response);\n\n    // Check erros\n    if (response instanceof Array) {\n        showErrors(response);\n        return;\n    }\n});\n```",
+			"body": "The framework has a simple validation logic. The result from the validation is [Builders.ErrorBuilder](#api~Builders.ErrorBuilder) and contains all informations about the errors. The framework knows two types of validation:\n\n1. The objects validation.\n2. The schemas validation (recommended).\n\n---\n\n## The objects validation\n\n- [Documentation: framework.onValidation()](#api~Framework~framework.onValidation)\n- [Documentation: controller.validate()](#api~FrameworkController~controller.validate)\n- [Documentation: Utils.validate()](#api~FrameworkUtils~utils.validate)\n- [Example: Validation](https://github.com/totaljs/examples/tree/master/validation)\n- [Example: Custom validation](https://github.com/totaljs/examples/tree/master/validation-custom)\n\nThe objects validation uses `framework.onValidation()` delegate for checking values according to the property name. The validation is linked with the resources.\n\n### Example\n\nCreate e.g. definition:\n\n```javascript\nF.onValidation = function(name, value, path, model, schema) {\n    switch (name) {\n        case 'firstname':\n        case 'lastname':\n            return value.length > 0 ? 'Name is too short.' : true;\n        case 'terms':\n            return value.toString().parseBool();\n        case 'age':\n            var age = value.toString().parseInt();\n            return age > 10 && age < 90;\n        case 'email':\n            return value.isEmail();\n    }\n}\n```\n\nSome action in some controller:\n\n```javascript\nfunction some_action_in_controller() {\n    var self = this;\n    var model = self.body; // POSTed data\n\n    // Validate only: firstname, lastname\n    // ErrorBuilder is linked with resources\n    var error = self.validate(model, ['firstname', 'lastname'], 'error-');\n\n    if (error.hasError()) {\n        // Response: [{ \"name\": \"firstname\", \"error\": \"First name is not valid.\", path: \"\" }]\n        // You can create a transformation for the output of ErrorBuilder.\n        self.json(error);\n        return;\n    }\n\n    // Insert the model into the DB\n    self.database('users').insert(model);\n\n    // Success\n    self.json({ success: true });\n}\n```\n\nResource `default.resource`:\n\n```html\nerror-firstname        : First name is not valid.\nerror-lastname         : Last name is not valid.\n```\n\n## The schemas validation\n\n- [Documentation: Builders.SchemaBuilder](#api~Builders.SchemaBuilder)\n- [Example: Schema validation](https://github.com/totaljs/examples/tree/master/framework-schema-validation)\n\n### Example\n\nCreate e.g. definition:\n\n```javascript\nvar schema = SCHEMA('my-group');\nvar User = schema.add('User');\n\nUser.define('alias', 'string(50)', true); // The framework trims long strings according to the schema\nUser.define('age', Number);\nUser.define('email', String, true);\nUser.define('datecreated', Date);\n\n// Set the validation\nUser.setValidation(function(name, value, path, schema, model) {\n    switch (name) {\n        case 'alias':\n            return value.length > 0;\n        case 'age':\n            return value > 15 && value < 80;\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// User.setDefault(...)\n// User.setSave(...)\n// User.setGet(...)\n// User.setQuery(...)\n// User.setRemove(...)\n```\n\nSome action in some controller:\n\n```javascript\nexports.install = function() {\n    F.route('/add/', json_custom_schema, ['post']);\n    F.route('/add/schema/', json_schema, ['*my-group/User', 'post']);\n}\n\nfunction json_custom_schema() {\n    var self = this;\n    var model = self.body; // POSTed data\n\n    SCHEMA('my-group', 'User').make(model, function(error, entity) {\n\n        // Error === ErrorBuilder\n        // Error can be null\n        if (error) {\n            self.json(error);\n            return;\n        }\n\n        self.json(entity);\n    });\n}\n\n// The framework automatically converts the request data according to the schema and automatically handles errors\nfunction json_schema() {\n    var self = this;\n    var entity = self.body; // A prepared entity\n\n    // schema.setSave() must be defined\n    entity.$save(function(error, result) {\n        // schema.addWorkflow() must be defined\n        entity.$workflow('email', function() {\n            self.json({ success: true });\n        });\n    });\n}\n```\n\n## Note: ErrorBuilder transformation\n\nAs default are errors in `ErrorBuilder` serialized into the JSON like Object Array. You can rewrite this transformations via [ErrorBuilder.addTransform()](#api~Builders.ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~Builders.ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in current object\"}]\n```\n\n### How to check errors on client-side?\n\n```javascript\n$.ajax('/add/', { type: 'POST', data: JSON.stringify({ age: 100 }), success: function(response) {\n\n    if (typeof(response) === 'string')\n        response = JSON.parse(response);\n\n    // Check erros\n    if (response instanceof Array) {\n        showErrors(response);\n        return;\n    }\n});\n```",
 			"group": "How does it work?",
 			"name": "Validation"
 		},
@@ -14993,7 +15030,7 @@
 			"name": "HTML, JS, CSS"
 		},
 		{
-			"body": "- The framework protects XSS automatically - [Cross-site scripting](http://en.wikipedia.org/wiki/Cross-site_scripting).\n- Use AJAX/XHR form submitting for the [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) protection\n- The framework supports method for setting [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing).\n- The framework supports auto-binding model into the forms.\n- The framework automatically checks incoming requests and the bad requests destroys automatically.\n- The framework checks length of uploading files.\n- All requests are destroyed when don't have a defined route.\n\n---\n\n## Examples\n\n- [Example: XSS protection](https://github.com/totaljs/examples/tree/master/xss-protection)\n- [Example: CSRF](https://github.com/totaljs/examples/tree/master/csrf)\n- [Example: CORS](https://github.com/totaljs/examples/tree/master/cors)\n- [Example: Auto binding values](https://github.com/totaljs/examples/tree/master/forms)",
+			"body": "- By default the view engine encodes all values\n- The framework works only with object (POST/GET/DELETE/PUT data are parsed as object)\n- Use AJAX/XHR form submitting for the [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) protection\n- The framework supports method for setting [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing).\n- The framework supports auto-binding model into the forms.\n- The framework automatically checks incoming requests and the bad requests destroys automatically.\n- The framework checks length of uploading files.\n- All requests are destroyed when don't have a defined route.\n\n---\n\n## Examples\n\n- [Example: XSS protection](https://github.com/totaljs/examples/tree/master/xss-protection)\n- [Example: CSRF](https://github.com/totaljs/examples/tree/master/csrf)\n- [Example: CORS](https://github.com/totaljs/examples/tree/master/cors)\n- [Example: Auto binding values](https://github.com/totaljs/examples/tree/master/forms)",
 			"group": "How does it work?",
 			"name": "Security (XSS, CSRF, CORS)"
 		},
@@ -15011,6 +15048,11 @@
 			"body": "## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__).\n\n```bash\n$ node --harmony my-application.js\n```\n\n---\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we must enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```text\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```",
 			"group": "",
 			"name": "Troubleshooting"
+		},
+		{
+			"body": "",
+			"group": "How does it work?",
+			"name": "Isomorphic code"
 		}
 	],
 	"version": "1.9.x"

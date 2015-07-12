@@ -26,7 +26,10 @@ Tangular.register('params', function(value) {
             }
         }
 
-        builder.push('<td>' + (param.options ? '<span>' + param.options.join(',') + '</span>' : '') + (param.description || '') + (param.default ? '<div class="member-body-default"><b>Default value</b>: ' + param.default + '</div>' : '') + (param.params ? '<div><b>function ' + param.name + '(' + callback + ') {}</b>' + Thelpers['params'](param.params) + '</div>' : '') + '</td>');
+        var opt;
+        if (param.options){opt=param.options.map(function(a){return '<span>'+a+'</span>'});}
+
+        builder.push('<td>' + (opt ? '<span>' + opt.join('') + '</span>' : '') + (param.description || '') + (param.default ? '<div class="member-body-default"><b>Default value</b>: ' + param.default + '</div>' : '') + (param.params ? '<div><b>function ' + param.name + '(' + callback + ') {}</b>' + Thelpers['params'](param.params) + '</div>' : '') + '</td>');
         builder.push('</tr>');
     }
     builder.push('</table>');
