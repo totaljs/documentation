@@ -213,7 +213,7 @@
 							"type": "String"
 						},
 						{
-							"description": "The file content.",
+							"description": "The content for compilation.",
 							"name": "content",
 							"type": "String"
 						}
@@ -247,18 +247,20 @@
 					"return": "String"
 				},
 				{
+					"changetype": 2,
+					"changelog": "Supports isomorphic code.",
 					"default": "null",
 					"description": "This delegate replaces an internal JS compiler. Delegate is synchronous because is used in a view engine.",
 					"example": "https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs",
 					"name": "framework.onCompileScript",
 					"params": [
 						{
-							"description": "The filename.",
+							"description": "The filename. If the filename starts with # then the content is the isomorphic code.",
 							"name": "filename",
 							"type": "String"
 						},
 						{
-							"description": "The file content.",
+							"description": "The content for compilation.",
 							"name": "content",
 							"type": "String"
 						}
@@ -962,7 +964,42 @@
 					"return": "Framework"
 				},
 				{
-					"description": "Creates a route for HOST redirecting.\n\n```javascript\nframework.redirect('http://totaljs.com', 'https://www.totaljs.com', true, true);\n```",
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Creates a modificator for Views (before compilation), Scripts (before compilation) and Styles (before compilation).",
+					"name": "framework.modify",
+					"params": [
+						{
+							"description": "The function modifies some content and must return a modified content.",
+							"name": "fn",
+							"options": [
+								"important",
+								"must return String"
+							],
+							"params": [
+								{
+									"description": "The content type. Type can be: \"view\", \"script\", \"style\".",
+									"name": "type",
+									"type": "String"
+								},
+								{
+									"description": "The filename.",
+									"name": "filename",
+									"type": "String"
+								},
+								{
+									"description": "The next step.",
+									"name": "content",
+									"type": "String"
+								}
+							],
+							"type": "Function"
+						}
+					],
+					"return": "Framework"
+				},
+				{
+					"description": "Creates a route for host redirecting.\n\n```javascript\n// Redirect for host\nF.redirect('http://totaljs.com', 'https://www.totaljs.com', true, true);\n```",
 					"example": "https://github.com/totaljs/examples/tree/master/redirect-host",
 					"name": "framework.redirect",
 					"params": [
@@ -998,7 +1035,7 @@
 					"return": "Framework"
 				},
 				{
-					"description": "Creates a route for relative redirecting.\n\n```javascript\nframework.redirect('/contact/', '/contacts/', true);\n```",
+					"description": "Creates a route for relative redirecting.\n\n```javascript\n// Redirect for relative URL\nF.redirect('/relative-old/', '/relative-new/');\n```",
 					"name": "framework.redirect",
 					"params": [
 						{
@@ -1024,72 +1061,13 @@
 					"return": "Framework"
 				},
 				{
-					"description": "Creates a new HTTP/HTTPS route.",
-					"example": "https://github.com/totaljs/examples/tree/master/routing",
-					"name": "framework.route",
-					"params": [
-						{
-							"description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/",
-							"name": "url",
-							"type": "String"
-						},
-						{
-							"description": "Function to execute.",
-							"name": "fn",
-							"params": [
-								{
-									"description": "Dynamic parameter",
-									"name": "param..1",
-									"options": [
-										"optional"
-									],
-									"type": "String"
-								},
-								{
-									"description": "Dynamic parameter",
-									"name": "param..2",
-									"options": [
-										"optional"
-									],
-									"type": "String"
-								},
-								{
-									"description": "Dynamic parameter",
-									"name": "param..n",
-									"options": [
-										"optional"
-									],
-									"type": "String"
-								}
-							],
-							"type": "Function"
-						},
-						{
-							"default": "{}",
-							"description": "Define more options for the route.",
-							"go": "api~HttpRouteOptions",
-							"name": "options",
-							"options": [
-								"optional"
-							],
-							"type": "HttpRouteOptions"
-						}
-					],
-					"return": "Framework"
-				},
-				{
-					"description": "Creates a new HTTP/HTTPS route.",
+					"description": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and routed to to view \"/views/index.html\"\nF.route('/', 'index');\n\n// Route with options\nF.route('/', action, { flags: ['put'], middleware: ['#middleware'], timeout: 1000, length: 1024 });\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n```",
 					"example": "https://github.com/totaljs/examples/tree/master/routing",
 					"name": "framework.route",
 					"options": [
-						"alternative"
+						"multifunctional"
 					],
 					"params": [
-						{
-							"description": "The route name.",
-							"name": "name",
-							"type": "String"
-						},
 						{
 							"description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/",
 							"name": "url",
@@ -1127,44 +1105,14 @@
 							"type": "Function"
 						},
 						{
-							"default": "{}",
-							"description": "Additional options.",
-							"go": "#api~HttpRouteOptions",
-							"name": "options",
+							"default": "[]",
+							"description": "Flags.",
+							"go": "#api~HttpRouteOptionsFlags",
+							"name": "flags",
 							"options": [
 								"optional"
 							],
-							"type": "HttpRouteOptions"
-						}
-					],
-					"return": "Framework"
-				},
-				{
-					"description": "Creates a new HTTP/HTTPS route.",
-					"example": "https://github.com/totaljs/examples/tree/master/routing",
-					"name": "framework.route",
-					"options": [
-						"alternative"
-					],
-					"params": [
-						{
-							"description": "Route name for searching.",
-							"name": "name",
-							"type": "String"
-						},
-						{
-							"description": "The relative URL. You can create a dynamic param: /{param1}/{param2}/",
-							"name": "url",
-							"type": "String"
-						},
-						{
-							"default": "According to URL.",
-							"description": "Function to execute.",
-							"name": "viewName",
-							"options": [
-								"optional"
-							],
-							"type": "String"
+							"type": "String Array"
 						}
 					],
 					"return": "Framework"
@@ -2416,6 +2364,64 @@
 					"return": "Framework"
 				},
 				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Writes bytes into the response.",
+					"name": "framework.responseBinary",
+					"params": [
+						{
+							"description": "The HTTP request.",
+							"name": "req",
+							"type": "Object"
+						},
+						{
+							"description": "The HTTP response.",
+							"name": "res",
+							"type": "Object"
+						},
+						{
+							"description": "The content type.",
+							"name": "contentType",
+							"type": "String"
+						},
+						{
+							"description": "HTTP status code.",
+							"name": "buffer",
+							"type": "Buffer"
+						},
+						{
+							"options": [
+								"optional"
+							],
+							"description": "Encode type. E.g. \"binary\", \"base64\", \"utf8\", \"ascii\".",
+							"name": "type",
+							"type": "String",
+							"default": "'binary'"
+						},
+						{
+							"default": "null",
+							"description": "The download name.",
+							"name": "downloadName",
+							"options": [
+								"optional"
+							],
+							"type": "String"
+						},
+						{
+							"default": "{}",
+							"description": "Additional headers.",
+							"name": "headers",
+							"options": [
+								"optional"
+							],
+							"type": "Object"
+						}
+					],
+					"return": "Framework"
+				},
+				{
 					"description": "Writes the redirect into the response.",
 					"name": "framework.responseRedirect",
 					"params": [
@@ -3010,6 +3016,26 @@
 					"return": "Boolean"
 				},
 				{
+					"changetype": 1,
+					"description": "Is true when the framework is running in cluster.",
+					"name": "framework.isCluster",
+					"options": [
+						"+v1.9.0",
+						"readonly"
+					],
+					"return": "Boolean"
+				},
+				{
+					"changetype": 1,
+					"description": "Is true when is executed `framework.load()`.",
+					"name": "framework.isWorker",
+					"options": [
+						"+v1.9.0",
+						"readonly"
+					],
+					"return": "Boolean"
+				},
+				{
 					"description": "Is the framework running in test mode?",
 					"name": "framework.isTest",
 					"options": [
@@ -3225,6 +3251,36 @@
 					"return": "String"
 				},
 				{
+					"changetype": 1,
+					"default": "false",
+					"description": "Enables old executing of modules, controllers, models, etc..\n\n__allow-compatibility = false__\n\n```javascript\nexports.install = function(options) {\n    // new access\n};\n```\n\n__allow-compatibility = true__\n\n```javascript\nexports.install = function(framework, options) {\n    // old access\n};\n```",
+					"name": "allow-compatibility",
+					"return": "Boolean",
+					"options": [
+						"+v1.9.0"
+					]
+				},
+				{
+					"changetype": 1,
+					"default": "''",
+					"description": "Sets the default timezone for the application. E.g. for the universal datetime set the property to `UTC`.",
+					"name": "default-timezone",
+					"return": "String",
+					"options": [
+						"+v1.9.0"
+					]
+				},
+				{
+					"changetype": 1,
+					"default": "false",
+					"description": "Disables clearing temporary directory after is the framework started.",
+					"name": "disable-clear-temporary-directory",
+					"return": "Boolean",
+					"options": [
+						"+v1.9.0"
+					]
+				},
+				{
 					"default": "os.hostname() + '-' + os.platform() + '-' + os.arch()",
 					"description": "An application secret. This secret is used in `framework.encrypt()`, `framework.decrypt()` and `framework.hash()` - as default salt.",
 					"name": "secret",
@@ -3250,6 +3306,26 @@
 					"description": "The default directory for packages.",
 					"name": "directory-packages",
 					"return": "String"
+				},
+				{
+					"changetype": 1,
+					"default": "'/isomorphic/'",
+					"description": "The default directory for isomorphic code.",
+					"name": "directory-isomorphic",
+					"return": "String",
+					"options": [
+						"+v1.9.0"
+					]
+				},
+				{
+					"changetype": 1,
+					"default": "'/private/'",
+					"description": "The default directory for private files.",
+					"name": "directory-private",
+					"return": "String",
+					"options": [
+						"+v1.9.0"
+					]
 				},
 				{
 					"default": "'/definitions/'",
@@ -4072,7 +4148,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4082,12 +4158,50 @@
 					"return": "String"
 				},
 				{
+					"changetype": 1,
+					"description": "Gets the path from `framework.config['directory-isomporhic']`.",
+					"name": "framework.path.isomporhic",
+					"params": [
+						{
+							"description": "The filename without path.",
+							"name": "filename",
+							"options": [
+								"optional"
+							],
+							"type": "String"
+						}
+					],
+					"options": [
+						"+v1.9.0"
+					],
+					"return": "String"
+				},
+				{
+					"changetype": 1,
+					"description": "Gets the path from `framework.config['directory-private']`.",
+					"name": "framework.path.private",
+					"params": [
+						{
+							"description": "The filename without path.",
+							"name": "filename",
+							"options": [
+								"optional"
+							],
+							"type": "String"
+						}
+					],
+					"options": [
+						"+v1.9.0"
+					],
+					"return": "String"
+				},
+				{
 					"description": "Gets the path from `framework.config['directory-models']`.",
 					"name": "framework.path.models",
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4102,7 +4216,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4117,7 +4231,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4132,7 +4246,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4147,7 +4261,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4162,7 +4276,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4177,7 +4291,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4192,7 +4306,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4207,7 +4321,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4222,7 +4336,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4237,7 +4351,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4252,7 +4366,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4267,7 +4381,7 @@
 					"params": [
 						{
 							"description": "The filename without path.",
-							"name": "name",
+							"name": "filename",
 							"options": [
 								"optional"
 							],
@@ -4363,6 +4477,20 @@
 				{
 					"description": "Returns a count of timeout requests.",
 					"name": "framework.stats.request.timeout",
+					"return": "Number"
+				},
+				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Returns a count of mobile requests.",
+					"name": "framework.stats.request.mobile",
+					"return": "Number"
+				},
+				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Returns a count of desktop requests.",
+					"name": "framework.stats.request.desktop",
 					"return": "Number"
 				},
 				{
@@ -5636,6 +5764,53 @@
 					"return": "FrameworkController"
 				},
 				{
+					"changetype": 1,
+					"description": "Sends JSONP.",
+					"name": "controller.jsonp",
+					"options": [
+						"http",
+						"+v1.9.0"
+					],
+					"params": [
+						{
+							"description": "The method name.",
+							"name": "method_name",
+							"type": "String"
+						},
+						{
+							"description": "The object.",
+							"name": "obj",
+							"type": "Object"
+						},
+						{
+							"description": "Additional headers.",
+							"name": "headers",
+							"options": [
+								"optional"
+							],
+							"type": "Object"
+						},
+						{
+							"default": "false",
+							"description": "Beautifies JSON.",
+							"name": "beautify",
+							"options": [
+								"optional"
+							],
+							"type": "Boolean"
+						},
+						{
+							"description": "The replacer function.",
+							"name": "replacer",
+							"options": [
+								"optional"
+							],
+							"type": "Function"
+						}
+					],
+					"return": "FrameworkController"
+				},
+				{
 					"description": "Sends the response with the custom content.",
 					"name": "controller.content",
 					"options": [
@@ -5704,6 +5879,19 @@
 							],
 							"type": "Object"
 						}
+					],
+					"return": "FrameworkController"
+				},
+				{
+					"changetype": 1,
+					"description": "Ping all online connections in the controller.",
+					"name": "controller.ping",
+					"options": [
+						"websocket",
+						"+v1.9.0"
+					],
+					"params": [
+
 					],
 					"return": "FrameworkController"
 				},
@@ -8091,6 +8279,48 @@
 					"return": "String"
 				},
 				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Disables HTML compression.",
+					"name": "@{nocompress html}"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Disables HTML JavaScript (JS) compression.",
+					"name": "@{nocompress script}"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Disables HTML Style (CSS) compression.",
+					"name": "@{nocompress style}"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Checks if the request is from mobile device.",
+					"name": "@{mobile}",
+					"return": "Boolean"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Returns all isomporhic instances.\n\n```html\n@{isomorphic.userDefined.someFn()}\n<div>Name: @{isomorphic.userDefined.name}</div>\n```",
+					"name": "@{isomorphic}",
+					"return": "Object"
+				},
+				{
 					"description": "Renders the description.",
 					"name": "@{description}",
 					"return": "String"
@@ -10301,6 +10531,17 @@
 					"return": "String"
 				},
 				{
+					"changetype": 1,
+					"description": "The request must be from mobile device.",
+					"name": "mobile",
+					"options": [
+						"optional",
+						"http",
+						"+v1.9.0"
+					],
+					"return": "String"
+				},
+				{
 					"description": "The referrer must have the value from the host header.",
 					"name": "referrer",
 					"options": [
@@ -10504,6 +10745,37 @@
 					"return": "Object"
 				},
 				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Calls `framework.onAuthorization` delegate. Authorization is disabled for static files and this function solves this problem.",
+					"name": "Request.prototype.authorize",
+					"params": [
+						{
+							"name": "callback",
+							"type": "Function",
+							"params": [
+								{
+									"name": "err",
+									"type": "Error",
+									"description": "Error handling."
+								},
+								{
+									"name": "userProfile",
+									"type": "Object",
+									"description": "User profile.",
+									"default": "null"
+								},
+								{
+									"name": "isAuthorized",
+									"type": "Boolean",
+									"description": "Is user authorized?"
+								}
+							]
+						}
+					],
+					"return": "Request"
+				},
+				{
 					"default": "''",
 					"description": "Reads the value from the cookie. For writing / rewriting cookies use `response.cookie()`.",
 					"example": "https://github.com/totaljs/examples/tree/master/cookies",
@@ -10577,6 +10849,15 @@
 					"description": "Retrieves the values from the HTTP body (POST/PUT method).",
 					"name": "request.body",
 					"return": "Object"
+				},
+				{
+					"changetype": 1,
+					"description": "Check if the request is from mobile device.",
+					"name": "request.mobile",
+					"return": "Boolean",
+					"options": [
+						"v1.9.0"
+					]
 				},
 				{
 					"default": "[]",
@@ -10911,6 +11192,15 @@
 					"return": "String"
 				},
 				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Creates a buffer from Base64.",
+					"name": "String.prototype.base64ToBuffer",
+					"params": [
+					],
+					"return": "String"
+				},
+				{
 					"description": "Parses XML from the string to Object.",
 					"name": "String.prototype.parseXML",
 					"params": [
@@ -10929,10 +11219,13 @@
 							"type": "Object"
 						}
 					],
+					"options": [
+						"+v1.9.0"
+					],
 					"return": "String"
 				},
 				{
-					"description": "Sets chars to lowercase and removes diacritics operators (without `space`).",
+					"description": "Sets chars to lowercase and removes all diacritics operators (without `space` character). All `y` characters are replaced to `i`.",
 					"name": "String.prototype.toSearch",
 					"params": [
 
@@ -11722,6 +12015,9 @@
 							"type": "String"
 						}
 					],
+					"options": [
+						"+v1.9.0"
+					],
 					"return": "Date"
 				},
 				{
@@ -11738,6 +12034,36 @@
 						}
 					],
 					"return": "String"
+				},
+				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Extend the current date accoding to value.\n\n```javascript\nvar dt = new Date();\n\n// Sets the current date to 12:00\nconsole.log(dt.extend('12:00'));\n\n// Sets the current date to 2012-12-20\nconsole.log(dt.extend('2012-12-20'));\n```",
+					"name": "Date.prototype.extend",
+					"params": [
+						{
+							"description": "Date or Time.",
+							"name": "value",
+							"type": "String"
+						}
+					],
+					"return": "Date"
+				},
+				{
+					"description": "Converts a current date into universal date time.",
+					"name": "Date.prototype.toUTC",
+					"params": [
+						{
+							"description": "As ticks otherwise Date object.",
+							"name": "ticks",
+							"options": [
+								"optional"
+							],
+							"type": "Booelan",
+							"default": "false"
+						}
+					],
+					"return": "Date or Number"
 				},
 				{
 					"description": "Compares two dates.\n\n```html\n-1 = the current date is earlier than @date\n 0 = the current date is same as @date\n 1 = the current date is later than @date.\n```",
@@ -11791,6 +12117,63 @@
 					"return": "Array"
 				},
 				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Creates unique array from current simple array.",
+					"name": "Array.prototype.unique",
+					"params": [
+						{
+							"description": "A property name (only for object items).",
+							"name": "property",
+							"type": "String",
+							"options": ["optional"]
+						}
+					],
+					"return": "Array"
+				},
+				{
+					"changetype": 1,
+					"options": ["+v1.9.0"],
+					"description": "Creates unique array from current simple array.",
+					"name": "Array.prototype.pair",
+					"params": [
+						{
+							"description": "Property for pairing values.",
+							"name": "property",
+							"type": "String"
+						},
+						{
+							"description": "Array for pairing.",
+							"name": "arr",
+							"type": "Array"
+						},
+						{
+							"description": "fn",
+							"name": "fn",
+							"type": "Function",
+							"params": [
+								{
+									"description": "Pair A.",
+									"name": "pairA",
+									"type": "Object"
+								},
+								{
+									"description": "Pair B.",
+									"name": "pairA",
+									"type": "Object"
+								}
+							]
+						},
+						{
+							"description": "Remove items from the current Array if the items won't have a pairs.",
+							"name": "remove",
+							"type": "Boolean",
+							"options": ["optional"]
+						}
+					],
+					"return": "Array"
+				},
+				{
 					"description": "Creates an object from the array.\n\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.toObject());\n// OUTPUT: { 1: true, 2: true, 3: true, 4: true }\n\narr = [{ id: 1, name: 'Peter' }, { id: 2, name: 'Lucia' }];\nconsole.log(arr.toObject('name'));\n// OUTPUT: { 'Peter': { id: 1, name: 'Peter'}, 'Peter': { id: 1, name: 'Lucia'}}\n```",
 					"name": "Array.prototype.toObject",
 					"options": [
@@ -11816,7 +12199,7 @@
 					],
 					"params": [
 						{
-							"description": "A property name: __identificator__.",
+							"description": "A property name: \"identificator\".",
 							"name": "id",
 							"type": "String"
 						},
@@ -12577,6 +12960,18 @@
 					"return": "Object"
 				},
 				{
+					"changetype": 1,
+					"description": "Gets the database instance. This function is the alias for `framework.database()`.",
+					"name": "DB",
+					"params": [
+
+					],
+					"options": [
+						"+v1.9.0"
+					],
+					"return": "Object"
+				},
+				{
 					"description": "An alias for `framework.log()`",
 					"go": "#api~Framework",
 					"name": "LOG",
@@ -12860,6 +13255,26 @@
 					"return": "Function"
 				},
 				{
+					"changetype": 1,
+					"options": ["+v1.9.1"],
+					"description": "Usage:\n\n```javascript\n// var a = yield sync2(ASYNC_FUNCTION);\n```\n\n__IMPORTANT:__ the last argument in `ASYNC_FUNCTION` __must be__ a CALLBACK delegate like this: `callback(err, value)`.",
+					"example": "https://github.com/totaljs/examples/tree/master/generators",
+					"name": "sync2",
+					"params": [
+						{
+							"description": "A function to execute.",
+							"name": "fn",
+							"type": "Function"
+						},
+						{
+							"description": "An owner, object context.",
+							"name": "owner",
+							"type": "Object"
+						}
+					],
+					"return": "Yield"
+				},
+				{
 					"description": "__IMPORTANT__: The custom attributes must be added after the callback.\n\n### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *(custom_attr) {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then the controller executes view500(error)\n})(self, 'CUSTOM_ATTR');\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
 					"name": "async",
 					"example": "https://github.com/totaljs/examples/tree/master/generators",
@@ -13048,6 +13463,38 @@
 				{
 					"description": "Is the framework running in debug mode?",
 					"name": "DEBUG",
+					"return": "Boolean"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Returns all isomorphic instances.\n\n```javascript\nconsole.log(isomorphic.userDefined.someFn());\nconsole.log(isomorphic.userDefined.name);\n```",
+					"name": "isomorphic",
+					"return": "Object"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Check if the current code is executed from server-side or client-side. Best use in isomorphic scripts.",
+					"name": "is_client",
+					"return": "Boolean"
+				},
+				{
+					"changetype": 1,
+					"options": [
+						"+v1.9.0"
+					],
+					"description": "Check if the current code is executed from server-side or client-side. Best use in isomorphic scripts.",
+					"name": "is_server",
+					"return": "Boolean"
+				},
+				{
+					"description": "Is the framework running in release mode?",
+					"name": "RELEASE",
 					"return": "Boolean"
 				},
 				{
@@ -14965,7 +15412,7 @@
 			"name": "Tutorial"
 		},
 		{
-			"body": "> __Total.js__ project has a _simple directory structure_. All directories are optional and you can rewrite each path of directory in the framework configuration file.\n\n## Directories\n\n```markdown\n/controllers\n/databases\n/definitions\n/isomorphic\n/logs\n/models\n/modules\n/packages\n/private\n/public\n/resources\n/source\n/tests\n/tmp\n/views\n/workers\n```\n\n### Directory: controllers\n\nDirectory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.\n\n- [How do controllers work?](#pages~Controllers)\n\n---\n\n### Directory: databases\n\nDirectory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.\n\n- [How does NoSQL database work?](#pages~NoSQL)\n- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)\n\n---\n\n### Directory: definitions\n\nDirectory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.\n\n- [How do definitions work?](#pages~Definitions)\n\n---\n\n### Directory: isomorphic\n\nDirectory contains an isomorphic code. The isomorphic means: one code for server-side and client-side.\n\n- [How does isomorphic work?](#pages~Isomorphic)\n\n---\n\n### Directory: logs\n\nDirectory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.\n\n- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)\n\n---\n\n### Directory: models\n\nDirectory contains models. The model can contain functions or some [schemas](#api~Builders.SchemaBuilder). Recommended for database models.\n\n- [How do models work?](#pages~Models)\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n### Directory: modules\n\nDirectory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.\n\n- [How do modules work?](#pages~Modules)\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n- [Download 3rd modules](https://github.com/totaljs/modules)\n\n---\n\n### Directory: private\n\nThis directory is private directory for storing custom data.\n\n---\n\n### Directory: public\n\nThis directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.\n\n---\n\n### Directory: resources\n\nIf you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.\n\n- [How do resources work?](#pages~Resources)\n- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)\n\n---\n\n### Directory: source\n\nThis directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.\n\n- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)\n\n---\n\n### Directory: packages\n\nThis directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).\n\n- [How do packages work?](#pages~Packages)\n\n---\n\n### Directory: tests\n\nTest directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.\n\n- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)\n\n---\n\n### Directory: tmp\n\nThis directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.\n\n---\n\n### Directory: views\n\nThis directory contains views and layouts.\n\n---\n\n### Directory: workers\n\nThis directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.\n\n- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)\n- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)",
+			"body": "> __Total.js__ project has a _simple directory structure_. __All directories are optional__ and you can rewrite each path of directory in the framework configuration file.\n\n## Directories\n\n```markdown\n/controllers\n/databases\n/definitions\n/isomorphic\n/logs\n/models\n/modules\n/packages\n/private\n/public\n/resources\n/source\n/tests\n/tmp\n/views\n/workers\n```\n\n### Directory: controllers\n\nDirectory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.\n\n- [How do controllers work?](#pages~Controllers)\n\n---\n\n### Directory: databases\n\nDirectory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.\n\n- [How does NoSQL database work?](#pages~NoSQL)\n- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)\n\n---\n\n### Directory: definitions\n\nDirectory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.\n\n- [How do definitions work?](#pages~Definitions)\n\n---\n\n### Directory: isomorphic\n\nDirectory contains an isomorphic code. The isomorphic means: one code for server-side and client-side.\n\n- [How does isomorphic work?](#pages~Isomorphic)\n\n---\n\n### Directory: logs\n\nDirectory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.\n\n- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)\n\n---\n\n### Directory: models\n\nDirectory contains models. The model can contain functions or some [schemas](#api~Builders.SchemaBuilder). Recommended for database models.\n\n- [How do models work?](#pages~Models)\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n### Directory: modules\n\nDirectory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.\n\n- [How do modules work?](#pages~Modules)\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n- [Download 3rd modules](https://github.com/totaljs/modules)\n\n---\n\n### Directory: private\n\nThis directory is private directory for storing custom data.\n\n---\n\n### Directory: public\n\nThis directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.\n\n---\n\n### Directory: resources\n\nIf you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.\n\n- [How do resources work?](#pages~Resources)\n- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)\n\n---\n\n### Directory: source\n\nThis directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.\n\n- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)\n\n---\n\n### Directory: packages\n\nThis directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).\n\n- [How do packages work?](#pages~Packages)\n\n---\n\n### Directory: tests\n\nTest directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.\n\n- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)\n\n---\n\n### Directory: tmp\n\nThis directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.\n\n---\n\n### Directory: views\n\nThis directory contains views and layouts.\n\n---\n\n### Directory: workers\n\nThis directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.\n\n- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)\n- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)",
 			"group": "",
 			"name": "Directory structure"
 		},
@@ -14975,7 +15422,7 @@
 			"name": "Developer tools"
 		},
 		{
-			"body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped into the action and the action responds to requests. The controllers with modules are the main feature of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\nThe controller __knows 3x types of routes__: _classic_, _websocket_ and _file route_.\n\n- The classic route handles a classic requests into the dynamic content (view engine).\n- The websocket route handles WebSockets connections.\n- The file route handles static files.\n\n---\n\n__More informations__\n\n- The controller is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the controller into the memory.\n- All controllers are stored in `your-app/controllers/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name `your-app/views/your-controller-name/`.\n- You can create unlimited count of controllers.\n- The controller can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).\n- Routing supports routing according to the subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).\n- The controller can communicate with the other controller.\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain controllers.\n\n- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)\n- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)\n- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)\n- __(NEW)__ [Example: Routing + Generators](https://github.com/totaljs/examples/tree/master/routing-generators)\n- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)\n- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)\n- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)\n- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)\n- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)\n- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)\n- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)\n- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)\n- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)\n- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)\n- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)\n- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)\n- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)\n\n---\n\n## The definition\n\n- Class: [FrameworkController](#api~FrameworkController)\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the controller name (it's the identificator name). A __default value__ for this property is the controller filename without extension.\n\n```javascript\nexports.id = 'Controller name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the controller.\n\n```javascript\nexports.install = function() {\n    framework.route('/');\n    framework.route('/api/{type}/', json_api, ['put', 'json']);\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework is uninstalled from the framework.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This controller is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the controller\n\nFilename: `controllers/default.js`\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n    framework.route('/contact/', view_contact);\n    framework.route('/hello/', plain_hello);\n    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);\n    framework.route('/sync/', view_sync);\n};\n\nfunction view_index() {\n    this.view('index');\n}\n\nfunction view_contact() {\n    this.layout('layouts/subpage');\n    this.view('contact', { email: '@' });\n}\n\nfunction plain_hello() {\n    this.plain('Hello world!');\n}\n\nfunction json_codelist() {\n    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');\n    this.json([1, 2, 3, 4, 5]);\n}\n\n// GENERATORS\nfunction *view_sync() {\n    var users = yield sync(DATABASE('users').$$all(n => n))();\n    this.json(users);\n}\n\n// or an inline route\nframework.route('/services/', function() {\n    this.view('services');\n});\n```\n\n## The routing\n\n- Method: [framework.route()](#api~Framework~framework.route)\n- Method: [framework.websocket()](#api~Framework~framework.websocket)\n- Method: [framework.file()](#api~Framework~framework.file)\n- List: [route flags](#api~HttpRouteOptionsFlags)\n\n### System routing\n\n```javascript\nexports.install = function() {\n    framework.route('#400', custom); // Bad Request\n    framework.route('#401', custom); // Unauthorized\n    framework.route('#403', custom); // Forbidden\n    framework.route('#404', custom); // Not Found\n    framework.route('#408', custom); // Request Timeout\n    framework.route('#431', custom); // Request Header Fields Too Large\n    framework.route('#500', custom); // Internal Server Error\n    framework.route('#501', custom); // Not Implemented\n}\n\nfunction custom() {\n    this.view('http-error-view');\n}\n```",
+			"body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped into the action and the action responds to requests. The controllers with modules are the main feature of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\nThe controller __knows 3x types of routes__: _classic_, _websocket_ and _file route_.\n\n- The classic route handles a classic requests into the dynamic content (view engine).\n- The websocket route handles WebSockets connections.\n- The file route handles static files.\n\n---\n\n__More informations__\n\n- The controller is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the controller into the memory.\n- All controllers are stored in `your-app/controllers/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name `your-app/views/your-controller-name/`.\n- You can create unlimited count of controllers.\n- The controller can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).\n- Routing supports routing according to the subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).\n- The controller can communicate with the other controller.\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain controllers.\n\n- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)\n- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)\n- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)\n- [Example: Routing + Generators](https://github.com/totaljs/examples/tree/master/routing-generators)\n- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)\n- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)\n- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)\n- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)\n- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)\n- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)\n- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)\n- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)\n- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)\n- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)\n- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)\n- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)\n- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)\n\n---\n\n## The definition\n\n- Class: [FrameworkController](#api~FrameworkController)\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the controller name (it's the identificator name). A __default value__ for this property is the controller filename without extension.\n\n```javascript\nexports.id = 'Controller name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the controller.\n\n```javascript\nexports.install = function() {\n    framework.route('/');\n    framework.route('/api/{type}/', json_api, ['put', 'json']);\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework is uninstalled from the framework.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This controller is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the controller\n\nFilename: `controllers/default.js`\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n    framework.route('/contact/', view_contact);\n    framework.route('/hello/', plain_hello);\n    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);\n    framework.route('/sync/', view_sync);\n};\n\nfunction view_index() {\n    this.view('index');\n}\n\nfunction view_contact() {\n    this.layout('layouts/subpage');\n    this.view('contact', { email: '@' });\n}\n\nfunction plain_hello() {\n    this.plain('Hello world!');\n}\n\nfunction json_codelist() {\n    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');\n    this.json([1, 2, 3, 4, 5]);\n}\n\n// GENERATORS\nfunction *view_sync() {\n    var users = yield sync(DATABASE('users').$$all(n => n))();\n    this.json(users);\n}\n\n// or an inline route\nframework.route('/services/', function() {\n    this.view('services');\n});\n```\n\n## The routing\n\n- Method: [framework.route()](#api~Framework~framework.route)\n- Method: [framework.websocket()](#api~Framework~framework.websocket)\n- Method: [framework.file()](#api~Framework~framework.file)\n- List: [route flags](#api~HttpRouteOptionsFlags)\n\n### System routing\n\n```javascript\nexports.install = function() {\n    framework.route('#400', custom); // Bad Request\n    framework.route('#401', custom); // Unauthorized\n    framework.route('#403', custom); // Forbidden\n    framework.route('#404', custom); // Not Found\n    framework.route('#408', custom); // Request Timeout\n    framework.route('#431', custom); // Request Header Fields Too Large\n    framework.route('#500', custom); // Internal Server Error\n    framework.route('#501', custom); // Not Implemented\n}\n\nfunction custom() {\n    this.view('http-error-view');\n}\n```",
 			"group": "How does it work?",
 			"name": "Controllers"
 		},
