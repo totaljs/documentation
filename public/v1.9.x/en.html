@@ -16,7 +16,7 @@
 					<div class="center"><a href="javascript:void(0)" id="logo"><img src="resources/logo.png" class="image-responsive" alt="total.js web application framework for node.js" width="150" /></a></div>
 					<div id="version"></div>
 					<div class="search">
-						<input type="text" id="search" placeholder="Search in API ..." autofocus="autofocus" />
+						<input type="text" id="search" placeholder="Search in API" autofocus="autofocus" />
 					</div>
 					<!--
 					<ul class="language">
@@ -46,7 +46,7 @@
 		{{ endif }}
 		<ul>
 			{{ foreach m in items }}
-			<li><a href="{{ m.linker }}">{{ m.name }}</a></li>
+			<li><a href="{{ m.linker }}">{{ if m.changetype === 1 }}<span class="menu-new">new</span>{{ endif }}{{ m.name }}</a></li>
 			{{ end }}
 		</ul>
 		<br />

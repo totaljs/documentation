@@ -20,17 +20,17 @@ OK - added: RegExp routing `F.route('/{/^\\d+$/}', ...)`
 OK - added: `F.responseBinary(req, res, contentType, buffer, [type], [download], [headers])`
 - added: `SchemaBuilderEntity.filter(custom, [model], [reverse])`
 - added: `SchemaBuilderEntity.trim = true`(enable/disable trim strings (default: true))
-- added: `Number.prototype.add(value, [decimals])` -> supports percentage
+OK - added: `Number.prototype.add(value, [decimals])` -> supports percentage
 OK - added: `Date.prototype.toUTC([ticksOnly])`
 OK - added: `Date.prototype.extend()` -> extend current datetime about new date or time (more in documentation)
 OK - added: `F.stats.request.mobile`, `F.stats.request.desktop`
 - added: binary - `total --translatecsv`
 OK - added: controller.jsonp(method_name, obj, [headers], [beautify], [replacer]);
-- added: CSS variables likes sass, example: `$color: red;`
+OK - added: CSS variables likes sass, example: `$color: red;`
 OK - added: modificators for dynamic modification before compilation: views, styles and scripts
 - added: ObjectBuilder
 - added: TransformBuilder
-- added: F.load(debug, load_types, [path]);
+OK - added: F.load(debug, load_types, [path]);
 OK - added: F.isWorker (is true when is called F.load())
 OK - added: F.isCluster (is true when the framework is running in the cluster)
 OK - added: Array.unique() by Andrea Sessa
@@ -39,7 +39,7 @@ OK - added: String.base64ToBuffer();
 - added: terminal -> `tpm unpack [package_name] [optional: target_directory]`
 - added: versions is applied to raw HTML
 - added: versions supports auto-mapping
-- added: sync2(), e.g. sync2(fn), diff with v1: sync(fn)() and v2: sync2(fn)
+OK - added: sync2(), e.g. sync2(fn), diff with v1: sync(fn)() and v2: sync2(fn)
 - added: "dependencies" file for installing dependencies (modules, packages, etc.)
 OK - added: @{nocompress html}, @{nocompress script}, @{nocompress style}, @{nocompress all}
 OK - added: req.authorize(callback(err, userprofile, isAuthorized))
