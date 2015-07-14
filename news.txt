@@ -1,6 +1,6 @@
 BETA ======= 1.9.0
 
-- added: (IMPORTANT) ISOMORPHIC using
+OK - added: (IMPORTANT) ISOMORPHIC using
 OK - added: (IMPORTANT) new flag `mobile` (mobile routing), you can create a route to mobile device
 OK - added: readonly `req.mobile` -> returns `boolean`
 OK - added: new view tag: @{mobile} –> returns `boolean`
@@ -24,7 +24,7 @@ OK - added: `Number.prototype.add(value, [decimals])` -> supports percentage
 OK - added: `Date.prototype.toUTC([ticksOnly])`
 OK - added: `Date.prototype.extend()` -> extend current datetime about new date or time (more in documentation)
 OK - added: `F.stats.request.mobile`, `F.stats.request.desktop`
-- added: binary - `total --translatecsv`
+OK - added: binary - `total --translatecsv`
 OK - added: controller.jsonp(method_name, obj, [headers], [beautify], [replacer]);
 OK - added: CSS variables likes sass, example: `$color: red;`
 OK - added: modificators for dynamic modification before compilation: views, styles and scripts
@@ -40,7 +40,7 @@ OK - added: String.base64ToBuffer();
 - added: versions is applied to raw HTML
 - added: versions supports auto-mapping
 OK - added: sync2(), e.g. sync2(fn), diff with v1: sync(fn)() and v2: sync2(fn)
-- added: "dependencies" file for installing dependencies (modules, packages, etc.)
+OK - added: "dependencies" file for installing dependencies (modules, packages, etc.)
 OK - added: @{nocompress html}, @{nocompress script}, @{nocompress style}, @{nocompress all}
 OK - added: req.authorize(callback(err, userprofile, isAuthorized))
 
@@ -52,10 +52,10 @@ OK - updated: `F.view(name, model, [layout], [repository], [language])` added la
 OK - updated: `controller.mail(address, subject, view, [model], [callback], [language])` added language
 OK - updated: `config['allow-performance']` is set to true
 OK - updated: (IMPORTANT) `F.map(url, filename/directory, [filter])` supports mapping directories
-- updated: (IMPORTANT) arguments order `SchemaBuilderEntity.setValidate(function(name, value, path, model, schema){})`
+OK - updated: (IMPORTANT) arguments order `SchemaBuilderEntity.setValidate(function(name, value, path, model, schema){})`
 OK - updated: (IMPORTANT) `U.extend(target, source, [rewrite]);` --> rewrite is by default: __true__
-- updated: `SchemaBuilderEntity.setPrepare(function(name, value, index, model){})` --> __model__ is new
-- updated: `SchemaBuilderEntity.define(name, value, required, [custom])` --> __custom__ is new
+OK - updated: `SchemaBuilderEntity.setPrepare(function(name, value, index, model){})` --> __model__ is new
+OK - updated: `SchemaBuilderEntity.define(name, value, required, [custom])` --> __custom__ is new
 OK - updated: HTML compressor
 OK - updated: favicon `(removed rel="icon")`
 - updated: binary `tpm create [package] [directory]` (added argument [package], [directory])
