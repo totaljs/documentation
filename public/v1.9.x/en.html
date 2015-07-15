@@ -46,7 +46,7 @@
 		{{ endif }}
 		<ul>
 			{{ foreach m in items }}
-			<li><a href="{{ m.linker }}">{{ if m.changetype === 1 || m.changetype === 2 }}<span class="menu-new">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}{{ m.name }}</a></li>
+			<li><a href="{{ m.linker }}">{{ if m.changetype === 1 }}<span class="menu-new">new</span>{{ endif }}{{ m.name }}{{ if m.changetype === 2 }} <span style="color:silver;font-size:10px" title="Modified">(modified)</span>{{ endif }}</a></li>
 			{{ end }}
 		</ul>
 		<br />

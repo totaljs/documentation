@@ -28,8 +28,7 @@ OK - added: binary - `total --translatecsv`
 OK - added: controller.jsonp(method_name, obj, [headers], [beautify], [replacer]);
 OK - added: CSS variables likes sass, example: `$color: red;`
 OK - added: modificators for dynamic modification before compilation: views, styles and scripts
-- added: ObjectBuilder
-- added: TransformBuilder
+OK - added: TransformBuilder
 OK - added: F.load(debug, load_types, [path]);
 OK - added: F.isWorker (is true when is called F.load())
 OK - added: F.isCluster (is true when the framework is running in the cluster)
