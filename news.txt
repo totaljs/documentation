@@ -18,8 +18,8 @@ OK - added: `global.isomorphic` --> returns `framework.isomorphic` --> returns i
 OK - added: `global.is_client` and `global.is_server` for isomorphic
 OK - added: RegExp routing `F.route('/{/^\\d+$/}', ...)`
 OK - added: `F.responseBinary(req, res, contentType, buffer, [type], [download], [headers])`
-- added: `SchemaBuilderEntity.filter(custom, [model], [reverse])`
-- added: `SchemaBuilderEntity.trim = true`(enable/disable trim strings (default: true))
+OK - added: `SchemaBuilderEntity.filter(custom, [model], [reverse])`
+OK - added: `SchemaBuilderEntity.trim = true`(enable/disable trim strings (default: true))
 OK - added: `Number.prototype.add(value, [decimals])` -> supports percentage
 OK - added: `Date.prototype.toUTC([ticksOnly])`
 OK - added: `Date.prototype.extend()` -> extend current datetime about new date or time (more in documentation)
@@ -37,8 +37,8 @@ OK - added: Array.unique() by Andrea Sessa
 OK - added: Array.pair(array, property, fn(itemA, itemB), [remove]) - pair arrays
 OK - added: String.base64ToBuffer();
 - added: terminal -> `tpm unpack [package_name] [optional: target_directory]`
-- added: versions is applied to raw HTML
-- added: versions supports auto-mapping
+OK - added: versions is applied to raw HTML
+OK - added: versions supports auto-mapping
 OK - added: sync2(), e.g. sync2(fn), diff with v1: sync(fn)() and v2: sync2(fn)
 OK - added: "dependencies" file for installing dependencies (modules, packages, etc.)
 OK - added: @{nocompress html}, @{nocompress script}, @{nocompress style}, @{nocompress all}
@@ -47,8 +47,8 @@ OK - added: req.authorize(callback(err, userprofile, isAuthorized))
 OK - updated: (IMPORTANT) routing: `json` flag is not required for receiving incomming data as JSON
 OK - updated: `F.mail(address, subject, view, [model], [callback], [language])` added language
 OK - updated: `F.view(name, model, [layout], [repository], [language])` added language
-- updated: `F.route(url, ...)`, `F.websocket(url, ...)` --> URL can be function(url, req, [flags])
-- updated: `versions` affects F.map() and F.merge()
+OK - updated: `F.route(url, ...)`, `F.websocket(url, ...)` --> URL can be function(url, req, [flags])
+OK - updated: `versions` affects F.map() and F.merge()
 OK - updated: `controller.mail(address, subject, view, [model], [callback], [language])` added language
 OK - updated: `config['allow-performance']` is set to true
 OK - updated: (IMPORTANT) `F.map(url, filename/directory, [filter])` supports mapping directories
