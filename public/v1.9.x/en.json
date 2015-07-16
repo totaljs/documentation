@@ -382,28 +382,28 @@
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
           "params": [
-
+            
           ]
         },
         {
@@ -667,7 +667,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -677,7 +677,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -749,7 +749,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -903,7 +903,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -1083,7 +1083,7 @@
         {
           "changetype": 2,
           "changelog": "added RegExp routing and URL argument can by a function as filter.",
-          "description": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and routed to to view \"/views/index.html\"\nF.route('/', 'index');\n\n// Route with options\nF.route('/', action, { flags: ['put'], middleware: ['#middleware'], timeout: 1000, length: 1024 });\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n```",
+          "description": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nF.route('/relative/', action, ['#middleware'], { name: 'middleware custom options' });\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and routed to to view \"/views/index.html\"\nF.route('/', 'index');\n\n// Route with options\nF.route('/', action, { flags: ['put'], middleware: ['#middleware'], timeout: 1000, length: 1024 });\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "framework.route",
           "options": [
@@ -2798,7 +2798,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2830,7 +2830,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -3891,7 +3891,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -4562,7 +4562,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -4572,7 +4572,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4823,7 +4823,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4831,7 +4831,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -4916,7 +4916,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -5171,7 +5171,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5730,7 +5730,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5743,7 +5743,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -6011,7 +6011,7 @@
             "+v1.9.0"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -6043,7 +6043,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -8019,7 +8019,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -8478,7 +8478,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8491,7 +8491,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8805,7 +8805,7 @@
             "+v1.8.0"
           ],
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -8879,7 +8879,7 @@
               "name": "validator",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "must return Boolean"
@@ -9030,7 +9030,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -10191,7 +10191,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10211,7 +10211,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10219,7 +10219,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10227,7 +10227,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10235,7 +10235,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10243,7 +10243,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10382,7 +10382,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -10390,7 +10390,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10398,7 +10398,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10406,7 +10406,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10498,7 +10498,7 @@
           "go": "#api~FrameworkImage",
           "name": "file.image",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         }
@@ -10875,7 +10875,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -10960,7 +10960,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -10968,7 +10968,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -11117,7 +11117,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -11325,7 +11325,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11337,7 +11337,7 @@
           "description": "Creates a buffer from Base64.",
           "name": "String.prototype.base64ToBuffer",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11345,7 +11345,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11369,7 +11369,7 @@
           "description": "Sets chars to lowercase and removes all diacritics operators (without `space` character). All `y` characters are replaced to `i`.",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11389,7 +11389,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -11414,7 +11414,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -11485,7 +11485,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11524,7 +11524,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11532,7 +11532,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11540,7 +11540,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11548,7 +11548,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11577,7 +11577,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11585,7 +11585,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11593,7 +11593,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11601,7 +11601,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11641,7 +11641,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -11649,7 +11649,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11657,7 +11657,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11800,7 +11800,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11808,7 +11808,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11917,7 +11917,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -12449,7 +12449,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "optional",
@@ -12493,7 +12493,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
@@ -12579,7 +12579,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             },
@@ -12606,7 +12606,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -12757,7 +12757,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12765,7 +12765,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -12781,7 +12781,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -12826,7 +12826,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -12869,7 +12869,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -13092,7 +13092,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13136,7 +13136,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13145,7 +13145,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DB",
           "params": [
-
+            
           ],
           "options": [
             "+v1.9.0"
@@ -13750,7 +13750,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-
+                
               ],
               "return": "Object",
               "type": "Function"
@@ -13810,7 +13810,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13903,7 +13903,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -14387,7 +14387,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -14437,7 +14437,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -15285,7 +15285,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -15460,7 +15460,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -15782,7 +15782,7 @@
       "changelog": "added <b>Isomorphic</b> and <b>Private directory</b>."
     },
     {
-      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- A minimal framework configuration for running\n- Best NGINX configuration\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- SOAP with total.js\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\n$ node --harmony myapp.js\n```\n\nYou have a full web server with all total.js features in the above code.\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n    use epoll;\n    worker_connections 1024;\n    multi_accept on;\n}\n\nhttp {\n    limit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n    client_body_buffer_size 10K;\n    client_header_buffer_size 1k;\n    client_max_body_size 8m;\n    large_client_header_buffers 2 1k;\n    server_names_hash_bucket_size 64;\n    sendfile on;\n    tcp_nopush on;\n    tcp_nodelay on;\n    keepalive_timeout 15;\n    keepalive_requests 200;\n    reset_timedout_connection on;\n    client_body_timeout 10;\n    send_timeout 5;\n    server_tokens off;\n    types_hash_max_size 2048;\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n    access_log off;\n    # access_log /www/logs/nginx.log;\n    error_log /var/log/nginx/error.log;\n    \n    # My configuration for websites:\n    # include /www/nginx/*.conf;\n\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n    ssl_prefer_server_ciphers on;\n    ssl_session_cache shared:SSL:10m;\n    ssl_session_timeout 10m;\n\n    # ======================\n    # Some server definition\n    # ======================\n\n    server {\n        listen 80;\n        server_name totaljs.com;\n        server_name www.totaljs.com;\n        charset     utf-8;\n\n        location / {\n\n            # DDOS protection for maximum 30 requests\n            limit_req zone=ddos burst=30 nodelay;\n\n            proxy_set_header   Host $http_host;\n            proxy_set_header   X-Forwarded-For $remote_addr;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-NginX-Proxy true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header   Upgrade $http_upgrade;\n            proxy_set_header   Connection \"upgrade\";\n            break;\n        }\n    }\n}\n```\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## SOAP with total.js\n\nHow to create the SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n    <SOAP-ENV:Body>\n        <tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n            <tns1:countryCode>SK</tns1:countryCode>\n            <tns1:vatNumber>0000000000</tns1:vatNumber>\n        </tns1:checkVat>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n    console.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
+      "body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- A minimal framework configuration for running\n- Best NGINX configuration\n- Publishing the website with REVERSE PROXY\n- Creating a tunnel between `localhost` and `internet`\n- SOAP with total.js\n- Sublime Text 3 node.js build system (for OSX, Linux)\n- Sublime Text 3 Syntax highlighter for view engine\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\n$ node --harmony myapp.js\n```\n\nYou have a full web server with all total.js features in the above code.\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n    use epoll;\n    worker_connections 1024;\n    multi_accept on;\n}\n\nhttp {\n    limit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n    client_body_buffer_size 10K;\n    client_header_buffer_size 1k;\n    client_max_body_size 8m;\n    large_client_header_buffers 2 1k;\n    server_names_hash_bucket_size 64;\n    sendfile on;\n    tcp_nodelay on;\n    keepalive_timeout 15;\n    keepalive_requests 200;\n    reset_timedout_connection on;\n    client_body_timeout 10;\n    send_timeout 5;\n    server_tokens off;\n    types_hash_max_size 2048;\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n    access_log off;\n    # access_log /www/logs/nginx.log;\n    error_log /var/log/nginx/error.log;\n    \n    # My configuration for websites:\n    # include /www/nginx/*.conf;\n\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n    ssl_prefer_server_ciphers on;\n    ssl_session_cache shared:SSL:10m;\n    ssl_session_timeout 10m;\n\n    # ======================\n    # Some server definition\n    # ======================\n\n    server {\n        listen 80;\n        server_name totaljs.com;\n        server_name www.totaljs.com;\n        charset     utf-8;\n\n        location / {\n\n            # DDOS protection for maximum 30 requests\n            limit_req zone=ddos burst=30 nodelay;\n\n            proxy_set_header   Host $http_host;\n            proxy_set_header   X-Forwarded-For $remote_addr;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-NginX-Proxy true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header   Upgrade $http_upgrade;\n            proxy_set_header   Connection \"upgrade\";\n            break;\n        }\n    }\n}\n```\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## SOAP with total.js\n\nHow to create the SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n    <SOAP-ENV:Body>\n        <tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n            <tns1:countryCode>SK</tns1:countryCode>\n            <tns1:vatNumber>0000000000</tns1:vatNumber>\n        </tns1:checkVat>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n    console.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
       "group": "",
       "name": "Developer tools",
       "changetype": 2,
@@ -15863,11 +15863,11 @@
       "name": "Wrapped methods"
     },
     {
-      "body": "## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__).\n\n```bash\n$ node --harmony my-application.js\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we must enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## How to develop projects?\n\nThe project must be created through the models with schemas. The schema must contain a whole business logic because the schema can be shared between projects (or can be injected) and for unit-tests too. Total.js models support error handling, validations, workflows, transformations, operations and basic CRUD operations. The framework can parse some requests as schemas. The model can be linked with other schemas.\n\n```javascript\nvar User = NEWSCHEMA('User');\n\n// Properties\nUser.define('id', Number);\nUser.define('email', 'String(200)', true);\nUser.define('created', Date);\n\n// Validation\nUser.setValidation(function(name, value, path, model) {\n    switch (name) {\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// Defaults:\nUser.setDefault(function(name) {\n    switch (name) {\n        case 'created':\n            return new Date();\n    }\n});\n\n// CRUD\nUser.setGetfunction(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setSave(function(error, model, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setQuery(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setRemove(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n```\n\n__How to use schemas with routing?__\n\n```javascript\nexports.install = function() {\n    F.route('/api/users/create/', json_user_create, ['post', '*User']);\n    F.route('/api/users/', json_user_query);\n};\n\nfunction json_user_create() {\n    var self = this;\n    var options = {};\n    // controller.body contains a validated schema\n    self.body.$save(options, self.callback());\n}\n\nfunction json_user_query() {\n    var self = this;\n    var options = {};\n    GETSCHEMA('User').query(options, self.callback());\n}\n```\n",
+      "body": "## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__).\n\n```bash\n$ node --harmony my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. I recorded the problem in __Chrome__ web browser.\n\n### total.js prevention\n\nDoesn't work with __nginx__. If you use __nginx__ read __nginx__ prevention.\n\n```javascript\nfunction delay_action_in_controller() {\n    var self = this;\n\n    console.log('I am here.');\n\n    // Prevention (doesn't work with nginx)\n    self.res.writeContinue();\n\n    setTimeout(function() {\n        self.view('some-view');\n    }, 10000);\n}\n```\n\n### nginx prevention\n\n```lua\nhttp {\n    # By default: off\n    tcp_nopush off;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we must enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## How to develop projects?\n\nThe project must be created through the models with schemas. The schema must contain a whole business logic because the schema can be shared between projects (or can be injected) and for unit-tests too. Total.js models support error handling, validations, workflows, transformations, operations and basic CRUD operations. The framework can parse some requests as schemas. The model can be linked with other schemas.\n\n```javascript\nvar User = NEWSCHEMA('User');\n\n// Properties\nUser.define('id', Number);\nUser.define('email', 'String(200)', true);\nUser.define('created', Date);\n\n// Validation\nUser.setValidation(function(name, value, path, model) {\n    switch (name) {\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// Defaults:\nUser.setDefault(function(name) {\n    switch (name) {\n        case 'created':\n            return new Date();\n    }\n});\n\n// CRUD\nUser.setGetfunction(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setSave(function(error, model, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setQuery(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setRemove(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n```\n\n__How to use schemas with routing?__\n\n```javascript\nexports.install = function() {\n    F.route('/api/users/create/', json_user_create, ['post', '*User']);\n    F.route('/api/users/', json_user_query);\n};\n\nfunction json_user_create() {\n    var self = this;\n    var options = {};\n    // controller.body contains a validated schema\n    self.body.$save(options, self.callback());\n}\n\nfunction json_user_query() {\n    var self = this;\n    var options = {};\n    GETSCHEMA('User').query(options, self.callback());\n}\n```\n",
       "group": "",
       "name": "Troubleshooting",
       "changetype": 2,
-      "changelog": "added <b>How to develop projects?</b>"
+      "changelog": "added <b>How to develop projects?</b> and <b>Prevention for multiple requesting</b>."
     },
     {
       "body": "__Isomorphic code__ (`+v1.9.0`) is one code for server-side and client-side together. Total.js evals isomorphic code on server-side and store it in `isomorphic` variable (a global variable). The framework sends isomorphic code to client-side when is needed. Isomorphic code is stored on server-side in `/isomorphic` directory. The framework loads all isomorphic codes after start.\n\n## Example\n\nFilename on server-side: `/isomorphic/shared.js`:\n\n```javascript\n// Very important for transferring of code between server-side and client-side.\n// The framework supports several ways how to transfer code into the client-side.\nexports.url = '/shared.js';\n\n// Change manually isomorphic library name:\n// exports.id = 'my-new-name';\n\nexports.getName = function() {\n    // is_server == is a global variable\n    // is_client == is a global variable\n    return 'total.js' + (is_server ? ' (called from server)' : ' (called from client)');\n};\n```\n\n__Server__:\n\n```javascript\nconsole.log(isomorphic.shared.getName());\n// Output: total.js (called from server)\n```\n\n__Client__:\n\n```html\n<script src=\"/shared.js\"></script>\n<script>\n    console.log(isomorphic.shared.getName());\n    // Output: total.js (called from server)\n</script>\n```\n\n### FAQ\n\n- `framework` on client-side is `null`\n- variables `is_server` and `is_client` are available on server-side and client-side together\n\n---\n\n## Isomorphic + F.merge() or F.map()\n\nFilename on server-side: `/isomorphic/shared.js`:\n\n```javascript\nexports.getName = function() {\n    // is_server == is a global variable\n    // is_client == is a global variable\n    return 'total.js' + (is_server ? ' (called from server)' : ' (called from client)');\n};\n```\n\n`F.merge()` implementation with `#filename` (without .js extension):\n\n```javascript\nF.merge('/my-scripts.js', 'some-script1.js', 'some-script2.js', '#shared');\n// or\nF.map('/my-script.js', '#shared');\n```",
