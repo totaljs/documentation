@@ -2209,6 +2209,8 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "added <b>nocompress</b> argument.",
           "description": "Writes the stream into the response. All `text/*` (content-types) are compressed via GZIP (if is enabled `config['allow-gzip']`).",
           "example": "https://github.com/totaljs/examples/tree/master/download-stream",
           "name": "framework.responseStream",
@@ -2258,6 +2260,15 @@
                 "optional"
               ],
               "type": "Function"
+            },
+            {
+              "default": "false",
+              "description": "Disables GZIP compression of plain text streams.",
+              "name": "nocompress",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
             }
           ],
           "return": "Framework"
@@ -6128,6 +6139,8 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 2,
+          "changelog": "added <b>nocompress</b> argument.",
           "description": "Sends the stream.",
           "name": "controller.stream",
           "options": [
@@ -6168,6 +6181,15 @@
                 "optional"
               ],
               "type": "Function"
+            },
+            {
+              "default": "false",
+              "description": "Disables GZIP compression of plain text streams.",
+              "name": "nocompress",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
             }
           ],
           "return": "FrameworkController"
