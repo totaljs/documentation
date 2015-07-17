@@ -382,28 +382,28 @@
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
           "params": [
-            
+
           ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
           "params": [
-            
+
           ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
           "params": [
-            
+
           ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
           "params": [
-            
+
           ]
         },
         {
@@ -667,7 +667,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -677,7 +677,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -749,7 +749,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-                
+
               ]
             }
           ],
@@ -903,7 +903,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -2798,7 +2798,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -2830,7 +2830,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -3891,7 +3891,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-            
+
           ],
           "return": "FrameworkCache"
         },
@@ -4415,7 +4415,7 @@
           "return": "String"
         },
         {
-          "description": "Gets the definitions path from `framework.config['directory-definitions']`.",
+          "description": "Gets the path from `framework.config['directory-definitions']`.",
           "name": "framework.path.definitions",
           "params": [
             {
@@ -4562,7 +4562,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-            
+
           ],
           "return": "Framework"
         },
@@ -4572,7 +4572,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-            
+
           ],
           "return": "Framework"
         }
@@ -4823,7 +4823,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -4831,7 +4831,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-            
+
           ],
           "return": "undefined"
         }
@@ -4916,7 +4916,7 @@
             "websocket"
           ],
           "params": [
-            
+
           ]
         },
         {
@@ -5171,7 +5171,7 @@
             "http"
           ],
           "params": [
-            
+
           ],
           "return": "FrameworkController"
         },
@@ -5730,7 +5730,7 @@
             "http"
           ],
           "params": [
-            
+
           ],
           "return": "FrameworkController"
         },
@@ -5743,7 +5743,7 @@
             "onetime"
           ],
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -6011,7 +6011,7 @@
             "+v1.9.0"
           ],
           "params": [
-            
+
           ],
           "return": "FrameworkController"
         },
@@ -6043,7 +6043,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -8019,7 +8019,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-            
+
           ],
           "return": "Object Array"
         },
@@ -8478,7 +8478,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-            
+
           ],
           "return": "Object"
         },
@@ -8491,7 +8491,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-            
+
           ],
           "return": "Object"
         },
@@ -8805,7 +8805,7 @@
             "+v1.8.0"
           ],
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -8879,7 +8879,7 @@
               "name": "validator",
               "type": "Function",
               "params": [
-                
+
               ],
               "options": [
                 "must return Boolean"
@@ -9030,7 +9030,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -10191,7 +10191,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10211,7 +10211,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10219,7 +10219,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10227,7 +10227,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10235,7 +10235,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10243,7 +10243,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         },
@@ -10382,7 +10382,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-            
+
           ],
           "return": "Buffer"
         },
@@ -10390,7 +10390,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10398,7 +10398,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10406,7 +10406,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -10498,7 +10498,7 @@
           "go": "#api~FrameworkImage",
           "name": "file.image",
           "params": [
-            
+
           ],
           "return": "FrameworkImage"
         }
@@ -10875,7 +10875,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -10960,7 +10960,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-            
+
           ],
           "return": "Request"
         },
@@ -10968,7 +10968,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-            
+
           ],
           "return": "Request"
         }
@@ -11117,7 +11117,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-            
+
           ],
           "return": "Response"
         },
@@ -11325,7 +11325,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11337,7 +11337,7 @@
           "description": "Creates a buffer from Base64.",
           "name": "String.prototype.base64ToBuffer",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11345,7 +11345,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11369,7 +11369,7 @@
           "description": "Sets chars to lowercase and removes all diacritics operators (without `space` character). All `y` characters are replaced to `i`.",
           "name": "String.prototype.toSearch",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11389,7 +11389,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-            
+
           ],
           "return": "Date"
         },
@@ -11414,7 +11414,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-            
+
           ],
           "return": "Date"
         },
@@ -11485,7 +11485,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -11524,7 +11524,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11532,7 +11532,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11540,7 +11540,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11548,7 +11548,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11577,7 +11577,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -11585,7 +11585,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -11593,7 +11593,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-            
+
           ],
           "return": "Boolean"
         },
@@ -11601,7 +11601,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11641,7 +11641,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-            
+
           ],
           "return": "Number"
         },
@@ -11649,7 +11649,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11657,7 +11657,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11800,7 +11800,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11808,7 +11808,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-            
+
           ],
           "return": "String"
         },
@@ -11917,7 +11917,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-            
+
           ],
           "return": "String"
         }
@@ -12449,7 +12449,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-                
+
               ],
               "options": [
                 "optional",
@@ -12493,7 +12493,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-            
+
           ],
           "return": "Array"
         },
@@ -12579,7 +12579,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             },
@@ -12606,7 +12606,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -12757,7 +12757,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -12765,7 +12765,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-            
+
           ],
           "return": "Array"
         }
@@ -12781,7 +12781,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-            
+
           ],
           "return": "Async"
         },
@@ -12826,7 +12826,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -12869,7 +12869,7 @@
                 "optional"
               ],
               "params": [
-                
+
               ],
               "type": "Function"
             }
@@ -13092,7 +13092,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -13136,7 +13136,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -13145,7 +13145,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DB",
           "params": [
-            
+
           ],
           "options": [
             "+v1.9.0"
@@ -13750,7 +13750,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-                
+
               ],
               "return": "Object",
               "type": "Function"
@@ -13810,7 +13810,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -13903,7 +13903,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-            
+
           ],
           "return": "ErrorBuilder"
         },
@@ -14387,7 +14387,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-            
+
           ],
           "return": "UrlBuilder"
         },
@@ -14437,7 +14437,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-            
+
           ],
           "return": "UrlBuilder"
         },
@@ -15285,7 +15285,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-            
+
           ],
           "return": "undefined"
         },
@@ -15460,7 +15460,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-            
+
           ],
           "return": "Object"
         },
@@ -15794,7 +15794,7 @@
       "name": "Controllers"
     },
     {
-      "body": "The definitions can rewrite existing functionality or add a new. The definition can define the framework behavior and it does not have any other logic. __In short__: the definition is a coded configuration file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The definitions is the plain JavaScript file with `.js` extension.\n- All definitions are stored in `your-app/definitions/` directory.\n- Each definitions is executed automatically and one time.\n- You can create unlimited count of definitions\n- The definition can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-definition).\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain definitions.\n\n- [Example: Install the definition from URL](https://github.com/totaljs/examples/tree/master/framework-install-definition)\n- [Example: The definition with MongoDB driver](https://github.com/totaljs/examples/tree/master/mongodb)\n\n---\n\n## The definition\n\nThe definition file contains only the code to run, nothing more.\n\n### A full example of definition\n\nE.g. create: `definitions/database.js`\n\n```javascript\nvar DB = null;\n\nrequire('mongodb').MongoClient.connect('connection-string-to-database', function(err, db) {\n    if (err)\n        throw err;\n    DB = db;\n});\n\n// Rewrite built-in functionality\nF.database = function(collection) {\n    if (collection)\n        return DB.collection(collection);\n    return DB;\n};\n```",
+      "body": "Definitions can rewrite existing functionality or add a new. The definition can define the framework behavior and it does not have any other logic. __In short__: the definition is a coded configuration file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The definition is the plain JavaScript file with `.js` extension.\n- All definitions are stored in `your-app/definitions/` directory.\n- Each definitions is executed automatically and one time.\n- You can create unlimited count of definitions\n- The definition can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-definition).\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain definitions.\n\n- [Example: Install the definition from URL](https://github.com/totaljs/examples/tree/master/framework-install-definition)\n- [Example: The definition with MongoDB driver](https://github.com/totaljs/examples/tree/master/mongodb)\n\n---\n\n## The definition\n\nThe definition file contains only the code to run, nothing more.\n\n### A full example of definition\n\nE.g. create: `definitions/database.js`\n\n```javascript\nvar DB = null;\n\nrequire('mongodb').MongoClient.connect('connection-string-to-database', function(err, db) {\n    if (err)\n        throw err;\n    DB = db;\n});\n\n// Rewrite built-in functionality\nF.database = function(collection) {\n    if (collection)\n        return DB.collection(collection);\n    return DB;\n};\n```",
       "group": "How does it work?",
       "name": "Definitions"
     },
