@@ -1349,7 +1349,7 @@
         },
         {
           "changetype": 1,
-          "description": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocate()` delegate.\n\n```javascript\n// That's all\nF.localize('My angular.js templates', '/templates/');\n```\n\n```html\nhttp://127.0.0.1:8000/templates/settings.html --> will be localized\nhttp://127.0.0.1:8000/templates/idontknow.html --> will be localized\n```",
+          "description": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocate()` delegate.\n\n```javascript\n// That's all\nF.localize('My angular.js templates', '/templates/');\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('My ember.js templates', '/templates/*.hbs');\n```\n\n```html\nhttp://127.0.0.1:8000/templates/settings.html --> will be localized\nhttp://127.0.0.1:8000/templates/idontknow.html --> will be localized\nhttp://127.0.0.1:8000/templates/ember.hbs --> will be localized\n```",
           "name": "framework.localize",
           "params": [
             {
