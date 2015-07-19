@@ -425,28 +425,28 @@
 					"description": "This event is triggered when a new module is installed.",
 					"name": "framework.on('module#name')",
 					"params": [
-
+						
 					]
 				},
 				{
 					"description": "This event is triggered when a new controller is installed.",
 					"name": "framework.on('controller#name')",
 					"params": [
-
+						
 					]
 				},
 				{
 					"description": "This event is triggered when a new model is installed.",
 					"name": "framework.on('model#name')",
 					"params": [
-
+						
 					]
 				},
 				{
 					"description": "This event is triggered when a new config is installed.",
 					"name": "framework.on('config#name')",
 					"params": [
-
+						
 					]
 				},
 				{
@@ -710,7 +710,7 @@
 						"onetime"
 					],
 					"params": [
-
+						
 					]
 				},
 				{
@@ -720,7 +720,7 @@
 						"onetime"
 					],
 					"params": [
-
+						
 					]
 				},
 				{
@@ -792,7 +792,7 @@
 							"name": "fn",
 							"type": "Function",
 							"params": [
-
+								
 							]
 						}
 					],
@@ -946,7 +946,7 @@
 					"description": "Reconnects HTTP/HTTPS again.",
 					"name": "framework.reconnect",
 					"params": [
-
+						
 					],
 					"return": "Framework"
 				},
@@ -1147,7 +1147,7 @@
 							"name": "onQuery",
 							"type": "Function",
 							"params": [
-
+								
 							]
 						},
 						{
@@ -2910,7 +2910,7 @@
 					"description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
 					"name": "framework.clear",
 					"params": [
-
+						
 					],
 					"return": "Framework"
 				},
@@ -2942,7 +2942,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						}
@@ -4003,7 +4003,7 @@
 					"description": "Clears cached items in the cache.",
 					"name": "framework.cache.clear",
 					"params": [
-
+						
 					],
 					"return": "FrameworkCache"
 				},
@@ -4674,7 +4674,7 @@
 					"go": "#api~Framework",
 					"name": "framework.restrictions.clearIP",
 					"params": [
-
+						
 					],
 					"return": "Framework"
 				},
@@ -4684,7 +4684,7 @@
 					"go": "#api~Framework",
 					"name": "framework.restrictions.clearHeaders",
 					"params": [
-
+						
 					],
 					"return": "Framework"
 				}
@@ -4935,7 +4935,7 @@
 					"description": "The controller installer. The delegate is executed only one time.",
 					"name": "exports.install",
 					"params": [
-
+						
 					],
 					"return": "undefined"
 				},
@@ -4943,7 +4943,7 @@
 					"description": "The controller uninstaller. The delegate is executed only one time.",
 					"name": "exports.uninstall",
 					"params": [
-
+						
 					],
 					"return": "undefined"
 				}
@@ -5028,7 +5028,7 @@
 						"websocket"
 					],
 					"params": [
-
+						
 					]
 				},
 				{
@@ -5283,7 +5283,7 @@
 						"http"
 					],
 					"params": [
-
+						
 					],
 					"return": "FrameworkController"
 				},
@@ -5842,7 +5842,7 @@
 						"http"
 					],
 					"params": [
-
+						
 					],
 					"return": "FrameworkController"
 				},
@@ -5855,7 +5855,7 @@
 						"onetime"
 					],
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -6123,7 +6123,7 @@
 						"+v1.9.0"
 					],
 					"params": [
-
+						
 					],
 					"return": "FrameworkController"
 				},
@@ -6155,7 +6155,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						}
@@ -7887,13 +7887,17 @@
 							"description": "Relative URL.",
 							"name": "name2",
 							"type": "String",
-							"options": ["optional"]
+							"options": [
+								"optional"
+							]
 						},
 						{
 							"description": "Relative URL.",
 							"name": "nameN",
 							"type": "String",
-							"options": ["optional"]
+							"options": [
+								"optional"
+							]
 						}
 					],
 					"return": "String"
@@ -8156,7 +8160,7 @@
 					"example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
 					"name": "@{sitemap}",
 					"params": [
-
+						
 					],
 					"return": "Object Array"
 				},
@@ -8615,7 +8619,7 @@
 					"example": "https://github.com/totaljs/examples/tree/master/views",
 					"name": "@{repository.customKey}",
 					"options": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -8628,7 +8632,7 @@
 					"description": "Gets the value from the model.",
 					"name": "@{model.customKey}",
 					"options": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -8942,7 +8946,7 @@
 						"+v1.8.0"
 					],
 					"params": [
-
+						
 					],
 					"return": "undefined"
 				},
@@ -9016,7 +9020,7 @@
 							"name": "validator",
 							"type": "Function",
 							"params": [
-
+								
 							],
 							"options": [
 								"must return Boolean"
@@ -9167,7 +9171,7 @@
 					"description": "The empty function.",
 					"name": "Utils.noop",
 					"params": [
-
+						
 					],
 					"return": "undefined"
 				},
@@ -10328,7 +10332,7 @@
 					"description": "Sets image normalization.",
 					"name": "image.normalize",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10348,7 +10352,7 @@
 					"description": "Flips the image.",
 					"name": "image.flip",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10356,7 +10360,7 @@
 					"description": "Flops the image (opposite the flip).",
 					"name": "image.flop",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10364,7 +10368,7 @@
 					"description": "Minify the image.",
 					"name": "image.minify",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10372,7 +10376,7 @@
 					"description": "Creates a grayscale from the image..",
 					"name": "image.grayscale",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10380,7 +10384,7 @@
 					"description": "Creates a sepia from the image.",
 					"name": "image.sepia",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				},
@@ -10519,7 +10523,7 @@
 					"description": "Reads the file content __synchronous__.",
 					"name": "file.readSync",
 					"params": [
-
+						
 					],
 					"return": "Buffer"
 				},
@@ -10527,7 +10531,7 @@
 					"description": "Checks the content type whether is an image.",
 					"name": "file.isImage",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -10535,7 +10539,7 @@
 					"description": "Checks the content type whether is a video.",
 					"name": "file.isVideo",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -10543,7 +10547,7 @@
 					"description": "Checks the content type whether is an audio.",
 					"name": "file.isAudio",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -10635,7 +10639,7 @@
 					"go": "#api~FrameworkImage",
 					"name": "file.image",
 					"params": [
-
+						
 					],
 					"return": "FrameworkImage"
 				}
@@ -11023,7 +11027,7 @@
 					"description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
 					"name": "Request.prototype.authorization",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -11108,7 +11112,7 @@
 					"description": "Clears the uploaded files. This function is executed automatically.",
 					"name": "Request.prototype.clear",
 					"params": [
-
+						
 					],
 					"return": "Request"
 				},
@@ -11116,7 +11120,7 @@
 					"description": "Disables the cache validation.",
 					"name": "Request.prototype.noCache",
 					"params": [
-
+						
 					],
 					"return": "Request"
 				}
@@ -11272,7 +11276,7 @@
 					"description": "Disables HTTP cache.",
 					"name": "Response.prototype.noCache",
 					"params": [
-
+						
 					],
 					"return": "Response"
 				},
@@ -11520,7 +11524,7 @@
 					"description": "Trims the white characters.",
 					"name": "String.prototype.trim",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11532,7 +11536,7 @@
 					"description": "Creates a buffer from Base64.",
 					"name": "String.prototype.base64ToBuffer",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11540,7 +11544,7 @@
 					"description": "Parses XML from the string to Object.",
 					"name": "String.prototype.parseXML",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -11564,7 +11568,7 @@
 					"description": "Sets chars to lowercase and removes all diacritics operators (without `space` character). All `y` characters are replaced to `i`.",
 					"name": "String.prototype.toSearch",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11584,7 +11588,7 @@
 					"description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
 					"name": "String.prototype.parseDate",
 					"params": [
-
+						
 					],
 					"return": "Date"
 				},
@@ -11609,7 +11613,7 @@
 					"description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
 					"name": "String.prototype.parseDateExpiration",
 					"params": [
-
+						
 					],
 					"return": "Date"
 				},
@@ -11680,7 +11684,7 @@
 					"description": "Parses the configuration from a string (the same configuration as the framework configuration)",
 					"name": "String.prototype.parseConfig",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -11719,7 +11723,7 @@
 					"description": "Encodes the string to the HTML safe characters.",
 					"name": "String.prototype.encode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11727,7 +11731,7 @@
 					"description": "Decodes the string from the HTML safe characters.",
 					"name": "String.prototype.decode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11735,7 +11739,7 @@
 					"description": "Encodes the string to URL the safe characters.",
 					"name": "String.prototype.urlEncode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11743,7 +11747,7 @@
 					"description": "Decodes the string from URL the safe characters.",
 					"name": "String.prototype.urlDecode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11772,7 +11776,7 @@
 					"description": "Checks if the string contains the valid JSON.",
 					"name": "String.prototype.isJSON",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -11780,7 +11784,7 @@
 					"description": "Checks if the string contains the valid URL address.",
 					"name": "String.prototype.isURL",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -11788,7 +11792,7 @@
 					"description": "Checks if the string contains the valid e-mail address.",
 					"name": "String.prototype.isEmail",
 					"params": [
-
+						
 					],
 					"return": "Boolean"
 				},
@@ -11796,7 +11800,7 @@
 					"description": "Checks if the string contains the valid boolean value.",
 					"name": "String.prototype.isBoolean",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11836,7 +11840,7 @@
 					"description": "Parses a boolean from the string.",
 					"name": "String.prototype.parseBool",
 					"params": [
-
+						
 					],
 					"return": "Number"
 				},
@@ -11844,7 +11848,7 @@
 					"description": "Converts the string to unicode (HTML) characters.",
 					"name": "String.prototype.toUnicode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11852,7 +11856,7 @@
 					"description": "Parses the unicode (HTML) characters.",
 					"name": "String.prototype.fromUnicode",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -11995,7 +11999,7 @@
 					"description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
 					"name": "String.prototype.base64ContentType",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -12003,7 +12007,7 @@
 					"description": "Removes diacritics from the string.",
 					"name": "String.prototype.removeDiacritics",
 					"params": [
-
+						
 					],
 					"return": "String"
 				},
@@ -12112,7 +12116,7 @@
 					"description": "Capitalize the first letter of string (eg : test -> Test)",
 					"name": "String.prototype.capitalize",
 					"params": [
-
+						
 					],
 					"return": "String"
 				}
@@ -12644,7 +12648,7 @@
 							"name": "callback",
 							"type": "Function",
 							"params": [
-
+								
 							],
 							"options": [
 								"optional",
@@ -12688,7 +12692,7 @@
 					"description": "Trims all strings in the array.",
 					"name": "Array.prototype.trim",
 					"params": [
-
+						
 					],
 					"return": "Array"
 				},
@@ -12774,7 +12778,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						},
@@ -12801,7 +12805,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						}
@@ -12952,7 +12956,7 @@
 					"description": "Gets the one item (randomly) from the array.",
 					"name": "Array.prototype.random",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -12960,7 +12964,7 @@
 					"description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
 					"name": "Array.prototype.randomize",
 					"params": [
-
+						
 					],
 					"return": "Array"
 				}
@@ -12976,7 +12980,7 @@
 					"description": "Cancels the work.",
 					"name": "async.cancel",
 					"params": [
-
+						
 					],
 					"return": "Async"
 				},
@@ -13021,7 +13025,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						}
@@ -13064,7 +13068,7 @@
 								"optional"
 							],
 							"params": [
-
+								
 							],
 							"type": "Function"
 						}
@@ -13287,7 +13291,7 @@
 					"description": "The empty function.",
 					"name": "NOOP",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -13331,7 +13335,7 @@
 					"description": "Gets the database instance. This function is the alias for `framework.database()`.",
 					"name": "DATABASE",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -13340,7 +13344,7 @@
 					"description": "Gets the database instance. This function is the alias for `framework.database()`.",
 					"name": "DB",
 					"params": [
-
+						
 					],
 					"options": [
 						"+v1.9.0"
@@ -13945,7 +13949,7 @@
 							"description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
 							"name": "fn",
 							"params": [
-
+								
 							],
 							"return": "Object",
 							"type": "Function"
@@ -14005,7 +14009,7 @@
 					"description": "Returns the transformed errors.",
 					"name": "instance.output",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -14098,7 +14102,7 @@
 					"description": "Clears all errors.",
 					"name": "instance.clear",
 					"params": [
-
+						
 					],
 					"return": "ErrorBuilder"
 				},
@@ -14582,7 +14586,7 @@
 					"description": "Creates a new instance of the UrlBuilder.",
 					"name": "new UrlBuilder",
 					"params": [
-
+						
 					],
 					"return": "UrlBuilder"
 				},
@@ -14632,7 +14636,7 @@
 					"description": "Clears all parameters.",
 					"name": "instance.clear",
 					"params": [
-
+						
 					],
 					"return": "UrlBuilder"
 				},
@@ -15050,6 +15054,44 @@
 										}
 									],
 									"type": "Function"
+								}
+							],
+							"type": "Function"
+						}
+					],
+					"return": "SchemaBuilderEntity"
+				},
+				{
+					"changetype": 1,
+					"description": "Sets the __error delegate__. This delegate can change behaviour of ErrorBuilder for the current schema.",
+					"name": "SchemaBuilderEntity.setError",
+					"params": [
+						{
+							"description": "The delegate.",
+							"name": "fn",
+							"params": [
+								{
+									"description": "ErrorBuilder object for changing of behaviour.",
+									"name": "error",
+									"type": "ErrorBuilder"
+								},
+								{
+									"description": "The model object.",
+									"name": "model",
+									"type": "Object"
+								},
+								{
+									"description": "Who called this delegate? E.g. save, get, query, remove, workflow, transform, operation or compose.",
+									"name": "type",
+									"type": "String"
+								},
+								{
+									"description": "The name of workflow, transform, operation or compose.",
+									"name": "name",
+									"type": "String",
+									"options": [
+										"optional"
+									]
 								}
 							],
 							"type": "Function"
@@ -15480,7 +15522,7 @@
 					"description": "Destroys the entity.",
 					"name": "SchemaBuilderEntity.destroy",
 					"params": [
-
+						
 					],
 					"return": "undefined"
 				},
@@ -15655,7 +15697,7 @@
 					"description": "Creates the empty object according to the schema.",
 					"name": "SchemaBuilderEntity.create",
 					"params": [
-
+						
 					],
 					"return": "Object"
 				},
@@ -15897,6 +15939,7 @@
 			],
 			"changetype": 2,
 			"name": "Builders.SchemaBuilder",
+			"description": "The __SchemaBuilder__ is very helpful for model definitions. You can validate and prepare some data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations, rules and standard CRUD operations (READ, SAVE, REMOVE, QUERY, GET).\n\n```javascript\nvar User = NEWSCHEMA('User');\n\n// Definition of properties\nUser.define('alias', 'string(30)', true);\nUser.define('age', Number, true);\nUser.define('token', String);\nUser.define('created', Date);\n\n// Definition of validation\nUser.setValidation(function(propertyName, value, path, schemaName, model) {\n    if (propertyName === 'alias')\n        return value.length > 0;\n    if (propertyName === 'age')\n        return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n});\n\n// Definition of default values\nUser.setDefault(function(propertyName, isntPreparing, schemaName) {\n    if (propertyName === 'created')\n        return new Date();\n    if (propertyName === 'token')\n        return Utils.GUID(20);\n});\n\nUser.setSave(function(...){ });\nUser.setGet(function(...){ });\nUser.setRemove(function(...){ });\nUser.setQuery(function(...){ });\n\n// Usage:\nGETSCEHMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(SOME_OBJECT, function(err, model) {\n    if (err)\n        return;\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$rule(name);\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/registration/', json_registration, ['*User']);\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```",
 			"properties": [
 				{
 					"description": "Returns the schema definition.",
@@ -15977,11 +16020,16 @@
 			"changelog": "added <b>Isomorphic</b> and <b>Private directory</b>."
 		},
 		{
-			"body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- [A minimal framework configuration for running](#)\n- [Best NGINX configuration](#)\n- [Publishing the website - REVERSE PROXY](#)\n- [Creating a tunnel between localhost and internet](#)\n- [SOAP with total.js](#)\n- [Sublime Text 3 node.js build system (for OSX, Linux)](#)\n- [Sublime Text 3 Syntax highlighter for view engine](#)\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\n$ node --harmony myapp.js\n```\n\nYou have a full web server with all total.js features in the above code.\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n    use epoll;\n    worker_connections 1024;\n    multi_accept on;\n}\n\nhttp {\n    limit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n    client_body_buffer_size 10K;\n    client_header_buffer_size 1k;\n    client_max_body_size 8m;\n    large_client_header_buffers 2 1k;\n    server_names_hash_bucket_size 64;\n    sendfile on;\n    tcp_nodelay on;\n    keepalive_timeout 15;\n    keepalive_requests 200;\n    reset_timedout_connection on;\n    client_body_timeout 10;\n    send_timeout 5;\n    server_tokens off;\n    types_hash_max_size 2048;\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n    access_log off;\n    # access_log /www/logs/nginx.log;\n    error_log /var/log/nginx/error.log;\n    \n    # My configuration for websites:\n    # include /www/nginx/*.conf;\n\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n    ssl_prefer_server_ciphers on;\n    ssl_session_cache shared:SSL:10m;\n    ssl_session_timeout 10m;\n\n    # ======================\n    # Some server definition\n    # ======================\n\n    server {\n        listen 80;\n        server_name totaljs.com;\n        server_name www.totaljs.com;\n        charset     utf-8;\n\n        location / {\n\n            # DDOS protection for maximum 30 requests\n            limit_req zone=ddos burst=30 nodelay;\n\n            proxy_set_header   Host $http_host;\n            proxy_set_header   X-Forwarded-For $remote_addr;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-NginX-Proxy true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header   Upgrade $http_upgrade;\n            proxy_set_header   Connection \"upgrade\";\n            break;\n        }\n    }\n}\n```\n\n---\n\n## Publishing the website - REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - recommended](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n\n    keepalive_timeout  65;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## SOAP with total.js\n\nHow to create the SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n    <SOAP-ENV:Body>\n        <tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n            <tns1:countryCode>SK</tns1:countryCode>\n            <tns1:vatNumber>0000000000</tns1:vatNumber>\n        </tns1:checkVat>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n    console.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n---\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 Syntax highlighter for view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
+			"body": "This page describes some utilities for creating web application in total.js.\n\n__Table of contents__:\n\n- [A minimal framework configuration for running](#)\n- [IDE for node.js applications](#)\n- [Databases for node.js applications](#)\n- [Sublime Text 3 node.js build system (for OSX, Linux)](#)\n- [Sublime Text 3 syntax highlighter for total.js view engine](#)\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js');\n\nframework.route('/', function() {\n    this.plain('total.js is really good!');\n});\n\nframework.http('debug');\n```\n\n__Run it__:\n\n```bash\n$ node --harmony myapp.js\n```\n\nYou have a full web server with all total.js features in the above code.\n\n---\n\n## IDE for node.js applications\n\n| Name                                   | Paid            | Platform        |\n|----------------------------------------|-----------------|-----------------|\n| [__Sublime Text Editor__](http://www.sublimetext.com/) | Free trial | OSX, Linux, Windows |\n| [Atom](http://www.atom.io/) | Free | OSX, Linux, Windows |\n| [Brackets](http://brackets.io/) | Free | OSX, Linux, Windows |\n| [Visual Studio Code](https://www.visualstudio.com/) | Free | OSX, Linux, Windows |\n| [CodeRunner 2](https://coderunnerapp.com/) | Free trial | OSX |\n| [WebStorm](https://www.jetbrains.com/webstorm/) | Free trial | OSX, Linux, Windows |\n| [Coda 2](http://panic.com/coda/) | Free trial | OSX |\n| [Espresso](http://macrabbit.com/espresso/) | Free trial | OSX |\n| [Komodo 9](http://komodoide.com/) | Free trial | OSX, Linux, Windows |\n| [__Cloud 9 - online editor__](https://c9.io/) | Free trial | OSX, Linux, Windows |\n\n## Databases for node.js applications\n\n| Name                                   | Type            |\n|----------------------------------------|:---------------:|\n| [__PostgreSQL__](http://www.postgresql.org/) | RDBMS |\n| [MySQL](http://www.mysql.com/) | RDBMS |\n| [MariaDB](https://mariadb.org/) | RDBMS |\n| [Firebird](http://firebirdsql.org/) | RDBMS |\n| [SQLite](http://www.sqlite.org/) | RDBMS |\n| [MS SQL Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/) | RDBMS |\n| [Oracle Database](https://www.oracle.com/database/index.html) | RDBMS |\n| [__MongoDB__](http://www.mongodb.org/) | NoSQL |\n| [__CouchDB__](http://couchdb.apache.org/) | NoSQL |\n| [__RethinkDB__](http://rethinkdb.com/) | NoSQL |\n| [RiakDB](http://basho.com/products/) | NoSQL |\n| [NoSQL embedded database](https://github.com/petersirka/nosql) | NoSQL |\n| [__redis__](http://redis.io/) | Key-Value |\n| [memcached](http://memcached.org/) | Key-Value |\n| [FireBase](https://www.firebase.com/) | Key-Value |\n| [Neo4j](http://neo4j.com/) | Graph Database |\n| [OrientDB](http://orientdb.com/) | Graph Database |\n| [ElasticSearch](https://www.elastic.co/) | Fulltext Search Database |\n\n## Sublime Text 3 node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 syntax highlighter for total.js view engine\n\n- [Download: sublime-text-highlighter-3.zip](resources/sublime-text-highlighter-3.zip)\n- Download and read `readme.txt`\n\n![Sublime view engine](resources/sublime-viewengine.png)",
 			"group": "",
 			"name": "Developer tools",
-			"changetype": 2,
-			"changelog": "added <b>Best NGINX configuration with DDOS protection</b>."
+			"changetype": 2
+		},
+		{
+			"body": "## Webhosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | node.js |\n| [AppFog](http://appfog.com/) | node.js |\n| [Modulus](https://modulus.io/) | node.js |\n| [Heroku](https://www.heroku.com/) | node.js |\n| [Roští.cz](https://rosti.cz/nodejs-hosting/) | node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | node.js |\n\n## Webhosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [MongoLab](http://mongolab.com/) | MongoDB |\n| [MongoDirector](http://mongodirector.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.io/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Iris Couch](https://www.iriscouch.com/) | CouchDB |\n| [Couchappy](https://www.couchappy.com/) | CouchDB |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |",
+			"group": "",
+			"name": "Webhosting",
+			"changetype": 1
 		},
 		{
 			"body": "Controllers are responsible for responding to requests from a web browser, mobile application or any other system capable of communicating with a server. Each route is mapped into the action and the action responds to requests. The controllers with modules are the main feature of the framework logic.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Definitions --> Controllers\n```\n\nThe controller __knows 3x types of routes__: _classic_, _websocket_ and _file route_.\n\n- The classic route handles a classic requests into the dynamic content (view engine).\n- The websocket route handles WebSockets connections.\n- The file route handles static files.\n\n---\n\n__More informations__\n\n- The controller is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the controller into the memory.\n- All controllers are stored in `your-app/controllers/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name `your-app/views/your-controller-name/`.\n- You can create unlimited count of controllers.\n- The controller can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-controller).\n- Routing supports routing according to the subdomains, [example](https://github.com/totaljs/examples/tree/master/routing-subdomain).\n- The controller can communicate with the other controller.\n\n---\n\n## Examples\n\nMost [examples](https://github.com/totaljs/examples/) contain controllers.\n\n- [Example: Routing](https://github.com/totaljs/examples/tree/master/routing)\n- [Example: Routing + Flags](https://github.com/totaljs/examples/tree/master/routing-flags)\n- [Example: Routing + Flags + Roles](https://github.com/totaljs/examples/tree/master/routing-flags-roles)\n- [Example: Routing + Generators](https://github.com/totaljs/examples/tree/master/routing-generators)\n- [Example: Inline routing](https://github.com/totaljs/examples/tree/master/routing-inline)\n- [Example: Image resizer routing](https://github.com/totaljs/examples/tree/master/routing-resize)\n- [Example: Subdomain routing](https://github.com/totaljs/examples/tree/master/routing-subdomain)\n- [Example: Routing timeout](https://github.com/totaljs/examples/tree/master/routing-timeout)\n- [Example: WebSocket routing](https://github.com/totaljs/examples/tree/master/websocket)\n- [Example: Cancel executing action in controller](https://github.com/totaljs/examples/tree/master/controller-cancel)\n- [Example: Sending email from action in controller](https://github.com/totaljs/examples/tree/master/controller-mail)\n- [Example: Cache output from action in controller](https://github.com/totaljs/examples/tree/master/controller-memorize)\n- [Example: Communicating between controllers between different web apps](https://github.com/totaljs/examples/tree/master/controller-proxy)\n- [Example: Sharing functions between controllers](https://github.com/totaljs/examples/tree/master/controller-sharing)\n- [Example: Transfer request to different action](https://github.com/totaljs/examples/tree/master/controller-transfer)\n- [Example: Install controller from URL](https://github.com/totaljs/examples/tree/master/framework-install-controller)\n- [Example: Project structure](https://github.com/totaljs/examples/tree/master/project-structure)\n\n---\n\n## The definition\n\n- Class: [FrameworkController](#api~FrameworkController)\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the controller name (it's the identificator name). A __default value__ for this property is the controller filename without extension.\n\n```javascript\nexports.id = 'Controller name';\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the controller.\n\n```javascript\nexports.install = function() {\n    framework.route('/');\n    framework.route('/api/{type}/', json_api, ['put', 'json']);\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework is uninstalled from the framework.\n\n```javascript\nexports.uninstall = function() {\n    console.log('This controller is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of controller. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the controller\n\nFilename: `controllers/default.js`\n\n```javascript\nexports.install = function() {\n    framework.route('/', view_index);\n    framework.route('/contact/', view_contact);\n    framework.route('/hello/', plain_hello);\n    framework.route('/api/codelist/', json_codelist, ['xhr', 'get']);\n    framework.route('/sync/', view_sync);\n};\n\nfunction view_index() {\n    this.view('index');\n}\n\nfunction view_contact() {\n    this.layout('layouts/subpage');\n    this.view('contact', { email: '@' });\n}\n\nfunction plain_hello() {\n    this.plain('Hello world!');\n}\n\nfunction json_codelist() {\n    this.mail('info@company.com', 'Codelist notifications', 'mails/codelist');\n    this.json([1, 2, 3, 4, 5]);\n}\n\n// GENERATORS\nfunction *view_sync() {\n    var users = yield sync(DATABASE('users').$$all(n => n))();\n    this.json(users);\n}\n\n// or an inline route\nframework.route('/services/', function() {\n    this.view('services');\n});\n```\n\n## The routing\n\n- Method: [framework.route()](#api~Framework~framework.route)\n- Method: [framework.websocket()](#api~Framework~framework.websocket)\n- Method: [framework.file()](#api~Framework~framework.file)\n- List: [route flags](#api~HttpRouteOptionsFlags)\n\n### System routing\n\n```javascript\nexports.install = function() {\n    framework.route('#400', custom); // Bad Request\n    framework.route('#401', custom); // Unauthorized\n    framework.route('#403', custom); // Forbidden\n    framework.route('#404', custom); // Not Found\n    framework.route('#408', custom); // Request Timeout\n    framework.route('#431', custom); // Request Header Fields Too Large\n    framework.route('#500', custom); // Internal Server Error\n    framework.route('#501', custom); // Not Implemented\n}\n\nfunction custom() {\n    this.view('http-error-view');\n}\n```",
@@ -16058,7 +16106,7 @@
 			"name": "Wrapped methods"
 		},
 		{
-			"body": "__Table of contents__:\n\n- [Websocket connection is disconnected after 1 minute](#)\n- [Synchronous programming not working](#)\n- [Prevention for multiple requesting](#)\n- [Too many open files](#)\n- [Merged files contain additional informations](#)\n- [How to develop projects?](#)\n\n---\n\n## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__).\n\n```bash\n$ node --harmony my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. I recorded the problem in __Chrome__ web browser.\n\n### total.js prevention\n\n```javascript\nexports.install = function() {\n    // Prevention for multipe requests from one browser\n    F.route('/', delay_operation, ['delay']);\n};\n\nfunction delay_operaiton() {\n    var self = this;\n\n    console.log('I am here.');\n\n    setTimeout(function() {\n        self.view('some-view');\n    }, 10000);\n}\n```\n\n### Important change for nginx\n\n```lua\nhttp {\n    # VERY IMPORTANT FOR \"DELAY\" FLAG\n    proxy_http_version 1.1;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we must enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## How to develop projects?\n\nThe project must be created through the models with schemas. The schema must contain a whole business logic because the schema can be shared between projects (or can be injected) and for unit-tests too. Total.js models support error handling, validations, workflows, transformations, operations and basic CRUD operations. The framework can parse some requests as schemas. The model can be linked with other schemas.\n\n```javascript\nvar User = NEWSCHEMA('User');\n\n// Properties\nUser.define('id', Number);\nUser.define('email', 'String(200)', true);\nUser.define('created', Date);\n\n// Validation\nUser.setValidation(function(name, value, path, model) {\n    switch (name) {\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// Defaults:\nUser.setDefault(function(name) {\n    switch (name) {\n        case 'created':\n            return new Date();\n    }\n});\n\n// CRUD\nUser.setGetfunction(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setSave(function(error, model, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setQuery(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setRemove(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n```\n\n## Merged files contain additional informations\n\nYes and these additional informations are added only in debug (development) mode. These informations are very helpful for debugging of front-end development.\n\nE.g.\n\n```html\n/*!\n * ===========================================================================================\n * MERGED: ./public/css/bootstrap.min.css\n * ===========================================================================================\n */\n```\n\n__How to use schemas with routing?__\n\n```javascript\nexports.install = function() {\n    F.route('/api/users/create/', json_user_create, ['post', '*User']);\n    F.route('/api/users/', json_user_query);\n};\n\nfunction json_user_create() {\n    var self = this;\n    var options = {};\n    // controller.body contains a validated schema\n    self.body.$save(options, self.callback());\n}\n\nfunction json_user_query() {\n    var self = this;\n    var options = {};\n    GETSCHEMA('User').query(options, self.callback());\n}\n```",
+			"body": "__Table of contents__:\n\n- [Websocket connection is disconnected after 1 minute](#)\n- [Synchronous programming not working](#)\n- [Prevention for multiple requesting](#)\n- [Too many open files](#)\n- [Merged files contain additional informations](#)\n- [How to develop projects?](#)\n- [Publishing of website through a REVERSE PROXY](#)\n- [SOAP with total.js](#)\n- [Creating a tunnel between localhost and internet](#)\n- [Best NGINX configuration](#)\n \n---\n\n## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__).\n\n```bash\n$ node --harmony my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. I recorded the problem in __Chrome__ web browser.\n\n### total.js prevention\n\n```javascript\nexports.install = function() {\n    // Prevention for multipe requests from one browser\n    F.route('/', delay_operation, ['delay']);\n};\n\nfunction delay_operaiton() {\n    var self = this;\n\n    console.log('I am here.');\n\n    setTimeout(function() {\n        self.view('some-view');\n    }, 10000);\n}\n```\n\n### Important change for nginx\n\n```lua\nhttp {\n    # VERY IMPORTANT FOR \"DELAY\" FLAG\n    proxy_http_version 1.1;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we must enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## How to develop projects?\n\nThe project must be created through the models with schemas. The schema must contain a whole business logic because the schema can be shared between projects (or can be injected) and for unit-tests too. Total.js models support error handling, validations, workflows, transformations, operations and basic CRUD operations. The framework can parse some requests as schemas. The model can be linked with other schemas.\n\n```javascript\nvar User = NEWSCHEMA('User');\n\n// Properties\nUser.define('id', Number);\nUser.define('email', 'String(200)', true);\nUser.define('created', Date);\n\n// Validation\nUser.setValidation(function(name, value, path, model) {\n    switch (name) {\n        case 'email':\n            return value.isEmail();\n    }\n});\n\n// Defaults:\nUser.setDefault(function(name) {\n    switch (name) {\n        case 'created':\n            return new Date();\n    }\n});\n\n// CRUD\nUser.setGetfunction(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setSave(function(error, model, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setQuery(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n\nUser.setRemove(function(error, options, callback) {\n    error.push('not-implemented');\n    callback();\n});\n```\n\n__How to use schemas with routing?__\n\n```javascript\nexports.install = function() {\n    F.route('/api/users/create/', json_user_create, ['post', '*User']);\n    F.route('/api/users/', json_user_query);\n};\n\nfunction json_user_create() {\n    var self = this;\n    var options = {};\n    // controller.body contains a validated schema\n    self.body.$save(options, self.callback());\n}\n\nfunction json_user_query() {\n    var self = this;\n    var options = {};\n    GETSCHEMA('User').query(options, self.callback());\n}\n```\n\n## Merged files contain additional informations\n\n__Yes__ and these additional informations are added only in debug (development) mode. These informations are very helpful for debugging of front-end development.\n\ne.g.\n\n```html\n/*!\n * ===========================================================================================\n * MERGED: ./public/css/bootstrap.min.css\n * ===========================================================================================\n */\n```\n\n## Publishing of website through a REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - __recommended__](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n\n    include            mime.types;\n    default_type       application/octet-stream;\n    sendfile           on;\n    keepalive_timeout  65;\n    proxy_http_version 1.1;\n\n    server {\n        listen      80;\n        server_name www.totaljs.com;\n        server_name totaljs.com;\n        charset     utf-8;\n\n        # WITH WEBSOCKET DEFINITION\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header Upgrade          $http_upgrade;\n            proxy_set_header Connection       \"upgrade\";\n            break;\n        }\n    }\n\n    server {\n        listen      80;\n        server_name docs.totaljs.com;\n        charset     utf-8;\n\n        location @proxy {\n            proxy_set_header   Host             $http_host;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-Forwarded-For  $remote_addr;\n            proxy_set_header   X-NginX-Proxy    true;\n            proxy_pass         http://127.0.0.1:8001;\n            proxy_http_version 1.1;\n            proxy_redirect     off;\n            break;\n        }\n    }\n}\n```\n\n## SOAP with total.js\n\nHow to create the SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n    <SOAP-ENV:Body>\n        <tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n            <tns1:countryCode>SK</tns1:countryCode>\n            <tns1:vatNumber>0000000000</tns1:vatNumber>\n        </tns1:checkVat>\n    </SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n    console.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n    use epoll;\n    worker_connections 1024;\n    multi_accept on;\n}\n\nhttp {\n    # DDOS protection\n    limit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n    client_body_buffer_size 10K;\n    client_header_buffer_size 1k;\n    client_max_body_size 8m;\n    large_client_header_buffers 2 1k;\n    server_names_hash_bucket_size 64;\n    sendfile on;\n    tcp_nodelay on;\n    keepalive_timeout 15;\n    keepalive_requests 200;\n    reset_timedout_connection on;\n    client_body_timeout 10;\n    send_timeout 5;\n    server_tokens off;\n    types_hash_max_size 2048;\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n    access_log off;\n    # access_log /www/logs/nginx.log;\n    error_log /var/log/nginx/error.log;\n    proxy_http_version 1.1;\n    \n    # My configuration for websites:\n    # include /www/nginx/*.conf;\n\n    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n    ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n    ssl_prefer_server_ciphers on;\n    ssl_session_cache shared:SSL:10m;\n    ssl_session_timeout 10m;\n\n    # ======================\n    # Some server definition\n    # ======================\n\n    server {\n        listen 80;\n        server_name totaljs.com;\n        server_name www.totaljs.com;\n        charset     utf-8;\n\n        location / {\n\n            # DDOS protection for maximum 30 requests\n            limit_req zone=ddos burst=30 nodelay;\n\n            proxy_set_header   Host $http_host;\n            proxy_set_header   X-Forwarded-For $remote_addr;\n            proxy_set_header   X-Forwarded-Protocol $scheme;\n            proxy_set_header   X-NginX-Proxy true;\n            proxy_pass         http://127.0.0.1:8000;\n            proxy_redirect     off;\n            proxy_http_version 1.1;\n            proxy_set_header   Upgrade $http_upgrade;\n            proxy_set_header   Connection \"upgrade\";\n            break;\n        }\n    }\n}\n```",
 			"group": "",
 			"name": "Troubleshooting",
 			"changetype": 2,
