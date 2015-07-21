@@ -26,7 +26,7 @@
 				},
 				{
 					"default": "null",
-					"description": "A locate delegate. This delegate sets the language for current request (controller) for translation and must return a string with resource name.",
+					"description": "A locate delegate. This delegate sets language for the current request (controller).",
 					"name": "framework.onLocate",
 					"return": "String",
 					"params": [
@@ -13768,6 +13768,29 @@
 									"description": "Error handling."
 								}
 							]
+						}
+					],
+					"return": "undefined"
+				},
+				{
+					"changetype": 1,
+					"description": "This method can track a real end of the stream/response/request. Method contains `FINISHED` and `DESTROY` method together. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\nCLEANUP(stream);\n```",
+					"name": "CLENAUP",
+					"options": [
+						"+v1.9.0"
+					],
+					"params": [
+						{
+							"description": "It can be a Stream, Response or Request.",
+							"name": "stream",
+							"type": "Stream"
+						},
+						{
+							"description": "",
+							"name": "callback",
+							"type": "Function",
+							"options": ["optional"],
+							"params": []
 						}
 					],
 					"return": "undefined"
