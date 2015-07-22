@@ -425,28 +425,28 @@
           "description": "This event is triggered when a new module is installed.",
           "name": "framework.on('module#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new controller is installed.",
           "name": "framework.on('controller#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new model is installed.",
           "name": "framework.on('model#name')",
           "params": [
-
+            
           ]
         },
         {
           "description": "This event is triggered when a new config is installed.",
           "name": "framework.on('config#name')",
           "params": [
-
+            
           ]
         },
         {
@@ -710,7 +710,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -720,7 +720,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -792,7 +792,7 @@
               "name": "fn",
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -946,7 +946,7 @@
           "description": "Reconnects HTTP/HTTPS again.",
           "name": "framework.reconnect",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -1147,7 +1147,7 @@
               "name": "onQuery",
               "type": "Function",
               "params": [
-
+                
               ]
             },
             {
@@ -1700,7 +1700,7 @@
               ],
               "type": "Function",
               "params": [
-
+                
               ]
             }
           ],
@@ -2939,7 +2939,7 @@
           "description": "Clears temporary directory. This function removes all files in `config['directory-temp']`.",
           "name": "framework.clear",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -2971,7 +2971,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -4032,7 +4032,7 @@
           "description": "Clears cached items in the cache.",
           "name": "framework.cache.clear",
           "params": [
-
+            
           ],
           "return": "FrameworkCache"
         },
@@ -4703,7 +4703,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearIP",
           "params": [
-
+            
           ],
           "return": "Framework"
         },
@@ -4713,7 +4713,7 @@
           "go": "#api~Framework",
           "name": "framework.restrictions.clearHeaders",
           "params": [
-
+            
           ],
           "return": "Framework"
         }
@@ -4964,7 +4964,7 @@
           "description": "The controller installer. The delegate is executed only one time.",
           "name": "exports.install",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -4972,7 +4972,7 @@
           "description": "The controller uninstaller. The delegate is executed only one time.",
           "name": "exports.uninstall",
           "params": [
-
+            
           ],
           "return": "undefined"
         }
@@ -5057,7 +5057,7 @@
             "websocket"
           ],
           "params": [
-
+            
           ]
         },
         {
@@ -5312,7 +5312,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5871,7 +5871,7 @@
             "http"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -5884,7 +5884,7 @@
             "onetime"
           ],
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -6152,7 +6152,7 @@
             "+v1.9.0"
           ],
           "params": [
-
+            
           ],
           "return": "FrameworkController"
         },
@@ -6184,7 +6184,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -8189,7 +8189,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
+            
           ],
           "return": "Object Array"
         },
@@ -8648,7 +8648,7 @@
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{repository.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8661,7 +8661,7 @@
           "description": "Gets the value from the model.",
           "name": "@{model.customKey}",
           "options": [
-
+            
           ],
           "return": "Object"
         },
@@ -8975,7 +8975,7 @@
             "+v1.8.0"
           ],
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -9049,7 +9049,7 @@
               "name": "validator",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "must return Boolean"
@@ -9200,7 +9200,7 @@
           "description": "The empty function.",
           "name": "Utils.noop",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -10361,7 +10361,7 @@
           "description": "Sets image normalization.",
           "name": "image.normalize",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10381,7 +10381,7 @@
           "description": "Flips the image.",
           "name": "image.flip",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10389,7 +10389,7 @@
           "description": "Flops the image (opposite the flip).",
           "name": "image.flop",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10397,7 +10397,7 @@
           "description": "Minify the image.",
           "name": "image.minify",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10405,7 +10405,7 @@
           "description": "Creates a grayscale from the image..",
           "name": "image.grayscale",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10413,7 +10413,7 @@
           "description": "Creates a sepia from the image.",
           "name": "image.sepia",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         },
@@ -10552,7 +10552,7 @@
           "description": "Reads the file content __synchronous__.",
           "name": "file.readSync",
           "params": [
-
+            
           ],
           "return": "Buffer"
         },
@@ -10560,7 +10560,7 @@
           "description": "Checks the content type whether is an image.",
           "name": "file.isImage",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10568,7 +10568,7 @@
           "description": "Checks the content type whether is a video.",
           "name": "file.isVideo",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10576,7 +10576,7 @@
           "description": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -10668,7 +10668,7 @@
           "go": "#api~FrameworkImage",
           "name": "file.image",
           "params": [
-
+            
           ],
           "return": "FrameworkImage"
         }
@@ -11056,7 +11056,7 @@
           "description": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11141,7 +11141,7 @@
           "description": "Clears the uploaded files. This function is executed automatically.",
           "name": "Request.prototype.clear",
           "params": [
-
+            
           ],
           "return": "Request"
         },
@@ -11149,7 +11149,7 @@
           "description": "Disables the cache validation.",
           "name": "Request.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Request"
         }
@@ -11305,7 +11305,7 @@
           "description": "Disables HTTP cache.",
           "name": "Response.prototype.noCache",
           "params": [
-
+            
           ],
           "return": "Response"
         },
@@ -11553,7 +11553,7 @@
           "description": "Trims the white characters.",
           "name": "String.prototype.trim",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11565,7 +11565,7 @@
           "description": "Creates a buffer from Base64.",
           "name": "String.prototype.base64ToBuffer",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11573,7 +11573,7 @@
           "description": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11597,7 +11597,7 @@
           "description": "Sets chars to lowercase and removes all diacritics operators (without `space` character). All `y` characters are replaced to `i`.",
           "name": "String.prototype.toSearch",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11617,7 +11617,7 @@
           "description": "Parses a date from the string. The string must be in this format: `yyyy-MM-dd HH:mm:ss`. The time or date is _optional_.",
           "name": "String.prototype.parseDate",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -11642,7 +11642,7 @@
           "description": "Parses expiration date. The function adds into the current `Date` value from the string.\n\n```javascript\nconsole.log('5 minutes'.parseDateExpire()));\nconsole.log('2 hours'.parseDateExpire()));\n```",
           "name": "String.prototype.parseDateExpiration",
           "params": [
-
+            
           ],
           "return": "Date"
         },
@@ -11713,7 +11713,7 @@
           "description": "Parses the configuration from a string (the same configuration as the framework configuration)",
           "name": "String.prototype.parseConfig",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -11752,7 +11752,7 @@
           "description": "Encodes the string to the HTML safe characters.",
           "name": "String.prototype.encode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11760,7 +11760,7 @@
           "description": "Decodes the string from the HTML safe characters.",
           "name": "String.prototype.decode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11768,7 +11768,7 @@
           "description": "Encodes the string to URL the safe characters.",
           "name": "String.prototype.urlEncode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11776,7 +11776,7 @@
           "description": "Decodes the string from URL the safe characters.",
           "name": "String.prototype.urlDecode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11805,7 +11805,7 @@
           "description": "Checks if the string contains the valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11813,7 +11813,7 @@
           "description": "Checks if the string contains the valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11821,7 +11821,7 @@
           "description": "Checks if the string contains the valid e-mail address.",
           "name": "String.prototype.isEmail",
           "params": [
-
+            
           ],
           "return": "Boolean"
         },
@@ -11829,7 +11829,7 @@
           "description": "Checks if the string contains the valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11869,7 +11869,7 @@
           "description": "Parses a boolean from the string.",
           "name": "String.prototype.parseBool",
           "params": [
-
+            
           ],
           "return": "Number"
         },
@@ -11877,7 +11877,7 @@
           "description": "Converts the string to unicode (HTML) characters.",
           "name": "String.prototype.toUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -11885,7 +11885,7 @@
           "description": "Parses the unicode (HTML) characters.",
           "name": "String.prototype.fromUnicode",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -12028,7 +12028,7 @@
           "description": "Gets the `content-type` from the base64 string. Example:\n\n```javascript\nconsole.log('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIA...'.base64ContentType())\n```",
           "name": "String.prototype.base64ContentType",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -12036,7 +12036,7 @@
           "description": "Removes diacritics from the string.",
           "name": "String.prototype.removeDiacritics",
           "params": [
-
+            
           ],
           "return": "String"
         },
@@ -12145,7 +12145,7 @@
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            
           ],
           "return": "String"
         }
@@ -12677,7 +12677,7 @@
               "name": "callback",
               "type": "Function",
               "params": [
-
+                
               ],
               "options": [
                 "optional",
@@ -12721,7 +12721,7 @@
           "description": "Trims all strings in the array.",
           "name": "Array.prototype.trim",
           "params": [
-
+            
           ],
           "return": "Array"
         },
@@ -12807,7 +12807,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             },
@@ -12834,7 +12834,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -12985,7 +12985,7 @@
           "description": "Gets the one item (randomly) from the array.",
           "name": "Array.prototype.random",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -12993,7 +12993,7 @@
           "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.randomize",
           "params": [
-
+            
           ],
           "return": "Array"
         }
@@ -13009,7 +13009,7 @@
           "description": "Cancels the work.",
           "name": "async.cancel",
           "params": [
-
+            
           ],
           "return": "Async"
         },
@@ -13054,7 +13054,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -13097,7 +13097,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ],
               "type": "Function"
             }
@@ -13320,7 +13320,7 @@
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13364,7 +13364,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DATABASE",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -13373,7 +13373,7 @@
           "description": "Gets the database instance. This function is the alias for `framework.database()`.",
           "name": "DB",
           "params": [
-
+            
           ],
           "options": [
             "+v1.9.0"
@@ -13793,7 +13793,7 @@
                 "optional"
               ],
               "params": [
-
+                
               ]
             }
           ],
@@ -14005,7 +14005,7 @@
               "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-
+                
               ],
               "return": "Object",
               "type": "Function"
@@ -14065,7 +14065,7 @@
           "description": "Returns the transformed errors.",
           "name": "instance.output",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -14158,7 +14158,7 @@
           "description": "Clears all errors.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "ErrorBuilder"
         },
@@ -14642,7 +14642,7 @@
           "description": "Creates a new instance of the UrlBuilder.",
           "name": "new UrlBuilder",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -14692,7 +14692,7 @@
           "description": "Clears all parameters.",
           "name": "instance.clear",
           "params": [
-
+            
           ],
           "return": "UrlBuilder"
         },
@@ -15578,7 +15578,7 @@
           "description": "Destroys the entity.",
           "name": "SchemaBuilderEntity.destroy",
           "params": [
-
+            
           ],
           "return": "undefined"
         },
@@ -15753,7 +15753,7 @@
           "description": "Creates the empty object according to the schema.",
           "name": "SchemaBuilderEntity.create",
           "params": [
-
+            
           ],
           "return": "Object"
         },
@@ -16058,12 +16058,6 @@
       "name": "Getting started"
     },
     {
-      "body": "## The most important change\n\nI have changed a behaviour of installation for controllers, modules, models, etc.. Please update external modules in your all projects to latest.\n\n__Old version__:\n\n```javascript\nexports.install = function(framework, options) {\n    // That's the past\n};\n\nexports.uninstall = function(framework, options) {\n    // That's the past\n};\n```\n\n__New version__:\n\n```javascript\nexports.install = function(options) {\n    // framework is a global variable    \n};\n\nexports.uninstall = function(options) {\n    // framework is a global variable    \n};\n```\n\n__Solution for both versions__:\n\n```javascript\nexports.install = function() {\n    var options = framework.version >= 1900 ? arguments[0] : arguments[1];\n};\n\nexports.uninstall = function() {\n    var options = framework.version >= 1900 ? arguments[0] : arguments[1];    \n};\n```\n\n__100% backward compatibility__:\n\nYou can disable this behaviour with `allow-compatibility: true` in configuration files - [documentation](http://127.0.0.1:8005/v1.9.x/en.html#api~FrameworkConfiguration~allow-compatibility).\n\n---\n\n## Updated json flag\n\nI have performed a new change with `json` flag. I simplified it.\n\n```javascript\n// Old version:\nF.route('/some-url/', action, ['post', 'json']);\nF.route('/some-url/', action, ['put', 'json']);\n\n// New version\nF.route('/some-url/', action, ['post']);\nF.route('/some-url/', action, ['put']);\n```\n\n## Replaced last argument in F.mail() and controller.mail()\n\nI have replaced argument in `F.mail()` and `controller.mail()`. The argument `[replyTo]` has been replaced for `[language]`. So new version `v1.9.0` can localize mail content too.\n\n- [Documentation: F.mail()](#api~Framework~framework.mail)\n- [Documentation: controller.mail()](#api~FrameworkController~controller.mail)\n\n---\n\n## Utils.extend()\n\nIn this method has been changed a default value for `[rewrite]` from `false` to `true` [documentation](#api~FrameworkUtils~Utils.extend).",
-      "group": "",
-      "name": "Backward compatibility",
-      "changetype": 1
-    },
-    {
       "body": "- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    F.route('/', view_index);\n    F.route('/services/{name}/', view_services);\n    F.route('/contact/', view_contact);\n    F.route('/contact/', json_contact, ['post']);\n}\n\n// The action\nfunction view_index() {\n    var self = this;\n    // The \"index\" view is routed into the views/index.html\n    // ---> Send the response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // The \"services\" view is routed into the views/services.html\n    // A second argument is the model\n    // ---> Send the response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> Send the response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // Get the data from the request body.\n    // The data are parsed into the object automatically.\n    var model = self.body;\n\n    // e.g.\n    // model.email\n    // model.name\n\n    // Send the mail to our company\n    var message = self.mail('info@company.com', 'Contact form', 'mail-template', model);\n    message.reply(model.email);\n\n    // ---> and send the response in JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit the views\n\n### Edit view: views/layout.html\n\nThe layout view is the special view which it contains the layout. Into the view are rendered other views. You can create unlimited count of layouts.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    @{meta}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{import('default.js', 'bootstrap.min.css', 'default.css', 'font-awesome.min.css', 'favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `@{meta}` renders meta tags and other stuff which you will need\n- `@{import('...')}` renders tags\n- `@{body}` renders view from the action (__IMPORTANT__ `@{body}` is very important for layouts)\n\nMore about the view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit the view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is the content from the view.</p>\n```\n\n### Create the view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{fi}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{fi}\n```\n\n### Create the view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run the application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$ node --harmony debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n### Read more:\n\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Tutorial"
@@ -16082,9 +16076,15 @@
       "changetype": 2
     },
     {
-      "body": "## Webhosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | node.js |\n| [AppFog](http://appfog.com/) | node.js |\n| [Modulus](https://modulus.io/) | node.js |\n| [Heroku](https://www.heroku.com/) | node.js |\n| [Roští.cz](https://rosti.cz/nodejs-hosting/) | node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | node.js |\n\n## Webhosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [MongoLab](http://mongolab.com/) | MongoDB |\n| [MongoDirector](http://mongodirector.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.io/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Iris Couch](https://www.iriscouch.com/) | CouchDB |\n| [Couchappy](https://www.couchappy.com/) | CouchDB |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |",
+      "body": "## Webhosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | node.js |\n| [AppFog](http://appfog.com/) | node.js |\n| [Modulus](https://modulus.io/) | node.js |\n| [Heroku](https://www.heroku.com/) | node.js |\n| [Roští.cz](https://rosti.cz/nodejs-hosting/) | node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | node.js |\n\n## Webhosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [MongoLab](http://mongolab.com/) | MongoDB |\n| [MongoDirector](http://mongodirector.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.io/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Iris Couch](https://www.iriscouch.com/) | CouchDB |\n| [Couchappy](https://www.couchappy.com/) | CouchDB |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
       "group": "",
       "name": "Webhosting",
+      "changetype": 1
+    },
+    {
+      "body": "## The most important change\n\nI have changed a behaviour of installation for controllers, modules, models, etc.. Please update external modules in your all projects to latest.\n\n__Old version__:\n\n```javascript\nexports.install = function(framework, options) {\n    // That's the past\n};\n\nexports.uninstall = function(framework, options) {\n    // That's the past\n};\n```\n\n__New version__:\n\n```javascript\nexports.install = function(options) {\n    // framework is a global variable    \n};\n\nexports.uninstall = function(options) {\n    // framework is a global variable    \n};\n```\n\n__Solution for both versions__:\n\n```javascript\nexports.install = function() {\n    var options = framework.version >= 1900 ? arguments[0] : arguments[1];\n};\n\nexports.uninstall = function() {\n    var options = framework.version >= 1900 ? arguments[0] : arguments[1];    \n};\n```\n\n__100% backward compatibility__:\n\nYou can disable this behaviour with `allow-compatibility: true` in configuration files - [documentation](http://127.0.0.1:8005/v1.9.x/en.html#api~FrameworkConfiguration~allow-compatibility).\n\n---\n\n## Updated json flag\n\nI have performed a new change with `json` flag. I simplified it.\n\n```javascript\n// Old version:\nF.route('/some-url/', action, ['post', 'json']);\nF.route('/some-url/', action, ['put', 'json']);\n\n// New version\nF.route('/some-url/', action, ['post']);\nF.route('/some-url/', action, ['put']);\n```\n\n## Replaced last argument in F.mail() and controller.mail()\n\nI have replaced argument in `F.mail()` and `controller.mail()`. The argument `[replyTo]` has been replaced for `[language]`. So new version `v1.9.0` can localize mail content too.\n\n- [Documentation: F.mail()](#api~Framework~framework.mail)\n- [Documentation: controller.mail()](#api~FrameworkController~controller.mail)\n\n---\n\n## Utils.extend()\n\nIn this method has been changed a default value for `[rewrite]` from `false` to `true` [documentation](#api~FrameworkUtils~Utils.extend).",
+      "group": "",
+      "name": "Backward compatibility",
       "changetype": 1
     },
     {
