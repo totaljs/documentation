@@ -1613,7 +1613,7 @@
             },
             {
               "description": "The plain text body. Supports only basic HTML formats <b>b</b>, <b>i</b>, etc.. New line is <b>\\n<b/>.",
-              "name": "name",
+              "name": "body",
               "type": "String"
             },
             {
