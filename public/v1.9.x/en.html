@@ -62,7 +62,7 @@
 		<ul class="members">
 			{{ foreach m in members }}
 				<li data-id="{{ m.linker }}">
-					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span> {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option">{{ o }}</span>{{ end }}{{ endif }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ endif }}</a>
+					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; {{ if m.return }}<span class="members-return">returns {{ m.return }}</span>{{ endif }} {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option">{{ o }}</span>{{ end }}{{ endif }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ endif }}</a>
 					<div class="body hidden">
 						{{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ endif }}
 						<div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }};</div>
@@ -79,7 +79,9 @@
 							{{ end }}
 							</div>
 						{{ endif }}
+						{{ if m.return }}
 						<div class="member-body-return">returns {{ if m.go }}<a href="{{ m.go }}">{{ m.return }}</a>{{ else }}{{ m.return }}{{ endif }};</div>
+						{{ endif }}
 						<div class="markdown">{{ m.body | raw }}</div>
 						{{ if m.example }}
 						<div class="member-body-example"><a href="{{ m.example }}" target="_blank">Example</a></div>
