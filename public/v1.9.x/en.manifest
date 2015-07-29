@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# rev 1
+# rev 2
 docs.min.css
 docs.min.js
 en.json
@@ -16,8 +16,6 @@ resources/ngrok-running.jpg
 resources/ngrok-web-public.jpg
 resources/sublime-menu.png
 resources/sublime-packages.png
-resources/sublime-viewengine.png
 resources/validation-global.png
 resources/viewengine-binding.png
 resources/viewengine-repository-vs-model.png
-resources/viewengine.png
