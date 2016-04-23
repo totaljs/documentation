@@ -1,87 +1,19 @@
-BETA ======= 1.9.0
+======= 2.0.0 (BETA)
 
-OK - added: (IMPORTANT) ISOMORPHIC using
-OK - added: (IMPORTANT) new flag `mobile` (mobile routing), you can create a route to mobile device
-OK - added: readonly `req.mobile` -> returns `boolean`
-OK - added: new view tag: @{mobile} –> returns `boolean`
-OK - added: new view tag: @{isomorphic} –> returns `Object` with isomorphic objects
-OK - added: `config['disable-clear-temporary-directory'] = false` (after start)
-OK - added: `config['allow-compatibility'] = true` - a backward compatibility mode
-OK - added: `config['default-timezone']`
-OK - added: `config['directory-isomorphic']`
-OK - added: `config['directory-private']`
-OK - added: `F.path.private([filename])`
-OK - added: `F.path.isomorphic([filename])`
-OK - added: `Controller.ping()` for WebSocket
-OK - added: `global.DB()` --> same as `global.DATABASE()`
-OK - added: `global.isomorphic` --> returns `framework.isomorphic` --> returns isomorphic objects
-OK - added: `global.is_client` and `global.is_server` for isomorphic
-OK - added: RegExp routing `F.route('/{/^\\d+$/}', ...)`
-OK - added: `F.responseBinary(req, res, contentType, buffer, [type], [download], [headers])`
-OK - added: `SchemaBuilderEntity.filter(custom, [model], [reverse])`
-OK - added: `SchemaBuilderEntity.trim = true`(enable/disable trim strings (default: true))
-OK - added: `Number.prototype.add(value, [decimals])` -> supports percentage
-OK - added: `Date.prototype.toUTC([ticksOnly])`
-OK - added: `Date.prototype.extend()` -> extend current datetime about new date or time (more in documentation)
-OK - added: `F.stats.request.mobile`, `F.stats.request.desktop`
-OK - added: binary - `total --translatecsv`
-OK - added: controller.jsonp(method_name, obj, [headers], [beautify], [replacer]);
-OK - added: CSS variables likes sass, example: `$color: red;`
-OK - added: modificators for dynamic modification before compilation: views, styles and scripts
-OK - added: TransformBuilder
-OK - added: F.load(debug, load_types, [path]);
-OK - added: F.isWorker (is true when is called F.load())
-OK - added: F.isCluster (is true when the framework is running in the cluster)
-OK - added: Array.unique() by Andrea Sessa
-OK - added: Array.pair(array, property, fn(itemA, itemB), [remove]) - pair arrays
-OK - added: String.base64ToBuffer();
-- added: terminal -> `tpm unpack [package_name] [optional: target_directory]`
-OK - added: versions is applied to raw HTML
-OK - added: versions supports auto-mapping
-OK - added: sync2(), e.g. sync2(fn), diff with v1: sync(fn)() and v2: sync2(fn)
-OK - added: "dependencies" file for installing dependencies (modules, packages, etc.)
-OK - added: @{nocompress html}, @{nocompress script}, @{nocompress style}, @{nocompress all}
-OK - added: req.authorize(callback(err, userprofile, isAuthorized))
+- added: new NoSQL version v4.0.0 is fully optimized for total.js
+- added: `controller.invalid()` creates the ErrorBuilder instance and it responds in the next tick
+- added: `controller.sitemap_url([id])` returns an URL from the sitemap
+- added: `controller.sitemap_name([id])` returns a name/title from the sitemap
+- added: `controller.sitemap_change(id, property, newvalue)` can change a current value in the sitemap
+- added: `@{sitemap_url([id], [arg1], [arg2], [argN])}` returns an URL from the sitemap
+- added: `@{sitemap_name([id], [arg1], [arg2], [argN])}` returns a name/title from the sitemap
+- added: `@{sitemap_change(id, property, newvalue)}` can change a current value in the sitemap
+- added: `F.route()` supports a new flag: `cors` (creates a cors route) and `credentials` (enables cookies for cors)
 
-OK - updated: (IMPORTANT) routing: `json` flag is not required for receiving incomming data as JSON
-OK - updated: `F.mail(address, subject, view, [model], [callback], [language])` added language
-OK - updated: `F.view(name, model, [layout], [repository], [language])` added language
-OK - updated: `F.route(url, ...)`, `F.websocket(url, ...)` --> URL can be function(url, req, [flags])
-OK - updated: `versions` affects F.map() and F.merge()
-OK - updated: `controller.mail(address, subject, view, [model], [callback], [language])` added language
-OK - updated: `config['allow-performance']` is set to true
-OK - updated: (IMPORTANT) `F.map(url, filename/directory, [filter])` supports mapping directories
-OK - updated: (IMPORTANT) arguments order `SchemaBuilderEntity.setValidate(function(name, value, path, model, schema){})`
-OK - updated: (IMPORTANT) `U.extend(target, source, [rewrite]);` --> rewrite is by default: __true__
-OK - updated: `SchemaBuilderEntity.setPrepare(function(name, value, index, model){})` --> __model__ is new
-OK - updated: `SchemaBuilderEntity.define(name, value, required, [custom])` --> __custom__ is new
-OK - updated: HTML compressor
-OK - updated: favicon `(removed rel="icon")`
-- updated: binary `tpm create [package] [directory]` (added argument [package], [directory])
-OK - updated: better handling middleware errors and added prevention of "memory leak"
-OK - updated: (IMPORTANT): Websocket ping is set to 3 minutes
-- updated: framework responds for bad requests with HTTP 403
-OK - updated: Mail (added support for Office365)
-OK - updated: Date.prototype.add() supports e.g. Date.prototype.add('25 days')
-OK - updated: String.prototype.params() -> supports double "{{"
-OK - updated: F.schedule(date, [repeat], fn) --> added [repeat]
+- updated: `F.route(url, ...)` - `url`can be String Array with multiple relative paths by @Harry-Stot
 
-- removed: XSS check
+- removed: `SCHEMA()`
 
-- fixed: `controller.binary(buffer, contentType, [download], [headers])`
-- fixed: routing `DELETE`
-- fixed: `binary` (creating empty-project, bad record with smtp options)
-- fixed: calling generator action
-- fixed: `binary --translate` (filenames)
-- fixed: SchemaBuilderEntity prepare (problem with nullable Boolean)
-- fixed: (IMPORTANT) 431 system route
-- fixed: F.log(), F.logger() –> problem with objects, reported by Nikita Shmidt
-- fixed: Number formatting (problem with negative numbers)
+--->
 
-- improved: code optimalization
-- improved: Date.prototype.format()
-- improved: String.prototype.format()
-- improved: Number.prototype.pluralize()
-
-__IMPORTANT:__
-`exports.install = function(framework) {}` framework variable is removed but with backward compatibility (`config['allow-compatibility']`).
+dopísať cors flagy do flagov + origin pre websocket do flagov
