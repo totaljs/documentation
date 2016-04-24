@@ -13385,7 +13385,7 @@
           "options": [
             "+v1.9.0"
           ],
-          "description": "Increment/Decrement number according string value. Supports percentage.\n\n```javascript\nvar number = 100;\n\nconsole.log(number.add('+10'));\n// output: 110\n\nconsole.log(number.add('-10'));\n// output: 90\n\nconsole.log(number.add('*10'));\n// output: 1000\n\nconsole.log(number.add('/10'));\n// output: 10\n\nconsole.log(number.add('10%'));\n// output: 10\n\nconsole.log(number.add('+10%'));\n// output: 110.000000...\n\nconsole.log(number.add('-90%'));\n// output: 90.9090909...\n\nconsole.log(number.add('*10%'));\n// output: 11000.0000...\n\nconsole.log(number.add('/10%'));\n// output: 1.1\n```",
+          "description": "Increment/Decrement number according string value. Supports percentage.\n\n```javascript\nvar number = 100;\n\nconsole.log(number.add('+10'));\n// output: 110\n\nconsole.log(number.add('-10'));\n// output: 90\n\nconsole.log(number.add('*10'));\n// output: 1000\n\nconsole.log(number.add('/10'));\n// output: 10\n\nconsole.log(number.add('10%'));\n// output: 10\n\nconsole.log(number.add('+10%'));\n// output: 110\n\nconsole.log(number.add('-90%'));\n// output: 10\n\nconsole.log(number.add('*10%'));\n// output: 1000\n\nconsole.log(number.add('/10%'));\n// output: 10\n```",
           "name": "Number.prototype.add",
           "params": [
             {
