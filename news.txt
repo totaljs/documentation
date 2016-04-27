@@ -9,6 +9,7 @@
 - added: `@{sitemap_name([id], [arg1], [arg2], [argN])}` returns a name/title from the sitemap
 - added: `@{sitemap_change(id, property, newvalue)}` can change a current value in the sitemap
 - added: `F.route()` supports a new flag: `cors` (creates a cors route) and `credentials` (enables cookies for cors)
+- added: new schemabuilder types `Email` (string, maxlength 120), `Phone` (string, maxlength 20), `Zip` (string, maxlength 10), `Camelize` (string), `Lowerize` (string), `Upperize` (string), `UID` (string, minlength 18, maxlength 20)
 
 - updated: `F.route(url, ...)` - `url`can be String Array with multiple relative paths by @Harry-Stot
 

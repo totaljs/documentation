@@ -892,7 +892,7 @@
           ]
         },
         {
-          "description": "This event is triggered after is framework ready and after are loaded Definitions, Controllers, Modules, etc..",
+          "description": "This event is triggered after is the framework ready and after are loaded Definitions, Controllers, Modules, etc..",
           "name": "framework.on('load')",
           "options": [
             "onetime"
@@ -902,7 +902,17 @@
           ]
         },
         {
-          "description": "This event is triggered at first.",
+          "description": "This event is triggered after is the framework ready and after are loaded Definitions, Controllers, Modules, etc..",
+          "name": "framework.on('ready')",
+          "options": [
+            "onetime"
+          ],
+          "params": [
+
+          ]
+        },
+        {
+          "description": "This event is triggered at first when are not loaded dependencies.",
           "name": "framework.on('init')",
           "options": [
             "onetime"
@@ -10313,7 +10323,7 @@
           "options": [
             "+v1.9.6"
           ],
-          "description": "Gets a file extension from a relative path.",
+          "description": "Gets a file extension from a relative path. The method return extension without dot, e.g. `jpg` or `txt`.",
           "name": "Utils.getExtension",
           "params": [
             {
@@ -12981,7 +12991,15 @@
           "return": "String"
         },
         {
-          "description": "Checks if the string contains the valid JSON.",
+          "options": ["v2.0.0"],
+          "description": "Converts string to CamelCase.",
+          "name": "String.prototype.toCamelCase",
+          "params": [
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Checks if the string contains a valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
 
@@ -12989,7 +13007,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Checks if the string contains the valid URL address.",
+          "description": "Checks if the string contains a valid URL address.",
           "name": "String.prototype.isURL",
           "params": [
 
@@ -12997,7 +13015,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Checks if the string contains the valid email address.",
+          "description": "Checks if the string contains a valid email address.",
           "name": "String.prototype.isEmail",
           "params": [
 
@@ -13005,7 +13023,24 @@
           "return": "Boolean"
         },
         {
-          "description": "Checks if the string contains the valid boolean value.",
+          "options": ["v2.0.0"],
+          "description": "Checks if the string contains a valid phone number.",
+          "name": "String.prototype.isPhone",
+          "params": [
+
+          ],
+          "return": "Boolean"
+        },
+        {
+          "options": ["v2.0.0"],
+          "description": "Checks if the string contains a valid `UID` format (new UID via method `UID()`).",
+          "name": "String.prototype.isUID",
+          "params": [
+          ],
+          "return": "Boolean"
+        },
+        {
+          "description": "Checks if the string contains a valid boolean value.",
           "name": "String.prototype.isBoolean",
           "params": [
 
@@ -15151,8 +15186,8 @@
           "return": "undefined"
         },
         {
-          "description": "This method can track a real end of the stream/response/request. Method contains `FINISHED` and `DESTROY` method together. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\nCLEANUP(stream);\n```",
-          "name": "CLENAUP",
+          "description": "This method tracks a real end of the stream/response/request (it waits for it). Method contains `FINISHED` and `DESTROY` method together. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\nCLEANUP(stream);\n```",
+          "name": "CLEANUP",
           "options": [
             "+v1.9.0"
           ],
@@ -15405,7 +15440,7 @@
           "return": "ErrorBuilder"
         },
         {
-          "description": "Adds a new transformation for current ErrorBuilder.",
+          "description": "Adds a new transformation for current ErrorBuilder. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function() {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return builder.join(';');\n});\n```",
           "name": "ErrorBuilder.addTransform",
           "options": [
             "static method"
@@ -15730,11 +15765,11 @@
           "return": "Pagination"
         },
         {
-          "description": "Gets the previous page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
+          "description": "Gets the previous page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n\n//The object contains .html() prototype\nconsole.log(obj.html());\n```",
           "name": "instance.prev",
           "params": [
             {
-              "default": "undefined",
+              "default": "default format",
               "description": "Overrides the current format for building the URL address.",
               "name": "format",
               "options": [
@@ -15746,11 +15781,11 @@
           "return": "Object"
         },
         {
-          "description": "Gets the next page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
+          "description": "Gets the next page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n\n//The object contains .html() prototype\nconsole.log(obj.html());\n```",
           "name": "instance.next",
           "params": [
             {
-              "default": "undefined",
+              "default": "default format",
               "description": "Overrides the current format for building the URL address.",
               "name": "format",
               "options": [
@@ -15762,11 +15797,11 @@
           "return": "Object"
         },
         {
-          "description": "Gets the last page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
+          "description": "Gets the last page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n\n//The object contains .html() prototype\nconsole.log(obj.html());\n```",
           "name": "instance.last",
           "params": [
             {
-              "default": "undefined",
+              "default": "default format",
               "description": "Overrides the current format for building the URL address.",
               "name": "format",
               "options": [
@@ -15778,24 +15813,9 @@
           "return": "Object"
         },
         {
-          "description": "Gets the first page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n```",
-          "name": "instance.first",
-          "params": [
-            {
-              "default": "undefined",
-              "description": "Overrides the current format for building the URL address.",
-              "name": "format",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Object"
-        },
-        {
-          "description": "Prepares the Pagination to the array.",
-          "name": "instance.prepare",
+          "description": "Renders pagination to the HTML format. The method renders:\n\n```javascript\nvar html;\n\nhtml = pagination.html();\n// <a href=\"?page=1\">1</a><a href=\"?page=2\" class=\"selected\">2</a><a href=\"?page=3\">3</a>\n\nhtml = pagination.html(6, '?p={0}');\n// format: {0} = current page index, {1} items count, {2} page count \n// <a href=\"?p=1\">1</a><a href=\"?p=2\" class=\"selected\">2</a><a href=\"?p=3\">3</a>\n```",
+          "name": "instance.html",
+          "options": ["v2.0.0"],
           "params": [
             {
               "default": "undefined",
@@ -15807,7 +15827,49 @@
               "type": "Number"
             },
             {
+              "default": "default format",
+              "description": "Overrides the current format for building the URL address. Formatting: {0} = current page index, {1} items count, {2} page count.",
+              "name": "format",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Renders pagination to the JSON format. Methods returns `String`.\n__Example:__\n```javascript\n[{ \"url\": String, \"page\": Number, \"selected\": Boolean, \"enabled\": Boolean }]\n```",
+          "name": "instance.json",
+          "options": ["v2.0.0"],
+          "params": [
+            {
               "default": "undefined",
+              "description": "Max pages in the pagination.",
+              "name": "max",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            },
+            {
+              "default": "default format",
+              "description": "Overrides the current format for building the URL address. Formatting: {0} = current page index, {1} items count, {2} page count.",
+              "name": "format",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Gets the first page. Returns:\n\n```javascript\n{ url: String, page: Number, selected: Boolean, enabled: Boolean }\n\n//The object contains .html() prototype\nconsole.log(obj.html());\n```",
+          "name": "instance.first",
+          "params": [
+            {
+              "default": "default format",
               "description": "Overrides the current format for building the URL address.",
               "name": "format",
               "options": [
@@ -15816,10 +15878,10 @@
               "type": "String"
             }
           ],
-          "return": "Object Array"
+          "return": "Object"
         },
         {
-          "description": "Alias for pagination.prepare().",
+          "description": "Creates pagination. Each object in the array supports `.html()` prototype for quick generating HTML code.",
           "name": "instance.render",
           "params": [
             {
@@ -15832,7 +15894,7 @@
               "type": "Number"
             },
             {
-              "default": "undefined",
+              "default": "default format",
               "description": "Overrides the current format for building the URL address.",
               "name": "format",
               "options": [
@@ -17349,7 +17411,7 @@
         }
       ],
       "name": "SchemaBuilder",
-      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n    self.$get(self.user, self.callback());\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. I present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});\n```",
+      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Camelize');          // converts string to camel case and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to upper case and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n```\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n    self.$get(self.user, self.callback());\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. I present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});\n```",
       "properties": [
         {
           "description": "Returns the schema definition.",
@@ -17362,6 +17424,170 @@
           "name": "SchemaBuilderEntity.trim",
           "return": "Boolean"
         }
+      ]
+    },
+    {
+      "description": "NoSQL embedded database is written by Peter Sirka. It's very great databse for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.",
+      "name": "Database",
+      "group": "NoSQL Embedded",
+      "methods": [
+        {
+          "name": "database.meta",
+          "description": "Can read and write value as meta information. When is not defined `value` then database read a value from meta information according to the `key`.",
+          "params": [
+              {
+                "name": "key",
+                "type": "String",
+                "description": "The key."
+              },
+              {
+                "name": "value",
+                "type": "String",
+                "description": "This value will be stored.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "Object"
+        },
+        {
+          "name": "database.insert",
+          "description": "Inserts a document into the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "This document will be stored in DB file."
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.remove",
+          "description": "Removes a document in the database.",
+          "params": [
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.update",
+          "description": "Updates a document in the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "This document will be updated in DB file."
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.modify",
+          "description": "Modifies specific values in the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "Properties from this document will be modified in DB file."
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.drop",
+          "description": "Removes the database.",
+          "params": [],
+          "return": "Database"
+        },
+        {
+          "name": "database.find",
+          "description": "Finds documents in the database.",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.one",
+          "description": "Finds only one document in the database.",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.one",
+          "description": "Finds first top documents in the database.",
+          "params": [
+              {
+                "name": "max",
+                "type": "Number",
+                "description": "First top/max documents."
+              },
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.view",
+          "description": "Register/Create a new view file. All documents (new, updated, modified and removed) will be prepared according to the `QueryBuilder`. So if you change a data in DB via `database.update()` and other similar methods then the database prepares all views according their filters automatically.",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "View name."
+              }
+          ],
+          "return": "QueryBuilder"
+        },
+        {
+          "name": "database.refresh",
+          "description": "__IMPORTANT__: this method refreshes all views (executes reload).",
+          "params": [
+          ],
+          "return": "Database"
+        },
+        {
+          "name": "database.max",
+          "description": "Get a max value from the database.",
+          "params": [
+              {
+                "name": "property",
+                "type": "String",
+                "description": "A value of the property must be number."
+              },
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "QueryBuilder"
+        }
+      ]
+    },
+    {
+      "description": "NoSQL",
+      "name": "QueryBuilder",
+      "group": "NoSQL Embedded",
+      "properties": [
+      ],
+      "methods": [
       ]
     }
   ],
