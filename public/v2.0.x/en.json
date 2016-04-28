@@ -1105,7 +1105,7 @@
               "type": "String"
             }
           ],
-          "return": "FrameworkNoSQL"
+          "return": "Database"
         },
         {
           "description": "Gets a NoSQL embedded database connection.",
@@ -1117,7 +1117,7 @@
               "type": "String"
             }
           ],
-          "return": "FrameworkNoSQL"
+          "return": "Database"
         },
         {
           "description": "Creates a worker. In other words: a __new thread__.",
@@ -4958,6 +4958,582 @@
       "name": "FrameworkRestrictions"
     },
     {
+      "description": "NoSQL embedded database is written by Peter Sirka. It's very great databse for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data. __Usage:__\n\n```javascript\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n```",
+      "name": "Database",
+      "group": "NoSQL Embedded",
+      "properties": [
+        {
+          "name": "database.binary",
+          "description": "Returns a binary instance. The binary instance can help with storing files.",
+          "return": "DatabaseBinary"
+        }
+      ],
+      "methods": [
+        {
+          "name": "database.meta",
+          "description": "Can read and write value as meta information. When is not defined `value` then database read a value from meta information according to the `key`.",
+          "params": [
+              {
+                "name": "key",
+                "type": "String",
+                "description": "The key."
+              },
+              {
+                "name": "value",
+                "type": "String",
+                "description": "This value will be stored.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "Object"
+        },
+        {
+          "name": "database.insert",
+          "description": "Inserts a document into the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "This document will be stored in DB file."
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.remove",
+          "description": "Removes a document in the database.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.update",
+          "description": "Updates a document in the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "This document will be updated in DB file."
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.modify",
+          "description": "Modifies specific values in the database.",
+          "params": [
+              {
+                "name": "doc",
+                "type": "Object",
+                "description": "Properties from this document will be modified in DB file."
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.drop",
+          "description": "Removes the database.",
+          "params": [],
+          "return": "Database"
+        },
+        {
+          "name": "database.find",
+          "description": "Finds documents in the database.",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.one",
+          "description": "Finds only one document in the database.",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.one",
+          "description": "Finds first top documents in the database.",
+          "params": [
+              {
+                "name": "max",
+                "type": "Number",
+                "description": "First top/max documents."
+              },
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.view",
+          "description": "Register/Create a new view file. All documents (new, updated, modified and removed) will be prepared according to the `DatabaseBuilder`. So if you change a data in DB via `database.update()` and other similar methods then the database prepares all views according their filters automatically.\n\n```javascript\nvar nosql = DB('users');\n\n// Creates a view \"women\"\nnosql.view('women').make(function(builder) {\n    builder.where('sex', 'female');\n    builder.sort('age');\n});\n\n// Creates a view \"men\"\nnosql.view('men').make(function(builder) {\n    builder.where('sex', 'male');\n    builder.sort('age');\n});\n```\n\n__Usage__:\n\n```javascript\nvar nosql = DB('users');\n\nnosql.find('women').search('name', 'Anna').callback(function(err, response) {\n    console.log('All women with name \"Anna\"', response);\n});\n```",
+          "params": [
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "View name."
+              }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "database.refresh",
+          "description": "__IMPORTANT__: this method refreshes all views (executes reload).",
+          "params": [
+          ],
+          "return": "Database"
+        },
+        {
+          "name": "database.max",
+          "description": "Get a max value from the database.",
+          "params": [
+              {
+                "name": "property",
+                "type": "String",
+                "description": "A value of the property must be number."
+              },
+              {
+                "name": "viewname",
+                "type": "String",
+                "description": "The DB will search in a view.",
+                "options": ["optional"]
+              }
+          ],
+          "return": "DatabaseBuilder"
+        }
+      ]
+    },
+    {
+      "description": "__NoSQL Database Builder__ helps with building queries for classic CRUD operation. A lot of methods from `Database` implementation returns this `DatabaseBuilder`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.callback(function(err, response) {\n        console.log('users between 20 and 30 years:', response);\n    });\n});\n\nnosql.insert({ id: 3499, age: 55, name: 'Peter' }).callback(function(err) {\n    console.log('The user has been created.');\n});\n\nnosql.update({ id: 3403, age: 60, name: 'Lucia' }).make(function(builder) {\n    // builder.first(); --> updates only one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('updated documents:', count);\n    });\n});\n\nnosql.modify({ age: 58 }).make(function(builder) {\n    // builder.first(); --> modifies only one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('modified documents:', count);\n    });\n});\n\nnosql.remove().make(function(builder) {\n    // builder.first(); --> removes only one document\n    builder.where('age', '<', 15);\n    builder.callback(function(err, count) {\n        console.log('removed documents:', count);\n    });\n});\n```",
+      "name": "DatabaseBuilder",
+      "group": "NoSQL Embedded",
+      "methods": [
+        {
+          "name": "builder.first",
+          "description": "The database returns only first document.",
+          "params": []
+        },
+        {
+          "name": "builder.or",
+          "description": "Creates `or`.\n\n```javascript\nbuilder.or()\nbuilder.where('age', 30);\nbuilder.where('age', 50);\nbuilder.where('age', 70);\nbuilder.end();\n\n// out of \"or\":\nscopebuilder.where('isremoved', false);```",
+          "params": []
+        },
+        {
+          "name": "builder.and",
+          "description": "Creates `and`. This `and()` is a default scope for all conditions.\n\n```javascript\nbuilder.and()\nbuilder.where('price', 100);\nbuilder.where('isdiscount', true);\nbuilder.where('idmerchant', 343);\nbuilder.end();\n\n// out of \"and\":\nscopebuilder.where('isremoved', false);```",
+          "params": []
+        },
+        {
+          "name": "builder.take",
+          "description": "Takes a specific count of documents.",
+          "params": [
+            {
+              "name": "limit",
+              "type": "Number",
+              "description": "How many documents can take it?"
+            }
+          ]
+        },
+        {
+          "name": "builder.cache",
+          "description": "Caches a response from the database.",
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "description": "Cache key."
+            },
+            {
+              "name": "expire",
+              "type": "String",
+              "description": "Expiration. E.g. `5 minutes` or `1 hour` or `30 seconds`."
+            }
+          ]
+        },
+       {
+          "name": "builder.callback",
+          "description": "A callback for getting a response from the database.",
+          "options": ["important"],
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A callback function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Object/Object Array",
+                  "description": "A response from the database. Can be `Object` or `Array of Objects` (documents)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "builder.fields",
+          "description": "Creates a projection for properties, otherwise: the database selects only these fields.",
+          "params": [
+            {
+              "name": "propertyA",
+              "type": "String",
+              "description": "Property A."
+            },
+            {
+              "name": "propertyB",
+              "type": "String",
+              "description": "Property B.",
+              "options": ["optional"]
+            },
+            {
+              "name": "propertyN",
+              "type": "String",
+              "description": "Property N.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "name": "builder.skip",
+          "description": "Skips a specific count of documents.",
+          "params": [
+            {
+              "name": "limit",
+              "type": "Number",
+              "description": "How many documents can skip it?"
+            }
+          ]
+        },
+        {
+          "name": "builder.page",
+          "description": "Sets `skip()` and `take()` automatically according to the arguments.",
+          "params": [
+            {
+              "name": "page",
+              "type": "Number",
+              "description": "Current page."
+            },
+            {
+              "name": "limit",
+              "type": "Number",
+              "description": "Maximum documents per page."
+            }
+          ]
+        },
+        {
+          "name": "builder.where",
+          "description": "Create a simple condition. This method doesn't support filtering in nested documents.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "operator",
+              "type": "String",
+              "description": "Can contain \"=\", \"<=\", \"<\", \">=\", \">\".",
+              "default": "'='",
+              "options": ["optional"]
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "description": "A value to compare (date, string, number or boolean)."
+            }
+          ]
+        },
+        {
+          "name": "builder.filter",
+          "description": "Create an own custom filter. The method must return `Boolean`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.filter((doc) => doc.age > 10);\n});```",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A custom filter.",
+              "params": [
+                {
+                  "name": "doc",
+                  "type": "Object",
+                  "description": "A document from DB."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "builder.search",
+          "description": "Create a text search condition.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "description": "A value."
+            },
+            {
+              "name": "operator",
+              "type": "String",
+              "description": "Can contain \"beg\" (from begin), \"end\" (from end), \"*\" (everything).",
+              "default": "'*'",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "name": "builder.sort",
+          "description": "Creates a sorting.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "desc",
+              "type": "Boolean",
+              "description": "Descending.",
+              "default": "false",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "name": "builder.in",
+          "description": "Creates `in` condition.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "value",
+              "type": "Array",
+              "description": "Can contain `String Array`, `Number Array`, `Boolean Array` and `Date Array`."
+            }
+          ]
+        },
+        {
+          "name": "builder.notin",
+          "description": "Creates `not in` condition.",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "value",
+              "type": "Array",
+              "description": "Can contain `String Array`, `Number Array`, `Boolean Array` and `Date Array`."
+            }
+          ]
+        },
+        {
+          "name": "builder.make",
+          "description": "A DatabaseBuilder maker and it creates a DatabaseBuilder function scope.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.take(10);\n});```",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "DatabaseBuilder instance.",
+              "params": [
+                {
+                  "name": "builder",
+                  "type": "DatabaseBuilder",
+                  "description": "DatabaseBuilder instance."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "__NoSQL Database Binary__ helps with storing files in the NoSQL embedded database.\n\n```javascript\nvar database = NOSQL('photos');\n\n// database.binary.insert(...);\n// database.binary.update(...);\n// etc.```",
+      "name": "DatabaseBinary",
+      "group": "NoSQL Embedded",
+      "methods": [
+        {
+          "name": "database.binary.insert",
+          "description": "Inserts a new file into the database. The method __returns file identificator__.\n\n```javascript\nvar nosql = NOSQL('photos');\n\n// Usage 1 (filename with path):\nvar id1 = nosql.binary.insert(F.root.public('photos/1.jpg'));\nvar id2 = nosql.binary.insert(F.root.public('photos/2.jpg'));\n\n// Usage 2 (buffer):\nvar id3 = nosql.binary.insert('photo3.jpg', require('fs').readFileSync(F.root.public('photos/3.jpg')));\nvar id4 = nosql.binary.insert('photo4.jpg', require('fs').readFileSync(F.root.public('photos/4.jpg')));\n\n// Usage 3 (stream):\nvar id3 = nosql.binary.insert('photo5.jpg', require('fs').createReadStream(F.root.public('photos/5.jpg')));\nvar id4 = nosql.binary.insert('photo6.jpg', require('fs').createReadStream(F.root.public('photos/6.jpg')));\n\n// Usage 5 (base64):\nvar id5 = nosql.binary.insert('photo7.jpg', 'iVBORw0KGgoAAAANSUhEUgAAAW8AAAEdC...');\n```",
+          "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "description": "Filename."
+              },
+              {
+                "name": "buffer/stream/base64",
+                "type": "Object",
+                "description": "Can contain `Buffer`, `String` (base64) or readable `Stream`.",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "description": "A callback function.",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  },
+                  {
+                    "name": "id",
+                    "type": "String",
+                    "description": "File identificator."
+                  },
+                  {
+                    "name": "header",
+                    "type": "Object",
+                    "description": "Meta information like this: { name: String, size: Number, type: String, width: Number, height: Number }"
+                  }
+                ],
+                "options": ["optional"]
+              }
+          ],
+          "return": "String"
+        },
+        {
+          "name": "database.binary.update",
+          "description": "Updates a file in the database. The database create a new file when the file doesn't exist.",
+          "params": [
+              {
+                "name": "id",
+                "type": "String",
+                "description": "The filename identificator."
+              },
+              {
+                "name": "name",
+                "type": "String",
+                "description": "A new filename."
+              },
+              {
+                "name": "buffer/stream/base64",
+                "type": "Object",
+                "description": "Can contain `Buffer`, `String` (base64) or readable `Stream`.",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "description": "A callback function.",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  },
+                  {
+                    "name": "id",
+                    "type": "String",
+                    "description": "File identificator."
+                  },
+                  {
+                    "name": "header",
+                    "type": "Object",
+                    "description": "Meta information like this: { name: String, size: Number, type: String, width: Number, height: Number }"
+                  }
+                ],
+                "options": ["optional"]
+              }
+          ],
+          "return": "String"
+        },
+        {
+          "name": "database.binary.read",
+          "description": "Reads a file from the database.",
+          "params": [
+              {
+                "name": "id",
+                "type": "String",
+                "description": "Filename identificator."
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "description": "A callback function.",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  },
+                  {
+                    "name": "stream",
+                    "type": "Stream",
+                    "description": "ReadableStream for reading data."
+                  },
+                  {
+                    "name": "header",
+                    "type": "Object",
+                    "description": "Meta information like this: { name: String, size: Number, type: String, width: Number, height: Number }"
+                  }
+                ],
+                "options": ["optional"]
+              }
+          ],
+          "return": "Database"
+        },
+        {
+          "name": "database.binary.remove",
+          "description": "Removes a file from the database.",
+          "params": [
+              {
+                "name": "id",
+                "type": "String",
+                "description": "Filename identificator."
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "description": "A callback function.",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  },
+                  {
+                    "name": "removed",
+                    "type": "Boolean",
+                    "description": "Is the file removed?"
+                  }
+                ],
+                "options": ["optional"]
+              }
+          ],
+          "return": "Database"
+        }
+      ]
+    },
+    {
       "description": "This stats are filled automatically. You can change/resets stats every time.",
       "group": "Additional",
       "name": "FrameworkStats",
@@ -5965,40 +6541,6 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Sends the file or stream via `multipart/x-mixed-replace`.",
-          "example": "https://github.com/totaljs/examples/tree/master/live-streaming",
-          "name": "controller.mmr",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "description": "The filename.",
-              "name": "filename",
-              "type": "String"
-            },
-            {
-              "default": "undefined",
-              "description": "If is undefined then function reads file from HDD.",
-              "name": "stream",
-              "options": [
-                "optional"
-              ],
-              "type": "ReadStream"
-            },
-            {
-              "default": "undefined",
-              "description": "The callback.",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "FrameworkController"
-        },
-        {
           "description": "Closes the response/request (`controller.mmr()` and `controller.sse()`). The function closes all connections or specific connection (according to the names) in the __WebSocket__.",
           "example": "https://github.com/totaljs/examples/tree/master/live-streaming",
           "name": "controller.close",
@@ -6135,7 +6677,7 @@
               "type": "String"
             }
           ],
-          "return": "FrameworkNoSQL"
+          "return": "Database"
         },
         {
           "description": "Sends the JSON.",
@@ -6568,6 +7110,16 @@
             }
           ],
           "return": "FrameworkController"
+        },
+        {
+          "description": "Creates an ErrorBuilder instance and on next tick `setImmediate` sends a response.",
+          "name": "controller.invalid",
+          "options": [
+            "important",
+            "http"
+          ],
+          "params": [],
+          "return": "ErrorBuilder"
         },
         {
           "options": [
@@ -17424,170 +17976,6 @@
           "name": "SchemaBuilderEntity.trim",
           "return": "Boolean"
         }
-      ]
-    },
-    {
-      "description": "NoSQL embedded database is written by Peter Sirka. It's very great databse for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.",
-      "name": "Database",
-      "group": "NoSQL Embedded",
-      "methods": [
-        {
-          "name": "database.meta",
-          "description": "Can read and write value as meta information. When is not defined `value` then database read a value from meta information according to the `key`.",
-          "params": [
-              {
-                "name": "key",
-                "type": "String",
-                "description": "The key."
-              },
-              {
-                "name": "value",
-                "type": "String",
-                "description": "This value will be stored.",
-                "options": ["optional"]
-              }
-          ],
-          "return": "Object"
-        },
-        {
-          "name": "database.insert",
-          "description": "Inserts a document into the database.",
-          "params": [
-              {
-                "name": "doc",
-                "type": "Object",
-                "description": "This document will be stored in DB file."
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.remove",
-          "description": "Removes a document in the database.",
-          "params": [
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.update",
-          "description": "Updates a document in the database.",
-          "params": [
-              {
-                "name": "doc",
-                "type": "Object",
-                "description": "This document will be updated in DB file."
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.modify",
-          "description": "Modifies specific values in the database.",
-          "params": [
-              {
-                "name": "doc",
-                "type": "Object",
-                "description": "Properties from this document will be modified in DB file."
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.drop",
-          "description": "Removes the database.",
-          "params": [],
-          "return": "Database"
-        },
-        {
-          "name": "database.find",
-          "description": "Finds documents in the database.",
-          "params": [
-              {
-                "name": "viewname",
-                "type": "String",
-                "description": "The DB will search in a view.",
-                "options": ["optional"]
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.one",
-          "description": "Finds only one document in the database.",
-          "params": [
-              {
-                "name": "viewname",
-                "type": "String",
-                "description": "The DB will search in a view.",
-                "options": ["optional"]
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.one",
-          "description": "Finds first top documents in the database.",
-          "params": [
-              {
-                "name": "max",
-                "type": "Number",
-                "description": "First top/max documents."
-              },
-              {
-                "name": "viewname",
-                "type": "String",
-                "description": "The DB will search in a view.",
-                "options": ["optional"]
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.view",
-          "description": "Register/Create a new view file. All documents (new, updated, modified and removed) will be prepared according to the `QueryBuilder`. So if you change a data in DB via `database.update()` and other similar methods then the database prepares all views according their filters automatically.",
-          "params": [
-              {
-                "name": "viewname",
-                "type": "String",
-                "description": "View name."
-              }
-          ],
-          "return": "QueryBuilder"
-        },
-        {
-          "name": "database.refresh",
-          "description": "__IMPORTANT__: this method refreshes all views (executes reload).",
-          "params": [
-          ],
-          "return": "Database"
-        },
-        {
-          "name": "database.max",
-          "description": "Get a max value from the database.",
-          "params": [
-              {
-                "name": "property",
-                "type": "String",
-                "description": "A value of the property must be number."
-              },
-              {
-                "name": "viewname",
-                "type": "String",
-                "description": "The DB will search in a view.",
-                "options": ["optional"]
-              }
-          ],
-          "return": "QueryBuilder"
-        }
-      ]
-    },
-    {
-      "description": "NoSQL",
-      "name": "QueryBuilder",
-      "group": "NoSQL Embedded",
-      "properties": [
-      ],
-      "methods": [
       ]
     }
   ],
