@@ -6175,7 +6175,7 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Adds the URL address into the sitemap. The sitemap is stored in: `controller.repository.sitemap`.",
+          "description": "Returns a sitemap from `sitemap` file according to the its name.",
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "controller.sitemap",
           "options": [
@@ -6183,22 +6183,100 @@
           ],
           "params": [
             {
-              "description": "The webpage name.",
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Array Object"
+        },
+        {
+          "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action(category) {\n\n    // e.g. category contains \"shoes\"    \n    var url = controller.sitemap_url('category', category);\n    console.log(url);\n    // OUTPUT: /products/shoes/\n    \n    // next example:\n    url = controller.sitemap_url('category', '');\n    console.log(url);\n    // OUTPUT: /products//    \n\n    // next example:\n    url = controller.sitemap_url('category', 'first', 'second');\n    console.log(url);\n    // OUTPUT: /products/first/\n}\n```",
+          "name": "controller.sitemap_url",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The URL address.",
-              "name": "url",
+              "description": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action() {\n\n    var name = controller.sitemap_name('category', 'Shoes');\n    console.log(name);\n    // OUTPUT: Shoes\n    \n    // next example:\n    name = controller.sitemap_name('category', 'Shirts');\n    console.log(name);\n    // OUTPUT: Shirts\n\n    // next example:\n    name = controller.sitemap_name('products', 'Shirts');\n    console.log(name);\n    // OUTPUT: Products\n\n    // next example:\n    name = controller.sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3');\n    console.log(name);\n    // OUTPUT: Homepage\n\n}\n```",
+          "name": "controller.sitemap_name",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
               "type": "String"
             },
             {
-              "description": "The order index.",
-              "name": "index",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
+              "description": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "The method can modify a sitemap. Each rendered sitemap is cached, so therefore this method.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action() {\n\n    controller.sitemap_change('category', 'url', '/my-custom-url/');\n    var url = controller.sitemap_url('category');\n    console.log(url);\n    // OUTPUT: /my-custom-url/\n\n    var name = controller.sitemap_name('homepage');\n    console.log(name);\n    // OUTPUT: Homepage\n\n    controller.sitemap_change('homepage', 'name', 'My custom name.');\n    name = controller.sitemap_name('homepage');\n    console.log(name);\n    // OUTPUT: My custom name.\n}\n```",
+          "name": "controller.sitemap_change",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A property name",
+              "name": "property",
+              "type": "String"
+            },
+            {
+              "description": "A new value.",
+              "name": "value",
+              "type": "Object"
             }
           ],
           "return": "FrameworkController"
@@ -9152,35 +9230,110 @@
           ]
         },
         {
-          "description": "Adds the link into the sitemap collection.",
-          "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
+          "description": "Returns a sitemap from `sitemap` file according to the its name.\n\n```html\n@{foreach m in sitemap()}\n    <a href=\"@{m.url}\">@{m.name}</a>\n@{end}\n```",
           "name": "@{sitemap}",
+          "options": [
+            "http"
+          ],
           "params": [
             {
-              "description": "The link name.",
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Array Object"
+        },
+        {
+          "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_url('category', 'shoes')}\n<!-- OUTPUT: /products/shoes/ -->\n\n@{sitemap_url('category', '')}\n<!-- OUTPUT: /products// -->\n\n@{sitemap_url('category', 'first', 'second')}\n<!-- OUTPUT: /products/first/ -->\n```",
+          "name": "@{sitemap_url}",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
               "name": "name",
               "type": "String"
             },
             {
-              "default": "current URL address",
-              "description": "The URL address.",
-              "name": "url",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
+              "description": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": ["optional"]
             },
             {
-              "default": "sitemap.length",
-              "description": "The sort index.",
-              "name": "index",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
+              "description": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": ["optional"]
             }
           ],
           "return": "String"
+        },
+        {
+          "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_name('category', 'Shoes')};\n<!-- OUTPUT: Shoes -->\n\n<!-- next example: -->\n@{sitemap_name('category', 'Shirts')};\n<!-- OUTPUT: Shirts -->\n\n<!-- next example: -->\n@{sitemap_name('products', 'Shirts')};\n<!-- OUTPUT: Products -->\n\n<!-- next example: -->\n@{sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3')};\n<!-- OUTPUT: Homepage -->\n```",
+          "name": "@{sitemap_name}",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "description": "The method can modify a sitemap. Each rendered sitemap is cached, so therefore this method.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_change('category', 'url', '/my-custom-url/')};\n\n<a href=\"@{sitemap_url('category')}\">Category</a>\n<!-- OUTPUT: <a href=\"/my-custom-url/\">Category</a> -->\n```",
+          "name": "@{sitemap_change}",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A property name",
+              "name": "property",
+              "type": "String"
+            },
+            {
+              "description": "A new value.",
+              "name": "value",
+              "type": "Object"
+            }
+          ],
+          "return": "FrameworkController"
         },
         {
           "description": "Gets the links in the sitemap.",
@@ -13479,14 +13632,6 @@
           "return": "String"
         },
         {
-          "options": ["v2.0.0"],
-          "description": "Converts string to CamelCase.",
-          "name": "String.prototype.toCamelCase",
-          "params": [
-          ],
-          "return": "String"
-        },
-        {
           "description": "Checks if the string contains a valid JSON.",
           "name": "String.prototype.isJSON",
           "params": [
@@ -13871,9 +14016,7 @@
         {
           "description": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
-          "params": [
-
-          ],
+          "params": [],
           "return": "String"
         }
       ],
@@ -17908,7 +18051,7 @@
         }
       ],
       "name": "SchemaBuilder",
-      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Camelize');          // converts string to CamelCase (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n```\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n    self.$get(self.user, self.callback());\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. I present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});\n```",
+      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n```\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n    self.$get(self.user, self.callback());\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. I present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});\n```",
       "properties": [
         {
           "description": "Returns the schema definition.",
