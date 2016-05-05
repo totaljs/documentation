@@ -7986,7 +7986,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Checks whether was created the internal transfer.\n```javascript\ncontroller.transfer('/url/');\n// controller.isTransfer === true\n```",
+          "description": "Checks whether the internal transfer has been created.\n```javascript\ncontroller.transfer('/url/');\n// controller.isTransfer === true\n```",
           "name": "controller.isTransfer",
           "options": [
             "readonly",
