@@ -4452,7 +4452,7 @@
             {
               "description": "Is the value synchronized? Used for the cluster synchronization.",
               "name": "sync",
-              "type": "Booelan",
+              "type": "Boolean",
               "options": [
                 "optional"
               ]
@@ -8113,7 +8113,7 @@
             "http",
             "websocket"
           ],
-          "return": "Booelan"
+          "return": "Boolean"
         },
         {
           "default": "{}",
@@ -11203,11 +11203,11 @@
       "name": "FrameworkUtils"
     },
     {
-      "description": "This class supports sending emails via SMTP protocol. `FrameworkMail` supports TLS.\n\n- [Example: Email send](https://github.com/totaljs/examples/tree/master/email-send)\n- [Example: Controller email](https://github.com/totaljs/examples/tree/master/controller-mail)\n\n```js\nvar mail = require('total.js/mail');\nvar message = new mail.Message('subject', 'body');\n\n// Set email sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n```",
+      "description": "This class supports sending emails via SMTP protocol. `FrameworkMail` supports TLS.\n\n- [Example: Email send](https://github.com/totaljs/examples/tree/master/email-send)\n- [Example: Controller email](https://github.com/totaljs/examples/tree/master/controller-mail)\n\n```js\n// Mail === Global object\nvar message = new Mail.Message('subject', 'body');\n// or\n// var message = Mail.create('subject', 'body');\n\n// Set email sender\nmessage.from('my@email.com', 'Peter Sirka');\n\nmessage.to('friend@email.com');\nmessage.to('family@message.com');\n\nmessage.send('smtp.yourserver.com');\n```\n\n##\u00a0How to send multiple messages?\n\n```js\nvar a = new Mail.Message('subject', 'body');\nvar b = new Mail.Message('subject', 'body');\nvar c = new Mail.Message('subject', 'body');\n\na.to('friend@email.com');\na.from('me@email.com');\n\nb.to('friend@email.com');\nb.from('me@email.com');\n\nc.to('friend@email.com');\nc.from('me@email.com');\n\nMail.send('smtp.yourserver.com', [a, b, c]);\n```\n\n##\u00a0How to check whether the SMTP server does work?\n\n```js\nMail.try('smtp.yourserver.com', function(err) {\n    if (!err)\n        console.log('SMTP SERVER WORKS CORRECTLY');\n});\n```",
       "events": [
         {
           "description": "Error handling.",
-          "name": "mail.on('error')",
+          "name": "Mail.on('error')",
           "params": [
             {
               "description": "The error object.",
@@ -11224,7 +11224,7 @@
         },
         {
           "description": "Message was sent.",
-          "name": "mail.on('success')",
+          "name": "Mail.on('success')",
           "params": [
             {
               "description": "The message object.",
@@ -11236,7 +11236,7 @@
         },
         {
           "description": "Sending the message.",
-          "name": "mail.on('sending')",
+          "name": "Mail.on('sending')",
           "params": [
             {
               "description": "The message object.",
@@ -11344,6 +11344,26 @@
                 "optional"
               ],
               "default": false
+            }
+          ],
+          "return": "MailMessage"
+        },
+        {
+          "description": "The callback will be executed when the message will be sent.",
+          "options": ["v2.0.0"],
+          "name": "message.callback",
+          "params": [
+            {
+              "description": "function",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                }
+              ]
             }
           ],
           "return": "MailMessage"
@@ -11476,6 +11496,175 @@
             }
           ],
           "return": "MailMessage"
+        },
+       {
+          "description": "Sends the message.",
+          "options": ["v2.0.0"],
+          "name": "Mail.send",
+          "params": [
+            {
+              "description": "The SMTP server - host address.",
+              "name": "smtp",
+              "type": "String"
+            },
+            {
+              "description": "The SMTP options.",
+              "name": "options",
+              "options": ["optional"],
+              "params": [
+                {
+                  "default": "false",
+                  "description": "Is secured connection? (HTTPS/TLS)",
+                  "name": "secure",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Boolean"
+                },
+                {
+                  "default": "25",
+                  "description": "The port number.",
+                  "name": "port",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Number"
+                },
+                {
+                  "default": "''",
+                  "description": "The SMTP user name.",
+                  "name": "user",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "String"
+                },
+                {
+                  "default": "''",
+                  "description": "The SMTP password.",
+                  "name": "password",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "String"
+                },
+                {
+                  "default": "10000",
+                  "description": "The connection timeout in milliseconds.",
+                  "name": "timeout",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Number"
+                }
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "`FrameworkMail.message` in array.",
+              "name": "messages",
+              "type": "Array Message"
+            },
+            {
+              "description": "The callback.",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "count",
+                  "description": "Message sent count.",
+                  "type": "Number"
+                }
+              ]
+            }
+          ],
+          "return": "Mail"
+        },
+       {
+          "description": "Checks whether SMTP server works correctly.",
+          "options": ["v2.0.0"],
+          "name": "Mail.try",
+          "params": [
+            {
+              "description": "The SMTP server - host address.",
+              "name": "smtp",
+              "type": "String"
+            },
+            {
+              "description": "The SMTP options.",
+              "name": "options",
+              "options": ["optional"],
+              "params": [
+                {
+                  "default": "false",
+                  "description": "Is secured connection? (HTTPS/TLS)",
+                  "name": "secure",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Boolean"
+                },
+                {
+                  "default": "25",
+                  "description": "The port number.",
+                  "name": "port",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Number"
+                },
+                {
+                  "default": "''",
+                  "description": "The SMTP user name.",
+                  "name": "user",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "String"
+                },
+                {
+                  "default": "''",
+                  "description": "The SMTP password.",
+                  "name": "password",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "String"
+                },
+                {
+                  "default": "10000",
+                  "description": "The connection timeout in milliseconds.",
+                  "name": "timeout",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Number"
+                }
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "The callback.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                }
+              ]
+            }
+          ],
+          "return": "Mail"
         }
       ],
       "name": "FrameworkMail",
@@ -11483,8 +11672,14 @@
         {
           "default": "false",
           "description": "If true the server will reject any connection which is not authorized with the list of supplied CAs. This option only has an effect if requestCert is true.",
-          "name": "mail.rejectUnauthorized",
-          "return": "Booelan"
+          "name": "Mail.rejectUnauthorized",
+          "return": "Boolean"
+        },
+        {
+          "default": "false",
+          "description": "Enables logging.",
+          "name": "Mail.debug",
+          "return": "Boolean"
         },
         {
           "description": "The mail subject.",
@@ -13137,7 +13332,7 @@
               "options": [
                 "optional"
               ],
-              "type": "Booelan",
+              "type": "Boolean",
               "default": "true"
             },
             {
@@ -14353,7 +14548,7 @@
               "options": [
                 "optional"
               ],
-              "type": "Booelan",
+              "type": "Boolean",
               "default": "false"
             }
           ],
