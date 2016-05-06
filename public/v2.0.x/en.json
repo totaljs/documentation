@@ -5127,21 +5127,25 @@
         {
           "name": "builder.first",
           "description": "The database returns only first document.",
+          "return": "DatabaseBuilder",
           "params": []
         },
         {
           "name": "builder.or",
           "description": "Creates `or`.\n\n```javascript\nbuilder.or()\nbuilder.where('age', 30);\nbuilder.where('age', 50);\nbuilder.where('age', 70);\nbuilder.end();\n\n// out of \"or\":\nscopebuilder.where('isremoved', false);```",
+          "return": "DatabaseBuilder",
           "params": []
         },
         {
           "name": "builder.and",
           "description": "Creates `and`. This `and()` is a default scope for all conditions.\n\n```javascript\nbuilder.and()\nbuilder.where('price', 100);\nbuilder.where('isdiscount', true);\nbuilder.where('idmerchant', 343);\nbuilder.end();\n\n// out of \"and\":\nscopebuilder.where('isremoved', false);```",
-          "params": []
+          "params": [],
+          "return": "DatabaseBuilder"
         },
         {
           "name": "builder.take",
           "description": "Takes a specific count of documents.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "limit",
@@ -5153,6 +5157,7 @@
         {
           "name": "builder.cache",
           "description": "Caches a response from the database.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "key",
@@ -5170,6 +5175,7 @@
           "name": "builder.callback",
           "description": "A callback for getting a response from the database.",
           "options": ["important"],
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "fn",
@@ -5193,6 +5199,7 @@
         {
           "name": "builder.fields",
           "description": "Creates a projection for properties, otherwise: the database selects only these fields.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "propertyA",
@@ -5216,6 +5223,7 @@
         {
           "name": "builder.skip",
           "description": "Skips a specific count of documents.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "limit",
@@ -5227,6 +5235,7 @@
         {
           "name": "builder.page",
           "description": "Sets `skip()` and `take()` automatically according to the arguments.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "page",
@@ -5243,6 +5252,7 @@
         {
           "name": "builder.where",
           "description": "Create a simple condition. This method doesn't support filtering in nested documents.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "name",
@@ -5266,6 +5276,7 @@
         {
           "name": "builder.filter",
           "description": "Create an own custom filter. The method must return `Boolean`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.filter((doc) => doc.age > 10);\n});```",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "fn",
@@ -5284,6 +5295,7 @@
         {
           "name": "builder.search",
           "description": "Create a text search condition.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "name",
@@ -5307,6 +5319,7 @@
         {
           "name": "builder.sort",
           "description": "Creates a sorting.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "name",
@@ -5325,6 +5338,7 @@
         {
           "name": "builder.in",
           "description": "Creates `in` condition.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "name",
@@ -5341,6 +5355,7 @@
         {
           "name": "builder.notin",
           "description": "Creates `not in` condition.",
+          "return": "DatabaseBuilder",
           "params": [
             {
               "name": "name",
@@ -5356,6 +5371,7 @@
         },
         {
           "name": "builder.make",
+          "return": "DatabaseBuilder",
           "description": "A DatabaseBuilder maker and it creates a DatabaseBuilder function scope.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.take(10);\n});```",
           "params": [
             {
@@ -5382,6 +5398,7 @@
         {
           "name": "database.binary.insert",
           "description": "Inserts a new file into the database. The method __returns file identificator__.\n\n```javascript\nvar nosql = NOSQL('photos');\n\n// Usage 1 (filename with path):\nvar id1 = nosql.binary.insert(F.root.public('photos/1.jpg'));\nvar id2 = nosql.binary.insert(F.root.public('photos/2.jpg'));\n\n// Usage 2 (buffer):\nvar id3 = nosql.binary.insert('photo3.jpg', require('fs').readFileSync(F.root.public('photos/3.jpg')));\nvar id4 = nosql.binary.insert('photo4.jpg', require('fs').readFileSync(F.root.public('photos/4.jpg')));\n\n// Usage 3 (stream):\nvar id3 = nosql.binary.insert('photo5.jpg', require('fs').createReadStream(F.root.public('photos/5.jpg')));\nvar id4 = nosql.binary.insert('photo6.jpg', require('fs').createReadStream(F.root.public('photos/6.jpg')));\n\n// Usage 5 (base64):\nvar id5 = nosql.binary.insert('photo7.jpg', 'iVBORw0KGgoAAAANSUhEUgAAAW8AAAEdC...');\n```",
+          "return": "DatabaseBuilder",
           "params": [
               {
                 "name": "name",
@@ -5423,6 +5440,7 @@
         {
           "name": "database.binary.update",
           "description": "Updates a file in the database. The database create a new file when the file doesn't exist.",
+          "return": "DatabaseBuilder",
           "params": [
               {
                 "name": "id",
@@ -5469,6 +5487,7 @@
         {
           "name": "database.binary.read",
           "description": "Reads a file from the database.",
+          "return": "DatabaseBuilder",
           "params": [
               {
                 "name": "id",
@@ -5504,6 +5523,7 @@
         {
           "name": "database.binary.remove",
           "description": "Removes a file from the database.",
+          "return": "DatabaseBuilder",
           "params": [
               {
                 "name": "id",
@@ -10085,11 +10105,11 @@
           "return": "undefined"
         },
         {
-          "description": "Sends the stream or file to the URL address.",
+          "description": "Sends the stream or file to the URL address. __IMPORTANT:__ `on('data', ...)` doesn't contain percentage of sending file/stream/buffer, but it contains the response percentage.",
           "name": "Utils.send",
           "params": [
             {
-              "description": "The filename with extension.",
+              "description": "The filename with an extension.",
               "name": "name",
               "type": "String"
             },
@@ -10124,6 +10144,14 @@
               "type": "Function"
             },
             {
+              "description": "The cookies.",
+              "name": "cookies",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
               "description": "The additional headers.",
               "name": "headers",
               "options": [
@@ -10141,7 +10169,7 @@
               "type": "String"
             }
           ],
-          "return": "Boolean"
+          "return": "EventEmitter(begin, end, data(chunk, percentage))"
         },
         {
           "description": "Is empty the object?",
@@ -10157,7 +10185,7 @@
         },
         {
           "changelog": "+v1.9.7 supports `end` delimiter.",
-          "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('</CD>', function(value, index) {\n    if (index === 0)\n        value = value.substring(value.indexOf('<CD'));\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
+          "description": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "Utils.streamer",
           "example": "https://github.com/totaljs/examples/tree/master/streamer",
           "options": [

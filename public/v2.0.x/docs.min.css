@@ -15,4 +15,6 @@ table { width:100% !important;display:block; font-size:14px; border:0;border-lef
 table td,table th{border:0;padding:8px 10px;border-bottom:1px solid #E0E0E0;border-right:1px solid #E0E0E0;}
 table th{background-color:#F0F0F0;}
 /*b, strong{color:black;}*/
-.bg {background-color:#F5F7FA;}
+.bg {background-color:#F5F7FA}.search-group{font-size:11px;color:#A0A0A0;line-height:15px;margin-top:3px}
+ul.members li{transition:all 0.3s;}
+ul.members li:hover {background-color:#F8F8F8;}

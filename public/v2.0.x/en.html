@@ -105,7 +105,7 @@
 		<ul class="members">
 			{{ foreach m in members }}
 				<li data-id="{{ m.linker }}">
-					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span></a>
+					<div class="search-group"><b>Section:</b> {{ m.group }}</div>{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span></a>
 				</li>
 			{{ end }}
 		</ul>
