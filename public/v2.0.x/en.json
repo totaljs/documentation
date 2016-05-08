@@ -4431,7 +4431,7 @@
       "group": "Framework",
       "methods": [
         {
-          "description": "Sets the item into the cache and returns the value.",
+          "description": "Sets the item into the cache and it returns the value.",
           "name": "framework.cache.set",
           "params": [
             {
@@ -14492,18 +14492,32 @@
           "return": "Date"
         },
         {
-          "changelog": "Added week number `w` or `ww`.",
           "description": "Adds years / months / days / hours / minutes / seconds to the Date object.\n\n__Example__:\n\n```javascript\nnew Date().add('2 days');\nnew Date().add('-1 month');\n```",
           "name": "Date.prototype.add",
           "params": [
             {
-              "description": "Date value.",
+              "description": "Date expression e.g. `5 days`.",
               "name": "expression",
               "type": "String"
             }
           ],
           "options": [
             "+v1.9.0"
+          ],
+          "return": "Date"
+        },
+        {
+          "description": "Adds milliseconds to the current date and it returns a new date.",
+          "name": "Date.prototype.add",
+          "params": [
+            {
+              "description": "Milliseconds.",
+              "name": "milliseconds",
+              "type": "Number"
+            }
+          ],
+          "options": [
+            "+v2.0.0"
           ],
           "return": "Date"
         },
@@ -18455,7 +18469,7 @@
       "name": "Isomorphic code"
     },
     {
-      "body": "A sitemap file `/sitemap` (`+v1.9.1`) is very helpful generating breadcrumb (navigation) or sitemap. The sitemap file `/sitemap` is a plain text and has same syntax as framework config file.\n\n- [Example](https://github.com/totaljs/examples/tree/master/sitemap)\n\n```html\n/controllers\n/debug.js\n/release.js\n/sitemap\n```\n\n## Declaration\n\n```html\nID             : Name                   --> URL                --> [Parent (OPTIONAL)]\n```\n\n## How does it work?\n\nFile: `/sitemap` e.g.:\n\n```html\nhomepage       : Homepage               --> /\ncontact        : Contact                --> /contact/         --> homepage\nterms          : Terms and Conditions   --> /terms/           --> homepage\nprivacy        : @(Localized Privacy)   --> /privacy/         --> terms\n```\n\n- sitemap `name` can be as view title (when is the title not defined in the view)\n- supports localization `@(Text to translate)`\n\n### Usage in views\n\n__View layout.html__:\n\n```html\n<nav class=\"breadcrumb\">\n    @{foreach m in sitemap()}\n\n        <!--\n        m.sitemap : current sitemap id\n        m.id      : current item id\n        m.name    : current item name\n        m.url     : current item url\n        m.last    : is the last item?\n        m.first   : is the first item?\n        m.index   : current item index in sitemap (in the parent tree)\n        -->\n\n        <a href=\"@{m.url}\">@{m.name}</a>\n    @{end}\n</nav>\n```\n\n__View index.html__:\n\n```html\n@{sitemap('homepage')}\n\n<h1>@{title}</h1>\n```\n\n__View terms.html__:\n\n```html\n@{sitemap('terms')}\n\n<h1>@{title}</h1>\n```\n\n__View privacy.html__:\n\n```html\n@{sitemap('privacy')}\n\n<h1>@{title}</h1>\n```\n\n__View contact.html__:\n\n```html\n@{sitemap('contact')}\n\n<h1>@{title}</h1>\n```\n\n### Usage in the code\n\n- [framework.sitemap](#api~Framework~framework.sitemap) `+v1.9.1`\n\n```javascript\n// Finds only the one item and returns Object\nconsole.log(F.sitemap('terms', true));\n\n// Finds all items in the sitemap tree and returns Array\nconsole.log(F.sitemap('terms'));\n```",
+      "body": "A sitemap file `/sitemap` (`+v1.9.1`) is very helpful generating breadcrumb (navigation) or sitemap. The sitemap file `/sitemap` is a plain text and has same syntax as framework config file.\n\n- [Example](https://github.com/totaljs/examples/tree/master/sitemap)\n\n```html\n/controllers\n/debug.js\n/release.js\n/sitemap\n```\n\n## Declaration\n\n```html\nID             : Name                   --> URL                --> [Parent (OPTIONAL)]\n```\n\n## How does it work?\n\nFile: `/sitemap` e.g.:\n\n```html\nhomepage       : Homepage               --> /\ncontact        : Contact                --> /contact/         --> homepage\nterms          : Terms and Conditions   --> /terms/           --> homepage\nprivacy        : @(Localized Privacy)   --> /privacy/         --> terms\n```\n\n- sitemap `name` can be as view title (when is the title not defined in the view)\n- supports localization `@(Text to translate)`\n\n### Usage in views\n\n__View layout.html__:\n\n```html\n<nav class=\"breadcrumb\">\n    @{foreach m in sitemap()}\n\n        <!--\n        m.sitemap : current sitemap id\n        m.id      : current item id\n        m.name    : current item name\n        m.url     : current item url\n        m.last    : is the last item?\n        m.first   : is the first item?\n        m.index   : current item index in sitemap (in the parent tree)\n        -->\n\n        <a href=\"@{m.url}\">@{m.name}</a>\n    @{end}\n</nav>\n```\n\n__View index.html__:\n\n```html\n@{sitemap('homepage')}\n\n<h1>@{title}</h1>\n```\n\n__View terms.html__:\n\n```html\n@{sitemap('terms')}\n\n<h1>@{title}</h1>\n```\n\n__View privacy.html__:\n\n```html\n@{sitemap('privacy')}\n\n<h1>@{title}</h1>\n```\n\n__View contact.html__:\n\n```html\n@{sitemap('contact')}\n\n<h1>@{title}</h1>\n```\n\n### Usage in the code\n\n- [framework.sitemap](#api~Framework~framework.sitemap) `+v1.9.1`\n\n```javascript\n// Finds only the one item and it returns Object\nconsole.log(F.sitemap('terms', true));\n\n// Finds all items in the sitemap tree and it returns Array\nconsole.log(F.sitemap('terms'));\n```",
       "group": "How does it work?",
       "name": "File: sitemap",
       "options": [
