@@ -5007,6 +5007,27 @@
           "return": "DatabaseBuilder"
         },
         {
+          "name": "database.backup",
+          "description": "Backup a database. The method can backup a whole file (any document won't be removed) or specific documents (documents will be moved to the backup file and they will be removed).",
+          "params": [
+            {
+              "name": "filename",
+              "type": "String",
+              "description": "A backup filename (needs a full path).",
+              "options": ["optional"],
+              "default": "'databases/filename_backup.nosql'"
+            },
+            {
+              "name": "remove",
+              "description": "Does remove data after backup?",
+              "type": "boolean",
+              "options": ["optional"],
+              "default": "false"
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
           "name": "database.update",
           "description": "Updates a document in the database.",
           "params": [
