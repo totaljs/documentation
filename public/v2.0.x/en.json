@@ -5008,7 +5008,7 @@
         },
         {
           "name": "database.backup",
-          "description": "Backup a database. The method can backup a whole file (any document won't be removed) or specific documents (documents will be moved to the backup file and they will be removed).",
+          "description": "Backups a database. The method can backup a whole file (any document won't be removed) or specific documents (documents will be moved to the backup file and they will be removed).",
           "params": [
             {
               "name": "filename",
