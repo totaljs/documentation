@@ -10513,9 +10513,9 @@
                   "type": "Error"
                 },
                 {
-                  "description": "The response data. JSON is deserialized automatically into the object.",
+                  "description": "The response.",
                   "name": "data",
-                  "type": "String or Object"
+                  "type": "String"
                 },
                 {
                   "default": "0",
