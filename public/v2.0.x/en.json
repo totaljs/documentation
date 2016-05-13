@@ -2143,7 +2143,7 @@
         {
           "description": "Performs trace. The framework logs all trace info into the file `logs/traces.log`.",
           "name": "framework.trace",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "params": [
             {
               "description": "The change description.",
@@ -11477,7 +11477,7 @@
         },
         {
           "description": "The callback will be executed when the message will be sent.",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "name": "message.callback",
           "params": [
             {
@@ -11626,7 +11626,7 @@
         },
        {
           "description": "Sends the message.",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "name": "Mail.send",
           "params": [
             {
@@ -11717,7 +11717,7 @@
         },
        {
           "description": "Checks whether SMTP server works correctly.",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "name": "Mail.try",
           "params": [
             {
@@ -13978,7 +13978,7 @@
           "return": "Boolean"
         },
         {
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "description": "Checks if the string contains a valid phone number.",
           "name": "String.prototype.isPhone",
           "params": [
@@ -13987,7 +13987,7 @@
           "return": "Boolean"
         },
         {
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "description": "Checks if the string contains a valid ZIP number.",
           "name": "String.prototype.isZIP",
           "params": [
@@ -13996,7 +13996,7 @@
           "return": "Boolean"
         },
         {
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "description": "Checks if the string contains a valid `UID` format (new UID via method `UID()`).",
           "name": "String.prototype.isUID",
           "params": [
@@ -16791,7 +16791,7 @@
         {
           "description": "Renders pagination to the HTML format. The method renders:\n\n```javascript\nvar html;\n\nhtml = pagination.html();\n// <a href=\"?page=1\">1</a><a href=\"?page=2\" class=\"selected\">2</a><a href=\"?page=3\">3</a>\n\nhtml = pagination.html(6, '?p={0}');\n// format: {0} = current page index, {1} items count, {2} page count \n// <a href=\"?p=1\">1</a><a href=\"?p=2\" class=\"selected\">2</a><a href=\"?p=3\">3</a>\n```",
           "name": "instance.html",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "params": [
             {
               "default": "undefined",
@@ -16817,7 +16817,7 @@
         {
           "description": "Renders pagination to the JSON format. Methods returns `String`.\n__Example:__\n```javascript\n[{ \"url\": String, \"page\": Number, \"selected\": Boolean, \"enabled\": Boolean }]\n```",
           "name": "instance.json",
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "params": [
             {
               "default": "undefined",
@@ -18395,10 +18395,16 @@
           "return": "Object"
         },
         {
-          "options": ["v2.0.0"],
+          "options": ["+v2.0.0"],
           "description": "Returns all field names from the schema.",
           "name": "SchemaBuilderEntity.fields",
           "return": "String Array"
+        },
+        {
+          "options": ["+v1.9.8"],
+          "description": "Returns a name of the schema.",
+          "name": "SchemaBuilderEntity.name",
+          "return": "String"
         },
         {
           "default": "true",
