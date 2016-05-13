@@ -2108,8 +2108,42 @@
           "return": "Framework"
         },
         {
-          "description": "Create a new change. The framework logs all changes into the file `logs/changes.log`.",
+          "description": "Creates a new change. The framework logs all changes into the file `logs/changes.log`.",
           "name": "framework.change",
+          "params": [
+            {
+              "description": "The change description.",
+              "name": "message",
+              "type": "String"
+            },
+            {
+              "description": "Controller / Module name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "URI object.",
+              "name": "uri",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "IP address.",
+              "name": "ip",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "description": "Performs trace. The framework logs all trace info into the file `logs/traces.log`.",
+          "name": "framework.trace",
+          "options": ["v2.0.0"],
           "params": [
             {
               "description": "The change description.",
@@ -2636,6 +2670,13 @@
               "name": "callback",
               "options": [
                 "optional"
+              ],
+              "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  }
               ],
               "type": "Function"
             }
@@ -3916,6 +3957,15 @@
           "return": "Array"
         },
         {
+          "default": "[]",
+          "description": "This property stores last 50 traces.",
+          "name": "framework.traces",
+          "options": [
+            "readonly"
+          ],
+          "return": "Array"
+        },
+        {
           "default": "{}",
           "description": "The property stores websocket connections. Each property in this object contains URL address with an instance of controller.",
           "name": "framework.connections",
@@ -4243,6 +4293,14 @@
             "+v1.8.0"
           ],
           "return": "Number"
+        },
+        {
+          "description": "Enables/Disables tracing. Auto-setting accoding to debug mode: `true` and release mode: `false`.",
+          "name": "trace",
+          "options": [
+            "+v2.0.0"
+          ],
+          "return": "Boolean"
         },
         {
           "default": "2",
@@ -5956,7 +6014,7 @@
         },
         {
           "description": "Gets the hostname.",
-          "name": "controller.host",
+          "name": "controller.hostname",
           "options": [
             "http"
           ],
@@ -6099,7 +6157,7 @@
           "return": "Boolean"
         },
         {
-          "description": "Creates the change.",
+          "description": "Creates a change.",
           "example": "https://github.com/totaljs/examples/tree/master/changes",
           "name": "controller.change",
           "options": [
@@ -6109,6 +6167,22 @@
           "params": [
             {
               "description": "The change message.",
+              "name": "message",
+              "type": "String"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
+          "description": "Performs trace.",
+          "name": "controller.trace",
+          "options": [
+            "http",
+            "websocket"
+          ],
+          "params": [
+            {
+              "description": "A message.",
               "name": "message",
               "type": "String"
             }
@@ -6957,7 +7031,11 @@
                 "optional"
               ],
               "params": [
-
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "description": "Error handling."
+                  }
               ],
               "type": "Function"
             }
