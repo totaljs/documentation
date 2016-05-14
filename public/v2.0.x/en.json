@@ -11350,20 +11350,8 @@
           "return": "undefined"
         },
         {
-          "description": "Message was sent.",
-          "name": "Mail.on('success')",
-          "params": [
-            {
-              "description": "The message object.",
-              "name": "message",
-              "type": "MailMessage"
-            }
-          ],
-          "return": "undefined"
-        },
-        {
           "description": "Sending the message.",
-          "name": "Mail.on('sending')",
+          "name": "Mail.on('send')",
           "params": [
             {
               "description": "The message object.",
