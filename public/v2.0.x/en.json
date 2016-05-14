@@ -1680,29 +1680,21 @@
         },
         {
           "changelog": "Added minify argument.",
-          "description": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocate()` delegate.\n\n```javascript\n// That's all\nF.localize('/templates/');\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('/templates/*.hbs');\n```\n\n```html\nhttp://127.0.0.1:8000/templates/settings.html --> will be localized\nhttp://127.0.0.1:8000/templates/idontknow.html --> will be localized\nhttp://127.0.0.1:8000/templates/ember.hbs --> will be localized\n```",
+          "description": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocate()` delegate.\n\n```javascript\n// That's all\nF.localize('/templates/*.html', ['minify']);\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('/templates/*.hbs');\n```\n\n```html\nhttp://127.0.0.1:8000/templates/settings.html --> will be localized\nhttp://127.0.0.1:8000/templates/idontknow.html --> will be localized\nhttp://127.0.0.1:8000/templates/ember.hbs --> will be localized\n```",
           "name": "framework.localize",
           "params": [
             {
-              "description": "The relative URL into the directory.",
+              "description": "A relative URL into the directory.",
               "name": "url",
               "type": "String"
             },
             {
-              "description": "Middleware.",
-              "name": "middleware",
+              "description": "Custom flags, the variable supports: `minify`, extensions: `.html`, `.htm` and middlewares `#middleware`.",
+              "name": "flags",
               "options": [
                 "optional"
               ],
               "type": "String Array"
-            },
-            {
-              "description": "Some options for middleware.",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
             },
             {
               "description": "Minify",
@@ -5142,7 +5134,7 @@
           "return": "DatabaseBuilder"
         },
         {
-          "name": "database.one",
+          "name": "database.top",
           "description": "Finds first top documents in the database.",
           "params": [
               {
