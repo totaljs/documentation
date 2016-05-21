@@ -2522,6 +2522,21 @@
           "return": "String"
         },
         {
+          "description": "This method clears the internal cache for the relative URL address.",
+          "name": "framework.touch",
+          "options": [
+            "internal"
+          ],
+          "params": [
+            {
+              "description": "The relative URL address.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "description": "Returns the static file according to the request url.",
           "name": "framework.responseStatic",
           "options": [
@@ -11605,7 +11620,25 @@
           "return": "MailMessage"
         },
        {
-          "description": "Sends the message.",
+          "description": "Creates a new mail message.",
+          "options": ["+v1.9.8"],
+          "name": "Mail.create",
+          "return": "MailMessage",
+          "params": [
+            {
+              "description": "The mail subject.",
+              "name": "subject",
+              "type": "String"
+            },
+            {
+              "description": "The mail body.",
+              "name": "body",
+              "type": "String"
+            }
+          ]
+       },
+       {
+          "description": "Sends the messages.",
           "options": ["+v2.0.0"],
           "name": "Mail.send",
           "params": [
@@ -11667,6 +11700,39 @@
               ],
               "type": "Object"
             },
+            {
+              "description": "`FrameworkMail.message` in array.",
+              "name": "messages",
+              "type": "Array Message"
+            },
+            {
+              "description": "The callback.",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "count",
+                  "description": "Message sent count.",
+                  "type": "Number"
+                }
+              ]
+            }
+          ],
+          "return": "Mail"
+        },
+       {
+          "description": "Sends the messages according to the framework configuration `mail.smtp` and `mail.smtp.options`.",
+          "options": ["+v2.0.0"],
+          "name": "Mail.send2",
+          "params": [
             {
               "description": "`FrameworkMail.message` in array.",
               "name": "messages",
