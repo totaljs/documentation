@@ -3923,6 +3923,14 @@
           "return": "Object"
         },
         {
+          "description": "The property contains the current `Date` (+/- 1 minute). The value is refreshed each 1 minute. Sometimes you don't need a fixed date/time, so this property saves CPU in some cases.",
+          "name": "framework.datetime",
+          "options": [
+            "internal"
+          ],
+          "return": "Date"
+        },
+        {
           "description": "This property stores internal informations for all modificators. Look into the `framework.modificator()`.",
           "name": "framework.modificators",
           "options": [
