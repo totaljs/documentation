@@ -4419,7 +4419,7 @@
           "return": "Number"
         },
         {
-          "default": "2880",
+          "default": "120",
           "options": [
             "+v1.8.0"
           ],
@@ -15157,6 +15157,13 @@
               "description": "Asc (true), Desc (false)",
               "name": "asc",
               "type": "Boolean"
+            },
+            {
+              "default": "3",
+              "description": "The maximum count of chars for ordering.",
+              "name": "maxlength",
+              "type": "Number",
+              "options": ["optional"]
             }
           ],
           "return": "Array"
