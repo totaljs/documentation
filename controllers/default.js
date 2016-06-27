@@ -3,5 +3,5 @@ exports.install = function() {
 };
 
 function redirect() {
-    this.redirect('/v' + CONFIG('version') + '/en.html');
+    this.redirect('/latest/en.html');
 }
