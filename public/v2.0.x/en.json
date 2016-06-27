@@ -2016,6 +2016,28 @@
           "return": "Object"
         },
         {
+          "description": "The method generates list of all items according to the parent `key` from the sitemap.",
+          "name": "framework.sitemap_navigation",
+          "options": ["v2.0.0"],
+          "params": [
+            {
+              "description": "Parent key. The value can be empty.",
+              "name": "parent",
+              "type": "String"
+            },
+            {
+              "description": "Language for localization.",
+              "name": "language",
+              "type": "String",
+              "default": "'default'",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Array Object"
+        },
+        {
           "description": "Appends a new error. If this method does not contain any arguments then returns a function.\n\n__Example: framework.error() as delegate__:\n\n```js\ndb.update({}, framework.error());\n\n// Is same as:\n/*\ndb.update({}, function(err) {\n   if (err)\n      framework.error(err);\n});\n*/\n```",
           "name": "framework.error",
           "params": [
@@ -6450,6 +6472,27 @@
           "return": "String"
         },
         {
+          "description": "The method generates list of all items according to the parent `key` from the sitemap.",
+          "name": "controller.sitemap_navigation",
+          "options": ["v2.0.0"],
+          "params": [
+            {
+              "description": "Parent key. The value can be empty.",
+              "name": "parent",
+              "type": "String"
+            },
+            {
+              "description": "Language for localization. Default value is according to the `controller.language`.",
+              "name": "language",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Array Object"
+        },
+        {
           "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action() {\n\n    var name = controller.sitemap_name('category', 'Shoes');\n    console.log(name);\n    // OUTPUT: Shoes\n    \n    // next example:\n    name = controller.sitemap_name('category', 'Shirts');\n    console.log(name);\n    // OUTPUT: Shirts\n\n    // next example:\n    name = controller.sitemap_name('products', 'Shirts');\n    console.log(name);\n    // OUTPUT: Products\n\n    // next example:\n    name = controller.sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3');\n    console.log(name);\n    // OUTPUT: Homepage\n\n}\n```",
           "name": "controller.sitemap_name",
           "options": [
@@ -9470,9 +9513,6 @@
         {
           "description": "Returns a sitemap from `sitemap` file according to the its name.\n\n```html\n@{foreach m in sitemap()}\n    <a href=\"@{m.url}\">@{m.name}</a>\n@{end}\n```",
           "name": "@{sitemap}",
-          "options": [
-            "http"
-          ],
           "params": [
             {
               "description": "Identificator / Name.",
@@ -9485,9 +9525,6 @@
         {
           "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_url('category', 'shoes')}\n<!-- OUTPUT: /products/shoes/ -->\n\n@{sitemap_url('category', '')}\n<!-- OUTPUT: /products// -->\n\n@{sitemap_url('category', 'first', 'second')}\n<!-- OUTPUT: /products/first/ -->\n```",
           "name": "@{sitemap_url}",
-          "options": [
-            "http"
-          ],
           "params": [
             {
               "description": "Identificator / Name.",
@@ -9522,11 +9559,29 @@
           "return": "String"
         },
         {
+          "description": "The method generates list of all items according to the parent `key` from the sitemap.",
+          "name": "@{sitemap_navigation}",
+          "options": ["v2.0.0"],
+          "params": [
+            {
+              "description": "Parent key. The value can be empty.",
+              "name": "parent",
+              "type": "String"
+            },
+            {
+              "description": "Language for localization. Default value is according to the `controller.language`.",
+              "name": "language",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Array Object"
+        },
+        {
           "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_name('category', 'Shoes')};\n<!-- OUTPUT: Shoes -->\n\n<!-- next example: -->\n@{sitemap_name('category', 'Shirts')};\n<!-- OUTPUT: Shirts -->\n\n<!-- next example: -->\n@{sitemap_name('products', 'Shirts')};\n<!-- OUTPUT: Products -->\n\n<!-- next example: -->\n@{sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3')};\n<!-- OUTPUT: Homepage -->\n```",
           "name": "@{sitemap_name}",
-          "options": [
-            "http"
-          ],
           "params": [
             {
               "description": "Identificator / Name.",
