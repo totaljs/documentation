@@ -9511,18 +9511,6 @@
           ]
         },
         {
-          "description": "Returns a sitemap from `sitemap` file according to the its name.\n\n```html\n@{foreach m in sitemap()}\n    <a href=\"@{m.url}\">@{m.name}</a>\n@{end}\n```",
-          "name": "@{sitemap}",
-          "params": [
-            {
-              "description": "Identificator / Name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "Array Object"
-        },
-        {
           "description": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_url('category', 'shoes')}\n<!-- OUTPUT: /products/shoes/ -->\n\n@{sitemap_url('category', '')}\n<!-- OUTPUT: /products// -->\n\n@{sitemap_url('category', 'first', 'second')}\n<!-- OUTPUT: /products/first/ -->\n```",
           "name": "@{sitemap_url}",
           "params": [
@@ -9616,6 +9604,18 @@
           "return": "String"
         },
         {
+          "description": "Sets the sitemap for the current page (it sets a title when is not typed and `@{sitemap()}` returns links according to this sitemap). It returns __empty string__.",
+          "name": "@{sitemap}",
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "The method can modify a sitemap. Each rendered sitemap is cached, so therefore this method.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_change('category', 'url', '/my-custom-url/')};\n\n<a href=\"@{sitemap_url('category')}\">Category</a>\n<!-- OUTPUT: <a href=\"/my-custom-url/\">Category</a> -->\n```",
           "name": "@{sitemap_change}",
           "options": [
@@ -9641,11 +9641,10 @@
           "return": "FrameworkController"
         },
         {
-          "description": "Gets the links in the sitemap.",
+          "description": "Gets the links in the sitemap according to the current sitemap `@{sitemap('page_identificator'}`.",
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
-
           ],
           "return": "Object Array"
         },
