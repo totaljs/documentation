@@ -5274,14 +5274,9 @@
           "return": "Database"
         },
         {
-          "name": "database.max",
-          "description": "Get a max value from the database.",
+          "name": "database.count",
+          "description": "Gets count of documents.",
           "params": [
-            {
-              "name": "property",
-              "type": "String",
-              "description": "A value of the property must be number."
-            },
             {
               "name": "viewname",
               "type": "String",
