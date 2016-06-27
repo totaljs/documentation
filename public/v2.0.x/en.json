@@ -14662,6 +14662,44 @@
         },
         {
           "options": [
+            "+v2.0.0"
+          ],
+          "description": "The method decreases the number and calls `function`.\n\n```javascript\nvar number = 10;\n\nnumber.async(function(index, next) {\n    console.log(index);\n    next();\n}, function() {\n    console.log('DONE');\n});\n```",
+          "name": "Number.prototype.async",
+          "params": [
+            {
+              "description": "On number function.",
+              "name": "onNumber",
+              "params": [
+                {
+                  "name": "number",
+                  "type": "Number",
+                  "description": "The current number."
+                },
+                {
+                  "name": "next",
+                  "type": "Function",
+                  "description": "Continue.",
+                  "options": ["important"]
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "description": "On complete function.",
+              "name": "onComplete",
+              "options": [
+                "optional"
+              ],
+              "params": [
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Number"
+        },
+        {
+          "options": [
             "+v1.9.0"
           ],
           "description": "Increment/Decrement number according string value. Supports percentage.\n\n```javascript\nvar number = 100;\n\nconsole.log(number.add('+10'));\n// output: 110\n\nconsole.log(number.add('-10'));\n// output: 90\n\nconsole.log(number.add('*10'));\n// output: 1000\n\nconsole.log(number.add('/10'));\n// output: 10\n\nconsole.log(number.add('10%'));\n// output: 10\n\nconsole.log(number.add('+10%'));\n// output: 110\n\nconsole.log(number.add('-90%'));\n// output: 10\n\nconsole.log(number.add('*10%'));\n// output: 1000\n\nconsole.log(number.add('/10%'));\n// output: 10\n```",
