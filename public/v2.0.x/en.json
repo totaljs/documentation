@@ -1012,13 +1012,26 @@
           "return": "Framework"
         },
         {
-          "description": "Adds a middleware into the each request into the controller action.",
+          "description": "Uses a middleware for all or specific routes.",
           "name": "framework.use",
           "params": [
             {
               "description": "The middleware name.",
               "name": "name",
               "type": "String"
+            },
+            {
+              "description": "A relative URL address. The framework adds a middleware accoring to the types of routes below, the route has to <b>start</b> with this relative URL.",
+              "name": "url",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "default": "['web', 'file', 'websocket']",
+              "description": "Types can contain <code>web</code>, <code>file</code> or <code>websocket</code> values.",
+              "name": "types",
+              "type": "String Array",
+              "options": ["optional"]
             }
           ],
           "return": "Framework"
@@ -1503,8 +1516,7 @@
           "return": "Framework"
         },
         {
-          "description": "Creates `image resize` route.\n\n__Options__:\n```html\ngrayscale     : Boolean\nblur          : Boolean\nflip          : Boolean\nflop          : Boolean\nsepia         : Boolean\nrotate        : Number\nquality       : Number (the image quality, for JPEG only)\ndirection     : top, center (default), bottom\ncache         : Boolean (enable (default) / disable cache for resized images)\n```\n\n__Example__:\n\n```javascript\nframework.resize('/img/medium/*.jpg', 200, 200, { grayscale: true, rotate: 40 }, '/img/');\nframework.resize('/img/large/', 600, 400, null, '/img/', ['.jpg', '.png']);\nframework.resize('/img/large/', 600, 400, { blur: true, grayscale: true, sepia: 80, flop: true, flip: true, rotate: 30, quality: 80, direction: 'top' });\n```",
-          "changelog": "+v1.9.6 supports <b>direction</b> argument in the options.",
+          "description": "Creates `image resize` route.\n\n__Flags__:\n```html\n.png          : {String} allows only .png images\n.jpg          : {String} allows only .jpg images\n.gif          : {String} allows only .gif images\nnocache       : {Boolean} disables caching of processed files\n```\n\n__Example__:\n\n```javascript\nF.resize('/img/medium/*.jpg', function(image) {\n    image.resize(120, 120);\n    image.quality(90);\n    image.minify();\n});\n\nF.resize('/img/large/', function(image) {\n    image.resize(1024);\n    image.quality(90);\n    image.minify();\n}, ['.jpg', '.png']);\n\nF.resize('/img/preview/', function(image) {\n    image.resize(200, 200);\n    image.quality(80);\n    image.minify();\n}, ['.jpg', '.png', '.gif', 'nocache']);\n```",
           "name": "framework.resize",
           "params": [
             {
@@ -1513,45 +1525,20 @@
               "type": "String"
             },
             {
-              "default": "null",
-              "description": "The size of width. It supports percentage.",
-              "name": "width",
-              "options": [
-                "optional"
-              ],
-              "type": "Number/String"
+              "description": "The image processing function.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "image",
+                  "type": "FrameworkImage",
+                  "description": "The FrameworkImage instance."
+                }
+              ]
             },
             {
-              "default": "null",
-              "description": "The size of height. It supports percentage.",
-              "name": "height",
-              "options": [
-                "optional"
-              ],
-              "type": "Number/String"
-            },
-            {
-              "default": "{}",
-              "description": "The additional options.",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "default": "url",
-              "description": "The relative path.",
-              "name": "path",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "default": "['.jpg', '.png', '.gif']",
-              "description": "Only extensions.",
-              "name": "extension",
+              "description": "A custom resize flags.",
+              "name": "flags",
               "options": [
                 "optional"
               ],
@@ -2465,7 +2452,7 @@
             "+v1.9.0",
             "important"
           ],
-          "description": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug, ['models', 'definitions']);\n```\n\n__Usage in some worker 2__\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug);\n```\n\n__Usage in some worker 3__\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug, ['packages']);\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
+          "description": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug, ['models', 'definitions'], '../');\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug, null, '../'););\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nvar debug = false;\nrequire('total.js').load(debug, ['packages'], '../');\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
           "name": "framework.load",
           "params": [
             {
@@ -17651,7 +17638,7 @@
         },
         {
           "changelog": "added a <b>custom</b> filter argument",
-          "description": "Defines the property for current entity.\n\n```javascript\nvar User = NEWSCHEMA('User');\nUser.define('id', 'string(24)'); // The framework trims long strings automatically\nUser.define('name', 'string(30)', true);\nUser.define('email', String);\nUser.define('age', Number);\n// ...\n// ...\n```",
+          "description": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n});\n// ...\n```",
           "name": "SchemaBuilderEntity.define",
           "params": [
             {
@@ -17680,6 +17667,31 @@
                 "optional"
               ],
               "type": "String"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "options": ["v2.0.0"],
+          "description": "The schema allows not specified fieds, so when the schema is prepared then the framework doesn't remove allowed fields.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // ...\n    // ...\n    schema.allow('customfield1', 'customfield2', 'customfieldN');\n});\n```",
+          "name": "SchemaBuilderEntity.allow",
+          "params": [
+            {
+              "description": "The field name 1",
+              "name": "name1",
+              "type": "String"
+            },
+            {
+              "description": "The field name 1",
+              "name": "name2",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "description": "The field name 1",
+              "name": "nameN",
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
