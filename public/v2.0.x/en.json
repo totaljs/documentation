@@ -8258,6 +8258,16 @@
           "return": "Boolean"
         },
         {
+          "description": "Gets the referrer.",
+          "name": "controller.referrer",
+          "options": [
+            "+v2.0.0",
+            "readonly",
+            "http"
+          ],
+          "return": "String"
+        },
+        {
           "description": "Gets the controller name.",
           "name": "controller.name",
           "options": [
