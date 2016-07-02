@@ -1134,7 +1134,7 @@
           "return": "Database"
         },
         {
-          "description": "Creates a worker. In other words: a __new thread__.",
+          "description": "Runs a worker. In other words: another script in a __new thread__.",
           "example": "https://github.com/totaljs/examples/tree/master/workers",
           "name": "framework.worker",
           "params": [
@@ -1152,7 +1152,52 @@
               "type": "String"
             },
             {
-              "default": "any",
+              "default": "infinite",
+              "description": "Worker timeout.",
+              "name": "timeout",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            }
+          ],
+          "return": "ChildProcess"
+        },
+        {
+          "options": ["v2.0.0"],
+          "description": "Runs a worker. In other words: another script in a __new thread__.",
+          "name": "framework.worker2",
+          "params": [
+            {
+              "description": "Name of worker (workers/{name}.js).",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "Additional process arguments <code>process.argv</code>.",
+              "name": "args",
+              "options": [
+                "optional"
+              ],
+              "type": "Array String"
+            },
+            {
+              "description": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "default": "infinite",
               "description": "Worker timeout.",
               "name": "timeout",
               "options": [
