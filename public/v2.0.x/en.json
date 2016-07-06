@@ -12703,8 +12703,13 @@
           ],
           "params": [
             {
-              "description": "The command argument.",
-              "name": "arg",
+              "description": "Argument name. IMPORTANT: the method doesn't add `-` or `--` automatically into the name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "Argument value.",
+              "name": "value",
               "type": "String"
             },
             {
@@ -12713,7 +12718,8 @@
               "options": [
                 "optional"
               ],
-              "type": "Number"
+              "type": "Number",
+              "default": 10
             }
           ],
           "return": "FrameworkImage"
