@@ -1561,7 +1561,7 @@
           "return": "Framework"
         },
         {
-          "description": "Creates `image resize` route.\n\n__Flags__:\n```html\n.png          : {String} allows only .png images\n.jpg          : {String} allows only .jpg images\n.gif          : {String} allows only .gif images\nnocache       : {Boolean} disables caching of processed files\n```\n\n__Example__:\n\n```javascript\nF.resize('/img/medium/*.jpg', function(image) {\n    image.resize(120, 120);\n    image.quality(90);\n    image.minify();\n});\n\nF.resize('/img/large/', function(image) {\n    image.resize(1024);\n    image.quality(90);\n    image.minify();\n}, ['.jpg', '.png']);\n\nF.resize('/img/preview/', function(image) {\n    image.resize(200, 200);\n    image.quality(80);\n    image.minify();\n}, ['.jpg', '.png', '.gif', 'nocache']);\n```",
+          "description": "Creates `image resize` route.\n\n__Flags__:\n```html\n.png          : {String} allows only .png images\n.jpg          : {String} allows only .jpg images\n.gif          : {String} allows only .gif images\nnocache       : {Boolean} disables caching of processed files\n```\n\n__Example__:\n\n```javascript\nF.resize('/img/medium/*.jpg', function(image) {\n    image.resize(120, 120);\n    image.quality(90);\n    image.minify();\n});\n\nF.resize('/img/large/', function(image) {\n    image.resize(1024);\n    image.quality(90);\n    image.minify();\n}, ['.jpg', '.png']);\n\nF.resize('/img/preview/', function(image) {\n    image.resize(200, 200);\n    image.quality(80);\n    image.minify();\n}, ['.jpg', '.png', '.gif', 'nocache']);\n\n// With additional path in public directory\n// You can use `~` char as an absolute path\nF.resize('/gallery/', function(image) {\n    image.resize(120, 120);\n    image.quality(90);\n    image.minify();\n}, ['/img/gallery/', '.jpg', '.png']);\n```",
           "name": "framework.resize",
           "params": [
             {
@@ -1582,7 +1582,7 @@
               ]
             },
             {
-              "description": "A custom resize flags.",
+              "description": "A custom resize flags. Flags can contain relative URL as lookup directory.",
               "name": "flags",
               "options": [
                 "optional"
@@ -3939,7 +3939,7 @@
         {
           "default": "{}",
           "description": "This property contains alive workers.",
-          "name": "framework.wokers",
+          "name": "framework.workers",
           "options": [
             "private"
           ],
@@ -10262,15 +10262,15 @@
               "description": "Request flags.",
               "go": "#api~HttpRouteOptionsFlags",
               "name": "flags",
-              "options": [
-                "optional"
-              ],
               "type": "String Array"
             },
             {
               "description": "Request data.",
               "name": "data",
-              "type": "Object"
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
             },
             {
               "description": "Callback.",
