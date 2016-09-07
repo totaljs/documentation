@@ -1641,7 +1641,7 @@
               "options": [
                 "optional"
               ],
-              "type": "HttpRouteOptions"
+              "type": "String Array"
             }
           ],
           "return": "Framework"
@@ -12916,96 +12916,6 @@
           "description": "The file `content-type`.",
           "name": "file.type",
           "return": "String"
-        }
-      ]
-    },
-    {
-      "description": "```javascript\nexports.install = function() {\n\tframework.route('/contact/', json_contact, { flags: ['post', 'json'], timeout: 10000 });\n};\n```",
-      "group": "Additional",
-      "name": "HttpRouteOptions",
-      "properties": [
-        {
-          "default": "[]",
-          "description": "The request flags. If the flag starts with `#` then is loaded as __middleware__.",
-          "go": "#api~HttpRouteOptionsFlags",
-          "name": "flags",
-          "options": [
-            "optional",
-            "http",
-            "websocket"
-          ],
-          "return": "String Array"
-        },
-        {
-          "description": "The route name for searching.",
-          "name": "name",
-          "options": [
-            "optional",
-            "http",
-            "websocket"
-          ],
-          "return": "String"
-        },
-        {
-          "description": "The custom options for __middleware__.",
-          "name": "options",
-          "options": [
-            "optional",
-            "http",
-            "websocket"
-          ],
-          "return": "Object"
-        },
-        {
-          "default": "config['default-request-length']",
-          "description": "The maximum request length.",
-          "name": "length",
-          "options": [
-            "optional",
-            "http",
-            "websocket"
-          ],
-          "return": "Number"
-        },
-        {
-          "default": "[]",
-          "description": "The middleware collection.",
-          "name": "middleware",
-          "options": [
-            "optional",
-            "http"
-          ],
-          "return": "String Array"
-        },
-        {
-          "default": "config['default-request-timeout']",
-          "description": "The timeout for response to pending request. For disable the `timeout` you must set to `false`.",
-          "name": "timeout",
-          "options": [
-            "optional",
-            "http"
-          ],
-          "return": "Number or Boolean"
-        },
-        {
-          "default": "[]",
-          "description": "Compares `websocket-allow-protocols` with the current array.",
-          "name": "protocols",
-          "options": [
-            "optional",
-            "websocket"
-          ],
-          "return": "String Array"
-        },
-        {
-          "default": "[]",
-          "description": "Compares the `origin` header with the current array.",
-          "name": "origin",
-          "options": [
-            "optional",
-            "websocket"
-          ],
-          "return": "String Array"
         }
       ]
     },
