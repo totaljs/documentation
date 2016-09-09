@@ -1457,8 +1457,8 @@
           "return": "Framework"
         },
         {
-          "changelog": "added RegExp routing and URL argument can by a function as filter.",
-          "description": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nF.route('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nF.route('/', 'index');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nF.route('/', '=default/index');\nF.route('/', '=?/index'); // --> =? means that the framework uses default theme name\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n```\n\n## Schemas\n\n```javascript\nF.route('/api/account/', action, ['*Account']); // +v1.9.7\nF.route('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nF.route('/api/account/', action, ['put', '*User#update']);\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nF.route('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nF.route('[*]/', action);\n// All subdomains\n\nF.route('[nice*]/', action);\n// All subdomains which they contain `nice` word\n```",
+          "changelog": "sitemap routing supports localization (framework creates multiple routes with different URL addresses)",
+          "description": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nF.route('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nF.route('/', 'index'); // is same as F.route('/');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nF.route('/', '=default/index');\nF.route('/', '=?/index'); // --> =? means that the framework uses default theme name\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n```\n\n##\u00a0Schemas\n\n```javascript\nF.route('/api/account/', action, ['*Account']); // +v1.9.7\nF.route('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nF.route('/api/account/', action, ['put', '*User#update']);\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nF.route('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nF.route('[*]/', action);\n// All subdomains\n\nF.route('[nice*]/', action);\n// All subdomains which they contain `nice` word\n```\n\n## Sitemap\n\n```javascript\n// Creates route according to the sitemap\nF.route('#sitemap_id', [action], [flags]);\n```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "framework.route",
           "options": [
@@ -1588,6 +1588,42 @@
                 "optional"
               ],
               "type": "String Array"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Creates `multipart/x-mixed-replace` streaming route. This route can receive files from e.g. IP cameras.\n\n__Controller__:\n```javascript\nexports.install = function() {\n    F.mmr('/ip-camera/', processing);\n};\n\nfunction processing(req, file, counter) {    \n    // file === HttpFile\n    // here you can process received file\n    \n    // IMPORTANT:\n    // \"file\" === null and \"counter\" === undefined when the request is closed\n}\n```",
+          "name": "framework.mmr",
+          "params": [
+            {
+              "description": "The relative URL. It can't contain dynamic query.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "description": "The processing function. The function is executed when for each uploaded file.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "req",
+                  "type": "Request",
+                  "description": "Current request."
+                },
+                {
+                  "name": "file",
+                  "type": "HttpFile",
+                  "description": "Current processed file."
+                },
+                {
+                  "name": "counter",
+                  "type": "Number",
+                  "description": "Current index of processed file."
+                }
+              ]
             }
           ],
           "return": "Framework"
@@ -2046,6 +2082,20 @@
             }
           ],
           "return": "Object"
+        },
+        {
+          "description": "This method can add a new sitemap items into the sitemap.\n\n````javascript\nF.sitemap_add('contact       : Contact      --> /contact/  --> homepage');\n```",
+          "name": "framework.sitemap_add",
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "params": [
+            {
+              "description": "Can contain same content as `sitemap` file.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
         },
         {
           "description": "The method generates list of all items according to the parent `key` from the sitemap.",
@@ -5137,6 +5187,13 @@
           "name": "database.binary",
           "description": "Returns a binary instance. The binary instance can help with storing files.",
           "return": "DatabaseBinary"
+        },
+        {
+          "options": ["v2.0.2"],
+          "changetype": 1,
+          "name": "database.counter",
+          "description": "Returns a counter instance. The counter instance can help with creates stats of views or downloads.",
+          "return": "DatabaseCounter"
         }
       ],
       "methods": [
@@ -5610,6 +5667,202 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "description": "__NoSQL Database Counter__ helps with creating stats for count of views or downloads.\n\n```javascript\nvar database = NOSQL('blog');\n\n// database.counter.hit(...);\n// database.counter.count(...);\n// database.counter.stats(...);\n// etc.```",
+      "name": "DatabaseCounter",
+      "group": "NoSQL Embedded",
+      "changetype": 1,
+      "methods": [
+        {
+          "name": "database.counter.hit",
+          "description": "Writes a count.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "description": "Your custom identificator (e.g. blog id, user id, file id)"
+            },
+            {
+              "default": "1",
+              "name": "count",
+              "type": "Number",
+              "description": "Count for writing.",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.remove",
+          "description": "Removes all stats according to the identificator.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "description": "Your custom identificator (e.g. blog id, user id, file id)"
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.count",
+          "description": "Reads sum of all stats.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String",
+              "description": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "options": ["optional"]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Number/Object",
+                  "description": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.yearly",
+          "description": "Reads yearly stats.\n\n```javascript\ndatabase.counter.yearly(function(err, response) {\n\t/*\n\t\t[{ year: 2016, value: 446 }]\n\t*/\n});\n\ndatabase.counter.yearly('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[{ year: 2016, value: 446 }]\n\t*/\n});\n\ndatabase.counter.yearly(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': [ { year: 2016, value: 29 } ],\n\t\t  '16090123150001clu1': [ { year: 2016, value: 36 } ] }\t\n\t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String",
+              "options": ["optional"],
+              "description": "Your custom identificator(s) (e.g. blog id, user id, file id)"
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "description": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.monthly",
+          "description": "Reads monthly stats.\n\n```javascript\ndatabase.counter.monthly(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String",
+              "options": ["optional"],
+              "description": "Your custom identificator(s) (e.g. blog id, user id, file id)"
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "description": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.stats",
+          "description": "Reads stats.\n\n```javascript\ndatabase.counter.stats(3, 2016, 8, function(err, response) {\n\t/*\n\t\t[ { id: '16083014300001idn1', count: 19 },\n\t\t  { id: '16083010190001yed1', count: 13 } ]\n\t */\n});\n\ndatabase.counter.stats(3, 2016, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n\ndatabase.counter.stats(3, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "top",
+              "type": "Number",
+              "description": "Limit for top results."
+            },
+            {
+              "name": "year",
+              "type": "Number",
+              "description": "Year.",
+              "options": ["optional"]
+            },
+            {
+              "name": "month",
+              "type": "Number",
+              "description": "Month.",
+              "options": ["optional"]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params":
+              [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "description": "Results."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "name": "database.counter.clear",
+          "description": "Clears all stats.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "Callback.",
+              "params": []
+            }
+          ],
+          "return": "DatabaseCounter"
         }
       ]
     },
@@ -6586,6 +6839,30 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Changes current sitemap `title` and `url` onetime. The method replaces value only in the memory for the current request.\n\n```javascript\n// E.g.:\n// sitemap url --> /products/{0}/\ncontroller.sitemap_replace('detail', model.title, model.linker);\n\n// With functions:\ncontroller.sitemap_replace('detail', current => current.format(model.title), current => current.replace('#', model.linker));\n```",
+          "name": "controller.sitemap_replace",
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "New title. The framework can identify whether the title contains dynamic formatting via `String.format()`.",
+              "name": "title",
+              "type": "String/Function"
+            },
+            {
+              "description": "New URL. The framework can identify whether the url contains dynamic formatting via `String.format()`.",
+              "name": "url",
+              "type": "String/Function"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
           "description": "Sets a layout for the current view.",
           "name": "controller.layout",
           "options": [
@@ -6878,6 +7155,41 @@
                 "optional"
               ],
               "type": "Number"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
+          "changetype": 1,
+          "description": "Sends binary data via `multipart/x-mixed-replace` (e.g. IP camera).\n\n- [multipart/x-mixed-replace LIVE](https://github.com/totaljs/examples/tree/master/mixedreplace-both)\n- [multipart/x-mixed-replace UPLOAD](https://github.com/totaljs/examples/tree/master/mixedreplace-upload)\n- [multipart/x-mixed-replace DOWNLOAD](https://github.com/totaljs/examples/tree/master/mixedreplace-download)\n\n```javascript\nfunction controller_action() {\n    var self = this;\n\n    // Sends \"/public/live.jpg\" file\n    self.mmr(self.path.public('live.jpg'));\n\n    // is same as:\n    self.mmr('live.jpg', require('fs').createReadStream(self.path.public('live.jpg')));\n\n    // closes response\n    self.close();\n}\n```",
+          "name": "controller.mmr",
+          "options": [
+            "http",
+            "v2.0.2"
+          ],
+          "params": [
+            {
+              "description": "Filename.",
+              "name": "filename",
+              "type": "String"
+            },
+            {
+              "description": "Stream with binary data.",
+              "name": "stream",
+              "options": [
+                "optional"
+              ],
+              "type": "Stream"
+            },
+            {
+              "description": "Callback.",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function",
+              "params": [
+              ]
             }
           ],
           "return": "FrameworkController"
@@ -7676,6 +7988,50 @@
           "params": [
             {
               "description": "A workflow name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A helper value.",
+              "name": "helper",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "A callback.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Object",
+                  "description": "A response from the schema."
+                }
+              ]
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "options": [
+            "+v2.0.2"
+          ],
+          "changetype": 1,
+          "description": "Executes `SchemaBuilderEntity.hook` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.hook()` without validation.",
+          "name": "controller.$hook",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "A hook name.",
               "name": "name",
               "type": "String"
             },
@@ -9010,6 +9366,21 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Adds a new value into the title (without replacement) for the META tags.",
+          "example": "https://github.com/totaljs/examples/tree/master/views-meta",
+          "name": "@{title2}",
+          "params": [
+            {
+              "description": "Value to add.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "Creates the description for the META tags.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "name": "@{description}",
@@ -9376,6 +9747,29 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Creates absolute URL of a static file according to the `hostname`. It can help when you use CDN.",
+          "name": "@{absolute}",
+          "params": [
+            {
+              "description": "Relative URL.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "default": "current hostname",
+              "description": "New hostname.",
+              "name": "hostname",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "Sets the `Last-Modified` to the response header.",
           "name": "@{modified}",
           "params": [
@@ -9581,6 +9975,30 @@
               "options": [
                 "optional"
               ]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Changes current sitemap `title` and `url` onetime. The method replaces value only in the memory for the current request.\n\n```html\n<!--\nE.g.:\nsitemap url: /products/{0}/\n-->\n@{sitemap_replace('detail', model.title, model.linker)}\n\n<!--\nWith functions:\n-->\n@{sitemap_replace('detail', current => current.format(model.title), current => current.replace('#', model.linker))}\n```",
+          "name": "@{sitemap_replace}",
+          "params": [
+            {
+              "description": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "New title. The framework can identify whether the title contains dynamic formatting via `String.format()`.",
+              "name": "title",
+              "type": "String/Function"
+            },
+            {
+              "description": "New URL. The framework can identify whether the url contains dynamic formatting via `String.format()`.",
+              "name": "url",
+              "type": "String/Function"
             }
           ],
           "return": "String"
@@ -14262,8 +14680,44 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Searchs and parses a number (integer) from the string.",
+          "name": "String.prototype.parseInt2",
+          "params": [
+            {
+              "default": "0",
+              "description": "The default number.",
+              "name": "def",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "Number"
+        },
+        {
           "description": "Parses a number (float) from the string.",
           "name": "String.prototype.parseFloat",
+          "params": [
+            {
+              "default": "0",
+              "description": "The default number.",
+              "name": "def",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Searchs and parses a number (float) from the string.",
+          "name": "String.prototype.parseFloat2",
           "params": [
             {
               "default": "0",
@@ -18152,11 +18606,6 @@
                     }
                   ],
                   "type": "Function"
-                },
-                {
-                  "description": "The entity name.",
-                  "name": "entityName",
-                  "type": "String"
                 }
               ],
               "type": "Function"
@@ -18207,11 +18656,58 @@
                     }
                   ],
                   "type": "Function"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Adds a new hook. Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
+          "name": "SchemaBuilderEntity.addHook",
+          "params": [
+            {
+              "description": "The hook name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "The delegate.",
+              "name": "fn",
+              "params": [
+                {
+                  "description": "ErrorBuilder for managing errors.",
+                  "name": "error",
+                  "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The entity name.",
-                  "name": "entityName",
-                  "type": "String"
+                  "description": "The model (prepared and validated).",
+                  "name": "model",
+                  "type": "Object"
+                },
+                {
+                  "default": "undefined",
+                  "description": "The helper object.",
+                  "name": "helper",
+                  "type": "Object"
+                },
+                {
+                  "description": "The callback without the ErrorBuilder (The ErrorBuilder will added automatically if will contain some errors).",
+                  "name": "callback",
+                  "params": [
+                    {
+                      "description": "The result.",
+                      "name": "result",
+                      "options": [
+                        "optional"
+                      ],
+                      "type": "Object"
+                    }
+                  ],
+                  "type": "Function"
                 }
               ],
               "type": "Function"
@@ -18265,11 +18761,6 @@
                     }
                   ],
                   "type": "Function"
-                },
-                {
-                  "description": "The entity name.",
-                  "name": "entityName",
-                  "type": "String"
                 }
               ],
               "type": "Function"
@@ -18678,6 +19169,56 @@
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 1,
+          "options": ["v2.0.2"],
+          "description": "Invokes a hook.",
+          "name": "SchemaBuilderEntity.hook",
+          "params": [
+            {
+              "description": "The hook name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "The model.",
+              "name": "model",
+              "type": "Object"
+            },
+            {
+              "default": "undefined",
+              "description": "The helper object.",
+              "name": "helper",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "The callback function.",
+              "name": "callback",
+              "params": [
+                {
+                  "description": "Error handler.",
+                  "name": "err",
+                  "type": "ErrorBuilder"
+                },
+                {
+                  "description": "The workflow result.",
+                  "name": "result",
+                  "type": "Object"
+                },
+                {
+                  "description": "The model.",
+                  "name": "model",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
           "description": "Invokes an operation.",
           "name": "SchemaBuilderEntity.operation",
           "params": [
@@ -18925,7 +19466,7 @@
       "name": "Isomorphic code"
     },
     {
-      "body": "A sitemap file `/sitemap` (`+v1.9.1`) is very helpful generating breadcrumb (navigation) or sitemap. The sitemap file `/sitemap` is a plain text and has same syntax as framework config file.\n\n- [Example](https://github.com/totaljs/examples/tree/master/sitemap)\n\n```html\n/controllers\n/debug.js\n/release.js\n/sitemap\n```\n\n## Declaration\n\n```html\nID             : Name                   --> URL                --> [Parent (OPTIONAL)]\n```\n\n## How does it work?\n\nFile: `/sitemap` e.g.:\n\n```html\nhomepage       : Homepage               --> /\ncontact        : Contact                --> /contact/         --> homepage\nterms          : Terms and Conditions   --> /terms/           --> homepage\nprivacy        : @(Localized Privacy)   --> /privacy/         --> terms\n```\n\n- sitemap `name` can be as view title (when is the title not defined in the view)\n- supports localization `@(Text to translate)`\n\n### Usage in views\n\n__View layout.html__:\n\n```html\n<nav class=\"breadcrumb\">\n    @{foreach m in sitemap()}\n\n        <!--\n        m.sitemap : current sitemap id\n        m.id      : current item id\n        m.name    : current item name\n        m.url     : current item url\n        m.last    : is the last item?\n        m.first   : is the first item?\n        m.index   : current item index in sitemap (in the parent tree)\n        -->\n\n        <a href=\"@{m.url}\">@{m.name}</a>\n    @{end}\n</nav>\n```\n\n__View index.html__:\n\n```html\n@{sitemap('homepage')}\n\n<h1>@{title}</h1>\n```\n\n__View terms.html__:\n\n```html\n@{sitemap('terms')}\n\n<h1>@{title}</h1>\n```\n\n__View privacy.html__:\n\n```html\n@{sitemap('privacy')}\n\n<h1>@{title}</h1>\n```\n\n__View contact.html__:\n\n```html\n@{sitemap('contact')}\n\n<h1>@{title}</h1>\n```\n\n### Usage in the code\n\n- [framework.sitemap](#api~Framework~framework.sitemap) `+v1.9.1`\n\n```javascript\n// Finds only the one item and it returns Object\nconsole.log(F.sitemap('terms', true));\n\n// Finds all items in the sitemap tree and it returns Array\nconsole.log(F.sitemap('terms'));\n```",
+      "body": "A sitemap file `/sitemap` (`+v1.9.1`) is very helpful generating breadcrumb (navigation) or sitemap. The sitemap file `/sitemap` is a plain text and has same syntax as framework config file.\n\n- [Example](https://github.com/totaljs/examples/tree/master/sitemap)\n\n```html\n/controllers\n/debug.js\n/release.js\n/sitemap\n```\n\n##\u00a0Declaration\n\n```html\nID             : Name                   --> URL                --> [Parent (OPTIONAL)]\n```\n\n## How does it work?\n\nFile: `/sitemap` e.g.:\n\n```html\nhomepage       : Homepage               --> /\ncontact        : Contact                --> /contact/         --> homepage\nterms          : Terms and Conditions   --> /terms/           --> homepage\nprivacy        : @(Localized Privacy)   --> @(/privacy/)      --> terms\n```\n\n- sitemap `name` can be as view title (when is the title not defined in the view)\n- supports localization `@(Text to translate)`\n- `v2.0.2` URL addreses can be localized too\n\n###\u00a0Usage in views\n\n__View layout.html__:\n\n```html\n<nav class=\"breadcrumb\">\n    @{foreach m in sitemap()}\n\n        <!--\n        m.sitemap : current sitemap id\n        m.id      : current item id\n        m.name    : current item name\n        m.url     : current item url\n        m.last    : is the last item?\n        m.first   : is the first item?\n        m.index   : current item index in sitemap (in the parent tree)\n        -->\n\n        <a href=\"@{m.url}\">@{m.name}</a>\n    @{end}\n</nav>\n```\n\n__View index.html__:\n\n```html\n@{sitemap('homepage')}\n\n<h1>@{title}</h1>\n```\n\n__View terms.html__:\n\n```html\n@{sitemap('terms')}\n\n<h1>@{title}</h1>\n```\n\n__View privacy.html__:\n\n```html\n@{sitemap('privacy')}\n\n<h1>@{title}</h1>\n```\n\n__View contact.html__:\n\n```html\n@{sitemap('contact')}\n\n<h1>@{title}</h1>\n```\n\n###\u00a0Usage in the code\n\n- [framework.sitemap](#api~Framework~framework.sitemap) `+v1.9.1`\n\n```javascript\n// Finds only the one item and it returns Object\nconsole.log(F.sitemap('terms', true));\n\n// Finds all items in the sitemap tree and it returns Array\nconsole.log(F.sitemap('terms'));\n```",
       "group": "How does it work?",
       "name": "File: sitemap",
       "options": [
