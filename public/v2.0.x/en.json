@@ -1594,7 +1594,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Creates `multipart/x-mixed-replace` streaming route. This route can receive files from e.g. IP cameras.\n\n__Controller__:\n```javascript\nexports.install = function() {\n    F.mmr('/ip-camera/', processing);\n};\n\nfunction processing(req, file, counter) {    \n    // file === HttpFile\n    // here you can process received file\n    \n    // IMPORTANT:\n    // \"file\" === null and \"counter\" === undefined when the request is closed\n}\n```",
           "name": "framework.mmr",
           "params": [
@@ -2087,7 +2087,7 @@
           "description": "This method can add a new sitemap items into the sitemap.\n\n````javascript\nF.sitemap_add('contact       : Contact      --> /contact/  --> homepage');\n```",
           "name": "framework.sitemap_add",
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "params": [
             {
               "description": "Can contain same content as `sitemap` file.",
@@ -5189,7 +5189,7 @@
           "return": "DatabaseBinary"
         },
         {
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "changetype": 1,
           "name": "database.counter",
           "description": "Returns a counter instance. The counter instance can help with creates stats of views or downloads.",
@@ -6840,7 +6840,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Changes current sitemap `title` and `url` onetime. The method replaces value only in the memory for the current request.\n\n```javascript\n// E.g.:\n// sitemap url --> /products/{0}/\ncontroller.sitemap_replace('detail', model.title, model.linker);\n\n// With functions:\ncontroller.sitemap_replace('detail', current => current.format(model.title), current => current.replace('#', model.linker));\n```",
           "name": "controller.sitemap_replace",
           "params": [
@@ -7165,7 +7165,7 @@
           "name": "controller.mmr",
           "options": [
             "http",
-            "v2.0.2"
+            "v2.1.0"
           ],
           "params": [
             {
@@ -9367,7 +9367,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Adds a new value into the title (without replacement) for the META tags.",
           "example": "https://github.com/totaljs/examples/tree/master/views-meta",
           "name": "@{title2}",
@@ -9748,7 +9748,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Creates absolute URL of a static file according to the `hostname`. It can help when you use CDN.",
           "name": "@{absolute}",
           "params": [
@@ -9981,7 +9981,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Changes current sitemap `title` and `url` onetime. The method replaces value only in the memory for the current request.\n\n```html\n<!--\nE.g.:\nsitemap url: /products/{0}/\n-->\n@{sitemap_replace('detail', model.title, model.linker)}\n\n<!--\nWith functions:\n-->\n@{sitemap_replace('detail', current => current.format(model.title), current => current.replace('#', model.linker))}\n```",
           "name": "@{sitemap_replace}",
           "params": [
@@ -14671,7 +14671,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Searchs and parses a number (integer) from the string.",
           "name": "String.prototype.parseInt2",
           "params": [
@@ -14705,7 +14705,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Searchs and parses a number (float) from the string.",
           "name": "String.prototype.parseFloat2",
           "params": [
@@ -18655,7 +18655,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Adds a new hook. Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
           "name": "SchemaBuilderEntity.addHook",
           "params": [
@@ -19017,7 +19017,7 @@
           "return": "Array or Object"
         },
         {
-          "description": "Invokes a transformation with validation.",
+          "description": "Invokes a transformation.",
           "name": "SchemaBuilderEntity.transform",
           "params": [
             {
@@ -19051,11 +19051,6 @@
                   "description": "The transformation result.",
                   "name": "result",
                   "type": "Object"
-                },
-                {
-                  "description": "The model.",
-                  "name": "model",
-                  "type": "Object"
                 }
               ],
               "type": "Function"
@@ -19064,18 +19059,13 @@
           "return": "SchemaBuilderEntity"
         },
         {
-          "description": "Invokes a composers.",
-          "name": "SchemaBuilderEntity.compose",
+          "description": "Invokes a transformation without validation and model.",
+          "name": "SchemaBuilderEntity.transform2",
           "params": [
             {
-              "description": "The composer name.",
+              "description": "The transformation name.",
               "name": "name",
               "type": "String"
-            },
-            {
-              "description": "The model for composer.",
-              "name": "model",
-              "type": "Object"
             },
             {
               "description": "The helper object.",
@@ -19095,13 +19085,8 @@
                   "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The composer result.",
+                  "description": "The transformation result.",
                   "name": "result",
-                  "type": "Object"
-                },
-                {
-                  "description": "The model.",
-                  "name": "model",
                   "type": "Object"
                 }
               ],
@@ -19146,10 +19131,43 @@
                   "description": "The workflow result.",
                   "name": "result",
                   "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "description": "Invokes a workflow without validation and model.",
+          "name": "SchemaBuilderEntity.workflow2",
+          "params": [
+            {
+              "description": "The workflow name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "default": "undefined",
+              "description": "The helper object.",
+              "name": "helper",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "The callback function.",
+              "name": "callback",
+              "params": [
+                {
+                  "description": "Error handler.",
+                  "name": "err",
+                  "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The model.",
-                  "name": "model",
+                  "description": "The workflow result.",
+                  "name": "result",
                   "type": "Object"
                 }
               ],
@@ -19160,7 +19178,7 @@
         },
         {
           "changetype": 1,
-          "options": ["v2.0.2"],
+          "options": ["v2.1.0"],
           "description": "Invokes a hook.",
           "name": "SchemaBuilderEntity.hook",
           "params": [
@@ -19196,10 +19214,45 @@
                   "description": "The workflow result.",
                   "name": "result",
                   "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "changetype": 1,
+          "options": ["v2.1.0"],
+          "description": "Invokes a hook without validation and model.",
+          "name": "SchemaBuilderEntity.hook2",
+          "params": [
+            {
+              "description": "The hook name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "default": "undefined",
+              "description": "The helper object.",
+              "name": "helper",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "The callback function.",
+              "name": "callback",
+              "params": [
+                {
+                  "description": "Error handler.",
+                  "name": "err",
+                  "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The model.",
-                  "name": "model",
+                  "description": "The workflow result.",
+                  "name": "result",
                   "type": "Object"
                 }
               ],
@@ -19247,10 +19300,43 @@
                   "description": "The operation result.",
                   "name": "result",
                   "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "description": "Invokes an operation withou validation and model.",
+          "name": "SchemaBuilderEntity.operation",
+          "params": [
+            {
+              "description": "The operation name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "default": "undefined",
+              "description": "The helper object.",
+              "name": "helper",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "The callback function.",
+              "name": "callback",
+              "params": [
+                {
+                  "description": "Error handler.",
+                  "name": "err",
+                  "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The model.",
-                  "name": "model",
+                  "description": "The operation result.",
+                  "name": "result",
                   "type": "Object"
                 }
               ],
