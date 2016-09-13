@@ -1510,6 +1510,15 @@
                 "optional"
               ],
               "type": "String Array"
+            },
+            {
+              "default": "5",
+              "description": "Maximum length of uploaded (request) data.",
+              "name": "length",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
             }
           ],
           "return": "Framework"
