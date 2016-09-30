@@ -5585,6 +5585,30 @@
           ]
         },
         {
+          "name": "builder.prepare",
+          "description": "Can prepare a stored document to your needs.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.prepare((doc) => { recordID: doc.id });\n});```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "description": "A custom preparation.",
+              "params": [
+                {
+                  "name": "doc",
+                  "type": "Object",
+                  "description": "A document from DB."
+                },
+                {
+                  "name": "index",
+                  "type": "Number",
+                  "description": "Current index."
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "builder.search",
           "description": "Create a text search condition.",
           "return": "DatabaseBuilder",
