@@ -1016,12 +1016,12 @@
           "name": "framework.use",
           "params": [
             {
-              "description": "The middleware name.",
+              "description": "A middleware name.",
               "name": "name",
-              "type": "String"
+              "type": "String or Array"
             },
             {
-              "description": "A relative URL address. The framework adds a middleware accoring to the types of routes below, the route has to <b>start</b> with this relative URL.",
+              "description": "A relative URL address. The framework adds a middleware accoring to the types of routes below, the route has to <b>start</b> with this relative URL. Can contain `*` for all routes.",
               "name": "url",
               "type": "String",
               "options": ["optional"]
@@ -1031,6 +1031,13 @@
               "description": "Types can contain <code>web</code>, <code>file</code> or <code>websocket</code> values.",
               "name": "types",
               "type": "String Array",
+              "options": ["optional"]
+            },
+            {
+              "default": "false",
+              "description": "Adds a new middleware to the beginning of a route middleware.",
+              "name": "first",
+              "type": "Boolean",
               "options": ["optional"]
             }
           ],
@@ -16747,6 +16754,57 @@
             }
           ],
           "return": "SchemaBuilderEntity"
+        },
+        {
+          "changetype": 1,
+          "description": "Creates a new object according to the schema",
+          "name": "CREATE",
+          "options": [
+            "+v2.1.0"
+          ],
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "changetype": 1,
+          "description": "Creates an instance of `setTimeout`, but if the method is executed multiple times then timeout is reset.",
+          "name": "setTimeout2",
+          "options": [
+            "+v2.1.0"
+          ],
+          "params": [
+            {
+              "description": "A timeout name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "callback",
+              "name": "fn",
+              "type": "Function"
+            },
+            {
+              "description": "A timeout.",
+              "name": "timoeut",
+              "type": "Number"
+            }
+          ],
+          "return": "undefined"
         },
         {
           "description": "Usage:\n\n```javascript\n// var a = yield sync(ASYNC_FUNCTION)(ASYNC_FUNCTION_ARGUMENTS);\nvar a = yield sync(fs.readFile)(self.path.root('index.js'));\n```\n\n__IMPORTANT:__ the last argument in `ASYNC_FUNCTION` __must be__ a CALLBACK delegate like this: `callback(err, value)`.\n\n### Classic example\n\n```javascript\n// EXAMPLE:\n// A function with a callback\nfunction custom(a, b, callback) {\n    // callback(error, result);\n    callback(null, a + b);\n};\n\nasync(function *() {\n\n    var a = yield sync(fs.readFile)(self.path.root('index.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    // Example MySQL connection:\n    // var c = yield sync(connection.query, connection)('SELECT * FROM USER LIMIT 0, 10');\n\n    // custom function\n    var c = yield sync(custom)(1, 2);\n\n    self.plain('==== index.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8') + '\\n\\n==== custom function\\n\\n' + c);\n\n    // async(*, [callback/controller])\n    // if the async throws an error then controller executes view500(error)\n})(self);\n```\n\n### Routing\n\n__total.js__ routing supports generators (__NEW FEATURE__):\n\n```javascript\nexports.install = function() {\n    F.route('/', view_index);\n};\n\nfunction *view_index() {\n\n    var a = yield sync(fs.readFile)(self.path.root('release.js'));\n    var b = yield sync(fs.readFile)(self.path.root('controllers/default.js'));\n\n    self.view('==== release.js\\n\\n' + a.toString('utf8') + '\\n\\n==== controllers/default.js\\n\\n' + b.toString('utf8'));\n}\n```",
