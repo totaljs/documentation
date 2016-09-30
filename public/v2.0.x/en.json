@@ -1645,6 +1645,26 @@
           "return": "Framework"
         },
         {
+          "changetype": 1,
+          "description": "The method extends flags in the all routes in the function scope like this:\n\n```javascript\nexports.install = function() {\n    F.group(['#middleware', 'authorize'], function() {\n        F.route('/api/posts/', json_posts, ['put']);\n        F.route('/api/commnets/', json_posts, ['post']);\n        F.websocket('/', chat);\n    });\n}\n```",
+          "name": "framework.group",
+          "params": [
+            {
+              "description": "Flags to extend route flags.",
+              "go": "api~HttpRouteOptionsFlags",
+              "name": "flags",
+              "type": "String Array"
+            },
+            {
+              "description": "The scope function.",
+              "name": "fn",
+              "params": [],
+              "type": "Function"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "description": "Creates a Websocket route to the controller or module.\n\n```javascript\nF.websocket('/', action, ['json']);\nF.websocket('/with-specific-room/', action, ['json', 'my-chat-room']);\nF.websocket('/with-specific-origin/', action, ['json', 'http://privater.eu', 'https://www.totaljs.com']);\nF.websocket('/array-binary-message/', action, ['binary']);\nF.websocket('/raw-text-message/', action, ['raw']);\n\n// Or dynamic routing\nF.websocket('/{room}/', action_dynamic);\n\nfunction action_dynamic(room) {\n    console.log(room);\n}\n```",
           "example": "https://github.com/totaljs/examples/tree/master/websocket",
           "name": "framework.websocket",
