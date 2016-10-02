@@ -648,7 +648,7 @@
               "type": "String"
             },
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -664,7 +664,7 @@
               "type": "String"
             },
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -4655,12 +4655,12 @@
           "name": "framework.cache.set",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "Object"
             },
@@ -4686,7 +4686,7 @@
           "name": "framework.cache.get",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             },
@@ -4707,7 +4707,7 @@
           "name": "framework.cache.remove",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -4731,7 +4731,7 @@
           "name": "framework.cache.setExpire",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             },
@@ -4757,7 +4757,7 @@
           "name": "framework.cache.fn",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             },
@@ -6735,7 +6735,7 @@
           ],
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -6751,7 +6751,7 @@
           ],
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -8434,6 +8434,39 @@
           "return": "FrameworkController"
         },
         {
+          "description": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__",
+          "name": "controller.cookie",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "Cookie name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "Cookie value.",
+              "name": "value",
+              "type": "String"
+            },
+            {
+              "description": "Expiration. E.g. <b>\"2 days\"</b>.",
+              "name": "expiration",
+              "type": "String/Date"
+            },
+            {
+              "description": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httpOnly (Boolean). Default cookie path: <b>\"/\"</b>.",
+              "name": "options",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "String or FrameworkController"
+        },
+        {
           "description": "Transfers the request to the new route.",
           "name": "controller.transfer",
           "options": [
@@ -9250,7 +9283,7 @@
           "name": "@{cookie}",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -9418,7 +9451,7 @@
           "name": "@{title}",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -9446,7 +9479,7 @@
           "name": "@{description}",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -9459,7 +9492,7 @@
           "name": "@{keywords}",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -10454,7 +10487,7 @@
               "type": "String"
             },
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             },
@@ -11459,7 +11492,7 @@
           "name": "Utils.encode",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -11471,7 +11504,7 @@
           "name": "Utils.decode",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -11766,7 +11799,7 @@
               "type": "String"
             },
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "Object"
             }
@@ -11885,7 +11918,7 @@
           ],
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             },
@@ -12050,7 +12083,7 @@
           "name": "Utils.removeDiacritics",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             }
@@ -12686,7 +12719,7 @@
           "name": "image.bitdepth",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "Number"
             }
@@ -12698,7 +12731,7 @@
           "name": "image.colors",
           "params": [
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "Number"
             }
@@ -13921,12 +13954,12 @@
           "name": "Response.prototype.cookie",
           "params": [
             {
-              "description": "The name.",
+              "description": "Cookie name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The value.",
+              "description": "A value.",
               "name": "value",
               "type": "String"
             },
@@ -16050,7 +16083,7 @@
           "name": "async.wait",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             },
@@ -16340,7 +16373,7 @@
           "name": "MODULE",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -16372,7 +16405,7 @@
           "name": "CONTROLLER",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
@@ -17085,7 +17118,7 @@
           "name": "FUNCTION",
           "params": [
             {
-              "description": "The name.",
+              "description": "A name.",
               "name": "name",
               "type": "String"
             }
