@@ -17755,7 +17755,7 @@
           "return": "Object Array"
         },
         {
-          "description": "Adds a new transformation for the current Pagination.",
+          "description": "Adds a new transformation for the current Pagination.\n\n```javascript\nPagination.addTransform('custom', function(min, max) {\n    // this === pagination instance\n    return { min: min, max: max, count: this.count };\n});\n\n// Usage\nvar pagination = new Pagination(1343, 1, 50);\n\nconsole.log(pagination.transform('custom', 10, 100));\n\n// or\npagination.setTransform('custom');\nconsole.log(pagination.render(10, 100));\n\n// or\nPagination.setDefaultTransform('custom'); // sets a new transformation to all future instances\nconsole.log(pagination.render(10, 100));\n```",
           "name": "Pagination.addTransform",
           "options": [
             "static method"
@@ -17774,9 +17774,22 @@
               ],
               "params": [
                 {
-                  "description": "The Pagination instance for the transformation.",
-                  "name": "pagination",
-                  "type": "Pagination"
+                  "description": "A custom argument.",
+                  "name": "argA",
+                  "type": "???",
+                  "options": ["optional"]
+                },
+                {
+                  "description": "A custom argument.",
+                  "name": "argB",
+                  "type": "???",
+                  "options": ["optional"]
+                },
+                {
+                  "description": "A custom argument.",
+                  "name": "argN",
+                  "type": "???",
+                  "options": ["optional"]
                 }
               ],
               "return": "Object",
