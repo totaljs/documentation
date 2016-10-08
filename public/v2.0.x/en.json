@@ -5215,7 +5215,7 @@
       "name": "FrameworkRestrictions"
     },
     {
-      "description": "NoSQL embedded database is written by Peter Sirka. It's very great databse for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data. __Usage:__\n\n```javascript\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n```",
+      "description": "NoSQL embedded database is written by Peter Sirka. It's very great databse for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```",
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -19549,38 +19549,18 @@
     },
     {
       "name": "Download modules",
-      "url": "https://github.com/totaljs/modules"
+      "url": "https://modules.totaljs.com"
     },
     {
-      "name": "Issues",
-      "url": "https://github.com/totaljs/framework/issues"
+      "name": "HelpDesk / Professional help",
+      "url": "https://helpdesk.totaljs.com"
     },
     {
-      "name": "Chat & Discussion",
-      "url": "https://gitter.im/totaljs/framework"
-    },
-    {
-      "name": "Videos",
-      "url": "https://www.youtube.com/results?search_query=%22total.js%22"
-    },
-    {
-      "name": "Support for companies",
-      "url": "https://www.totaljs.com/support/"
-    },
-    {
-      "name": "Try AppMonitor",
-      "url": "https://www.totaljs.com/monitor/"
-    },
-    {
-      "name": "Try AppDesigner",
-      "url": "https://www.totaljs.com/designer/"
-    },
-    {
-      "name": "Try OpenPlatform",
-      "url": "https://www.totaljs.com/openplatform/"
+      "name": "Membership",
+      "url": "https://my.totaljs.com"
     }
   ],
-  "modified": "2014-30-12 12:00:00",
+  "modified": "2016-10-08 09:47:00",
   "pages": [
     {
       "body": "> Welcome to the **Total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating scalable web applications. Please support Total.js on social networks and [GitHub repository](https://github.com/totaljs/framework).\n\nThis documentation __supports offline mode__ via HTML 5 offline web applications.\n\n---\n\n[![Support](https://www.totaljs.com/img/button-support.png)](https://www.totaljs.com/support/)\n\n## How should I read this documentation?\n\n![Undertanding](resources/documentation.png)\n\n\n## Minimum requirements for Total.js\n\n- CPU: 1x Single Core\n- Memory (RAM): 50 MB\n- Free hard drive space: 15 MB\n\n---\n\n##\u00a0Installation options\n\nI recommend download the framework with __empty project__:\n\n- Install [node.js platform](http://www.nodejs.org) (recommended: `node.js +v4.0.0`)\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and run it via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watchs all changes in your project and after is created a change the script restarts the application automatically.\n\n```bash\n$ node debug.js\n$ node release.js\n$ node test.js\n```\n\nYou can create your own start script if you don't use prepared start scripts:\n\n__With web server__:\n```javascript\n// require('total.js').http(mode, [options]);\n// require('total.js').https(mode, [options]);\n// modes: debug, release, test\n\n// The code below starts the framework\nrequire('total.js').http('debug');\n```\n\n[Documentation: framework.http()](http://docs.totaljs.com/v1.9.x/en.html#api~Framework~framework.http)\n\n__Without web server (e.g. for workers)__:\n```javascript\n// require('total.js').load(mode, types, [path]);\n// modes: debug, release, test\n// types: models, modules, definitions, controllers, isomorphic, packages, sitemap, dependencies\n\n// The code below starts the framework without web server\nrequire('total.js').load('debug', ['definitions', 'models']);\n```\n\n[Documentation: framework.load()](http://docs.totaljs.com/v1.9.x/en.html#api~Framework~framework.load)\n\n## Other ways for installation\n\n### 1. NPM (Node Package Manager)\n\nNode.js platform includes [Node Package Manager](http://www.npmjs.com) (NPM). This option install __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$\u00a0npm install total.js --save\n```\n\n### 2. NPM (Node Package Manager) installation as global module\n\nIf you install framework as global module you do not need to install framework to each web application. The global module contains executable (binary) file, this file contains many features (templates) for creating Total.js applications.\n\n```bash\n$\u00a0sudo npm install -g total.js\n```\n\n__Try to write__ into the terminal or command-line after installation:\n\n```bash\n$\u00a0totaljs -help\n```\n\n###\u00a03. Framework as a single library\n\n- download the framework library <http://modules.totaljs.com/latest/total.js>\n- copy library `total.js` into `node_modules` (don't create any subfolder)\n- run your project\n\n###\u00a04. Run the framework without any installation\n\nCreate `index.js` file and put the below content into the file. Then run it: `$\u00a0node index.js`. The code below downloads the framework as the single library and it executes it.\n\n```javascript\nfunction main() {\n\n    F.route('/', function() {\n        this.plain('HOMEPAGE');\n    });\n\n    // debug (development mode), release (production mode), test (testing mode)\n    F.http('debug');\n}\n\nrequire('https').get('https://modules.totaljs.com/latest/total.js', function(res) {\n    var buffer = new Buffer(0);\n    res.on('data', (b) => buffer = Buffer.concat([buffer, b]));\n    res.on('end', () => main(eval(buffer.toString('utf8'))));\n});\n```\n\n###\u00a0Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
