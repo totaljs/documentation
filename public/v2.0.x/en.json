@@ -15342,6 +15342,32 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "description": "The function can converts `bytes` to `bytes`, `KB`, `MB`, `GB` or `TB`.",
+          "name": "Number.prototype.filesize",
+          "params": [
+            {
+              "default": "undefined",
+              "description": "Sets count of decimals. Default value is `undefined` and all `.00` digits are removed in this mode.",
+              "name": "decimals",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            },
+            {
+              "default": "undefined",
+              "description": "Sets output type: \"bytes\", \"KB\", \"MB\", \"GB\" and \"TB\". Default value is `undefined` and the method caluclates a suitable type.",
+              "name": "type",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "Pluralizes the number.",
           "name": "Number.prototype.pluralize",
           "params": [
