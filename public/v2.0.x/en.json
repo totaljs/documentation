@@ -7811,6 +7811,26 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 1,
+          "description": "Destroys the controller when `controller.online === 0`.",
+          "name": "controller.autodestroy",
+          "options": [
+            "websocket"
+          ],
+          "params": [
+            {
+              "description": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function",
+              "params": []
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
           "description": "Sends `400 error - Bad request` into the response.",
           "name": "controller.view400",
           "options": [
