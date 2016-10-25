@@ -4561,6 +4561,13 @@
           "return": "Number"
         },
         {
+          "default": "0",
+          "changetype": 1,
+          "description": "Interval (minutes) for creating `cache` snapshot on HDD.",
+          "name": "default-interval-cache-snapshot",
+          "return": "Number"
+        },
+        {
           "default": "120",
           "options": [
             "+v1.8.0"
@@ -16923,7 +16930,7 @@
             },
             {
               "description": "A timeout.",
-              "name": "timoeut",
+              "name": "timeout",
               "type": "Number"
             }
           ],
@@ -17996,6 +18003,392 @@
           "return": "String"
         }
       ]
+    },
+    {
+      "description": "The __RESTBuilder__ (+v2.2.0) can create requests to different REST services.\n\n```javascript\nvar instance = new RESTBuilder('https://api.yourdomain.com/users/');\n\n// or\nRESTBuilder.make(function(builder) {\n    // builder === instance of RESTBuilder\n    builder.url('https://api.yourdomain.com/users/create/');\n    builder.post(self.body);\n    builder.schema('User');\n    builder.exec(function(err, response) {\n        !err && response.$save();    \n    });\n});\n\n```\n\n__Default values__:\n\n- RESTBuilder expects `JSON` response\n- default method `GET`\n- default timeout `10000` (10 seconds)\n- default maxlength `unlimited`\n- DNS resolver is enabled by default",
+      "group": "Builders",
+      "methods": [
+        {
+          "description": "Create a new instance of the RESTBuilder.",
+          "name": "new RESTBuilder",
+          "params": [
+            {
+              "description": "URL / endpoint",
+              "name": "url",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets URL / endpoint.",
+          "name": "instance.url",
+          "params": [
+            {
+              "description": "URL / endpoint",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets transformation. Transformation has to be registered via `RESTBuilder.addTransform()`.",
+          "name": "instance.setTransform",
+          "params": [
+            {
+              "description": "A transformation name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets a timeout for request. Default timeout is `10000`.",
+          "name": "instance.timeout",
+          "params": [
+            {
+              "description": "Timeout in milliseconds.",
+              "name": "timeout",
+              "type": "Number"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets a maxlength for response data. Default timeout is `unlimited`.",
+          "name": "instance.maxlength",
+          "params": [
+            {
+              "description": "The maximum size in kB.",
+              "name": "size",
+              "type": "Number"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `auth` header.",
+          "name": "instance.auth",
+          "params": [
+            {
+              "description": "User name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "User password.",
+              "name": "password",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets schema. A response data will be prepared according to the schema.",
+          "name": "instance.schema",
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "name",
+              "type": "String",
+              "options": ["optional"],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Disables DNS cache. By default __RESTBuilder__ caches DNS.",
+          "name": "instance.noDnsCache",
+          "params": [],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `XMLHttpRequest` header.",
+          "name": "instance.xhr",
+          "params": [],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets request method.",
+          "name": "instance.method",
+          "params": [
+            {
+              "description": "A method type: get, post, put, delete.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `Referer` header.",
+          "name": "instance.referrer",
+          "params": [
+            {
+              "description": "URL address.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `Origin` header.",
+          "name": "instance.origin",
+          "params": [
+            {
+              "description": "URL address.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `PUT` method and data.",
+          "name": "instance.put",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `POST` method and data.",
+          "name": "instance.post",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `DELETE` method and data.",
+          "name": "instance.delete",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets `GET` method and data.",
+          "name": "instance.get",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Data will be serialized + sent as JSON type (only for POST, PUT and DELETE method).",
+          "name": "instance.json",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets accept header according to the extension.\n\n```javascript\ninstance.accept('txt');\n```",
+          "name": "instance.accept",
+          "params": [
+            {
+              "description": "Extension.",
+              "name": "extension",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Data will be serialized + sent as URL encoded type (only for POST, PUT and DELETE method).",
+          "name": "instance.urlencoded",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Data will be sent as XML type (only for POST, PUT and DELETE method).",
+          "name": "instance.xml",
+          "params": [
+            {
+              "description": "Data",
+              "name": "data",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets cookie.",
+          "name": "instance.cookie",
+          "params": [
+            {
+              "description": "A cookie name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A cookie value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets custom header.",
+          "name": "instance.header",
+          "params": [
+            {
+              "description": "A header name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A header value.",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets cache for the current request. RESTBuilder caches a response for a while time.\n\n```javascript\ninstance.cache('5 minutes');\n```.",
+          "name": "instance.cache",
+          "params": [
+            {
+              "description": "Expiration.",
+              "name": "expire",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Sets a custom property with a value.",
+          "name": "instance.set",
+          "params": [
+            {
+              "description": "A property name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A value.",
+              "name": "value",
+              "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Removes a custom property with a value.",
+          "name": "instance.rem",
+          "params": [
+            {
+              "description": "A property name.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "description": "Performs the request.",
+          "name": "instance.exec",
+          "params": [
+            {
+              "description": "A callback",
+              "name": "callback",
+              "type": "String",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "data",
+                  "description": "A parsed JSON data.",
+                  "type": "Object"
+                },
+                {
+                  "name": "response",
+                  "description": "A response snapshot (.headers, .status, .cache, .response, etc., .datetime). This response object can read cookies like `response.cookie('name')`.",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "EventEmitter(begin, end, data(chunk, percentage))"
+        },
+        {
+          "description": "Performs the request.",
+          "name": "instance.stream",
+          "params": [
+            {
+              "description": "A callback",
+              "name": "callback",
+              "type": "String",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "response",
+                  "description": "A response object",
+                  "type": "Response"
+                }
+              ]
+            }
+          ],
+          "return": "EventEmitter(begin, end, data(chunk, percentage))"
+        }
+      ],
+      "name": "RESTBuilder",
+      "changetype": 1
     },
     {
       "description": "The __TransformBuilder__ is very helpful for transformation plain objects.\n\n- TransformBuilder is a global object\n\n### Creating transformation\n\n```javascript\nTransformBuilder.addTransform('xml', function(obj) {\n    var builder = '';\n    Object.keys(obj).forEach(function(key) {\n        var value = obj[key];\n        if (value === undefined || value === null)\n            value = '';\n        builder += '<' + key + '>' + value.toString().encode() + '</' + key + '>';\n    });\n    return '<xml>' + builder + '</xml>';\n});\n```\n\n### Applying transformation\n\n```javascript\nvar user = { name: 'Peter Širka', email: 'petersirka@gmail.com' };\nconsole.log(TransformBuilder.transform('xml', user));\n// OUTPUT: <xml><name>Peter Širka</name><email>petersirka@gmail.com</email></xml>\n```",
@@ -19635,7 +20028,7 @@
       "name": "Tutorial"
     },
     {
-      "body": "> __Total.js__ project has a _simple directory structure_. __All directories are optional__ and you can rewrite each path of directory in the framework configuration file.\n\n## Directories\n\n```html\n/configs\n/controllers\n/databases\n/definitions\n/isomorphic\n/logs\n/models\n/modules\n/packages\n/private\n/public\n/resources\n/source\n/startup\n/tests\n/tmp\n/views\n/workers\n```\n\n### Directory: configs\n\n`+v1.9.x` - Directory contains only specific config files. Files are loaded in the order and before are read base config files. The framework recognizes files with `-debug`, `-release` and `-test` or without (for all modes) name. Config files have same structure as base config files.\n\n```html\n/configs/my-custom-config         - this config file is loaded for all modes (debug, release, test)\n/configs/my-custom-config-debug   - this config file is loaded only for debug mode\n/configs/my-custom-config-release - this config file is loaded only for release mode\n/configs/my-custom-config-test    - this config file is loaded only for test mode\n```\n\n### Directory: controllers\n\nDirectory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.\n\n- [How do controllers work?](#pages~Controllers)\n\n---\n\n### Directory: databases\n\nDirectory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.\n\n- [How does NoSQL database work?](#pages~NoSQL)\n- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)\n\n---\n\n### Directory: definitions\n\nDirectory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.\n\n- [How do definitions work?](#pages~Definitions)\n\n---\n\n### Directory: isomorphic\n\n`+v1.9.x` - Directory contains an isomorphic code. The isomorphic means: one code for server-side and client-side.\n\n- [How does isomorphic work?](#pages~Isomorphic)\n\n---\n\n### Directory: logs\n\nDirectory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.\n\n- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)\n\n---\n\n### Directory: models\n\nDirectory contains models. The model can contain functions or some [schemas](#api~SchemaBuilder). Recommended for database models.\n\n- [How do models work?](#pages~Models)\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n### Directory: modules\n\nDirectory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.\n\n- [How do modules work?](#pages~Modules)\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n- [Download 3rd modules](https://github.com/totaljs/modules)\n\n---\n\n### Directory: private\n\n`+v1.9.x` - This directory is private directory for storing custom data.\n\n---\n\n### Directory: public\n\nThis directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.\n\n---\n\n### Directory: resources\n\nIf you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.\n\n- [How do resources work?](#pages~Resources)\n- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)\n\n---\n\n### Directory: startup\n\n__NEW__ `+v2.0.x` - A startup directory can contain scripts which they are executed only onetime. All executed scripts are renamed automatically and on the second start they are not executed. Scripts are executed as worker outside application scope.\n\n---\n### Directory: source\n\nThis directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.\n\n- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)\n\n---\n\n### Directory: packages\n\nThis directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).\n\n- [How do packages work?](#pages~Packages)\n\n---\n\n### Directory: tests\n\nTest directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.\n\n- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)\n\n---\n\n### Directory: tmp\n\nThis directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.\n\n---\n\n### Directory: views\n\nThis directory contains views and layouts.\n\n---\n\n### Directory: workers\n\nThis directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.\n\n- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)\n- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)",
+      "body": "> __Total.js__ project has a _simple directory structure_. __All directories are optional__ and you can rewrite each path of directory in the framework configuration file.\n\n## Directories\n\n```html\n/configs\n/controllers\n/databases\n/definitions\n/isomorphic\n/logs\n/models\n/modules\n/packages\n/private\n/public\n/resources\n/source\n/startup\n/tests\n/tmp\n/views\n/workers\n```\n\n### Directory: configs\n\n`+v1.9.x` - Directory contains only specific config files. Files are loaded in the order and before are read base config files. The framework recognizes files with `-debug`, `-release` and `-test` or without (for all modes) name. Config files have same structure as base config files.\n\n```html\n/configs/my-custom-config         - this config file is loaded for all modes (debug, release, test)\n/configs/my-custom-config-debug   - this config file is loaded only for debug mode\n/configs/my-custom-config-release - this config file is loaded only for release mode\n/configs/my-custom-config-test    - this config file is loaded only for test mode\n```\n\n### Directory: controllers\n\nDirectory contains only controllers. In controller you can define routes with different actions. Controllers are __most important__ feature in the framework.\n\n- [How do controllers work?](#pages~Controllers)\n\n---\n\n### Directory: databases\n\nDirectory contains __NoSQL embedded databases__ (if are). NoSQL database is a plain text file with serialized documents in JSON format. Some [3rd modules](https://github.com/totaljs/modules) store a small data in this directory.\n\n- [How does NoSQL database work?](#pages~NoSQL)\n- [Example: Database](https://github.com/totaljs/examples/tree/master/contact-form)\n\n---\n\n### Directory: definitions\n\nDirectory contains all definitions. The definition defines behaviour of the framework. The definition is great for change a behaviour of e.g. modules.\n\n- [How do definitions work?](#pages~Definitions)\n\n---\n\n### Directory: isomorphic\n\n`+v1.9.x` - Directory contains an isomorphic code. The isomorphic means: one code for server-side and client-side.\n\n- [How does isomorphic work?](#pages~Isomorphic)\n\n---\n\n### Directory: logs\n\nDirectory contains logs. Log file is plain text file. You can append a log message via `framework.log(message)` everywhere. Log filename is created by date.\n\n- [Example: Logs](https://github.com/totaljs/examples/tree/master/logs)\n\n---\n\n### Directory: models\n\nDirectory contains models. The model can contain functions or some [schemas](#api~SchemaBuilder). Recommended for database models.\n\n- [How do models work?](#pages~Models)\n- [Example: Models](https://github.com/totaljs/examples/tree/master/models)\n\n---\n\n### Directory: modules\n\nDirectory contains extended modules. The module can create routes or can contain classes, functions or constants. You can download existing modules or you can create your own module.\n\n- [How do modules work?](#pages~Modules)\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n- [Download 3rd modules](https://github.com/totaljs/modules)\n\n---\n\n### Directory: private\n\n`+v1.9.x` - This directory is private directory for storing custom data.\n\n---\n\n### Directory: public\n\nThis directory is published directory and contains all static files (JavaScripts, CSS files, Pictures, Fonts, Documents, Videos, Uploads, etc.). Browser can get (almost) everything from the public directory.\n\n---\n\n### Directory: resources\n\nIf you create web pages that will be read by speakers of different languages, you must provide a way for readers to view the page in their own language. Resources are solution. The resource file has same syntax as a config file.\n\n- [How do resources work?](#pages~Resources)\n- [Example: Resources](https://github.com/totaljs/examples/tree/master/localization-resources)\n\n---\n\n### Directory: startup\n\n__NEW__ `+v2.x.x` - A startup directory can contain scripts which they are executed only onetime. All executed scripts are renamed automatically and on the second start they are not executed. Scripts are executed as worker outside application scope.\n\n---\n### Directory: source\n\nThis directory contains a business logic of your application. The source file can contain functions or objects which can be exported and used in each part of application.\n\n- [Example: Source](https://github.com/totaljs/examples/tree/master/framework-business-logic-source)\n\n---\n\n### Directory: packages\n\nThis directory contains packages. The package is a file which contains more files packed in one package file. The package behaves like a module (is same as module).\n\n- [How do packages work?](#pages~Packages)\n\n---\n\n### Directory: tests\n\nTest directory contains scripts for assertion testing. In assertion test you can test e.g. controller routing.\n\n- [Example: Tests](https://github.com/totaljs/examples/tree/master/assertion-testing)\n\n---\n\n### Directory: tmp\n\nThis directory is a temporary directory and contains temporary files. The framework stores some compiled files, internal cache and form uploads into this directory.\n\n---\n\n### Directory: views\n\nThis directory contains views and layouts.\n\n---\n\n### Directory: workers\n\nThis directory contains workers. The worker creates a new independent thread, which it can communicate with framework through events.\n\n- [Example: Workers](https://github.com/totaljs/examples/tree/master/workers)\n- [Example: Generating sitemap with the Worker](https://github.com/totaljs/examples/tree/master/xml-sitemap-workers)",
       "group": "How does it work?",
       "name": "Directory structure"
     },
@@ -19764,5 +20157,5 @@
       "name": "Blocks (JS+CSS+HTML)"
     }
   ],
-  "version": "2.0.x"
+  "version": "2.x.x"
 }
