@@ -14156,13 +14156,32 @@
           "return": "Response"
         },
         {
-          "description": "Send JSON.",
+          "description": "Sends JSON.",
           "name": "Response.prototype.json",
           "params": [
             {
               "description": "JSON body.",
               "name": "body",
               "type": "Object"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "description": "Performs a redirect.",
+          "name": "Response.prototype.redirect",
+          "params": [
+            {
+              "description": "URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "description": "Permanent?",
+              "name": "permanent",
+              "type": "String",
+              "options": ["optional"],
+              "default": "false"
             }
           ],
           "return": "Response"
@@ -14463,6 +14482,12 @@
           "description": "The controller instance (if exists).",
           "name": "response.controller",
           "return": "Controller"
+        },
+        {
+          "default": "false",
+          "description": "A setter which can disable compilation of JS, CSS and HTML in file handlers.",
+          "name": "response.noCompress",
+          "return": "Boolean"
         },
         {
           "description": "The request instance.",
