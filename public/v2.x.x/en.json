@@ -795,8 +795,17 @@
           ]
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `signal` argument +v2.3.0.",
           "description": "This event is triggered when the framework has stopped. This event will not be triggered when the application is stopped by force.",
-          "name": "framework.on('exit')"
+          "name": "framework.on('exit')",
+          "params": [
+            {
+              "description": "A signal code (+v2.3.0).",
+              "name": "signal",
+              "type": "Number"
+            }
+          ]
         },
         {
           "description": "This event is triggered when the HTTP request begins.",
@@ -1103,22 +1112,6 @@
           "return": "undefined"
         },
         {
-          "description": "Reconfigures and clears temporary data, resources, etc..",
-          "name": "framework.refresh",
-          "params": [
-            {
-              "default": "false",
-              "description": "Removes all files from temporary directory.",
-              "name": "clear",
-              "options": [
-                "optional"
-              ],
-              "type": "Boolean"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
           "description": "Gets a NoSQL embedded database connection. Alias for `F.nosql`.",
           "name": "framework.database",
           "params": [
@@ -1303,6 +1296,8 @@
           "options": [
             "+v1.9.0"
           ],
+          "changetype": 2,
+          "changelog": "Added a new type: `static` (+v2.3.0).",
           "description": "Creates a modificator for Views (before compilation), Scripts (before compilation) and Styles (before compilation).\n\n```javascript\nF.modify(function(type, filename, content) {\n    switch (filename) {\n        case './views/layout.html':\n            return content.replace('<body>', '<body style=\"background-color:red\"><div>REPOSITORY: @{json(respository)}</div>');\n    }\n    return content;\n});\n```",
           "name": "framework.modify",
           "params": [
@@ -1315,7 +1310,7 @@
               ],
               "params": [
                 {
-                  "description": "The content type. Type can be: \"view\", \"script\", \"style\".",
+                  "description": "The content type. Type can be: \"view\", \"script\", \"style\" and \"static\" (`.html`, `.txt` and `.md` file types).",
                   "name": "type",
                   "type": "String"
                 },
@@ -1885,7 +1880,7 @@
               "type": "String"
             },
             {
-              "description": "The model for this view.",
+              "description": "A model for this view.",
               "name": "model",
               "options": [
                 "optional"
@@ -1893,7 +1888,53 @@
               "type": "Object"
             },
             {
-              "description": "The layout for the view.",
+              "description": "A layout for the view.",
+              "name": "layout",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "description": "A repository object.",
+              "name": "repository",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "Localization for the view.",
+              "name": "language",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "description": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string.",
+          "name": "framework.viewCompile",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A view markup.",
+              "name": "html",
+              "type": "String"
+            },
+            {
+              "description": "A model for this view.",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "A layout for the view.",
               "name": "layout",
               "options": [
                 "optional"
@@ -4034,6 +4075,16 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "description": "This property contains all framework validators (regular expression) `email`, `url`, `phone`, `zip` and `uid`.",
+          "name": "framework.validators",
+          "options": [
+            "v2.3.0",
+            "important"
+          ],
+          "return": "Object"
+        },
+        {
           "default": "{}",
           "description": "This property stores helper functions for the view engine.\n\n__Example__:\n\n```javascript\nframework.helpers.sum = function(a, b) {\n    return a + b;\n};\n```\n\nView:\n\n```html\n<div>@{sum(10, 10)} === 20</div>\n```",
           "example": "https://github.com/totaljs/examples/tree/master/views-custom-helper",
@@ -5285,6 +5336,20 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "database.upsert",
+          "description": "Inserts a document into the database when the document is not exist.\n\n```javascript\nNOSQL('users').upsert({ name: 'Peter', email: 'petersirka@gmail.com' }).where('email', '!=', 'petersirka@gmail.com');\n```",
+          "params": [
+            {
+              "name": "doc",
+              "type": "Object",
+              "description": "This document will be stored in DB file."
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
           "name": "database.remove",
           "description": "Removes a document in the database.",
           "params": [
@@ -5318,6 +5383,8 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "Added: new argument newDoc (+v2.3.0)",
           "name": "database.update",
           "description": "Updates a document in the database.",
           "params": [
@@ -5325,11 +5392,19 @@
               "name": "doc",
               "type": "Object",
               "description": "This document will be updated in DB file."
+            },
+            {
+              "name": "newDoc",
+              "type": "Object",
+              "description": "This document will be stored if the updated document doesn't exist.",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "Added: new argument newDoc (+v2.3.0)",
           "name": "database.modify",
           "description": "Modifies specific values in the database.",
           "params": [
@@ -5337,8 +5412,22 @@
               "name": "doc",
               "type": "Object",
               "description": "Properties from this document will be modified in DB file."
+            },
+            {
+              "name": "newDoc",
+              "type": "Object",
+              "description": "This document will be stored if the updated document doesn't exist.",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "database.release",
+          "description": "Release in-memory database.",
+          "params": [],
           "return": "DatabaseBuilder"
         },
         {
@@ -5392,6 +5481,28 @@
               "name": "viewname",
               "type": "String",
               "description": "The DB will search in a view.",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "database.scalar",
+          "description": "Performs a scalar operation.",
+          "params": [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "A scalar operation type `min`, `max`, `sum`, `avg` or `count`."
+            },
+            {
+              "name": "field",
+              "type": "String",
+              "description": "A field name (optional when the type is `count`).",
               "options": [
                 "optional"
               ]
@@ -5466,6 +5577,51 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 1,
+          "name": "builder.join",
+          "description": "Joins another database.",
+          "return": "DatabaseBuilder",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "name": "field",
+              "type": "String",
+              "description": "A field name which contains linked data."
+            },
+            {
+              "name": "dbName",
+              "type": "String",
+              "description": "A database name."
+            },
+            {
+              "name": "view",
+              "type": "String",
+              "description": "A view name, so data will be read from a view.",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "builder.scalar",
+          "description": "Performs a scalar operation __only in `join()` scope__. The method returns `Number` in a response.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "type",
+              "type": "String",
+              "description": "Scalar type: `sum`, `min`, `max`, `avg` or `count`."
+            },
+            {
+              "name": "field",
+              "type": "String",
+              "description": "A field name (optional when the type is `count`).",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "name": "builder.take",
           "description": "Takes a specific count of documents.",
           "return": "DatabaseBuilder",
@@ -5474,23 +5630,6 @@
               "name": "limit",
               "type": "Number",
               "description": "How many documents can take it?"
-            }
-          ]
-        },
-        {
-          "name": "builder.cache",
-          "description": "Caches a response from the database.",
-          "return": "DatabaseBuilder",
-          "params": [
-            {
-              "name": "key",
-              "type": "String",
-              "description": "Cache key."
-            },
-            {
-              "name": "expire",
-              "type": "String",
-              "description": "Expiration. E.g. `5 minutes` or `1 hour` or `30 seconds`."
             }
           ]
         },
@@ -5516,6 +5655,12 @@
                   "name": "response",
                   "type": "Object/Object Array",
                   "description": "A response from the database. Can be `Object` or `Array of Objects` (documents)."
+                },
+                {
+                  "name": "count",
+                  "type": "Number",
+                  "description": "A count of all documents according to the current filter.",
+                  "options": ["optional"]
                 }
               ]
             }
@@ -5579,8 +5724,92 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "builder.month",
+          "description": "Creates a `month` filter.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "operator",
+              "type": "String",
+              "description": "Can contain \"=\", \"<=\", \"<\", \">=\", \">\".",
+              "default": "'='",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "value",
+              "type": "Number",
+              "description": "A value to compare."
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "builder.day",
+          "description": "Creates a `day` filter.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "operator",
+              "type": "String",
+              "description": "Can contain \"=\", \"<=\", \"<\", \">=\", \">\".",
+              "default": "'='",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "value",
+              "type": "Number",
+              "description": "A value to compare."
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "builder.year",
+          "description": "Creates a `year` filter.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "description": "A property name in a document."
+            },
+            {
+              "name": "operator",
+              "type": "String",
+              "description": "Can contain \"=\", \"<=\", \"<\", \">=\", \">\".",
+              "default": "'='",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "value",
+              "type": "Number",
+              "description": "A value to compare."
+            }
+          ]
+        },
+        {
           "name": "builder.where",
-          "description": "Create a simple condition. This method doesn't support filtering in nested documents.",
+          "description": "Creates a simple condition. This method doesn't support filtering in nested documents.",
           "return": "DatabaseBuilder",
           "params": [
             {
@@ -8094,6 +8323,48 @@
         },
         {
           "options": [
+            "+v2.3.0"
+          ],
+          "changetype": 1,
+          "description": "Performs workflow operations according to the `/workflows` file.",
+          "name": "controller.$exec",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "description": "A workflow name declared in `/workflows`.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A helper value.",
+              "name": "helper",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "A callback.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Object",
+                  "description": "A response from the schema."
+                }
+              ]
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "options": [
             "+v1.9.7"
           ],
           "description": "Executes `SchemaBuilderEntity.transform` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.transform()` without validation.",
@@ -8675,6 +8946,49 @@
           "return": "FrameworkController or String"
         },
         {
+          "changetype": 1,
+          "description": "Compiles a dynamic string as view.",
+          "name": "controller.viewCompile",
+          "options": [
+            "+v2.3.0",
+            "important",
+            "http"
+          ],
+          "params": [
+            {
+              "description": "View string.",
+              "name": "body",
+              "type": "String"
+            },
+            {
+              "description": "Model for this view.",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "description": "Additional headers.",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "default": "false",
+              "description": "If the value is true then the function returns String (the rendered view).",
+              "name": "isPartial",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
+            }
+          ],
+          "return": "FrameworkController or String"
+        },
+        {
           "changelog": "we have replaced [replyTo] argument for [language] argument.",
           "description": "Creates the HTML from some view and sends the email.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
@@ -8857,6 +9171,28 @@
           "name": "controller.referrer",
           "options": [
             "+v2.0.0",
+            "readonly",
+            "http"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "description": "Gets a schema name from the routing.",
+          "name": "controller.schema",
+          "options": [
+            "+v2.3.0",
+            "readonly",
+            "http"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "description": "Gets a workflow name (if it's executed).",
+          "name": "controller.workflow",
+          "options": [
+            "+v2.3.0",
             "readonly",
             "http"
           ],
@@ -10335,6 +10671,29 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "description": "Compiles and renders string as view.",
+          "name": "@{viewCompile}",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A view markup.",
+              "name": "html",
+              "type": "String"
+            },
+            {
+              "default": "undefined",
+              "description": "The model.",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "String"
+        },
+        {
           "description": "Renders the view.",
           "name": "@{viewToggle}",
           "params": [
@@ -10705,6 +11064,18 @@
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
           "name": "@{head}",
           "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "description": "Perform a `continue` in a loop.",
+          "name": "@{continue}"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "description": "Perform a `break` in a loop.",
+          "name": "@{break}"
         },
         {
           "description": "Gets theme name.",
@@ -11410,6 +11781,8 @@
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
         },
         {
+          "changetype": 2,
+          "changelog": "Added: `clean` argument (+v2.3.0).",
           "description": "Trims all string properties in the object. The method trims also array values.",
           "name": "Utils.trim",
           "params": [
@@ -11417,6 +11790,12 @@
               "description": "The object or array.",
               "name": "obj",
               "type": "Object/Array"
+            },
+            {
+              "description": "Sets fields with empty strings as `undefined`.",
+              "name": "clean",
+              "type": "Boolean",
+              "options": ["optional", "+v2.3.0"]
             }
           ],
           "return": "Object"
@@ -17197,6 +17576,55 @@
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 1,
+          "description": "A simple async shortcut for getting a schema. This method waits max. 20 seconds for schema declaration (it not exists).",
+          "name": "GETSCHEMA",
+          "options": [
+            "+v2.3.0"
+          ],
+          "params": [
+            {
+              "description": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "description": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            },
+            {
+              "description": "A callback function.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "description": "Error handling.",
+                  "name": "err",
+                  "type": "Error"
+                },
+                {
+                  "description": "SchemaBuilder instance.",
+                  "name": "schema",
+                  "type": "SchemaBuilder"
+                }
+              ]
+            },
+            {
+              "description": "A timeout",
+              "name": "timeout",
+              "type": "Number",
+              "default": "20000",
+              "options": ["optional"]
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
           "description": "Synchronous schema listing.",
           "name": "EACHSCHEMA",
           "options": [
@@ -17305,24 +17733,23 @@
           "return": "undefined"
         },
         {
-          "description": "Destroys a stream when the stream doesn't have any data.",
-          "name": "CLEANUP",
+          "changetype": 1,
+          "description": "This method enables in-memory NoSQL embedded database (or a view only).",
+          "name": "NOSQLMEMORY",
           "options": [
-            "+v1.9.2"
+            "+v2.3.0"
           ],
           "params": [
             {
-              "description": "A source: Stream/Response/Request.",
-              "name": "stream",
-              "type": "Stream"
+              "description": "Name of DB.",
+              "name": "name",
+              "type": "String"
             },
             {
-              "description": "A source: Stream/Response/Request.",
-              "name": "callback",
-              "type": "Function",
-              "options": [
-                "optional"
-              ]
+              "description": "View name (if you want caches only view).",
+              "name": "view",
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "undefined"
@@ -17342,6 +17769,15 @@
       ],
       "name": "global",
       "properties": [
+        {
+          "changetype": 1,
+          "description": "Gets a controller prototype for extending.",
+          "name": "Controller",
+          "options": [
+            "+v2.3.0"
+          ],
+          "return": "FrameworkController"
+        },
         {
           "description": "Gets the FrameworkUtils.",
           "go": "#api~FrameworkUtils",
@@ -18643,19 +19079,19 @@
       "name": "TransformBuilder"
     },
     {
-      "description": "The __UrlBuilder__ is helpful for create query parameters into the URL address.\n\n```javascript\nvar instance = new UrlBuilder();\nconsole.log(instance.toString());\n```",
+      "description": "The __URLBuilder__ is helpful for create query parameters into the URL address.\n\n```javascript\nvar instance = new URLBuilder();\nconsole.log(instance.toString());\n\n// or +v2.3.0:\nvar instance = URLBuilder.make(function(builder) {\n\tconsole.log(builder.toString());\n});\n```",
       "group": "Builders",
       "methods": [
         {
-          "description": "Creates a new instance of the UrlBuilder.",
-          "name": "new UrlBuilder",
+          "description": "Creates a new instance of the URLBuilder.",
+          "name": "new URLBuilder",
           "params": [
 
           ],
-          "return": "UrlBuilder"
+          "return": "URLBuilder"
         },
         {
-          "description": "Adds a new parameter into the UrlBuilder.",
+          "description": "Adds a new parameter into the URLBuilder.",
           "name": "instance.add",
           "params": [
             {
@@ -18669,7 +19105,7 @@
               "type": "Object"
             }
           ],
-          "return": "UrlBuilder"
+          "return": "URLBuilder"
         },
         {
           "description": "Removes the parameter.",
@@ -18681,7 +19117,28 @@
               "type": "String"
             }
           ],
-          "return": "UrlBuilder"
+          "return": "URLBuilder"
+        },
+        {
+          "changetype": 1,
+          "description": "Creates a URL builder instance.",
+          "name": "URLBuilder.make",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A prepare function.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "description": "URLBuilder instance.",
+                  "name": "instance",
+                  "type": "URLBuilder"
+                }
+              ]
+            }
+          ],
+          "return": "URLBuilder"
         },
         {
           "default": "null",
@@ -18702,7 +19159,7 @@
           "params": [
 
           ],
-          "return": "UrlBuilder"
+          "return": "URLBuilder"
         },
         {
           "description": "Checks if the collection contains some value.",
@@ -18767,7 +19224,7 @@
           "return": "String"
         }
       ],
-      "name": "UrlBuilder"
+      "name": "URLBuilder"
     },
     {
       "group": "Builders",
@@ -19046,6 +19503,8 @@
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Sets the save delegate.",
           "name": "SchemaBuilderEntity.setSave",
           "params": [
@@ -19086,14 +19545,28 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Sets the get delegate.",
           "name": "SchemaBuilderEntity.setGet",
           "params": [
@@ -19134,9 +19607,21 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
@@ -19214,14 +19699,28 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Sets the remove delegate.",
           "name": "SchemaBuilderEntity.setRemove",
           "params": [
@@ -19258,9 +19757,21 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
@@ -19311,6 +19822,8 @@
           "return": "Object"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Adds a new transformation.",
           "name": "SchemaBuilderEntity.addTransform",
           "params": [
@@ -19353,14 +19866,28 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Adds a new workflow.",
           "name": "SchemaBuilderEntity.addWorkflow",
           "params": [
@@ -19403,17 +19930,29 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
         },
         {
-          "changetype": 1,
-          "options": ["v2.1.0"],
-          "description": "Adds a new hook. Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
+          "description": "Adds a new hook (+v2.1.0). Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
           "name": "SchemaBuilderEntity.addHook",
           "params": [
             {
@@ -19455,14 +19994,28 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a `controller` argument and description argument (+v2.3.0).",
           "description": "Adds a new operation.",
           "name": "SchemaBuilderEntity.addOperation",
           "params": [
@@ -19508,9 +20061,21 @@
                     }
                   ],
                   "type": "Function"
+                },
+                {
+                  "default": "undefined",
+                  "description": "A controller instance when the schema is executed from the controller (+v2.3.0).",
+                  "name": "controller",
+                  "type": "FrameworkController"
                 }
               ],
               "type": "Function"
+            },
+            {
+              "description": "A functionality description.",
+              "name": "description",
+              "type": "String",
+              "options": ["+v2.3.0", "optional"]
             }
           ],
           "return": "SchemaBuilderEntity"
@@ -20104,7 +20669,7 @@
         }
       ],
       "name": "SchemaBuilder",
-      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'JSON');              // supports auto-validation when is required (the framework doesn't deserialize JSON to Object)\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n```\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // +v2.0.1 (only for professionals)\n    // model.$next(type, [name], helper); -- adds a new operation (type: `workflow`, `transform`, `operation`, `save`, `read`, `query`, `remove`) to async list as next step\n    // model.$push(type, [name], helper) -- adds a new operation (type: `workflow`, `transform`, `operation`, `save`, `read`, `query`, `remove`) to async list as last step\n    // model.$index(index)` can changed `obj.$async()` -- index (the index can be string e.g. `+1` or `-1`)\n    // model.$callback(fn)` -- can changed `obj.$async()` callback\n    // model.$repository(name, [value])` -- can get / set temporary value\n    // model.$output()` -- sets the current `callback(value)` as output/result for `obj.$async(function(err, output))`\n    \n    // +v2.0.2\n    // model.$hook(name, [helper], [callback]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n\n    self.$get(self.user, self.callback());\n\n    // +v2.0.2\n    // self.$hook([name, [helper], callback)\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. We present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});```",
+      "description": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'JSON');              // supports auto-validation when is required (the framework doesn't deserialize JSON to Object)\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n```\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // Definition of properties\n    schema.define('alias', 'string(30)', true);\n    schema.define('age', Number, true);\n    schema.define('token', String);\n    schema.define('created', Date);\n\n    // Definition of validation\n    schema.setValidate(function(propertyName, value, path, schemaName, model) {\n        if (propertyName === 'alias')\n            return value.length > 0;\n        if (propertyName === 'age')\n            return value > 10 && value < 20 ? 'Only for teenegers.' : true;\n    });\n\n    // Definition of default values\n    schema.setDefault(function(propertyName, isntPreparing, schemaName) {\n        if (propertyName === 'created')\n            return new Date();\n        if (propertyName === 'token')\n            return Utils.GUID(20);\n    });\n\n    schema.setSave(function(...){ });\n    schema.setGet(function(...){ });\n    schema.setRemove(function(...){ });\n    schema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n    \n    if (err) {\n        // err === ErrorBuilder\n        console.log(err);\n        return;\n    }\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback], [result_index]);\n\n    // +v2.0.1 (only for professionals)\n    // model.$next(type, [name], helper); -- adds a new operation (type: `workflow`, `transform`, `operation`, `save`, `read`, `query`, `remove`) to async list as next step\n    // model.$push(type, [name], helper) -- adds a new operation (type: `workflow`, `transform`, `operation`, `save`, `read`, `query`, `remove`) to async list as last step\n    // model.$index(index)` can changed `obj.$async()` -- index (the index can be string e.g. `+1` or `-1`)\n    // model.$callback(fn)` -- can changed `obj.$async()` callback\n    // model.$repository(name, [value])` -- can get / set temporary value\n    // model.$output()` -- sets the current `callback(value)` as output/result for `obj.$async(function(err, output))`\n    \n    // +v2.0.2\n    // model.$hook(name, [helper], [callback]);\n\n    // +v2.3.0\n    // Performs operations according to the `/workflows` file\n    // model.$exec(name, [helper], [callback]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n## Routing supports schemas\n\n```javascript\nexports.install = function() {\n    F.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n    F.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n    var self = this;\n\n    // +v1.9.7\n    // self.$get([helper], callback)\n    // self.$remove([helper], callback)\n    // self.$save([helper], callback)\n    // self.$query([helper], callback)\n    // self.$transform(name, [helper], callback)\n    // self.$workflow([name, [helper], callback)\n    // self.$operation(name, [helper], callback)\n    // self.$async(callback, [index])\n\n    self.$get(self.user, self.callback());\n\n    // +v2.0.2\n    // self.$hook([name, [helper], callback)\n}\n\nfunction json_registration() {\n    var self = this;\n    var customOptions = {};\n    \n    // self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n    // IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n    self.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n    //  or\n    //  self.body.$save(function() {\n    //      self.body.$workflow('send-registration');\n    //  });\n    //  self.json({ success: true });\n}\n```\n\n## Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. We present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    // 1. all fields are required\n    // 2. \"read|create|update\" is a filter value\n    schema.define('id', Number, 'read');\n    schema.define('name', String, true, 'read|create|update');\n    schema.define('email', String, true, 'read|create');\n\n    // Basic usage\n\n    console.log(schema.filter('*read'));\n    // All names with \"read\"\n    // Output: [ 'id', 'name', 'email' ]\n\n    console.log(schema.filter('*update'));\n    // All names with \"update\"\n    // Output: [ 'name' ]\n\n    console.log(schema.filter('*update', true));\n    // All names without \"update\"\n    // Output: [ 'id', 'email' ]\n\n    console.log(schema.filter('read'));\n    // All names with \"read\" only filter\n    // Output: [ 'id' ]\n\n    console.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n    // Model will be prepared by \"update\" filter\n    // Output: { name: 'Peter' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n    // Model will be prepared by \"create\" filter\n    // Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n    console.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n    // Model will be prepared by \"create\" filter in a reverse\n    // Output: { id: 5 }\n\n    // Preparing models according to the filter\n    // Important: the framework validates only filtered values when are required!\n    // schema.make(model, callback, [filter]);\n    schema.make({ name: 'Peter', id: 5 }, function(err, value) {\n        console.log(err, value);\n    }, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n    F.route('/api/create/', action, ['post', '*User#create']);\n    F.route('/api/update/', action, ['put',  '*User#update']);\n    F.route('/api/query/', action_query, ['*User#update']);\n};\n\nfunction action() {\n    var self = this;\n    self.body.$save(self.callback());\n}\n\nfunction action_query() {\n    var self = this;\n    self.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n    console.log(group, name);\n});```",
       "properties": [
         {
           "description": "Returns the schema definition.",
@@ -20118,6 +20683,15 @@
           "description": "Returns all field names from the schema.",
           "name": "SchemaBuilderEntity.fields",
           "return": "String Array"
+        },
+        {
+          "options": [
+            "+v2.3.0"
+          ],
+          "changetype": 1,
+          "description": "Returns of all descriptions.",
+          "name": "SchemaBuilderEntity.meta",
+          "return": "Object"
         },
         {
           "options": [
@@ -20295,6 +20869,12 @@
       "body": "## Versioning static files\n\nThe framework (`+v1.9.0`) has great mechanism for versioning of static files. The versioning is supported via `/versions` file in app root directory. The versioning is very great solution for solving HTTP cache. The versioning file `/versions` is a plain text file and has same syntax as __framework config file__ with except `-->` remapping. So if you have a problem with HTTP cache, this feature saves your time.\n\n__Where do I have to store this file?__\n\n```html\n/controllers\n/debug.js\n/release.js\n/versions\n```\n\n## How does it work?\n\nFile: `/versions` with:\n\n```html\n/js/default.js        : /js/default-101.js\n/css/default.css      : /css/default-105.css\n/img/logo.png         : /img/logo-101.png\n```\n\n### 1. affects all views:\n\n```html\n@{js('default.js')} --> output will be /js/default-101.js\n@{img('logo.png')} --> output will be /img/logo-101.png\n@{css('default.css')} --> output will be /css/default-105.css\n\nOutput file must exist or must be served via F.merge() or F.map())\n\n<!-- OR -->\n\n<img src=\"/img/logo.png\" /> --> output will be <img src=\"/img/logo-101.png\" />\n<script src=\"/js/default.js\"></script> --> output will be <script src=\"/js/default-101.js\"></script>\n<link href=\"/css/default.css\" /> --> output will be <link href=\"/css/default-105.css\" />\n```\n\n###  2. affects `F.merge()` and `F.map()`:\n\n```javascript\nF.merge('/js/default.js', 'scriptA.js', 'scriptB.js');\n// The framework automatically remaps F.merge() on the background to:\n// F.merge('/js/default-101.js', 'scriptA.js', 'scriptB.js');\n\nF.map('/js/default.js', 'newfile.js');\n// The framework automatically remaps F.map() on the background to:\n// F.map('/js/default-101.js', 'newfile.js');\n```\n\n---\n\nFile: `/versions` with remapping:\n\n> Below solution solves problem with renaming of files. You don't need to rename file `/img/logo.png` to `img/logo-101.png`. The framework automatically creates a file mapping. So in the prax: you change old __logo file__ without renaming.\n\n```html\n/img/logo.png       --> /img/logo-101.png\n```\n\nThe framework automatically creates `F.map()` e.g. `F.map('/img/logo-101.png','/img/logo.png')` and it has same behaviour like versioning without remapping.\n\n---\n\n- [Example: versioning of static files](https://github.com/totaljs/examples/tree/master/static-version)",
       "group": "How does it work?",
       "name": "File: versions"
+    },
+    {
+      "changetype": 1,
+      "body": "## Schema workflows\n\n`+v2.3.0` `/workflows` file describes schema operations. In another words: you can map all `async` schema operations in the one file.\n\n__Where do I have to store this file?__\n\n```html\n/controllers\n/debug.js\n/release.js\n/workflows\n```\n\n## How does it work?\n\nFile: `/workflows` with:\n\n```html\n// Returns results as array from all operations\n// name        : operation1 --> operation2 --> operationN\n\n// Returns a result from `operation2`\n// name        : operation1 --> operation2 (response) --> operationN\n\nquery          : query (response)\nread           : read (response)\ndelete         : remove (response)\nsave           : workflow:'check'    -->        save (response)\nsignup         : workflow:'check'    -->        save (response)      -->      workflow:'confirmation'\n\n// `(User)` means a fixed type of schema (so no other schema can call this workflow)\nsave (User)    : save (response)\n```\n\n__List of all supported operations__:\n\n- `query` - performs `SchemaBuilder.query()`\n- `save` - performs `SchemaBuilder.save()`\n- `read` or `get` - performs `SchemaBuilder.read()` or `SchemaBuilder.get()`\n- `remove` - performs `SchemaBuilder.remove()`\n- `workflow:'name'` - performs `SchemaBuilder.workflow(name)`\n- `transform:'name'` - performs `SchemaBuilder.hook(name)`\n- `operation:'name'` - performs `SchemaBuilder.operation(name)`\n- `hook:'name'` - performs `SchemaBuilder.hook(name)`\n\n##\u00a0Controller\n\n```javascript\nexports.install = function() {\n\n    // Responds with JSON `controller.$exec('save', controller.callback())`\n    F.route('/api/user/save/',  ['*User --> save']);\n\n    // Responds with `detail` view `controller.$exec('save', controller.callback('detail'))`\n    F.route('/api/user/{id}/',  'detail', ['*User --> save']);\n\n    // Calls action\n    F.route('/api/user/query/', query, ['*User']);\n\n};\n\nfunction query() {\n    // .$exec(workflow_name, [helper], callback(err, response)) --> performs `query` workflow\n    this.$exec('query', this.callback());\n}\n```\n\n##\u00a0Important\n\n- next operations are skipped if the `ErrorBuilder` contains only one error\n- `/workflows` file can be installed from URL via `INSTALL('workflows', 'https://www....')`\n- [Example: workflows](https://github.com/totaljs/examples/tree/master/workflows)",
+      "group": "How does it work?",
+      "name": "File: workflows"
     },
     {
       "body": "## Blocks\n\nThe framework (`+v1.9.3`) has great mechanism for web development. Blocks can divide JavaScript, CSS or HTML into the multiple blocks. The blocks must be used with `F.map()` or `F.merge()`.\n\n- [Example](https://github.com/totaljs/examples/tree/master/blocks)\n\n### Block definition\n\n- each block must begin via `@{block nameA, nameB, ...}` or `@{BLOCK nameA, nameB, ...}`\n- each block must ended via `@{end}` or `@{END}`\n- the block must be defined in comment clause\n- the block name can contain multiple names\n- the block tags must be defined on separated lines (position of `@{}` is not important)\n\nE.g. JavaScript:\n```javascript\nvar common_values = {};\n\n// ====================================\n// @{BLOCK admin}\n// ====================================\nalert('ADMIN');\n// ====================================\n// @{END}\n// ====================================\n\n// ====================================\n// @{BLOCK nameA, nameB}\n// ====================================\nalert('A');\n// ====================================\n// @{END}\n// ====================================\n\n// ====================================\n// @{BLOCK nameB, nameC}\n// ====================================\nalert('B');\n// ====================================\n// @{END}\n// ====================================\n```\n\nE.g. CSS:\n```css\n.common-styles {}\n\n/*\n * @{BLOCK admin}\n */\ndiv { background-color: red; }\n/*\n * @{END}\n */\n\n/*\n * @{BLOCK nameA, nameB}\n */\ndiv { content: 'A'; }\n/*\n * @{END}\n */\n\n/*\n * @{BLOCK nameB, nameC}\n */\ndiv { content: 'B'; }\n/*\n * @{END}\n */\n```\n\n### How to enable blocks?\n\n__Custom mapping:__\n\n```javascript\n// Enables \"admin\" block for admin.js\nF.map('/js/admin.js', '/js/common.js#admin');\n\n// Enables \"nameA\", \"nameB\" and \"nameC\" block for admin.js\nF.map('/js/admin.js', '/js/common.js#nameA,nameB,nameC');\n```\n\n\n__Merging:__\n\n```javascript\n// Enables \"admin\" block for admin.js\nF.merge('/js/admin.js', '/js/fileA.js', '/js/fileB.js', '/js/common.js#admin');\n\n// Enables \"nameA\", \"nameB\" and \"nameC\" block for admin.js\nF.merge('/js/admin.js', '/js/fileA.js', '/js/fileB.js', '/js/common.js#nameA,nameB,nameC');\n```\n",
