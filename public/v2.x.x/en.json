@@ -1219,9 +1219,9 @@
           "return": "Framework"
         },
         {
-          "description": "Stops the framework",
+          "description": "Kills the framework instance.",
           "example": "https://github.com/totaljs/examples/tree/master/framework-stop",
-          "name": "framework.stop",
+          "name": "framework.kill",
           "params": [
             {
               "default": "0",
@@ -5497,12 +5497,12 @@
             {
               "name": "type",
               "type": "String",
-              "description": "A scalar operation type `min`, `max`, `sum`, `avg` or `count`."
+              "description": "A scalar operation type `min`, `max`, `sum`, `avg`, `count` or `group`."
             },
             {
               "name": "field",
               "type": "String",
-              "description": "A field name (optional when the type is `count`).",
+              "description": "A field name (optional when the type is `count` or `group`).",
               "options": [
                 "optional"
               ]
@@ -5544,6 +5544,64 @@
             }
           ],
           "return": "DatabaseBuilder"
+        }
+      ],
+      "events": [
+        {
+          "changetype": 1,
+          "description": "Is triggered when a document is inserted into the database.",
+          "name": "database.on('insert')",
+          "options": ["+v2.3.0"],
+          "return": "Database",
+          "params": [
+            {
+              "description": "A document.",
+              "name": "doc",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when a document is updated in the database.",
+          "name": "database.on('update')",
+          "return": "Database",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A document.",
+              "name": "doc",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when a document is modified in the database.",
+          "name": "database.on('modify')",
+          "options": ["+v2.3.0"],
+          "return": "Database",
+          "params": [
+            {
+              "description": "A document.",
+              "name": "doc",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when a document is removed from the database.",
+          "name": "database.on('remove')",
+          "return": "Database",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A document.",
+              "name": "doc",
+              "type": "Object"
+            }
+          ]
         }
       ]
     },
@@ -5605,18 +5663,18 @@
           "changetype": 1,
           "options": ["+v2.3.0"],
           "name": "builder.scalar",
-          "description": "Performs a scalar operation __only in `join()` scope__. The method returns `Number` in a response.",
+          "description": "Performs a scalar operation __only in `join()` scope__. The method returns `Number` (for `sum`, `min`, `max`, `avg` and `count`) or `Object` (for `group`) in a response.",
           "return": "DatabaseBuilder",
           "params": [
             {
               "name": "type",
               "type": "String",
-              "description": "Scalar type: `sum`, `min`, `max`, `avg` or `count`."
+              "description": "Scalar type: `sum`, `min`, `max`, `avg`, `count` or `group`."
             },
             {
               "name": "field",
               "type": "String",
-              "description": "A field name (optional when the type is `count`).",
+              "description": "A field name (optional when the type is `count` or `group`).",
               "options": ["optional"]
             }
           ]
@@ -6172,6 +6230,48 @@
           ],
           "return": "DatabaseCounter"
         }
+      ],
+      "events": [
+        {
+          "changetype": 1,
+          "description": "Is triggered when the method `.hit()` is performed.",
+          "name": "database.counter.on('hit')",
+          "return": "DatabaseCounter",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "An identificator.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "description": "A count.",
+              "name": "count",
+              "type": "Number"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when an identificator is removed from the database.",
+          "return": "DatabaseCounter",
+          "name": "database.counter.on('remove')",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "An identificator.",
+              "name": "id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when all stats are removed from the database.",
+          "name": "database.counter.on('clear')",
+          "options": ["+v2.3.0"],
+          "params": []
+        }
       ]
     },
     {
@@ -6312,7 +6412,7 @@
               ]
             }
           ],
-          "return": "Database"
+          "return": "DatabaseBinary"
         },
         {
           "name": "database.binary.remove",
@@ -6345,7 +6445,105 @@
               ]
             }
           ],
-          "return": "Database"
+          "return": "DatabaseBinary"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "database.binary.all",
+          "description": "Shows all filenames stored in the database.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                },
+                {
+                  "name": "list",
+                  "type": "Object Array",
+                  "description": "A filelist."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseBinary"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "name": "database.binary.clear",
+          "description": "Removes all files stored in the database.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "description": "A callback function.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "description": "Error handling."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseBinary"
+        }
+      ],
+      "events": [
+        {
+          "changetype": 1,
+          "description": "Is triggered when a file is inserted into the database.",
+          "name": "database.binary.on('insert')",
+          "options": ["+v2.3.0"],
+          "return": "DatabaseBinary",
+          "params": [
+            {
+              "description": "A file identificator.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "description": "A file meta data.",
+              "name": "header",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when a file is removed from the database.",
+          "name": "database.binary.on('remove')",
+          "return": "DatabaseBinary",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "A file identificator.",
+              "name": "id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "description": "Is triggered when all files are removed from the database.",
+          "name": "database.binary.on('clear')",
+          "return": "DatabaseBinary",
+          "options": ["+v2.3.0"],
+          "params": [
+            {
+              "description": "Count of removed files.",
+              "name": "count",
+              "type": "Number"
+            }
+          ]
         }
       ]
     },
@@ -17753,6 +17951,38 @@
             }
           ],
           "return": "undefined"
+        },
+        {
+          "changetype": 1,
+          "description": "Alias for `DatabaseBinary`, the method returns: `NOSQL('user').binary` command.",
+          "name": "NOBIN",
+          "options": [
+            "+v2.3.0"
+          ],
+          "params": [
+            {
+              "description": "Name of DB.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "DatabaseBinary"
+        },
+        {
+          "changetype": 1,
+          "description": "Alias for `DatabaseCounter`, the method returns: `NOSQL('user').counter` command.",
+          "name": "NOCOUNTER",
+          "options": [
+            "+v2.3.0"
+          ],
+          "params": [
+            {
+              "description": "Name of DB.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "DatabaseCounter"
         },
         {
           "description": "This function is the alias for `framework.functions()`.",
