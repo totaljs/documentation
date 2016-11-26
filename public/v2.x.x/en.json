@@ -5350,10 +5350,17 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a backup filename argument.",
           "name": "database.remove",
           "description": "Removes a document in the database.",
           "params": [
-
+            {
+              "name": "backup",
+              "type": "String",
+              "description": "An absolute backup filename (removed documents will be stored in this backup).",
+              "options": ["optional", "+v2.3.0"]
+            }
           ],
           "return": "DatabaseBuilder"
         },
