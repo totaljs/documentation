@@ -6028,7 +6028,7 @@
         {
           "options": ["v2.3.1"],
           "changetype": 1,
-          "name": "builder.randomize",
+          "name": "builder.random",
           "description": "It will return random items.",
           "return": "DatabaseBuilder",
           "params": [
@@ -16862,8 +16862,8 @@
           "return": "Object"
         },
         {
-          "description": "Randomize.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.randomize()); // The result can be: [4, 1, 3, 2]\n```",
-          "name": "Array.prototype.randomize",
+          "description": "Random items.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.random()); // The result can be: [4, 1, 3, 2]\n```",
+          "name": "Array.prototype.random",
           "params": [
 
           ],
