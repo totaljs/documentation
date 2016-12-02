@@ -1607,6 +1607,43 @@
         },
         {
           "changetype": 1,
+          "options": ["+v2.3.0"],
+          "description": "Evaluates a script in the secure scope.\n\n```javascript\n// value\n// next(newvalue or error) --> is a callback\n// now --> is a current datetime (F.datetime)\nSCRIPT('next(value + 1)', 5, function(err, value) {\n    // value === 6\n    console.log(value);\n});\n\n// SCRIPT() evaluates code like this:\n// function (value, next, now) {\n//     SAFE\n//     next(value + 1);\n// }\n```",
+          "name": "framework.script",
+          "params": [
+            {
+              "description": "A code.",
+              "name": "code",
+              "type": "String"
+            },
+            {
+              "description": "A value (model).",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "A callback.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name":"err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name":"response",
+                  "description": "A response from script",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
           "options": ["v2.1.0"],
           "description": "Creates `multipart/x-mixed-replace` streaming route. This route can receive files from e.g. IP cameras.\n\n__Controller__:\n```javascript\nexports.install = function() {\n    F.mmr('/ip-camera/', processing);\n};\n\nfunction processing(req, file, counter) {    \n    // file === HttpFile\n    // here you can process received file\n    \n    // IMPORTANT:\n    // \"file\" === null and \"counter\" === undefined when the request is closed\n}\n```",
           "name": "framework.mmr",
@@ -4079,7 +4116,7 @@
           "description": "This property contains all framework validators (regular expression) `email`, `url`, `phone`, `zip` and `uid`.",
           "name": "framework.validators",
           "options": [
-            "v2.3.0",
+            "+v2.3.0",
             "important"
           ],
           "return": "Object"
@@ -5986,6 +6023,15 @@
                 "optional"
               ]
             }
+          ]
+        },
+        {
+          "options": ["v2.3.1"],
+          "changetype": 1,
+          "name": "builder.randomize",
+          "description": "It will return random items.",
+          "return": "DatabaseBuilder",
+          "params": [
           ]
         },
         {
@@ -12240,18 +12286,6 @@
           "return": "String"
         },
         {
-          "description": "Is the string `null` or empty?",
-          "name": "Utils.isNullOrEmpty",
-          "params": [
-            {
-              "description": "The value for validation.",
-              "name": "value",
-              "type": "String"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
           "default": "0",
           "description": "Parses the `int` number.",
           "name": "Utils.parseInt",
@@ -17154,6 +17188,43 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.3.0"],
+          "description": "Evaluates a script in the secure scope. This method can handle user-defined scripts. \n\n```javascript\n// value\n// next(newvalue or error) --> is a callback\n// now --> is a current datetime (F.datetime)\nSCRIPT('next(value + 1)', 5, function(err, value) {\n    // value === 6\n    console.log(value);\n});\n\n// SCRIPT() evaluates code like this:\n// function (value, next, now) {\n//     SAFE\n//     next(value + 1);\n// }\n```",
+          "name": "SCRIPT",
+          "params": [
+            {
+              "description": "A code.",
+              "name": "code",
+              "type": "String"
+            },
+            {
+              "description": "A value (model).",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "description": "A callback.",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name":"err",
+                  "description": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name":"response",
+                  "description": "A response from script",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "description": "The empty function.",
           "name": "NOOP",
           "params": [
@@ -18050,11 +18121,22 @@
           "return": "assert"
         },
         {
-          "description": "Get the framework **instance**.",
+          "description": "Gets the framework **instance**.",
           "go": "#api~Framework",
           "name": "F",
           "options": [
             "alias"
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "description": "Shorter alias for `isomorphic`.",
+          "go": "#api~Framework",
+          "name": "I",
+          "options": [
+            "alias",
+            "+v2.3.0"
           ],
           "return": "Framework"
         },
