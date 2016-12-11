@@ -1682,6 +1682,7 @@
           "changetype": 1,
           "description": "The method extends flags in the all routes in the function scope like this:\n\n```javascript\nexports.install = function() {\n    F.group(['#middleware', 'authorize'], function() {\n        F.route('/api/posts/', json_posts, ['put']);\n        F.route('/api/commnets/', json_posts, ['post']);\n        F.websocket('/', chat);\n    });\n}\n```",
           "name": "framework.group",
+          "options": ["+v2.1.0"],
           "params": [
             {
               "description": "Flags to extend route flags.",
@@ -18286,19 +18287,19 @@
           "return": "ErrorBuilder"
         },
         {
-          "description": "Adds a new transformation for current ErrorBuilder. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function() {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return builder.join(';');\n});\n```",
+          "description": "Adds a new transformation for all ErrorBuilders. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function() {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return builder.join(';');\n});\n```",
           "name": "ErrorBuilder.addTransform",
           "options": [
             "static method"
           ],
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
+              "description": "A transformation function. This function must return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
 
@@ -18323,7 +18324,7 @@
           "name": "instance.setTransform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -18350,7 +18351,7 @@
           "name": "instance.transform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -18365,7 +18366,7 @@
           ],
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -18764,12 +18765,12 @@
           ],
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The transformation function.",
+              "description": "A transformation function.",
               "name": "fn",
               "options": [
                 "must return some object"
@@ -18814,7 +18815,7 @@
           "name": "instance.setTransform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -18826,7 +18827,7 @@
           "name": "instance.transform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -18841,7 +18842,7 @@
           ],
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             }
@@ -19285,6 +19286,50 @@
             }
           ],
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
+        },
+        {
+          "description": "Sets a default transformation for all RESTBuilders.",
+          "name": "RESTBuilder.setDefaultTransform",
+          "params": [
+            {
+              "description": "A transformation name.",
+              "name": "name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "description": "Adds a new transformation for all RESTBuilders. __Example:__\n\n```javascript\nRESTBuilder.addTransform('custom', function(response, data) {\n    response.transformed = true;\n    return response;\n});\n```",
+          "name": "RESTBuilder.addTransform",
+          "options": [
+            "static method"
+          ],
+          "params": [
+            {
+              "description": "A transformation name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "description": "A transformation function. This function must return a transformed object.",
+              "name": "fn",
+              "params": [
+
+              ],
+              "return": "Object",
+              "type": "Function"
+            },
+            {
+              "default": "false",
+              "description": "Sets the default transformation for all RESTBuilders.",
+              "name": "def",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
+            }
+          ],
+          "return": "Object"
         }
       ],
       "name": "RESTBuilder",
@@ -19303,12 +19348,12 @@
           ],
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
             {
-              "description": "The transformation function.",
+              "description": "A transformation function.",
               "name": "fn",
               "options": [
                 "must return some object"
@@ -20147,7 +20192,7 @@
           "name": "SchemaBuilderEntity.addTransform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
@@ -20662,7 +20707,7 @@
           "name": "SchemaBuilderEntity.transform",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
@@ -20689,7 +20734,7 @@
                   "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The transformation result.",
+                  "description": "A transformation result.",
                   "name": "result",
                   "type": "Object"
                 }
@@ -20704,7 +20749,7 @@
           "name": "SchemaBuilderEntity.transform2",
           "params": [
             {
-              "description": "The transformation name.",
+              "description": "A transformation name.",
               "name": "name",
               "type": "String"
             },
@@ -20726,7 +20771,7 @@
                   "type": "ErrorBuilder"
                 },
                 {
-                  "description": "The transformation result.",
+                  "description": "A transformation result.",
                   "name": "result",
                   "type": "Object"
                 }
@@ -21061,7 +21106,7 @@
       "name": "Getting started"
     },
     {
-      "body": "- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n---\n\n__TIP__: [Download the full eshop source-code](http://www.totaljs.com/eshop/)\n\n---\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    F.route('/', view_index);\n    F.route('/services/{name}/', view_services);\n    F.route('/contact/', view_contact);\n    F.route('/contact/', json_contact, ['post']);\n}\n\n// The action\nfunction view_index() {\n    var self = this;\n    // The \"index\" view is routed into the views/index.html\n    // ---> Send the response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // The \"services\" view is routed into the views/services.html\n    // A second argument is the model\n    // ---> Send the response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> Send the response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // Get the data from the request body.\n    // The data are parsed into the object automatically.\n    var model = self.body;\n\n    // e.g.\n    // model.email\n    // model.name\n\n    // Send the mail to our company\n    var message = self.mail('info@company.com', 'Contact form', 'mail-template', model);\n    message.reply(model.email);\n\n    // ---> and send the response in JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit the views\n\n### Edit view: views/layout.html\n\nThe layout view is the special view which it contains the layout. Into the view are rendered other views. You can create unlimited count of layouts.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{import('meta', 'default.js', 'bootstrap.min.css', 'default.css', 'font-awesome.min.css', 'favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `meta` in `@{import(...)}` renders meta tags\n- `@{import('...')}` renders tags\n- `@{body}` renders view from the action (__IMPORTANT__ `@{body}` is very important for layouts)\n\nMore about the view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit the view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is the content from the view.</p>\n```\n\n### Create the view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{fi}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{fi}\n```\n\n### Create the view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run the application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$ node debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n### Read more:\n\n- [Total.js - Directory structure](#pages~Directory%20structure)",
+      "body": "__VIDEO:__ [Node.js: First steps with Total.js framework](https://www.youtube.com/watch?v=mE9cavUIMQY)\n\n---\n\n- Install [node.js platform](http://www.nodejs.org) on your computer\n- [Download empty project](https://github.com/totaljs/framework/releases)\n- Unpack and open in your favorite text editor:\n\n---\n\n__TIP__: [Download complete applications](http://www.totaljs.com/get-started/)\n\n---\n\n## Create routes\n\nOpen and edit file `controllers/default.js`. This file is a controller file and it can contains actions. The action describes a response to some request. You can create unlimited count of controllers.\n\n```javascript\nexports.install = function() {\n    // define routes with actions\n    F.route('/', view_index);\n    F.route('/services/{name}/', view_services);\n    F.route('/contact/', view_contact);\n    F.route('/contact/', json_contact, ['post']);\n}\n\n// The action\nfunction view_index() {\n    var self = this;\n    // The \"index\" view is routed into the views/index.html\n    // ---> Send the response\n    self.view('index');\n}\n\nfunction view_services(name) {\n    var self = this;\n    // The \"services\" view is routed into the views/services.html\n    // A second argument is the model\n    // ---> Send the response\n    self.view('services', { category: name });\n}\n\nfunction view_contact() {\n    var self = this;\n    // \"contact\" view is routed to views/contact.html\n    // ---> Send the response\n    self.view('contact');\n}\n\nfunction json_contact() {\n    var self = this;\n\n    // Get the data from the request body.\n    // The data are parsed into the object automatically.\n    var model = self.body;\n\n    // e.g.\n    // model.email\n    // model.name\n\n    // Send the mail to our company\n    var message = self.mail('info@company.com', 'Contact form', 'mail-template', model);\n    message.reply(model.email);\n\n    // ---> and send the response in JSON format\n    self.json({ success: true });\n}\n```\n\n## Edit the views\n\n###\u00a0Edit view: views/layout.html\n\nThe layout view is the special view which it contains the layout. Into the view are rendered other views. You can create unlimited count of layouts.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"format-detection\" content=\"telephone=no\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\n    <meta name=\"robots\" content=\"all,follow\" />\n    @{import('meta', 'default.js', 'bootstrap.min.css', 'default.css', 'font-awesome.min.css', 'favicon.ico')}\n</head>\n<body>\n    @{body}\n</body>\n</html>\n```\n\n- `meta` in\u00a0`@{import(...)}` renders meta tags\n- `@{import('...')}` renders tags\n- `@{body}` renders view from the action (__IMPORTANT__ `@{body}` is very important for layouts)\n\nMore about the view tags in [FrameworkViews](#api~FrameworkViews).\n\n### Edit the view: views/index.html\n\n```html\n<h1>Hello world!</h1>\n<br />\n<p>This is the content from the view.</p>\n```\n\n### Create the view: views/services.html\n\n```html\n@{meta('Your page title', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n\n@{if model.category === 'web-applications'}\n    <p>We build web application</p>\n@{fi}\n\n@{if model.category === 'mobile-applications'}\n    <p>We build mobile applications</p>\n@{fi}\n```\n\n### Create the view: views/contact.html\n\n```html\n@{meta('Contact us', 'Your page description', 'Your page keywords')}\n\n<h1>@{title}</h1>\n<br />\n...\n...\n...\n```\n\n### Run the application\n\nOpen terminal / command line and __find your application directory__, then write:\n\n```bash\n$\u00a0node debug.js\n```\n\nOpen `http://127.0.0.1:8000` in your web browser.\n\n---\n\n###\u00a0Read more:\n\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Tutorial"
     },
