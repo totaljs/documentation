@@ -11781,7 +11781,8 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v1.9.7 supports `end` delimiter.",
+          "changelog": "+v2.4.0 supports `skip` argument.",
+          "changetype": 2,
           "body": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "U.streamer",
           "example": "https://github.com/totaljs/examples/tree/master/streamer",
@@ -11818,6 +11819,15 @@
                   "type": "Number",
                   "body": "Current parsed index."
                 }
+              ]
+            },
+            {
+              "body": "A skip items number.",
+              "name": "skip",
+              "type": "Number",
+              "options": [
+                "optional",
+                "+v2.4.0"
               ]
             }
           ],
@@ -15625,9 +15635,15 @@
         {
           "changetype": 1,
           "options": ["+v2.4.0"],
-          "body": "Can parse an output from a terminal.\n\n```javascript    \nconst Exec = require('child_process').exec;\n\nExec('df -hTB1 /', function(err, response) {\n\tresponse.parseTerminal(function(line) {\n\t\tvar total = line[2].parseInt();\n\t\tvar free = line[4].parseInt();\n\t\tvar used = line[3].parseInt();\n\t}, 1);\n});\n```",
+          "body": "Can parse an output from a terminal.\n\n```javascript\nconst Exec = require('child_process').exec;\n\nExec('df -hTB1 /', function(err, response) {\n\tresponse.parseTerminal(['1B-blocks', 'Available'], function(line) {\n\t\tvar total = line[0].parseInt();\n\t\tvar used = line[1].parseInt();\n\t\tvar free = total - used;\n\t\tconsole.log('Total:', total, 'Used:', used, 'Free:', free);\n\t});\n});\n\n// Or split all fields to array\nExec('df -hTB1 /', function(err, response) {\n\tresponse.parseTerminal(function(line) {\n\t\tvar total = line[2].parseInt();\n\t\tvar used = line[3].parseInt();\n\t\tvar free = total - used;\n\t\tconsole.log('Total:', total, 'Used:', used, 'Free:', free);\n\t});\n});\n```",
           "name": "String.prototype.parseTerminal",
           "params": [
+            {
+              "name": "fields",
+              "type": "String Array",
+              "body": "Parses values according the output headers.",
+              "options": ["optional"]
+            },
             {
               "name": "fnLine",
               "type": "Function",
