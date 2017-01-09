@@ -11822,7 +11822,7 @@
               ]
             },
             {
-              "body": "A skip items number.",
+              "body": "Skip records.",
               "name": "skip",
               "type": "Number",
               "options": [
