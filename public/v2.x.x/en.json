@@ -13,12 +13,12 @@
               "type": "Error"
             },
             {
-              "body": "Controller or Module name.",
+              "body": "Controller or module name.",
               "name": "name",
               "type": "String"
             },
             {
-              "body": "URI where the framework throws error. Sometimes can be the value null.",
+              "body": "URI where the framework throws error. Sometimes can be a value null.",
               "name": "uri",
               "type": "Object"
             }
@@ -225,7 +225,7 @@
           "return": "String"
         },
         {
-          "body": "The delegate parses request body and you can rewrite this functionality.",
+          "body": "The delegate parses request body.",
           "name": "F.onParseXML",
           "options": [
             "must return Object"
@@ -239,7 +239,7 @@
           ]
         },
         {
-          "body": "The delegate parses request body (form-urlencoded) and URL QueryString. You can rewrite this functionality.",
+          "body": "The delegate parses request body (form-urlencoded) and URL QueryString.",
           "name": "F.onParseQuery",
           "options": [
             "must return Object"
@@ -253,7 +253,7 @@
           ]
         },
         {
-          "body": "The delegate parses request body and you can rewrite this functionality.",
+          "body": "The delegate parses request body.",
           "name": "F.onParseJSON",
           "options": [
             "must return Object"
@@ -268,7 +268,7 @@
         },
         {
           "default": "null",
-          "body": "The validation delegate. With the help of this delegate you can validate value of some object easily.\n\n```js\nframework.onValidate = function(name, value) {\n    switch (name) {\n        case 'firstname':\n            // You can return Boolean\n            return value.length > 0;\n        case 'lastname':\n            // You can return a string (it's meant as error message)\n            return U.parseInt(value) === 0 ? 'Age is not valid' : true;\n    }\n};\n```",
+          "body": "A validation delegate. With the help of this delegate you can validate value of some object easily.\n\n```js\nframework.onValidate = function(name, value) {\n    switch (name) {\n        case 'firstname':\n            // You can return Boolean\n            return value.length > 0;\n        case 'lastname':\n            // You can return a string (it's meant as error message)\n            return U.parseInt(value) === 0 ? 'Age is not valid' : true;\n    }\n};\n```",
           "example": "https://github.com/totaljs/examples/tree/master/validation",
           "name": "F.onValidate",
           "params": [
@@ -302,7 +302,7 @@
         },
         {
           "default": "null",
-          "body": "This delegate replaces an internal CSS compiler. Delegate is synchronous because is used in a view engine.",
+          "body": "This delegate replaces an internal CSS compiler. Delegate is synchronous because it's used in a view engine.",
           "example": "https://github.com/totaljs/examples/tree/master/external-compile-sass",
           "name": "F.onCompileStyle",
           "params": [
@@ -321,7 +321,7 @@
         },
         {
           "default": "null",
-          "body": "This delegate compiles a custom content in views `@{compile jade}....@{end}`. This function must return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controller\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
+          "body": "This delegate compiles custom content in views `@{compile jade}....@{end}`. This function has to return a string. The __context__ `this === controller` is a current controller.\n\n### Example\n\n```javascript\nF.onCompileView = function(name, html, model) {\n    // this === controller\n\n    if (name === 'handlebars') {\n        var template = Handlebars.compile(html);\n        return template(model);\n    }\n\n    if (name === 'jade') {\n        var template = jade.compile(html);\n        return template(model);\n    }\n\n    if (name === 'Tangular') {\n        var template = Tangular.compile(html);\n        return template(model);\n    }\n\n    return html;\n};\n```",
           "options": [
             "+v1.8.0"
           ],
@@ -366,7 +366,7 @@
           "return": "String"
         }
       ],
-      "body": "The main class (core) of total.js. This class is singleton and is set as global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http(‘debug’);\n```",
+      "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http(‘debug’);\n```",
       "events": [
         {
           "body": "This event is triggered when the framework is restarted `F.restart()`.",
@@ -2611,7 +2611,7 @@
               "type": "String/Function"
             },
             {
-              "body": "A custom options for new feature.",
+              "body": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -2653,7 +2653,7 @@
               "type": "String"
             },
             {
-              "body": "A custom options for new feature.",
+              "body": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -2703,7 +2703,7 @@
               "type": "String"
             },
             {
-              "body": "The custom options.",
+              "body": "Custom options.",
               "name": "options",
               "options": [
                 "optional"
@@ -4275,7 +4275,7 @@
       ]
     },
     {
-      "body": "`FrameworkConfiguration` contains the framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault-image-quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy-custom-object-raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy-custom-object-json     (JSON)      : { \"name\": \"Total.js\" }\nmy-custom-number          (number)    : 320.34\nmy-custom-boolean         (boolean)   : true\nmy-custom-date            (date)      : 2016-07-26\nmy-custom-array           (array)     : [1, 2, 3, 4]\nbinds-environment-value   (env)       : process.env\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)",
+      "body": "`FrameworkConfiguration` contains framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault-image-quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy-custom-object-raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy-custom-object-json     (JSON)      : { \"name\": \"Total.js\" }\nmy-custom-number          (number)    : 320.34\nmy-custom-boolean         (boolean)   : true\nmy-custom-date            (date)      : 2016-07-26\nmy-custom-array           (array)     : [1, 2, 3, 4]\nbinds-environment-value   (env)       : process.env\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}\n```\n\n",
       "group": "Framework",
       "name": "FrameworkConfiguration",
       "properties": [
@@ -17607,7 +17607,7 @@
               "type": "String/Function"
             },
             {
-              "body": "A custom options for new feature.",
+              "body": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -17643,7 +17643,7 @@
               "type": "String"
             },
             {
-              "body": "A custom options for new feature.",
+              "body": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -17693,7 +17693,7 @@
               "type": "String"
             },
             {
-              "body": "A custom options for new feature.",
+              "body": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -21304,12 +21304,12 @@
       "name": "Definitions"
     },
     {
-      "body": "```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The module is the plain JavaScript file with `.js` extension.\n- The framework automatically loads the module into the memory.\n- All modules are stored in `your-app/modules/` directory.\n- `exports.install` is executed automatically and one time.\n- Views are loaded according to the controller name from `your-app/views/`.\n- You can create unlimited count of modules.\n- Module can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- The module can communicate with other modules or controllers.\n- [Download modules](https://github.com/totaljs/modules)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The definition\n\n### PROPERTY: exports.id;\n\n`optional` Can contain only the module name (it's the identificator name). A __default value__ for this property is the module filename without extension.\n\n```javascript\nexports.id = 'Module name';\n```\n\n### PROPERTY: exports.dependencies;\n\n`optional` Can contain only the array of module names. The framework waits for all dependencies and then installs the pending modules.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD: exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when framework loads modules. __Modules support routing.__ Argument: `options` can contain custom settings for the module, is optional.\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the module.');\n    F.route('/module/');\n};\n```\n\n### METHOD: exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the module. Argument: `options` can contain custom settings for the module, is optional.\n\n```javascript\nexports.uninstall = function(options) {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD: exports.usage;\n\n`optional` This function must return exploitation of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function(options) {\n    F.on('request', increment);\n    F.route('/stats/', json_stats);\n};\n\nexports.uninstall = function(options) {\n    F.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in the controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```",
+      "body": "```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers\n```\n\n__More informations__\n\n- the module is a plain text JavaScript file with `.js` extension\n- the framework loads all modules\n- all modules are stored in `your-app/modules/` directory\n- `exports.install` method is executed automatically and once\n- you can create unlimited count of modules\n- the module can be injected from the URL address, [example](https://github.com/totaljs/examples/tree/master/framework-install-module).\n- the module can communicate with other modules or controllers\n- [Download modules](https://my.totaljs.com)\n\n---\n\n## Examples\n\n- [Example: Modules](https://github.com/totaljs/examples/tree/master/framework-modules)\n\n---\n\n## The module definition\n\n###\u00a0PROPERTY: exports.dependencies;\n\n`optional` Can contain only array of module names. The framework waits for all dependencies.\n\n```javascript\nexports.dependencies = ['moduleA', 'moduleC'];\n```\n\n### METHOD:\u00a0exports.install;\n\n`optional` `important` This is the initialization function of the module. This function is executed when the framework loads modules. __Modules support routing.__ Argument: `options` can contain custom settings for the module and it's optional.\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the module.');\n    F.route('/module/');\n};\n```\n\n### METHOD:\u00a0exports.uninstall;\n\n`optional` This function is executed when the framework uninstalls the module. Argument: `options` can contain custom settings for the module, it's optional.\n\n```javascript\nexports.uninstall = function(options) {\n    console.log('This module is uninstalled.');\n};\n```\n\n### METHOD:\u00a0exports.usage;\n\n`optional` This function has to return a usage of the module. [Example: Usage](https://github.com/totaljs/examples/tree/master/framework-usage).\n\n```javascript\nexports.usage = function() {\n    return { requests: counter };\n};\n```\n\n### A full example of the module\n\nFilename: `modules/counter.js`\n\n```javascript\nexports.id = 'counter';\nexports.version = '1.01';\n\nvar counter = 0;\n\nexports.install = function(options) {\n    F.on('request', increment);\n    F.route('/stats/', json_stats);\n};\n\nexports.uninstall = function(options) {\n    F.removeListener('request', increment);\n};\n\nexports.usage = function() {\n    return { requests: counter };\n}\n\nfunction json_stats() {\n    // The same behavior like in the controller\n    this.json({ requests: counter });\n}\n\nfunction increment() {\n    counter++;\n}\n```\n\n###\u00a0Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }\n```\n\n__Usage in own modules:__\n\n```javascript\nexports.install = function(options) {\n    // options === CUSTOM OPTIONS\n};\n```",
       "group": "How does it work?",
       "name": "Modules"
     },
     {
-      "body": "> __The Package__ is same as the total.js module, but the Package can contains multiple files in the one package file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers\n```\n\n__More informations__\n\n- The package is the plain text file with `.package` extension.\n- The framework automatically unpacks the package into the temporary directory and loads.\n- All packages are stored in `your-app/packages/` directory.\n- `index.js` is the main file of the package and has __the same structure as the module__.\n- `exports.install` is executed automatically and one time.\n- Views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- Views and static files must be mapped.\n- You can create unlimited count of packages.\n- The package can be injected from the URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nThe framework binary contains command `-package` which can create the package file from some directory. Firstly is needed install the framework from NPM as __global__ modul because of binary/executable file.\n\nThe __binary__/executable name is `$ totalpackage`.\n\n### Create the own package\n\nFirstly we must create the module:\n\nOpen terminal:\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\ncd hello-world-package-directory\ntotalpackage create helloworld.package\n```\n\nThe binary/executable creates the file `my-package.package` in the current directory. Copy the file into the `my-total-js-app/packages` and run the framework. The framework automatically unpacks the content of the package file into the temporary directory and it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.\n\n## Booting\n\nBooting is a special feature in total.js. The file `index.js` in a package can contain:\n\n### Boot all files\n\nThe framework unpacks a package and evaluates all files according to the framewok's directory structure. So the framework loads controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n### Boot as application\n\nThe framework unpacks a package and it runs it as an application.<br />This booting works with `F.http('debug', { package: 'myapp.package' })`.\n\n```javascript\nexports.booting = 'root';\n```\n",
+      "body": "> __The Package__ is same as Total.js module, but the Package can contain multiple files packed in the single `package` file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers\n```\n\n__More informations__\n\n- the package is a plain text file with `.package` extension\n- the framework unpacks the package into the temporary directory\n- all packages are stored in `your-app/packages/` directory\n- `index.js` is the main file of the package and has to __the same structure as the module__\n- `exports.install` is executed automatically and once\n- views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- views and static files have to be mapped manually via `F.map()`\n- you can create unlimited count of packages\n- the package can be injected from an URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nYou can create Total.js package easily. First is need to install the framework from NPM as __global__ modul.\n\nThen you have to use in a terminal: `$ totalpackage --help`.\n\n### Create an own package\n\nFirst we have to create a module:\n\n__Open terminal:__\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\n$\u00a0cd hello-world-package-directory\n$ totalpackage create helloworld.package\n```\n\nTotal.js creates the file `my-package.package` in the current directory. Copy this file into the `my-total-js-app/packages` and run the framework. The framework unpacks the content of the package into the temporary directory and then it executes `index.js` as main file.\n\nOpen: `http://127.0.0.1:8000/hello-world/` in your browser.\n\n## Booting\n\nBooting is a special feature in Total.js framework. The file `index.js` in a package can contain:\n\n###\u00a0Boot all files\n\nThe framework unpacks package and evaluates all files according to the framewok's directory structure. So the framework loads controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n###\u00a0Boot as application\n\nThe framework unpacks package and it runs it as an application.\nExample: `F.http('debug', { package: 'myapp.package' })`.\n\n```javascript\nexports.booting = 'root';\n```\n\n###\u00a0Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files. Each package is a module in the end.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }\n```\n\n__Usage in own modules:__\n\n```javascript\nexports.install = function(options) {\n    // options === CUSTOM OPTIONS\n};\n```",
       "group": "How does it work?",
       "name": "Packages"
     },
