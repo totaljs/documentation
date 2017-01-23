@@ -225,7 +225,9 @@
           "return": "String"
         },
         {
-          "body": "The delegate parses request body.",
+          "changelog":"<b>+v2.4.0</b> added a new `req` argument.",
+          "changetype":2,
+          "body": "This delegate parses request body.",
           "name": "F.onParseXML",
           "options": [
             "must return Object"
@@ -235,11 +237,19 @@
               "name": "value",
               "body": "String for parsing.",
               "type": "String"
+            },
+            {
+              "name": "req",
+              "body": "HTTP Request instance. In some case can be `undefined`.",
+              "type": "Request",
+              "options": ["+v2.4.0"]
             }
           ]
         },
         {
-          "body": "The delegate parses request body (form-urlencoded) and URL QueryString.",
+          "changelog":"<b>+v2.4.0</b> added a new `req` argument.",
+          "changetype":2,
+          "body": "This delegate parses request body (form-urlencoded) and URL QueryString.",
           "name": "F.onParseQuery",
           "options": [
             "must return Object"
@@ -249,11 +259,19 @@
               "name": "value",
               "body": "String for parsing.",
               "type": "String"
+            },
+            {
+              "name": "req",
+              "body": "HTTP Request instance. In some case can be `undefined`.",
+              "type": "Request",
+              "options": ["+v2.4.0"]
             }
           ]
         },
         {
-          "body": "The delegate parses request body.",
+          "changelog":"<b>+v2.4.0</b> added a new `req` argument.",
+          "changetype":2,
+          "body": "This delegate parses request body.",
           "name": "F.onParseJSON",
           "options": [
             "must return Object"
@@ -263,6 +281,12 @@
               "name": "value",
               "body": "String for parsing.",
               "type": "String"
+            },
+            {
+              "name": "req",
+              "body": "HTTP Request instance. In some case can be `undefined`.",
+              "type": "Request",
+              "options": ["+v2.4.0"]
             }
           ]
         },
@@ -17997,6 +18021,31 @@
           "name": "GETSCHEMA",
           "options": [
             "+v1.8.0"
+          ],
+          "params": [
+            {
+              "body": "A group name.",
+              "name": "group",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'"
+            },
+            {
+              "body": "A schema name.",
+              "name": "schema",
+              "type": "String"
+            }
+          ],
+          "return": "SchemaBuilderEntity"
+        },
+        {
+          "changetype": 1,
+          "body": "A simple shortcut for getting a schema.",
+          "name": "$$$",
+          "options": [
+            "+v2.4.0"
           ],
           "params": [
             {
