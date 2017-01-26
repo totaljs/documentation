@@ -18311,18 +18311,6 @@
             }
           ],
           "return": "DatabaseCounter"
-        },
-        {
-          "body": "This function is the alias for `framework.functions()`.",
-          "name": "FUNCTION",
-          "params": [
-            {
-              "body": "A name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "Framework"
         }
       ],
       "name": "global",
@@ -18493,6 +18481,90 @@
           "body": "Is the framework running in test mode?",
           "name": "TEST",
           "return": "Boolean"
+        }
+      ]
+    },
+    {
+      "changetype": 1,
+      "body": "All methods are in a global scope. When the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function(error, delay, callback) {\n    // error === ErrorBuilder\n    setTimeout(function() {\n        callback(SUCCESS(true));\n    }, delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});\n```",
+      "group": "Builders",
+      "name": "Operations",
+      "methods": [
+        {
+          "body": "Registers a new operation.",
+          "name": "NEWOPERATION",
+          "params": [
+            {
+              "body": "An operation name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "An operation context.",
+              "name": "fn",
+              "params": [
+                {
+                  "body": "A custom error handling.",
+                  "name": "error",
+                  "type": "ErrorBuilder"
+                },
+                {
+                  "body": "A custom value.",
+                  "name": "value",
+                  "type": "Object"
+                },
+                {
+                  "body": "A callback.",
+                  "name": "callback",
+                  "type": "Function",
+                  "params": [
+                    {
+                      "name": "value",
+                      "type": "Object/Error",
+                      "body": "A new value",
+                      "options": ["optional"]
+                    }
+                  ]
+                }
+              ],
+              "type": "Function"
+            }
+          ]
+        },
+        {
+          "body": "Executes an operation.",
+          "name": "OPERATION",
+          "params": [
+            {
+              "body": "An operation name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A value",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "fn",
+              "params": [
+                {
+                  "body": "An error.",
+                  "name": "err",
+                  "type": "Error",
+                  "default": "null"
+                },
+                {
+                  "body": "A value.",
+                  "name": "value",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+          ]
         }
       ]
     },
