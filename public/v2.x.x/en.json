@@ -18043,6 +18043,40 @@
           "return": "SchemaBuilderEntity"
         },
         {
+          "options": ["+v2.2.0"],
+          "body": "Creates a new problem (alias for `F.problem()`). The framework logs all problems into the file `logs/problems.log`.",
+          "name": "WTF",
+          "params": [
+            {
+              "body": "A problem description.",
+              "name": "message",
+              "type": "String"
+            },
+            {
+              "body": "The controller or module name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "The URI object.",
+              "name": "uri",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "The IP address.",
+              "name": "ip",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "changetype": 1,
           "body": "A simple shortcut for getting a schema.",
           "name": "$$$",
@@ -19138,13 +19172,16 @@
           "return": "RESTBuilder"
         },
         {
-          "body": "Sets URL / endpoint.",
+          "changetype": 2,
+          "changelog": "+v2.4.0 this method can return a current URL (when the `url` argument is `undefined`).",
+          "body": "Sets/Gets URL / endpoint. When `url` argument is `undefined` the method returns a current `URL`.",
           "name": "instance.url",
           "params": [
             {
               "body": "URL / endpoint",
               "name": "url",
-              "type": "String"
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "RESTBuilder"
@@ -19464,12 +19501,12 @@
                 },
                 {
                   "name": "data",
-                  "body": "A parsed JSON data.",
+                  "body": "A parsed data. (+v2.4.0) This value can't be null, a default value is `EMPTYOBJECT`.",
                   "type": "Object"
                 },
                 {
                   "name": "response",
-                  "body": "A response snapshot (.headers, .status, .cache, .response, etc., .datetime). This response object can read cookies like `response.cookie('name')`.",
+                  "body": "A response snapshot (.value, .headers, .status, .cache, .response, etc., .datetime). This response object can read cookies like `response.cookie('name')`.",
                   "type": "Object"
                 }
               ]
