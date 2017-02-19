@@ -1582,7 +1582,7 @@
               "type": "String Array"
             },
             {
-              "default": "5",
+              "default": "10",
               "body": "Maximum length of uploaded (request) data.",
               "name": "length",
               "options": [
@@ -1815,6 +1815,15 @@
                 "optional"
               ],
               "type": "String Array"
+            },
+            {
+              "default": "2",
+              "body": "Maximum data length.",
+              "name": "length",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
             }
           ],
           "return": "Framework"
@@ -9054,7 +9063,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__",
+          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie?__\n\n```javascript\ncontroller.cookie('cookiename', 'VALUE', '5 days');\n```\n\n__How to remove cookie?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');\n```",
           "name": "controller.cookie",
           "options": [
             "http"
@@ -9402,7 +9411,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Finds the client connection (only for __WebSocket__).",
+          "body": "Finds a client connection (only for __WebSocket__).\n\n```javascript\nvar client = controller.find('126329a3487dklee348733');\n\n// or\n\nvar client = controller.find((client, id) => client.user.name === 'petersirka');\n```",
           "go": "#api~FrameworkWebSocketClient",
           "name": "controller.find",
           "options": [
