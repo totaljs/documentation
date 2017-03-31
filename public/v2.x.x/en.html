@@ -46,10 +46,10 @@
 	<script type="text/html" id="template-menu">
 		{{ if name }}
 			<strong class="menu-group">{{ name }}</strong>
-		{{ endif }}
+		{{ fi }}
 		<ul>
 			{{ foreach m in items }}
-			<li><a href="{{ m.linker }}">{{ if m.changetype === 1 }}<span class="menu-new">new</span>{{ endif }}{{ m.name }}{{ if m.changetype === 2 }} <span style="color:silver;font-size:10px" title="Modified">(modified)</span>{{ endif }}</a></li>
+			<li><a href="{{ m.linker }}">{{ if m.changetype === 1 }}<span class="menu-new">new</span>{{ fi }}{{ m.name }}{{ if m.changetype === 2 }} <span style="color:silver;font-size:10px" title="Modified">(modified)</span>{{ fi }}</a></li>
 			{{ end }}
 		</ul>
 		<br />
@@ -60,30 +60,30 @@
 		<ul class="members">
 			{{ foreach m in members }}
 				<li data-id="{{ m.linker }}">
-					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; {{ if m.return }}<span class="members-return">returns {{ m.return }}</span>{{ endif }} {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option">{{ o }}</span>{{ end }}{{ endif }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ endif }}</a>
+					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ fi }}</span>{{ fi }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }}; {{ if m.return }}<span class="members-return">returns {{ m.return }}</span>{{ fi }} {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option{{ if o.substring(0, 1) === '+' }} opt-version{{ fi }}">{{ o }}</span>{{ end }}{{ fi }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ fi }}</a>
 					<div class="body hidden">
-						{{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ endif }}
-						<div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }};</div>
-						{{ if m.changelog }}<div class="member-body-changelog"><b>CHANGELOG:</b> {{ m.changelog | raw }}</div>{{ endif }}
+						{{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ fi }}
+						<div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }};</div>
+						{{ if m.changelog }}<div class="member-body-changelog"><b>CHANGELOG:</b> {{ m.changelog | raw }}</div>{{ fi }}
 						{{ if m.params && m.params.length > 0 }}
 							<div class="member-body-params">
 								{{ m.params | params }}
 							</div>
-						{{ endif }}
+						{{ fi }}
 						{{ if m.options && m.options.length > 0 }}
 							<div class="member-body-flags">
 							{{ foreach f in m.options }}
-								<span>{{ f }}</span>
+								<span{{ if f.substring(0, 1) === '+' }} class="opt-version"{{ fi }}>{{ f }}</span>
 							{{ end }}
 							</div>
-						{{ endif }}
+						{{ fi }}
 						{{ if m.return }}
-						<div class="member-body-return">returns {{ if m.go }}<a href="{{ m.go }}">{{ m.return }}</a>{{ else }}{{ m.return }}{{ endif }};</div>
-						{{ endif }}
+						<div class="member-body-return">returns {{ if m.go }}<a href="{{ m.go }}">{{ m.return }}</a>{{ else }}{{ m.return }}{{ fi }};</div>
+						{{ fi }}
 						<div class="markdown">{{ m.body | raw }}</div>
 						{{ if m.example }}
 						<div class="member-body-example"><a href="{{ m.example }}" target="_blank">Example</a></div>
-						{{ endif }}
+						{{ fi }}
 					</div>
 				</li>
 			{{ end }}
@@ -93,10 +93,10 @@
 	<script type="text/html" id="template-api-links">
 		<h3>List of all members</h3>
 		<ul class="member-links">
-			{{ if properties }}<li><a href="javascript:go('properties')">Properties</a></li>{{ endif }}
-			{{ if methods }}<li><a href="javascript:go('methods')">Methods</a></li>{{ endif }}
-			{{ if delegates }}<li><a href="javascript:go('delegates')">Delegates</a></li>{{ endif }}
-			{{ if events }}<li><a href="javascript:go('events')">Events</a></li>{{ endif }}
+			{{ if properties }}<li><a href="javascript:go('properties')">Properties</a></li>{{ fi }}
+			{{ if methods }}<li><a href="javascript:go('methods')">Methods</a></li>{{ fi }}
+			{{ if delegates }}<li><a href="javascript:go('delegates')">Delegates</a></li>{{ fi }}
+			{{ if events }}<li><a href="javascript:go('events')">Events</a></li>{{ fi }}
 		</ul>
 	</script>
 
@@ -105,13 +105,13 @@
 		<ul class="members">
 			{{ foreach m in members }}
 				<li data-id="{{ m.linker }}">
-					<div class="search-group"><b>Section:</b> {{ m.group }}</div>{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ endif }}</span>{{ endif }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ endif }}; <span class="members-return">returns {{ m.return }}</span></a>
+					<div class="search-group"><b>Section:</b> {{ m.group }}</div>{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ fi }}</span>{{ fi }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }}; <span class="members-return">returns {{ m.return }}</span></a>
 				</li>
 			{{ end }}
 		</ul>
 		{{ if members.length === 0 }}
 			<div class="noresult">Try to change a search phrase. Search engine searchs in properties, methods, delegates and events.</div>
-		{{ endif }}
+		{{ fi }}
 	</script>
 	<script src="docs.min.js"></script>
 </body>

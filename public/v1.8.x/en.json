@@ -1681,7 +1681,7 @@
               "type": "String/Function"
             },
             {
-              "description": "A custom options for new feature.",
+              "description": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -12542,7 +12542,7 @@
               "type": "String/Function"
             },
             {
-              "description": "A custom options for new feature.",
+              "description": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
@@ -12575,7 +12575,7 @@
               "type": "String"
             },
             {
-              "description": "A custom options for new feature.",
+              "description": "Custom options for new feature.",
               "name": "options",
               "options": [
                 "optional"
