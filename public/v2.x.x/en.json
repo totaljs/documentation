@@ -2965,10 +2965,10 @@
         },
         {
           "body": "Returns the static file according to the request url",
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.continue()`",
+          "options": ["obsolete"],
           "name": "F.responseStatic",
-          "options": [
-            "internal"
-          ],
           "params": [
             {
               "body": "The HTTP request",
@@ -2992,11 +2992,11 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.custom()`",
+          "options": ["obsolete"],
           "body": "__The response must be closed by manually.__ This methods triggers `request-end` event and stops the timeout",
           "name": "F.responseCustom",
-          "options": [
-            "internal"
-          ],
           "params": [
             {
               "body": "The HTTP request",
@@ -3012,9 +3012,12 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.file()`",
           "body": "Writes the file into the response. A file extension must exist in `config['static-accepts']`. This function sets up the HTTP cache (according to the framework config mode - `debug` or `release`). If the file is CSS or JS then it will be compiled. This function supports HTTP RANGE (streaming) automatically",
           "example": "https://github.com/totaljs/examples/tree/master/download-file-counter",
           "name": "F.responseFile",
+          "options": ["obsolete"],
           "params": [
             {
               "body": "The HTTP request",
@@ -3034,7 +3037,7 @@
             {
               "default": "null",
               "body": "The name for download",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -3061,11 +3064,12 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.proxy()`",
           "body": "Creates the response from the URL (The function joins response with response without headers)",
           "name": "F.responsePipe",
           "options": [
-            "important",
-            "http"
+            "obsolete"
           ],
           "params": [
             {
@@ -3118,6 +3122,9 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.image()`",
+          "options": ["obsolete"],
           "body": "Writes the image/picture into the response. A file extension must exist in `config['static-accepts']`. This function sets up HTTP cache (according to the framework config mode - `debug` or `release`) and the processed image is saved into the temporary directory.\n\n__Examples__:\n\n```javascript\nframework.responseImage(req, res, stream, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
           "name": "F.responseImage",
@@ -3171,72 +3178,9 @@
           "return": "Framework"
         },
         {
-          "body": "Writes the image/picture into the response. The function checks if the same image was processed (according to the URL address). It sets up HTTP cache (according to the framework config mode - `debug` or `release`) and the processed image is saved into the temporary directory.\n\n__Examples__:\n\n```javascript\nframework.responseImagePrepare(req, res, function(next) {\n    // The MongoDB GridFS\n    // db === A some connection of MongoDB\n    var reader = new GridStore(db, new ObjectID(id), 'r');\n    reader.open(function(err, fs) {\n\n    if (err) {\n        reader.close();\n        return next();\n    }\n\n    var filename = F.path.temp(U.GUID(5) + '.jpg');\n    var stream = fs.stream(true);\n    var writer = require('fs').createWriteStream(filename);\n\n    stream.pipe(writer);\n\n    writer.on('close', function() {\n\n        reader.close();\n        writer.end();\n\n        // IMPORTANT:\n        next(filename);\n    });\n\n}, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
-          "name": "F.responseImagePrepare",
-          "params": [
-            {
-              "body": "The HTTP request.",
-              "name": "req",
-              "type": "Object"
-            },
-            {
-              "body": "The HTTP response.",
-              "name": "res",
-              "type": "Object"
-            },
-            {
-              "body": "The preparing function.",
-              "name": "fnPrepare",
-              "params": [
-                {
-                  "body": "Continue.",
-                  "name": "next",
-                  "params": [
-                    {
-                      "body": "The filename for processing.",
-                      "name": "filename",
-                      "type": "String"
-                    }
-                  ],
-                  "type": "Function"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "body": "The function for processing.",
-              "name": "fnProcess",
-              "params": [
-                {
-                  "body": "The function for image manipulation.",
-                  "go": "#api~FrameworkImage",
-                  "name": "image",
-                  "type": "FrameworkImage"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "default": "{}",
-              "body": "Additional headers.",
-              "name": "headers",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.image_nocache()`",
+          "options": ["obsolete"],
           "body": "Writes the image/picture without cache, slowly than `responseImage()`. A file extension must exist in `config['static-accepts']`.\n\n__Examples__:\n\n```javascript\nframework.responseImageWithoutCache(req, res, stream, function(image) {\n    image.resize('50%');\n    image.output('png');\n    image.minify();\n});\n```",
           "example": "https://github.com/petersirka/total.js/tree/master/examples/download-file",
           "name": "F.responseImageWithoutCache",
@@ -3290,7 +3234,9 @@
           "return": "Framework"
         },
         {
-          "changelog": "added <b>nocompress</b> argument.",
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.stream()`",
+          "options": ["obsolete"],
           "body": "Writes the stream into the response. All `text/*` (content-types) are compressed via GZIP (if is enabled `config['allow-gzip']`).",
           "example": "https://github.com/totaljs/examples/tree/master/download-stream",
           "name": "F.responseStream",
@@ -3318,7 +3264,7 @@
             {
               "default": "null",
               "body": "The download name.",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -3354,6 +3300,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw401()`",
+          "options": ["obsolete"],
           "body": "Writes 401 status into the response - Unauthorized.",
           "name": "F.response401",
           "params": [
@@ -3379,6 +3328,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw400()`",
+          "options": ["obsolete"],
           "body": "Writes 400 status into the response - Bad request.",
           "name": "F.response400",
           "params": [
@@ -3404,6 +3356,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw403()`",
+          "options": ["obsolete"],
           "body": "Writes 403 status into the response - Forbidden.",
           "name": "F.response403",
           "params": [
@@ -3429,6 +3384,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw404()`",
+          "options": ["obsolete"],
           "body": "Writes 404 status into the response - Not Found.",
           "name": "F.response404",
           "params": [
@@ -3454,6 +3412,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw500()`",
+          "options": ["obsolete"],
           "body": "Writes 500 status into the response - Internal server error.",
           "name": "F.response500",
           "params": [
@@ -3476,6 +3437,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.throw501()`",
+          "options": ["obsolete"],
           "body": "Writes 501 status into the response - Not Implemented.",
           "name": "F.response501",
           "params": [
@@ -3501,6 +3465,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.content()`",
+          "options": ["obsolete"],
           "body": "Writes the content into the response.",
           "name": "F.responseContent",
           "params": [
@@ -3551,9 +3518,9 @@
           "return": "Framework"
         },
         {
-          "options": [
-            "+v1.9.0"
-          ],
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.binary()`",
+          "options": ["obsolete", "+v1.9.0"],
           "body": "Writes bytes into the response.",
           "name": "F.responseBinary",
           "params": [
@@ -3589,7 +3556,7 @@
             {
               "default": "null",
               "body": "The download name.",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -3608,6 +3575,9 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "This method is obsolete. Alternative: `res.redirect()`",
+          "options": ["obsolete"],
           "body": "Writes the redirect into the response.",
           "name": "F.responseRedirect",
           "params": [
@@ -4417,6 +4387,26 @@
           "return": "Boolean",
           "options": [
             "+v2.2.0"
+          ]
+        },
+        {
+          "changetype": 1,
+          "default": "false",
+          "body": "Enables a small console debugging. The framework creates snapshot of `F.usage()` automatically into the `/usage.log` file.\n\n__Or alternative__:\n```javascript\nrequire('total.js').http('release', { debug: true });\n```",
+          "name": "allow-debug",
+          "return": "Boolean",
+          "options": [
+            "+v2.5.0"
+          ]
+        },
+        {
+          "changetype": 1,
+          "default": "true",
+          "body": "Can disable defer feature (can improve starting of the application).",
+          "name": "allow-defer",
+          "return": "Boolean",
+          "options": [
+            "+v2.5.0"
           ]
         },
         {
@@ -8268,7 +8258,7 @@
             },
             {
               "body": "The value will added into \"Content-Disposition\" header.",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -8361,7 +8351,7 @@
             },
             {
               "body": "The download name with the file extension.",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -10395,7 +10385,7 @@
             },
             {
               "body": "The download name.",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -12893,7 +12883,7 @@
         {
           "changetype": 2,
           "changelog": "+v2.4.0 added new properties `instance.pages` (count of all pages) and `instance.count` (count of all items).",
-          "body": "Returns a chunker instance. The chunker is really great solution for INSERTING/UPDATING data into the DB. This method can help with a lot of data in the single thread. The example below describes its funcionallity.\n\n```javascript\nvar chunker = U.chunker('products', 50);\n\n// chunker === instance\n\nsomestream.on('data', U.streamer('<product>', '</product>', function(value, index) {\n\tvar product = value.parseXML();\n\n\t// The chunker creates multiple files with a maximum count of chunks (in this case: 50 products)\n\tchunker.write(product);\n\n\t// Here we can't wait for DB because data are flowing in this time\n}));\n\nsomestream.on('end', function() {\n\t\n\t// Flush\n\tchunker.end();\n\n\t// Count of all items\n\t// +v2.4.0\n\tconsole.log(chunker.count);\n\n\t// Count of all pages\n\t// +v2.4.0\n\tconsole.log(chunker.pages);\n\t\t\n\tchunker.each(function(items, next) {\n\t\t// here we can update DB\n\t\t\n\t\t// ....\n\t\t// ....\n\t\t\n\t\t// Read next items\n\t\tnext();\n\n\t}, function() {\n\n\t\t// This method is called when the chunker doesn't contain any other items (optional).\n\n\t\t// Cleans up hdd (removes files) and memory\n\t\tchunker.destroy();\n\t});\n\n\t// chunker.read(index, function(err, array) {\n\t//     array === products (max 50)\n\t// });\n\n\t// Removes all chunk files\n\t// chunker.clear();\n\n\t// Performs clear and it cleans memory\n\t// chunker.destroy();\n\n});\n```\n\n__IMPORTANT__:\nChunker stores items into the different files. A chunker `name` is a name of the file. When is chunker destroyed then the method automatically removes all files.",
+          "body": "Returns a chunker instance. The chunker is really great solution for INSERTING/UPDATING data into the DB. This method can help with a lot of data in the single thread. The example below describes its funcionallity.\n\n```javascript\nvar chunker = U.chunker('products', 50);\n\n// chunker === instance\n\nsomestream.on('data', U.streamer('<product>', '</product>', function(value, index) {\n\tvar product = value.parseXML();\n\n\t// The chunker creates multiple files with a maximum count of chunks (in this case: 50 products)\n\tchunker.write(product);\n\n\t// Here we can't wait for DB because data are flowing in this time\n}));\n\nsomestream.on('end', function() {\n\t\n\t// Flush\n\tchunker.end();\n\n\t// Count of all items\n\t// +v2.4.0\n\tconsole.log(chunker.count);\n\n\t// Count of all pages\n\t// +v2.4.0\n\tconsole.log(chunker.pages);\n\t\t\n\tchunker.each(function(items, next, index) {\n\t\t// here we can update DB\n\t\t\n\t\t// ....\n\t\t// ....\n\t\t\n\t\t// Read next items\n\t\tnext();\n\n\t}, function() {\n\n\t\t// This method is called when the chunker doesn't contain any other items (optional).\n\n\t\t// Cleans up hdd (removes files) and memory\n\t\tchunker.destroy();\n\t});\n\n\t// chunker.read(index, function(err, array) {\n\t//     array === products (max 50)\n\t// });\n\n\t// Removes all chunk files\n\t// chunker.clear();\n\n\t// Performs clear and it cleans memory\n\t// chunker.destroy();\n\n});\n```\n\n__IMPORTANT__:\nChunker stores items into the different files. A chunker `name` is a name of the file. When is chunker destroyed then the method automatically removes all files.",
           "name": "U.chunker",
           "options": ["+v2.0.0"],
           "params": [
@@ -14990,7 +14980,7 @@
         {
           "changetype": 1,
           "options": ["+v2.5.0"],
-          "body": "Sets response HTTP status code",
+          "body": "Sets a response HTTP status code",
           "name": "Response.prototype.status",
           "params": [
             {
@@ -15063,7 +15053,7 @@
           "return": "Response"
         },
         {
-          "body": "Continues in processing of the request. Is alias for `F.responseStatic()`.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```",
+          "body": "Continues in processing of the request.\n\n```javascript\n// The JPEG counter\nfunction some_file_routing_action(req, res, isValidation) {\n    if (isValidation)\n        return req.url.lastIndexOf('.jpg') !== -1;\n    \n    // Insert into database\n    DATABASE('jpg_counter').insert({ datecreated: new Date(), ip: req.ip });\n\n    // The framework responds on the request automatically.\n    res.continue();    \n}\n```",
           "name": "Response.prototype.continue",
           "params": [
             {
@@ -15088,7 +15078,7 @@
             },
             {
               "body": "The download filename",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -15114,23 +15104,74 @@
           "return": "Response"
         },
         {
-          "body": "Send a image",
+          "body": "Sends a image",
           "name": "Response.prototype.image",
           "params": [
             {
-              "body": "The filename",
-              "name": "filename",
-              "type": "String"
+              "body": "Input can be filename or ReadableStream",
+              "name": "input",
+              "type": "String/Stream"
             },
             {
               "body": "Function to processed",
-              "name": "fnProcess",
+              "name": "make",
               "params": [
                 {
                   "body": "Function for image manipulation",
                   "go": "#api~FrameworkImage",
                   "name": "image",
                   "type": "FrameworkImage"
+                },
+                {
+                  "body": "Response object",
+                  "name": "res",
+                  "type": "Response"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "Custom headers",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "body": "Sends a image without cache.",
+          "name": "Response.prototype.image_nocache",
+          "params": [
+            {
+              "body": "Input can be filename or ReadableStream",
+              "name": "input",
+              "type": "String/Stream"
+            },
+            {
+              "body": "Function to processed",
+              "name": "make",
+              "params": [
+                {
+                  "body": "Function for image manipulation",
+                  "go": "#api~FrameworkImage",
+                  "name": "image",
+                  "type": "FrameworkImage"
+                },
+                {
+                  "body": "Response object",
+                  "name": "res",
+                  "type": "Response"
                 }
               ],
               "type": "Function"
@@ -15170,7 +15211,7 @@
             },
             {
               "body": "The download name",
-              "name": "downloadName",
+              "name": "download",
               "options": [
                 "optional"
               ],
@@ -22194,5 +22235,6 @@
       "name": "Blocks (JS+CSS+HTML)"
     }
   ],
-  "version": "2.x.x"
+  "version": "2.x.x",
+  "defer": "# Deferred functions\n\n__Experimental__: Deferred functions can improve a performance of Total.js applications. The results below shows no-cached function vs cached function.\n\n```html\n[ No-cached .................... slowest (214 ms)\n[ Cached ....................... +72.0% fastest (60 ms)\n```\n\n__Example__:\n\n```javascript\n// A helper function\nfunction something_async(controller, callback) {\n    callback(controller);\n}\n\n// Worse performance\nfunction some_controller_action_nocached() {\n    var controller = this;\n    something_async(controller, function(controller) {\n        controller.plain('OK');\n    });\n}\n\n// +70% better performance\nfunction some_controller_action_cached() {\n    var controller = this;\n    something_async(controller, cached);\n}\n\nfunction cached(controller) {\n    controller.plain('OK');\n}\n```\n\n## How does it work?\n\n```javascript\nfunction some_controller_action() {\n    var controller = this;\n    something_async(controller, function DEFER(controller) {\n        controller.plain('OK');\n    });\n}\n```\n\nThe framework parses all `function DEFER` functions and saves them into the `F.temporary.defer` object. Then the mechanism replaces all `function DERER` for e.g. `something_async(controller, F.temporary.defer.D1936555)` in the source-code.\n\n__Deferred source-code__:\n\n```javascript\nfunction some_controller_action() {\n    var controller = this;\n    something_async(controller, F.temporary.defer.D1936555);\n}\n```\n"
 }

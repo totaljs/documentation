@@ -60,7 +60,7 @@
 		<ul class="members">
 			{{ foreach m in members }}
 				<li data-id="{{ m.linker }}">
-					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ fi }}</span>{{ fi }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }}; {{ if m.return }}<span class="members-return">returns {{ m.return }}</span>{{ fi }} {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option{{ if o.substring(0, 1) === '+' }} opt-version{{ fi }}">{{ o }}</span>{{ end }}{{ fi }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ fi }}</a>
+					{{ if m.changetype }}<span class="member-changelog">{{ if m.changetype === 1 }}new{{ else }}modified{{ fi }}</span>{{ fi }}<a href="#{{ m.linker }}" class="member">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }}; {{ if m.return }}<span class="members-return">returns {{ m.return }}</span>{{ fi }} {{ if m.options && m.options.length > 0 }}{{ foreach o in m.options }}<span class="members-option{{ if o === 'obsolete' }} opt-obsolete{{ fi }}{{ if o.substring(0, 1) === '+' }} opt-version{{ fi }}">{{ o }}</span>{{ end }}{{ fi }}{{ if m.default }}<span class="members-default"><b>Default value:</b> {{ m.default }}</span>{{ fi }}</a>
 					<div class="body hidden">
 						{{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ fi }}
 						<div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }};</div>
@@ -73,7 +73,7 @@
 						{{ if m.options && m.options.length > 0 }}
 							<div class="member-body-flags">
 							{{ foreach f in m.options }}
-								<span{{ if f.substring(0, 1) === '+' }} class="opt-version"{{ fi }}>{{ f }}</span>
+								<span{{ if f === 'obsolete' }} class="opt-obsolete"{{ fi }}{{ if f.substring(0, 1) === '+' }} class="opt-version"{{ fi }}>{{ f }}</span>
 							{{ end }}
 							</div>
 						{{ fi }}
