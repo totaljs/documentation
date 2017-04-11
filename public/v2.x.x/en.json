@@ -4739,6 +4739,14 @@
           "return": "Boolean"
         },
         {
+          "options": ["+v2.5.0"],
+          "changetype": 1,
+          "default": "false",
+          "body": "If it's enabled then the framework adds `head` method for each web route.",
+          "name": "allow-head",
+          "return": "Boolean"
+        },
+        {
           "default": "true",
           "body": "Allows the websocket listening. If you want to use e.g. Socket.io, this option must be false.",
           "name": "allow-websocket",
