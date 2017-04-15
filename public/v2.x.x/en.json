@@ -14696,7 +14696,6 @@
           "body": "Reads the authorization data from the request. Method returns:\n\n```javascript\n{ name: 'username', password: 'password', empty: false }\n```",
           "name": "Request.prototype.authorization",
           "params": [
-
           ],
           "return": "Object"
         },
@@ -14704,7 +14703,7 @@
           "options": [
             "+v1.9.0"
           ],
-          "body": "Calls `framework.onAuthorize` delegate. Authorization is disabled for static files and this function solves this problem",
+          "body": "Calls `framework.onAuthorize` delegate. Authorization is disabled for static files and this function can solve a problem with authorization",
           "name": "Request.prototype.authorize",
           "params": [
             {
@@ -14731,6 +14730,14 @@
             }
           ],
           "return": "Request"
+        },
+        {
+          "changetype": 1,
+          "body": "Performs `F.onLocale`. This method can help in a custom handling of static files because the framework doesn't perform localization for static files. The method returns a language.",
+          "name": "Request.prototype.localize",
+          "params": [
+          ],
+          "return": "String"
         },
         {
           "default": "''",
