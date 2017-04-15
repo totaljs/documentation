@@ -14329,6 +14329,31 @@
           "return": "HttpFile"
         },
         {
+          "body": "Renames current file.",
+          "name": "file.rename",
+          "params": [
+            {
+              "body": "The new filename.",
+              "name": "filename",
+              "type": "String"
+            },
+            {
+              "options": ["optional"],
+              "body": "A callback",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Error handling.",
+                  "name": "err",
+                  "type": "Error"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "HttpFile"
+        },
+        {
           "body": "Gets the FrameworkImage instance.",
           "go": "#api~FrameworkImage",
           "name": "file.image",
