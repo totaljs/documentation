@@ -4718,6 +4718,14 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.5.0"],
+          "default": "30",
+          "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB memory map. Default value is `30%` = 450 MB memory and 900 MB memory map.",
+          "name": "default-image-consumption",
+          "return": "Number"
+        },
+        {
           "default": "90",
           "body": "The default image/picture quality for JPEG files only.",
           "name": "default-image-quality",
@@ -13136,6 +13144,20 @@
           "return": "MailMessage"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.4.0"],
+          "body": "Creates a unsubscribe link.",
+          "name": "message.unsubscribe",
+          "params": [
+            {
+              "body": "A absolute URL address with hostname.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "MailMessage"
+        },
+        {
           "body": "The callback will be executed when the message will be sent.",
           "options": [
             "+v2.0.0"
@@ -14045,7 +14067,7 @@
           "return": "FrameworkImage"
         },
         {
-          "body": "Flops the image (opposite the flip).",
+          "body": "Flops the image (opposite the flip)",
           "name": "image.flop",
           "params": [
 
@@ -14061,7 +14083,7 @@
           "return": "FrameworkImage"
         },
         {
-          "body": "Creates a grayscale from the image..",
+          "body": "Creates a grayscale from the image",
           "name": "image.grayscale",
           "params": [
 
@@ -14069,7 +14091,26 @@
           "return": "FrameworkImage"
         },
         {
-          "body": "Creates a sepia from the image.",
+          "changetype": 1,
+          "options": ["+v2.5.0"],
+          "body": "Creates a memory limit for GM/IM. More info here: <http://www.graphicsmagick.org/GraphicsMagick.html#details-limit>.",
+          "name": "image.limit",
+          "params": [
+            {
+              "name":"type",
+              "type":"String",
+              "body":"A type e.g. `disk`, `file`, `map`, `memory`, `pixels`, `threads`, etc.."
+            },
+            {
+              "name":"value",
+              "type":"Number",
+              "body":"A value according to the GM/IM documentation."
+            }
+          ],
+          "return": "FrameworkImage"
+        },
+        {
+          "body": "Creates a sepia from the image",
           "name": "image.sepia",
           "params": [
 
