@@ -1081,6 +1081,41 @@
           "return": "Framework"
         },
         {
+          "changetype": 1,
+          "body": "Rewrites a current SMTP server.",
+          "options": [
+            "+v2.5.0"
+          ],
+          "name": "F.useSMTP",
+          "params": [
+            {
+              "body": "A hostname or IP address",
+              "name": "hostname",
+              "type": "String"
+            },
+            {
+              "body": "Custom options in the form { secure: Boolean, port: Number, user: String, password: String, timeout: Number }",
+              "name": "options",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Funciton",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling",
+                  "type": "Error"
+                }
+              ]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "body": "Uses a middleware for all or specific routes",
           "name": "F.use",
           "params": [
@@ -4854,8 +4889,10 @@
         },
         {
           "default": "''",
+          "changetype": 2,
+          "changelog": "+v2.5.0 - renamed from `mail.address.from`",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets sender address.",
-          "name": "mail.address.from",
+          "name": "mail-address-from",
           "options": [
             "important"
           ],
@@ -4863,8 +4900,10 @@
         },
         {
           "default": "''",
+          "changetype": 2,
+          "changelog": "+v2.5.0 - renamed from `mail.address.reply`",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets replyTo address.",
-          "name": "mail.address.reply",
+          "name": "mail-address-reply",
           "options": [
             "optional"
           ],
@@ -4872,8 +4911,10 @@
         },
         {
           "default": "''",
+          "changetype": 2,
+          "changelog": "+v2.5.0 - renamed from `mail.address.copy`",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets BCC address.",
-          "name": "mail.address.copy",
+          "name": "mail-address-copy",
           "options": [
             "optional"
           ],
@@ -4881,8 +4922,10 @@
         },
         {
           "default": "''",
+          "changetype": 2,
+          "changelog": "+v2.5.0 - renamed from `mail.smtp`",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP server (HOST).",
-          "name": "mail.smtp",
+          "name": "mail-smtp",
           "options": [
             "important"
           ],
@@ -4890,7 +4933,9 @@
         },
         {
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- secure (optional, default: `false`)\n- user (optional, default: empty)\n- password (optional, default: empty)\n- timeout (optional, default: `10000`)\n\nExample:\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}\n```",
-          "name": "mail.smtp.options",
+          "changetype": 2,
+          "changelog": "+v2.5.0 - renamed from `mail.smpt.options`",
+          "name": "mail-smtp-options",
           "options": [
             "important"
           ],
