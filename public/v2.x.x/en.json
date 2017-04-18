@@ -9499,12 +9499,12 @@
           ],
           "params": [
             {
-              "body": "Name.",
+              "body": "A placeholder name.",
               "name": "name",
               "type": "String"
             },
             {
-              "body": "Value for adding.",
+              "body": "A content/value.",
               "name": "value",
               "type": "String",
               "options": [
@@ -9513,6 +9513,38 @@
             }
           ],
           "return": "FrameworkController"
+        },
+        {
+          "body": "This method can add or replace some content for the ViewEngine `section` directly from the controller. When the value is not defined the method returns a current content/value of the section otherwise it returns controller's instance.",
+          "name": "controller.section",
+          "options": [
+            "http"
+          ],
+          "params": [
+            {
+              "body": "A section name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Value for ",
+              "name": "value",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Can replace current value, otherwise concats contents",
+              "name": "replace",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ],
+              "default": "false"
+            }
+          ],
+          "return": "FrameworkController or String"
         },
         {
           "body": "Invokes the iterator function once for each item in the client collection (only for __WebSocket__).",
