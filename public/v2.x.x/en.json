@@ -17366,14 +17366,6 @@
           "return": "Array"
         },
         {
-          "body": "Gets the one item (randomly) from the array.",
-          "name": "Array.prototype.random",
-          "params": [
-
-          ],
-          "return": "Object"
-        },
-        {
           "body": "Random items.\n```javascript\nvar arr = [1, 2, 3, 4];\nconsole.log(arr.random()); // The result can be: [4, 1, 3, 2]\n```",
           "name": "Array.prototype.random",
           "params": [
