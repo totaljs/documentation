@@ -5106,6 +5106,27 @@
         },
         {
           "default": "null",
+          "body": "Gets the value from the cache. This method is faster than `F.cache.get()` because internally compares expiration with `F.datetime` variable.",
+          "name": "F.cache.get2",
+          "params": [
+            {
+              "body": "A name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "The default value.",
+              "name": "def",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "default": "null",
           "body": "Removes the item from the cache.",
           "name": "F.cache.remove",
           "params": [
