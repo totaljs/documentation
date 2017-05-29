@@ -14514,9 +14514,9 @@
           "name": "F.cluster.http",
           "params": [
             {
-              "body": "Count of threads.",
+              "body": "Count of threads. Value <b>`auto`</b> {String} or <b>null</b> sets count of threads according to your system.",
               "name": "count",
-              "type": "Number"
+              "type": "Number/String"
             },
             {
               "body": "Framework mode (release or debug)",
@@ -22884,7 +22884,7 @@
       "changetype": 1
     },
     {
-      "body": "__Total.js Watcher__ `+v2.6.0` is built-in alternative to `debug.js` file. This watcher watches all changes in your application's code and it restarts the app automatically if needed.\n\n## How to run Total.js Watcher?\n\n- just create start script e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/watch');\n```\n\n__Advanced settings__:\n\n```javascript\nconst options = {};\n\n// options.ip = '127.0.0.1';\n// options.port = parseInt(process.argv[2]);\n// options.config = { name: 'Total.js' };\n// options.sleep = 3000;\n// options.inspector = 9229;\n// options.debugger = 40894;\n\nrequire('total.js/watch')(options);\n```",
+      "body": "__Total.js Watcher__ `+v2.6.0` is built-in alternative to `debug.js` file. This watcher watches all changes in your application's code and it restarts the app automatically if needed.\n\n## How to run Total.js Watcher?\n\n- just create a start script e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// options.ip = '127.0.0.1';\n// options.port = parseInt(process.argv[2]);\n// options.config = { name: 'Total.js' };\n// options.sleep = 3000;\n// options.inspector = 9229;\n// options.debugger = 40894;\n\nrequire('total.js/debug')(options);\n```",
       "group": "How does it work?",
       "name": "Watcher",
       "changetype": 1
