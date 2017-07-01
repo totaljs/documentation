@@ -1666,8 +1666,8 @@
               "type": "String"
             },
             {
-              "body": "The function to execute and the context owner is FrameworkController <b>this === FrameworkController</b>.",
-              "name": "fn",
+              "body": "The controller's action.",
+              "name": "action",
               "params": [
                 {
                   "body": "A dynamic parameter.",
@@ -1928,8 +1928,8 @@
               "type": "String"
             },
             {
-              "body": "The function to execute",
-              "name": "fn",
+              "body": "The controller's action.",
+              "name": "action",
               "params": [
                 {
                   "body": "A dynamic parameter",
@@ -2018,8 +2018,8 @@
               "type": "String"
             },
             {
-              "body": "A delegate with validation",
-              "name": "fnExec",
+              "body": "File action.",
+              "name": "action",
               "params": [
                 {
                   "body": "The HTTP request",
@@ -18732,6 +18732,102 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "body": "Alias for `F.route()`",
+          "name": "ROUTE",
+          "options": [
+            "+v2.7.0"
+          ],
+          "params": [
+            {
+              "body": "URL address",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "The controller's action or view name.",
+              "name": "action",
+              "type": "Function/String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Route flags.",
+              "name": "flags",
+              "type": "String Array",
+              "options": ["optional"]
+            },
+            {
+              "body": "Maximum length of message.",
+              "name": "length",
+              "type": "Number",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "Alias for `F.file()`",
+          "name": "FILE",
+          "options": [
+            "+v2.7.0"
+          ],
+          "params": [
+            {
+              "body": "URL address",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "The file's action.",
+              "name": "action",
+              "type": "Function",
+              "options": ["optional"]
+            },
+            {
+              "body": "Route flags.",
+              "name": "flags",
+              "type": "String Array",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "Alias for `F.websocket()`",
+          "name": "WEBSOCKET",
+          "options": [
+            "+v2.7.0"
+          ],
+          "params": [
+            {
+              "body": "URL address",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "The controller's action.",
+              "name": "action",
+              "type": "Function",
+              "options": ["optional"]
+            },
+            {
+              "body": "Route flags.",
+              "name": "flags",
+              "type": "String Array",
+              "options": ["optional"]
+            },
+            {
+              "body": "Maximum length of message.",
+              "name": "length",
+              "type": "Number",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "changetype": 2,
           "changelog": "+v2.5.0 adds canceling of limit and helper argument",
           "body": "Creates an instance of `setTimeout`, but if the method is executed multiple times then the timeout is reset",
@@ -19570,6 +19666,75 @@
             }
           ],
           "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
+          "name": "TEST",
+          "return": "undefined",
+          "params": [
+            {
+              "body": "Test name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Relative/Absolute URL address",
+              "name": "url",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "builder",
+                  "type": "RESTBuilder",
+                  "body": "A new instance of RESTBuilder. This instance has URL address set automatically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
+          "name": "FAIL",
+          "return": "undefined",
+          "params": [
+            {
+              "body": "Is the result failed?",
+              "name": "is",
+              "type": "Boolean"
+            },
+            {
+              "body": "Additional description",
+              "name": "description",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
+          "name": "OK",
+          "return": "undefined",
+          "params": [
+            {
+              "body": "Is the result successful?",
+              "name": "is",
+              "type": "Boolean"
+            },
+            {
+              "body": "Additional description",
+              "name": "description",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ]
         }
       ],
       "name": "global",
@@ -19745,11 +19910,6 @@
           "body": "The property returns sealed empty instance of controller",
           "name": "EMPTYCONTROLLER",
           "return": "Object"
-        },
-        {
-          "body": "Is the framework running in test mode?",
-          "name": "TEST",
-          "return": "Boolean"
         }
       ]
     },
@@ -23045,6 +23205,12 @@
       "body": "__Total.js Watcher__ `+v2.6.0` is built-in alternative to `debug.js` file. This watcher watches all changes in your application's code and it restarts the app automatically if needed.\n\n## How to run Total.js Watcher?\n\n- just create a start script e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// options.ip = '127.0.0.1';\n// options.port = parseInt(process.argv[2]);\n// options.config = { name: 'Total.js' };\n// options.sleep = 3000;\n// options.inspector = 9229;\n// options.debugger = 40894;\n\nrequire('total.js/debug')(options);\n```",
       "group": "How does it work?",
       "name": "Watcher",
+      "changetype": 1
+    },
+    {
+      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed when the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n    $GET('Users', 100, function(err, response) {\n        FAIL(err != null);\n        // or\n        // OK(err == null);\n    });\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/' funciton(builder) {\n    builder.json({ email: 'petersirka@gmail.com' });\n    builder.exec(function(err, response) {\n        FAIL(response.success !== true);\n        // or\n        // OK(respons.success);\n    });\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.",
+      "group": "How does it work?",
+      "name": "Unit-Testing",
       "changetype": 1
     }
   ],
