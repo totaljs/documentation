@@ -14657,9 +14657,22 @@
                   "type": "Object"
                 },
                 {
-                  "body": "A response with new value for a current request.",
+                  "body": "A response with new value for a current request. The process which sent this message receives a new value.",
                   "name": "next",
-                  "type": "Function"
+                  "type": "Function",
+                  "params": [
+                    {
+                      "name": "newvalue",
+                      "type": "Object",
+                      "body": "A new value for a current request.",
+                      "options": ["optional"]
+                    }
+                  ]
+                },
+                {
+                  "body": "Sender id",
+                  "name": "id",
+                  "type": "Number"
                 }
               ]
             }
