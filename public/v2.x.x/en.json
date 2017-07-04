@@ -7454,7 +7454,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Returns the wrapped function `callback(err, some_data)`. In case of the error the framework throws `controller.throw500(error)` and if the error is `ErrorBuilder` then the framework responds with `controller.content(error)`.\n\n```javascript\n// Returns the JSON\nframework.database('some_db').all(controller.callback());\n\n// Returns the \"my-view\" view\nframework.database('some_db').all(controller.callback('my-view'))\n```",
+          "body": "Returns the wrapped function `callback(err, some_data_as_model)`. In case of the error the framework throws `controller.throw500(error)` and if the error is `ErrorBuilder` then the framework responds with `controller.content(error)`.\n\n```javascript\n// Returns data as JSON\nNOSQL('some_db').find().callback(controller.callback());\n\n// Returns data as model into the \"my-view\" view\nNOSQL('some_db').find().callback(controller.callback('my-view'))\n```",
           "name": "controller.callback",
           "options": [
             "http"
