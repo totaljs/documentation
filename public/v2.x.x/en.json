@@ -20938,6 +20938,24 @@
         {
           "changetype": 1,
           "options": ["+v2.7.0"],
+          "body": "Sets `Bot` phrase into the `User-Agent` header.",
+          "name": "instance.robot",
+          "params": [
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.7.0"],
+          "body": "Sets `iPhone` phrase into the `User-Agent` header.",
+          "name": "instance.mobile",
+          "params": [
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.7.0"],
           "body": "Uploads file as a multipart form-data.",
           "name": "instance.file",
           "params": [
