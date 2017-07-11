@@ -4877,7 +4877,7 @@
             "+v2.5.0"
           ],
           "default": "30",
-          "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB memory map. Default value is `30%` = 450 MB memory and 900 MB memory map.",
+          "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB of memory map. Default value is `30%` = 450 MB of memory and 900 MB of memory map.",
           "name": "default-image-consumption",
           "return": "Number"
         },
