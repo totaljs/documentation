@@ -11534,7 +11534,9 @@
           "return": "String"
         },
         {
-          "body": "Compiles and renders string as view.",
+          "changetype": 2,
+          "changelog": "+v2.8.0 - supports cache key",
+          "body": "Compiles and renders string as view",
           "name": "@{viewCompile}",
           "options": [
             "+v2.3.0"
@@ -11553,6 +11555,12 @@
                 "optional"
               ],
               "type": "Object"
+            },
+            {
+              "body": "A cache key.",
+              "name": "key",
+              "type": "String",
+              "options": ["optional", "+v2.8.0"]
             }
           ],
           "return": "String"
