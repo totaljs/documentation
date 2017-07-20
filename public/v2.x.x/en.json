@@ -2008,7 +2008,7 @@
           "return": "Framework"
         },
         {
-          "body": "Creates a new file route. This function can handle static files.\n\n__Examples__:\n\n```js\nF.file('*.jpg', function(req, res) {\n    // ... a transformation\n    res.file('new-file-name.jpg');\n});\n```\n\n```js\nF.file('/img/', some_action1, ['.jpg', '.png', '#middlewareA', '#middlewareB']);\nF.file('/process/invoice.txt', some_action2, ['#middlewareA', { custom: 'options for middleware' }]);\n\nfunction some_action1(req, res) {\n    // a custom content\n}\n\nfunction some_action2(req, res) {\n    // a custom content\n}\n```",
+          "body": "Creates a new file route. This function can handle static files.\n\n- __IMPORTANT__: the action of file handler doesn't use a context of the controller because it's optimized for the performance\n- __IMPORTANT__: you need to create a response from `req` and `res` arguments\n\n### Example: \n\n```js\nF.file('*.jpg', function(req, res) {\n\t// ... a transformation\n\tres.file('new-file-name.jpg');\n});\n```\n\n```js\nF.file('/img/', some_action1, ['.jpg', '.png', '#middlewareA', '#middlewareB']);\nF.file('/process/invoice.txt', some_action2, ['#middlewareA', { custom: 'options for middleware' }]);\n\nfunction some_action1(req, res) {\n\t// a custom content\n\t// !!! IMPORTANT !!! \"this\" is not a context of controller\n}\n\nfunction some_action2(req, res) {\n\t// a custom content\n\t// !!! IMPORTANT !!! \"this\" is not a context of controller\n}```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "F.file",
           "params": [
@@ -2122,13 +2122,14 @@
           "return": "FrameworkController Array"
         },
         {
-          "changelog": "added new argument [language]",
-          "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string",
+          "changetype": 2,
+          "changelog": "+v2.8.0 - add a support for URL address",
+          "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string.\n\n`+v2.8.0` __Rendering view from URL address__:\n\n```javascript\nvar response = F.view('https://www.totaljs.com/view.html');\nif (response instanceof Function) {\n\t// Is called the only onetime because the second time the view is read from the framework cache\n\tresponse(function(err, response) {\n\t\tconsole.log('VIEW:', response);\n\t});\n} else\n\tconsole.log('VIEW:', response);\n```",
           "name": "F.view",
           "params": [
             {
-              "body": "The view name",
-              "name": "name",
+              "body": "The view name or `+v2.8.0` URL address",
+              "name": "name/url",
               "type": "String"
             },
             {
@@ -2167,6 +2168,8 @@
           "return": "String"
         },
         {
+          "changetype": 2,
+          "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string",
           "name": "F.viewCompile",
           "options": [
@@ -2207,6 +2210,15 @@
               "name": "language",
               "options": [
                 "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "A cache key.",
+              "name": "key",
+              "options": [
+                "optional",
+                "+v2.8.0"
               ],
               "type": "String"
             }
@@ -2637,6 +2649,8 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "+v2.8.0 - supports file list `String Array` instead of path",
           "options": [
             "+v1.9.1"
           ],
@@ -2649,9 +2663,9 @@
               "type": "String"
             },
             {
-              "body": "Path (directory) to backup (can be an app directory)",
+              "body": "Path (directory) to backup (can be an app directory). `v2.8.0` supports file list `String Array` targeted to app root's directory (in other words: files must be in app root's directory).",
               "name": "path",
-              "type": "String"
+              "type": "String/Array"
             },
             {
               "body": "Callback",
@@ -5054,9 +5068,9 @@
           "return": "String"
         },
         {
-          "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- secure (optional, default: `false`)\n- user (optional, default: empty)\n- password (optional, default: empty)\n- timeout (optional, default: `10000`)\n\nExample:\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}\n```",
+          "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- `secure` (optional, default: `false`)\n- `user` (optional, default: empty)\n- `password` (optional, default: empty)\n- `timeout` (optional, default: `10000`)\n- `xoauth2` (optional) can contain a token in base64 encoding `+v2.8.0`\n\n__Example:__\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}```",
           "changetype": 2,
-          "changelog": "+v2.5.0 - renamed from `mail.smpt.options`",
+          "changelog": "+v2.8.0 - supports `xoauth2` token, +v2.5.0 - renamed from `mail.smtp.options`",
           "name": "mail-smtp-options",
           "options": [
             "important"
@@ -5261,6 +5275,20 @@
       "body": "This class is useful for getting all paths of the framework. The function reads all paths according to the framework configuration.",
       "group": "Framework",
       "methods": [
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "body": "Creates directories (if not exist) according to the path. Method is synchronous.",
+          "name": "F.path.mkdir",
+          "params": [
+            {
+              "body": "A path",
+              "name": "path",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
         {
           "body": "Gets the path from `framework.config['directory-public']`.",
           "name": "F.path.public",
@@ -5704,17 +5732,50 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "+v2.8.0 changed this method completely, this method backups all files from this database to Total.js Package file. <b>OLDER METHOD</b> has been moved to `database.backup2()`",
           "name": "database.backup",
+          "body": "This method backups database, counter, meta-info and all binary files.",
+          "params": [
+            {
+              "name": "filename",
+              "type": "String",
+              "body": "A backup filename (needs a full path)."
+            },
+            {
+              "name": "callback",
+              "body": "A callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "stats",
+                  "body": "A simple stats.",
+                  "type": "Object"
+                }
+              ],
+              "options": [
+                "optional"
+              ],
+              "default": "false"
+            }
+          ],
+          "return": "Database"
+        },
+        {
+          "changetype": 1,
+          "changelog": "+v2.8.0 - this is the previous version of `database.backup()`",
+          "name": "database.backup2",
           "body": "Backups a database. The method can backup a whole file (any document won't be removed) or specific documents (documents will be moved to the backup file and they will be removed).",
           "params": [
             {
               "name": "filename",
               "type": "String",
-              "body": "A backup filename (needs a full path).",
-              "options": [
-                "optional"
-              ],
-              "default": "'databases/filename_backup.nosql'"
+              "body": "A backup filename (needs a full path)."
             },
             {
               "name": "remove",
@@ -5727,6 +5788,41 @@
             }
           ],
           "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.restore",
+          "body": "This method restores database, counter, meta-info and all binary files.",
+          "params": [
+            {
+              "name": "filename",
+              "type": "String",
+              "body": "A filename (needs a full path)."
+            },
+            {
+              "name": "callback",
+              "body": "A callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "stats",
+                  "body": "A simple stats.",
+                  "type": "Object"
+                }
+              ],
+              "options": [
+                "optional"
+              ],
+              "default": "false"
+            }
+          ],
+          "return": "Database"
         },
         {
           "changetype": 2,
@@ -9559,7 +9655,9 @@
           "return": "String"
         },
         {
-          "body": "Sends the view. The function supports creating view into the `string`. If the functions does not contain the `name` argument then the argument is generated according to the URL address.\n\n### Renders view according to the controller name\n\n__/controllers/default.js__\n\n```javascript\nfunction some_action_in_controller_default() {\n    this.view('index');\n    // The view is loaded from: /views/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/products.js__\n\n```javascript\nfunction some_action_in_controller_products() {\n    this.view('index');\n    // The view is loaded from: /views/products/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/users.js__\n\n```javascript\nfunction some_action_in_controller_users() {\n    this.view('index');\n    // The view is loaded from: /views/users/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n### Renders the view without the view name\n\nThe framework copies all text from last `/` character in the URL address and thereof creates the view name:\n\n- From `/` creates view name `index`\n- From `/products/` creates view name `products`\n- From `/products/orders/` creates view name `orders`\n\nThe framework creates these view names in the route definition `F.route()`.",
+          "changetype": 2,
+          "changelog": "+v2.8.0 - add a support for URL address",
+          "body": "Sends the view. The function supports creating view into the `string`. If the functions does not contain the `name` argument then the argument is generated according to the URL address.\n\n### Rendering view according to the controller name\n\n__/controllers/default.js__\n\n```javascript\nfunction some_action_in_controller_default() {\n    this.view('index');\n    // The view is loaded from: /views/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/products.js__\n\n```javascript\nfunction some_action_in_controller_products() {\n    this.view('index');\n    // The view is loaded from: /views/products/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/users.js__\n\n```javascript\nfunction some_action_in_controller_users() {\n    this.view('index');\n    // The view is loaded from: /views/users/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n### Rendering view without the view name\n\nThe framework copies all text from last `/` character in the URL address and thereof creates the view name:\n\n- From `/` creates view name `index`\n- From `/products/` creates view name `products`\n- From `/products/orders/` creates view name `orders`\n\nThe framework creates these view names in the route definition `F.route()`.\n\n### `+v2.8.0` Rendering a partial view from URL address\n\n```javascript\nvar response = controller.view('https://www.totaljs.com/view.html');\nif (response instanceof Function) {\n\t// Is called the only onetime because the second time the view is read from the framework cache\n\tresponse(function(err, response) {\n\t\tconsole.log('VIEW:', response);\n\t});\n} else\n\tconsole.log('VIEW:', response);\n```",
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "controller.view",
           "options": [
@@ -9568,8 +9666,8 @@
           ],
           "params": [
             {
-              "body": "Name of view.",
-              "name": "name",
+              "body": "The view name or `+v2.8.0` URL address",
+              "name": "name/url",
               "type": "String"
             },
             {
@@ -9601,6 +9699,8 @@
           "return": "FrameworkController or String"
         },
         {
+          "changetype": 1,
+          "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles a dynamic string as view.",
           "name": "controller.viewCompile",
           "options": [
@@ -9638,6 +9738,15 @@
                 "optional"
               ],
               "type": "Boolean"
+            },
+            {
+              "body": "A cache key.",
+              "name": "key",
+              "options": [
+                "optional",
+                "+v2.8.0"
+              ],
+              "type": "String"
             }
           ],
           "return": "FrameworkController or String"
@@ -13102,10 +13211,9 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v1.9.6"
-          ],
-          "body": "Gets a file extension from a relative path. The method return extension without dot, e.g. `jpg` or `txt`.",
+          "changetype": 2,
+          "changelog": "+v2.8.0 - The method returns lower-case extension.",
+          "body": "Gets a file extension (always __lower-case__) from a relative path. The method return extension without dot, e.g. `jpg` or `txt`.",
           "name": "U.getExtension",
           "params": [
             {
@@ -13634,6 +13742,23 @@
               ],
               "type": "Object"
             },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "MailMessage"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "body": "Sends the message according to the framework configuration.",
+          "name": "message.send2",
+          "params": [
             {
               "body": "A callback",
               "name": "callback",
@@ -14545,6 +14670,8 @@
           "return": "FrameworkImage"
         },
         {
+          "changetype": 2,
+          "changelog": "+v2.8.0 - supports `escape` argument.",
           "body": "Adds a custom command.",
           "name": "image.command",
           "options": [
@@ -14569,6 +14696,16 @@
               ],
               "type": "Number",
               "default": 10
+            },
+            {
+              "body": "Can I escape the value? This is a prevention for terminal injection.",
+              "name": "escape",
+              "options": [
+                "optional",
+                "+v2.8.0"
+              ],
+              "type": "Boolean",
+              "default": false
             }
           ],
           "return": "FrameworkImage"
@@ -23116,7 +23253,7 @@
       "name": "Modules"
     },
     {
-      "body": "> __The Package__ is same as Total.js module, but the Package can contain multiple files packed in the single `package` file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n__More informations__\n\n- the package is a plain text file with `.package` extension\n- the framework unpacks the package into the temporary directory\n- all packages are stored in `your-app/packages/` directory\n- `index.js` is the main file of the package and has to __the same structure as the module__\n- `exports.install` is executed automatically and once\n- views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- views and static files have to be mapped manually via `F.map()`\n- you can create unlimited count of packages\n- the package can be injected from an URL address\n- [Download packages](https://github.com/totaljs/modules)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create the package?\n\nYou can create Total.js package easily. First is need to install the framework from NPM as __global__ modul.\n\nThen you have to use in a terminal: `$ totalpackage --help`.\n\n### Create an own package\n\nFirst we have to create a module:\n\n__Open terminal:__\n\n```bash\nmkdir hello-world-package-directory\ncd hello-world-package\n```\n\n__1. Create__ `hello-world-package-directory/index.js`:\n\n```javascript\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing:\n    F.route('/hello-world/', view_greeting);\n\n    // A static file mapping:\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `hello-world-package-directory/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `hello-world-package-directory/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Open terminal:__\n\n```bash\n$ cd hello-world-package-directory\n$ totalpackage create helloworld.package\n```\n\nTotal.js creates the file `my-package.package` in the current directory. Copy this file into the `my-total-js-app/packages` and run the framework. The framework unpacks the content of the package into the temporary directory and then it executes `index.js` as main file.\n\nOpen: `http://0.0.0.0:8000/hello-world/` in your browser.\n\n## Booting\n\nBooting is a special feature in Total.js framework. The file `index.js` in a package can contain:\n\n### Boot all files\n\nThe framework unpacks package and evaluates all files according to the framewok's directory structure. So the framework loads controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n### Boot as application\n\nThe framework unpacks package and it runs it as an application.\nExample: `F.http('debug', { package: 'myapp.package' })`.\n\n```javascript\nexports.booting = 'root';\n```\n\n### Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files. Each package is a module in the end.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }\n```\n\n__Usage in own modules:__\n\n```javascript\nexports.install = function(options) {\n    // options === CUSTOM OPTIONS\n};\n```",
+      "body": "> __The Package__ is same as Total.js module, but the Package can contain multiple files packed in the single `package` file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n__More informations__\n\n- the package is a plain text file with `.package` extension\n- the framework unpacks the package into the temporary directory\n- all packages are stored in `your-app/packages/` directory\n- `index.js` is the main file of the package and has to __the same structure as the module__\n- `exports.install` is executed automatically and once\n- views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- views and static files have to be mapped manually via `F.map()`\n- you can create unlimited count of packages\n- the package can be injected from an URL address\n- [Download packages](https://github.com/totaljs/modules)\n- `+v2.8.0` a package file can be large (mechanism supports streaming)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create a package?\n\nYou can create Total.js package easily. First you need to install Total.js framework from NPM as a __global__ modul. Then open terminal and write `$ tpm --help`.\n\n### Creating own packages (debug-mode)\n\n- create a directory `packages` in your application\n- then create sub-directory `/packages/helloworld/`\n- then create these files:\n\n__1. Create__ `/packages/helloworld/index.js`:\n\n```javascript\n// THIS IS A START SCRIPT FOR THE PACKACAGE\n\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing\n    F.route('/hello-world/', view_greeting);\n\n    // Mapping for static files\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `/packages/helloworld/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `/packages/helloworld/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Run app:__\n\n```bash\n$\u00a0node debug.js\n```\n\nOpen: `http://0.0.0.0:8000/hello-world/` in your browser.\n\n### Creating a package\n\n- open terminal in the app and open directory with your package `$ cd /packages/helloworld/`\n- this command `$ tpm create helloworld` will create a package `helloworld.package`\n- now you can use your new package\n\n---\n\n## Booting\n\nBooting is a special feature in Total.js framework. The file `index.js` in a package can contain:\n\n### Booting all files\n\nThe framework unpacks package and evaluates all files according to the framewok's directory structure. So the framework will load controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n### Booting as application\n\nThe framework unpacks package and it will run it as an application.\nExample: `F.http('debug', { package: 'myapp.package' })` and settings in a package:\n\n```javascript\nexports.booting = 'root';\n```\n\n### Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files. Each package is a module in the end.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\npackage#flow        (Object)   : { url: '/flow/' };\npackage#dashboard   (Object)   : { url: '/dashboard/' };\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }\n```",
       "group": "How does it work?",
       "name": "Packages"
     },
