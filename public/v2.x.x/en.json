@@ -10124,7 +10124,7 @@
         },
         {
           "default": "{}",
-          "body": "Gets the parsed data from the request body. Only for the POST/PUT methods.",
+          "body": "Gets the parsed data from the request body. Only for the POST/PUT/DELETE methods.",
           "name": "controller.body",
           "options": [
             "readonly",
