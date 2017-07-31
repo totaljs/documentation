@@ -1719,6 +1719,36 @@
           "return": "Framework"
         },
         {
+          "body": "Is processed static file?",
+          "name": "F.isProcessed",
+          "options": [
+            "+v1.8.0"
+          ],
+          "params": [
+            {
+              "body": "Filename or Request object.",
+              "name": "filename",
+              "type": "Request"
+            }
+          ],
+          "return": "Boolean"
+        },
+        {
+          "body": "Is processing static file?",
+          "name": "F.isProcessing",
+          "options": [
+            "+v1.8.0"
+          ],
+          "params": [
+            {
+              "body": "Filename or Request object.",
+              "name": "filename",
+              "type": "Request"
+            }
+          ],
+          "return": "Boolean"
+        },
+        {
           "body": "This function is very important for custom handling static files. It creates an queue list for files. The filename argument is directed into the temporary directory for future readings.\n\n### Example\n\n```javascript\n// Example with MongoDB\nF.exists(req, res, function(next, filename) {\n    GridStore.readFile(DB(), ObjectID.parse(id), function(err, fs, close) {\n\n        if (err) {\n            res.throw404();\n            next();\n            return;\n        }\n\n        var stream = fs.stream(true);\n\n        // IMPORTANT:\n        // we has to save a new file into the \"filename\" from F.exists() because the next\n        // request will be processed with the same \"filename\" again and we skip a database\n        // reading in future requests.\n        \n        var writer = Fs.createWriteStream(filename);\n\n        FINISHED(writer, function() {\n            DESTROY(writer);\n            F.responseImage(req, res, filename, function(img) {\n                img.background('white');\n                img.output('jpg');\n                img.quality(80);\n                img.minify();\n            }, undefined, next);\n        });\n\n        stream.pipe(writer);\n    });\n});\n```",
           "name": "F.exists",
           "options": [
