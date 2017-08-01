@@ -7598,36 +7598,6 @@
           "return": "Function"
         },
         {
-          "body": "Compares two dates. This method can be used in views.",
-          "name": "controller.date",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "body": "Compares type ('<', '<=', '>', '>=', '=')",
-              "name": "type",
-              "type": "String"
-            },
-            {
-              "default": "new Date()",
-              "body": "The date 1 to compare.",
-              "name": "d1",
-              "options": [
-                "optional"
-              ],
-              "type": "String or Date"
-            },
-            {
-              "body": "The date 2 to compare.",
-              "name": "d2",
-              "type": "String or Date"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
           "body": "Creates a change.",
           "example": "https://github.com/totaljs/examples/tree/master/changes",
           "name": "controller.change",
