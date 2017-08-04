@@ -12376,7 +12376,7 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v2.4.0 supports `skip` argument.",
+          "changelog": "+v2.8.0 supports `stream` argument.",
           "changetype": 2,
           "body": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "U.streamer",
@@ -12423,6 +12423,15 @@
               "options": [
                 "optional",
                 "+v2.4.0"
+              ]
+            },
+            {
+              "body": "It serves for end of processing non-flush data. E.g. solves a problem with processing of CSV files without `13` ascii char on the last line.",
+              "name": "stream",
+              "type": "Stream",
+              "options": [
+                "optional",
+                "+v2.8.0"
               ]
             }
           ],
@@ -21099,9 +21108,10 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
+          "changelog": "+v2.8.0 supports filename instead of buffer.",
+          "changetype": 2,
           "options": ["+v2.7.0"],
-          "body": "Uploads file as a multipart form-data.",
+          "body": "Uploads file as a multipart form-data.\n\n```javascript\n// Example\nRESTBuilder.make(function(builder) {\n    builder.file('file', '/path/to/file.jpg');\n});\n\n// Example\n// +v2.8.0\nRESTBuilder.make(function(builder) {\n    builder.file('file', '/path/to/file.tmp', 'logo.png');\n});\n\n// Example\nRESTBuilder.make(function(builder) {\n    Fs.readFile('...', function(err, buffer) {\n        builder.file('file', 'logo.png', buffer);\n    });\n});\n```",
           "name": "instance.file",
           "params": [
             {
@@ -21110,14 +21120,14 @@
               "type": "String"
             },
             {
-              "body": "Absolute filename or relative with declared \"buffer\".",
-              "name": "filename",
+              "body": "Can contain absolute path for non-buffer files or filename for buffer.",
+              "name": "path/filename",
               "type": "String"
             },
             {
               "body": "A buffer.",
-              "name": "buffer",
-              "type": "Buffer",
+              "name": "buffer/name",
+              "type": "Buffer/String",
               "options": [
                 "optional"
               ]
