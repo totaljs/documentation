@@ -16993,7 +16993,13 @@
           "body": "Capitalize the first letter of string (eg : test -> Test)",
           "name": "String.prototype.capitalize",
           "params": [
-
+            {
+              "name": "first",
+              "type": "Boolean",
+              "body": "Capitalize only the first char.",
+              "options": ["optional"],
+              "default": "false"
+            }
           ],
           "return": "String"
         }
