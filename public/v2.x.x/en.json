@@ -399,7 +399,7 @@
       "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http(‘debug’);\n```",
       "events": [
         {
-          "body": "This event is triggered when the framework is restarted `F.restart()`",
+          "body": "This event is triggered if the framework is restarted `F.restart()`",
           "name": "F.on('restart')",
           "options": [
             "+v2.0.0"
@@ -423,7 +423,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the part of the framework is updated",
+          "body": "This event is triggered if the part of the framework is updated",
           "name": "F.on('uptodate')",
           "options": [
             "+v2.4.0"
@@ -442,7 +442,7 @@
           ]
         },
         {
-          "body": "This event is triggered when a new route is added",
+          "body": "This event is triggered if a new route is added",
           "name": "F.on('route')",
           "params": [
             {
@@ -458,7 +458,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the request contains a file (begin)",
+          "body": "This event is triggered if the request contains a file (begin)",
           "name": "F.on('upload-begin')",
           "options": [
             "+v1.8.0"
@@ -477,7 +477,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the request contains a file (end)",
+          "body": "This event is triggered if the request contains a file (end)",
           "name": "F.on('upload-end')",
           "options": [
             "+v1.8.0"
@@ -496,7 +496,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the JavaScript code is evaluated",
+          "body": "This event is triggered if the JavaScript code is evaluated",
           "name": "F.on('eval')",
           "params": [
             {
@@ -510,7 +510,7 @@
           ]
         },
         {
-          "body": "This event is triggered when a new item is cached",
+          "body": "This event is triggered if a new item is cached",
           "name": "F.on('cache-set')",
           "params": [
             {
@@ -536,21 +536,21 @@
           ]
         },
         {
-          "body": "This event is triggered when a new module is installed",
+          "body": "This event is triggered if a new module is installed",
           "name": "F.on('module#name')",
           "params": [
 
           ]
         },
         {
-          "body": "This event is triggered when a new controller is installed",
+          "body": "This event is triggered if a new controller is installed",
           "name": "F.on('controller#name')",
           "params": [
 
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 400 HTTP status",
+          "body": "This event is triggered if the framework responds with: 400 HTTP status",
           "name": "F.on('error400')",
           "params": [
             {
@@ -571,7 +571,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 401 HTTP status",
+          "body": "This event is triggered if the framework responds with: 401 HTTP status",
           "name": "F.on('error401')",
           "params": [
             {
@@ -592,7 +592,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 403 HTTP status",
+          "body": "This event is triggered if the framework responds with: 403 HTTP status",
           "name": "F.on('error403')",
           "params": [
             {
@@ -613,7 +613,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 404 HTTP status",
+          "body": "This event is triggered if the framework responds with: 404 HTTP status",
           "name": "F.on('error404')",
           "params": [
             {
@@ -634,7 +634,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 408 HTTP status",
+          "body": "This event is triggered if the framework responds with: 408 HTTP status",
           "name": "F.on('error408')",
           "params": [
             {
@@ -655,7 +655,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework responds with: 431 HTTP status",
+          "body": "This event is triggered if the framework responds with: 431 HTTP status",
           "name": "F.on('error431')",
           "params": [
             {
@@ -676,21 +676,21 @@
           ]
         },
         {
-          "body": "This event is triggered when a new model is installed",
+          "body": "This event is triggered if a new model is installed",
           "name": "F.on('model#name')",
           "params": [
 
           ]
         },
         {
-          "body": "This event is triggered when a new config is installed",
+          "body": "This event is triggered if a new config is installed",
           "name": "F.on('config#name')",
           "params": [
 
           ]
         },
         {
-          "body": "This event is triggered when module, controller, model, etc. is installed using `framework.install()`",
+          "body": "This event is triggered if module, controller, model, etc. is installed using `framework.install()`",
           "name": "F.on('install')",
           "params": [
             {
@@ -722,7 +722,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework is re-configured",
+          "body": "This event is triggered if the framework is re-configured",
           "name": "F.on('configure')",
           "params": [
             {
@@ -733,11 +733,11 @@
           ]
         },
         {
-          "body": "This event is triggered when the framework refreshes the configuration file",
+          "body": "This event is triggered if the framework refreshes the configuration file",
           "name": "F.on('reconfigure')"
         },
         {
-          "body": "This event is triggered when the framework clears internal informations",
+          "body": "This event is triggered if the framework clears internal informations",
           "name": "F.on('clear')",
           "params": [
             {
@@ -756,7 +756,7 @@
           ]
         },
         {
-          "body": "This event is triggered when a problem is created",
+          "body": "This event is triggered if a problem is created",
           "example": "https://github.com/totaljs/examples/tree/master/problems",
           "name": "F.on('problem')",
           "params": [
@@ -792,7 +792,7 @@
           ]
         },
         {
-          "body": "This event is triggered when is a change",
+          "body": "This event is triggered if is a change",
           "example": "https://github.com/totaljs/examples/tree/master/changes",
           "name": "F.on('change')",
           "params": [
@@ -828,7 +828,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the item is removed from the cache",
+          "body": "This event is triggered if the item is removed from the cache",
           "name": "F.on('cache-expire')",
           "params": [
             {
@@ -846,7 +846,7 @@
         {
           "changetype": 2,
           "changelog": "Added a `signal` argument +v2.3.0",
-          "body": "This event is triggered when the framework has stopped. This event will not be triggered when the application is stopped by force",
+          "body": "This event is triggered if the framework has stopped. This event will not be triggered when the application is stopped by force",
           "name": "F.on('exit')",
           "params": [
             {
@@ -857,7 +857,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the HTTP request begins",
+          "body": "This event is triggered if the HTTP request begins",
           "name": "F.on('request')",
           "params": [
             {
@@ -873,7 +873,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the WebSocket begins the request",
+          "body": "This event is triggered if the WebSocket begins the request",
           "name": "F.on('websocket')",
           "params": [
             {
@@ -889,7 +889,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the HTTP request beings __(It's not valid for static file)__",
+          "body": "This event is triggered if the HTTP request beings __(It's not valid for static file)__",
           "name": "F.on('request-begin')",
           "params": [
             {
@@ -905,7 +905,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the HTTP request ends __(It's not valid for static file)__",
+          "body": "This event is triggered if the HTTP request ends __(It's not valid for static file)__",
           "name": "F.on('request-end')",
           "params": [
             {
@@ -921,7 +921,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the Websocket begins the request",
+          "body": "This event is triggered if the Websocket begins the request",
           "name": "F.on('websocket-begin')",
           "params": [
             {
@@ -937,7 +937,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the WebSocket ends the request",
+          "body": "This event is triggered if the WebSocket ends the request",
           "name": "F.on('websocket-end')",
           "params": [
             {
@@ -1000,7 +1000,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the controller renders head tags",
+          "body": "This event is triggered if the controller renders head tags",
           "name": "F.on('controller-render-head')",
           "params": [
             {
@@ -1011,7 +1011,7 @@
           ]
         },
         {
-          "body": "This event is triggered when the controller renders meta tags",
+          "body": "This event is triggered if the controller renders meta tags",
           "name": "F.on('controller-render-meta')",
           "params": [
             {
@@ -5644,7 +5644,7 @@
       "name": "FrameworkPath"
     },
     {
-      "body": "NoSQL embedded database is written by Peter Sirka. It's very great database for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```",
+      "body": "NoSQL embedded database is written by Peter Sirka. It's very great database for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```",
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -6030,7 +6030,7 @@
       ],
       "events": [
         {
-          "body": "Is triggered when a document is inserted into the database.",
+          "body": "Is triggered if a document is inserted into the database.",
           "name": "database.on('insert')",
           "options": [
             "+v2.3.0"
@@ -6045,7 +6045,7 @@
           ]
         },
         {
-          "body": "Is triggered when a document is updated in the database.",
+          "body": "Is triggered if a document is updated in the database.",
           "name": "database.on('update')",
           "return": "Database",
           "options": [
@@ -6060,7 +6060,7 @@
           ]
         },
         {
-          "body": "Is triggered when a document is modified in the database.",
+          "body": "Is triggered if a document is modified in the database.",
           "name": "database.on('modify')",
           "options": [
             "+v2.3.0"
@@ -6075,7 +6075,7 @@
           ]
         },
         {
-          "body": "Is triggered when a document is removed from the database.",
+          "body": "Is triggered if a document is removed from the database.",
           "name": "database.on('remove')",
           "return": "Database",
           "options": [
@@ -6180,6 +6180,34 @@
               "name": "limit",
               "type": "Number",
               "body": "How many documents can take it?"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "builder.contains",
+          "body": "A field needs to exist. It has to contain a value or if it's array it has to contain some item/items.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "field",
+              "type": "String",
+              "body": "A field name."
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "builder.empty",
+          "body": "A field needs to be empty. It has not to contain a value or if it's array it has to contain 0 items.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "field",
+              "type": "String",
+              "body": "A field name."
             }
           ]
         },
@@ -6572,6 +6600,70 @@
           "return": "DatabaseCounter"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.sum",
+          "body": "Writes a count (alternative to `.hit()`).",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+            },
+            {
+              "default": "1",
+              "name": "count",
+              "type": "Number",
+              "body": "Count for writing.",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.min",
+          "body": "Writes a `min`.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+            },
+            {
+              "name": "count",
+              "type": "Number",
+              "body": "A value."
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.max",
+          "body": "Writes a `max`.",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String",
+              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+            },
+            {
+              "name": "count",
+              "type": "Number",
+              "body": "A value."
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
           "name": "database.counter.remove",
           "body": "Removes all stats according to the identificator.",
           "return": "DatabaseCounter",
@@ -6586,12 +6678,12 @@
         },
         {
           "name": "database.counter.count",
-          "body": "Reads sum of all stats.",
+          "body": "Reads count of all `sum` stats.\n\n```javascript\n// Reads stats\ndatabase.counter.count(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.count('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.count(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.count(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});\n```",
           "return": "DatabaseCounter",
           "params": [
             {
               "name": "id",
-              "type": "String/Array String",
+              "type": "String/Array String/Boolean",
               "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
               "options": [
                 "optional"
@@ -6618,11 +6710,81 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 2,
-          "changelog": "+v2.4.0, Extended type of `id` argument about `Boolean` type.",
-          "name": "database.counter.yearly",
-          "body": "Reads yearly stats.\n\n```javascript\ndatabase.counter.yearly(function(err, response) {\n\t/*\n\t\t[{ year: 2016, value: 446 }]\n\t*/\n});\n\ndatabase.counter.yearly('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[{ year: 2016, value: 446 }]\n\t*/\n});\n\ndatabase.counter.yearly(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': [ { year: 2016, value: 29 } ],\n\t\t  '16090123150001clu1': [ { year: 2016, value: 36 } ] }\t\n\t*/\n});\n```",
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.minimum",
+          "body": "Reads a `minimum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.minimum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.minimum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.minimum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});\n```",
           "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Number/Object",
+                  "body": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.maximum",
+          "body": "Reads a `maximum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.maximum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.maximum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.maximum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Number/Object",
+                  "body": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.daily_sum",
+          "body": "Reads `sum` daily stats.\n\n```javascript\ndatabase.counter.daily_sum(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
           "params": [
             {
               "name": "id",
@@ -6653,11 +6815,11 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 2,
-          "changelog": "+v2.4.0, Extended type of `id` argument about `Boolean` type.",
-          "name": "database.counter.monthly",
-          "body": "Reads monthly stats.\n\n```javascript\ndatabase.counter.monthly(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});\n```",
+          "changetype": 1,
+          "name": "database.counter.daily_max",
+          "body": "Reads `max` daily stats.\n\n```javascript\ndatabase.counter.daily_max(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});\n```",
           "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
           "params": [
             {
               "name": "id",
@@ -6688,8 +6850,351 @@
           "return": "DatabaseCounter"
         },
         {
-          "name": "database.counter.stats",
-          "body": "Reads stats.\n\n```javascript\ndatabase.counter.stats(3, 2016, 8, function(err, response) {\n\t/*\n\t\t[ { id: '16083014300001idn1', count: 19 },\n\t\t  { id: '16083010190001yed1', count: 13 } ]\n\t */\n});\n\ndatabase.counter.stats(3, 2016, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n\ndatabase.counter.stats(3, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n```",
+          "changetype": 1,
+          "name": "database.counter.daily_min",
+          "body": "Reads `min` daily stats.\n\n```javascript\ndatabase.counter.daily_min(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.monthly_sum",
+          "body": "Reads `sum` monthly stats.\n\n```javascript\ndatabase.counter.monthly_sum(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.monthly_max",
+          "body": "Reads `max` monthly stats.\n\n```javascript\ndatabase.counter.monthly_max(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.monthly_min",
+          "body": "Reads `min` monthly stats.\n\n```javascript\ndatabase.counter.monthly_min(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.yearly_min",
+          "body": "Reads `min` yearly stats.\n\n```javascript\ndatabase.counter.yearly_min(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.yearly_max",
+          "body": "Reads `max` yearly stats.\n\n```javascript\ndatabase.counter.yearly_max(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "name": "database.counter.yearly_sum",
+          "body": "Reads `sum` yearly stats.\n\n```javascript\ndatabase.counter.yearly_sum(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});\n```",
+          "return": "DatabaseCounter",
+          "options": ["+v2.8.0"],
+          "params": [
+            {
+              "name": "id",
+              "type": "String/Array String/Boolean",
+              "options": [
+                "optional"
+              ],
+              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.stats_sum",
+          "body": "Reads `sum` stats.\n\n```javascript\ndatabase.counter.stats_sum(3, 2016, 8, function(err, response) {\n\t/*\n\t\t[ { id: '16083014300001idn1', count: 19 },\n\t\t  { id: '16083010190001yed1', count: 13 } ]\n\t */\n});\n\ndatabase.counter.stats_sum(3, 2016, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n\ndatabase.counter.stats_sum(3, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "top",
+              "type": "Number",
+              "body": "Limit for top results."
+            },
+            {
+              "name": "year",
+              "type": "Number",
+              "body": "Year.",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "month",
+              "type": "Number",
+              "body": "Month.",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "Results."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.stats_min",
+          "body": "Reads `min` stats.\n\n```javascript\ndatabase.counter.stats_min(3, 2016, 8, function(err, response) {\n\t/*\n\t\t[ { id: '16083014300001idn1', count: 19 },\n\t\t  { id: '16083010190001yed1', count: 13 } ]\n\t */\n});\n\ndatabase.counter.stats_min(3, 2016, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n\ndatabase.counter.stats_min(3, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n```",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "top",
+              "type": "Number",
+              "body": "Limit for top results."
+            },
+            {
+              "name": "year",
+              "type": "Number",
+              "body": "Year.",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "month",
+              "type": "Number",
+              "body": "Month.",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "Callback.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "response",
+                  "type": "Array",
+                  "body": "Results."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "database.counter.stats_max",
+          "body": "Reads `max` stats.\n\n```javascript\ndatabase.counter.stats_max(3, 2016, 8, function(err, response) {\n\t/*\n\t\t[ { id: '16083014300001idn1', count: 19 },\n\t\t  { id: '16083010190001yed1', count: 13 } ]\n\t */\n});\n\ndatabase.counter.stats_max(3, 2016, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n\ndatabase.counter.stats_max(3, function(err, response) {\n\t/*\n\t\t[ { id: '16090308350001hme1', count: 69 },\n\t\t  { id: '16090420320001hwk1', count: 62 },\n\t\t  { id: '16083015260001nwd1', count: 53 } ]\n\t */\n});\n```",
           "return": "DatabaseCounter",
           "params": [
             {
@@ -6752,7 +7257,7 @@
       ],
       "events": [
         {
-          "body": "Is triggered when the method `.hit()` is performed.",
+          "body": "Is triggered if the method `.hit()` is performed.",
           "name": "database.counter.on('hit')",
           "return": "DatabaseCounter",
           "options": [
@@ -6772,7 +7277,65 @@
           ]
         },
         {
-          "body": "Is triggered when an identificator is removed from the database.",
+          "changetype": 1,
+          "body": "Is triggered if the method `.min()` is performed.",
+          "name": "database.counter.on('min')",
+          "return": "DatabaseCounter",
+          "options": [
+            "+v2.8.0"
+          ],
+          "params": [
+            {
+              "body": "An identificator.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A value.",
+              "name": "count",
+              "type": "Number"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "Is triggered if the method `.max()` is performed.",
+          "name": "database.counter.on('max')",
+          "return": "DatabaseCounter",
+          "options": [
+            "+v2.8.0"
+          ],
+          "params": [
+            {
+              "body": "An identificator.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A value.",
+              "name": "count",
+              "type": "Number"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "Is triggered if the file with statistics is updated.",
+          "name": "database.counter.on('stats')",
+          "return": "DatabaseCounter",
+          "options": [
+            "+v2.8.0"
+          ],
+          "params": [
+            {
+              "body": "Count of changes",
+              "name": "count",
+              "type": "Number"
+            }
+          ]
+        },
+        {
+          "body": "Is triggered if an identificator is removed from the database.",
           "return": "DatabaseCounter",
           "name": "database.counter.on('remove')",
           "options": [
@@ -6787,7 +7350,7 @@
           ]
         },
         {
-          "body": "Is triggered when all stats are removed from the database.",
+          "body": "Is triggered if all stats are removed from the database.",
           "name": "database.counter.on('clear')",
           "options": [
             "+v2.3.0"
@@ -7025,7 +7588,7 @@
       ],
       "events": [
         {
-          "body": "Is triggered when a file is inserted into the database.",
+          "body": "Is triggered if a file is inserted into the database.",
           "name": "database.binary.on('insert')",
           "options": [
             "+v2.3.0"
@@ -7045,7 +7608,7 @@
           ]
         },
         {
-          "body": "Is triggered when a file is removed from the database.",
+          "body": "Is triggered if a file is removed from the database.",
           "name": "database.binary.on('remove')",
           "return": "DatabaseBinary",
           "options": [
@@ -7060,7 +7623,7 @@
           ]
         },
         {
-          "body": "Is triggered when all files are removed from the database.",
+          "body": "Is triggered if all files are removed from the database.",
           "name": "database.binary.on('clear')",
           "return": "DatabaseBinary",
           "options": [
@@ -7360,7 +7923,7 @@
       "body": "The __FrameworkController__ is created when the route executes an action. The framework knows two types of controllers: the `HTTP/HTTPS` controller and the `WebSocket` controller but the framework presents them as one.\n\n```javascript\n// Sets the controller name (default value: the controller filename)\n// Optional\nexports.id = 'My-Controller-Name';\n\n// Sets the controller dependencies. The controller can be depends on modules.\n// Optional\nexports.dependencies = ['module-name-A', 'module-name-B'];\n\n// Optional\nexports.install = function() {\n    F.route('/products/', view_products);\n    F.route('/api/', json_api, ['post', 'json']);\n};\n\n// Optional\nexports.uninstall = function() {\n    // uninstall delegate\n};\n```",
       "events": [
         {
-          "body": "This event is triggered when is the user connected.",
+          "body": "This event is triggered if is the user connected.",
           "name": "controller.on('open')",
           "options": [
             "websocket"
@@ -7374,7 +7937,7 @@
           ]
         },
         {
-          "body": "This event is triggered when is the user disconnect.",
+          "body": "This event is triggered if is the user disconnect.",
           "name": "controller.on('close')",
           "options": [
             "websocket"
@@ -7388,7 +7951,7 @@
           ]
         },
         {
-          "body": "This event is triggered when it received the message.",
+          "body": "This event is triggered if it received the message.",
           "name": "controller.on('message')",
           "options": [
             "websocket"
@@ -7407,7 +7970,7 @@
           ]
         },
         {
-          "body": "This event is triggered when it sends the message.",
+          "body": "This event is triggered if it sends the message.",
           "name": "controller.on('send')",
           "options": [
             "websocket"
@@ -7431,7 +7994,7 @@
           ]
         },
         {
-          "body": "This event is triggered when is the WebSocket destroyed.",
+          "body": "This event is triggered if is the WebSocket destroyed.",
           "name": "controller.on('destroy')",
           "options": [
             "websocket"
@@ -7441,7 +8004,7 @@
           ]
         },
         {
-          "body": "This event is triggered when is error.",
+          "body": "This event is triggered if is error.",
           "name": "controller.on('error')",
           "options": [
             "websocket"
