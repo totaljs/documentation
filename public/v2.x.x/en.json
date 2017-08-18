@@ -20783,7 +20783,9 @@
           "return": "ErrorBuilder"
         },
         {
-          "body": "Adds a new transformation for all ErrorBuilders. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function() {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return builder.join(';');\n});\n```",
+          "changetype": 2,
+          "changelog": "+v2.8.0 adds a new argument \"isResponse\" into the callback.",
+          "body": "Adds a new transformation for all ErrorBuilders. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function(isResponse) {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return isResponse ? builder.join(';') : builder; \n});\n```",
           "name": "ErrorBuilder.addTransform",
           "options": [
             "static method"
@@ -20798,7 +20800,12 @@
               "body": "A transformation function. This function has to return a transformed object. IMPORTANT: `this` === `ErrorBuilder`",
               "name": "fn",
               "params": [
-
+                {
+                  "name": "isResponse",
+                  "body": "Determines whether this instance will be serialized into the response. If yes, you need to perform a serialization to e.g. `JSON`.",
+                  "type": "Boolean",
+                  "options": ["+v2.8.0"]
+                }
               ],
               "return": "Object",
               "type": "Function"
