@@ -6105,6 +6105,26 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "name": "builder.log",
+          "body": "Appends a message into the database log file.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "message",
+              "type": "String",
+              "body": "A log message"
+            },
+            {
+              "name": "user",
+              "type": "String",
+              "body": "A user name",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "name": "builder.or",
           "body": "Creates `or`.\n\n```javascript\nbuilder.or()\nbuilder.where('age', 30);\nbuilder.where('age', 50);\nbuilder.where('age', 70);\nbuilder.end();\n\n// out of \"or\":\nscopebuilder.where('isremoved', false);```",
           "return": "DatabaseBuilder",
