@@ -5867,8 +5867,8 @@
             },
             {
               "name": "newDoc",
-              "type": "Object",
-              "body": "This document will be stored if the updated document doesn't exist.",
+              "type": "Object/Boolean",
+              "body": "This document will be stored if the updated document doesn't exist. `true` inserts first `doc` as a new document.",
               "options": [
                 "+v2.3.0",
                 "optional"
@@ -5890,8 +5890,8 @@
             },
             {
               "name": "newDoc",
-              "type": "Object",
-              "body": "This document will be stored if the updated document doesn't exist.",
+              "type": "Object/Boolean",
+              "body": "This document will be stored if the updated document doesn't exist. `true` inserts first `doc` as a new document.",
               "options": [
                 "+v2.3.0",
                 "optional"
