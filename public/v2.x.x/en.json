@@ -6107,6 +6107,22 @@
         {
           "changetype": 1,
           "options": ["+v2.8.0"],
+          "name": "builder.backup",
+          "body": "Database creates a backup of modified/removed/updated document into the separated file with date of created and name of user. It works only when DB performs: `update()`, `modify()` and `remove()`.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "user",
+              "type": "String",
+              "body": "A user name",
+              "options": ["optional"],
+              "default": "'unknown'"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
           "name": "builder.log",
           "body": "Appends a message into the database log file.",
           "return": "DatabaseBuilder",
