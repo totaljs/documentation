@@ -16403,16 +16403,16 @@
           "return": "Response"
         },
         {
-          "body": "Sends the file",
+          "body": "Sends a file",
           "name": "Response.prototype.file",
           "params": [
             {
-              "body": "The filename",
+              "body": "The absolute filename",
               "name": "filename",
               "type": "String"
             },
             {
-              "body": "The download filename",
+              "body": "A download name",
               "name": "download",
               "options": [
                 "optional"
