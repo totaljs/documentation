@@ -19142,6 +19142,30 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "body": "Clones an object to a new reference. Alias for `U.clone()`.",
+          "options": [
+            "+v2.8.0"
+          ],
+          "name": "CLONE",
+          "params": [
+            {
+              "body": "The source object.",
+              "name": "source",
+              "type": "Object"
+            },
+            {
+              "body": "Values to skip, e.g. `{ name: true, age: false }`.",
+              "name": "skip",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "Object"
+        },
+        {
           "body": "This method creates a safe scope via `try + catch`. It's useful for unhandled exceptions.\n\n```javascript\nTRY(function() {\n    throw new Error('NOT IMPLEMENTED');\n}, function(err) {\n    console.log('error', err);\n});\n\nconsole.log('CONTINUE');\n// OR\n\nTRY(function() {\n    throw new Error('NOT IMPLEMENTED');\n});\n\nconsole.log('CONTINUE');\n\n```",
           "options": [
             "+v1.9.3"
