@@ -8860,8 +8860,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Sets the custom response. The controller will be terminated.",
-          "example": "https://github.com/totaljs/examples/tree/master/xml-large",
+          "body": "Sets a custom response, you need to use `controller.res.` object for responding. This method prevents a timeout.",
           "name": "controller.custom",
           "options": [
             "http",
