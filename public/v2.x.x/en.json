@@ -5144,6 +5144,38 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.8.0"],
+          "body": "Sets the item into the cache as __persisted item__ and it returns the value. If the framework is restarted then all persisted items are alive.",
+          "name": "F.cache.set2",
+          "params": [
+            {
+              "body": "A name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A value.",
+              "name": "value",
+              "type": "Object"
+            },
+            {
+              "body": "The expiration and it can be the string, example: \"5 minutes\" or \"1 hour\".",
+              "name": "expire",
+              "type": "Date"
+            },
+            {
+              "body": "Is the value synchronized? Used for the cluster synchronization.",
+              "name": "sync",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Object"
+        },
+        {
           "default": "null",
           "body": "Gets the value from the cache.",
           "name": "F.cache.get",
