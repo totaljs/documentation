@@ -4580,6 +4580,16 @@
         {
           "changetype": 1,
           "default": "true",
+          "body": "If `true` then the framework filters some unhandled network errors like `EPIPE`, `ZLIB DISTANCE`, etc..",
+          "name": "allow-filter-errors",
+          "return": "Boolean",
+          "options": [
+            "+v2.8.0"
+          ]
+        },
+        {
+          "changetype": 1,
+          "default": "true",
           "body": "Can disable defer feature (can improve starting of the application).",
           "name": "allow-defer",
           "return": "Boolean",
