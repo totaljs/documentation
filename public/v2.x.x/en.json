@@ -13006,9 +13006,9 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v2.8.0 supports `stream` argument.",
+          "changelog": "+v2.8.0 supports `stream` argument and cancellation just `return false`.",
           "changetype": 2,
-          "body": "Simple string streamer.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    console.log(index, value.trim().parseXML());\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
+          "body": "Simple `Buffer` Streamer to `String`.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    \n    console.log(index, value.trim().parseXML());\n\n    // +v2.8.0: Cancels processing\n    // return false;\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});\n\n```",
           "name": "U.streamer",
           "example": "https://github.com/totaljs/examples/tree/master/streamer",
           "options": [
@@ -19560,6 +19560,44 @@
         },
         {
           "changetype": 1,
+          "options": ["+v2.8.0"],
+          "body": "Alias for `F.redirect()`.",
+          "example": "https://github.com/totaljs/examples/tree/master/redirect-host",
+          "name": "REDIRECT",
+          "params": [
+            {
+              "body": "The old host with procotol. Example: http://www.domain.com",
+              "name": "oldHost",
+              "type": "String"
+            },
+            {
+              "body": "The new host with procotol. Example: http://domain.com",
+              "name": "newHost",
+              "type": "String"
+            },
+            {
+              "default": "true",
+              "body": "Copies the full path into the new host.",
+              "name": "copyPath",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
+            },
+            {
+              "default": "false",
+              "body": "Sets the permanent redirect.",
+              "name": "permanent",
+              "options": [
+                "optional"
+              ],
+              "type": "Boolean"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
           "body": "Alias for `F.route()`",
           "name": "ROUTE",
           "options": [
@@ -23946,7 +23984,7 @@
       "name": "Developer tools"
     },
     {
-      "body": "## Webhosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | Node.js |\n| [__WebhostingY__](http://www.webhostingy.com/) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [AppFog](http://appfog.com/) | Node.js |\n| [Modulus](https://modulus.io/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Roští.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n## Webhosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__MongoLab__](http://mongolab.com/) | MongoDB |\n| [MongoDirector](http://mongodirector.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.io/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Iris Couch](https://www.iriscouch.com/) | CouchDB |\n| [Couchappy](https://www.couchappy.com/) | CouchDB |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
+      "body": "## Webhosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [AppFog](http://appfog.com/) | Node.js |\n| [Modulus](https://modulus.io/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Ro\u0161t\u00ed.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n##\u00a0Webhosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__MongoLab__](http://mongolab.com/) | MongoDB |\n| [MongoDirector](http://mongodirector.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.io/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Iris Couch](https://www.iriscouch.com/) | CouchDB |\n| [Couchappy](https://www.couchappy.com/) | CouchDB |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
       "group": "",
       "name": "Webhosting"
     },
@@ -24085,9 +24123,9 @@
       "changetype": 1
     },
     {
-      "body": "__Total.js Watcher__ `+v2.6.0` is built-in alternative to `debug.js` file. This watcher watches all changes in your application's code and it restarts the app automatically if needed.\n\n## How to run Total.js Watcher?\n\n- just __create a start__ script called e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// options.ip = '127.0.0.1';\n// options.port = parseInt(process.argv[2]);\n// options.config = { name: 'Total.js' };\n// options.sleep = 3000;\n// options.inspector = 9229;\n// options.debugger = 40894;\n\nrequire('total.js/debug')(options);\n```\n\n- then run it `$ node debug.js`\n- this file will watch all changes of server-side code",
+      "body": "Total.js `+v2.6.0` --> `debugging` mode watches all changes in your application's code and it restarts the app automatically if needed. Supports Node.js code inspection or watching of your own directories.\n\n## How to run Total.js Debug?\n\n- just __create a start__ script called e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\nrequire('total.js/debug')(options);\n```\n\n- then run it `$ node debug.js`\n- this file will watch all changes of server-side code",
       "group": "How does it work?",
-      "name": "Watcher",
+      "name": "Debugging",
       "changetype": 1
     },
     {
