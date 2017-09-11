@@ -2351,7 +2351,7 @@
         },
         {
           "changelog": "As filename can be a directory path",
-          "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript or CSS.\n\n```javascript\n// Merge file by file:\nF.merge('/merge.js', '/js/jquery.min.js', '/js/default.js');\n\n// or merge all files in directory:\nF.merge('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/*.js');\n```",
+          "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript or CSS.\n\n```javascript\n// Merge file by file:\nF.merge('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/default.js');\n\n// or merge all files in directory:\nF.merge('/merge.js', '/js/*.js');\n```",
           "name": "F.merge",
           "params": [
             {
@@ -2363,7 +2363,7 @@
               "options": [
                 "+v1.9.7 supports directories"
               ],
-              "body": "A file or directory to merge. The file is read from a \"public\" directory. If the path starts \"~\" the function returns the path from the root directory. IMPORTANT: supports URL addresses too",
+              "body": "A file or directory to merge. The file is read from a \"public\" directory. If the path starts \"~\" the function returns the path from the root directory. IMPORTANT: supports URL addresses too.",
               "name": "filename1",
               "type": "String"
             },
