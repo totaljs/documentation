@@ -2805,9 +2805,54 @@
           "name": "F.mode",
           "params": [
             {
-              "body": "New mode",
+              "body": "Framework mode (debug or release)",
               "name": "name",
               "type": "String"
+            },
+            {
+              "body": "HTTP object",
+              "name": "http",
+              "type": "Object"
+            },
+            {
+              "options": ["optinoal"],
+              "body": "A custom options",
+              "name": "options",
+              "type": "Object"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "options": ["+v2.6.0"],
+          "body": "Loads the framework with custom `http` module",
+          "name": "F.custom",
+          "params": [
+            {
+              "body": "Framework mode (debug or release)",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "HTTP object",
+              "name": "http",
+              "type": "Object"
+            },
+            {
+              "body": "A request object for extending of prototypes",
+              "name": "req",
+              "type": "Object"
+            },
+            {
+              "body": "A response object for extending of prototypes",
+              "name": "res",
+              "type": "Object"
+            },
+            {
+              "options": ["optinoal"],
+              "body": "A custom options",
+              "name": "options",
+              "type": "Object"
             }
           ],
           "return": "Framework"
