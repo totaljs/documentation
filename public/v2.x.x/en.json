@@ -4685,13 +4685,13 @@
         },
         {
           "default": "'/packages/'",
-          "body": "The default directory for packages. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for packages. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-packages",
           "return": "String"
         },
         {
           "default": "'/isomorphic/'",
-          "body": "The default directory for isomorphic code. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for isomorphic code. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-isomorphic",
           "return": "String",
           "options": [
@@ -4700,7 +4700,7 @@
         },
         {
           "default": "'/private/'",
-          "body": "The default directory for private files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for private files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-private",
           "return": "String",
           "options": [
@@ -4709,25 +4709,37 @@
         },
         {
           "default": "'/definitions/'",
-          "body": "The default directory for definitions. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for definitions. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-definitions",
           "return": "String"
         },
         {
           "default": "'/controllers/'",
-          "body": "The default directory for controllers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for controllers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.  __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-controllers",
           "return": "String"
         },
         {
+          "default": "'/databases/'",
+          "body": "The default directory for NoSQL databases. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
+          "name": "directory-controllers",
+          "return": "String"
+        },
+        {
+          "default": "'/configs/'",
+          "body": "The default directory for another `config` files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
+          "name": "directory-configs",
+          "return": "String"
+        },
+        {
           "default": "'/models/'",
-          "body": "The default directory for models. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for models. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-models",
           "return": "String"
         },
         {
           "default": "'/views/'",
-          "body": "The default directory for views. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for views. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-views",
           "return": "String"
         },
@@ -4741,19 +4753,19 @@
         },
         {
           "default": "'/resources/'",
-          "body": "The default directory for resources. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for resources. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-resources",
           "return": "String"
         },
         {
           "default": "'/source/'",
-          "body": "The default directory for business logic. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for business logic. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-source",
           "return": "String"
         },
         {
           "default": "'/public/'",
-          "body": "The default directory for publishing. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for publishing. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-public",
           "return": "String"
         },
@@ -4765,7 +4777,7 @@
         },
         {
           "default": "'/modules/'",
-          "body": "The default directory for modules. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for modules. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-modules",
           "return": "String"
         },
@@ -4777,13 +4789,13 @@
         },
         {
           "default": "'/tests/'",
-          "body": "The default directory for tests. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for tests. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-tests",
           "return": "String"
         },
         {
           "default": "'/workers/'",
-          "body": "The default directory for workers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
+          "body": "The default directory for workers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
           "name": "directory-workers",
           "return": "String"
         },
