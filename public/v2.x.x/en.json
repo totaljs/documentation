@@ -4253,6 +4253,14 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "default": "1500",
+          "body": "A default timeout in milliseconds for dependencies of Total.js modules.",
+          "name": "default-dependency-timeout",
+          "options": ["+v2.8.1", "internal"],
+          "return": "Number"
+        },
+        {
           "default": "0",
           "body": "The maximum opened file descriptors. The feature is disable when the value is `0`.",
           "name": "default-maximum-file-descriptors",
