@@ -4327,9 +4327,11 @@
           "return": "Number"
         },
         {
+          "changetype": 2,
+          "changelog": "Renamed from `allow-handle-static-files`",
           "default": "true",
-          "body": "Framework handles all static files if this option is true.",
-          "name": "allow-handle-static-files",
+          "body": "Framework handles all static files if the value is `true`.",
+          "name": "allow-static-files",
           "options": [
             "important"
           ],
@@ -19204,34 +19206,88 @@
         },
         {
           "changetype": 1,
-          "body": "Alias for `F.route()`",
-          "name": "ROUTE",
+          "body": "Alias for `F.cors()`",
+          "name": "CORS",
           "options": [
-            "+v2.7.0"
+            "+v2.8.1"
           ],
           "params": [
             {
-              "body": "URL address",
+              "body": "The relative URL, supports wildcard (asterix) routing",
               "name": "url",
               "type": "String"
             },
             {
-              "body": "The controller's action or view name.",
-              "name": "action",
-              "type": "Function/String",
-              "options": ["optional"]
-            },
-            {
-              "body": "Route flags.",
+              "default": "[]",
+              "body": "Additional options. Can contain `methods` (POST,PUT,DELETE,PATH,GET), `origin` (has to start with http:// or https://) and other values are `headers`. If the item in the array will be Boolean --> this will be a value for `credentials`",
               "name": "flags",
-              "type": "String Array",
-              "options": ["optional"]
+              "options": [
+                "optional"
+              ],
+              "type": "String Array"
             },
             {
-              "body": "Maximum length of message.",
-              "name": "length",
-              "type": "Number",
-              "options": ["optional"]
+              "body": "Allow credentials (cookies)",
+              "name": "credentials",
+              "type": "Boolean",
+              "default": "false"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "Alias for `F.onAuthorize = fn`",
+          "name": "AUTH",
+          "options": [
+            "+v2.8.1"
+          ],
+          "params": [
+            {
+              "body": "An authorization function.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "body": "The HTTP request",
+                  "name": "req",
+                  "type": "Object"
+                },
+                {
+                  "body": "The HTTP response",
+                  "name": "res",
+                  "type": "Object"
+                },
+                {
+                  "body": "The current request flags.",
+                  "name": "flags",
+                  "type": "Array"
+                },
+                {
+                  "body": "The callback function.",
+                  "name": "callback",
+                  "options": [
+                    "important",
+                    "required"
+                  ],
+                  "params": [
+                    {
+                      "body": "Is the user authorized?",
+                      "name": "isAuthorized",
+                      "type": "Boolean"
+                    },
+                    {
+                      "body": "The custom user object. This object will be associated with req.user.",
+                      "name": "user",
+                      "options": [
+                        "optional"
+                      ],
+                      "type": "Object"
+                    }
+                  ],
+                  "type": "Function"
+                }
+              ]
             }
           ],
           "return": "Framework"
