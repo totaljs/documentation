@@ -20513,6 +20513,26 @@
               "options": ["optional"]
             }
           ]
+        },
+        {
+          "changetype": 1,
+          "body": "Creates a WebSocketClient instance.",
+          "name": "WEBSOCKETCLIENT",
+          "return": "undefined",
+          "params": [
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "client",
+                  "type": "WebSocketClient",
+                  "body": "A new instance of WebSocketClient"
+                }
+              ]
+            }
+          ]
         }
       ],
       "name": "global",
