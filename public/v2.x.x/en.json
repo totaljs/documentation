@@ -7494,7 +7494,7 @@
       "body": "The __FrameworkController__ is created when the route executes an action. The framework knows two types of controllers: the `HTTP/HTTPS` controller and the `WebSocket` controller but the framework presents them as one.\n\n```javascript\n// Sets the controller name (default value: the controller filename)\n// Optional\nexports.id = 'My-Controller-Name';\n\n// Sets the controller dependencies. The controller can be depends on modules.\n// Optional\nexports.dependencies = ['module-name-A', 'module-name-B'];\n\n// Optional\nexports.install = function() {\n    F.route('/products/', view_products);\n    F.route('/api/', json_api, ['post', 'json']);\n};\n\n// Optional\nexports.uninstall = function() {\n    // uninstall delegate\n};```",
       "events": [
         {
-          "body": "This event is triggered if is the user connected.",
+          "body": "This event is triggered if the user is connected.",
           "name": "controller.on('open')",
           "options": [
             "websocket"
@@ -7508,7 +7508,7 @@
           ]
         },
         {
-          "body": "This event is triggered if is the user disconnect.",
+          "body": "This event is triggered if the user is disconnected.",
           "name": "controller.on('close')",
           "options": [
             "websocket"
@@ -7522,7 +7522,7 @@
           ]
         },
         {
-          "body": "This event is triggered if it received the message.",
+          "body": "This event is triggered if a message is received.",
           "name": "controller.on('message')",
           "options": [
             "websocket"
@@ -7541,7 +7541,7 @@
           ]
         },
         {
-          "body": "This event is triggered if it sends the message.",
+          "body": "This event is triggered if the message is sent.",
           "name": "controller.on('send')",
           "options": [
             "websocket"
@@ -7565,7 +7565,7 @@
           ]
         },
         {
-          "body": "This event is triggered if is the WebSocket destroyed.",
+          "body": "This event is triggered if the WebSocket is destroyed.",
           "name": "controller.on('destroy')",
           "options": [
             "websocket"
@@ -10255,6 +10255,16 @@
             "websocket"
           ],
           "return": "Boolean"
+        },
+        {
+          "changetype": 1,
+          "default": "''",
+          "body": "Gets the ID of selected sitemap.",
+          "name": "controller.sitemapid",
+          "options": [
+            "readonly"
+          ],
+          "return": "String"
         },
         {
           "default": "{}",
@@ -15233,6 +15243,155 @@
         {
           "body": "The file `content-type`.",
           "name": "file.type",
+          "return": "String"
+        }
+      ]
+    },
+    {
+      "body": "`+v2.9.0` supports a connection via WebSocket from Total.js as a __client__. Implementation is very simple and you need to use a global method `WEBSOCKETCLIENT(callback)` for creating a new client. __For example:__\n\n```javascript\nWEBSOCKETCLIENT(function(client) {\n\n    client.connect('ws://127.0.0.1:8000/');\n\n    client.on('open', function() {\n        console.log('OPEN');\n    });\n\n    client.on('close', function() {\n        console.log('CLOSE');\n    });\n\n    client.on('message', function(message) {\n        console.log('MESSAGE', message);\n    });\n\n    // Default options:\n    // client.options.type = 'json';\n    // client.options.compress = true;\n    // client.options.reconnect = 3000;\n    // client.options.encodedecode = true;\n\n    // Sending:\n    // client.send({ some: 'object' });\n\n});\n```",
+      "group": "Additional",
+      "methods": [
+        {
+          "body": "Performs a connection.",
+          "name": "client.connect",
+          "params": [
+            {
+              "body": "Absolute URL address",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A protocol.",
+              "name": "protocol",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "An origin.",
+              "name": "origin",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "WebSocketClient"
+        },
+        {
+          "body": "Closes the connection. The reason codes: <https://tools.ietf.org/html/rfc6455#section-7.4>",
+          "name": "client.close",
+          "params": [
+            {
+              "body": "The message as reason.",
+              "name": "message",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "default": "1000",
+              "body": "The reasong code.",
+              "name": "code",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            }
+          ],
+          "return": "WebSocketClient"
+        },
+        {
+          "body": "Sends a message.",
+          "name": "client.send",
+          "params": [
+            {
+              "body": "A message body.",
+              "name": "message",
+              "type": "String/Object or Buffer"
+            }
+          ],
+          "return": "WebSocketClient"
+        }
+      ],
+      "events": [
+        {
+          "body": "This event is triggered if the client is connected.",
+          "name": "client.on('open')",
+          "params": [
+          ]
+        },
+        {
+          "body": "This event is triggered if the client is disconnected.",
+          "name": "client.on('close')",
+          "params": [
+          ]
+        },
+        {
+          "body": "This event is triggered if some error is triggered.",
+          "name": "client.on('error')",
+          "params": [
+            {
+              "body": "Error/Exception",
+              "name": "err",
+              "type": "Error"
+            }
+          ]
+        },
+        {
+          "body": "This event is triggered if a message is received.",
+          "name": "client.on('message')",
+          "params": [
+            {
+              "body": "The message.",
+              "name": "message",
+              "type": "String/Object or Buffer"
+            }
+          ]
+        }
+      ],
+      "changetype": 1,
+      "name": "WebSocketClient",
+      "properties": [
+        {
+          "options": ["readonly"],
+          "body": "Determines whether the connection is closed.",
+          "name": "client.closed",
+          "return": "Boolean"
+        },
+        {
+          "body": "Contains a client options, default values:\n\n```javascript\nclient.options.type = 'json';\n// {String}\n// default: \"json\"\n// Type of communication\n// Can contain these values: \"json\", \"binary\" (ArrayBuffer) or \"text\" (Plain text)\n\nclient.options.compress = true;\n// {Boolean}\n// default: true\n// Enables WebSocket deflate compression\n\nclient.options.reconnect = 3000;\n// {Number} in milliseconds\n// default: 3000\n// Time for re-open closed connection\n\nclient.options.encodedecode = true;\n// {Boolean}\n// default: true\n// This option performs encodeURIComponent()/decodeURIComponent() for \"json\" and \"text\" values automatically\n// It solves a problem with UTF-8 encoding on the client-side\n```",
+          "name": "client.options",
+          "return": "Object"
+        },
+        {
+          "body": "Can contain preddefined cookies. Cookies need to be defined early than you open a connection. For example:\n\n```javascript\nclient.cookies['__user'] = 'g3fe9301sdbeop';```",
+          "name": "client.cookies",
+          "return": "Object"
+        },
+        {
+          "body": "Can contain preddefined custom headers. headers need to be defined early than you open a connection. For example:\n\n```javascript\nclient.headers['X-Token'] = 'g3fe9301sdbeop';```",
+          "name": "client.headers",
+          "return": "Object"
+        },
+        {
+          "options": ["readonly"],
+          "body": "Absolute URL address.",
+          "name": "client.url",
+          "return": "String"
+        },
+        {
+          "options": ["readonly"],
+          "body": "Origin, if exists.",
+          "name": "client.origin",
+          "return": "String"
+        },
+        {
+          "options": ["readonly"],
+          "body": "Origin, if exists.",
+          "name": "client.protocol",
           "return": "String"
         }
       ]
