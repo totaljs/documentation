@@ -7881,7 +7881,7 @@
           "return": "Array Object"
         },
         {
-          "body": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action(category) {\n\n    // e.g. category contains \"shoes\"    \n    var url = controller.sitemap_url('category', category);\n    console.log(url);\n    // OUTPUT: /products/shoes/\n    \n    // next example:\n    url = controller.sitemap_url('category', '');\n    console.log(url);\n    // OUTPUT: /products//    \n\n    // next example:\n    url = controller.sitemap_url('category', 'first', 'second');\n    console.log(url);\n    // OUTPUT: /products/first/\n}```",
+          "body": "Returns a URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action(category) {\n\n    // e.g. category contains \"shoes\"    \n    var url = controller.sitemap_url('category', category);\n    console.log(url);\n    // OUTPUT: /products/shoes/\n    \n    // next example:\n    url = controller.sitemap_url('category', '');\n    console.log(url);\n    // OUTPUT: /products//    \n\n    // next example:\n    url = controller.sitemap_url('category', 'first', 'second');\n    console.log(url);\n    // OUTPUT: /products/first/\n}```",
           "name": "controller.sitemap_url",
           "options": [
             "http"
@@ -7920,6 +7920,33 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "body": "Appends a new item into the `sitemap` for the current request. Updated sitemap will be used in the views. \n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\n```\n\n```javascript\nfunction some_action(category) {\n\n\t// Binds the sitemap\n\tcontroller.sitemap('products');\n\n\t// Appends new items\n\tcontroller.sitemap_add('homepage', 'Category 1', '/products/category-1/');\n\tcontroller.sitemap_add('homepage', 'Category 2', '/products/category-2/');\n\tcontroller.sitemap_add('homepage', 'Category 3', '/products/category-3/');\n\n\t// \"/\"\n\t// \"/products/category-1/\"\n\t// \"/products/category-2/\"\n\t// \"/products/category-3/\"\n\t// \"/products/\"\n\n}```",
+          "name": "controller.sitemap_add",
+          "options": [
+            "+v2.9.0",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "Parent identificator of sitemap.",
+              "name": "parent",
+              "type": "String"
+            },
+            {
+              "body": "A link name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A url address",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "Array"
+        },
+        {
           "body": "The method generates list of all items according to the parent `key` from the sitemap.",
           "name": "controller.sitemap_navigation",
           "options": [
@@ -7943,7 +7970,7 @@
           "return": "Array Object"
         },
         {
-          "body": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action() {\n\n    var name = controller.sitemap_name('category', 'Shoes');\n    console.log(name);\n    // OUTPUT: Shoes\n    \n    // next example:\n    name = controller.sitemap_name('category', 'Shirts');\n    console.log(name);\n    // OUTPUT: Shirts\n\n    // next example:\n    name = controller.sitemap_name('products', 'Shirts');\n    console.log(name);\n    // OUTPUT: Products\n\n    // next example:\n    name = controller.sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3');\n    console.log(name);\n    // OUTPUT: Homepage\n\n}```",
+          "body": "Returns a URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```javascript\nfunction some_action() {\n\n    var name = controller.sitemap_name('category', 'Shoes');\n    console.log(name);\n    // OUTPUT: Shoes\n    \n    // next example:\n    name = controller.sitemap_name('category', 'Shirts');\n    console.log(name);\n    // OUTPUT: Shirts\n\n    // next example:\n    name = controller.sitemap_name('products', 'Shirts');\n    console.log(name);\n    // OUTPUT: Products\n\n    // next example:\n    name = controller.sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3');\n    console.log(name);\n    // OUTPUT: Homepage\n\n}```",
           "name": "controller.sitemap_name",
           "options": [
             "http"
@@ -8004,7 +8031,7 @@
               "type": "Object"
             }
           ],
-          "return": "FrameworkController"
+          "return": "Array"
         },
         {
           "options": [
@@ -8029,7 +8056,7 @@
               "type": "String/Function"
             }
           ],
-          "return": "FrameworkController"
+          "return": "Array"
         },
         {
           "body": "Sets a layout for the current view.",
@@ -11448,7 +11475,34 @@
           ]
         },
         {
-          "body": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_url('category', 'shoes')}\n<!-- OUTPUT: /products/shoes/ -->\n\n@{sitemap_url('category', '')}\n<!-- OUTPUT: /products// -->\n\n@{sitemap_url('category', 'first', 'second')}\n<!-- OUTPUT: /products/first/ -->```",
+          "changetype": 1,
+          "body": "Appends a new item into the `sitemap` for the current request.",
+          "name": "@{sitemap_add}",
+          "options": [
+            "+v2.9.0",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "Parent identificator of sitemap.",
+              "name": "parent",
+              "type": "String"
+            },
+            {
+              "body": "A link name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A url address",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "body": "Returns a URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : Category       --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_url('category', 'shoes')}\n<!-- OUTPUT: /products/shoes/ -->\n\n@{sitemap_url('category', '')}\n<!-- OUTPUT: /products// -->\n\n@{sitemap_url('category', 'first', 'second')}\n<!-- OUTPUT: /products/first/ -->```",
           "name": "@{sitemap_url}",
           "params": [
             {
@@ -11532,7 +11586,7 @@
           "return": "Array Object"
         },
         {
-          "body": "Returns an URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_name('category', 'Shoes')};\n<!-- OUTPUT: Shoes -->\n\n<!-- next example: -->\n@{sitemap_name('category', 'Shirts')};\n<!-- OUTPUT: Shirts -->\n\n<!-- next example: -->\n@{sitemap_name('products', 'Shirts')};\n<!-- OUTPUT: Products -->\n\n<!-- next example: -->\n@{sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3')};\n<!-- OUTPUT: Homepage -->```",
+          "body": "Returns a URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_name('category', 'Shoes')};\n<!-- OUTPUT: Shoes -->\n\n<!-- next example: -->\n@{sitemap_name('category', 'Shirts')};\n<!-- OUTPUT: Shirts -->\n\n<!-- next example: -->\n@{sitemap_name('products', 'Shirts')};\n<!-- OUTPUT: Products -->\n\n<!-- next example: -->\n@{sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3')};\n<!-- OUTPUT: Homepage -->```",
           "name": "@{sitemap_name}",
           "params": [
             {
@@ -12286,7 +12340,7 @@
       "group": "Framework",
       "methods": [
         {
-          "body": "Download content or file from an url address.\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`",
+          "body": "Download content or file from a url address.\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`",
           "name": "U.download",
           "params": [
             {
@@ -19151,7 +19205,7 @@
               ]
             },
             {
-              "body": "An url address (relative/absolute).",
+              "body": "A url address (relative/absolute).",
               "name": "url",
               "type": "String",
               "options": [
@@ -23927,7 +23981,7 @@
       "name": "Modules"
     },
     {
-      "body": "> __The Package__ is same as Total.js module, but the Package can contain multiple files packed in the single `package` file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n__More informations__\n\n- the package is a plain text file with `.package` extension\n- the framework unpacks the package into the temporary directory\n- all packages are stored in `your-app/packages/` directory\n- `index.js` is the main file of the package and has to __the same structure as the module__\n- `exports.install` is executed automatically and once\n- views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- views and static files have to be mapped manually via `F.map()`\n- you can create unlimited count of packages\n- the package can be injected from an URL address\n- [Download packages](https://github.com/totaljs/modules)\n- `+v2.8.0` a package file can be large (mechanism supports streaming)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create a package?\n\nYou can create Total.js package easily. First you need to install Total.js framework from NPM as a __global__ modul. Then open terminal and write `$ tpm --help`.\n\n### Creating own packages (debug-mode)\n\n- create a directory `packages` in your application\n- then create sub-directory `/packages/helloworld/`\n- then create these files:\n\n__1. Create__ `/packages/helloworld/index.js`:\n\n```javascript\n// THIS IS A START SCRIPT FOR THE PACKACAGE\n\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing\n    F.route('/hello-world/', view_greeting);\n\n    // Mapping for static files\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `/packages/helloworld/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `/packages/helloworld/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Run app:__\n\n```bash\n$\u00a0node debug.js\n```\n\nOpen: `http://0.0.0.0:8000/hello-world/` in your browser.\n\n### Creating a package\n\n- open terminal in the app and open directory with your package `$ cd /packages/helloworld/`\n- this command `$ tpm create helloworld` will create a package `helloworld.package`\n- now you can use your new package\n\n---\n\n## Booting\n\nBooting is a special feature in Total.js framework. The file `index.js` in a package can contain:\n\n### Booting all files\n\nThe framework unpacks package and evaluates all files according to the framewok's directory structure. So the framework will load controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n### Booting as application\n\nThe framework unpacks package and it will run it as an application.\nExample: `F.http('debug', { package: 'myapp.package' })` and settings in a package:\n\n```javascript\nexports.booting = 'root';\n```\n\n### Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files. Each package is a module in the end.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\npackage#flow        (Object)   : { url: '/flow/' };\npackage#dashboard   (Object)   : { url: '/dashboard/' };\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }```",
+      "body": "> __The Package__ is same as Total.js module, but the Package can contain multiple files packed in the single `package` file.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n__More informations__\n\n- the package is a plain text file with `.package` extension\n- the framework unpacks the package into the temporary directory\n- all packages are stored in `your-app/packages/` directory\n- `index.js` is the main file of the package and has to __the same structure as the module__\n- `exports.install` is executed automatically and once\n- views can be mapped from the package easily: `controller.view('@packagename/myview')`\n- views and static files have to be mapped manually via `F.map()`\n- you can create unlimited count of packages\n- the package can be injected from a URL address\n- [Download packages](https://github.com/totaljs/modules)\n- `+v2.8.0` a package file can be large (mechanism supports streaming)\n\n`PACKAGE == MODULE with dependencies`\n\n---\n\n## How to create a package?\n\nYou can create Total.js package easily. First you need to install Total.js framework from NPM as a __global__ modul. Then open terminal and write `$ tpm --help`.\n\n### Creating own packages (debug-mode)\n\n- create a directory `packages` in your application\n- then create sub-directory `/packages/helloworld/`\n- then create these files:\n\n__1. Create__ `/packages/helloworld/index.js`:\n\n```javascript\n// THIS IS A START SCRIPT FOR THE PACKACAGE\n\nexports.install = function(options) {\n    console.log('Hello from the package!');\n    \n    // Routing\n    F.route('/hello-world/', view_greeting);\n\n    // Mapping for static files\n    F.map('/myview.js', '@helloworld/myview.js');\n};\n\nfunction view_greeting() {\n    // IMPORTANT: for the view will be used a layout out of this package.\n    // or create your own this.layout('@helloworld/layout')\n    this.view('@helloworld/myview');\n}\n```\n\n__2. Create__ `/packages/helloworld/myview.html`:\n\n```html\n<div>Hello from the package</div>\n<script src=\"/myview.js\"></script>\n```\n\n__3. Create__ `/packages/helloworld/myview.js`:\n\n```javascript\nalert('Hello world!');\n```\n\n__3. Run app:__\n\n```bash\n$\u00a0node debug.js\n```\n\nOpen: `http://0.0.0.0:8000/hello-world/` in your browser.\n\n### Creating a package\n\n- open terminal in the app and open directory with your package `$ cd /packages/helloworld/`\n- this command `$ tpm create helloworld` will create a package `helloworld.package`\n- now you can use your new package\n\n---\n\n## Booting\n\nBooting is a special feature in Total.js framework. The file `index.js` in a package can contain:\n\n### Booting all files\n\nThe framework unpacks package and evaluates all files according to the framewok's directory structure. So the framework will load controllers, modules, definitions, configs, etc. from the package.\n\n```javascript\nexports.booting = true;\n```\n\n### Booting as application\n\nThe framework unpacks package and it will run it as an application.\nExample: `F.http('debug', { package: 'myapp.package' })` and settings in a package:\n\n```javascript\nexports.booting = 'root';\n```\n\n### Custom options via configuration files\n\n`+v2.4.0` supports a new feature: the custom options for modules which they can be defined in configuration files. Each package is a module in the end.\n\n```html\n// type#name        (Object)   : { name: 'value', number: 20, boolean: true }\n\npackage#flow        (Object)   : { url: '/flow/' };\npackage#dashboard   (Object)   : { url: '/dashboard/' };\n\nmodule#monitor      (Object)   : { url: '/mymonitor/' }\nmodule#webcounter   (Object)   : { xhr: true, ip: true }```",
       "group": "How does it work?",
       "name": "Packages"
     },
