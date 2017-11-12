@@ -4087,7 +4087,7 @@
         {
           "default": "'/databases/'",
           "body": "The default directory for NoSQL databases. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-controllers",
+          "name": "directory-databases",
           "return": "String"
         },
         {
