@@ -7873,9 +7873,10 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "Identificator / Name. If is not defined then the framework binds the sitemap according to the `controller.sitemapid`.",
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "Array Object"
