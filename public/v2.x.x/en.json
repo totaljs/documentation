@@ -3223,26 +3223,6 @@
           "return": "Boolean"
         },
         {
-          "body": "Removes headers `Etag` and `Last-Modified` in the request and response.",
-          "name": "F.noCache",
-          "params": [
-            {
-              "body": "The HTTP request.",
-              "name": "req",
-              "type": "Object"
-            },
-            {
-              "body": "The HTTP response.",
-              "name": "res",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
           "example": "https://github.com/totaljs/examples/tree/master/waiting",
           "body": "The web server waits for opened task / tasks.\n\n__Example with MongoDB__:\n\n```javascript\n// This is definition file.\nvar db = null;\n\n// The web server waits for ending task\nF.wait('database');\n// Alternative: F.wait('database', true);\n\nrequire('mongobuilder').init(CONFIG('database'), function(err, instance) {\n\tif (err)\n\t\tF.error(err);\n\tdb = instance;\n\tF.emit('database');\n\tF.wait('database');\n\t// Alternative: F.wait('database', false);\n\t// The web server can continue.\n});\n\nF.database = function(collection) {\n\tif (collection)\n\t\treturn db.collection(collection);\n\treturn db;\n};```",
           "name": "F.wait",
@@ -15854,7 +15834,7 @@
           "return": "Request"
         },
         {
-          "body": "Disables the cache validation",
+          "body": "Disables HTTP cache.",
           "name": "Request.prototype.noCache",
           "params": [
 
@@ -16075,7 +16055,6 @@
           "body": "Disables HTTP cache",
           "name": "Response.prototype.noCache",
           "params": [
-
           ],
           "return": "Response"
         },
