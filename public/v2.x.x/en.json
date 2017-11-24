@@ -396,7 +396,7 @@
           "return": "String"
         }
       ],
-      "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http(‘debug’);```",
+      "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http('debug');```",
       "events": [
         {
           "body": "This event is triggered if the framework is restarted `F.restart()`",
@@ -4495,7 +4495,7 @@
       ]
     },
     {
-      "body": "The framework is using this class for storing views, resources, etc..\n\n```javascript\nframework.cache.add('key', 'value', ‘5 minutes’);\nconsole.log(framework.cache.get(‘key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.cache.get(‘key'));```",
+      "body": "The framework is using this class for storing views, resources, etc..\n\n```javascript\nframework.cache.add('key', 'value', '5 minutes');\nconsole.log(framework.cache.get('key'));\n\n// OR (is the same as)\n\ncontroller.cache.add('key', { name: 'Peter Širka' }, new Date().add('minute', 10));\nconsole.log(controller.cache.get('key'));```",
       "group": "Framework",
       "methods": [
         {
@@ -7686,7 +7686,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "message",
               "type": "String"
             }
@@ -8983,7 +8983,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9023,7 +9023,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9462,7 +9462,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9481,7 +9481,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9500,7 +9500,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9535,7 +9535,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9554,7 +9554,28 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
+              "name": "problem",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
+          "changetype": 1,
+          "body": "Sends `409 error - Conflict` into the response.",
+          "name": "controller.throw409",
+          "options": [
+            "+v2.9.1",
+            "important",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9573,7 +9594,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9592,7 +9613,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9611,7 +9632,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -9646,7 +9667,7 @@
           ],
           "params": [
             {
-              "body": "The problem description.",
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -12262,6 +12283,24 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "body": "`R` is a shortcut for `repository` keyword.",
+          "name": "@{R.customKey}",
+          "options": [
+            "+v2.9.1"
+          ],
+          "return": "Object"
+        },
+        {
+          "changetype": 1,
+          "body": "`M` is a shortcut for `model` keyword.",
+          "name": "@{M.customKey}",
+          "options": [
+            "+v2.9.1"
+          ],
+          "return": "Object"
+        },
+        {
           "body": "Gets the value from the framework global object.",
           "name": "@{global.customKey}",
           "return": "Object"
@@ -12317,7 +12356,7 @@
       ]
     },
     {
-      "body": "The __FrameworkUtils__ contains useful functions and important prototypes. The __FrameworkUtils__ class is available in each Node.js script according to the keyword `U.` or `Utils.` (it’s a global variable):\n\n```javascript\n// U.[method]\nU.trim({ name: '  PETER SIRKA  ' });\nconsole.log(U.isEmpty({}));```",
+      "body": "The __FrameworkUtils__ contains useful functions and important prototypes. The __FrameworkUtils__ class is available in each Node.js script according to the keyword `U.` or `Utils.` (it's a global variable):\n\n```javascript\n// U.[method]\nU.trim({ name: '  PETER SIRKA  ' });\nconsole.log(U.isEmpty({}));```",
       "group": "Framework",
       "methods": [
         {
@@ -16369,7 +16408,28 @@
           ],
           "params": [
             {
-              "body": "The problem description",
+              "body": "A problem description",
+              "name": "problem",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "changetype": 1,
+          "body": "Sends `409 error - Conflict` into the response",
+          "name": "Response.prototype.throw409",
+          "options": [
+            "+v2.9.1",
+            "important",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "A problem description.",
               "name": "problem",
               "options": [
                 "optional"
@@ -16388,7 +16448,7 @@
           ],
           "params": [
             {
-              "body": "The problem description",
+              "body": "A problem description",
               "name": "problem",
               "options": [
                 "optional"
@@ -16407,7 +16467,7 @@
           ],
           "params": [
             {
-              "body": "The problem description",
+              "body": "A problem description",
               "name": "problem",
               "options": [
                 "optional"
@@ -16426,7 +16486,7 @@
           ],
           "params": [
             {
-              "body": "The problem description",
+              "body": "A problem description",
               "name": "problem",
               "options": [
                 "optional"
@@ -16461,7 +16521,7 @@
           ],
           "params": [
             {
-              "body": "The problem description",
+              "body": "A problem description",
               "name": "problem",
               "options": [
                 "optional"
@@ -18555,7 +18615,7 @@
       ]
     },
     {
-      "body": "Gets a global objects or functions. All methods are meant as shortcuts.\n\n```javascript\nvar user = INCLUDE(‘user');\n\n//or\n\nvar error = new ErrorBuilder();```",
+      "body": "Gets a global objects or functions. All methods are meant as shortcuts.\n\n```javascript\nvar user = INCLUDE('user');\n\n//or\n\nvar error = new ErrorBuilder();```",
       "group": "Additional",
       "methods": [
         {
@@ -21078,8 +21138,8 @@
           "return": "Object"
         },
         {
-          "body": "Adds the error into the __ErrorBuilder__.\n\n```javascript\nvar builder = new ErrorBuilder();\n\n// Into the ErrorBuilder you can add the instance of ErrorBuilder.\ninstance.add(new ErrorBuilder());\n\ninstance.add(‘name’, ‘@‘); // Gets the error message according to: instance.onResource(‘name');\n// is same as\ninstance.add(‘name'); // Gets the error message according to: instance.onResource(‘name');\n\ninstance.add(‘name', ‘@name-minimum'); // Gets the error message according to: instance.onResource(‘name-minimum');\ninstance.add(‘name', 'You has to enter your name.'); // Skips getting of the value from the resource.```",
-          "name": "instance.add",
+          "body": "Adds the error into the __ErrorBuilder__.\n\n```javascript\nvar builder = new ErrorBuilder();\n\n// Into the ErrorBuilder you can add the instance of ErrorBuilder.\ninstance.push(new ErrorBuilder());\n\ninstance.push('name', '@'); // Gets the error message according to: instance.onResource('name');\n// is same as\ninstance.push('name'); // Gets the error message according to: instance.onResource('name');\n\ninstance.add('name', '@name-minimum'); // Gets the error message according to: instance.onResource('name-minimum');\ninstance.add('name', 'You has to enter your name.'); // Skips getting of the value from the resource.```",
+          "name": "instance.push",
           "params": [
             {
               "body": "The property name.",
@@ -21088,7 +21148,7 @@
             },
             {
               "default": "'@'",
-              "body": "The error message. If the error starts with \"@\" then builders loads error message from the resource file.",
+              "body": "An error message. If the error starts with \"@\" then builders loads error message from the resource file.",
               "name": "errorMessage",
               "options": [
                 "optional"
@@ -21099,10 +21159,11 @@
           "return": "ErrorBuilder"
         },
         {
-          "body": "Alias for `ErrorBuilder.add()`.",
+          "changetype": 1,
+          "body": "Adds a new error into the ErrorBuilder instance.",
           "name": "instance.push",
           "options": [
-            "alias"
+            "+v2.9.1"
           ],
           "params": [
             {
@@ -21112,12 +21173,17 @@
             },
             {
               "default": "'@'",
-              "body": "The error message. If the error starts with \"@\" then builders loads error message from the resource file.",
+              "body": "An error message. If the error starts with \"@\" then builders loads error message from the resource file.",
               "name": "errorMessage",
               "options": [
                 "optional"
               ],
               "type": "String"
+            },
+            {
+              "body": "HTTP status code.",
+              "name": "status",
+              "type": "Number"
             }
           ],
           "return": "ErrorBuilder"
@@ -21224,7 +21290,7 @@
           "return": "ErrorBuilder"
         },
         {
-          "body": "Serializes the ErrorBuilder into the JSON format. The collection is serialized as array (by default, it’s dependent on the __ErrorBuilder__ transformation):\n\n```javascript\n[{ name: 'Property', error: 'Error message.'}]\n```\n\n__The framework supports:__\n\n```javascript\ncontroller.json(ErrorBuilder);```",
+          "body": "Serializes the ErrorBuilder into the JSON format. The collection is serialized as array (by default, it's dependent on the __ErrorBuilder__ transformation):\n\n```javascript\n[{ name: 'Property', error: 'Error message.'}]\n```\n\n__The framework supports:__\n\n```javascript\ncontroller.json(ErrorBuilder);```",
           "name": "instance.json",
           "params": [
             {
