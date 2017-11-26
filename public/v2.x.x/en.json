@@ -12284,6 +12284,15 @@
         },
         {
           "changetype": 1,
+          "body": "`G` is a shortcut for `global` keyword.",
+          "name": "@{G.customKey}",
+          "options": [
+            "+v2.9.1"
+          ],
+          "return": "Object"
+        },
+        {
+          "changetype": 1,
           "body": "`R` is a shortcut for `repository` keyword.",
           "name": "@{R.customKey}",
           "options": [
