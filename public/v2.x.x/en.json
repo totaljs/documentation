@@ -3927,15 +3927,6 @@
           ]
         },
         {
-          "default": "true",
-          "body": "Can disable defer feature (can improve starting of the application).",
-          "name": "allow-defer",
-          "return": "Boolean",
-          "options": [
-            "+v2.5.0"
-          ]
-        },
-        {
           "default": "''",
           "body": "Sets the default timezone for the application. E.g. for the universal datetime set the property to `UTC`.",
           "name": "default-timezone",
