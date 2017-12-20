@@ -1060,7 +1060,6 @@
           "options": [
             "+v2.5.0"
           ],
-          "changetype": 1,
           "body": "Removes a scheduler",
           "name": "F.clearSchedule",
           "params": [
@@ -1088,7 +1087,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Rewrites a current SMTP server.",
           "options": [
             "+v2.5.0"
@@ -2684,7 +2682,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "options": ["+v2.7.0"],
           "body": "Returns all available prototypes in the callback. You can extend each part of Total.js easily.\n\n```javascript\nF.prototypes(function(proto) {\n    // proto.Chunker\n    // proto.Controller\n    // proto.Database\n    // proto.DatabaseBinary\n    // proto.DatabaseBuilder\n    // proto.DatabaseBuilder2\n    // proto.DatabaseCounter\n    // proto.ErrorBuilder\n    // proto.HttpFile\n    // proto.HttpRequest\n    // proto.HttpResponse\n    // proto.Image\n    // proto.Message\n    // proto.Page\n    // proto.Pagination\n    // proto.RESTBuilder\n    // proto.RESTBuilderResponse\n    // proto.SchemaBuilder\n    // proto.SchemaOptions\n    // proto.TransformBuilder\n    // proto.UrlBuilder\n    // proto.WebSocket\n    // proto.WebSocketClient\n});```",
           "name": "F.prototypes",
@@ -3739,7 +3736,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "Returns current listen path.",
           "name": "F.listenpath",
           "options": [
@@ -3913,7 +3909,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "false",
           "body": "Enables a small console debugging. The framework creates snapshot of `F.usage()` automatically into the `/usage.log` file.\n\n__Or alternative__:\n```javascript\nrequire('total.js').http('release', { debug: true });```",
           "name": "allow-debug",
@@ -3923,7 +3918,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "true",
           "body": "If `true` then the framework filters some unhandled network errors like `EPIPE`, `ZLIB DISTANCE`, etc..",
           "name": "allow-filter-errors",
@@ -3933,7 +3927,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "true",
           "body": "Can disable defer feature (can improve starting of the application).",
           "name": "allow-defer",
@@ -3952,7 +3945,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "null",
           "body": "starts a UNIX socket server listening for connections on the given path.",
           "name": "default-listenpath",
@@ -3962,7 +3954,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "200",
           "body": "Sets a default HTTP status when ErrorBuilder responds.",
           "name": "default-errorbuilder-status",
@@ -4291,7 +4282,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.5.0"
           ],
@@ -4327,7 +4317,6 @@
           "options": [
             "+v2.5.0"
           ],
-          "changetype": 1,
           "default": "false",
           "body": "If it's enabled then the framework adds `head` method for each web route.",
           "name": "allow-head",
@@ -4529,7 +4518,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "body": "Sets the item into the cache as __persisted item__ and it returns the value. If the framework is restarted then all persisted items are alive.",
           "name": "F.cache.set2",
@@ -4723,7 +4711,6 @@
       "group": "Framework",
       "methods": [
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "body": "Creates directories (if not exist) according to the path. Method is synchronous.",
           "name": "F.path.mkdir",
@@ -5146,7 +5133,6 @@
           "return": "Database/Object"
         },
         {
-          "changetype": 1,
           "options": ["+v2.7.0"],
           "name": "database.set",
           "body": "It sets a new value to database meta-data. Alias for `database.meta()`.",
@@ -5168,7 +5154,6 @@
           "return": "Database"
         },
         {
-          "changetype": 1,
           "options": ["+v2.7.0"],
           "name": "database.get",
           "body": "It reads a value according to key from meta-data of database. Alias for `database.meta()`.",
@@ -5259,7 +5244,6 @@
           "return": "Database"
         },
         {
-          "changetype": 1,
           "changelog": "+v2.8.0 - this is the previous version of `database.backup()`",
           "name": "database.backup2",
           "body": "Backups a database. The method can backup a whole file (any document won't be removed) or specific documents (documents will be moved to the backup file and they will be removed).",
@@ -5282,7 +5266,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.restore",
           "body": "This method restores database, counter, meta-info and all binary files.",
@@ -5601,7 +5584,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "builder.backup",
           "body": "Database creates a backup of modified/removed/updated document into the separated file with date of created and name of user. It works only when DB performs: `update()`, `modify()` and `remove()`.",
@@ -5617,7 +5599,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "builder.log",
           "body": "Appends a message into the database log file.",
@@ -5716,7 +5697,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "builder.contains",
           "body": "A field needs to exist. It has to contain a value or if it's array it has to contain some item/items.",
@@ -5730,7 +5710,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "builder.empty",
           "body": "A field needs to be empty. It has not to contain a value or if it's array it has to contain 0 items.",
@@ -6151,7 +6130,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.counter.sum",
           "body": "Writes a count (alternative to `.hit()`).",
@@ -6175,7 +6153,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.counter.min",
           "body": "Writes a `min`.",
@@ -6195,7 +6172,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.counter.max",
           "body": "Writes a `max`.",
@@ -6261,7 +6237,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.counter.minimum",
           "body": "Reads a `minimum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.minimum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.minimum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.minimum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
@@ -6296,7 +6271,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "name": "database.counter.maximum",
           "body": "Reads a `maximum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.maximum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.maximum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.maximum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
@@ -6331,7 +6305,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.daily_sum",
           "body": "Reads `sum` daily stats.\n\n```javascript\ndatabase.counter.daily_sum(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6366,7 +6339,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.daily_max",
           "body": "Reads `max` daily stats.\n\n```javascript\ndatabase.counter.daily_max(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6401,7 +6373,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.daily_min",
           "body": "Reads `min` daily stats.\n\n```javascript\ndatabase.counter.daily_min(function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 32 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.daily_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t  { id: '20160802', year: 2016, month: 8, day: 2, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.daily_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '20160801', year: 2016, month: 8, day: 1, value: 19 },\n\t\t     { id: '20160802', year: 2016, month: 9, day: 2, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '20160901', year: 2016, month: 9, day: 1  value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6436,7 +6407,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.monthly_sum",
           "body": "Reads `sum` monthly stats.\n\n```javascript\ndatabase.counter.monthly_sum(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6471,7 +6441,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.monthly_max",
           "body": "Reads `max` monthly stats.\n\n```javascript\ndatabase.counter.monthly_max(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -12224,7 +12193,7 @@
           "name": "@{author}",
           "return": "String",
           "options": [
-            "+2.2.0"
+            "+v2.2.0"
           ]
         },
         {
@@ -18915,6 +18884,108 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "body": "Sends a mail message. It's alias for `F.mail()`",
+          "name": "MAIL",
+          "params": [
+            {
+              "body": "To email",
+              "name": "address",
+              "type": "String or Array"
+            },
+            {
+              "body": "The subject. Can be translated automatically when it contains @(SUBJECT)",
+              "name": "subject",
+              "type": "String"
+            },
+            {
+              "body": "The view name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "The view model",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "The callback function",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "body": "Error handling",
+                  "name": "err",
+                  "type": "Error"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "Localization for the view",
+              "name": "language",
+              "options": [
+                "optional"
+              ],
+              "default": "'default'",
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v2.9.2"
+          ],
+          "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "Sends a logmail message. It's alias for `F.logmail()`",
+          "name": "LOGMAIL",
+          "params": [
+            {
+              "body": "To email",
+              "name": "address",
+              "type": "String or Array"
+            },
+            {
+              "body": "The subject",
+              "name": "subject",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "The plain text body. Supports only basic HTML formats <b>b</b>, <b>i</b>, etc.. New line is <b>\\n<b/>",
+              "name": "body",
+              "type": "String"
+            },
+            {
+              "body": "The callback function",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "body": "Error handling",
+                  "name": "err",
+                  "type": "Error"
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "options": [
+            "+v2.9.2"
+          ],
+          "return": "Framework"
+        },
+        {
           "body": "Gets the database instance. This function is the alias for `framework.nosql()`.",
           "name": "NOSQL",
           "options": [
@@ -19046,7 +19117,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "Clones an object to a new reference. Alias for `U.clone()`.",
           "options": [
             "+v2.8.0"
@@ -19432,7 +19502,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "options": ["+v2.8.0"],
           "body": "Alias for `F.redirect()`.",
           "example": "https://github.com/totaljs/examples/tree/master/redirect-host",
@@ -19656,7 +19725,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.group()`",
           "name": "GROUP",
           "options": [
@@ -19678,7 +19746,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.file()`",
           "name": "FILE",
           "options": [
@@ -19706,7 +19773,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.websocket()`",
           "name": "WEBSOCKET",
           "options": [
@@ -20238,7 +20304,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.on()`. Registers a new event.",
           "name": "ON",
           "options": [
@@ -20259,7 +20324,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.emit()`. Triggers event.",
           "name": "EMIT",
           "options": [
@@ -20291,7 +20355,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.removeListener()` and `F.removeAllListeners()`. Removes all event listeners.",
           "name": "OFF",
           "options": [
@@ -20315,7 +20378,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema query.\n\n```javascript\n$QUERY('Product', { page: 1 }, (err, response) => console.log(response));```",
           "name": "$QUERY",
           "options": [
@@ -20416,7 +20478,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `get`.\n\n```javascript\n$GET('Product', { id: 1 }, (err, response) => console.log(response));```",
           "name": "$GET",
           "options": [
@@ -20466,7 +20527,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Performas `make`.\n\n```javascript\n$MAKE('Product', { id: 1 }, (err, model) => console.log(err, model));```",
           "name": "$MAKE",
           "options": [
@@ -20527,7 +20587,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `workflow2` (without model).\n\n```javascript\n$WORKFLOW('Product', 'import', (err, response) => console.log(response));```",
           "name": "$WORKFLOW",
           "options": [
@@ -20582,7 +20641,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `transform2` (without model).\n\n```javascript\n$TRANSFORM('Product', 'import', (err, response) => console.log(response));```",
           "name": "$TRANSFORM",
           "options": [
@@ -20637,7 +20695,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `transform2` (without model).\n\n```javascript\n$OPERATION('Product', 'import', (err, response) => console.log(response));```",
           "name": "$OPERATION",
           "options": [
@@ -20692,7 +20749,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
           "name": "TEST",
           "return": "undefined",
@@ -20723,7 +20779,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
           "name": "FAIL",
           "return": "undefined",
@@ -20742,7 +20797,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
           "name": "OK",
           "return": "undefined",
@@ -20762,6 +20816,7 @@
         },
         {
           "changetype": 1,
+          "options": ["+v2.9.0"],
           "body": "Creates a WebSocketClient instance.",
           "name": "WEBSOCKETCLIENT",
           "return": "undefined",
@@ -21844,7 +21899,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.5.0"
           ],
@@ -21980,7 +22034,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v2.7.0"],
           "body": "Sets `Bot` phrase into the `User-Agent` header.",
           "name": "instance.robot",
@@ -21989,7 +22042,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v2.7.0"],
           "body": "Sets `iPhone` phrase into the `User-Agent` header.",
           "name": "instance.mobile",
@@ -22568,7 +22620,6 @@
           "options": [
             "+v2.6.0"
           ],
-          "changetype": 1,
           "body": "Inherits fields and methods from another schema.",
           "name": "SchemaBuilderEntity.inherit",
           "params": [
@@ -22653,7 +22704,6 @@
           "return": "SchemaBuilderEntity"
         },
         {
-          "changetype": 1,
           "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" when the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\t\n});```",
           "name": "SchemaBuilderEntity.required",
           "options": ["+v2.9.0"],
@@ -24135,8 +24185,7 @@
     },
     {
       "name": "Chat with authors",
-      "url": "https://messenger.totaljs.com",
-      "changetype": 1
+      "url": "https://messenger.totaljs.com"
     },
     {
       "name": "Wiki",
@@ -24279,7 +24328,7 @@
     {
       "changetype": 2,
       "changelog": "+v2.4.0 adds up-to-date feature.",
-      "body": "A dependency file `/dependencies` (`+v1.9.0`) is very helpful for installing different dependencies from URL address like models, modules, controllers, configuration files, packages, etc.. The dependency file `/dependencies` is a plain text and has same syntax as __framework config file__.\n\n```html\n/controllers\n/debug.js\n/release.js\n/dependencies\n```\n\n## How does it work?\n\nFile: `/dependencies` with:\n\n```html\nmodule              : https://cdn.totaljs.com/monitor.js\npackage             : https://cdn.totaljs.com/console.package\npackage             : https://cdn.totaljs.com/webcounter.js --> { \"ip\": true }\n```\n\n## How to define a custom settings for dependency?\n\nExample:\n\n```html\npackage            : http://url-address.com --> { \"custom-settings\": \"serialized in JSON format\" }\n```\n\n\n## Up-To-Date feature\n\n`+2.4.0` supports up-to-date feature and now your dependencies can be up-to-date.\n\n```html\n// type (INTERVAL)  : URL ADDRESS --> OPTIONAL OPTIONS\npackage  (1 day)    : http://url-address.com --> { \"custom-settings\": \"serialized in JSON format\" }\n```\n",
+      "body": "A dependency file `/dependencies` (`+v1.9.0`) is very helpful for installing different dependencies from URL address like models, modules, controllers, configuration files, packages, etc.. The dependency file `/dependencies` is a plain text and has same syntax as __framework config file__.\n\n```html\n/controllers\n/debug.js\n/release.js\n/dependencies\n```\n\n## How does it work?\n\nFile: `/dependencies` with:\n\n```html\nmodule              : https://cdn.totaljs.com/monitor.js\npackage             : https://cdn.totaljs.com/console.package\npackage             : https://cdn.totaljs.com/webcounter.js --> { \"ip\": true }\n```\n\n## How to define a custom settings for dependency?\n\nExample:\n\n```html\npackage            : http://url-address.com --> { \"custom-settings\": \"serialized in JSON format\" }\n```\n\n\n## Up-To-Date feature\n\n`+v2.4.0` supports up-to-date feature and now your dependencies can be up-to-date.\n\n```html\n// type (INTERVAL)  : URL ADDRESS --> OPTIONAL OPTIONS\npackage  (1 day)    : http://url-address.com --> { \"custom-settings\": \"serialized in JSON format\" }\n```\n",
       "group": "How does it work?",
       "name": "File: dependencies"
     },
@@ -24299,12 +24348,6 @@
       "body": "## Blocks\n\nThe framework (`+v1.9.3`) has great mechanism for web development. Blocks can divide JavaScript, CSS or HTML into the multiple blocks. The blocks has to be used with `F.map()` or `F.merge()`.\n\n- [Example](https://github.com/totaljs/examples/tree/master/blocks)\n\n### Block definition\n\n- each block has to begin via `@{block nameA, nameB, ...}` or `@{BLOCK nameA, nameB, ...}`\n- each block has to ended via `@{end}` or `@{END}`\n- the block has to be defined in comment clause\n- the block name can contain multiple names\n- the block tags has to be defined on separated lines (position of `@{}` is not important)\n\nE.g. JavaScript:\n```javascript\nvar common_values = {};\n\n// ====================================\n// @{BLOCK admin}\n// ====================================\nalert('ADMIN');\n// ====================================\n// @{END}\n// ====================================\n\n// ====================================\n// @{BLOCK nameA, nameB}\n// ====================================\nalert('A');\n// ====================================\n// @{END}\n// ====================================\n\n// ====================================\n// @{BLOCK nameB, nameC}\n// ====================================\nalert('B');\n// ====================================\n// @{END}\n// ====================================\n```\n\nE.g. CSS:\n```css\n.common-styles {}\n\n/*\n * @{BLOCK admin}\n */\ndiv { background-color: red; }\n/*\n * @{END}\n */\n\n/*\n * @{BLOCK nameA, nameB}\n */\ndiv { content: 'A'; }\n/*\n * @{END}\n */\n\n/*\n * @{BLOCK nameB, nameC}\n */\ndiv { content: 'B'; }\n/*\n * @{END}\n */\n```\n\n### How to enable blocks?\n\n__Custom mapping:__\n\n```javascript\n// Enables \"admin\" block for admin.js\nF.map('/js/admin.js', '/js/common.js#admin');\n\n// Enables \"nameA\", \"nameB\" and \"nameC\" block for admin.js\nF.map('/js/admin.js', '/js/common.js#nameA,nameB,nameC');\n```\n\n\n__Merging:__\n\n```javascript\n// Enables \"admin\" block for admin.js\nF.merge('/js/admin.js', '/js/fileA.js', '/js/fileB.js', '/js/common.js#admin');\n\n// Enables \"nameA\", \"nameB\" and \"nameC\" block for admin.js\nF.merge('/js/admin.js', '/js/fileA.js', '/js/fileB.js', '/js/common.js#nameA,nameB,nameC');\n```\n",
       "group": "How does it work?",
       "name": "Blocks (JS+CSS+HTML)"
-    },
-    {
-      "body": "__Experimental__: Deferred functions can improve a performance of Total.js applications. The results below shows no-cached function vs cached function.\n\n```html\n[ No-cached .................... slowest (214 ms)\n[ Cached ....................... +72.0% fastest (60 ms)\n```\n\n__Example__:\n\n```javascript\n// A helper function\nfunction something_async(controller, callback) {\n    callback(controller);\n}\n\n// Worse performance\nfunction some_controller_action_nocached() {\n    var controller = this;\n    something_async(controller, function(controller) {\n        controller.plain('OK');\n    });\n}\n\n// +70% better performance\nfunction some_controller_action_cached() {\n    var controller = this;\n    something_async(controller, cached);\n}\n\nfunction cached(controller) {\n    controller.plain('OK');\n}\n```\n\n## How does it work?\n\n```javascript\nfunction some_controller_action() {\n    var controller = this;\n    something_async(controller, function DEFER(controller) {\n        controller.plain('OK');\n    });\n}\n```\n\nThe framework parses all `function DEFER` functions and saves them into the `F.temporary.defer` object. Then the mechanism replaces all `function DERER` for e.g. `something_async(controller, F.temporary.defer.D1936555)` in the source-code.\n\n__Deferred source-code__:\n\n```javascript\nfunction some_controller_action() {\n    var controller = this;\n    something_async(controller, F.temporary.defer.D1936555);\n}\n```\n\n### Good to know\n\n- you can use `function DEFER` in main project files `controllers`, `modules`, `definitions`, etc.\n- files with deffered functions are evaluated in temporary directory\n\n## How to enable it?\n\n- add this option `allow-defer  : true` into your `config`\n- everything will work automatically\n",
-      "group": "How does it work?",
-      "name": "Deferred functions",
-      "changetype": 1
     },
     {
       "body": "Total.js `+v2.6.0` --> `debugging` mode watches all changes in your application's code and it restarts the app automatically if needed. Supports Node.js code inspection or watching of your own directories.\n\n## How to run Total.js Debug?\n\n- just __create a start__ script called e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\nrequire('total.js/debug')(options);\n```\n\n- then run it `$ node debug.js`\n- this file will watch all changes of server-side code",
