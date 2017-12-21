@@ -8393,7 +8393,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Creates the request into the the another Total.js application.",
+          "body": "Creates the request into another Total.js application.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-proxy",
           "name": "controller.proxy",
           "options": [
