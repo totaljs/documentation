@@ -12826,8 +12826,9 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v2.5.0 added a new flags: \"noredirect\" and \"raw\"",
-          "body": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `< 8` reads the content with maximum size `8 kB`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- `noredirect` disables auto-redirect (+v2.5.0)\n- `raw` sends data as they are (+v2.5.0)\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`",
+          "changelog": "+v2.9.2 added a new flag: \"cookies\"",
+          "changetype": 2,
+          "body": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `< 8` reads the content with maximum size `8 kB`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- `noredirect` disables auto-redirect (+v2.5.0)\n- `raw` sends data as they are (+v2.5.0)\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`\n- `+v2.9.2` adds a new flag called `cookies` for persistency of cookies (Important: cookie object must be declared)",
           "name": "U.request",
           "params": [
             {
@@ -22168,6 +22169,34 @@
               "body": "A cookie value.",
               "name": "value",
               "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.9.2"],
+          "body": "Sets cookies.",
+          "name": "instance.cookies",
+          "params": [
+            {
+              "body": "Cookies as object (key/value). Value must be a `string`.",
+              "name": "obj",
+              "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v2.9.2"],
+          "body": "Allows persistent cookies (default: `false`). Important: cookies can be saved into the `instance.cookies()` object (you can create e.g. singleton for each RESTBuilder request with same `cookies` object.)\n\n```javascript\nvar cookies = {};\n\nfunction callrest(callback) {\n\tRESTBuilder.make(function(builder) {\n\t\tbuilder.cookies(cookies);\n\t\tbuilder.cook(true);\n\t\tbuilder.url('https://www.alza.sk');\n\t\tbuilder.get();\n\t\tbuilder.exec(callback);\n\t});\n}\n\ncallrest(function(err, response, output) {\n\tconsole.log(cookies);\n});\n```",
+          "name": "instance.cook",
+          "params": [
+            {
+              "body": "Is enabled?",
+              "name": "enable",
+              "type": "Boolean"
             }
           ],
           "return": "RESTBuilder"
