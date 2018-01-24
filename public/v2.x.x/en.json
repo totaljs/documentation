@@ -4060,13 +4060,13 @@
           "return": "String"
         },
         {
-          "body": "Which files are allowed by the framework for handling static files? Values in config files has to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic-accepts            : .jpg, .ico, .js```",
+          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic-accepts            : .jpg, .ico, .js```",
           "name": "static-accepts",
           "return": "String Array"
         },
         {
           "default": "[]",
-          "body": "This option adds all own values into `static-accepts` and it's not visible in `framework.config`. Values in config files has to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql```",
+          "body": "This option adds all own values into `static-accepts` and it's not visible in `framework.config`. Values in config files have to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql```",
           "name": "static-accepts-custom",
           "options": [
             "auxiliary"
