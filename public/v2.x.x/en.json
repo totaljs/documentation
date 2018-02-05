@@ -1000,6 +1000,19 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v2.9.3"],
+          "body": "This event is called every `request` to the `controller` with a specific name.\n\n```javascript\nON('@default', function(controller) {\n    // Your code\n};```",
+          "name": "F.on('@name-of-controller')",
+          "params": [
+            {
+              "body": "Controller",
+              "name": "controller",
+              "type": "Object"
+            }
+          ]
+        },
+        {
           "body": "This event is triggered if the controller renders head tags",
           "name": "F.on('controller-render-head')",
           "params": [
@@ -10050,6 +10063,15 @@
           "return": "String"
         },
         {
+          "body": "Gets a theme name.",
+          "name": "controller.themeName",
+          "options": [
+            "readonly",
+            "http"
+          ],
+          "return": "String"
+        },
+        {
           "body": "Gets the route.",
           "name": "controller.route",
           "options": [
@@ -16531,6 +16553,20 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["+v2.9.3"],
+          "body": "Replaces `{{ key }}` for a value.\n\n```javascript\nvar output = 'Hello {{ name }}!'.arg({ name: 'Peter' });\n```",
+          "name": "String.prototype.arg",
+          "params": [
+              {
+                "name": "obj",
+                "type": "Object",
+                "body": "Object with keys/values"
+              }
+          ],
+          "return": "String"
+        },
+        {
           "body": "The method is same as `String.localeCompare` but this method removes diacritics and performs comparing",
           "name": "String.prototype.localeCompare2",
           "params": [
@@ -18772,6 +18808,63 @@
               "body": "Modul name.",
               "name": "name",
               "type": "String"
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "options": ["+v2.9.0"],
+          "body": "Registers a new middleware. Alias to `F.middleware()`.",
+          "name": "MIDDLEWARE",
+          "params": [
+            {
+              "body": "The middleware name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "The function to execute.",
+              "name": "fn",
+              "options": [
+                "important"
+              ],
+              "params": [
+                {
+                  "body": "The HTTP Request.",
+                  "name": "req",
+                  "type": "Request"
+                },
+                {
+                  "body": "The HTTP Response. <b>IMPORTANT</b>: websocket includes net.Socket object.",
+                  "name": "res",
+                  "type": "Response/Socket"
+                },
+                {
+                  "body": "The next step.",
+                  "name": "next",
+                  "options": [
+                    "important"
+                  ],
+                  "type": "Function"
+                },
+                {
+                  "body": "A route (user-defined) options.",
+                  "name": "options",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "Object"
+                },
+                {
+                  "body": "The current controller (if exists).",
+                  "name": "controller",
+                  "options": [
+                    "optional"
+                  ],
+                  "type": "FrameworkController"
+                }
+              ],
+              "type": "Function"
             }
           ],
           "return": "Object"
@@ -24197,7 +24290,7 @@
       "name": "View engine"
     },
     {
-      "body": "`+v2.4.0`. __Components__ are a part of views and they can contain server-side implementation. `+v2.5.0` adds a support for groups.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n---\n\n__More informations__\n\n- The component is a single `.html` file stored in `/components/` directory.\n- Components are synchronous.\n- They have same functionality like views.\n- Components are compiled into the function.\n- Supports localization `@(Translate me)`.\n- Framework parses all inline styles from all components into the merged single file `/components.js` (compressed).\n- Framework parses all inline scripts from all components into the merged single file `/components.js` (compressed).\n- Links to static files are generated into the `@{head}` tag.\n- [Download __Component example__](https://github.com/totaljs/examples/tree/master/components)\n\n---\n\n## Single file declaration\n\nThe best practice is to store a server-side code and a client-side code of the component in the main component file.\n\n- __IMPORTANT__ framework parses `<script type=\"text/totaljs\"></script>` as server-side Total.js code\n\n__Create `/components/newsletter.html`__:\n\n```html\n<script type=\"text/totaljs\">\n\n    // +v2.5.0 optional\n    exports.group = 'Name of group';\n\n    exports.install = function() {\n        F.route('/api/newsletter/', json_newsletter, ['post']);\n    };\n\n    function json_newsletter() {\n        var self = this;\n        self.body.ip = self.ip;\n        self.body.created = F.datetime;\n        NOSQL('newsletter').insert(self.body);\n        self.json(SUCCESS(true));\n    }\n\n</script>\n\n<style>\n    .newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n    .newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n    .newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n    <div>Join to newsletter:</div>\n    <input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n    $(document).on('keypress', '.newsletter-input', function(e) {\n        if (e.keyCode !== 13)\n            return;\n        var el = $(this).closest('.newsletter');\n        $.post('/api/newsletter/', { email: this.value }, function(response) {\n            el.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n        });\n    });\n</script>\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n## Separated declaration\n\n__Create `/components/newsletter.html`__ (client-side):\n\n```html\n<style>\n    .newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n    .newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n    .newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n    <div>Join to newsletter:</div>\n    <input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n    $(document).on('keypress', '.newsletter-input', function(e) {\n        if (e.keyCode !== 13)\n            return;\n        var el = $(this).closest('.newsletter');\n        $.post('/api/newsletter/', { email: this.value }, function(response) {\n            el.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n        });\n    });\n</script>\n```\n\n__Create `/components/newsletter.js`__ (server-side):\n\n```html\n// +v2.5.0 optional\nexports.group = 'Name of group';\n\nexports.install = function() {\n    F.route('/api/newsletter/', json_newsletter, ['post']);\n};\n\nfunction json_newsletter() {\n    var self = this;\n    self.body.ip = self.ip;\n    self.body.created = F.datetime;\n    NOSQL('newsletter').insert(self.body);\n    self.json(SUCCESS(true));\n}\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n__Rendering all components by Group name__:\n\n```html\n<h2>Renders all components from the group</h2>\n@{components('Name of group')}\n```\n\n## Good to know\n\n### Static files according to group name\n\nTotal.js `v2.7.0` supports rendering of specific scripts/styles for component's group, for example:\n\n```html\n@{components('dashboard')}\n@{components('flowboard')}\n```\n\n__The framework will render__:\n\n```html\n<head>\n    <link rel=\"stylesheet\" href=\"/components.css?group=dashboard&version=1498544518093\" />\n    <script src=\"/components.js?group=dashboard&version=1498544518093\"></script>\n    <link rel=\"stylesheet\" href=\"/components.css?group=flowboard&version=1498544518093\" />\n    <script src=\"/components.js?group=flowboard&version=1498544518093\"></script>\n</head>\n```\n\nIf the view contains `@{component()}` the framework renders static files (js+css) from all registered components.\n\n### Hash\n\nBecause of HTTP cache, when the framework registers a new component it changes version hash. Therefore your `components.css` and `component.js` have still another hash e.g. `?version=ak38s`.\n\n### Renaming of static files\n\nYou can rename static files `.css` and `.js` of components via config file:\n\n__Default settings__:\n\n```html\nstatic-url-components    : /components.\n```\n\n__You can change it to e.g.__:\n\n```html\nstatic-url-components    : /components/all.\n```\n\n__The result will be:__\n- `/components/all.js`\n- `/components/all.css`",
+      "body": "`+v2.4.0`. __Components__ are a part of views and they can contain server-side implementation. `+v2.5.0` adds a support for groups.\n\n```plain\nInitialization: Modules --> Packages --> Models --> Themes --> Definitions --> Controllers --> Components\n```\n\n---\n\n__More informations__\n\n- The component is a single `.html` file stored in `/components/` directory.\n- Components are synchronous.\n- They have same functionality like views.\n- Components are compiled into the function.\n- Supports localization `@(Translate me)`.\n- Framework parses all inline styles from all components into the merged single file `/components.js` (compressed).\n- Framework parses all inline scripts from all components into the merged single file `/components.js` (compressed).\n- Links to static files are generated into the `@{head}` tag.\n- [Download __Component example__](https://github.com/totaljs/examples/tree/master/components)\n\n---\n\n## Single file declaration\n\nThe best practice is to store a server-side code and a client-side code of the component in the main component file.\n\n- __IMPORTANT__ framework parses `<script total></script>` as server-side Total.js code\n\n__Create `/components/newsletter.html`__:\n\n```html\n<script total>\n\n\t// +v2.5.0 optional\n\texports.group = 'Name of group';\n\n\texports.install = function() {\n\t\tF.route('/api/newsletter/', json_newsletter, ['post']);\n\t};\n\n\tfunction json_newsletter() {\n\t\tvar self = this;\n\t\tself.body.ip = self.ip;\n\t\tself.body.created = F.datetime;\n\t\tNOSQL('newsletter').insert(self.body);\n\t\tself.json(SUCCESS(true));\n\t}\n\n</script>\n\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter @{settings.key}:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter', { key: 'Custom settings value', something: 100 })}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n## Separated declaration\n\n__Create `/components/newsletter.html`__ (client-side):\n\n```html\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Create `/components/newsletter.js`__ (server-side):\n\n```javascript\n// +v2.5.0 optional\nexports.group = 'Name of group';\n\nexports.install = function() {\n\tF.route('/api/newsletter/', json_newsletter, ['post']);\n};\n\nfunction json_newsletter() {\n\tvar self = this;\n\tself.body.ip = self.ip;\n\tself.body.created = F.datetime;\n\tNOSQL('newsletter').insert(self.body);\n\tself.json(SUCCESS(true));\n}\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n__Rendering all components by Group name__:\n\n```html\n<h2>Renders all components from the group</h2>\n@{components('Name of group')}\n```\n\n## Good to know\n\n### Static files according to group name\n\nTotal.js `v2.7.0` supports rendering of specific scripts/styles for component's group, for example:\n\n```html\n@{components('dashboard')}\n@{components('flowboard')}\n```\n\n__The framework will render__:\n\n```html\n<head>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=dashboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=dashboard&version=1498544518093\"></script>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=flowboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=flowboard&version=1498544518093\"></script>\n</head>\n```\n\nIf the view contains `@{component()}` the framework renders static files (js+css) from all registered components.\n\n### Hash\n\nBecause of HTTP cache, when the framework registers a new component it changes version hash. Therefore your `components.css` and `component.js` have still another hash e.g. `?version=ak38s`.\n\n### Renaming of static files\n\nYou can rename static files `.css` and `.js` of components via config file:\n\n__Default settings__:\n\n```html\nstatic-url-components    : /components.\n```\n\n__You can change it to e.g.__:\n\n```html\nstatic-url-components    : /components/all.\n```\n\n__The result will be:__\n- `/components/all.js`\n- `/components/all.css`",
       "group": "How does it work?",
       "name": "Components"
     },
