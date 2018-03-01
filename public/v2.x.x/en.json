@@ -4645,7 +4645,7 @@
           "name": "F.path.public",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4660,7 +4660,7 @@
           "name": "F.path.isomporhic",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4678,7 +4678,7 @@
           "name": "F.path.private",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4696,7 +4696,7 @@
           "name": "F.path.configs",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4714,7 +4714,7 @@
           "name": "F.path.virtual",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4732,7 +4732,7 @@
           "name": "F.path.models",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4747,7 +4747,7 @@
           "name": "F.path.databases",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4762,7 +4762,7 @@
           "name": "F.path.logs",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4777,7 +4777,7 @@
           "name": "F.path.temp",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4792,7 +4792,7 @@
           "name": "F.path.workers",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4807,7 +4807,7 @@
           "name": "F.path.views",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4822,7 +4822,7 @@
           "name": "F.path.modules",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4837,7 +4837,7 @@
           "name": "F.path.definitions",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4852,7 +4852,7 @@
           "name": "F.path.controllers",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4867,7 +4867,7 @@
           "name": "F.path.tests",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4882,7 +4882,7 @@
           "name": "F.path.packages",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4897,7 +4897,7 @@
           "name": "F.path.resources",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
@@ -4912,7 +4912,22 @@
           "name": "F.path.root",
           "params": [
             {
-              "body": "The filename without path.",
+              "body": "A relative path",
+              "name": "filename",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "body": "Gets `themes` path.",
+          "name": "F.path.themes",
+          "params": [
+            {
+              "body": "A relative path",
               "name": "filename",
               "options": [
                 "optional"
