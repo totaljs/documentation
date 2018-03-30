@@ -18782,7 +18782,6 @@
       "name": "Array.prototype"
     },
     {
-      "changetype": 1,
       "body": "The __ArrayBuffer prototype__ is available in each Node.js / Total.js script. Prototypes are defined in the __FrameworkUtils__ `utils.js`. The __FrameworkUtils__ is a global variable.",
       "group": "Prototypes",
       "methods": [
