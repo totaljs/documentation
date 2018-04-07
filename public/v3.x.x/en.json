@@ -9242,7 +9242,7 @@
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.get` according to the `schema` which is defined in the `F.route()`.",
+          "body": "Executes `SchemaDeclaration.get` according to the `schema` which is defined in the `F.route()`.",
           "name": "controller.$get",
           "options": [
             "http"
@@ -9274,13 +9274,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.remove` according to the `schema` which is defined in the `F.route()`.",
+          "body": "Executes `SchemaDeclaration.remove` according to the `schema` which is defined in the `F.route()`.",
           "name": "controller.$remove",
           "options": [
             "http"
@@ -9312,13 +9312,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.query` according to the `schema` which is defined in the `F.route()`.",
+          "body": "Executes `SchemaDeclaration.query` according to the `schema` which is defined in the `F.route()`.",
           "name": "controller.$query",
           "options": [
             "http"
@@ -9350,13 +9350,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.save` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.save()` without validation.",
+          "body": "Executes `SchemaDeclaration.save` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.save()` without validation.",
           "name": "controller.$save",
           "options": [
             "http"
@@ -9388,7 +9388,7 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changetype": 2,
@@ -9435,13 +9435,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.transform` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.transform()` without validation.",
+          "body": "Executes `SchemaDeclaration.transform` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.transform()` without validation.",
           "name": "controller.$transform",
           "options": [
             "http"
@@ -9478,13 +9478,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.workflow` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.workflow()` without validation.",
+          "body": "Executes `SchemaDeclaration.workflow` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.workflow()` without validation.",
           "name": "controller.$workflow",
           "options": [
             "http"
@@ -9521,13 +9521,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v2.0.2"
           ],
-          "body": "Executes `SchemaBuilderEntity.hook` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.hook()` without validation.",
+          "body": "Executes `SchemaDeclaration.hook` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.hook()` without validation.",
           "name": "controller.$hook",
           "options": [
             "http"
@@ -9564,13 +9564,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.operation` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.operation()` without validation.",
+          "body": "Executes `SchemaDeclaration.operation` according to the `schema` which is defined in the `F.route()`. IMPORTANT: the model is `controller.body` and if the model is empty then the framework doesn't perform validation and executes `SchemaBuilder.operation()` without validation.",
           "name": "controller.$operation",
           "options": [
             "http"
@@ -9607,13 +9607,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v1.9.7"
           ],
-          "body": "Executes `SchemaBuilderEntity.async` according to the `schema` which is defined in the `F.route()`.",
+          "body": "Executes `SchemaDeclaration.async` according to the `schema` which is defined in the `F.route()`.",
           "name": "controller.$async",
           "options": [
             "http"
@@ -9646,7 +9646,7 @@
               "type": "Number"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sends `401 error - Unauthorized` into the response.",
@@ -19910,7 +19910,7 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Creates a new object according to the schema",
@@ -20425,7 +20425,7 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
@@ -20485,7 +20485,7 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "A simple async shortcut for getting a schema. This method waits max. 20 seconds for schema declaration (it not exists).",
@@ -20535,7 +20535,7 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Synchronous schema listing.",
@@ -20570,12 +20570,12 @@
                 {
                   "body": "Schema entity.",
                   "name": "schema",
-                  "type": "SchemaBuilderEntity"
+                  "type": "SchemaDeclaration"
                 }
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "This method can track a real end of the stream/response/request. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\n\nFINISHED(stream, function(err) {\n    console.log('This stream is really finished.');\n    DESTROY(stream);\n});```",
@@ -20926,7 +20926,7 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Executes a schema `get`.\n\n```javascript\n$GET('Product', { id: 1 }, (err, response) => console.log(response));```",
@@ -21035,7 +21035,7 @@
               "default": "false"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changetype": 1,
@@ -23335,26 +23335,14 @@
       "name": "URLBuilder"
     },
     {
-      "group": "Builders",
+      "group": "Schemas",
       "methods": [
-        {
-          "body": "Alias for SchemaBuilder.add()",
-          "name": "SchemaBuilder.create",
-          "params": [
-            {
-              "body": "Entity name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
         {
           "options": [
             "+v2.6.0"
           ],
           "body": "Inherits fields and methods from another schema.",
-          "name": "SchemaBuilderEntity.inherit",
+          "name": "schema.inherit",
           "params": [
             {
               "body": "Group name.",
@@ -23370,49 +23358,21 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Removes the entity or current group. If the `name` is not defined then will be removed the current group.",
-          "name": "SchemaBuilder.remove",
-          "params": [
-            {
-              "body": "The entity name.",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "SchemaBuilder"
-        },
-        {
-          "default": "undefined",
-          "body": "Gets the entity in current group.",
-          "name": "SchemaBuilder.get",
-          "params": [
-            {
-              "body": "The entity name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changetype": 2,
           "changelog": "+v2.9.0 extends \"required\" argument.",
           "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n});```",
-          "name": "SchemaBuilderEntity.define",
+          "name": "schena.define",
           "params": [
             {
-              "body": "The property name.",
+              "body": "Name of property/field.",
               "name": "name",
               "type": "String"
             },
             {
-              "body": "The property type.",
+              "body": "Type of property.",
               "name": "type",
               "type": "Object"
             },
@@ -23434,11 +23394,11 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" when the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\t\n});```",
-          "name": "SchemaBuilderEntity.required",
+          "name": "schema.required",
           "options": [
             "+v2.9.0"
           ],
@@ -23454,14 +23414,14 @@
               "type": "Boolean/Function"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "options": [
             "+v2.0.0"
           ],
           "body": "The schema allows not specified fieds, so when the schema is prepared then the framework doesn't remove allowed fields.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // ...\n    // ...\n    schema.allow('customfield1', 'customfield2', 'customfieldN');\n});```",
-          "name": "SchemaBuilderEntity.allow",
+          "name": "schema.allow",
           "params": [
             {
               "body": "The field name 1",
@@ -23485,15 +23445,15 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changelog": "the <b>model</b> has been replaced for <b>entityName</b>",
           "body": "Sets the entity validation.",
-          "name": "SchemaBuilderEntity.setValidate",
+          "name": "schema.setValidate",
           "params": [
             {
-              "body": "Properties to validate. Optional for `SchemaBuilderEntity.add(name, type, [>>REQUIRED<<])`",
+              "body": "Properties to validate. Optional for `SchemaDeclaration.add(name, type, [>>REQUIRED<<])`",
               "name": "name",
               "options": [
                 "optional"
@@ -23542,11 +23502,11 @@
               "type": "Boolean"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the default values.",
-          "name": "SchemaBuilderEntity.setDefault",
+          "name": "schema.setDefault",
           "params": [
             {
               "body": "The function.",
@@ -23571,11 +23531,11 @@
               "type": "Function"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "It's useful for readability.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('email', String, true);\n});\n\nNEWSCHEMA('Product').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('price', Number, true);\n});```",
-          "name": "SchemaBuilderEntity.make",
+          "name": "schema.make",
           "params": [
             {
               "body": "The function.",
@@ -23590,12 +23550,12 @@
               "type": "Function"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changelog": "added a <b>model</b> argument",
           "body": "Prepares the values. has to return a prepared object.",
-          "name": "SchemaBuilderEntity.setPrepare",
+          "name": "schema.setPrepare",
           "options": [
             "+v1.8.0"
           ],
@@ -23632,7 +23592,7 @@
         },
         {
           "body": "Sets the prefix for the ErrorBuilder.",
-          "name": "SchemaBuilderEntity.setPrefix",
+          "name": "schema.setPrefix",
           "options": [
             "+v1.8.0"
           ],
@@ -23643,11 +23603,11 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the resource for the ErrorBuilder.",
-          "name": "SchemaBuilderEntity.setResource",
+          "name": "schema.setResource",
           "options": [
             "+v1.8.0"
           ],
@@ -23658,11 +23618,11 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the save delegate.",
-          "name": "SchemaBuilderEntity.setSave",
+          "name": "schema.setSave",
           "params": [
             {
               "body": "A callback delegate",
@@ -23686,13 +23646,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Sets the insert delegate.",
-          "name": "SchemaBuilderEntity.setInsert",
+          "name": "schema.setInsert",
           "params": [
             {
               "body": "A callback delegate",
@@ -23715,13 +23675,13 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Sets the update delegate.",
-          "name": "SchemaBuilderEntity.setUpdate",
+          "name": "schema.setUpdate",
           "params": [
             {
               "body": "A callback delegate",
@@ -23744,11 +23704,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the get delegate.",
-          "name": "SchemaBuilderEntity.setGet",
+          "name": "schema.setGet",
           "params": [
             {
               "body": "A callback delegate",
@@ -23772,11 +23732,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the __error delegate__. This delegate can change behaviour of ErrorBuilder for the current schema.",
-          "name": "SchemaBuilderEntity.setError",
+          "name": "schema.setError",
           "params": [
             {
               "body": "The delegate.",
@@ -23809,11 +23769,11 @@
               "type": "Function"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the query delegate.",
-          "name": "SchemaBuilderEntity.setQuery",
+          "name": "schema.setQuery",
           "params": [
             {
               "body": "A callback delegate",
@@ -23837,11 +23797,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Sets the remove delegate.",
-          "name": "SchemaBuilderEntity.setRemove",
+          "name": "schema.setRemove",
           "params": [
             {
               "body": "A callback delegate",
@@ -23865,23 +23825,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Cleans the model (removes a helper functions from the model).",
-          "name": "SchemaBuilderEntity.clean",
-          "params": [
-            {
-              "body": "The model.",
-              "name": "model",
-              "type": "Object"
-            }
-          ],
-          "return": "Object"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Prepares the model and adds into it helpful functions.\n\n```javascript\nuser = GETSCHEMA('User').make(user);\nuser.$save();\n\n// Or for validation you has to use a callback argument\nGETSCHEMA('User').make(user, function(err, model) {\n\n    if (err)\n        return;\n\n    // model.$save([helper], [callback]);\n    // model.$remove([helper], [callback]);\n    // model.$transform(name, [helper], [callback]);\n    // model.$compose(name, [helper], [callback]);\n    // model.$workflow(name, [helper], [callback]);\n    // model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n    // model.$destroy();\n    // model.$clean();\n    // model.$prepare();\n    // model.$schema();\n    // model.$async([callback]);\n\n    // Async example\n    model.$async(function(err, result) {\n        // result === Array\n        console.log(err, 'xml: ' + result[2]);\n    }).$save().$workflow('send').$transform('xml');\n});```",
-          "name": "SchemaBuilderEntity.make",
+          "name": "schema.make",
           "params": [
             {
               "body": "The model.",
@@ -23901,7 +23849,7 @@
                 {
                   "body": "The prepared model.",
                   "name": "model",
-                  "type": "Object"
+                  "type": "SchemaInstance"
                 }
               ],
               "type": "Function",
@@ -23910,11 +23858,11 @@
               ]
             }
           ],
-          "return": "Object"
+          "return": "SchemaInstance"
         },
         {
           "body": "Adds a new transformation.",
-          "name": "SchemaBuilderEntity.addTransform",
+          "name": "schema.addTransform",
           "params": [
             {
               "body": "A transformation name.",
@@ -23926,41 +23874,25 @@
               "name": "fn",
               "params": [
                 {
-                  "body": "ErrorBuilder for managing errors.",
-                  "name": "error",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The model object (prepared and validated).",
-                  "name": "model",
-                  "type": "Object"
-                },
-                {
-                  "default": "undefined",
-                  "body": "Custom options",
-                  "name": "options",
-                  "type": "Object"
-                },
-                {
-                  "body": "The callback without the ErrorBuilder (The ErrorBuilder will added automatically if will contain some errors).",
+                  "body": "A callback delegate",
                   "name": "callback",
                   "params": [
                     {
-                      "body": "The result.",
-                      "name": "result",
-                      "options": [
-                        "optional"
-                      ],
+                      "body": "Schema options",
+                      "name": "$",
                       "type": "Object"
                     }
                   ],
                   "type": "Function"
                 },
                 {
-                  "default": "undefined",
-                  "body": "A controller instance when the schema is executed from the controller (+v2.3.0).",
-                  "name": "controller",
-                  "type": "FrameworkController"
+                  "body": "A functionality description.",
+                  "name": "description",
+                  "type": "String",
+                  "options": [
+                    "+v2.3.0",
+                    "optional"
+                  ]
                 }
               ],
               "type": "Function"
@@ -23975,11 +23907,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Adds a new workflow.",
-          "name": "SchemaBuilderEntity.addWorkflow",
+          "name": "schema.addWorkflow",
           "params": [
             {
               "body": "A callback delegate",
@@ -24003,11 +23935,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Adds a new hook (+v2.1.0). Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
-          "name": "SchemaBuilderEntity.addHook",
+          "name": "schema.addHook",
           "params": [
             {
               "body": "A callback delegate",
@@ -24016,7 +23948,7 @@
                 {
                   "body": "Schema options",
                   "name": "$",
-                  "type": "Object"
+                  "type": "SchemaOptions"
                 }
               ],
               "type": "Function"
@@ -24031,11 +23963,11 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Adds a new operation.",
-          "name": "SchemaBuilderEntity.addOperation",
+          "name": "schema.addOperation",
           "params": [
             {
               "body": "A callback delegate",
@@ -24044,7 +23976,7 @@
                 {
                   "body": "Schema options",
                   "name": "$",
-                  "type": "Object"
+                  "type": "SchemaOptions"
                 }
               ],
               "type": "Function"
@@ -24059,12 +23991,12 @@
               ]
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "default": "undefined",
           "body": "Finds the entity in current group.",
-          "name": "SchemaBuilderEntity.find",
+          "name": "schema.find",
           "params": [
             {
               "body": "The entity name.",
@@ -24072,206 +24004,25 @@
               "type": "String"
             }
           ],
-          "return": "SchemaBuilderEntity"
+          "return": "SchemaDeclaration"
         },
         {
           "body": "Destroys the entity.",
-          "name": "SchemaBuilderEntity.destroy",
+          "name": "SchemaDeclaration.destroy",
           "params": [
 
           ],
           "return": "undefined"
         },
         {
-          "body": "Invokes a save with validation.",
-          "name": "SchemaBuilderEntity.save",
-          "params": [
-            {
-              "body": "The model.",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "default": "null",
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a get.",
-          "name": "SchemaBuilderEntity.get",
-          "params": [
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "default": "null",
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a remove.",
-          "name": "SchemaBuilderEntity.remove",
-          "params": [
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "default": "null",
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a query.",
-          "name": "SchemaBuilderEntity.query",
-          "params": [
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "default": "null",
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a validation.",
-          "name": "SchemaBuilderEntity.validate",
-          "params": [
-            {
-              "body": "The object for validation.",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "default": "''",
-              "body": "The prefix.",
-              "name": "resourcePrefix",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "default": "'default'",
-              "body": "The resource name.",
-              "name": "resourceName",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "ErrorBuilder"
-        },
-        {
           "body": "Creates the empty object according to the schema.",
-          "name": "SchemaBuilderEntity.create",
-          "params": [
-
-          ],
-          "return": "Object"
+          "name": "schema.create",
+          "params": [],
+          "return": "SchemaInstance"
         },
         {
-          "body": "Prepares data according to the schema.",
-          "name": "SchemaBuilderEntity.prepare",
-          "params": [
-            {
-              "body": "The object.",
-              "name": "model",
-              "type": "Object"
-            }
-          ],
-          "return": "Object"
-        },
-        {
-          "body": "The filter finds all properties by search phrase in __defined properties__ according `custom` argument.\n\n- search phrase supports __String__, __RegExp__ and __Number__ searching\n- filtering with model returns `Object with values` otherwise `String Array` with property names\n\n---\n\n### Example for understanding\n\n__Defining some schema__:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // SchemaBuilderEntity.define(name, type, [required], [--> custom <--]);\n    schema.define('id', String, 'r'); // \"r\" = read\n    schema.define('name', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('email', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('ip', String, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n    schema.define('updated', Date, 'ru');  // \"ru\" = \"r\" read, \"u\" update\n    schema.define('created', Date, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n});\n```\n\n__Filtering without model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\nconsole.log(User.filter('r')); // finds only whole phrase\n// Output: ['id'];\n\nconsole.log(User.filter('*u')); // finds everything with \"u\"\n// Output: ['name', 'email', 'update'];\n\nconsole.log(User.filter('*c')); // finds everything with \"c\"\n// Output: ['name', 'email', 'ip', 'created'];\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', true));\n// Output: ['name', 'email', 'ip', 'update', 'created'];\n\nconsole.log(User.filter('*u', true));\n// Output: ['id', 'ip', 'created'];\n```\n\n__Filtering with model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\n// Creates an empty model:\nvar model = User.create();\nmodel.id = 2;\nmodel.name = 'Peter Sirka';\nmodel.email = 'petersirka@gmail.com';\nmodel.ip = '127.0.0.1';\nmodel.created = 'SOME DATE';\nmodel.updated = 'SOME DATE';\n\n// IMPORTANT: filtering\nconsole.log(User.filter('r', model)); // finds only whole phrase\n// Output: { id: 2 };\n\nconsole.log(User.filter('*u', model)); // finds everything with \"u\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*c', model)); // finds everything with \"c\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', ip: '127.0.0.1', created: 'SOME DATE' }\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', model, true));\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*u', model, true));\n// Output: { id: 2, ip: '127.0.0.1', created: 'SOME DATE' }\n```\n\n### Why do we need the filter?\n\nThe filter is great feature for e.g. ORM mapping because you can get a specific data for insert (create) and specific data for e.g. update or read.\n",
-          "name": "SchemaBuilderEntity.filter",
+          "body": "The filter finds all properties by search phrase in __defined properties__ according `custom` argument.\n\n- search phrase supports __String__, __RegExp__ and __Number__ searching\n- filtering with model returns `Object with values` otherwise `String Array` with property names\n\n---\n\n### Example for understanding\n\n__Defining some schema__:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // SchemaDeclaration.define(name, type, [required], [--> custom <--]);\n    schema.define('id', String, 'r'); // \"r\" = read\n    schema.define('name', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('email', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('ip', String, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n    schema.define('updated', Date, 'ru');  // \"ru\" = \"r\" read, \"u\" update\n    schema.define('created', Date, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n});\n```\n\n__Filtering without model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\nconsole.log(User.filter('r')); // finds only whole phrase\n// Output: ['id'];\n\nconsole.log(User.filter('*u')); // finds everything with \"u\"\n// Output: ['name', 'email', 'update'];\n\nconsole.log(User.filter('*c')); // finds everything with \"c\"\n// Output: ['name', 'email', 'ip', 'created'];\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', true));\n// Output: ['name', 'email', 'ip', 'update', 'created'];\n\nconsole.log(User.filter('*u', true));\n// Output: ['id', 'ip', 'created'];\n```\n\n__Filtering with model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\n// Creates an empty model:\nvar model = User.create();\nmodel.id = 2;\nmodel.name = 'Peter Sirka';\nmodel.email = 'petersirka@gmail.com';\nmodel.ip = '127.0.0.1';\nmodel.created = 'SOME DATE';\nmodel.updated = 'SOME DATE';\n\n// IMPORTANT: filtering\nconsole.log(User.filter('r', model)); // finds only whole phrase\n// Output: { id: 2 };\n\nconsole.log(User.filter('*u', model)); // finds everything with \"u\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*c', model)); // finds everything with \"c\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', ip: '127.0.0.1', created: 'SOME DATE' }\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', model, true));\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*u', model, true));\n// Output: { id: 2, ip: '127.0.0.1', created: 'SOME DATE' }\n```\n\n### Why do we need the filter?\n\nThe filter is great feature for e.g. ORM mapping because you can get a specific data for insert (create) and specific data for e.g. update or read.\n",
+          "name": "schema.filter",
           "params": [
             {
               "body": "A search phrase. If the <b>search phrase</b> starts with <b>*</b> (asterix) then the method will search in whole string like full text search.",
@@ -24297,346 +24048,15 @@
             }
           ],
           "return": "Array or Object"
-        },
-        {
-          "body": "Invokes a transformation.",
-          "name": "SchemaBuilderEntity.transform",
-          "params": [
-            {
-              "body": "A transformation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The model for transformation.",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "A transformation result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a transformation without validation and model.",
-          "name": "SchemaBuilderEntity.transform2",
-          "params": [
-            {
-              "body": "A transformation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "A transformation result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a workflow.",
-          "name": "SchemaBuilderEntity.workflow",
-          "params": [
-            {
-              "body": "The workflow name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The model.",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The workflow result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes a workflow without validation and model.",
-          "name": "SchemaBuilderEntity.workflow2",
-          "params": [
-            {
-              "body": "The workflow name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The workflow result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "options": [
-            "+v2.1.0"
-          ],
-          "body": "Invokes a hook.",
-          "name": "SchemaBuilderEntity.hook",
-          "params": [
-            {
-              "body": "The hook name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The model.",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The workflow result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "options": [
-            "+v2.1.0"
-          ],
-          "body": "Invokes a hook without validation and model.",
-          "name": "SchemaBuilderEntity.hook2",
-          "params": [
-            {
-              "body": "The hook name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The workflow result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes an operation.",
-          "name": "SchemaBuilderEntity.operation",
-          "params": [
-            {
-              "body": "The operation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The model.",
-              "name": "model",
-              "type": "Object",
-              "options": [
-                "optional"
-              ]
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The operation result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
-        },
-        {
-          "body": "Invokes an operation withou validation and model.",
-          "name": "SchemaBuilderEntity.operation",
-          "params": [
-            {
-              "body": "The operation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "default": "undefined",
-              "body": "Custom options",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handler.",
-                  "name": "err",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "The operation result.",
-                  "name": "result",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "SchemaBuilderEntity"
         }
       ],
-      "name": "SchemaBuilder",
-      "changetype": 2,
-      "body": "The __SchemaBuilder__ is very helpful for models. You can validate and prepare data according to the schema. The __SchemaBuilder__ supports transformations, workflows, validations and standard CRUD operations (READ, SAVE, REMOVE, QUERY).\n\n__Best usage:__\n- create schemas into the `models` directory (e.g. `user`, `order`, `product`, etc.)\n- use schema in the routes (the framework validates received data automatically according to the schema)\n- [__Try AppDesigner for creating schemas__](https://designer.totaljs.com)\n- [Full SchemaBuilder example](https://github.com/totaljs/example)\n- [Download existed models with schemas](https://github.com/totaljs/models)\n\n__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'JSON');              // supports auto-validation when is required (the framework doesn't deserialize JSON to Object)\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// How to get back default values?\nconsole.log(schema.schema.propertyName.raw);\n```\n\n### Schema can be defined easily\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\t// Definition of properties\n\tschema.define('alias', 'string(30)', true);\n\tschema.define('age', Number, true);\n\tschema.define('token', String);\n\tschema.define('created', Date);\n\n\t// Definition of validation\n\tschema.setValidate(function(propertyName, value, path, schemaName, model) {\n\t\tif (propertyName === 'alias')\n\t\t\treturn value.length > 0;\n\t\tif (propertyName === 'age')\n\t\t\treturn value > 10 && value < 20 ? 'Only for teenegers.' : true;\n\t});\n\n\t// Definition of default values\n\tschema.setDefault(function(propertyName, isntPreparing, schemaName) {\n\t\tif (propertyName === 'created')\n\t\t\treturn new Date();\n\t\tif (propertyName === 'token')\n\t\t\treturn Utils.GUID(20);\n\t});\n\n\tschema.setSave(function(...){ });\n\tschema.setGet(function(...){ });\n\tschema.setRemove(function(...){ });\n\tschema.setQuery(function(...){ });\n});\n\n// Usage:\nGETSCHEMA('User').get(100, function(err, response) { ... });\n\n// or\nGETSCHEMA('User').make(OBJECT, function(err, model) {\n\t\n\tif (err) {\n\t\t// err === ErrorBuilder\n\t\tconsole.log(err);\n\t\treturn;\n\t}\n\n\t// model.$save([options], [callback]);\n\t// model.$remove([options], [callback]);\n\t// model.$transform(name, [options], [callback]);\n\t// model.$compose(name, [options], [callback]);\n\t// model.$workflow(name, [options], [callback]);\n\t// model.$validate([resourcePrefix], [resourceName], [errorBuilder]);\n\t// model.$destroy();\n\t// model.$clean();\n\t// model.$prepare();\n\t// model.$schema();\n\t// model.$async([callback], [result_index]);\n\n\t// +v2.0.1 (only for professionals)\n\t// model.$next(type, [name], options); -- adds a new operation (type: \"workflow\", \"transform\", \"operation\", \"save\", \"read\", \"query\", \"remove\") to async list as next step\n\t// model.$push(type, [name], options) -- adds a new operation (type: \"workflow\", \"transform\", \"operation\", \"save\", \"read\", \"query\", \"remove\") to async list as last step\n\t// model.$index(index) can changed \"obj.$async()\" -- index (the index can be string e.g. \"+1\" or \"-1\")\n\t// model.$callback(fn) -- can change an output in \"obj.$async()\" callback\n\t// model.$repository(name, [value]) -- can get / set temporary value\n\t// model.$output() -- sets the current \"callback(value)\" as output/result for \"obj.$async(function(err, output))\"\n\n\t// +v2.0.2\n\t// model.$hook(name, [options], [callback]);\n\n\t// +v2.3.0\n\t// Performs operations according to the `/workflows` file\n\t// model.$exec(name, [options], [callback]);\n\n\t// +v2.7.0\n\t// Can change a current instance of controller\n\t// model.$controller(new_instance_of_controller);\n\n\t// +v3.0.0\n\t// model.$insert([options], callback);    --> performs schema.setInsert()\n\t// model.$update([options], callback);    --> performs schema.setUpdate()\n\t// model.$stop();                         --> stops the \"$async()\" execution\n\t// model.$response([index])               --> can read a value from results of all registered async operations, index=null returns all values in Array, index='prev' returns previous value, index=NUMBER returns a result according to the index\n\n\t// Async example\n\tmodel.$async(function(err, result) {\n\t\t// result === Array\n\t\tconsole.log(err, 'xml: ' + result[2]);\n\t}).$save().$workflow('send').$transform('xml');\n});\n\n// or without callback (IMPORTANT: the code below doesn't validate the object)\nvar user = GETSCHEMA('User').make(OBJECT);\n```\n\n### `v2.5.0` Supports improved declarations: SCHEMA OPTIONS\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('email', 'Email', true);\n\n\tschema.setSave(function($) {\n\n\t\t// $.model\n\t\t// $.callback\n\t\t// $.error\n\t\t// $.options\n\t\t// $.controller\n\n\t\t// IMPORTANT:\n\t\t// New aliases work in all operations:\n\n\t\t// +v2.9.2: $.done([arg])\n\t\t// returns {Function} in the form return function(err, response) { arg ? success(err ? false : true, response) : success(err ? false : true); }\n\t\t// It can be used for one-line async operations\n\n\t\t// +v2.9.0: $.success([success], [value])\n\t\t// Alias to $.callback(SUCCESS(true))\n\n\t\t// +v2.9.0: $.invalid().push('error-privileges');\n\t\t// Returns {ErrorBuilder}\n\t\t// Alias to $.error.push('error-privileges') + $.callback()\n\n\t\t// +v2.9.0: $.user\n\t\t// Returns {Object}\n\t\t// Alias to $.controller.user\n\n\t\t// +v2.9.0: $.session\n\t\t// Returns {Object}\n\t\t// Alias to $.controller.session\n\n\t\t// +v2.9.0: $.files\n\t\t// Returns {Array Object}\n\t\t// Alias to $.controller.files\n\n\t\t// +v2.9.0: $.query\n\t\t// Returns {Object}\n\t\t// Alias to $.controller.query\n\n\t\t// +v2.9.0: $.body\n\t\t// Returns {Object}\n\t\t// Alias to $.controller.body\n\n\t\t// +v2.9.0: $.ip\n\t\t// Returns {String}\n\t\t// Alias to $.controller.ip\n\n\t\t// +v2.9.0: $.language\n\t\t// Returns {String}\n\t\t// Alias to $.controller.language\n\n\t\t// +v2.9.0: $.id\n\t\t// Returns {String/Number}\n\t\t// Alias to $.controller.id (\"$.controller.id\" contains a value of the first argument of dynamic routing)\n\n\t\t// +v2.9.3: $.params\n\t\t// Returns {Object}\n\t\t// Alias to $.controller.params\n\t\t// Reads values from dynamic routing params\n\n\t\t// +v3.0.0: $.DB()\n\t\t// returns DATABASE($.error);\n\n\t\t// +v3.0.0: $.clean()\n\t\t// returns $.model.$clean();\n\n\t\t// +v3.0.0: $.stop()\n\t\t// returns $.model.$stop();\n\n\t\t// +v3.0.0: $.next(type, name, [options])\n\t\t// returns $.model.$next();\n\n\t\t// +v3.0.0: $.response([index])\n\t\t// Method can read a value from results of all registered async operations, index=null returns all values in Array, index='prev' returns previous value, index=NUMBER returns a result according to the index\n\t\t// returns $.model.$response([index]);\n\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $.model\n\t\t// $.callback\n\t\t// $.error\n\t\t// $.options\n\t\t// $.controller\n\t});\n\n\tschema.addWorkflow('notify', function($) {\n\t\t// $.model\n\t\t// $.callback\n\t\t// $.error\n\t\t// $.options\n\t\t// $.controller\n\t});\n});\n```\n\n### Routing supports schemas\n\n```javascript\nexports.install = function() {\n\tF.route('/api/account/', json_account, ['*Account']); // +v1.9.7\n\tF.route('/api/registration/', json_registration, ['post', '*User']);\n};\n\nfunction json_account() {\n\tvar self = this;\n\n\t// +v1.9.7\n\t// self.$get([options], callback)\n\t// self.$remove([options], callback)\n\t// self.$save([options], callback)\n\t// self.$query([options], callback)\n\t// self.$transform(name, [options], callback)\n\t// self.$workflow([name, [options], callback)\n\t// self.$operation(name, [options], callback)\n\t// self.$async(callback, [index])\n\n\tself.$get(self.user, self.callback());\n\n\t// +v2.0.2\n\t// self.$hook([name, [options], callback)\n}\n\nfunction json_registration() {\n\tvar self = this;\n\tvar customOptions = {};\n\t\n\t// self.body.$async(self.callback(), 1 --> RESULT INDEX TO RETURN (OPTIONAL))\n\t// IMPORTANT: if the .$save() throws exception then other operations (e.g. worfklow) will be skiped.\n\tself.body.$async(self.callback(), 1).$save().$workflow('send-registration', customOptions);\n\n\t//  or\n\t//  self.body.$save(function() {\n\t//      self.body.$workflow('send-registration');\n\t//  });\n\t//  self.json({ success: true });\n}\n```\n\n### Filtering schemas\n\n`SchemaBuilder` offers great features for your web applications. We present you `SchemaBuilder Filter`. We can filtering property names and values according to the searched filter, quick example:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\t// 1. all fields are required\n\t// 2. \"read|create|update\" is a filter value\n\tschema.define('id', Number, 'read');\n\tschema.define('name', String, true, 'read|create|update');\n\tschema.define('email', String, true, 'read|create');\n\n\t// Basic usage\n\n\tconsole.log(schema.filter('*read'));\n\t// All names with \"read\"\n\t// Output: [ 'id', 'name', 'email' ]\n\n\tconsole.log(schema.filter('*update'));\n\t// All names with \"update\"\n\t// Output: [ 'name' ]\n\n\tconsole.log(schema.filter('*update', true));\n\t// All names without \"update\"\n\t// Output: [ 'id', 'email' ]\n\n\tconsole.log(schema.filter('read'));\n\t// All names with \"read\" only filter\n\t// Output: [ 'id' ]\n\n\tconsole.log(schema.filter('*update', { name: 'Peter', id: 1 }));\n\t// Model will be prepared by \"update\" filter\n\t// Output: { name: 'Peter' }\n\n\tconsole.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }));\n\t// Model will be prepared by \"create\" filter\n\t// Output: { name: 'Peter', email: 'petersirka@gmail.com' }\n\n\tconsole.log(schema.filter('*create', { name: 'Peter', email: 'petersirka@gmail.com', id: 5 }, true));\n\t// Model will be prepared by \"create\" filter in a reverse\n\t// Output: { id: 5 }\n\n\t// Preparing models according to the filter\n\t// Important: the framework validates only filtered values when are required!\n\t// schema.make(model, callback, [filter]);\n\tschema.make({ name: 'Peter', id: 5 }, function(err, value) {\n\t\tconsole.log(err, value);\n\t}, '*update');\n});\n```\n\n__Routing__:\n\n```javascript\nexports.install = function() {\n\tF.route('/api/create/', action, ['post', '*User#create']);\n\tF.route('/api/update/', action, ['put',  '*User#update']);\n\tF.route('/api/query/', action_query, ['*User#update']);\n\n\t// +v3.0.0\n\t// Supports auto-executing of some operations in Schema\n\t// \"@name\" means name of operation, framework will try to find an operation (e.g CRUD operation or workflow, transform, operation or hook) with this name\n\n\tF.route('/api/account/', action, ['*User --> @insert', 'post']);    // Executes (if exists) schema.setInsert()\n\tF.route('/api/account/', action, ['*User --> @update', 'put']);     // Executes (if exists) schema.setUpdate()\n\tF.route('/api/account/', action, ['*User --> @save', 'post']);      // Executes (if exists) schema.setSave()\n\tF.route('/api/account/', action, ['*User --> @get']);               // Executes (if exists) schema.setRead() or schema.setGet()\n\tF.route('/api/account/', action, ['*User --> @read']);              // Executes (if exists) schema.setRead() or schema.setGet()\n\tF.route('/api/account/', action, ['*User --> @remove', 'delete']);  // Executes (if exists) schema.setRemove()\n\tF.route('/api/account/', action, ['*User --> @query']);             // Executes (if exists) schema.setQuery()\n\n\t// Workflows, Transforms, Operations or Hooks\n\tF.route('/api/account/', action, ['*User --> @exec']);    // Executes (if exists) @exec workflow or transform or operation or hook\n\tF.route('/api/account/', action, ['*User --> @xml']);     // Executes (if exists) @exec workflow or transform or operation or hook\n};\n\nfunction action() {\n\tvar self = this;\n\tself.body.$save(self.callback());\n}\n\nfunction action_query() {\n\tvar self = this;\n\tself.$query(self.callback());\n}\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
+      "name": "SchemaDeclaration",
+      "changetype": 1,
+      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'JSON');              // supports auto-validation when is required (the framework doesn't deserialize JSON to Object)\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// How to get back default values?\nconsole.log(schema.schema.propertyName.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
       "properties": [
         {
-          "body": "Returns the schema definition.",
-          "name": "SchemaBuilderEntity.schema",
+          "body": "Returns a schema definition.",
+          "name": "schema.schema",
           "return": "Object"
         },
         {
@@ -24644,7 +24064,7 @@
             "+v2.0.0"
           ],
           "body": "Returns all field names from the schema.",
-          "name": "SchemaBuilderEntity.fields",
+          "name": "schema.fields",
           "return": "String Array"
         },
         {
@@ -24652,7 +24072,7 @@
             "+v2.3.0"
           ],
           "body": "Returns of all descriptions.",
-          "name": "SchemaBuilderEntity.meta",
+          "name": "schema.meta",
           "return": "Object"
         },
         {
@@ -24660,31 +24080,594 @@
             "+v1.9.8"
           ],
           "body": "Returns a name of the schema.",
-          "name": "SchemaBuilderEntity.name",
+          "name": "schema.name",
           "return": "String"
         },
         {
           "default": "true",
           "body": "Enables/Disables auto trimming string values.",
-          "name": "SchemaBuilderEntity.trim",
+          "name": "schema.trim",
           "return": "Boolean"
         }
       ]
     },
     {
-      "name": "SchemaDeclaration",
-      "changetype": 1,
-      "group": "Schemas",
-      "body": "",
-      "properties": [],
-      "methods": []
-    },
-    {
       "name": "SchemaInstance",
       "changetype": 1,
       "group": "Schemas",
-      "body": "",
-      "methods": []
+      "body": "Framework creates `SchemaInstance` automatically if the schema is linked via routes or can be created manually.\n\n__Created automatically__:\n\n```javacript\nexports.install = function() {\n\n\t// \"SchemaInstance\" will be created in the background\n\tROUTE('POST /api/products/', ['*Product --> @save']);\n\n\t// \"SchemaInstance\" will be created before the route's action is executed\n\tROUTE('POST /api/users/',  json_user_create, ['*User']);\n\n};\n\nfunction json_user_create() {\n\tvar self = this;\n\t// self.model === SchemaInstance\n}\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n```javascript\n$MAKE('User', { firstname: 'Peter', lastname: '\u0160irka' }, function(err, user) {\n\t// user === SchemaInstance\n});```\n__Imagine__ that `model` is the `SchemaInstance` object.",
+      "methods": [
+          {
+            "name": "model.$clean",
+            "return": "Object",
+            "body": "Returns cleaned and raw object with model data. Because each `SchemaInstance` object contains internal meta-data and methods."
+          },
+          {
+            "name": "model.$output",
+            "params": [],
+            "return": "SchemaInstance",
+            "body": "Sets the current response from an operation as the response in the result of `SchemaInstance.$async()` calling. In other words: it can rewrite response index defined in `SchemaInstance.$async()` method.",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$next",
+            "params": [
+                {
+                  "name": "type",
+                  "type": "String",
+                  "body": "A type of operation. Can be <b>query</b>, <b>get</b>, <b>insert</b>, <b>update</b>, <b>save</b>, <b>remove</b>, <b>workflow</b>, <b>transform</b>, <b>operation</b> or <b>hook</b>"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "body": "A name of workflow, transformation, operation or hook. Must be filled if you will use <b>workflow</b>, <b>transform</b>, <b>operation</b> or <b>hook</b> type",
+                  "options": ["optional"]
+                },
+                {
+                  "name": "options",
+                  "type": "Object",
+                  "body": "A custom options for the operation.",
+                  "options": ["optional"]
+                }
+            ],
+            "return": "SchemaInstance",
+            "body": "Adds some `SchemaDeclaration` operation as a next operation after current operation in chaining `SchemaInstance.$async()`.\n\n```javascript\nmodel.$next('workflow', 'send');\n\n// or\nmodel.$next('workflow', 'send', { some_key: 'with custom options' });\n\n// or\nmodel.$next('save', { rewrite: true, message: 'this is custom options' });```",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$push",
+            "params": [
+                {
+                  "name": "type",
+                  "type": "String",
+                  "body": "A type of operation. Can be <b>query</b>, <b>get</b>, <b>insert</b>, <b>update</b>, <b>save</b>, <b>remove</b>, <b>workflow</b>, <b>transform</b>, <b>operation</b> or <b>hook</b>"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "body": "A name of workflow, transformation, operation or hook. Must be filled if you will use <b>workflow</b>, <b>transform</b>, <b>operation</b> or <b>hook</b> type",
+                  "options": ["optional"]
+                },
+                {
+                  "name": "options",
+                  "type": "Object",
+                  "body": "A custom options for the operation.",
+                  "options": ["optional"]
+                }
+            ],
+            "return": "SchemaInstance",
+            "body": "Adds some `SchemaDeclaration` operation onto end of chaining of `SchemaInstance.$async()`.\n\n```javascript\nmodel.$push('workflow', 'send');\n\n// or\nmodel.$push('workflow', 'send', { some_key: 'with custom options' });\n\n// or\nmodel.$push('save', { rewrite: true, message: 'this is custom options' });```",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$stop",
+            "params": [
+            ],
+            "return": "SchemaInstance",
+            "body": "Stops chaining in `SchemaInstance.$async()`. This operation will be last.\n\n```javascript\nmodel.$stop();```",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$response",
+            "params": [
+              {
+                "name": "index",
+                "body": "Response index",
+                "type": "Number",
+                "options": ["optional"]
+              }
+            ],
+            "return": "Object or Array",
+            "body": "Returns a response from executed operations in chaining of `SchemaInstance.$async()`. If the `index` is not defined then the method returns Array of all responses.\n\n```javascript\n// Returns array\nconsole.log(model.$response());\n\n// Returns object\nconsole.log(model.$response(1));```",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$callback",
+            "params": [
+              {
+                "name": "callback",
+                "body": "Response index",
+                "type": "Function",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A result"
+                  }
+                ]
+              }
+            ],
+            "return": "Object or Array",
+            "body": "Rewrites a callback in chaining of `SchemaInstance.$async()`",
+            "options": ["advanced"]
+          },
+          {
+            "name": "model.$repository",
+            "params": [
+              {
+                "name": "name",
+                "body": "A name/key in the repository.",
+                "type": "String"
+              },
+              {
+                "name": "value",
+                "body": "A value.",
+                "type": "Object",
+                "options": ["optional"]
+              }
+            ],
+            "return": "Object",
+            "body": "It can write/read a value from model repository (internal meta-data repository contains each SchemaInstance object). A simple usage:\n\n```javascript\n// Writing\nmodel.$repository('custom', 'value');\n\n// Reading\nconsole.log(model.$repository('custom'));```"
+          },
+          {
+            "name": "model.$default",
+            "params": [
+            ],
+            "return": "SchemaInstance",
+            "body": "Creates a new instance of `SchemaDeclaration`."
+          },
+          {
+            "name": "model.$save",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setSave()`.\n\n```javascript\nmodel.$save(console.log);```"
+          },
+          {
+            "name": "model.$insert",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setInsert()`.\n\n```javascript\nmodel.$insert(console.log);```"
+          },
+          {
+            "name": "model.$update",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setUpdate()`.\n\n```javascript\nmodel.$update(console.log);```"
+          },
+          {
+            "name": "model.$remove",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setRemove()`.\n\n```javascript\nmodel.$remove(console.log);```"
+          },
+          {
+            "name": "model.$query",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setQuery()`.\n\n```javascript\nmodel.$query(console.log);```"
+          },
+          {
+            "name": "model.$get",
+            "params": [
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.setGet()`.\n\n```javascript\nmodel.$get(console.log);```"
+          },
+          {
+            "name": "model.$workflow",
+            "params": [
+              {
+                "name": "name",
+                "body": "A workflow name",
+                "type": "String"
+              },
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.addWorkflow()`.\n\n```javascript\nmodel.$workflow('send', console.log);```"
+          },
+          {
+            "name": "model.$transform",
+            "params": [
+              {
+                "name": "name",
+                "body": "A transformation name",
+                "type": "String"
+              },
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.addTransform()`.\n\n```javascript\nmodel.$transform('send', console.log);```"
+          },
+          {
+            "name": "model.$hook",
+            "params": [
+              {
+                "name": "name",
+                "body": "A hook name",
+                "type": "String"
+              },
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.addHook()`.\n\n```javascript\nmodel.$hook('send', console.log);```"
+          },
+          {
+            "name": "model.$operation",
+            "params": [
+              {
+                "name": "name",
+                "body": "An operation name",
+                "type": "String"
+              },
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Performs `SchemaDeclaration.addOperation()`.\n\n```javascript\nmodel.$operation('send', console.log);```"
+          },
+          {
+            "name": "model.$controller",
+            "params": [
+              {
+                "name": "controller",
+                "body": "A controller instance",
+                "type": "FrameworkController"
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Sets/Rewrites a controller for this `SchemaInstance`. Framework assigns it automatically in most cases."
+          },
+          {
+            "name": "model.$clone",
+            "params": [
+            ],
+            "return": "SchemaInstance",
+            "body": "Clones current `SchemaInstance` to a new"
+          },
+          {
+            "name": "model.$schema",
+            "params": [
+            ],
+            "return": "SchemaDeclaration",
+            "body": "Returns `SchemaDeclaration` instance."
+          },
+          {
+            "options": ["advanced"],
+            "name": "model.$index",
+            "params": [
+              {
+                "name": "index",
+                "body": "Response index",
+                "type": "Number"
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Can change a response index in chaining `SchemaInstance.$async()`"
+          },
+          {
+            "name": "model.$exec",
+            "params": [
+              {
+                "name": "name",
+                "body": "A workflow name",
+                "type": "String"
+              },
+              {
+                "name": "options",
+                "body": "Custom options",
+                "type": "Object",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object",
+                    "body": "A response"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes operations according to the `/workflows` file."
+          },
+          {
+            "options": ["important"],
+            "name": "model.$async",
+            "params": [
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object/Array",
+                    "body": "A response. If the \"index\" is not defined then the reponse will be <b>Array</b>."
+                  }
+                ]
+              },
+              {
+                "name": "index",
+                "body": "Response index",
+                "type": "Number",
+                "options": ["optional"]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Can create a chaining for multiple operations. If some operation fills error then chaining is stopped and \"callback\" will be executed with this error. Response `index` can be changed in some operation, more info here `SchemaInstance.$output()`.\n\n```javascript\n// Response will contain all results\nmodel.$async(function(err, response) {\n\tconsole.log(err, response);\n}).$save({ all: true }).$workflow('send').$transform('xml');\n\n// Response will contain a result from \"workflow\"\nmodel.$async(function(err, response) {\n\tconsole.log(err, response);\n}, 1).$save({ all: true }).$workflow('send').$transform('xml');```"
+          }
+      ]
     },
     {
       "name": "SchemaOptions",
@@ -25039,7 +25022,7 @@
     },
     {
       "changetype": 1,
-      "body": "Schemas are a big part of Total.js framework. With schemas you can control incoming data and convert them to your defined types. Each schema can support validation and multiple operations (CRUD operations, transformations, workflows or hooks) which you can call step-by-step.\n\n## Creating schemas\n\nA schema describes a data-types/data-structure for incoming data only and __schema isn't a mirror for database table schema__. So we define a simple schema `User` which we use on this page:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// Define fields in the schema\n\t// schema.define('FIELD_NAME', 'DATA_TYPE', [required]);\n\n\tschema.define('firstname', 'Capitalize(30)', true);\n\tschema.define('lastname', 'Capitalize(30)', true);\n\tschema.define('age', Number, age => age >= 18);\n\n\t// Define operations in the schema\n\t// BTW: all operations below are optional\n\n\tschema.setQuery(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setInsert(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setUpdate(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setRemove(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.addWorkflow('logoff', function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\t// etc..\n\n});\n```\n\nFramework converts incoming data according to the schema __always__. So you __always__ get type as you defined. Default values:\n\n- `array` returns `[]`\n- `boolean` returns `false`\n- `date` returns `new Date()`\n- `json` returns `''`\n- `number` returns `0`\n- `object` returns `null`\n- `string` returns `''`\n- `email` returns `'@'`\n- link to schema returns `null`\n\n__Good to know__:\n\n- schema doesn't need to contain defined operations\n- schema doesn't need to contain defined fields (e.g. you want to use operations only)\n- all [schema data-types](#)\n- methods and properties in [SchemaOptions](#)\n- methods in [SchemaInstance](#)\n\n---\n\n## Dictionary\n\n###\u00a0SchemaDeclaration\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\t// schema === \u00a0SchemaDeclaration\n});\n```\n\n### SchemaOptions\n\n`SchemaOptions` can be a part in some Schema operation.\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\tschema.setInsert(function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n\tschema.addWorkflow('something', function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n});\n```\n\n### SchemaInstance\n\nThis is an instance generated according to the `SchemaDeclaration`.\n\n- [Documentation](#)\n\n__Created in the schema__:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// YOUR SCHEMA DECLARATION\n\t// ...\n\t// ...\n\t// ...\n\n\tvar user = schema.create();\n\t// user === SchemaInstance\n\n});\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n__In controllers__:\n\n```javascript\nexports.install = function() {\n\tROUTE('POST /api/users/', action, ['*User'];\n};\n\nfunction action() {\n\tvar self = this;        // this === controller\n\tvar user = self.model;  // this.model === SchemaInstance\n}\n```\n\n## Using schemas in routing\n\nImaging that the code below is a part of some controller:\n\n```javascript\nexports.install = function() {\n\n\tROUTE('GET     /api/users/',        ['*User --> @query']);\n\t// Framework calls this defined operation automatically: \"User.setQuery(...)\"\n\n\tROUTE('GET     /api/users/{id}/',   ['*User --> @get']);\n\t// Framework calls this defined operation automatically: \"User.setGet(...)\"\n\n\tROUTE('DELETE  /api/users/{id}/',   ['*User --> @remove']);\n\t// Framework calls this defined operation automatically: \"User.setRemove(...)\"\n\n\tROUTE('POST    /api/users/',        ['*User --> @insert']);\n\t// Framework calls this defined operation automatically: \"User.setInsert(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('PUT     /api/users/{id}/',   ['*User --> @update']);\n\t// Framework calls this defined operation automatically: \"User.setUpdate(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('GET     /api/users/logoff/', ['*User --> @logoff']);\n\t// Framework calls this defined workflow automatically: \"User.addWorkflow('logoff', ...)\"\n\n};\n```\n\n## Using schemas globally\n\nSchemas can be used everywhere in your code and we have prepared several methods:\n\n```javascript\n// $INSERT(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setInsert()\n$INSERT('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $UPDATE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setUpdate()\n$UPDATE('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $SAVE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setSave()\n$SAVE('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $REMOVE(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$REMOVE('User', { id: 101 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $QUERY(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$QUERY('User', { take: 10 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $GET(schema_name, [options], [callback], [controller]);\n// Performs schema.setGet()\n$GET('User', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $WORKFLOW(schema_name, [options], [callback], [controller]);\n// Performs schema.addWorkflow('send', ...);\n$WORKFLOW('User', 'send', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $TRANSFORM(schema_name, [options], [callback], [controller]);\n// Performs schema.addTransform('xml', ...);\n$TRANSFORM('User', 'xml', { indent: true }, function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n## Advanced usage\n\n### Creating a new schema instance\n\n- all [operations for schema instances](#)\n\n```javascript\nvar user = $CREATE('User');\n// user === Schema instance of User\n\nuser.firstname = 'Peter';\nuser.lastname = '\u0160irka';\nuser.age = 33;\n\n// user.$insert([options], [callback]);\n// user.$update([options], [callback]);\n// user.$save([options], [callback]);\n// user.$query([options], [callback]);\n// user.$get([options], [callback]);\n// user.$remove([options], [callback]);\n// user.$workflow(name, [options], [callback]);\n// user.$transform(name, [options], [callback]);\n// user.$hook(name, [options], [callback]);\n// etc..\n\nuser.$insert(function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n### Extending schemas\n\n```javascript\n// Waiting for a schema declaration\n// Great solution for extending schemas in some apps like Total.js CMS, etc.\nGETSCHEMA('User', function(err, schema) {\n\t// This callback will be executed when the schema will be declared\n\t// And here we can extend existing schema\n\tschema.define('new_field', 'String');\n});\n\n// Get a schema declaration\n// But the schema must exist, otherwise will be \"null\"\nvar schema = GETSCHEMA('User');\n```\n\n## Error messages\n\nFramework returns error messages according to the schema field names and it reads messages from resource file according to the current language. By default error messages are read from `default.resource`:\n\n```html\nfirstname     : Please enter your name.\nlastname      : Please enter your name.\nage           : You are too young.\n```\n\nIf you want to use a prefix then use:\n\n```javascript\nschema.setPrefix('form-');\n```\n\nAnd update your resource file like this:\n\n```html\nform-firstname     : Please enter your name.\nform-lastname      : Please enter your name.\nform-age           : You are too young.\n```\n\n### Custom error messages\n\n```javascript\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn 'Please fill age.';\n\tif (val < 18)\n\t\treturn 'You are too young';\n\treturn true;\n});\n\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn '@your-custom-key-in-the-resource';\n\tif (val < 18)\n\t\treturn '@your-custom-key-in-the-resource';\n\treturn true;\n});\n```\n\n- validation are performed for `POST` and `PUT` HTTP methods only in the routing\n\n## Note: Default ErrorBuilder transformation\n\nErrors in `ErrorBuilder` are serialized into the JSON like Object Array as default. But you can rewrite this transformation via [ErrorBuilder.addTransform()](#api~ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in the current object\", \"index\":0 }]\n```\n\n### How to check errors on client-side?\n\n```javascript\n$.ajax('/api/users/', { type: 'POST', data: JSON.stringify({ age: 15 }), success: function(response) {\n\n\tif (typeof(response) === 'string')\n\t\tresponse = JSON.parse(response);\n\n\t// Check erros\n\tif (response instanceof Array) {\n\t\tshowErrors(response);\n\t\treturn;\n\t}\n\n\t// SUCCESS\n});```",
+      "body": "Schemas are a big part of Total.js framework. With schemas you can control incoming data and convert them to your defined types. Each schema can support validation and multiple operations (CRUD operations, transformations, workflows or hooks) which you can call step-by-step.\n\n## Creating schemas\n\nA schema describes a data-types/data-structure for incoming data only and __schema isn't a mirror for database table schema__. So we define a simple schema `User` which we use on this page:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// Define fields in the schema\n\t// schema.define('FIELD_NAME', 'DATA_TYPE', [required]);\n\n\tschema.define('firstname', 'Capitalize(30)', true);\n\tschema.define('lastname', 'Capitalize(30)', true);\n\tschema.define('age', Number, age => age >= 18);\n\n\t// Define operations in the schema\n\t// BTW: all operations below are optional\n\n\tschema.setQuery(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setInsert(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setUpdate(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setRemove(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.addWorkflow('logoff', function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\t// etc..\n\n});\n```\n\nFramework converts incoming data according to the schema __always__. So you __always__ get type as you defined. Default values:\n\n- `array` returns `[]`\n- `boolean` returns `false`\n- `date` returns `new Date()`\n- `json` returns `''`\n- `number` returns `0`\n- `object` returns `null`\n- `string` returns `''`\n- `email` returns `'@'`\n- link to schema returns `null`\n\n__Good to know__:\n\n- schema doesn't need to contain defined operations\n- schema doesn't need to contain defined fields (e.g. you want to use operations only)\n- all [schema data-types](#)\n- methods and properties in [SchemaOptions](#)\n- methods in [SchemaInstance](#)\n\n---\n\n## Dictionary\n\n### SchemaDeclaration\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\t// schema === \u00a0SchemaDeclaration\n});\n```\n\n### SchemaOptions\n\n`SchemaOptions` can be a part in some Schema operation.\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\tschema.setInsert(function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n\tschema.addWorkflow('something', function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n});\n```\n\n### SchemaInstance\n\nThis is an instance generated according to the `SchemaDeclaration`.\n\n- [Documentation](#)\n\n__Created in the schema__:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// YOUR SCHEMA DECLARATION\n\t// ...\n\t// ...\n\t// ...\n\n\tvar user = schema.create();\n\t// user === SchemaInstance\n\n});\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n__In controllers__:\n\n```javascript\nexports.install = function() {\n\tROUTE('POST /api/users/', action, ['*User'];\n};\n\nfunction action() {\n\tvar self = this;        // this === controller\n\tvar user = self.model;  // this.model === SchemaInstance\n}\n```\n\n## Using schemas in routing\n\nImaging that the code below is a part of some controller:\n\n```javascript\nexports.install = function() {\n\n\tROUTE('GET     /api/users/',        ['*User --> @query']);\n\t// Framework calls this defined operation automatically: \"User.setQuery(...)\"\n\n\tROUTE('GET     /api/users/{id}/',   ['*User --> @get']);\n\t// Framework calls this defined operation automatically: \"User.setGet(...)\"\n\n\tROUTE('DELETE  /api/users/{id}/',   ['*User --> @remove']);\n\t// Framework calls this defined operation automatically: \"User.setRemove(...)\"\n\n\tROUTE('POST    /api/users/',        ['*User --> @insert']);\n\t// Framework calls this defined operation automatically: \"User.setInsert(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('PUT     /api/users/{id}/',   ['*User --> @update']);\n\t// Framework calls this defined operation automatically: \"User.setUpdate(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('GET     /api/users/logoff/', ['*User --> @logoff']);\n\t// Framework calls this defined workflow automatically: \"User.addWorkflow('logoff', ...)\"\n\n};\n```\n\n## Using schemas globally\n\nSchemas can be used everywhere in your code and we have prepared several methods:\n\n```javascript\n// $INSERT(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setInsert()\n$INSERT('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $UPDATE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setUpdate()\n$UPDATE('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $SAVE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setSave()\n$SAVE('User', { firstname: 'Peter', lastname: '\u0160irka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $REMOVE(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$REMOVE('User', { id: 101 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $QUERY(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$QUERY('User', { take: 10 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $GET(schema_name, [options], [callback], [controller]);\n// Performs schema.setGet()\n$GET('User', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $WORKFLOW(schema_name, [options], [callback], [controller]);\n// Performs schema.addWorkflow('send', ...);\n$WORKFLOW('User', 'send', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $TRANSFORM(schema_name, [options], [callback], [controller]);\n// Performs schema.addTransform('xml', ...);\n$TRANSFORM('User', 'xml', { indent: true }, function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n## Advanced usage\n\n### Creating a new schema instance\n\n- all [operations for schema instances](#)\n\n```javascript\nvar user = $CREATE('User');\n// user === Schema instance of User\n\nuser.firstname = 'Peter';\nuser.lastname = '\u0160irka';\nuser.age = 33;\n\n// user.$insert([options], [callback]);\n// user.$update([options], [callback]);\n// user.$save([options], [callback]);\n// user.$query([options], [callback]);\n// user.$get([options], [callback]);\n// user.$remove([options], [callback]);\n// user.$workflow(name, [options], [callback]);\n// user.$transform(name, [options], [callback]);\n// user.$hook(name, [options], [callback]);\n// etc..\n\nuser.$insert(function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n### Extending schemas\n\n```javascript\n// Waiting for a schema declaration\n// Great solution for extending schemas in some apps like Total.js CMS, etc.\nGETSCHEMA('User', function(err, schema) {\n\t// This callback will be executed when the schema will be declared\n\t// And here we can extend existing schema\n\tschema.define('new_field', 'String');\n});\n\n// Get a schema declaration\n// But the schema must exist, otherwise will be \"null\"\nvar schema = GETSCHEMA('User');\n```\n\n## Error handling\n\nSchemas use Total.js `ErrorBuilder` for error handling. `ErrorBuilder` supports great features and supports transformation. Each scope of executed schema operation contains `ErrorBuilder` instance for handling errors. If the `ErrorBuilder` contains some error then `err` argument in the callback will contain `ErrorBuilder` instance, otherwise will be `null`.\n\n__Auto-validation__:\n\nFramework returns error messages according to the schema field names and it reads messages from resource file according to the current language. By default error messages are read from `default.resource`:\n\n```html\nfirstname     : Please enter your name.\nlastname      : Please enter your name.\nage           : You are too young.\n```\n\nIf you want to use a prefix then use:\n\n```javascript\nschema.setPrefix('form-');\n```\n\nAnd update your resource file like this:\n\n```html\nform-firstname     : Please enter your name.\nform-lastname      : Please enter your name.\nform-age           : You are too young.\n```\n\n### Custom error messages\n\n```javascript\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn 'Please fill age.';\n\tif (val < 18)\n\t\treturn 'You are too young';\n\treturn true;\n});\n\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn '@your-custom-key-in-the-resource';\n\tif (val < 18)\n\t\treturn '@your-custom-key-in-the-resource';\n\treturn true;\n});\n```\n\n- validation are performed for `POST` and `PUT` HTTP methods only in the routing\n\n### Note: Default ErrorBuilder transformation\n\nErrors in `ErrorBuilder` are serialized into the JSON like Object Array as default. But you can rewrite this transformation via [ErrorBuilder.addTransform()](#api~ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in the current object\", \"index\":0 }]\n```\n\n#### How to check errors on client-side?\n\n```javascript\n$.ajax('/api/users/', { type: 'POST', data: JSON.stringify({ age: 15 }), success: function(response) {\n\n\tif (typeof(response) === 'string')\n\t\tresponse = JSON.parse(response);\n\n\t// Check erros\n\tif (response instanceof Array) {\n\t\tshowErrors(response);\n\t\treturn;\n\t}\n\n\t// SUCCESS\n});```",
       "group": "How does it work?",
       "name": "Schemas"
     },
