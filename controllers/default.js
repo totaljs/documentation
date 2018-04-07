@@ -1,7 +1,7 @@
 exports.install = function() {
-    F.route('/', redirect);
+	ROUTE('/', redirect);
 };
 
 function redirect() {
-    this.redirect('/latest/en.html');
+	this.redirect('/latest/en.html');
 }
