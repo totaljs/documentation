@@ -990,7 +990,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.3"
           ],
@@ -4138,7 +4137,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "default": "1500",
           "body": "A default timeout in milliseconds for dependencies of Total.js modules.",
           "name": "default-dependency-timeout",
@@ -4267,7 +4265,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -4948,7 +4945,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "Removes files.",
           "options": [
             "+v2.9.0"
@@ -4975,7 +4971,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -5329,7 +5324,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -5517,6 +5511,41 @@
               "name": "doc",
               "type": "Object"
             }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "Is triggered if the database begins re-index",
+          "name": "database.on('indexing-begin')",
+          "return": "Database",
+          "options": ["+v3.0.0"],
+          "params": []
+        },
+        {
+          "changetype": 1,
+          "body": "Is triggered if the database ends re-index",
+          "name": "database.on('indexing-end')",
+          "return": "Database",
+          "options": ["+v3.0.0"],
+          "params": []
+        },
+        {
+          "changetype": 1,
+          "body": "Is triggered if the database is re-indexing",
+          "name": "database.on('indexing')",
+          "return": "Database",
+          "options": ["+v3.0.0"],
+          "params": [
+              {
+                "name": "percentage",
+                "type": "Number",
+                "body": "Total percentage of indexing"
+              },
+              {
+                "name": "count",
+                "type": "Number",
+                "body": "Total count of documents for reindexing"
+              }
           ]
         }
       ]
@@ -5778,7 +5807,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -6089,8 +6117,143 @@
       ]
     },
     {
+      "name": "DatabaseIndexes",
       "changetype": 1,
-      "body": "__NoSQL Database Storage__ is an engine for storing small big data. It can store documents to independent database files divided by days. In other words: __storage__ creates each day a new database. File name of database is in the form: `yyyyMMdd.nosql` and each database has own `storage` directory. __IMPORTANT__: storage can't update/remove documents, it supports append/read mode only.\n\n```javascript\nvar storage = NOSQL('yourdbname').storage;\n// or\nvar storage = NOSQLSTORAGE('yourdbname');\n\n// Example of inserting\nstorage.insert({ your: 'data' });\n```",
+      "group": "NoSQL Embedded",
+      "body": "`+v3.0.0` __NoSQL Database Indexes__ is a simple engine for creating indexes for NoSQL embedded database. This engine creates several files for each index, it depends on documents.\n\n### How does the engine create an index?\n\nComing soon.\n\n### How does the engine store indexes?\n\nComing soon.\n\n### How does the engine search in indexes?\n\nComing soon.\n\n### Where can I define indexes?\n\nComing soon.\n\n```javascript\nvar db = NOSQL('products');\n\n// A simple index for ID\ndb.indexes.create('id');\n\n// A multiple index\ndb.indexes.create('city', ['name', 'country']);\n```",
+      "methods": [
+        {
+          "name": "database.indexes.create",
+          "body": "Registers a new index. __IMPORTANT__: if the index wasn't created or it was changed then DB performs reindexing. \n\n```javascript\n// Registers a new index\ndatabase.indexes.create('id');\n```\n\n## Index types\n\n### Numbers\n\n```javascript\ndatabase.indexes.create('id');\n// index takes 2 first numbers only from property \"id\" (DEFAULT)\n// Example:\n// 10  --> index will be id_10.nosql\n// 133 --> index will be id_13.nosql\n// 30  --> index will be id_30.nosql\n// 433 --> index will be id_43.nosql\n\ndatabase.indexes.create('id', 'first');\n// index will be created for the first number only from property \"id\"\n// Example:\n// 10  --> index will be id_1.nosql\n// 133 --> index will be id_1.nosql\n// 30  --> index will be id_3.nosql\n// 433 --> index will be id_4.nosql\n\ndatabase.indexes.create('id', 'reverse');\n// index will be created for inverted number and engine takes 2 first numbers from property \"id\"\n// Example:\n// 10  --> index will be id_01.nosql\n// 133 --> index will be id_33.nosql\n// 30  --> index will be id_03.nosql\n// 433 --> index will be id_33.nosql\n```\n\n### Strings\n\n```javascript\ndatabase.indexes.create('name');\n// index takes 2 first chars only from property \"name\" (DEFAULT)\n// Example:\n// Peter --> index will be name_pe.nosql\n// Lucia --> index will be name_lu.nosql\n// Ivan  --> index will be name_iv.nosql\n// Petra --> index will be name_pe.nosql\n\ndatabase.indexes.create('name', 'first');\n// index will be created for the first char only from property \"name\"\n// Example:\n// Peter --> index will be name_p.nosql\n// Lucia --> index will be name_l.nosql\n// Ivan  --> index will be name_i.nosql\n// Petra --> index will be name_p.nosql\n\ndatabase.indexes.create('name', 'reverse');\n// index will be created for inverted chars and engine takes 2 first numbers from property \"name\"\n// Example:\n// Peter --> index will be name_re.nosql\n// Lucia --> index will be name_ai.nosql\n// Ivan  --> index will be name_an.nosql\n// Petra --> index will be name_ra.nosql\n```\n\n### Dates\n\n```javascript\ndatabase.indexes.create('created');\n// index takes year and month\n// Example:\n// 2018-02-03 --> index will be created_1802.nosql\n// 2017-02-13 --> index will be created_1702.nosql\n// 2018-05-21 --> index will be created_1805.nosql\n// 2018-11-18 --> index will be created_1811.nosql\n```\n\n### Booleans\n\n```javascript\ndatabase.indexes.create('published');\n// index converts true to 1 and false to 2 (DEFAULT)\n// Example:\n// true  --> index will be published_1.nosql\n// false --> index will be published_0.nosql\n// false --> index will be published_0.nosql\n// true  --> index will be published_1.nosql\n```",
+          "params": [
+            {
+              "name": "name",
+              "body": "Name of index use only [a-z] characters, it used as a name of file",
+              "type": "String"
+            },
+            {
+              "name": "fields",
+              "type": "Array String",
+              "body": "Name of fields to index. If it's not defined then as a field name will be used \"name\" of index.",
+              "options": ["optional"]
+            },
+            {
+              "name": "type",
+              "body": "Type of index",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "name": "database.indexes.get",
+          "return": "DatabaseIndexes",
+          "body": "Gets a specific document by index. __IMPORTANT__: `index` must registered.\n\n```javascript\n// Single index\ndatabase.indexes.get('id', 10239, function(err, doc) {\n\tconsole.log(err, doc);\n});\n\n// Multiple index\ndatabase.indexes.get('city', ['Bratislava', 'Slovakia'], function(err, doc) {\n\tconsole.log(err, doc);\n});\n```",
+          "params": [
+            {
+              "name": "name",
+              "body": "Name of index",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "body": "A value for finding index and specific document. If you use multiple indexes then you need to wrap values to Array."
+            },
+            {
+              "name": "callback",
+              "body": "A callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "body": "Error handling"
+                  },
+                  {
+                    "name": "doc",
+                    "type": "Object",
+                    "body": "A document"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "database.indexes.find",
+          "returns": "DatabaseBuilder",
+          "body": "Finds specific documents by index. __IMPORTANT__: `index` must registered.\n\n```javascript\n// Single index\ndatabase.indexes.find('id', 10239).callback(function(err, doc) {\n\tconsole.log(err, doc);\n}).sort('id');\n\n// Multiple index\n// Finds all cities which fields:\n// \"city\" starts with \"br\"\n// \"country\" starts with \"sl\"\ndatabase.indexes.find('city', ['Bratislava', 'Slovakia']).callback(function(err, doc) {\n\tconsole.log(err, doc);\n}).sort('name');\n```",
+          "params": [
+            {
+              "name": "name",
+              "body": "Name of index",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "body": "Index engine generates an index filename. If you use multiple indexes then you need to wrap values to Array."
+            }
+          ]
+        },
+        {
+          "name": "database.indexes.noreindex",
+          "returns": "DatabaseIndexes",
+          "body": "Stops auto-reindexing after creating index.",
+          "params": [
+          ]
+        },
+        {
+          "name": "database.indexes.clear",
+          "returns": "DatabaseIndexes",
+          "body": "Removes all files with indexes.",
+          "params": [
+            {
+              "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "options": ["optional"],
+                "params": [
+                    {
+                      "name": "err",
+                      "type": "Error",
+                      "body": "Error handling"
+                    }
+                ]
+            }
+          ]
+        },
+        {
+          "name": "database.indexes.reindex",
+          "returns": "DatabaseIndexes",
+          "body": "Performs reindex for all indexes.",
+          "params": [
+            {
+              "name": "callback",
+              "body": "A callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "body": "Error handling"
+                  },
+                  {
+                    "name": "count",
+                    "type": "Number",
+                    "body": "Count of reindexed documents"
+                  }
+              ]
+            }
+          ]
+        }
+
+      ]
+    },
+    {
+      "changetype": 1,
+      "body": "`+v3.0.0` __NoSQL Database Storage__ is an engine for storing small big data. It can store documents to independent database files divided by days. In other words: __storage__ creates each day a new database. File name of database is in the form: `yyyyMMdd.nosql` and each database has own `storage` directory. __IMPORTANT__: storage can't update/remove documents, it supports append/read mode only.\n\n```javascript\nvar storage = NOSQL('yourdbname').storage;\n// or\nvar storage = NOSQLSTORAGE('yourdbname');\n\n// Example of inserting\nstorage.insert({ your: 'data' });\n```",
       "name": "DatabaseStorage",
       "group": "NoSQL Embedded",
       "methods": [
@@ -6654,7 +6817,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.monthly_min",
           "body": "Reads `min` monthly stats.\n\n```javascript\ndatabase.counter.monthly_min(function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 32 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.monthly_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t  { id: '201609', year: 2016, month: 9, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.monthly_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '201608', year: 2016, month: 8, value: 19 },\n\t\t     { id: '201609', year: 2016, month: 9, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '201609', year: 2016, month: 9, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6691,7 +6853,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.yearly_min",
           "body": "Reads `min` yearly stats.\n\n```javascript\ndatabase.counter.yearly_min(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_min('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_min(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6728,7 +6889,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.yearly_max",
           "body": "Reads `max` yearly stats.\n\n```javascript\ndatabase.counter.yearly_max(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_max('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_max(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6765,7 +6925,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "name": "database.counter.yearly_sum",
           "body": "Reads `sum` yearly stats.\n\n```javascript\ndatabase.counter.yearly_sum(function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 32 },\n\t\t  { id: '2017', year: 2017, value: 414 } ]\n\t*/\n});\n\ndatabase.counter.yearly_sum('16083014300001idn1', function(err, response) {\n\t/*\n\t\t[ { id: '2016', year: 2016, value: 19 },\n\t\t  { id: '2017', year: 2017, value: 29 } ]\n  \t*/\n});\n\ndatabase.counter.yearly_sum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n\t/*\n\t\t{ '16083014300001idn1': \n\t\t   [ { id: '2016', year: 2016, value: 19 },\n\t\t     { id: '2017', year: 2017, value: 29 } ],\n\t\t  '16090123150001clu1': [ { id: '2017', year: 2017, value: 36 } ] }\n  \t*/\n});```",
           "return": "DatabaseCounter",
@@ -6802,7 +6961,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.8.0"
           ],
@@ -6852,7 +7010,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.8.0"
           ],
@@ -6902,7 +7059,6 @@
           "return": "DatabaseCounter"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.8.0"
           ],
@@ -6990,7 +7146,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Is triggered if the method `.min()` is performed.",
           "name": "database.counter.on('min')",
           "return": "DatabaseCounter",
@@ -7011,7 +7166,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Is triggered if the method `.max()` is performed.",
           "name": "database.counter.on('max')",
           "return": "DatabaseCounter",
@@ -7032,7 +7186,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Is triggered if the file with statistics is updated.",
           "name": "database.counter.on('stats')",
           "return": "DatabaseCounter",
@@ -8065,7 +8218,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "Appends a new item into the `sitemap` for the current request. Updated sitemap will be used in the views. \n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\n```\n\n```javascript\nfunction some_action(category) {\n\n\t// Binds the sitemap\n\tcontroller.sitemap('products');\n\n\t// Appends new items\n\tcontroller.sitemap_add('homepage', 'Category 1', '/products/category-1/');\n\tcontroller.sitemap_add('homepage', 'Category 2', '/products/category-2/');\n\tcontroller.sitemap_add('homepage', 'Category 3', '/products/category-3/');\n\n\t// \"/\"\n\t// \"/products/category-1/\"\n\t// \"/products/category-2/\"\n\t// \"/products/category-3/\"\n\t// \"/products/\"\n\n}```",
           "name": "controller.sitemap_add",
           "options": [
@@ -8716,7 +8868,6 @@
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
         },
         {
-          "changetype": 1,
           "body": "Alias for `controller.json(SUCCESS(true))`.",
           "name": "controller.success",
           "options": [
@@ -8861,7 +9012,6 @@
           "return": "FrameworkController"
         },
         {
-          "changetype": 1,
           "body": "Sends the response with HTML content.",
           "name": "controller.html",
           "options": [
@@ -9760,7 +9910,6 @@
           "return": "FrameworkController"
         },
         {
-          "changetype": 1,
           "body": "Sends `409 error - Conflict` into the response.",
           "name": "controller.throw409",
           "options": [
@@ -10066,7 +10215,6 @@
           "return": "FrameworkController or String"
         },
         {
-          "changetype": 1,
           "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles a dynamic string as view.",
           "name": "controller.viewCompile",
@@ -10490,7 +10638,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "default": "''",
           "body": "Gets the ID of selected sitemap.",
           "name": "controller.sitemapid",
@@ -10560,7 +10707,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "Gets a dynamic params from URL. This property returns an object with dynamic aguments (as properties of this object). __IMPORTANT__ dynamic argument needs to be defined in the routing.",
           "name": "controller.params",
           "options": [
@@ -11695,7 +11841,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Appends a new item into the `sitemap` for the current request.",
           "name": "@{sitemap_add}",
           "options": [
@@ -11949,7 +12094,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.5.0"
           ],
@@ -12504,7 +12648,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "`G` is a shortcut for `global` keyword.",
           "name": "@{G.customKey}",
           "options": [
@@ -12513,7 +12656,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "`R` is a shortcut for `repository` keyword.",
           "name": "@{R.customKey}",
           "options": [
@@ -12522,7 +12664,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "`M` is a shortcut for `model` keyword.",
           "name": "@{M.customKey}",
           "options": [
@@ -12768,7 +12909,6 @@
           "return": "undefined"
         },
         {
-          "changetype": 1,
           "options": [
             "v2.5.0"
           ],
@@ -12846,9 +12986,7 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v2.8.0 supports `stream` argument and cancellation just `return false`.",
-          "changetype": 2,
-          "body": "Simple `Buffer` Streamer to `String`.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    \n    console.log(index, value.trim().parseXML());\n\n    // +v2.8.0: Cancels processing\n    // return false;\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});```",
+          "body": "Simple chunk `Buffer` streamer to `String`.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    \n    console.log(index, value.trim().parseXML());\n\n    // +v2.8.0: Cancels processing\n    // return false;\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});```",
           "name": "U.streamer",
           "example": "https://github.com/totaljs/examples/tree/master/streamer",
           "options": [
@@ -12858,12 +12996,12 @@
             {
               "body": "A begin delimiter.",
               "name": "beg",
-              "type": "String"
+              "type": "String/Buffer"
             },
             {
               "body": "An end delimiter.",
               "name": "end",
-              "type": "String",
+              "type": "String/Buffer",
               "options": [
                 "optional",
                 "+v1.9.7"
@@ -12902,6 +13040,63 @@
               "options": [
                 "optional",
                 "+v2.8.0"
+              ]
+            }
+          ],
+          "return": "Function"
+        },
+        {
+          "changetype": 1,
+          "body": "Simple chunk `Buffer` streamer to `Buffer`.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    \n    // value === BUFFER!!!!\n\n    console.log(index, value);\n\n    // Cancels processing\n    // return false;\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});```",
+          "name": "U.streamer2",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
+            {
+              "body": "A begin delimiter.",
+              "name": "beg",
+              "type": "String/Buffer"
+            },
+            {
+              "body": "An end delimiter.",
+              "name": "end",
+              "type": "String/Buffer",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "OnValue function.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "value",
+                  "type": "Buffer",
+                  "body": "Parsed value."
+                },
+                {
+                  "name": "index",
+                  "type": "Number",
+                  "body": "Current parsed index."
+                }
+              ]
+            },
+            {
+              "body": "Skip records.",
+              "name": "skip",
+              "type": "Number",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "It serves for end of processing non-flush data. E.g. solves a problem with processing of CSV files without `13` ascii char on the last line.",
+              "name": "stream",
+              "type": "Stream",
+              "options": [
+                "optional"
               ]
             }
           ],
@@ -13062,8 +13257,6 @@
           "return": "Boolean"
         },
         {
-          "changelog": "+v2.9.2 added a new flag: \"cookies\"",
-          "changetype": 2,
           "body": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `< 8` reads the content with maximum size `8 kB`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- `noredirect` disables auto-redirect (+v2.5.0)\n- `raw` sends data as they are (+v2.5.0)\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`\n- `+v2.9.2` adds a new flag called `cookies` for persistency of cookies (Important: cookie object must be declared)",
           "name": "U.request",
           "params": [
@@ -13823,7 +14016,7 @@
           "return": "Number"
         },
         {
-          "body": "Returns a chunker instance. The chunker is really great solution for INSERTING/UPDATING data into the DB. This method can help with a lot of data in the single thread. The example below describes its funcionallity.\n\n```javascript\nvar chunker = U.chunker('products', 50);\n\n// chunker === instance\n\nsomestream.on('data', U.streamer('<product>', '</product>', function(value, index) {\n\tvar product = value.parseXML();\n\n\t// The chunker creates multiple files with a maximum count of chunks (in this case: 50 products)\n\tchunker.write(product);\n\n\t// Here we can't wait for DB because data are flowing in this time\n}));\n\nsomestream.on('end', function() {\n\t\n\t// Flush\n\tchunker.end();\n\n\t// Count of all items\n\t// +v2.4.0\n\tconsole.log(chunker.count);\n\n\t// Count of all pages\n\t// +v2.4.0\n\tconsole.log(chunker.pages);\n\t\t\n\tchunker.each(function(items, next, index) {\n\t\t// here we can update DB\n\t\t\n\t\t// ....\n\t\t// ....\n\t\t\n\t\t// Read next items\n\t\tnext();\n\n\t}, function() {\n\n\t\t// This method is called when the chunker doesn't contain any other items (optional).\n\n\t\t// Cleans up hdd (removes files) and memory\n\t\tchunker.destroy();\n\t});\n\n\t// chunker.read(index, function(err, array) {\n\t//     array === products (max 50)\n\t// });\n\n\t// Removes all chunk files\n\t// chunker.clear();\n\n\t// Performs clear and it cleans memory\n\t// chunker.destroy();\n\n});\n```\n\n__IMPORTANT__:\nChunker stores items into the different files. A chunker `name` is a name of the file. When is chunker destroyed then the method automatically removes all files.",
+          "body": "Creates a new instance of Chunker. Please read more in `Additional / Chunker` section.",
           "name": "U.chunker",
           "options": [
             "+v2.0.0"
@@ -14263,7 +14456,6 @@
           "return": "MailMessage"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.8.0"
           ],
@@ -14581,7 +14773,6 @@
           "return": "FrameworkImage"
         },
         {
-          "changetype": 1,
           "body": "Get image size from Buffer. This method returns `{ width: Number, height: Number }` or `undefined` if the image is not valid.",
           "name": "Image.measure",
           "params": [
@@ -15093,7 +15284,6 @@
           "return": "FrameworkImage"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.5.0"
           ],
@@ -16396,7 +16586,6 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
           "body": "Sends a binary response",
           "name": "Response.prototype.binary",
           "options": [
@@ -16451,7 +16640,6 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.5.0"
           ],
@@ -16772,7 +16960,6 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
           "body": "Sends `409 error - Conflict` into the response",
           "name": "Response.prototype.throw409",
           "options": [
@@ -16924,7 +17111,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.3"
           ],
@@ -19040,56 +19226,6 @@
           "return": "Object"
         },
         {
-          "body": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is the alias for `framework.source()`.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
-          "name": "INCLUDE",
-          "options": [
-            "or include"
-          ],
-          "params": [
-            {
-              "body": "The script name or URL address.",
-              "example": "https://github.com/totaljs/examples/tree/master/business-logic",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Additional options.",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            }
-          ],
-          "return": "Object"
-        },
-        {
-          "body": "Includes a script from the `framework.config['directory-source']` or from the URL address. This function is the alias for `framework.source()`.",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
-          "name": "SOURCE",
-          "options": [
-            "or source"
-          ],
-          "params": [
-            {
-              "body": "The script name or URL address.",
-              "example": "https://github.com/totaljs/examples/tree/master/business-logic",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Additional options.",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            }
-          ],
-          "return": "Object"
-        },
-        {
           "body": "Gets the module. This function is the alias for `framework.module()`.",
           "name": "MODULE",
           "params": [
@@ -19282,7 +19418,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "Sends a mail message. It's alias for `F.mail()`",
           "name": "MAIL",
           "params": [
@@ -19340,7 +19475,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Sends a logmail message. It's alias for `F.logmail()`",
           "name": "LOGMAIL",
           "params": [
@@ -19976,7 +20110,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.merge()`",
           "options": [
             "+v2.9.0"
@@ -20016,7 +20149,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -20045,7 +20177,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.localize()`",
           "name": "LOCALIZE",
           "options": [
@@ -20078,7 +20209,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.cors()`",
           "name": "CORS",
           "options": [
@@ -20109,7 +20239,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Alias for `F.onAuthorize = fn`",
           "name": "AUTH",
           "options": [
@@ -20464,30 +20593,6 @@
           "return": "Framework"
         },
         {
-          "body": "A simple shortcut for getting a schema.",
-          "name": "$$$",
-          "options": [
-            "+v2.4.0"
-          ],
-          "params": [
-            {
-              "body": "A group name.",
-              "name": "group",
-              "type": "String",
-              "options": [
-                "optional"
-              ],
-              "default": "'default'"
-            },
-            {
-              "body": "A schema name.",
-              "name": "schema",
-              "type": "String"
-            }
-          ],
-          "return": "SchemaDeclaration"
-        },
-        {
           "body": "A simple async shortcut for getting a schema. This method waits max. 20 seconds for schema declaration (it not exists).",
           "name": "GETSCHEMA",
           "options": [
@@ -20646,7 +20751,7 @@
           "return": "undefined"
         },
         {
-          "body": "This method enables in-memory NoSQL embedded database (or a view only).",
+          "body": "This method enables in-memory NoSQL embedded database (or a view only)",
           "name": "NOSQLMEMORY",
           "options": [
             "+v2.3.0"
@@ -20658,7 +20763,7 @@
               "type": "String"
             },
             {
-              "body": "View name (if you want caches only view).",
+              "body": "View name (if you want caches only view)",
               "name": "view",
               "type": "String",
               "options": [
@@ -20667,6 +20772,53 @@
             }
           ],
           "return": "undefined"
+        },
+        {
+          "changetype": 1,
+          "body": "Writes to console output with date/time",
+          "name": "PRINTLN",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
+            {
+              "body": "A message to console.",
+              "name": "body",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "Alias for NOSQL('DB').storage",
+          "name": "NOSQLSTORAGE",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
+            {
+              "body": "Name of DB.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "DatabaseStorage"
+        },
+        {
+          "changetype": 1,
+          "body": "Alias for NOSQL('DB').indexes",
+          "name": "NOSQLINDEXES",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
+            {
+              "body": "Name of DB.",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "DatabaseStorage"
         },
         {
           "body": "Alias for `DatabaseBinary`, the method returns: `NOSQL('user').binary` command.",
@@ -20878,7 +21030,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "Executes async operations.\n\n```javascript\n\t$ASYNC('Product', function(err, response) {\n\t\tconsole.log(err, response);\n\t}).$workflow('load').$workflow('send').$save();```",
           "name": "$ASYNC",
           "options": [
@@ -21487,7 +21638,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.0"
           ],
@@ -21971,7 +22121,6 @@
           "return": "ErrorBuilder"
         },
         {
-          "changetype": 1,
           "body": "Adds a new error into the ErrorBuilder instance.",
           "name": "instance.push",
           "options": [
@@ -22883,7 +23032,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.2"
           ],
@@ -22899,7 +23047,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v2.9.2"
           ],
@@ -24906,6 +25053,140 @@
             "body": "It can write/read a value from model repository (internal meta-data repository contains each SchemaInstance object). A simple usage: \n\n```javascript\n// Writing\n$.repository('custom', 'value');\n\n// Reading\nconsole.log($.repository('custom'));```"
           }
       ]
+    },
+    {
+      "name": "Chunker",
+      "changetype": 1,
+      "group": "Additional",
+      "body": "`Chunker` is a very helpful tool for storing temporary data when you are importing some data from another services or databases. It can store defined count of documents/data (serialized in JSON) per file and after import is done you can browse data step-by-step. `Chunker` is defined in `FrameworkUtils` and here is a simple usage:\n\n```javascript\nvar chunker = U.chunker('products', 50);\n\n// chunker === instance\n\nsomestream.on('data', U.streamer('<product>', '</product>', function(value, index) {\n\tvar product = value.parseXML();\n\n\t// The chunker creates multiple files with a maximum count of chunks (in this case: 50 products)\n\tchunker.write(product);\n\n\t// Here we can't wait for DB because data are flowing in this time\n}));\n\nsomestream.on('end', function() {\n\t\n\t// Flushs buffer\n\tchunker.end();\n\n\tchunker.each(function(items, next, index) {\n\n\t\tconsole.log(chunker.percentage);\n\n\t\t// here we can update DB\n\t\t\n\t\t// ....\n\t\t// ....\n\t\t\n\t\t// Read next items\n\t\tnext();\n\n\t}, function() {\n\n\t\t// This method is called when the chunker doesn't contain any other items (optional).\n\n\t\t// Cleans up hdd (removes files) and memory\n\t\tchunker.destroy();\n\t});\n\n});\n```\n\n__IMPORTANT__:\nChunker stores items to different files. A chunker `name` is a name of the file. When the chunker is destroyed then it removes all files automatically.",
+      "properties": [
+          {
+            "name": "chunker.count",
+            "return": "Number",
+            "body": "Total count of stored documents",
+            "options": ["readonly"]
+          },
+          {
+            "name": "chunker.pages",
+            "return": "Number",
+            "body": "Total count of created files",
+            "options": ["readonly"]
+          },
+          {
+            "name": "chunker.percentage",
+            "return": "Number",
+            "body": "A current process of processed files when you use `chunker.each()` or `chunker.read()` method",
+            "options": ["readonly", "+v3.0.0"]
+          },
+          {
+            "name": "chunker.autoremove",
+            "return": "Boolean",
+            "body": "Chunker removes each file after is processed in `chunker.each()` or `chunker.read()`",
+            "options": ["+v3.0.0"],
+            "default": "true"
+          },
+          {
+            "name": "chunker.compress",
+            "return": "Boolean",
+            "body": "Data are compressed in files",
+            "default": "true",
+            "options": ["+v3.0.0"]
+          }
+      ],
+      "methods": [
+        {
+          "name": "chunker.write",
+          "body": "Writes data to the chunker",
+          "params": [
+            {
+              "name": "doc",
+              "body": "A document",
+              "type": "Object"
+            }
+          ],
+          "return": "Chunker"
+        },
+        {
+          "name": "chunker.end",
+          "body": "Ends writing",
+          "params": [],
+          "return": "Chunker"
+        },
+        {
+          "name": "chunker.clear",
+          "body": "Clears all chunker temporary files",
+          "params": [],
+          "return": "Chunker"
+        },
+        {
+          "name": "chunker.destroy",
+          "body": "Performs `chunker.clear()` and destroys the instance.",
+          "params": [],
+          "return": "Chunker"
+        },
+        {
+          "name": "chunker.read",
+          "body": "Reads data",
+          "params": [
+            {
+              "name": "page",
+              "body": "Page number",
+              "type": "Number"
+            },
+            {
+              "name": "callback",
+              "body": "A callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling"
+                },
+                {
+                  "name": "docs",
+                  "type": "Array Object",
+                  "body": "List of stored documents"
+                }
+              ]
+            }
+          ],
+          "return": "Chunker"
+        },
+        {
+          "name": "chunker.each",
+          "body": "Browse all documents in all chunker files.",
+          "params": [
+            {
+              "name": "onDocuments",
+              "body": "A delegate for processing of documents",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "docs",
+                  "type": "Array Object",
+                  "body": "List of stored documents"
+                },
+                {
+                  "name": "next",
+                  "type": "Function",
+                  "body": "Loads next documents if are",
+                  "params": []
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "body": "This callback is executed if the chunker doesn't have any documents.",
+              "type": "Function",
+              "params": [
+              ]
+            }
+          ],
+          "return": "Chunker"
+        }
+      ]
     }
   ],
   "build": "",
@@ -24963,7 +25244,7 @@
       "name": "Developer tools"
     },
     {
-      "body": "## Hosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Ro\u0161t\u00ed.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [IBM BlueMix](https://console.bluemix.net/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n##\u00a0Hosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__mLab__](https://mlab.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.com/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
+      "body": "## Hosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Ro\u0161t\u00ed.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [IBM BlueMix](https://console.bluemix.net/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n### Hosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__mLab__](https://mlab.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.com/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
       "group": "",
       "name": "Hosting"
     },
@@ -25047,7 +25328,7 @@
       "name": "Wrapped methods"
     },
     {
-      "body": "__Table of contents__:\n\n- [Hosting Total.js applications in IIS on Windows](#)\n- [SMTP settings for Gmail, Office and Zoho](#)\n- [Windows developers](#)\n- [Websocket connection is disconnected after 1 minute](#)\n- [Synchronous programming not working](#)\n- [Prevention for multiple requesting](#)\n- [Too many open files](#)\n- [Merged files contain additional informations](#)\n- [Publishing of website through a REVERSE PROXY](#)\n- [SOAP with total.js](#)\n- [Creating a tunnel between localhost and internet](#)\n- [Best NGINX configuration](#)\n- [Static files only through the reverse proxy](#)\n- [Disable JS/CSS/HTML compression in file handler](#)\n- [How to run Total.js app on Passenger Web Server?](#)\n- [Total.js Events don't support all functionality from Node.js](#)\n- [Requests in RESTBuilder are too slow](#)\n\n---\n\n## Hosting Total.js applications in IIS on Windows\n\nThis is the perfect setup to run Total.js application on local IIS or __Azure__. Follow the steps below:\n\n- <https://github.com/totaljs/framework/issues/509>\n\n__web.config__:\n\n```xml\n<configuration>\n  <system.webServer>\n\n\t<handlers>\n\t  <!-- indicates that the app.js file is a Node.js application to be handled by the iisnode module -->\n\t  <add name=\"iisnode\" path=\"release.js\" verb=\"*\" modules=\"iisnode\" />\n\t</handlers>\n\n\t<rewrite>\n\t  <rules>        \n\t\t<!-- Don't interfere with requests for node-inspector debugging -->\n\t\t<rule name=\"NodeInspector\" patternSyntax=\"ECMAScript\" stopProcessing=\"true\">\n\t\t  <match url=\"^release.js\\/debug[\\/]?\" />\n\t\t</rule>\n\n\t\t<!-- First we consider whether the incoming URL matches a physical file in the /public folder -->\n\t\t<rule name=\"StaticContent\">\n\t\t  <action type=\"Rewrite\" url=\"{REQUEST_URI}\" />\n\t\t</rule>\n\n\t\t<!-- All other URLs are mapped to the Node.js application entry point -->\n\t\t<rule name=\"DynamicContent\">\n\t\t  <conditions>\n\t\t\t<add input=\"{REQUEST_FILENAME}\" matchType=\"IsFile\" negate=\"True\" />\n\t\t  </conditions>\n\t\t  <action type=\"Rewrite\" url=\"release.js\" />\n\t\t</rule>\n\t\t\n\t  </rules>\n\t</rewrite>\n\n  </system.webServer>\n</configuration>\n```\n\n__release.js__:\n\n```javascript\nconst options = {};\noptions.ip = 'auto';\noptions.port = process.env.port;\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n## SMTP settings for Gmail, Office and Zoho\n\n```html\n// Gmail SMTP settings\nmail-smtp                : smtp.gmail.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"rejectUnauthorized\":true}\n\n// Office365 SMTP settings\nmail-smtp                : smtp.office365.com\nmail-smtp-options        : {\"port\":587,\"secure\":false,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"tls\":{\"ciphers\":\"SSLv3\"}}\n\n// Zoho SMTP settings\nmail-smtp                : smtp.zoho.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\"}\n```\n\n## Windows developers\n\nUse Unix paths for your projects.\n\n- bad: ~~`\\some-directory\\some-file.txt`~~\n- good: `/some-directory/some-file.txt`\n\n---\n\n## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__). New Node.js version `+v6.0.0` doesn't need `--harmony` argument because supports generators by default.\n\n```bash\n$ node my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. We recorded the problem in __Chrome__ web browser.\n\n### Total.js prevention\n\n```javascript\nexports.install = function() {\n\t// Prevention for multipe requests from one browser\n\tROUTE('/', delay_operation, ['delay']);\n};\n\nfunction delay_operaiton() {\n\tvar self = this;\n\n\tconsole.log('I am here.');\n\n\tsetTimeout(function() {\n\t\tself.view('some-view');\n\t}, 10000);\n}\n```\n\n### Important change for nginx\n\n```lua\nhttp {\n\t# VERY IMPORTANT FOR \"DELAY\" FLAG\n\tproxy_http_version 1.1;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we have to enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## Merged files contain additional informations\n\n__Yes__ and these additional informations are added only in debug (development) mode. These informations are very helpful for debugging of front-end development.\n\ne.g.\n\n```html\n/*!\n * ===========================================================================================\n * MERGED: ./public/css/bootstrap.min.css\n * ===========================================================================================\n */\n```\n\n## Publishing of website through a REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - __recommended__](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n\tworker_connections  1024;\n}\n\nhttp {\n\n\tinclude            mime.types;\n\tdefault_type       application/octet-stream;\n\tsendfile           on;\n\tkeepalive_timeout  65;\n\tproxy_http_version 1.1;\n\n\t# ONE APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name www.totaljs.com;\n\t\tserver_name totaljs.com;\n\t\tcharset     utf-8;\n\n\t\t# WITH WEBSOCKET DEFINITION\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\n\t\t\t#\u00a0max 15 minutes keep-alive\n\t\t\tproxy_read_timeout  600s;\n\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header Upgrade          $http_upgrade;\n\t\t\tproxy_set_header Connection       \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n\n\t# SECOND APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name docs.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8001;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_redirect     off;\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## SOAP with total.js\n\nHow to create a SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n\t<SOAP-ENV:Body>\n\t\t<tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n\t\t\t<tns1:countryCode>SK</tns1:countryCode>\n\t\t\t<tns1:vatNumber>0000000000</tns1:vatNumber>\n\t\t</tns1:checkVat>\n\t</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n\tconsole.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n\tuse epoll;\n\tworker_connections 1024;\n\tmulti_accept on;\n}\n\nhttp {\n\t# DDOS protection\n\tlimit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n\tclient_body_buffer_size 10K;\n\tclient_header_buffer_size 1k;\n\tclient_max_body_size 8m;\n\tlarge_client_header_buffers 2 1k;\n\tserver_names_hash_bucket_size 64;\n\tsendfile on;\n\ttcp_nodelay on;\n\tkeepalive_timeout 15;\n\tkeepalive_requests 200;\n\treset_timedout_connection on;\n\tclient_body_timeout 10;\n\tsend_timeout 5;\n\tserver_tokens off;\n\ttypes_hash_max_size 2048;\n\tinclude /etc/nginx/mime.types;\n\tdefault_type application/octet-stream;\n\taccess_log off;\n\t# access_log /www/logs/nginx.log;\n\terror_log /var/log/nginx/error.log;\n\tproxy_http_version 1.1;\n\t\n\t# My configuration for websites:\n\t# include /www/nginx/*.conf;\n\n\tssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n\tssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n\tssl_prefer_server_ciphers on;\n\tssl_session_cache shared:SSL:10m;\n\tssl_session_timeout 10m;\n\n\t# ======================\n\t# Some server definition\n\t# ======================\n\n\tserver {\n\t\tlisten 80;\n\t\tserver_name totaljs.com;\n\t\tserver_name www.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\n\t\t\t# DDOS protection for maximum 30 requests\n\t\t\tlimit_req zone=ddos burst=30 nodelay;\n\n\t\t\tproxy_set_header   Host $http_host;\n\t\t\tproxy_set_header   X-Forwarded-For $remote_addr;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-NginX-Proxy true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header   Upgrade $http_upgrade;\n\t\t\tproxy_set_header   Connection \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## Static files only through the reverse proxy\n\nIf you want to use reverse proxy (as NGINX) for static files and you want to use total.js JS and CSS compression or merge, then the framework supports method `F.snapshot()`.\n\n__Some defintion__:\n\n```javascript\nON('load', function() {\n\t// Framework calls itself and creates new file\n\t// nginx can follow static files in a specific directory\n\tF.snapshot('merge.js', '/www/assets/merge.js');\n\tF.snapshot('default.js', '/www/assets/mywebsite.js');\n\tF.snapshot('default.css', '/www/assets/mywebsite.css');\n\tF.snapshot('/', '/www/assets/mywebsite.html');\n});\n```\n\n## Disable JS/CSS/HTML compression in file handler\n\n```javascript\nfunction filehander_action(req, res) {\n\t// easy hack\n\tres.noCompress = true;\n\tres.file('myjavascript.js');\n}\n```\n\n## How to run Total.js app on Passenger Web Server?\n\n```javascript\nvar options = {};\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n##\u00a0Total.js Events don't support all functionality from Node.js\n\nTotal.js framework has own implementation of `EventEmitter` (because of performance), so some standard Node.js functionality of events may not work correctly. Keep your app according to Total.js documentation.\n\n## Requests in RESTBuilder are too slow\n\nThe problem can be in `dnscache`. Try to disable this behavior via `builder.noDnsCache()`.",
+      "body": "__Table of contents__:\n\n- [Hosting Total.js applications in IIS on Windows](#)\n- [SMTP settings for Gmail, Office and Zoho](#)\n- [Windows developers](#)\n- [Websocket connection is disconnected after 1 minute](#)\n- [Synchronous programming not working](#)\n- [Prevention for multiple requesting](#)\n- [Too many open files](#)\n- [Merged files contain additional informations](#)\n- [Publishing of website through a REVERSE PROXY](#)\n- [SOAP with total.js](#)\n- [Creating a tunnel between localhost and internet](#)\n- [Best NGINX configuration](#)\n- [Static files only through the reverse proxy](#)\n- [Disable JS/CSS/HTML compression in file handler](#)\n- [How to run Total.js app on Passenger Web Server?](#)\n- [Total.js Events don't support all functionality from Node.js](#)\n- [Requests in RESTBuilder are too slow](#)\n\n---\n\n## Hosting Total.js applications in IIS on Windows\n\nThis is the perfect setup to run Total.js application on local IIS or __Azure__. Follow the steps below:\n\n- <https://github.com/totaljs/framework/issues/509>\n\n__web.config__:\n\n```xml\n<configuration>\n  <system.webServer>\n\n\t<handlers>\n\t  <!-- indicates that the app.js file is a Node.js application to be handled by the iisnode module -->\n\t  <add name=\"iisnode\" path=\"release.js\" verb=\"*\" modules=\"iisnode\" />\n\t</handlers>\n\n\t<rewrite>\n\t  <rules>        \n\t\t<!-- Don't interfere with requests for node-inspector debugging -->\n\t\t<rule name=\"NodeInspector\" patternSyntax=\"ECMAScript\" stopProcessing=\"true\">\n\t\t  <match url=\"^release.js\\/debug[\\/]?\" />\n\t\t</rule>\n\n\t\t<!-- First we consider whether the incoming URL matches a physical file in the /public folder -->\n\t\t<rule name=\"StaticContent\">\n\t\t  <action type=\"Rewrite\" url=\"{REQUEST_URI}\" />\n\t\t</rule>\n\n\t\t<!-- All other URLs are mapped to the Node.js application entry point -->\n\t\t<rule name=\"DynamicContent\">\n\t\t  <conditions>\n\t\t\t<add input=\"{REQUEST_FILENAME}\" matchType=\"IsFile\" negate=\"True\" />\n\t\t  </conditions>\n\t\t  <action type=\"Rewrite\" url=\"release.js\" />\n\t\t</rule>\n\t\t\n\t  </rules>\n\t</rewrite>\n\n  </system.webServer>\n</configuration>\n```\n\n__release.js__:\n\n```javascript\nconst options = {};\noptions.ip = 'auto';\noptions.port = process.env.port;\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n## SMTP settings for Gmail, Office and Zoho\n\n```html\n// Gmail SMTP settings\nmail-smtp                : smtp.gmail.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"rejectUnauthorized\":true}\n\n// Office365 SMTP settings\nmail-smtp                : smtp.office365.com\nmail-smtp-options        : {\"port\":587,\"secure\":false,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"tls\":{\"ciphers\":\"SSLv3\"}}\n\n// Zoho SMTP settings\nmail-smtp                : smtp.zoho.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\"}\n```\n\n## Windows developers\n\nUse Unix paths for your projects.\n\n- bad: ~~`\\some-directory\\some-file.txt`~~\n- good: `/some-directory/some-file.txt`\n\n---\n\n## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__). New Node.js version `+v6.0.0` doesn't need `--harmony` argument because supports generators by default.\n\n```bash\n$ node my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. We recorded the problem in __Chrome__ web browser.\n\n### Total.js prevention\n\n```javascript\nexports.install = function() {\n\t// Prevention for multipe requests from one browser\n\tROUTE('/', delay_operation, ['delay']);\n};\n\nfunction delay_operaiton() {\n\tvar self = this;\n\n\tconsole.log('I am here.');\n\n\tsetTimeout(function() {\n\t\tself.view('some-view');\n\t}, 10000);\n}\n```\n\n### Important change for nginx\n\n```lua\nhttp {\n\t# VERY IMPORTANT FOR \"DELAY\" FLAG\n\tproxy_http_version 1.1;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we have to enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## Merged files contain additional informations\n\n__Yes__ and these additional informations are added only in debug (development) mode. These informations are very helpful for debugging of front-end development.\n\ne.g.\n\n```html\n/*!\n * ===========================================================================================\n * MERGED: ./public/css/bootstrap.min.css\n * ===========================================================================================\n */\n```\n\n## Publishing of website through a REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - __recommended__](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n\tworker_connections  1024;\n}\n\nhttp {\n\n\tinclude            mime.types;\n\tdefault_type       application/octet-stream;\n\tsendfile           on;\n\tkeepalive_timeout  65;\n\tproxy_http_version 1.1;\n\n\t# ONE APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name www.totaljs.com;\n\t\tserver_name totaljs.com;\n\t\tcharset     utf-8;\n\n\t\t# WITH WEBSOCKET DEFINITION\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\n\t\t\t#\u00a0max 15 minutes keep-alive\n\t\t\tproxy_read_timeout  600s;\n\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header Upgrade          $http_upgrade;\n\t\t\tproxy_set_header Connection       \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n\n\t# SECOND APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name docs.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8001;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_redirect     off;\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## SOAP with total.js\n\nHow to create a SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n\t<SOAP-ENV:Body>\n\t\t<tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n\t\t\t<tns1:countryCode>SK</tns1:countryCode>\n\t\t\t<tns1:vatNumber>0000000000</tns1:vatNumber>\n\t\t</tns1:checkVat>\n\t</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n\tconsole.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n\tuse epoll;\n\tworker_connections 1024;\n\tmulti_accept on;\n}\n\nhttp {\n\t# DDOS protection\n\tlimit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n\tclient_body_buffer_size 10K;\n\tclient_header_buffer_size 1k;\n\tclient_max_body_size 8m;\n\tlarge_client_header_buffers 2 1k;\n\tserver_names_hash_bucket_size 64;\n\tsendfile on;\n\ttcp_nodelay on;\n\tkeepalive_timeout 15;\n\tkeepalive_requests 200;\n\treset_timedout_connection on;\n\tclient_body_timeout 10;\n\tsend_timeout 5;\n\tserver_tokens off;\n\ttypes_hash_max_size 2048;\n\tinclude /etc/nginx/mime.types;\n\tdefault_type application/octet-stream;\n\taccess_log off;\n\t# access_log /www/logs/nginx.log;\n\terror_log /var/log/nginx/error.log;\n\tproxy_http_version 1.1;\n\t\n\t# My configuration for websites:\n\t# include /www/nginx/*.conf;\n\n\tssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n\tssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n\tssl_prefer_server_ciphers on;\n\tssl_session_cache shared:SSL:10m;\n\tssl_session_timeout 10m;\n\n\t# ======================\n\t# Some server definition\n\t# ======================\n\n\tserver {\n\t\tlisten 80;\n\t\tserver_name totaljs.com;\n\t\tserver_name www.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\n\t\t\t# DDOS protection for maximum 30 requests\n\t\t\tlimit_req zone=ddos burst=30 nodelay;\n\n\t\t\tproxy_set_header   Host $http_host;\n\t\t\tproxy_set_header   X-Forwarded-For $remote_addr;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-NginX-Proxy true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header   Upgrade $http_upgrade;\n\t\t\tproxy_set_header   Connection \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## Static files only through the reverse proxy\n\nIf you want to use reverse proxy (as NGINX) for static files and you want to use total.js JS and CSS compression or merge, then the framework supports method `F.snapshot()`.\n\n__Some defintion__:\n\n```javascript\nON('load', function() {\n\t// Framework calls itself and creates new file\n\t// nginx can follow static files in a specific directory\n\tF.snapshot('merge.js', '/www/assets/merge.js');\n\tF.snapshot('default.js', '/www/assets/mywebsite.js');\n\tF.snapshot('default.css', '/www/assets/mywebsite.css');\n\tF.snapshot('/', '/www/assets/mywebsite.html');\n});\n```\n\n## Disable JS/CSS/HTML compression in file handler\n\n```javascript\nfunction filehander_action(req, res) {\n\t// easy hack\n\tres.noCompress = true;\n\tres.file('myjavascript.js');\n}\n```\n\n## How to run Total.js app on Passenger Web Server?\n\n```javascript\nvar options = {};\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n### Total.js Events don't support all functionality from Node.js\n\nTotal.js framework has own implementation of `EventEmitter` (because of performance), so some standard Node.js functionality of events may not work correctly. Keep your app according to Total.js documentation.\n\n## Requests in RESTBuilder are too slow\n\nThe problem can be in `dnscache`. Try to disable this behavior via `builder.noDnsCache()`.",
       "group": "",
       "name": "Troubleshooting"
     },
