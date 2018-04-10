@@ -2682,7 +2682,7 @@
           "options": [
             "+v2.7.0"
           ],
-          "body": "Returns all available prototypes in the callback. You can extend each part of Total.js easily.\n\n```javascript\nF.prototypes(function(proto) {\n    // proto.Chunker\n    // proto.Controller\n    // proto.Database\n    // proto.DatabaseBinary\n    // proto.DatabaseBuilder\n    // proto.DatabaseBuilder2\n    // proto.DatabaseCounter\n    // proto.ErrorBuilder\n    // proto.HttpFile\n    // proto.HttpRequest\n    // proto.HttpResponse\n    // proto.Image\n    // proto.Message\n    // proto.Page\n    // proto.Pagination\n    // proto.RESTBuilder\n    // proto.RESTBuilderResponse\n    // proto.SchemaBuilder\n    // proto.SchemaOptions\n    // proto.TransformBuilder\n    // proto.UrlBuilder\n    // proto.WebSocket\n    // proto.WebSocketClient\n});```",
+          "body": "Returns all available prototypes in the callback. You can extend each part of Total.js easily.\n\n```javascript\nF.prototypes(function(proto) {\n    // proto.Chunker\n    // proto.Controller\n    // proto.Database\n    // proto.DatabaseBinary\n    // proto.DatabaseBuilder\n    // proto.DatabaseBuilder2\n    // proto.DatabaseCounter\n    // proto.DatabaseIndexes\n    // proto.DatabaseStorage\n    // proto.ErrorBuilder\n    // proto.HttpFile\n    // proto.HttpRequest\n    // proto.HttpResponse\n    // proto.Image\n    // proto.Message\n    // proto.Page\n    // proto.Pagination\n    // proto.RESTBuilder\n    // proto.RESTBuilderResponse\n    // proto.SchemaBuilder\n    // proto.SchemaOptions\n    // proto.TransformBuilder\n    // proto.UrlBuilder\n    // proto.WebSocket\n    // proto.WebSocketClient\n});```",
           "name": "F.prototypes",
           "params": [
             {
