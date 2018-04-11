@@ -1184,7 +1184,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.9.0 added `middleware` argument.",
           "body": "Starts the framework with HTTP server.",
           "name": "F.http",
@@ -1668,7 +1667,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.9.0 supports additional sitemap routing",
           "body": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nF.route('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nF.route('/', 'index'); // is same as F.route('/');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nF.route('/', '=default/index');\nF.route('/', '=?/index'); // --> \"=?\" means that the framework uses default theme name\nF.route('/', '~index'); // --> \"~\" means that the framework loads view \"index\" from root of  \"/views/\" (skips themes)\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n\n// +v3.0.0\n// supports a declared method in URL address\nF.route('GET /api/users/', action);\nF.route('POST /api/users/', action);\n```\n\n## Schemas\n\n```javascript\nF.route('/api/account/', action, ['*Account']); // +v1.9.7\nF.route('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nF.route('/api/account/', action, ['put', '*User#update']);\n\n// With a link to workflow:\n// Workflow means: open \"File: workflows\" section\nF.route('/api/account/', action, ['put'], '*User --> save'); // Executes the workflow \"save\"\nF.route('/api/account/', action, ['put'], '*User --> exec'); // Executes the workflow \"exec\"\n\n// +v3.0.0\n// Supports auto-executing of some operations in Schema\n// \"@name\" means name of operation, framework will try to find an operation (e.g CRUD operation or workflow, transform, operation or hook) with this name\n\nF.route('/api/account/', action, ['*User --> @insert', 'post']);    // Executes (if exists) schema.setInsert()\nF.route('/api/account/', action, ['*User --> @update', 'put']);     // Executes (if exists) schema.setUpdate()\nF.route('/api/account/', action, ['*User --> @save', 'post']);      // Executes (if exists) schema.setSave()\nF.route('/api/account/', action, ['*User --> @get']);               // Executes (if exists) schema.setRead() or schema.setGet()\nF.route('/api/account/', action, ['*User --> @read']);              // Executes (if exists) schema.setRead() or schema.setGet()\nF.route('/api/account/', action, ['*User --> @remove', 'delete']);  // Executes (if exists) schema.setRemove()\nF.route('/api/account/', action, ['*User --> @query']);             // Executes (if exists) schema.setQuery()\n\n// Workflows, Transforms, Operations or Hooks\nF.route('/api/account/', action, ['*User --> @exec']);    // Executes (if exists) @exec workflow or transform or operation or hook\nF.route('/api/account/', action, ['*User --> @xml']);     // Executes (if exists) @exec workflow or transform or operation or hook\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nF.route('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nF.route('[*]/', action);\n// All subdomains\n\nF.route('[nice*]/', action);\n// All subdomains which contain `nice` word\n```\n\n## Sitemap\n\n```javascript\n// Creates route according to the sitemap\nF.route('#sitemap_id', [action], [flags]);\n\n// +v2.9.0 supports additional sitemap routing\nF.route('#sitemap_id/products/', [action], [flags]);\nF.route('#sitemap_id/orders/', [action], [flags]);```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
@@ -2164,7 +2162,6 @@
           "return": "FrameworkController Array"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - add a support for URL address",
           "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string.\n\n`+v2.8.0` __Rendering view from URL address__:\n\n```javascript\nvar response = F.view('https://www.totaljs.com/view.html');\nif (response instanceof Function) {\n\t// Is called the only once because the second time the view is read from the framework cache\n\tresponse(function(err, response) {\n\t\tconsole.log('VIEW:', response);\n\t});\n} else\n\tconsole.log('VIEW:', response);```",
           "name": "F.view",
@@ -2210,7 +2207,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string",
           "name": "F.viewCompile",
@@ -2362,7 +2358,6 @@
           "return": "MailMessage"
         },
         {
-          "changetype": 2,
           "changelog": "URL can be `sitemap` identificator.",
           "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript, CSS or HTML.\n\n```javascript\n// Merging files\nF.merge('/merge.js', '/js/ui.js', '/js/default.js');\n\n// Merging all files\nF.merge('/merge.js', '/js/*.js');\n\n// Merging files in themes:\nF.merge('/merge.css', '=moderntheme/public/ui.css', '=moderntheme/public/default.css');\n\n// Merging files in packages:\nF.merge('/merge.css', '@packagename/public/ui.css', '@packagename/public/default.css');\n\n// Merging files with an isomorphice code:\nF.merge('/merge.js', '/js/default.js', '#isomorphicname1', '#isomorphicname2');\n\n// External URL address:\nF.merge('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/default.js');\n\n// Merging with blocks\nF.merge('/manager.js', '/js/ui.js#manager', '/js/manager.js');\n\n// With a sitemap identificator\n// +v2.9.0\nF.merge('#sitemapId/myfile.js', '/js/ui.js', '/js/manager.js');```",
           "name": "F.merge",
@@ -2400,7 +2395,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "v2.9.0 supports a sitemap identificator",
           "body": "A custom mapping of static files. You can easily change a mapping static file. __IMPORTANT__: if you map some directory/file then the directory/file has to exist otherwise the mapping won't be work.\n\n### Mapping files\n\n```javascript\n// http://0.0.0.0:8000/app.js --> server responds with app-homepage.js script\nF.map('/app.js', '/hidden-in-public-directory/app-homepage.js');\nF.map('/app.js', F.path.private('/app-homepage.js'));\n\n// With a sitemap identificator\n// +v2.9.0\nF.map('#sitemapId/app.js', F.path.private('/app-homepage.js'));\n```\n\n### Mapping directories\n\n```javascript\n// all files\nF.map('/custom/', '/hidden-in-public-directory/');\nF.map('/custom/', '~/hidden-in-root-directory/');\n\n// only images\nF.map('/custom/', F.path.root('my-images'), ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', F.path.private(), function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for packages\n\n```javascript\n// all files\nF.map('/custom/', '@package_name');\n\n// only images\nF.map('/custom/', '@package_name', ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', '@package_name', function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for isomorphic code\n\n```javascript\n// below file is linked to /isomorphic/my-isomorphic.js\nF.map('/serverside.js', '#my-isomorphic');```",
           "name": "F.map",
@@ -2694,7 +2688,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - supports file list `String Array` instead of path",
           "options": [
             "+v1.9.1"
@@ -5039,7 +5032,7 @@
       "name": "FrameworkPath"
     },
     {
-      "body": "NoSQL embedded database is written by Peter Sirka. It's very great database for very small projects and can help with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');```",
+      "body": "__NoSQL embedded database__ is written by Peter Sirka. It's very great and simple database for very small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');```",
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -5155,7 +5148,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 changed this method completely, this method backups all files from this database to Total.js Package file. <b>OLDER METHOD</b> has been moved to `database.backup2()`",
           "name": "database.backup",
           "body": "This method backups database, counter, meta-info and all binary files.",
@@ -5322,6 +5314,36 @@
             }
           ],
           "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "database.find2",
+          "body": "Finds documents faster in the database because it reads DB file from end and it doesn't analyse the entire file in specific conditions. `count` argument in the callback can be inaccurate. This method is targeted for special cases.",
+          "params": [],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "database.clear",
+          "body": "Clears all documents from DB",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                }
+              ]
+            }
+          ],
+          "return": "Database"
         },
         {
           "options": [
@@ -7228,14 +7250,15 @@
       ]
     },
     {
-      "body": "__NoSQL Database Binary__ helps with storing files in the NoSQL embedded database.\n\n```javascript\nvar database = NOSQL('photos');\n\n// database.binary.insert(...);\n// database.binary.update(...);\n// etc.```",
+      "changetype": 2,
+      "body": "__NoSQL Database Binary__ helps with storing files in the NoSQL embedded database. `+v3.0.0` binary mode stores files into the independent directores for 1000 files per directory. You can store max. `999999999` files.\n\n```javascript\nvar binary = NOSQL('photos').binary;\n// or\nvar binary = NOSQLBINARY('photos');\n\nvar idfile = binary.insert('logo.png', STREAM_or_BUFFER_or_BASE64);\nconsole.log(idfile);\n```",
       "name": "DatabaseBinary",
       "group": "NoSQL Embedded",
       "methods": [
         {
           "name": "database.binary.insert",
           "body": "Inserts a new file into the database. The method __returns file identificator__.\n\n```javascript\nvar nosql = NOSQL('photos');\n\n// Usage 1 (filename with path):\nvar id1 = nosql.binary.insert(F.root.public('photos/1.jpg'));\nvar id2 = nosql.binary.insert(F.root.public('photos/2.jpg'));\n\n// Usage 2 (buffer):\nvar id3 = nosql.binary.insert('photo3.jpg', require('fs').readFileSync(F.root.public('photos/3.jpg')));\nvar id4 = nosql.binary.insert('photo4.jpg', require('fs').readFileSync(F.root.public('photos/4.jpg')));\n\n// Usage 3 (stream):\nvar id3 = nosql.binary.insert('photo5.jpg', require('fs').createReadStream(F.root.public('photos/5.jpg')));\nvar id4 = nosql.binary.insert('photo6.jpg', require('fs').createReadStream(F.root.public('photos/6.jpg')));\n\n// Usage 5 (base64):\nvar id5 = nosql.binary.insert('photo7.jpg', 'iVBORw0KGgoAAAANSUhEUgAAAW8AAAEdC...');```",
-          "return": "DatabaseBuilder",
+          "return": "String",
           "params": [
             {
               "name": "name",
@@ -7281,11 +7304,11 @@
         {
           "name": "database.binary.update",
           "body": "Updates a file in the database. The database create a new file when the file doesn't exist.",
-          "return": "DatabaseBuilder",
+          "return": "String",
           "params": [
             {
               "name": "id",
-              "type": "String",
+              "type": "String/Number",
               "body": "The filename identificator."
             },
             {
@@ -7332,11 +7355,11 @@
         {
           "name": "database.binary.read",
           "body": "Reads a file from the database.",
-          "return": "DatabaseBuilder",
+          "return": "DatabaseBinary",
           "params": [
             {
               "name": "id",
-              "type": "String",
+              "type": "String/Number",
               "body": "Filename identificator."
             },
             {
@@ -7370,11 +7393,11 @@
         {
           "name": "database.binary.remove",
           "body": "Removes a file from the database.",
-          "return": "DatabaseBuilder",
+          "return": "DatabaseBinary",
           "params": [
             {
               "name": "id",
-              "type": "String",
+              "type": "String/Number",
               "body": "Filename identificator."
             },
             {
@@ -7405,9 +7428,44 @@
             "+v2.3.0"
           ],
           "name": "database.binary.all",
-          "body": "Shows all filenames stored in the database.",
-          "return": "DatabaseBuilder",
+          "body": "Shows all filenames stored in the database. I don't recommend to use this method if you have stored many files. Total.js `+v3.0.0` supports `database.binary.browse()` method for browsing registered files.",
+          "return": "DatabaseBinary",
           "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback function.",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling."
+                },
+                {
+                  "name": "list",
+                  "type": "Object Array",
+                  "body": "A filelist."
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseBinary"
+        },
+        {
+          "options": [
+            "+v3.0.0"
+          ],
+          "changetype": 1,
+          "name": "database.binary.browse",
+          "body": "This method can browse all files.\n\n```javascript\ndatabase.binary.browse(function(err, directories) {\n\n\t// RETURNS ALL CREATED DIRECTORIES\n\tconsole.log(directories);\n\n\t// BROWSE FILES ACCORDING TO THE SPECIFIC DIRECTORY\n\tdatabase.binary.browse(directories[0], function(err, files) {\n\t\t// RETURNS ALL REGISTERED FILES IN THIS DIRECTORY\n\t\tconsole.log(files);\n\t});\n\n});```",
+          "return": "DatabaseBinary",
+          "params": [
+            {
+              "name": "directory",
+              "type": "String",
+              "body": "A specific directory",
+              "options": ["optional"]
+            },
             {
               "name": "callback",
               "type": "Function",
@@ -9541,7 +9599,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.9.0 callback is optional",
           "body": "Performs workflow operations according to the `/workflows` file.",
           "name": "controller.$exec",
@@ -10171,7 +10228,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - add a support for URL address",
           "body": "Sends the view. The function supports creating view into the `string`. If the functions does not contain the `name` argument then the argument is generated according to the URL address.\n\n### Rendering view according to the controller name\n\n__/controllers/default.js__\n\n```javascript\nfunction some_action_in_controller_default() {\n    this.view('index');\n    // The view is loaded from: /views/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/products.js__\n\n```javascript\nfunction some_action_in_controller_products() {\n    this.view('index');\n    // The view is loaded from: /views/products/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n__/controllers/users.js__\n\n```javascript\nfunction some_action_in_controller_users() {\n    this.view('index');\n    // The view is loaded from: /views/users/index.html\n    // The layout is loaded from: /views/layout.html\n}\n```\n\n### Rendering view without the view name\n\nThe framework copies all text from last `/` character in the URL address and thereof creates the view name:\n\n- From `/` creates view name `index`\n- From `/products/` creates view name `products`\n- From `/products/orders/` creates view name `orders`\n\nThe framework creates these view names in the route definition `F.route()`.\n\n### `+v2.8.0` Rendering a partial view from URL address\n\n```javascript\nvar response = controller.view('https://www.totaljs.com/view.html');\nif (response instanceof Function) {\n\t// Is called the only once because the second time the view is read from the framework cache\n\tresponse(function(err, response) {\n\t\tconsole.log('VIEW:', response);\n\t});\n} else\n\tconsole.log('VIEW:', response);```",
           "example": "https://github.com/totaljs/examples/tree/master/views",
@@ -12118,7 +12174,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - supports cache key",
           "body": "Compiles and renders string as view",
           "name": "@{viewCompile}",
@@ -13888,7 +13943,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - The method returns lower-case extension.",
           "body": "Gets a file extension (always __lower-case__) from a relative path. The method return extension without dot, e.g. `jpg` or `txt`.",
           "name": "U.getExtension",
@@ -15393,7 +15447,6 @@
           "return": "FrameworkImage"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 - supports `escape` argument.",
           "body": "Adds a custom command.",
           "name": "image.command",
@@ -21972,7 +22025,6 @@
           "return": "ErrorBuilder"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.8.0 adds a new argument \"isResponse\" into the callback.",
           "body": "Adds a new transformation for all ErrorBuilders. __Example:__\n\n```javascript\nErrorBuilder.addTransform('custom', function(isResponse) {\n    var builder = [];\n    \n    for (var i = 0, length = this.items.length; i < length; i++) {\n        var err = this.items[i];\n        // err.name\n        // err.error\n        // err.path\n        // err.index\n        builder.push(err.error);\n    }\n\n    return isResponse ? builder.join(';') : builder; \n});```",
           "name": "ErrorBuilder.addTransform",
@@ -22899,7 +22951,6 @@
         },
         {
           "changelog": "+v2.8.0 supports filename instead of buffer.",
-          "changetype": 2,
           "options": [
             "+v2.7.0"
           ],
@@ -23508,7 +23559,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 2,
           "changelog": "+v2.9.0 extends \"required\" argument.",
           "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n});```",
           "name": "schena.define",
@@ -25372,7 +25422,6 @@
       "name": "File: versions"
     },
     {
-      "changetype": 2,
       "changelog": "+v2.8.0 supports custom options",
       "body": "## Schema workflows\n\n`+v2.3.0` `/workflows` file describes schema operations. In another words: you can map all `async` schema operations in the one file.\n\n__Where do I have to store this file?__\n\n```html\n/controllers\n/debug.js\n/release.js\n/workflows\n```\n\n## How does it work?\n\nFile: `/workflows` with:\n\n```html\n// Returns results as array from all operations\n// name        : operation1 --> operation2 --> operationN\n\n// Returns a result from `operation2`\n// name        : operation1 --> operation2 (response) --> operationN\nquery          : query (response)\nread           : read (response)\ndelete         : remove (response)\nsave           : workflow:'check'    -->        save (response)\nsignup         : workflow:'check'    -->        save (response)      -->      workflow:'confirmation'\n\n// `(User)` means a fixed type of schema (so no other schema can call this workflow)\nsave (User)    : save (response)\n\n// +v2.8.0 supports custom options\nquery          : query { approved: true } (response)\nsave           : workflow:'check'  { fields: ['phone', 'email'] }   -->     save { session: true } (response)\n```\n\n__List of all supported operations__:\n\n- `query` - performs `SchemaBuilder.query()`\n- `save` - performs `SchemaBuilder.save()`\n- `read` or `get` - performs `SchemaBuilder.read()` or `SchemaBuilder.get()`\n- `remove` - performs `SchemaBuilder.remove()`\n- `workflow:'name'` - performs `SchemaBuilder.workflow(name)`\n- `transform:'name'` - performs `SchemaBuilder.hook(name)`\n- `operation:'name'` - performs `SchemaBuilder.operation(name)`\n- `hook:'name'` - performs `SchemaBuilder.hook(name)`\n\n## Controller\n\n```javascript\nexports.install = function() {\n\n\t// Responds with JSON `controller.$exec('save', controller.callback())`\n\tROUTE('/api/user/save/',  ['*User --> save']);\n\n\t// Responds with `detail` view `controller.$exec('save', controller.callback('detail'))`\n\tROUTE('/api/user/{id}/',  'detail', ['*User --> save']);\n\n\t// Calls action\n\tROUTE('/api/user/query/', query, ['*User']);\n\n};\n\nfunction query() {\n\t// .$exec(workflow_name, [helper], callback(err, response)) --> performs `query` workflow\n\tthis.$exec('query', this.callback());\n}\n```\n\n## Important\n\n- next operations are skipped if the `ErrorBuilder` contains only one error\n- `/workflows` file can be installed from URL via `INSTALL('workflows', 'https://www....')`\n- [Example: workflows](https://github.com/totaljs/examples/tree/master/workflows)",
       "group": "How does it work?",
