@@ -1367,7 +1367,9 @@
           "return": "Framework"
         },
         {
-          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n### How to cancel `next` processing? \n\n```javascript\nF.middleware('mymiddleware', function(req, res, next) {\n    next(false);\n});```",
+          "changelog": "<b>+v3.0.0</b> improved declaration",
+          "changetype": 2,
+          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older implementation\n\n```javascript\nF.middleware('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});\n```\n",
           "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "name": "F.middleware",
           "params": [
@@ -1384,38 +1386,9 @@
               ],
               "params": [
                 {
-                  "body": "The HTTP Request.",
-                  "name": "req",
-                  "type": "Request"
-                },
-                {
-                  "body": "The HTTP Response. <b>IMPORTANT</b>: websocket includes net.Socket object.",
-                  "name": "res",
-                  "type": "Response/Socket"
-                },
-                {
-                  "body": "The next step.",
-                  "name": "next",
-                  "options": [
-                    "important"
-                  ],
-                  "type": "Function"
-                },
-                {
-                  "body": "A route (user-defined) options.",
-                  "name": "options",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                },
-                {
-                  "body": "The current controller (if exists).",
-                  "name": "controller",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "FrameworkController"
+                  "body": "Options",
+                  "name": "$",
+                  "type": "MiddlewareOptions"
                 }
               ],
               "type": "Function"
@@ -2676,7 +2649,7 @@
           "options": [
             "+v2.7.0"
           ],
-          "body": "Returns all available prototypes in the callback. You can extend each part of Total.js easily.\n\n```javascript\nF.prototypes(function(proto) {\n    // proto.Chunker\n    // proto.Controller\n    // proto.Database\n    // proto.DatabaseBinary\n    // proto.DatabaseBuilder\n    // proto.DatabaseBuilder2\n    // proto.DatabaseCounter\n    // proto.DatabaseIndexes\n    // proto.DatabaseStorage\n    // proto.ErrorBuilder\n    // proto.HttpFile\n    // proto.HttpRequest\n    // proto.HttpResponse\n    // proto.Image\n    // proto.Message\n    // proto.Page\n    // proto.Pagination\n    // proto.RESTBuilder\n    // proto.RESTBuilderResponse\n    // proto.SchemaBuilder\n    // proto.SchemaOptions\n    // proto.TransformBuilder\n    // proto.UrlBuilder\n    // proto.WebSocket\n    // proto.WebSocketClient\n});```",
+          "body": "Returns all available prototypes in the callback. You can extend each part of Total.js easily.\n\n```javascript\nF.prototypes(function(proto) {\n    // proto.Chunker\n    // proto.Controller\n    // proto.Database\n    // proto.DatabaseBinary\n    // proto.DatabaseBuilder\n    // proto.DatabaseBuilder2\n    // proto.DatabaseCounter\n    // proto.DatabaseIndexes\n    // proto.DatabaseStorage\n    // proto.ErrorBuilder\n    // proto.HttpFile\n    // proto.HttpRequest\n    // proto.HttpResponse\n    // proto.Image\n    // proto.Message\n    // proto.MiddlewareOptions\n    // proto.Page\n    // proto.Pagination\n    // proto.RESTBuilder\n    // proto.RESTBuilderResponse\n    // proto.SchemaBuilder\n    // proto.SchemaOptions\n    // proto.TransformBuilder\n    // proto.UrlBuilder\n    // proto.WebSocket\n    // proto.WebSocketClient\n});```",
           "name": "F.prototypes",
           "params": [
             {
