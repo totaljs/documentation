@@ -5299,6 +5299,27 @@
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
+          "name": "database.lock",
+          "body": "Locks all DB operations.\n\n```javascript\nNOSQL('products').lock(function(next) {\n\t// Locks all DB operations for 5 seconds\n\tsetTimeout(next, 5000);\n});```",
+          "params": [
+            {
+              "name": "callback",
+              "body": "A callback when is DB locked",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "next",
+                  "body": "Unlocks DB",
+                  "type": "Function"
+                }
+              ]
+            }
+          ],
+          "return": "Database"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
           "name": "database.clear",
           "body": "Clears all documents from DB",
           "params": [
@@ -5931,6 +5952,20 @@
               "name": "value",
               "type": "Object",
               "body": "A value to compare (date, string, number or boolean)."
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "builder.query",
+          "body": "Creates a simple condition which will be evaluated as JS code.\n\n```javascript\n// doc {Object}   === processed document\n// index {Number} === an index of processed document\nNOSQL('products').find().query('doc.published=true && doc.price>10').callback(console.log);```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "code",
+              "type": "String",
+              "body": "Your condition"
             }
           ]
         },
@@ -18142,7 +18177,7 @@
             },
             {
               "default": "2",
-              "body": "The maximum decimals.",
+              "body": "Maximum decimals",
               "name": "decimals",
               "options": [
                 "optional"
@@ -18153,13 +18188,29 @@
           "return": "Number"
         },
         {
-          "body": "Floor number. Example: `(232.349).floor(2)`, result: __232.34__.",
+          "body": "Performs flooring. Example: `(232.349).floor(2)`, result: __232.34__.",
           "name": "Number.prototype.floor",
           "params": [
             {
-              "body": "The maximum decimals.",
+              "body": "Maximum decimals",
               "name": "decimals",
               "type": "Number"
+            }
+          ],
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Performs rouding. Example: `(232.349).round(2)`, result: __232.35__.",
+          "name": "Number.prototype.round",
+          "params": [
+            {
+              "body": "Maximum decimals",
+              "name": "decimals",
+              "type": "Number",
+              "options": ["optional"],
+              "default": "0"
             }
           ],
           "return": "Number"
