@@ -388,7 +388,7 @@
           "return": "String"
         }
       ],
-      "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nF.on('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http('debug');```",
+      "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nON('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http('debug');```",
       "events": [
         {
           "body": "This event is triggered if the framework is restarted `F.restart()`",
@@ -19610,13 +19610,19 @@
           "return": "Object"
         },
         {
-          "body": "Creates special incremented UUID, minimal output length is 17 chars, e.g. `16042321110001yfg`, then `16042321110002yfg`. The unique string contains time stamp, incremented number and 3 characters generated when the framework starts.",
+          "changetype": 2,
+          "changelog": "v3.0.0 adds a type argument",
+          "body": "Creates special incremented UUID, minimal output length is 17 chars, e.g. `16042321110001yfg`, then `16042321110002yfg`. The unique string contains time stamp, incremented number and 3 characters generated when the framework starts. For example:\n\n```javascript\nvar user = { id: UID('users') };\nvar order = { id: UID('orders') };\nvar id = UID();\n```",
           "name": "UID",
           "options": [
             "+v2.0.0"
           ],
           "params": [
-
+            {
+              "name": "type",
+              "type": "String",
+              "options": ["+v3.0.0", "optional"]
+            }
           ],
           "return": "String"
         },
@@ -21107,6 +21113,133 @@
           "return": "Framework"
         },
         {
+          "options": ["+v3.0.0"],
+          "changetype": 1,
+          "body": "Alias for `F.load()`",
+          "name": "LOAD",
+          "params": [
+            {
+              "body": "Runs the framework in \"debug\" or \"release\" mode",
+              "name": "mode",
+              "type": "String"
+            },
+            {
+              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>isomorphic</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>sitemap</b>, <b>dependencies</b> (dependencies is meant as file \"/dependencies\") and <b>service</b> (enables interval for F.on(\"service\")). If types doesn't contain any type the framework loads all types / dependencies",
+              "name": "types",
+              "type": "String Array",
+              "default": "[]"
+            },
+            {
+              "options": [
+                "optional"
+              ],
+              "default": "process.cwd()",
+              "body": "A startup path",
+              "name": "path",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "options": ["+v3.0.0"],
+          "changetype": 1,
+          "body": "A global alias for `U.request()`",
+          "name": "REQUEST",
+          "params": [
+            {
+              "body": "The URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "The request flags (json (sets application/json), post, put, delete, get, options, head, xhr (sets XMLHttpRequest), upload, xml (sets text/xml), noredirect (disables auto HTTP redirect), raw (sends data as they are).",
+              "go": "#api~HttpRouteOptionsFlags",
+              "name": "flags",
+              "options": [
+                "optional"
+              ],
+              "type": "String Array"
+            },
+            {
+              "body": "The request data.",
+              "name": "data",
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "params": [
+                {
+                  "default": "null",
+                  "body": "Error handling.",
+                  "name": "err",
+                  "type": "Error"
+                },
+                {
+                  "body": "The response.",
+                  "name": "data",
+                  "type": "String"
+                },
+                {
+                  "default": "0",
+                  "body": "The response status code.",
+                  "name": "status",
+                  "type": "Number"
+                },
+                {
+                  "body": "The response headers.",
+                  "name": "headers",
+                  "type": "Object"
+                },
+                {
+                  "body": "IP address",
+                  "name": "host",
+                  "type": "String"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "default": "{}",
+              "body": "The request cookies.",
+              "name": "cookies",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "default": "{}",
+              "body": "The additional headers.",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "default": "'utf8'",
+              "body": "The request encoding.",
+              "name": "encoding",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "default": "10000",
+              "body": "The request timeout - in milliseconds.",
+              "name": "timeout",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            }
+          ],
+          "return": "EventEmitter(begin, end, data(chunk, percentage))"
+        },
+        {
           "body": "Executes async operations.\n\n```javascript\n\t$ASYNC('Product', function(err, response) {\n\t\tconsole.log(err, response);\n\t}).$workflow('load').$workflow('send').$save();```",
           "name": "$ASYNC",
           "options": [
@@ -21886,6 +22019,12 @@
           "body": "Is the framework running in release mode?",
           "name": "RELEASE",
           "return": "Boolean"
+        },
+        {
+          "changetype": 1,
+          "body": "Is alias for `F.datetime`.",
+          "name": "NOW",
+          "return": "Date"
         },
         {
           "options": [
@@ -24478,6 +24617,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24509,6 +24655,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24540,6 +24693,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24571,6 +24731,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24602,6 +24769,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24633,6 +24807,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24669,6 +24850,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24705,6 +24893,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24741,6 +24936,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
@@ -24777,6 +24979,13 @@
                     "body": "A response"
                   }
                 ]
+              },
+              {
+                "name": "async",
+                "body": "<b>IMPORTANT</b>: it works with \".$async()\" only. This argument enables \"async\" processing for this operation, also in this time will be processed next operation in \"async\" queue.",
+                "type": "Boolean",
+                "default": "false",
+                "options": ["+v3.0.0", "optional"]
               }
             ],
             "return": "SchemaInstance",
