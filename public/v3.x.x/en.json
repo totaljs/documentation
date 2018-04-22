@@ -5623,7 +5623,7 @@
         },
         {
           "name": "builder.or",
-          "body": "Creates `or`.\n\n```javascript\nbuilder.or()\nbuilder.where('age', 30);\nbuilder.where('age', 50);\nbuilder.where('age', 70);\nbuilder.end();\n\n// out of \"or\":\nscopebuilder.where('isremoved', false);```",
+          "body": "Creates `or`.\n\n```javascript\nbuilder.or()\nbuilder.where('age', 30);\nbuilder.where('age', 50);\nbuilder.where('age', 70);\nbuilder.end();```",
           "return": "DatabaseBuilder",
           "params": [
 
