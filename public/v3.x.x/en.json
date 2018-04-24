@@ -5320,6 +5320,23 @@
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
+          "name": "database.ready",
+          "body": "A callback is executed when DB is ready and it's targed for special cases (not for web apps). This method can help if you use indexes.\n\n```javascript\nvar db = NOSQL('users');\n\ndb.indexes.create('name');\ndb.indexes.create('city');\n\ndb.ready(function() {\n\tconsole.log('DB IS INDEXED AND READY TO USE');\n});\n```",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback",
+              "options": ["optional"],
+              "params": [
+              ]
+            }
+          ],
+          "return": "Database"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
           "name": "database.clear",
           "body": "Clears all documents from DB",
           "params": [
