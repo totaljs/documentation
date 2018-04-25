@@ -5947,6 +5947,28 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Returns promise for async/await operation.\n\n```javascript\nasync function data() {\n\tvar response = await NOSQL('users').find().promise();\n\tconsole.log(response);\n}\n\ndata();```",
+          "name": "builder.promise",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "body": "A custom transformation method. Needs to return transformed value.",
+              "params": [
+                  {
+                    "name": "response",
+                    "type": "Object/Array",
+                    "body": "A response"
+                  }
+              ],
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
           "name": "builder.where",
           "body": "Creates a simple condition. This method doesn't support filtering in nested documents.",
           "return": "DatabaseBuilder",
@@ -23318,6 +23340,30 @@
               "name": "expire",
               "type": "String"
             }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Returns promise for async/await operation.\n\n```javascript\nasync function data() {\n\tvar response = await new RESTBuilder('https://www.totaljs.com').get().plain().promise();\n\tconsole.log(response);\n}\n\ndata();```",
+          "name": "instance.promise",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "body": "A custom transformation method",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Disables transformation according to the response content-type. So `.exec()` returns raw string.",
+          "name": "instance.plain",
+          "params": [
           ],
           "return": "RESTBuilder"
         },
