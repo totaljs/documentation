@@ -5966,7 +5966,7 @@
               "options": ["optional"]
             }
           ],
-          "return": "RESTBuilder"
+          "return": "DatabaseBuilder"
         },
         {
           "name": "builder.where",
