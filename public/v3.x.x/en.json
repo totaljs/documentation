@@ -5969,6 +5969,28 @@
           "return": "DatabaseBuilder"
         },
         {
+          "name": "builder.between",
+          "body": "Creates a filter for finding a value beween two numbers.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "body": "A property name in a document."
+            },
+            {
+              "name": "valueA",
+              "type": "Number",
+              "body": "A value"
+            },
+            {
+              "name": "valueB",
+              "type": "Number",
+              "body": "B value"
+            }
+          ]
+        },
+        {
           "name": "builder.where",
           "body": "Creates a simple condition. This method doesn't support filtering in nested documents.",
           "return": "DatabaseBuilder",
