@@ -4212,6 +4212,22 @@
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
+          "body": "Enables auto-cleaner defined in __minutes__. Default: __24 hours__ = `1440` minutes.",
+          "name": "nosql-cleaner",
+          "default": "1440",
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Enables NoSQL logger, in the app console will be printed some important data from NoSQL cleaner, re-indexes, etc..",
+          "name": "nosql-logger",
+          "default": "true",
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
           "default": "''",
           "body": "Enables in-memory mode for databases defined in this option.\n\n```html\nnosql-inmemory           : orders, products, products#viewname\n```",
           "name": "nosql-inmemory",
@@ -5005,7 +5021,7 @@
       "name": "FrameworkPath"
     },
     {
-      "body": "__NoSQL embedded database__ is written by Peter Sirka. It's very great and simple database for very small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');```",
+      "body": "__NoSQL embedded database__ is written by Peter Sirka. It's very great and simple database for very small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\n// or\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```\n\n__Good to know__:\n\n- DB reads `32` kB blocks of data per read\n- boolean `true` values are added with empty space as `\"key\":true ,` because it's more effective updating of DB file\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data",
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -5656,7 +5672,7 @@
         },
         {
           "name": "builder.join",
-          "body": "Joins another database. `DatabaseBuilder.join()` returns a new instance of DatabaseBuilder and a bit modified. __IMPORTANT__ joins can't be used for updating/removing operations.\n\n### One to One\n\n```javascript\nvar builder = NOSQL('orders').find();\nbuilder.where('paid', true);\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('user', 'users');\n// users.id === orders.iduser\njoin.on('id', 'iduser');\n\n// we want only the one document (not array)\njoin.first();\n```\n\n### One to Many\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users with orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\n\n// Orders must be paid\njoin.where('paid', true);\n```\n\n### Scalar operations\n\n__We want to know count of orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('count');\n```\n\n__We want to know a max. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('max', 'price');\n```\n\n__We want to know a min. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('min', 'price');\n```\n\n__We want to know a avg. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('avg', 'price');```",
+          "body": "Joins another database - it performs `LEFT JOIN`. `DatabaseBuilder.join()` returns a new instance of DatabaseBuilder and a bit modified. __IMPORTANT__ joins can't be used for updating/removing operations.\n\n### One to One\n\n```javascript\nvar builder = NOSQL('orders').find();\nbuilder.where('paid', true);\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('user', 'users');\n// users.id === orders.iduser\njoin.on('id', 'iduser');\n\n// we want only the one document (not array)\njoin.first();\n```\n\n### One to Many\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users with orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\n\n// Orders must be paid\njoin.where('paid', true);\n```\n\n### Scalar operations\n\n__We want to know count of orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('count');\n```\n\n__We want to know a max. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('max', 'price');\n```\n\n__We want to know a min. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('min', 'price');\n```\n\n__We want to know a avg. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('avg', 'price');```\n\n__Good to know__: `INNER JOIN` is not supported yet.",
           "return": "DatabaseBuilder",
           "options": [
             "+v2.3.0"
@@ -10632,6 +10648,13 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Splitted path (original). E.g. `/Products/Shoes/` is parsed as `['Products', 'Shoes']`. Alias to `controller.req.split`.",
+          "name": "controller.split",
+          "return": "String Array"
+        },
+        {
           "body": "Gets the controller name.",
           "name": "controller.name",
           "options": [
@@ -12827,6 +12850,13 @@
           "body": "Gets the value from the framework configuration.",
           "name": "@{config.customKey}",
           "return": "Object"
+        },
+        {
+          "changetype": 1,
+          "default": "''",
+          "body": "Returns `default-root` value without last `/` backslash. By default contains __empty string__. You can use this markup if you use multiple Total.js apps on the one domain.",
+          "name": "@{root}",
+          "return": "String"
         },
         {
           "body": "Gets the value from the `controller.user` object.",
