@@ -5799,8 +5799,10 @@
           ]
         },
         {
+          "changetype": 2,
+          "changelog": "Supports removing defined fields <code>-fieldname</code>",
           "name": "builder.fields",
-          "body": "Creates a projection for properties, otherwise: the database selects only these fields.",
+          "body": "Creates a projection for properties, otherwise: the database selects only these fields.\n\n__Projection__:\n\n```javascript\nNOSQL('yourdb').find().fields('id', 'name').callback(console.log);\n// Fields \"id\" and \"name\" will be in the result\n```\n\n__A reverse projection__:\n\n```javascript\nNOSQL('yourdb').find().fields('-id', '-name').callback(console.log);\n// Fields \"id\" and \"name\" will be removed from the result```",
           "return": "DatabaseBuilder",
           "params": [
             {
