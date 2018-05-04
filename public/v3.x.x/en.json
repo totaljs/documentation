@@ -13016,7 +13016,7 @@
           "return": "undefined"
         },
         {
-          "body": "Gets a file and directory list from HDD. __IMPORTANT:__ the list will contain [fs.Stat](https://nodejs.org/dist/latest-v4.x/docs/api/fs.html#fs_class_fs_stats) objects with advanced information. ",
+          "body": "Gets a file and directory list from HDD. __IMPORTANT:__ the list will contain [fs.Stat](https://nodejs.org/dist/latest-v8.x/docs/api/fs.html#fs_class_fs_stats) objects with advanced information.",
           "name": "U.ls2",
           "params": [
             {
@@ -13029,9 +13029,9 @@
               "name": "callback",
               "params": [
                 {
-                  "body": "The file collection.",
+                  "body": "The file collection in the form <code>[{ filename: String, stats: Object }]</code>.",
                   "name": "files",
-                  "type": "String Array"
+                  "type": "Object Array"
                 },
                 {
                   "body": "The directory collection.",
