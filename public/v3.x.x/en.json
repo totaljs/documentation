@@ -4204,6 +4204,13 @@
         {
           "changetype": 1,
           "options": ["+v3.0.0"],
+          "body": "Generates a content of those files `/security.txt` and `/.well-known/security.txt`:\n\n```html\n// Default settings\nsecurity.txt       : Contact: mailto:support@totaljs.com, Contact: https://www.totaljs.com/contact/\n\n// Disables security.txt\nsecurity.txt       : \n```\n\nFramework splits and trims commas to new lines and generates the content of `security.txt`.",
+          "name": "security.txt",
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
           "default": "false",
           "body": "Enables worker (another thread) for all NoSQL embedded databases.",
           "name": "nosql-worker",
@@ -23434,6 +23441,18 @@
               "body": "A value.",
               "name": "value",
               "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "body": "Sets a proxy server, for example:\n\n```javascript\ninstance.proxy('127.0.0.1:8080');\n// or\ninstance.proxy('http://127.0.0.1:8080');\n// or\ninstance.proxy('https://127.0.0.1:8080');\n// with auth\ninstance.proxy('http://petersirka:123456@127.0.0.1:8080');```",
+          "name": "instance.proxy",
+          "params": [
+            {
+              "body": "A hostname",
+              "name": "hostname",
+              "type": "String"
             }
           ],
           "return": "RESTBuilder"
