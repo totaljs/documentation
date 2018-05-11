@@ -5510,6 +5510,22 @@
       ],
       "events": [
         {
+          "changetype": 1,
+          "body": "Is triggered if the database file is changed.",
+          "name": "database.on('change')",
+          "options": [
+            "+v3.0.0"
+          ],
+          "return": "Database",
+          "params": [
+            {
+              "body": "Can be <code>insert</code>, <code>update</code>, <code>remove</code>, <code>drop</code>, <code>clear</code> or <code>restore</code>.",
+              "name": "type",
+              "type": "String"
+            }
+          ]
+        },
+        {
           "body": "Is triggered if a document is inserted into the database.",
           "name": "database.on('insert')",
           "options": [
