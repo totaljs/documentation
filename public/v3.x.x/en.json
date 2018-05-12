@@ -18831,8 +18831,8 @@
           "return": "Array"
         },
         {
-          "body": "Sorts the array. Supports the alphabetical sorting.\n\n```javascript\nvar arr = [];\n\narr.push({ user: { name: 'Peter', age: 30 }});\narr.push({ user: { name: 'Lucia', age: 33 }});\narr.push({ user: { name: 'John', age: 18 });\narr.push({ user: { name: 'Denis', age: 35 });\n\nconsole.log(arr.orderBy('user.name'));\nconsole.log(arr.orderBy('user.name', false));```",
-          "name": "Array.prototype.orderBy",
+          "body": "Sorts the array. Supports the alphabetical sorting.\n\n```javascript\nvar arr = [];\n\narr.push({ user: { name: 'Peter', age: 30 }});\narr.push({ user: { name: 'Lucia', age: 33 }});\narr.push({ user: { name: 'John', age: 18 });\narr.push({ user: { name: 'Denis', age: 35 });\n\nconsole.log(arr.quicksort('user.name'));\nconsole.log(arr.quicksort('user.name', false));```",
+          "name": "Array.prototype.quicksort",
           "params": [
             {
               "body": "The path to the property.",
