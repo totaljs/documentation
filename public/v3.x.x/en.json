@@ -3823,6 +3823,16 @@
           ]
         },
         {
+          "changetype": 1,
+          "default": "''",
+          "body": "A default web proxy server, can contain protocol `http` or `https`.\n\n```html\n// without auth\ndefault-proxy      : HOSTNAME:PORT\n\n// or with auth\ndefault-proxy      : USERNAME:PASSWORD@HOSTNAME:PORT```",
+          "name": "default-proxy",
+          "return": "String",
+          "options": [
+            "+v3.0.0"
+          ]
+        },
+        {
           "default": "'11111111'",
           "body": "This property can replace a default response max-age header.",
           "name": "default-response-maxage",
