@@ -23886,7 +23886,7 @@
         {
           "changelog": "+v2.9.0 extends \"required\" argument.",
           "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n});```",
-          "name": "schena.define",
+          "name": "schema.define",
           "params": [
             {
               "body": "Name of property/field.",
