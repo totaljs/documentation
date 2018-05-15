@@ -5320,6 +5320,60 @@
           "return": "Database"
         },
         {
+          "changetype": 1,
+          "name": "database.stream",
+          "body": "Streams documents from database.\n\n```javascript\nNOSQL('users').stream(function(doc, repository) {\n\trepository.max = repository.max ? Math.max(repository.max, doc.age) : doc.age;\n\trepository.min = repository.min ? Math.min(repository.min, doc.age) : doc.age;\n}, { max: null, min: null }, function(err, repository, count) {\n\tconsole.log(repository);\n\tconsole.log('Count of processed documents:', count);\n});```",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "body": "A document browser",
+              "params": [
+                {
+                  "name": "doc",
+                  "type": "Object",
+                  "body": "A stored document"
+                },
+                {
+                  "name": "repository",
+                  "type": "Object",
+                  "body": "A custom repository"
+                }
+              ]
+            },
+            {
+              "name": "repository",
+              "type": "Object",
+              "body": "A custom repository object",
+              "options": ["optional"]
+            },
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "type": "Error",
+                  "body": "Error handling"
+                },
+                {
+                  "name": "repository",
+                  "type": "Object",
+                  "body": "A custom repository"
+                },
+                {
+                  "name": "count",
+                  "type": "Number",
+                  "body": "Count of processed documents"
+                }
+              ]
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
           "name": "database.find",
           "body": "Finds documents in the database.",
           "params": [
@@ -8940,68 +8994,8 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Creates the request into another Total.js application.",
-          "example": "https://github.com/totaljs/examples/tree/master/controller-proxy",
+          "body": "Creates a proxy for the current request.",
           "name": "controller.proxy",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "body": "The URL address.",
-              "name": "url",
-              "type": "String"
-            },
-            {
-              "body": "The object model.",
-              "name": "model",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "params": [
-                {
-                  "body": "Error handling.",
-                  "name": "err",
-                  "type": "Error"
-                },
-                {
-                  "body": "The response data.",
-                  "name": "data",
-                  "type": "String or Object"
-                },
-                {
-                  "body": "The HTTP status code.",
-                  "name": "code",
-                  "type": "Number"
-                },
-                {
-                  "body": "The sesponse headers.",
-                  "name": "headers",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "default": "10000",
-              "body": "The request timeout in milliseconds.",
-              "name": "timeout",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
-            }
-          ],
-          "return": "EventEmitter(begin, end, data(chunk, percentage))"
-        },
-        {
-          "body": "Creates a real proxy for the current request.",
-          "name": "controller.proxy2",
           "options": [
             "http"
           ],
