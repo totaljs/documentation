@@ -6214,7 +6214,7 @@
         },
         {
           "name": "builder.search",
-          "body": "Create a text search condition.",
+          "body": "Create a text search condition. It ignores case-sensitive.",
           "return": "DatabaseBuilder",
           "params": [
             {
@@ -6235,6 +6235,53 @@
               "options": [
                 "optional"
               ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["v3.0.0"],
+          "name": "builder.fulltext",
+          "body": "Create a full-text search condition. It ignores case-sensitive.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "body": "A property name in a document"
+            },
+            {
+              "name": "value",
+              "type": "String Array",
+              "body": "A value."
+            },
+            {
+              "name": "weight",
+              "type": "Number",
+              "body": "Weight in percentage. For example: if you try to find 10 words and weight will be <code>100%</code> then each word must contain field. Weight <code>50%</code> will require existing of 5 words in the value from 10 searched words. Weight <code>0</code> tries to find min. <code>1</code> word from searched words.",
+              "default": "0",
+              "options": [
+                "optional"
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["v3.0.0"],
+          "name": "builder.regexp",
+          "body": "Creates a RegExp search condition.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "body": "A property name in a document"
+            },
+            {
+              "name": "value",
+              "type": "RegExp",
+              "body": "A value."
             }
           ]
         },
@@ -23891,8 +23938,9 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changelog": "+v2.9.0 extends \"required\" argument.",
-          "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n});```",
+          "changetype": 2,
+          "changelog": "+v3.0.0 returns a Function for setting of default value. +v2.9.0 extends \"required\" argument.",
+          "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n    // +v3.0.0\n    // Sets a default value\n    schema.define('id', 'UID')(() => UID());\n    schema.define('age', Number)(20);\n    schema.define('name', String)('Peter');\n    schema.define('created', Date)(() => new Date());\n\n});```",
           "name": "schema.define",
           "params": [
             {
@@ -23923,7 +23971,7 @@
               "type": "String"
             }
           ],
-          "return": "SchemaDeclaration"
+          "return": "Function"
         },
         {
           "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" if the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\t\n});```",
