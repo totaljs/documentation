@@ -21941,6 +21941,28 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "This method performs fake user authorization for unit-testing.",
+          "name": "TESTUSER",
+          "return": "undefined",
+          "params": [
+            {
+              "body": "A user instance",
+              "name": "user",
+              "type": "Object"
+            },
+            {
+              "body": "Custom flags for this user",
+              "name": "flags",
+              "type": "String Array",
+              "options": [
+                "optional"
+              ]
+            }
+          ]
+        },
+        {
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
           "name": "FAIL",
           "return": "undefined",
@@ -25421,6 +25443,377 @@
             "options": ["advanced", "alias"]
           },
           {
+            "name": "$.$save",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setSave()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$insert",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setInsert()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$update",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setUpdate()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$query",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setQuery()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$get",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setGet()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$remove",
+            "params": [
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `.setRemove()` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$workflow",
+            "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "body": "Name of workflow"
+              },
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `workflow` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$transform",
+            "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "body": "Name of transformation"
+              },
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `transform` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$hook",
+            "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "body": "Name of hook"
+              },
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `hook` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "name": "$.$operation",
+            "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "body": "Name of operation"
+              },
+              {
+                "name": "options",
+                "type": "Object",
+                "body": "Custom options",
+                "options": ["optional"]
+              },
+              {
+                "name": "callback",
+                "type": "Function",
+                "body": "A callback",
+                "options": ["optional"],
+                "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handling",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "Response",
+                    "type": "Object"
+                  }
+                ]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Executes `operation` for the current model.",
+            "options": ["+v3.0.0", "advanced", "alias"]
+          },
+          {
+            "options": ["+v3.0.0", "advanced", "alias"],
+            "name": "$.$async",
+            "params": [
+              {
+                "name": "callback",
+                "body": "A callback",
+                "type": "Function",
+                "params": [
+                  {
+                    "name": "err",
+                    "type": "ErrorBuilder",
+                    "body": "Error handling and can be \"null\""
+                  },
+                  {
+                    "name": "response",
+                    "type": "Object/Array",
+                    "body": "A response. If the \"index\" is not defined then the reponse will be <b>Array</b>."
+                  }
+                ]
+              },
+              {
+                "name": "index",
+                "body": "Response index",
+                "type": "Number",
+                "options": ["optional"]
+              }
+            ],
+            "return": "SchemaInstance",
+            "body": "Can create a chaining for multiple operations. If some operation fills error then chaining is stopped and \"callback\" will be executed with this error. Response `index` can be changed in some operation, more info here `SchemaInstance.$output()`.\n\n```javascript\n// Response will contain all results\n$.$async(function(err, response) {\n\tconsole.log(err, response);\n}).$save({ all: true }).$workflow('send').$transform('xml');\n\n// Response will contain a result from \"workflow\"\n$.$async(function(err, response) {\n\tconsole.log(err, response);\n}, 1).$save({ all: true }).$workflow('send').$transform('xml');```"
+          },
+          {
             "name": "$.stop",
             "params": [
             ],
@@ -25841,7 +26234,7 @@
       "name": "Debugging"
     },
     {
-      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.",
+      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `F.onAuthorize` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter \u0160irka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter \u0160irka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();\n```",
       "group": "How does it work?",
       "name": "Unit-Testing"
     }
