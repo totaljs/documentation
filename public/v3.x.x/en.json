@@ -1997,7 +1997,9 @@
           "return": "Framework"
         },
         {
-          "body": "Creates CORS for a specific URL. Example:\n\n```javascript\nF.cors('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);```",
+          "changetype": 2,
+          "changelog": "Without arguments it enables CORS for all routes with methods.",
+          "body": "Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();``",
           "name": "F.cors",
           "params": [
             {
@@ -20472,6 +20474,8 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "Without arguments it enables CORS for all routes with methods.",
           "body": "Alias for `F.cors()`",
           "name": "CORS",
           "options": [
@@ -22227,6 +22231,12 @@
           "body": "Is alias for `F.datetime`.",
           "name": "NOW",
           "return": "Date"
+        },
+        {
+          "changetype": 1,
+          "body": "Is alias for `F.global`.",
+          "name": "G",
+          "return": "Object"
         },
         {
           "options": [
