@@ -1998,8 +1998,8 @@
         },
         {
           "changetype": 2,
-          "changelog": "Without arguments it enables CORS for all routes with methods.",
-          "body": "Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();``",
+          "changelog": "+v3.0.0 Without arguments it enables CORS for all routes with methods.",
+          "body": "Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();\n```",
           "name": "F.cors",
           "params": [
             {
@@ -20475,7 +20475,7 @@
         },
         {
           "changetype": 2,
-          "changelog": "Without arguments it enables CORS for all routes with methods.",
+          "changelog": "+v3.0.0 Without arguments it enables CORS for all routes with methods.",
           "body": "Alias for `F.cors()`",
           "name": "CORS",
           "options": [
