@@ -14605,7 +14605,7 @@
           "return": "MailMessage"
         },
         {
-          "body": "Adds the attachment.",
+          "body": "Adds an attachment.",
           "name": "message.attachment",
           "params": [
             {
@@ -14614,7 +14614,34 @@
               "type": "String"
             },
             {
-              "body": "The attachment name (IMPORTANT: name has to be with the extension).",
+              "body": "An attachment name (IMPORTANT: name needs to be with the extension).",
+              "name": "name",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "MailMessage"
+        },
+        {
+          "options": ["+v3.0.0"],
+          "changetype": 1,
+          "body": "Adds an attachment from NoSQL embeddded binary.",
+          "name": "message.attachmentnosql",
+          "params": [
+            {
+              "body": "A database name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File id",
+              "name": "id",
+              "type": "Number"
+            },
+            {
+              "body": "An attachment name (IMPORTANT: name needs to be with the extension).",
               "name": "name",
               "options": [
                 "optional"
