@@ -10846,7 +10846,7 @@
         {
           "default": "null",
           "body": "Gets the session instance (if exist).",
-          "example": "https://github.com/totaljs/modules/tree/master/session",
+          "example": "https://github.com/totaljs/examples/tree/master/session",
           "name": "controller.session",
           "options": [
             "http",
