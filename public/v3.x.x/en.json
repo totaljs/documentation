@@ -22434,6 +22434,13 @@
           "return": "Array"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Determines whether is some error in the builder.",
+          "name": "instance.is",
+          "return": "Boolean"
+        },
+        {
           "options": [
             "+v2.6.0"
           ],
@@ -25497,6 +25504,12 @@
             "name": "$.id",
             "return": "String",
             "body": "Alias for `controller.id`. It contains first parsed dynamic value defined in the route. __IMPORTANT__: controller must be assigned."
+          },
+          {
+            "options": ["alias"],
+            "name": "$.params",
+            "return": "Object",
+            "body": "Alias for `controller.params`. It contains dynamic values according to route dynamic params. __IMPORTANT__: controller must be assigned."
           },
           {
             "options": ["alias"],
