@@ -11823,7 +11823,7 @@
           "return": "String"
         },
         {
-          "body": "Imports static files. Works with `.js`, `.css` and `.ico` automatically creates tags `<script>`, `<link>` and `<favicon>`. It supports routing of images or movies without tag creation and supports routing to themes (more in themes section), then `head` and `meta` tag rendering.\n\n```html\n<head>\n    ...\n    ...\n    @{import('head', 'meta', 'default.js', 'default.css', 'favicon.ico')}\n</head>\n```\n\nThis method is alternative for `@{js}`, `@{css}` and `@{favicon}`.",
+          "body": "Imports static files. Works with `.js`, `.css` and `.ico` automatically creates tags `<script>`, `<link>` and `<favicon>`. It supports routing of images or movies without tag creation and supports routing to themes (more in themes section), then `head` and `meta` tag rendering.\n\n```html\n<head>\n    ...\n    ...\n    @{import('head', 'meta', 'default.js', 'default.css', 'favicon.ico')}\n</head>\n```\n\nThis method is alternative for `@{js}`, `@{css}` and `@{favicon}`.\n\n__Special values__:\n\n- `manifest` (`+v3.0.0`) renders link tag to `/manifest.json`\n- `livereload` (`+v3.0.0`) renders link to `livereload` script (only in `debug` mode)\n- `head` renders values from `@{head()}` method\n- `meta` renders values from `@{meta()}`, `@{title()}`, `@{description()}` and `@{keywords()}` methods\n- `components` renders links to components styles/scripts\n- `favicon.ico` or `favicon.png` renders favicon link tag",
           "name": "@{import}",
           "params": [
             {
