@@ -417,9 +417,6 @@
         {
           "body": "This event is triggered if the part of the framework is updated",
           "name": "F.on('uptodate')",
-          "options": [
-            "+v2.4.0"
-          ],
           "params": [
             {
               "body": "Type (e.g. module, model, controller, etc.)",
@@ -1061,9 +1058,6 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "body": "Removes a scheduler",
           "name": "F.clearSchedule",
           "params": [
@@ -1092,9 +1086,6 @@
         },
         {
           "body": "Rewrites a current SMTP server.",
-          "options": [
-            "+v2.5.0"
-          ],
           "name": "F.useSMTP",
           "params": [
             {
@@ -1397,9 +1388,6 @@
           "return": "Framework"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Registers a new convertor for auto converting values in `controller.query` and `controller.body` (when the request doesn't contain JSON).\n\n```javascript\nF.convert('page', Number);\nF.convert('newsletter', Boolean);\nF.convert('q', val => val.toLowerCase());```",
           "name": "F.convert",
           "params": [
@@ -1585,9 +1573,6 @@
         {
           "body": "Creates simpler RESTful routes.\n\n```javascript\nexports.install = function() {\n    \n    F.restful2('/users/', ['*Users', 'authorized'], users_query, users_get, users_save, users_delete);\n\n    // Framework creates these routes:\n    // /users/ --> query (method: GET)\n    // /users/{id}/ --> get (method: GET)\n    // /users/ --> save (method: POST)\n    // /users/ --> delete (method: DELETE)\n};\n\nfunction users_query() {\n    // self.query exists for e.g. filters\n    // self.body doesn't exist\n}\n\nfunction users_get(id) {\n    // self.query exists for e.g. filters\n    // self.body doesn't exist\n}\n\nfunction users_save() {\n    // How to get ID? e.g.\n    // this.body.id\n}\n\nfunction users_delete() {\n    // How to get ID? e.g.\n    // this.body.id\n}```",
           "name": "F.restful2",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "The relative URL address. Example: /users/",
@@ -1815,9 +1800,6 @@
           "return": "Framework"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "body": "Evaluates a script in the secure scope. This method can handle user-defined scripts.\n\n```javascript\n// value\n// next(newValue or error) --> this is a callback\n// now() --> this method returns current datetime\nSCRIPT('next(value + 1)', 5, function(err, value, argument) {\n    // value === 6\n    console.log(value);\n});\n\n// SCRIPT() evaluates code like this:\n// function (value, next, now) {\n//     SAFE\n//     next(value + 1);\n// }\n```\n\n### Precompile\n\n```javascript\nvar fn = SCRIPT('next(value + 1)');\nfn(10, (err, response) => console.log(response));\nfn(20, (err, response) => console.log(response));\nfn(30, (err, response) => console.log(response));```",
           "name": "F.script",
           "params": [
@@ -1854,7 +1836,6 @@
                   "body": "A helper argument",
                   "type": "Object",
                   "options": [
-                    "+v2.5.0",
                     "optional"
                   ]
                 }
@@ -1865,7 +1846,6 @@
               "name": "arg",
               "type": "Object",
               "options": [
-                "+v2.5.0",
                 "optional"
               ]
             }
@@ -2185,9 +2165,6 @@
           "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string",
           "name": "F.viewCompile",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A view markup",
@@ -2920,9 +2897,6 @@
           "return": "Framework"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Installs a new feature into the framework with an update interval",
           "name": "F.uptodate",
           "params": [
@@ -3661,7 +3635,6 @@
           "body": "This property contains all framework validators (regular expression) `email`, `url`, `phone`, `zip` and `uid`.",
           "name": "F.validators",
           "options": [
-            "+v2.3.0",
             "important"
           ],
           "return": "Object"
@@ -3774,10 +3747,7 @@
           "default": "false",
           "body": "Enables a small console debugging. The framework creates snapshot of `F.usage()` automatically into the `/usage.log` file.\n\n__Or alternative__:\n```javascript\nrequire('total.js').http('release', { debug: true });```",
           "name": "allow-debug",
-          "return": "Boolean",
-          "options": [
-            "+v2.5.0"
-          ]
+          "return": "Boolean"
         },
         {
           "default": "true",
@@ -3858,10 +3828,7 @@
           "default": "'Total.js'",
           "body": "Sets X-Powered-By header. Empty value removes header in a configuration file.",
           "name": "default-xpoweredby",
-          "return": "String",
-          "options": [
-            "+v2.4.0"
-          ]
+          "return": "String"
         },
         {
           "default": "os.hostname() + '-' + os.platform() + '-' + os.arch()",
@@ -4151,9 +4118,6 @@
         {
           "body": "Enables/Disables console tracing.",
           "name": "trace-console",
-          "options": [
-            "+v2.4.0"
-          ],
           "default": "true",
           "return": "Boolean"
         },
@@ -4185,9 +4149,6 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "default": "30",
           "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB of memory map. Default value is `30%` = 450 MB of memory and 900 MB of memory map.",
           "name": "default-image-consumption",
@@ -4215,9 +4176,6 @@
           "return": "Boolean"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "default": "false",
           "body": "If it's enabled then the framework adds `head` method for each web route.",
           "name": "allow-head",
@@ -5144,8 +5102,7 @@
               "type": "Boolean",
               "body": "Checks whether document exists in DB.",
               "options": [
-                "optional",
-                "+v2.4.0"
+                "optional"
               ],
               "default": "false"
             }
@@ -5161,8 +5118,7 @@
               "type": "String",
               "body": "An absolute backup filename (removed documents will be stored in this backup).",
               "options": [
-                "optional",
-                "+v2.3.0"
+                "optional"
               ]
             }
           ],
@@ -5274,8 +5230,7 @@
               "type": "Object/Boolean",
               "body": "This document will be stored if the updated document doesn't exist. `true` inserts first `doc` as a new document.",
               "options": [
-                "+v2.3.0",
-                "optional"
+                    "optional"
               ]
             }
           ],
@@ -5283,7 +5238,7 @@
         },
         {
           "name": "database.modify",
-          "body": "Modifies specific values in the database.",
+          "body": "Modifies specific values in the database. Example:\n\n```javascript\nNOSQL('database').modify({ name: 'Peter', age: (age, doc) => age + 10, '+price': 10 }).where('id', 1);\n```\n\n__Total.js v3 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`",
           "params": [
             {
               "name": "doc",
@@ -5295,17 +5250,13 @@
               "type": "Object/Boolean",
               "body": "This document will be stored if the updated document doesn't exist. `true` inserts first `doc` as a new document.",
               "options": [
-                "+v2.3.0",
-                "optional"
+                    "optional"
               ]
             }
           ],
           "return": "DatabaseBuilder"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "database.release",
           "body": "Release in-memory database.",
           "params": [
@@ -5529,9 +5480,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "database.scalar",
           "body": "Performs a scalar operation.",
           "params": [
@@ -5607,9 +5555,6 @@
         {
           "body": "Is triggered if a document is inserted into the database.",
           "name": "database.on('insert')",
-          "options": [
-            "+v2.3.0"
-          ],
           "return": "Database",
           "params": [
             {
@@ -5620,31 +5565,39 @@
           ]
         },
         {
+          "changelog": "+v3.0.0 adds a new argument <code>old</code>",
+          "changetype": 2,
           "body": "Is triggered if a document is updated in the database.",
           "name": "database.on('update')",
           "return": "Database",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A document.",
               "name": "doc",
               "type": "Object"
+            },
+            {
+              "body": "Older document.",
+              "name": "old",
+              "type": "Object"
             }
           ]
         },
         {
+          "changelog": "+v3.0.0 adds a new argument <code>old</code>",
+          "changetype": 2,
           "body": "Is triggered if a document is modified in the database.",
           "name": "database.on('modify')",
-          "options": [
-            "+v2.3.0"
-          ],
           "return": "Database",
           "params": [
             {
               "body": "A document.",
               "name": "doc",
+              "type": "Object"
+            },
+            {
+              "body": "Older document.",
+              "name": "old",
               "type": "Object"
             }
           ]
@@ -5653,9 +5606,6 @@
           "body": "Is triggered if a document is removed from the database.",
           "name": "database.on('remove')",
           "return": "Database",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A document.",
@@ -5776,9 +5726,6 @@
           "name": "builder.join",
           "body": "Joins another database - it performs `LEFT JOIN`. `DatabaseBuilder.join()` returns a new instance of DatabaseBuilder and a bit modified. __IMPORTANT__ joins can't be used for updating/removing operations.\n\n### One to One\n\n```javascript\nvar builder = NOSQL('orders').find();\nbuilder.where('paid', true);\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('user', 'users');\n// users.id === orders.iduser\njoin.on('id', 'iduser');\n\n// we want only the one document (not array)\njoin.first();\n```\n\n### One to Many\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users with orders\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\n\n// Orders must be paid\njoin.where('paid', true);\n```\n\n### Scalar operations\n\n__We want to know count of orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('count');\n```\n\n__We want to know a max. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('max', 'price');\n```\n\n__We want to know a min. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('min', 'price');\n```\n\n__We want to know a avg. price from orders per user__:\n\n```javascript\nvar builder = NOSQL('users').find();\nbuilder.take(10);\nbuilder.callback(function(err, docs) {\n\t// Users\n\tconsole.log(docs);\n});\n\nvar join = builder.join('orders', 'orders');\n// orders.id === users.iduser\njoin.on('iduser', 'id');\njoin.scalar('avg', 'price');```\n\n__Good to know__: `INNER JOIN` is not supported yet.",
           "return": "DatabaseBuilder",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "name": "field",
@@ -5801,9 +5748,6 @@
           ]
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "builder.scalar",
           "body": "Performs a scalar operation __only in `join()` scope__. The method returns `Number` (for `sum`, `min`, `max`, `avg` and `count`) or `Object` (for `group`) in a response.",
           "return": "DatabaseBuilder",
@@ -5980,9 +5924,6 @@
           ]
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "builder.month",
           "body": "Creates a `month` filter.",
           "return": "DatabaseBuilder",
@@ -6009,9 +5950,6 @@
           ]
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "builder.day",
           "body": "Creates a `day` filter.",
           "return": "DatabaseBuilder",
@@ -6038,9 +5976,6 @@
           ]
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "builder.year",
           "body": "Creates a `year` filter.",
           "return": "DatabaseBuilder",
@@ -6383,7 +6318,6 @@
         {
           "name": "database.storage.insert",
           "body": "Inserts a document.",
-          "return": "DatabaseStorage",
           "params": [
             {
               "name": "doc",
@@ -7252,9 +7186,6 @@
           "body": "Is triggered if the method `.hit()` is performed.",
           "name": "database.counter.on('hit')",
           "return": "DatabaseCounter",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "An identificator.",
@@ -7327,9 +7258,6 @@
           "body": "Is triggered if an identificator is removed from the database.",
           "return": "DatabaseCounter",
           "name": "database.counter.on('remove')",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "An identificator.",
@@ -7341,9 +7269,6 @@
         {
           "body": "Is triggered if all stats are removed from the database.",
           "name": "database.counter.on('clear')",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
 
           ]
@@ -7525,9 +7450,6 @@
           "return": "DatabaseBinary"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "database.binary.all",
           "body": "Shows all filenames stored in the database. I don't recommend to use this method if you have stored many files. Total.js `+v3.0.0` supports `database.binary.browse()` method for browsing registered files.",
           "return": "DatabaseBinary",
@@ -7588,9 +7510,6 @@
           "return": "DatabaseBinary"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "name": "database.binary.clear",
           "body": "Removes all files stored in the database.",
           "return": "DatabaseBuilder",
@@ -7615,9 +7534,6 @@
         {
           "body": "Is triggered if a file is inserted into the database.",
           "name": "database.binary.on('insert')",
-          "options": [
-            "+v2.3.0"
-          ],
           "return": "DatabaseBinary",
           "params": [
             {
@@ -7636,9 +7552,6 @@
           "body": "Is triggered if a file is removed from the database.",
           "name": "database.binary.on('remove')",
           "return": "DatabaseBinary",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A file identificator.",
@@ -7651,9 +7564,6 @@
           "body": "Is triggered if all files are removed from the database.",
           "name": "database.binary.on('clear')",
           "return": "DatabaseBinary",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "Count of removed files.",
@@ -7670,33 +7580,21 @@
       "name": "FrameworkStats",
       "properties": [
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Returns a count of responses with Images.",
           "name": "F.stats.response.image",
           "return": "Number"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Returns a count of responses with ErrorBuilders.",
           "name": "F.stats.response.errorBuilder",
           "return": "Number"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Returns a count of sent mails.",
           "name": "F.stats.other.mail",
           "return": "Number"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Returns a count of requests with schema convertor.",
           "name": "F.stats.request.schema",
           "return": "Number"
@@ -9644,7 +9542,6 @@
           "body": "Performs workflow operations according to the `/workflows` file.",
           "name": "controller.$exec",
           "options": [
-            "+v2.3.0",
             "http"
           ],
           "params": [
@@ -10245,9 +10142,6 @@
           "return": "FrameworkController"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Renders a component.",
           "name": "controller.component",
           "params": [
@@ -10316,7 +10210,6 @@
           "body": "Compiles a dynamic string as view.",
           "name": "controller.viewCompile",
           "options": [
-            "+v2.3.0",
             "important",
             "http"
           ],
@@ -10587,7 +10480,6 @@
           "body": "Gets a schema name from the routing.",
           "name": "controller.schema",
           "options": [
-            "+v2.3.0",
             "readonly",
             "http"
           ],
@@ -10597,7 +10489,6 @@
           "body": "Gets a workflow name (if it's executed).",
           "name": "controller.workflow",
           "options": [
-            "+v2.3.0",
             "readonly",
             "http"
           ],
@@ -12174,9 +12065,6 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Renders a component.",
           "name": "@{component}",
           "params": [
@@ -12198,9 +12086,6 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "body": "Renders a group of components. All components HTML will be rendered into the current place.",
           "name": "@{components}",
           "params": [
@@ -12225,9 +12110,6 @@
           "changelog": "+v2.8.0 - supports cache key",
           "body": "Compiles and renders string as view",
           "name": "@{viewCompile}",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A view markup.",
@@ -12628,16 +12510,10 @@
           "return": "String"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "body": "Perform a `continue` in a loop.",
           "name": "@{continue}"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "body": "Perform a `break` in a loop.",
           "name": "@{break}"
         },
@@ -13019,9 +12895,6 @@
           "return": "undefined"
         },
         {
-          "options": [
-            "v2.5.0"
-          ],
           "body": "Uploads streams or files to the specific URL address. __IMPORTANT:__ `on('data', ...)` doesn't contain percentage of sending file/stream/buffer, but it contains the response percentage.\n\n__Example__:\n\n```javascript\nvar files = [];\n\nfiles.push({ name: 'fieldname', filename: '/absolute/path/mypicture.jpg' });\nfiles.push({ name: 'picture', filename: 'mypicture.jpg', stream: Fs.createReadStream('/absolute/path/mypicture') });\nfiles.push({ name: 'anotherpicture', filename: 'mypicture.jpg', buffer: Buffer('DASLKASJDLJSADASD=') });\n\nU.upload(files, 'http://..../', console.log);```",
           "name": "U.upload",
           "params": [
@@ -13139,8 +13012,7 @@
               "name": "skip",
               "type": "Number",
               "options": [
-                "optional",
-                "+v2.4.0"
+                "optional"
               ]
             },
             {
@@ -13476,8 +13348,7 @@
               "name": "clean",
               "type": "Boolean",
               "options": [
-                "optional",
-                "+v2.3.0"
+                "optional"
               ]
             }
           ],
@@ -14372,9 +14243,6 @@
           "return": "MailMessage"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Creates a unsubscribe link.",
           "name": "message.unsubscribe",
           "params": [
@@ -15420,9 +15288,6 @@
           "return": "FrameworkImage"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "body": "Creates a memory limit for GM/IM. More info here: <http://www.graphicsmagick.org/GraphicsMagick.html#details-limit>.",
           "name": "image.limit",
           "params": [
@@ -16170,7 +16035,6 @@
           "body": "Each route can have own identificator (works with `F.route()`, `F.file()` or `F.websocket()`).\n\n__Example__:\n```javascript\nF.route('/', ['id:homepage']);\n```\n\nThen it's easy to uninstall specific route according its identificator: `UNINSTALL('web', 'id:ROUTE_ID');` or `UNINSTALL('file', 'id:ROUTE_ID');`",
           "name": "id:ROUTE_ID",
           "options": [
-            "+v2.5.0",
             "optional"
           ],
           "return": "String"
@@ -16189,7 +16053,6 @@
           "body": "Add description for the route, works with `F.route()` only.\n\n__Example__:\n```javascript\nF.route('/', ['// This is homepage']);```",
           "name": "// Route description",
           "options": [
-            "+v2.5.0",
             "optional"
           ],
           "return": "String"
@@ -16237,8 +16100,7 @@
           "name": "novalidate",
           "options": [
             "optional",
-            "http",
-            "+v2.5.0"
+            "http"
           ],
           "return": "String"
         },
@@ -16724,7 +16586,6 @@
           "body": "Sends a binary response",
           "name": "Response.prototype.binary",
           "options": [
-            "+v2.5.0",
             "http"
           ],
           "params": [
@@ -16775,9 +16636,6 @@
           "return": "Response"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "body": "Sets a response HTTP status code",
           "name": "Response.prototype.status",
           "params": [
@@ -17748,9 +17606,6 @@
           "return": "Boolean"
         },
         {
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Can parse an output from a terminal.\n\n```javascript\nconst Exec = require('child_process').exec;\n\nExec('df -hTB1 /', function(err, response) {\n\tresponse.parseTerminal(['1B-blocks', 'Available'], function(line) {\n\t\tvar total = line[0].parseInt();\n\t\tvar used = line[1].parseInt();\n\t\tvar free = total - used;\n\t\tconsole.log('Total:', total, 'Used:', used, 'Free:', free);\n\t});\n});\n\n// Or split all fields to array\nExec('df -hTB1 /', function(err, response) {\n\tresponse.parseTerminal(function(line) {\n\t\tvar total = line[2].parseInt();\n\t\tvar used = line[3].parseInt();\n\t\tvar free = total - used;\n\t\tconsole.log('Total:', total, 'Used:', used, 'Free:', free);\n\t});\n});```",
           "name": "String.prototype.parseTerminal",
           "params": [
@@ -19389,9 +19244,6 @@
           "return": "Object"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "body": "Evaluates a script in the secure scope. This method can handle user-defined scripts.\n\n```javascript\n// value\n// next(newValue or error) --> this is a callback\n// now() --> this method returns current datetime\nSCRIPT('next(value + 1)', 5, function(err, value, argument) {\n    // value === 6\n    console.log(value);\n});\n\n// SCRIPT() evaluates code like this:\n// function (value, next, now) {\n//     SAFE\n//     next(value + 1);\n// }\n```\n\n### Precompile\n\n```javascript\nvar fn = SCRIPT('next(value + 1)');\nfn(10, (err, response) => console.log(response));\nfn(20, (err, response) => console.log(response));\nfn(30, (err, response) => console.log(response));```",
           "name": "SCRIPT",
           "params": [
@@ -19428,7 +19280,6 @@
                   "body": "A helper argument",
                   "type": "Object",
                   "options": [
-                    "+v2.5.0",
                     "optional"
                   ]
                 }
@@ -19439,7 +19290,6 @@
               "name": "arg",
               "type": "Object",
               "options": [
-                "+v2.5.0",
                 "optional"
               ]
             }
@@ -20048,9 +19898,6 @@
         },
         {
           "go": "#api~Framework",
-          "options": [
-            "+v2.4.0"
-          ],
           "body": "Installs a new feature into the framework with an update interval. Alias for `F.uptodate()`.",
           "name": "UPTODATE",
           "params": [
@@ -20147,9 +19994,6 @@
         },
         {
           "body": "Alias for `F.trace()`.",
-          "options": [
-            "+v2.4.0"
-          ],
           "name": "TRACE",
           "params": [
             {
@@ -20630,7 +20474,6 @@
               "type": "Number",
               "default": "undefined",
               "options": [
-                "+v2.5.0",
                 "optional"
               ]
             },
@@ -20640,7 +20483,6 @@
               "type": "Object",
               "default": "undefined",
               "options": [
-                "+v2.5.0",
                 "optional"
               ]
             }
@@ -20650,9 +20492,6 @@
         {
           "body": "Clears an instance of `setTimeout2`",
           "name": "clearTimeout2",
-          "options": [
-            "+v2.1.0"
-          ],
           "params": [
             {
               "body": "A timeout name.",
@@ -20800,9 +20639,6 @@
         {
           "body": "A simple async shortcut for getting a schema. This method waits max. 20 seconds for schema declaration (it not exists).",
           "name": "GETSCHEMA",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A group name.",
@@ -20958,9 +20794,6 @@
         {
           "body": "This method enables in-memory NoSQL embedded database (or a view only)",
           "name": "NOSQLMEMORY",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "Name of DB.",
@@ -21043,9 +20876,6 @@
         {
           "body": "Alias for `DatabaseBinary`, the method returns: `NOSQL('user').binary` command.",
           "name": "NOBIN",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "Name of DB.",
@@ -21058,9 +20888,6 @@
         {
           "body": "Alias for `DatabaseCounter`, the method returns: `NOSQL('user').counter` command.",
           "name": "NOCOUNTER",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "Name of DB.",
@@ -21073,9 +20900,6 @@
         {
           "body": "Alias for `U.wait()`.",
           "name": "WAIT",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "The validator. It is execute when expire the interval (and multiple times).",
@@ -21129,9 +20953,6 @@
         {
           "body": "Alias for `F.on()`. Registers a new event.",
           "name": "ON",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "Event name",
@@ -21149,9 +20970,6 @@
         {
           "body": "Alias for `F.emit()`. Triggers event.",
           "name": "EMIT",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "Event name",
@@ -21180,9 +20998,6 @@
         {
           "body": "Alias for `F.removeListener()` and `F.removeAllListeners()`. Removes all event listeners.",
           "name": "OFF",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "Event name",
@@ -21203,9 +21018,6 @@
         {
           "body": "Executes a schema query.\n\n```javascript\n$QUERY('Product', { page: 1 }, (err, response) => console.log(response));```",
           "name": "$QUERY",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`.",
@@ -21429,9 +21241,6 @@
         {
           "body": "Executes a schema `get`.\n\n```javascript\n$GET('Product', { id: 1 }, (err, response) => console.log(response));```",
           "name": "$GET",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`.",
@@ -21478,9 +21287,6 @@
         {
           "body": "Performas `make`.\n\n```javascript\n$MAKE('Product', { id: 1 }, (err, model) => console.log(err, model));```",
           "name": "$MAKE",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`.",
@@ -21753,9 +21559,6 @@
         {
           "body": "Executes a schema `workflow2` (without model).\n\n```javascript\n$WORKFLOW('Product', 'import', (err, response) => console.log(response));```",
           "name": "$WORKFLOW",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`",
@@ -21807,9 +21610,6 @@
         {
           "body": "Executes a schema `transform2` (without model).\n\n```javascript\n$TRANSFORM('Product', 'import', (err, response) => console.log(response));```",
           "name": "$TRANSFORM",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`",
@@ -21861,9 +21661,6 @@
         {
           "body": "Executes a schema `transform2` (without model).\n\n```javascript\n$OPERATION('Product', 'import', (err, response) => console.log(response));```",
           "name": "$OPERATION",
-          "options": [
-            "+v2.5.0"
-          ],
           "params": [
             {
               "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`",
@@ -22034,9 +21831,6 @@
         {
           "body": "Gets a controller prototype for extending.",
           "name": "Controller",
-          "options": [
-            "+v2.3.0"
-          ],
           "return": "FrameworkController"
         },
         {
@@ -22087,8 +21881,7 @@
           "go": "#api~Framework",
           "name": "I",
           "options": [
-            "alias",
-            "+v2.3.0"
+            "alias"
           ],
           "return": "Framework"
         },
@@ -23111,9 +22904,6 @@
           "return": "RESTBuilder"
         },
         {
-          "options": [
-            "+v2.5.0"
-          ],
           "body": "Enables (default) / Disables auto HTTP redirect.",
           "name": "instance.redirect",
           "params": [
@@ -23800,9 +23590,6 @@
         {
           "body": "Creates a URL builder instance.",
           "name": "URLBuilder.make",
-          "options": [
-            "+v2.3.0"
-          ],
           "params": [
             {
               "body": "A prepare function.",
@@ -24212,7 +23999,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24298,7 +24084,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24363,7 +24148,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24391,7 +24175,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24461,7 +24244,6 @@
                   "name": "description",
                   "type": "String",
                   "options": [
-                    "+v2.3.0",
                     "optional"
                   ]
                 }
@@ -24473,7 +24255,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24501,7 +24282,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24529,7 +24309,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24557,7 +24336,6 @@
               "name": "description",
               "type": "String",
               "options": [
-                "+v2.3.0",
                 "optional"
               ]
             }
@@ -24639,9 +24417,6 @@
           "return": "String Array"
         },
         {
-          "options": [
-            "+v2.3.0"
-          ],
           "body": "Returns of all descriptions.",
           "name": "schema.meta",
           "return": "Object"
