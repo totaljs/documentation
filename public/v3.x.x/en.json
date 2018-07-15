@@ -1120,13 +1120,15 @@
           "return": "Framework"
         },
         {
-          "body": "Uses a middleware for all or specific routes",
+          "changetype": 2,
+          "changelog": "Instead of middleware name can contain a middleware function",
+          "body": "Uses a middleware for all or specific routes. Example:\n\n```javascript\n// Simple usage:\nF.use('auth', '*', ['web']);\n\n// +v3.0.0\n// Supports function instead of name\nF.use(function($) {\n\tsetTimeout($.next, 1000);\n});```",
           "name": "F.use",
           "params": [
             {
               "body": "A middleware name",
               "name": "name",
-              "type": "String or Array"
+              "type": "String/Array/Function"
             },
             {
               "body": "A relative URL address. The framework adds a middleware accoring to the types of routes below, the route has to <b>start</b> with this relative URL. Can contain `*` for all routes",
@@ -3493,6 +3495,16 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "body": "It contains a stamp of `OS` name + version.",
+          "name": "F.syshash",
+          "options": [
+            "+v3.0.0",
+            "readonly"
+          ],
+          "return": "String"
+        },
+        {
           "body": "Is OS Windows?",
           "name": "F.isWindows",
           "options": [
@@ -3831,8 +3843,14 @@
           "return": "String"
         },
         {
-          "default": "os.hostname() + '-' + os.platform() + '-' + os.arch()",
-          "body": "An application secret. This secret is used in `framework.encrypt()`, `framework.decrypt()` and `framework.hash()` - as default salt.",
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "A secret for encrypting/decrypting unique identificators. This secret is used in `U.encryptID()`, `U.decryptID()` - as default salt. Default value is the same value like `secret` item.",
+          "name": "secret-uid",
+          "return": "String"
+        },
+        {
+          "body": "An application secret. This secret is used in `F.encrypt()`, `F.decrypt()` and `framework.hash()` - as default salt. __A default value is generated according to the operation system name + version.__",
           "name": "secret",
           "return": "String"
         },
@@ -8275,6 +8293,52 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "body": "The method is same like `controller.sitemap_url()` but it contains `language` argument in addition.",
+          "name": "controller.sitemap_url2",
+          "options": [
+            "+v3.0.0",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "A language.",
+              "name": "language",
+              "type": "String"
+            },
+            {
+              "body": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
           "body": "Appends a new item into the `sitemap` for the current request. Updated sitemap will be used in the views. \n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\n```\n\n```javascript\nfunction some_action(category) {\n\n\t// Binds the sitemap\n\tcontroller.sitemap('products');\n\n\t// Appends new items\n\tcontroller.sitemap_add('homepage', 'Category 1', '/products/category-1/');\n\tcontroller.sitemap_add('homepage', 'Category 2', '/products/category-2/');\n\tcontroller.sitemap_add('homepage', 'Category 3', '/products/category-3/');\n\n\t// \"/\"\n\t// \"/products/category-1/\"\n\t// \"/products/category-2/\"\n\t// \"/products/category-3/\"\n\t// \"/products/\"\n\n}```",
           "name": "controller.sitemap_add",
           "options": [
@@ -8332,6 +8396,52 @@
           "params": [
             {
               "body": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "The method is same like `controller.sitemap_name2()` but it contains `language` argument in addition.",
+          "name": "controller.sitemap_name2",
+          "options": [
+            "+v3.0.0",
+            "http"
+          ],
+          "params": [
+            {
+              "body": "A language",
+              "name": "language",
+              "type": "String"
+            },
+            {
+              "body": "Identificator / Name",
               "name": "name",
               "type": "String"
             },
@@ -11898,6 +12008,49 @@
           "return": "String"
         },
         {
+          "options": ["v3.0.0"],
+          "changetype": 1,
+          "body": "The method is same like `@{sitemap_url()}` but it contains `language` argument in addition.",
+          "name": "@{sitemap_url2}",
+          "params": [
+            {
+              "body": "A language.",
+              "name": "language",
+              "type": "String"
+            },
+            {
+              "body": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
           "options": [
             "+v2.1.0"
           ],
@@ -11949,6 +12102,49 @@
           "body": "Returns a URL from `sitemap` file. The method performs `String.format()` for the selected URL address with additional arguments `1..n`.\n\n__Sitemap__:\n\n```html\nhomepage     : Homepage       --> /\nproducts     : Products       --> /products/        --> homepage\ncategory     : {0}            --> /products/{0}/    --> products\n```\n\n```html\n@{sitemap_name('category', 'Shoes')};\n<!-- OUTPUT: Shoes -->\n\n<!-- next example: -->\n@{sitemap_name('category', 'Shirts')};\n<!-- OUTPUT: Shirts -->\n\n<!-- next example: -->\n@{sitemap_name('products', 'Shirts')};\n<!-- OUTPUT: Products -->\n\n<!-- next example: -->\n@{sitemap_name('homepage', 'Argument1', 'Argument2', 'Argument3')};\n<!-- OUTPUT: Homepage -->```",
           "name": "@{sitemap_name}",
           "params": [
+            {
+              "body": "Identificator / Name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Argument .. 1",
+              "name": "a",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. 2",
+              "name": "b",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Argument .. N",
+              "name": "n",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "options": ["v3.0.0"],
+          "changetype": 1,
+          "body": "The method is same like `@{sitemap_name()}` but it contains `language` argument in addition.",
+          "name": "@{sitemap_name2}",
+          "params": [
+            {
+              "body": "A language.",
+              "name": "language",
+              "type": "String"
+            },
             {
               "body": "Identificator / Name.",
               "name": "name",
@@ -12688,6 +12884,13 @@
           "default": "''",
           "body": "Returns `default-root` value without last `/` backslash. By default contains __empty string__. You can use this markup if you use multiple Total.js apps on the one domain.",
           "name": "@{root}",
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Applies `default-root` value if exists. Can be used in HTML, JavaScript or CSS files. It serves for providing multiple Total.js applications on the one domain.\n\n```javascript\n// default-root: /eshop/\nlocation.href = '@{#}/products/';\n// output: location.href = '/eshop/products/';\n\n// default-root:\nlocation.href = '@{#}/products/';\n// output: location.href = '/products/';\n```",
+          "name": "@{#}",
           "return": "String"
         },
         {
@@ -13969,6 +14172,51 @@
             }
           ],
           "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "This method encrypts a value. You can encrypt __numbers__ or __strings__. This method uses `F.config['secret-uid']` value as a secret.",
+          "name": "U.encryptUID",
+          "params": [
+            {
+              "name": "value",
+              "body": "A value for encryption.",
+              "type": "Number/String"
+            },
+            {
+              "body": "A key.",
+              "name": "key",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "This method decrypts a value encrypted via `U.encryptUID()`.",
+          "name": "U.decryptUID",
+          "default": "null",
+          "params": [
+            {
+              "name": "value",
+              "body": "A value for decryption.",
+              "type": "String"
+            },
+            {
+              "body": "A key.",
+              "name": "key",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "Number/String"
         },
         {
           "body": "Returns a random number.",
@@ -17100,6 +17348,22 @@
           "name": "String.prototype.trim",
           "params": [
 
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "This method can replace `@{#}` for a new `root` URL address according to the `default-root` value in the app config. This method is used in the View Engine.",
+          "name": "String.prototype.ROOT",
+          "options": ["v3.0.0"],
+          "params": [
+            {
+              "name": "noremap",
+              "type": "Booelan",
+              "body": "Disallows URL remapping in `href` and `src` attributes.",
+              "default": "false",
+              "options": ["optional"]
+            }
           ],
           "return": "String"
         },
@@ -20844,6 +21108,22 @@
         },
         {
           "changetype": 1,
+          "body": "Is a special `NOSQLSTORAGE` but seperated and independent from NoSQL embedded database. You can use it for storing of uploaded files",
+          "name": "FILESTORAGE",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
+            {
+              "body": "Name of storage. E.g. photos, products, etc..",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "DatabaseStorage"
+        },
+        {
+          "changetype": 1,
           "body": "Gets an instance of TABLE storage",
           "name": "TABLE",
           "options": [
@@ -23960,6 +24240,17 @@
               "name": "prefix",
               "type": "String"
             }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "body": "Removes all registered properties `schema.define()` from the schema.",
+          "name": "schema.clear",
+          "options": [
+            "+v3.0.0"
+          ],
+          "params": [
           ],
           "return": "SchemaDeclaration"
         },
