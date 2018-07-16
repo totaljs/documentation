@@ -4258,7 +4258,7 @@
             "+v3.0.0"
           ],
           "default": "''",
-          "body": "Enables in-memory mode for databases defined in this option.\n\n```html\nnosql-inmemory           : orders, products, products#viewname\n```",
+          "body": "Enables in-memory mode for databases defined in this option.\n\n```html\nnosql-inmemory           : orders, products\n```",
           "name": "nosql-inmemory",
           "return": "String Array"
         },
@@ -5055,7 +5055,7 @@
       "name": "FrameworkPath"
     },
     {
-      "body": "__NoSQL embedded database__ is very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\n// or\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```\n\n__Good to know__:\n\n- __supports joins__\n- DB reads `32` kB blocks of data per read\n- boolean `true` values are added with empty space as `\"key\":true ,` because it's more effective for updating of DB file\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data",
+      "body": "__NoSQL embedded database__ is very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL & Table embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\n// or\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```\n\n__Good to know__:\n\n- __supports joins__\n- DB reads `32` kB blocks of data per read\n- boolean `true` values are added with empty space as `\"key\":true ,` because it's more effective for updating of DB file\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data",
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -5281,6 +5281,8 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "Supports incremental enrollments",
           "name": "database.modify",
           "body": "Modifies specific values in the database. Example:\n\n```javascript\nNOSQL('database').modify({ name: 'Peter', age: (age, doc) => age + 10, '+price': 10 }).where('id', 1);\n```\n\n__Total.js v3 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`",
           "params": [
@@ -5378,14 +5380,15 @@
           "name": "database.find",
           "body": "Finds documents in the database.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "database.listing",
+          "body": "Same functionality like `database.find()` but the response is the object in the structure below:\n\n```javascript\n{\n\tlimit: 50,\n\tpage: 1,\n\tpages: 5\n\tcount: 500,\n\titems: [{ ... }, { ... }]\n}\n```",
+          "params": [
           ],
           "return": "DatabaseBuilder"
         },
@@ -5511,14 +5514,6 @@
           "name": "database.one",
           "body": "Finds only one document in the database.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
           ],
           "return": "DatabaseBuilder"
         },
@@ -5530,14 +5525,6 @@
               "name": "max",
               "type": "Number",
               "body": "First top/max documents."
-            },
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
             }
           ],
           "return": "DatabaseBuilder"
@@ -5566,14 +5553,6 @@
           "name": "database.count",
           "body": "Gets count of documents.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
           ],
           "return": "DatabaseBuilder"
         }
@@ -5661,7 +5640,7 @@
     },
     {
       "changetype": 1,
-      "body": "__Table__ is small and very effective plain text embedded database. It uses same engine like NoSQL embedded database. It's very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each Table database is stored in separated file. __The big different__ from NoSQL embedded database is preddefined schema of data. This database is much more faster (about 20-40%) than NoSQL embedded database with smaller CPU, memory and HDD consumption.\n\nTry: [__NoSQL embedded database explorer__](https://nosql.totaljs.com)\n\n## How to use it?\n\n`Table` needs to have defined schema in the app `config` file while DB file doesn't exist.\n\n```html\n// table.YOURDBNAME   : PROPERTY:TYPE | PROPERTY:TYPE  | PROPERTY:TYPE     | etc..\ntable.dbname1         : id:string     | name:string    | price:number      | created:date\ntable.dbname2         : name:string   | ip:string      | confirmed:boolean | created:date\n```\n\nYou can create DB file easily, just create empty file with column declaration and with __NEW EMPTY LINE__ (IMPORTANT). __Replace__ `\\n` for a new line:\n\n```html\nid:string|name:string|price:number|created:date\\n\n\\n\n```\n\n__Supported types__:\n\n- `number` can contain number or float number, default value `0`\n- `boolean` default value `false`\n- `string` default value `''`\n- `date` default value `null`\n- `object` is serialized into the JSON format (I don't recommend it because of performance), default value `null`\n\n__Good to know__:\n\n- __supports joins__\n- __supports NoSQL embedded worker__\n- DB engine performs data changes automatically when you change a schema\n- DB reads `32` kB blocks of data per read\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data\n\n__Example__:\n\n```javascript\nvar db = TABLE('dbname');\n\ndb.find().between('price', 100, 200).callback(console.log);\n```",
+      "body": "`+v3.0.0` __Table__ is a small and very effective plain text embedded database __with preddefined schema__. It uses same engine like NoSQL embedded database. It's very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each Table database is stored in separated and independent file. __The big different__ from NoSQL embedded database is preddefined schema of data. This database is much more faster (about 20-40%) than NoSQL embedded database with smaller CPU, memory and HDD consumption.\n\nTry: [__NoSQL & Table embedded database explorer__](https://nosql.totaljs.com)\n\n## How to use it?\n\n`Table` needs to have defined schema in the app `config` file while DB file doesn't exist.\n\n```html\n// table.YOURDBNAME   : PROPERTY:TYPE | PROPERTY:TYPE  | PROPERTY:TYPE     | etc..\ntable.dbname1         : id:string     | name:string    | price:number      | created:date\ntable.dbname2         : name:string   | ip:string      | confirmed:boolean | created:date\n```\n\nYou can create DB file manually, just create an empty file with columns declaration (without spaces) and with __NEW EMPTY LINE__ (IMPORTANT). Don't forget to __replace__ `\\n` chars for a new line:\n\n```html\nid:string|name:string|price:number|created:date\\n\n\\n\n```\n\nIf you create a DB file manually then you don't need to define `TABLE` schema in the app config.\n\n__Supported types__:\n\n- `number` can contain number or float number, default value `0`\n- `boolean` default value `false`\n- `string` default value `''`\n- `date` default value `null`\n- `object` is serialized into the JSON format (I don't recommend it because of performance), default value `null`\n\n__Good to know__:\n\n- __supports joins__\n- __supports NoSQL embedded worker__\n- DB engine performs data changes automatically when you change a schema\n- DB reads `32` kB blocks of data per read\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data\n\n__Example__:\n\n```javascript\nvar db = TABLE('dbname');\n\ndb.find().between('price', 100, 200).callback(console.log);\n```",
       "name": "Table",
       "group": "NoSQL Embedded",
       "options": ["+v3.0.0"],
@@ -5859,17 +5838,16 @@
           "return": "DatabaseBuilder"
         },
         {
+          "name": "table.listing",
+          "body": "Same functionality like `table.find()` but the response is the object in the structure below:\n\n```javascript\n{\n\tlimit: 50,\n\tpage: 1,\n\tpages: 5\n\tcount: 500,\n\titems: [{ ... }, { ... }]\n}\n```",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
           "name": "table.find",
           "body": "Finds documents in the database.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
           ],
           "return": "DatabaseBuilder"
         },
@@ -5976,14 +5954,6 @@
           "name": "table.one",
           "body": "Finds only one document in the database.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
           ],
           "return": "DatabaseBuilder"
         },
@@ -5995,14 +5965,6 @@
               "name": "max",
               "type": "Number",
               "body": "First top/max documents."
-            },
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
             }
           ],
           "return": "DatabaseBuilder"
@@ -6031,14 +5993,6 @@
           "name": "table.count",
           "body": "Gets count of documents.",
           "params": [
-            {
-              "name": "viewname",
-              "type": "String",
-              "body": "The DB will search in a view.",
-              "options": [
-                "optional"
-              ]
-            }
           ],
           "return": "DatabaseBuilder"
         }
