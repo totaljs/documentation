@@ -15041,7 +15041,36 @@
               "type": "String"
             },
             {
-              "body": "An attachment name (IMPORTANT: name needs to be with the extension).",
+              "body": "A name of attachment (IMPORTANT: name needs to be with the extension).",
+              "name": "name",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "MailMessage"
+        },
+        {
+          "options": [
+            "+v3.0.0"
+          ],
+          "changetype": 1,
+          "body": "Adds an attachment from FileStorage.",
+          "name": "message.attachmentfs",
+          "params": [
+            {
+              "body": "A storage name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File id",
+              "name": "id",
+              "type": "Number"
+            },
+            {
+              "body": "A name of attachment (IMPORTANT: name needs to be with the extension).",
               "name": "name",
               "options": [
                 "optional"
@@ -15070,7 +15099,7 @@
               "type": "Number"
             },
             {
-              "body": "An attachment name (IMPORTANT: name needs to be with the extension).",
+              "body": "A name of attachment (IMPORTANT: name needs to be with the extension).",
               "name": "name",
               "options": [
                 "optional"
