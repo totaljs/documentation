@@ -18529,27 +18529,34 @@
           "return": "String"
         },
         {
+          "changetype": 2,
+          "changelog": "Added secret argument",
           "body": "Encrypts the string according to the key.",
           "name": "String.prototype.encrypt",
           "params": [
             {
-              "body": "The key.",
+              "body": "A key.",
               "name": "key",
               "type": "String"
             },
             {
-              "default": "true",
-              "body": "The result has to be unique string.",
+              "body": "The result will be unique.",
               "name": "unique",
-              "options": [
-                "optional"
-              ],
               "type": "Boolean"
+            },
+            {
+              "default": "config.secret",
+              "body": "A secret.",
+              "name": "secret",
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "String"
         },
         {
+          "changetype": 2,
+          "changelog": "Added secret argument",
           "body": "Decrypts the string according to the key.",
           "name": "String.prototype.decrypt",
           "params": [
@@ -18557,6 +18564,13 @@
               "body": "The key for decoding.",
               "name": "key",
               "type": "String"
+            },
+            {
+              "default": "config.secret",
+              "body": "A secret.",
+              "name": "secret",
+              "type": "String",
+              "options": ["optional"]
             }
           ],
           "return": "String"
