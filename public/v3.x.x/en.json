@@ -1070,6 +1070,19 @@
           "return": "Framework"
         },
         {
+          "changetype": 1,
+          "body": "This method can change the root directory of the application.",
+          "name": "F.dir",
+          "params": [
+            {
+              "body": "Absolute path",
+              "name": "path",
+              "type": "String"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
           "body": "Reads the configuration from the file",
           "options": [
             "+v1.7.1"
