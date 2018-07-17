@@ -3756,6 +3756,16 @@
           ]
         },
         {
+          "changetype": 1,
+          "default": "true",
+          "body": "`F.cache` database will be synchronized between all child processes in the cluster",
+          "name": "allow-cache-cluster",
+          "return": "Boolean",
+          "options": [
+            "+v3.0.0"
+          ]
+        },
+        {
           "default": "false",
           "body": "Enables a small console debugging. The framework creates snapshot of `F.usage()` automatically into the `/usage.log` file.\n\n__Or alternative__:\n```javascript\nrequire('total.js').http('release', { debug: true });```",
           "name": "allow-debug",
@@ -16162,7 +16172,7 @@
       "name": "FrameworkImage"
     },
     {
-      "body": "__Experimental__: Total.js Cluster `+v2.6.0` can clusterize a current app to multiple threads. Cluster synchronizes `F.cache()` between all threads automatically and enables locking of NoSQL embedded database files.\n\n### How to run Total.js Cluster?\n\n```javascript\nrequire('total.js');\n\nconst options = {};\noptions.ip = '0.0.0.0';\n\n// Run the framework in the cluster\nF.cluster.http(4, 'release', options);\n```\n",
+      "body": "Total.js Cluster `+v2.6.0` can clusterize a current app to multiple threads. Cluster synchronizes `F.cache()` between all threads automatically and enables locking of NoSQL embedded database files.\n\n### How to run Total.js Cluster?\n\n```javascript\nrequire('total.js');\n\nconst options = {};\noptions.ip = '0.0.0.0';\n\n// Run the framework in the cluster\nF.cluster.http(4, 'release', options);\n```\n",
       "group": "Framework",
       "methods": [
         {
