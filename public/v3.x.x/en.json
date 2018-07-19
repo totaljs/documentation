@@ -5559,7 +5559,16 @@
         },
         {
           "name": "database.one",
-          "body": "Finds only one document in the database.",
+          "body": "Finds only the one document in the database.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "database.one2",
+          "body": "Finds only the one document in the database but reading is from end of file. This reading can be faster in some cases",
           "params": [
           ],
           "return": "DatabaseBuilder"
@@ -6021,7 +6030,14 @@
         },
         {
           "name": "table.one",
-          "body": "Finds only one document in the database.",
+          "body": "Finds only the one document in the database.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "table.one2",
+          "body": "Finds only the one document in the database but reading is from end of file. This reading can be faster in some cases",
           "params": [
           ],
           "return": "DatabaseBuilder"
@@ -6140,7 +6156,7 @@
       ]
     },
     {
-      "body": "__NoSQL Database Builder__ helps with building queries for classic CRUD operation. A lot of methods from `Database` implementation returns this `DatabaseBuilder`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.callback(function(err, response) {\n        console.log('users between 20 and 30 years:', response);\n    });\n});\n\nnosql.insert({ id: 3499, age: 55, name: 'Peter' }).callback(function(err) {\n    console.log('The user has been created.');\n});\n\nnosql.update({ id: 3403, age: 60, name: 'Lucia' }).make(function(builder) {\n    // builder.first(); --> updates only one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('updated documents:', count);\n    });\n});\n\nnosql.modify({ age: 58 }).make(function(builder) {\n    // builder.first(); --> modifies only one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('modified documents:', count);\n    });\n});\n\nnosql.remove().make(function(builder) {\n    // builder.first(); --> removes only one document\n    builder.where('age', '<', 15);\n    builder.callback(function(err, count) {\n        console.log('removed documents:', count);\n    });\n});```",
+      "body": "__NoSQL Database Builder__ helps with building queries for classic CRUD operation. A lot of methods from `Database` implementation returns this `DatabaseBuilder`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.callback(function(err, response) {\n        console.log('users between 20 and 30 years:', response);\n    });\n});\n\nnosql.insert({ id: 3499, age: 55, name: 'Peter' }).callback(function(err) {\n    console.log('The user has been created.');\n});\n\nnosql.update({ id: 3403, age: 60, name: 'Lucia' }).make(function(builder) {\n    // builder.first(); --> updates only the one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('updated documents:', count);\n    });\n});\n\nnosql.modify({ age: 58 }).make(function(builder) {\n    // builder.first(); --> modifies only the one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('modified documents:', count);\n    });\n});\n\nnosql.remove().make(function(builder) {\n    // builder.first(); --> removes only the one document\n    builder.where('age', '<', 15);\n    builder.callback(function(err, count) {\n        console.log('removed documents:', count);\n    });\n});```",
       "name": "DatabaseBuilder",
       "group": "NoSQL Embedded",
       "methods": [
