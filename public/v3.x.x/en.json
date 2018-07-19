@@ -5304,6 +5304,30 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["v3.0.0"],
+          "name": "database.memory",
+          "body": "Affects buffer/memory while DB is reading/writing.",
+          "params": [
+            {
+              "name": "count",
+              "type": "Number",
+              "body": "Determines how many documents can be in the buffer for processing",
+              "default": 15
+            },
+            {
+              "name": "size",
+              "type": "Number",
+              "body": "Determines how many kB will be read from file system",
+              "default": 32,
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Database"
+        },
+        {
           "changetype": 2,
           "changelog": "Supports incremental enrollments",
           "name": "database.modify",
@@ -5782,6 +5806,28 @@
             }
           ],
           "return": "DatabaseBuilder"
+        },
+        {
+          "name": "table.memory",
+          "body": "Affects buffer/memory while DB is reading/writing.",
+          "params": [
+            {
+              "name": "count",
+              "type": "Number",
+              "body": "Determines how many documents can be in the buffer for processing",
+              "default": 15
+            },
+            {
+              "name": "size",
+              "type": "Number",
+              "body": "Determines how many kB will be read from file system",
+              "default": 32,
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Table"
         },
         {
           "name": "table.modify",
