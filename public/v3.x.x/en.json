@@ -644,6 +644,29 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "This event is triggered if the framework responds with: 409 HTTP status",
+          "name": "F.on('error409')",
+          "params": [
+            {
+              "name": "req",
+              "type": "Request",
+              "body": "Current request"
+            },
+            {
+              "name": "res",
+              "type": "Response",
+              "body": "Current request"
+            },
+            {
+              "name": "exception",
+              "type": "Error or String",
+              "body": "Exception if exists"
+            }
+          ]
+        },
+        {
           "body": "This event is triggered if the framework responds with: 431 HTTP status",
           "name": "F.on('error431')",
           "params": [
