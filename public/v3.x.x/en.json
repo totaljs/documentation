@@ -17098,7 +17098,7 @@
         },
         {
           "body": "Sets the role according to the route. __IMPORTANT__ roles works only with `authorize` flag",
-          "example": "https://github.com/totaljs/examples/tree/master/routing-roles",
+          "example": "https://github.com/totaljs/examples/tree/master/authorization-roles",
           "name": "@role",
           "options": [
             "optional"
