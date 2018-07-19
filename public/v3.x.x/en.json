@@ -16540,6 +16540,92 @@
           "return": "Boolean"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Stores the file in FileStorage and returns File ID from FileStorage.",
+          "name": "file.fs",
+          "params": [
+            {
+              "body": "A name of FileStorage",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A small custom data",
+              "name": "custom",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling",
+                  "type": "Error"
+                },
+                {
+                  "name": "id",
+                  "body": "A file ID in the FileStorage",
+                  "type": "String"
+                },
+                {
+                  "name": "meta",
+                  "body": "A meta info of the stored file",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Stores the file in NoSQL embedded database and returns File ID from NoSQL embedded database.",
+          "name": "file.nosql",
+          "params": [
+            {
+              "body": "A name of DB",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A small custom data",
+              "name": "custom",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling",
+                  "type": "Error"
+                },
+                {
+                  "name": "id",
+                  "body": "A file ID in the FileStorage",
+                  "type": "String"
+                },
+                {
+                  "name": "meta",
+                  "body": "A meta info of the stored file",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "String"
+        },
+        {
           "body": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
@@ -17580,6 +17666,92 @@
               "body": "The absolute filename",
               "name": "filename",
               "type": "String"
+            },
+            {
+              "body": "A download name",
+              "name": "download",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "Additional headers",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Sends a file stored in FileStorage",
+          "name": "Response.prototype.filefs",
+          "params": [
+            {
+              "body": "FileStorage name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File ID",
+              "name": "id",
+              "type": "String/Number"
+            },
+            {
+              "body": "A download name",
+              "name": "download",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "Additional headers",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Sends a file stored in NoSQL embedded database",
+          "name": "Response.prototype.filenosql",
+          "params": [
+            {
+              "body": "Database name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File ID",
+              "name": "id",
+              "type": "String/Number"
             },
             {
               "body": "A download name",
