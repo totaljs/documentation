@@ -8131,6 +8131,20 @@
       "name": "FrameworkStats",
       "properties": [
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Dynamic requests per minute",
+          "name": "F.stats.performance.request",
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "File requests per minute",
+          "name": "F.stats.performance.file",
+          "return": "Number"
+        },
+        {
           "body": "Returns a count of responses with Images.",
           "name": "F.stats.response.image",
           "return": "Number"
