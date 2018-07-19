@@ -4097,7 +4097,7 @@
         },
         {
           "default": "[]",
-          "body": "This option adds all own values into `static-accepts` and it's not visible in `framework.config`. Values in config files have to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql```",
+          "body": "This option adds all own values into `static-accepts` and it's not visible in `F.config`. Values in config files have to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql```",
           "name": "static-accepts-custom",
           "options": [
             "auxiliary"
@@ -4687,7 +4687,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-public']`.",
+          "body": "Gets the path from `F.config['directory-public']`.",
           "name": "F.path.public",
           "params": [
             {
@@ -4702,7 +4702,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-isomporhic']`.",
+          "body": "Gets the path from `F.config['directory-isomporhic']`.",
           "name": "F.path.isomporhic",
           "params": [
             {
@@ -4720,7 +4720,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-private']`.",
+          "body": "Gets the path from `F.config['directory-private']`.",
           "name": "F.path.private",
           "params": [
             {
@@ -4738,7 +4738,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-configs']`.",
+          "body": "Gets the path from `F.config['directory-configs']`.",
           "name": "F.path.configs",
           "params": [
             {
@@ -4756,7 +4756,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-public-virtual']`.",
+          "body": "Gets the path from `F.config['directory-public-virtual']`.",
           "name": "F.path.virtual",
           "params": [
             {
@@ -4774,7 +4774,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-models']`.",
+          "body": "Gets the path from `F.config['directory-models']`.",
           "name": "F.path.models",
           "params": [
             {
@@ -4789,7 +4789,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-databases']`.",
+          "body": "Gets the path from `F.config['directory-databases']`.",
           "name": "F.path.databases",
           "params": [
             {
@@ -4804,7 +4804,7 @@
           "return": "String"
         },
         {
-          "body": "Get the path from `framework.config['directory-logs']`.",
+          "body": "Get the path from `F.config['directory-logs']`.",
           "name": "F.path.logs",
           "params": [
             {
@@ -4819,7 +4819,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-temp']`.",
+          "body": "Gets the path from `F.config['directory-temp']`.",
           "name": "F.path.temp",
           "params": [
             {
@@ -4834,7 +4834,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-workers']`.",
+          "body": "Gets the path from `F.config['directory-workers']`.",
           "name": "F.path.workers",
           "params": [
             {
@@ -4849,7 +4849,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-views']`.",
+          "body": "Gets the path from `F.config['directory-views']`.",
           "name": "F.path.views",
           "params": [
             {
@@ -4864,7 +4864,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-modules']`.",
+          "body": "Gets the path from `F.config['directory-modules']`.",
           "name": "F.path.modules",
           "params": [
             {
@@ -4879,7 +4879,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-definitions']`.",
+          "body": "Gets the path from `F.config['directory-definitions']`.",
           "name": "F.path.definitions",
           "params": [
             {
@@ -4894,7 +4894,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-controllers']`.",
+          "body": "Gets the path from `F.config['directory-controllers']`.",
           "name": "F.path.controllers",
           "params": [
             {
@@ -4909,7 +4909,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-tests']`.",
+          "body": "Gets the path from `F.config['directory-tests']`.",
           "name": "F.path.tests",
           "params": [
             {
@@ -4924,7 +4924,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-packages']`.",
+          "body": "Gets the path from `F.config['directory-packages']`.",
           "name": "F.path.packages",
           "params": [
             {
@@ -4939,7 +4939,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `framework.config['directory-resources']`.",
+          "body": "Gets the path from `F.config['directory-resources']`.",
           "name": "F.path.resources",
           "params": [
             {
@@ -20032,13 +20032,21 @@
       "group": "Additional",
       "methods": [
         {
-          "body": "Gets the value from the `framework.config`.",
+          "changetype": 2,
+          "changelog": "+v3.0.0 added <code>value</code> argument",
+          "body": "Gets the value from the `F.config`.",
           "name": "CONFIG",
           "params": [
             {
-              "body": "The key.",
+              "body": "A key.",
               "name": "key",
               "type": "String"
+            },
+            {
+              "body": "A value.",
+              "name": "value",
+              "type": "Number",
+              "options": ["optional"]
             }
           ],
           "return": "Object"
@@ -27123,7 +27131,7 @@
       "name": "Schemas"
     },
     {
-      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n### CSS\n\n- All CSS code is minified `framework.config['allow-compile-style']`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` - remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `framework.config['allow-compile-script']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$ totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$ totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$ totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
+      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n### CSS\n\n- All CSS code is minified `F.config['allow-compile-style']`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` - remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `F.config['allow-compile-script']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$ totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$ totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$ totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
       "group": "How does it work?",
       "name": "HTML, JS, CSS"
     },
