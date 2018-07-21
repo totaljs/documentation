@@ -3793,7 +3793,7 @@
         },
         {
           "changetype": 1,
-          "default": "true",
+          "default": "false",
           "body": "`F.cache` database will be synchronized between all child processes in the cluster",
           "name": "allow-cache-cluster",
           "return": "Boolean",
