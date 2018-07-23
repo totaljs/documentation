@@ -5840,6 +5840,18 @@
           "return": "DatabaseBuilder"
         },
         {
+          "name": "table.allocations",
+          "body": "Can disable/enable (by default) pre-allocations for each record, in other words: if `true` (it's default) then database will allocate free additional space for each record in DB.",
+          "params": [
+            {
+              "name": "enable",
+              "type": "Boolean",
+              "body": "Enables/Disables pre-allocations for each record"
+            }
+          ],
+          "return": "Table"
+        },
+        {
           "name": "table.memory",
           "body": "Affects buffer/memory while DB is reading/writing.",
           "params": [
