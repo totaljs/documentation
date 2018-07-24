@@ -21145,6 +21145,20 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Creates a NOOP callback function with internal error handling. `name` (optional) can define a current location for better error handling. For example:\n\n```javascript\nRESTBuilder.make(function(builder) {\n\tbuilder.url('http://127.0.0.1:8005/api/import/');\n\t// builder.exec(ERROR('api.progress'));\n\tbuilder.exec(ERROR());\n});```",
+          "name": "ERROR",
+          "params": [
+            {
+              "body": "A current location name",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Function"
+        },
+        {
           "body": "Creates object like this `{ success: Boolean, [value: value ]}`. This method is helpful for JSON responses and you can rewrite it.\n\n```javascript\nvar obj;\n\nobj = SUCCESS(true);\nconsole.log(obj); // --> obj = { success: true }\n\nobj = SUCCESS(true, 'some value');\nconsole.log(obj); // --> obj = { success: true, value: 'some value' }\n\nobj = SUCCESS();\nconsole.log(obj); // –-> function\nobj = obj(new Error('ERROR')); // --> obj = { success: false, error: 'ERROR' }\nobj = obj(null, 'some value'); // --> obj = { success: true, value: 'some value' }\nobj = obj(null); // --> obj = { success: true }\nobj = obj(new Error('ERROR'), 'some value'); // --> obj = { success: true, error: 'ERROR', value: 'some value' }```",
           "changelog": "+v1.9.6 returns without argument a wrapped function. More in description.",
           "name": "SUCCESS",
