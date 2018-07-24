@@ -8442,6 +8442,8 @@
           ]
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.0.0 adds message and code arguments",
           "body": "This event is triggered if the user is disconnected.",
           "name": "controller.on('close')",
           "options": [
@@ -8452,6 +8454,16 @@
               "body": "The FrameworkWebSocketClient.",
               "name": "client",
               "type": "Object"
+            },
+            {
+              "body": "A close message",
+              "name": "message",
+              "type": "String"
+            },
+            {
+              "body": "A close code",
+              "name": "code",
+              "type": "Number"
             }
           ]
         },
@@ -16891,10 +16903,21 @@
           ]
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.0.0 adds message and code arguments",
           "body": "This event is triggered if the client is disconnected.",
           "name": "client.on('close')",
           "params": [
-
+            {
+              "body": "A close message",
+              "name": "message",
+              "type": "String"
+            },
+            {
+              "body": "A close code",
+              "name": "code",
+              "type": "Number"
+            }
           ]
         },
         {
