@@ -1489,13 +1489,13 @@
               "type": "String"
             },
             {
-              "body": "The new host with procotol. Example: http://domain.com",
+              "body": "A new host with procotol. Example: http://domain.com",
               "name": "newHost",
               "type": "String"
             },
             {
               "default": "true",
-              "body": "Copies the full path into the new host.",
+              "body": "Copies the full path into a new host.",
               "name": "copyPath",
               "options": [
                 "optional"
@@ -9500,7 +9500,7 @@
           ],
           "params": [
             {
-              "body": "The new URL address.",
+              "body": "A new URL address.",
               "name": "url",
               "type": "String"
             },
@@ -10762,7 +10762,7 @@
           "return": "String or FrameworkController"
         },
         {
-          "body": "Transfers the request to the new route.",
+          "body": "Transfers the request to a new route.",
           "name": "controller.transfer",
           "options": [
             "important",
@@ -12513,7 +12513,7 @@
           ]
         },
         {
-          "body": "Sets the new layout for current view.",
+          "body": "Sets a new layout for current view.",
           "example": "https://github.com/totaljs/examples/tree/master/views",
           "name": "@{layout}",
           "params": [
@@ -16533,7 +16533,7 @@
           "name": "file.copy",
           "params": [
             {
-              "body": "The new filename.",
+              "body": "A new filename.",
               "name": "filename",
               "type": "String"
             },
@@ -16671,7 +16671,7 @@
           "name": "file.read",
           "params": [
             {
-              "body": "The new filename.",
+              "body": "A new filename.",
               "name": "callback",
               "params": [
                 {
@@ -16754,7 +16754,7 @@
           "name": "file.move",
           "params": [
             {
-              "body": "The new filename.",
+              "body": "A new filename.",
               "name": "filename",
               "type": "String"
             },
@@ -21265,13 +21265,13 @@
               "type": "String"
             },
             {
-              "body": "The new host with procotol. Example: http://domain.com",
+              "body": "A new host with procotol. Example: http://domain.com",
               "name": "newHost",
               "type": "String"
             },
             {
               "default": "true",
-              "body": "Copies the full path into the new host.",
+              "body": "Copies the full path into a new host.",
               "name": "copyPath",
               "options": [
                 "optional"
@@ -27404,7 +27404,7 @@
     },
     {
       "changelog": "binary can create translations into the CSV file.",
-      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: F.translate()](#api~Framework~framework.translate)\n- For setting the language for the current request use [F.onLocale()](#api~Framework~framework.onLocale) delegate\n\n__IMPORTANT__:\n\n- Localized text doesn't start with `#sometext` because for the framework is `sometext` key and the framework reads this key directly from the resource file.\n- __IMPORTANT__ if your localized text contains `\"` or `'` chars then perform HTML encode e.g. `\"` to `&quot;` and `'` to `&#39;` because some localized text can be used in inline JavaScript strings.\n\n---\n\n## Full example\n\n### First step\n\nYou has to install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe definition:\n\n```javascript\nF.onLocale = function(req) {\n\tif (req.query.language === 'sk')\n\t\treturn 'sk';\n\treturn 'en';\n};\n```\n\nThe controller:\n\n```javascript\nexports.install = function() {\n\tROUTE('/', view_index);\n};\n\nfunction view_index() {\n\tvar self = this;\n\n\t// you can change language manually here, e.g.:\n\t// self.language = 'sk';\n\n\tself.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(Total.js is web application framework for Node.js)</p>\n\n<!-- READS THE TITLE DIRECTLY FROM THE RESOURCE FILE -->\n<!-- YOU CAN USE OWN CUSTOM KEY -->\n<div>@(#message) or @(#T80818744) is same as @(Title) (read below)</div>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs --translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM). Rename below file to `en.resource`:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : Total.js is web application framework for Node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Direct reading\n```\n\n__2.__\n\nCopy the content from `translate.resource` to the new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : Total.js je webový framework pre Node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Priame čítanie\n```\n\n### Run\n\n`http://0.0.0.0:8000`\n\n```html\n...\n...\n\t<title>Title</title>\n...\n...\n\t<h1>Hello world!</h1>\n\t<p>Total.js is web application framework for Node.js</p>\n\t<div>Direct reading or Title is same as Title (read below)</div>\n...\n...\n```\n\n`http://0.0.0.0:8000/?language=sk`\n\n```html\n...\n...\n\t<title>Titulok</title>\n...\n...\n\t<h1>Ahoj svet!</h1>\n\t<p>Total.js je webový framework pre Node.js</p>\n\t<div>Priame čítanie or Titulok is same as Titulok (read below)</div>\n...\n...\n```\n\n## Did you know?\n\n### Resource file can contain view engine tags\n\nResource with the localization can contain view engine markup and the markup will be evaluated.\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Hello @{user.name}!\n```\n\n## Translation tools\n\nIf you installed __Total.js__ from NPM as global module then you have available translation tools.\n\n### Tracking of new changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs -diff en.resource de.resource\n```\n\n### Translating text files\n\nContent of __my-translation.txt__:\n\n```html\nHello World!\nI help you\nMy name is Peter.\nTotal.js is the web application framework\n```\n\nOpen terminal or command-line:\n\n```bash\n$ totaljs --translate my-translation.txt\n```\n\n### Translating custom phrases\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs --translate \"Hello World\"\n```\n\nOutput:\n\n```\nT-862545276       : Hello World\n```\n\n### Translating views into the CSV\n\n- `+v1.9.0`\n\n```bash\n$ totaljs --translatecsv```",
+      "body": "The localization is big tool for multilingual websites.\n\n- The framework translates views at time of compilation.\n- Each translated view is stored into the memory.\n- For generating translations is needed `total` (An executable file).\n- The text for translate is wrapped with `@()` tag (it will be a default text).\n- [Documentation: F.translate()](#api~Framework~framework.translate)\n- For setting the language for the current request use [F.onLocale()](#api~Framework~framework.onLocale) delegate\n\n__IMPORTANT__:\n\n- Localized text doesn't start with `#sometext` because for the framework is `sometext` key and the framework reads this key directly from the resource file.\n- __IMPORTANT__ if your localized text contains `\"` or `'` chars then perform HTML encode e.g. `\"` to `&quot;` and `'` to `&#39;` because some localized text can be used in inline JavaScript strings.\n\n---\n\n## Full example\n\n### First step\n\nYou has to install `total.js` as global module from NPM:\n\n```bash\n$ sudo npm install -g total.js\n```\n\n### Implementation\n\nThe definition:\n\n```javascript\nF.onLocale = function(req) {\n\tif (req.query.language === 'sk')\n\t\treturn 'sk';\n\treturn 'en';\n};\n```\n\nThe controller:\n\n```javascript\nexports.install = function() {\n\tROUTE('/', view_index);\n};\n\nfunction view_index() {\n\tvar self = this;\n\n\t// you can change language manually here, e.g.:\n\t// self.language = 'sk';\n\n\tself.view('index');\n}\n```\n\nThe view:\n\n```html\n@{meta('@(Title)')}\n\n<h1>@(Hello world!)</h1>\n<p>@(Total.js is web application framework for Node.js)</p>\n\n<!-- READS THE TITLE DIRECTLY FROM THE RESOURCE FILE -->\n<!-- YOU CAN USE OWN CUSTOM KEY -->\n<div>@(#message) or @(#T80818744) is same as @(Title) (read below)</div>\n```\n\n### Create resource\n\n__1.__\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs --translate\n```\n\nThe Total Application finds all texts for translation and creates the resource file `translate.resource` for translation. The keys are numbers in the resource file because the framework saves the performance and memory (saves RAM). Rename below file to `en.resource`:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Title\nT-52966915       : Hello world!\nT-1870230665     : Total.js is web application framework for Node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Direct reading\n```\n\n__2.__\n\nCopy the content from `translate.resource` to a new resource: `/resources/sk.resource` and I translate it, e.g.:\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Titulok\nT-52966915       : Ahoj svet!\nT-1870230665     : Total.js je webový framework pre Node.js\n\n// IMPORTANT: This line was created manually\nmessage          : Priame čítanie\n```\n\n### Run\n\n`http://0.0.0.0:8000`\n\n```html\n...\n...\n\t<title>Title</title>\n...\n...\n\t<h1>Hello world!</h1>\n\t<p>Total.js is web application framework for Node.js</p>\n\t<div>Direct reading or Title is same as Title (read below)</div>\n...\n...\n```\n\n`http://0.0.0.0:8000/?language=sk`\n\n```html\n...\n...\n\t<title>Titulok</title>\n...\n...\n\t<h1>Ahoj svet!</h1>\n\t<p>Total.js je webový framework pre Node.js</p>\n\t<div>Priame čítanie or Titulok is same as Titulok (read below)</div>\n...\n...\n```\n\n## Did you know?\n\n### Resource file can contain view engine tags\n\nResource with the localization can contain view engine markup and the markup will be evaluated.\n\n```html\n// Total.js translation file\n// Created: 2014-12-18 10:32\n\n// index.html\nT80818744        : Hello @{user.name}!\n```\n\n## Translation tools\n\nIf you installed __Total.js__ from NPM as global module then you have available translation tools.\n\n### Tracking of new changes\n\nThe command `-diff` creates the resource file with changes between two resources (newest texts and removed texts).\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs -diff en.resource de.resource\n```\n\n### Translating text files\n\nContent of __my-translation.txt__:\n\n```html\nHello World!\nI help you\nMy name is Peter.\nTotal.js is the web application framework\n```\n\nOpen terminal or command-line:\n\n```bash\n$ totaljs --translate my-translation.txt\n```\n\n### Translating custom phrases\n\nOpen terminal or command-line:\n\n```bash\n$ cd myapp\n$ totaljs --translate \"Hello World\"\n```\n\nOutput:\n\n```\nT-862545276       : Hello World\n```\n\n### Translating views into the CSV\n\n- `+v1.9.0`\n\n```bash\n$ totaljs --translatecsv```",
       "group": "How does it work?",
       "name": "Localization"
     },
