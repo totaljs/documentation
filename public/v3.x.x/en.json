@@ -9451,7 +9451,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Clears the uploaded files. __IMPORTANT:__ for force stop auto-clear uploaded files use `controller.noClear()` and then you has to execute `controller.clear()` manually.",
+          "body": "Clears the uploaded files. __IMPORTANT:__ for force stop auto-clear uploaded files use `controller.autoclear(false)` and then you has to execute `controller.clear()` manually.",
           "name": "controller.clear",
           "options": [
             "http"
@@ -9474,8 +9474,9 @@
           "return": "Boolean"
         },
         {
+          "changetype": 1,
           "body": "Enables/Disables auto-clearing uploaded files. The manual clearing through: `controller.clear()`.",
-          "name": "controller.noClear",
+          "name": "controller.autoclear",
           "options": [
             "http"
           ],
