@@ -17835,6 +17835,87 @@
           "return": "Response"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Sends an image stored in FileStorage. Example:\n\n```javascript\nres.imagefs('files', id, function(image) {\n\timage.output('jpg');\n\timage.quality(85);\n\timage.resize('50%');\n\timage.minify();\n});\n```",
+          "name": "Response.prototype.imagefs",
+          "params": [
+            {
+              "body": "FileStorage name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File ID",
+              "name": "id",
+              "type": "String/Number"
+            },
+            {
+              "body": "An image maker function",
+              "name": "maker",
+              "type": "Function"
+            },
+            {
+              "body": "Additional headers",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Response"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "body": "Sends an image stored in NoSQL embedded database. Example:\n\n```javascript\nres.imagenosql('dbname', id, function(image) {\n\timage.output('jpg');\n\timage.quality(85);\n\timage.resize('50%');\n\timage.minify();\n});\n```",
+          "name": "Response.prototype.imagenosql",
+          "params": [
+            {
+              "body": "Database name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "File ID",
+              "name": "id",
+              "type": "String/Number"
+            },
+            {
+              "body": "An image maker function",
+              "name": "maker",
+              "type": "Function"
+            },
+
+            {
+              "body": "Additional headers",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "Response"
+        },
+        {
           "body": "Sends a image",
           "name": "Response.prototype.image",
           "params": [
@@ -27369,7 +27450,7 @@
       "name": "Developer tools"
     },
     {
-      "body": "## Hosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__Hetzner VPS hosting__](https://www.hetzner.de) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Roští.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [IBM BlueMix](https://console.bluemix.net/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n### Hosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__mLab__](https://mlab.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.com/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
+      "body": "## Hosting for web applications\n\n| Provider | Platform |\n|----------|----------|\n| [__greenbaum cloud GmbH__](https://www.greenbaum.cloud) | Node.js |\n| [Hetzner VPS hosting](https://www.hetzner.de) | Node.js |\n| [EvenNode - Node.js hosting](http://www.evennode.com/) | Node.js |\n| [Heroku](https://www.heroku.com/) | Node.js |\n| [Ro\u0161t\u00ed.cz](https://rosti.cz/nodejs-hosting/) | Node.js |\n| [DigitalOcean VPS hosting)](https://www.digitalocean.com/) | Node.js |\n| [Amazon VPS hosting)](https://aws.amazon.com/free/) | Node.js |\n| [Microsoft Azure](https://azure.microsoft.com/) | Node.js |\n| [IBM BlueMix](https://console.bluemix.net/) | Node.js |\n| [OpenShift by Red Hat](https://www.openshift.com/) | Node.js |\n\n### Hosting for databases\n\n| Provider | Platform |\n|----------|----------|\n| [__Heroku Databases__](https://www.heroku.com/pricing#databases) | PostgreSQL, Redis |\n| [__mLab__](https://mlab.com/) | MongoDB |\n| [Google Cloud Platform](https://cloud.google.com/) | NoSQL, RDBMS |\n| [Compose](https://www.compose.com/) | MongoDB, RethinkDB, Redis, PostgreSQL, ElasticSearch |\n| [ObjectRocket](https://objectrocket.com/) | MongoDB, Redis |\n| [Amazon RDS](http://aws.amazon.com/rds/) | RDBMS |\n| [Microsoft Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | RDBMS, DocumentDB, Redis, Azure Search |",
       "group": "",
       "name": "Hosting"
     },
