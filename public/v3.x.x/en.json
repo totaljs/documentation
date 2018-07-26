@@ -3847,7 +3847,7 @@
         },
         {
           "default": "''",
-          "body": "This property can replace a root relative path. It's very helpful for applications which are running on one domain and on different paths.",
+          "body": "This property can replace a root relative path. It's very helpful for applications which are running on the one domain with different paths.",
           "name": "default-root",
           "return": "String",
           "options": [
@@ -13325,6 +13325,14 @@
           "options": [
             "+v2.2.0"
           ]
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.0.0"
+          ],
+          "body": "Disables auto-remapping fields with `src` and `href` when `default-root` is used.",
+          "name": "@{noremap}"
         },
         {
           "options": [
