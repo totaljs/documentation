@@ -3453,7 +3453,7 @@
         },
         {
           "default": "{}",
-          "body": "Returns framework custom functions. You can define your own functions into it.\n\n```javascript\nframework.functions.toUpperCase = function(value) {\n    return value.toString().toUpperCase();\n};\n```\n\n__Usage__:\n\n```javascript\nconsole.log(framework.functions.toUpperCase('peter'));\nconsole.log(FUNCTION('toUpperCase')('peter'));```",
+          "body": "Returns framework custom functions. You can define your own functions into it.\n\n```javascript\nF.functions.toUpperCase = function(value) {\n    return value.toString().toUpperCase();\n};\n```\n\n__Usage__:\n\n```javascript\nconsole.log(F.functions.toUpperCase('peter'));\nconsole.log(FUNCTION('toUpperCase')('peter'));```",
           "example": "https://github.com/totaljs/examples/tree/master/framework-functions",
           "name": "F.functions",
           "return": "Object"
@@ -3461,6 +3461,7 @@
         {
           "body": "Is the framework running in debug mode?",
           "name": "F.isDebug",
+          "alias": "DEBUG",
           "options": [
             "readonly"
           ],
