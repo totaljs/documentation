@@ -191,6 +191,16 @@
                 }
               ],
               "type": "function"
+            },
+            {
+              "body": "Determines validation",
+              "name": "noValidate",
+              "type": "Boolean"
+            },
+            {
+              "body": "A workflow name from the schema.",
+              "name": "workflow",
+              "type": "String"
             }
           ]
         },
@@ -290,40 +300,6 @@
         },
         {
           "default": "null",
-          "body": "A validation delegate. With the help of this delegate you can validate value of some object easily.\n\n```js\nframework.onValidate = function(name, value) {\n    switch (name) {\n        case 'firstname':\n            // You can return Boolean\n            return value.length > 0;\n        case 'lastname':\n            // You can return a string (it's meant as error message)\n            return U.parseInt(value) === 0 ? 'Age is not valid' : true;\n    }\n};```",
-          "example": "https://github.com/totaljs/examples/tree/master/validation",
-          "name": "F.onValidate",
-          "params": [
-            {
-              "body": "A property name",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "A value of the property",
-              "name": "value",
-              "type": "Any"
-            },
-            {
-              "body": "A current path in the model",
-              "name": "path",
-              "type": "String"
-            },
-            {
-              "body": "The model instance",
-              "name": "model",
-              "type": "Object"
-            },
-            {
-              "body": "A schema name if exists",
-              "name": "schemaName",
-              "type": "String"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
-          "default": "null",
           "body": "This delegate replaces an internal CSS compiler. Delegate is synchronous because it's used in a view engine",
           "example": "https://github.com/totaljs/examples/tree/master/external-compile-sass",
           "name": "F.onCompileStyle",
@@ -390,16 +366,6 @@
       ],
       "body": "A main class (core) of Total.js. This class is a singleton and it's a global variable.\n\n```javascript\nrequire('total.js');\n\nconsole.log(framework.version);\n\n// is same as\nconsole.log(F.version);\n\nON('load', function() {\n    console.log('Framework is loaded.');\n});\n\n// Run the framework\nF.http('debug');```",
       "events": [
-        {
-          "body": "This event is triggered if the framework is restarted `F.restart()`",
-          "name": "F.on('restart')",
-          "options": [
-            "+v2.0.0"
-          ],
-          "params": [
-
-          ]
-        },
         {
           "body": "This event is triggered every 60 seconds and is used for cleaning temporary data / cache",
           "name": "F.on('service')",
@@ -1272,6 +1238,7 @@
         {
           "body": "Gets a NoSQL embedded database connection. Alias for `F.nosql`",
           "name": "F.database",
+          "alias": "DB",
           "params": [
             {
               "body": "The database filename",
@@ -1401,6 +1368,7 @@
           "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older implementation\n\n```javascript\nF.middleware('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});\n```\n",
           "example": "https://github.com/totaljs/examples/tree/master/middleware",
           "name": "F.middleware",
+          "alias": "MIDDLEWARE",
           "params": [
             {
               "body": "The middleware name.",
@@ -1443,45 +1411,10 @@
           "return": "Framework"
         },
         {
-          "options": [
-            "+v1.9.0"
-          ],
-          "body": "Creates a modificator for Views (before compilation), Scripts (before compilation) and Styles (before compilation).\n\n```javascript\nF.modify(function(type, filename, content) {\n    switch (filename) {\n        case './views/layout.html':\n            return content.replace('<body>', '<body style=\"background-color:red\"><div>REPOSITORY: @{json(respository)}</div>');\n    }\n    return content;\n});```",
-          "name": "F.modify",
-          "params": [
-            {
-              "body": "The function modifies some content and has to return a modified content.",
-              "name": "fn",
-              "options": [
-                "important",
-                "has to return String"
-              ],
-              "params": [
-                {
-                  "body": "The content type. Type can be: \"view\", \"script\", \"style\" and \"static\" (`.html`, `.txt` and `.md` file types).",
-                  "name": "type",
-                  "type": "String"
-                },
-                {
-                  "body": "The filename.",
-                  "name": "filename",
-                  "type": "String"
-                },
-                {
-                  "body": "The content.",
-                  "name": "content",
-                  "type": "String"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
           "body": "Creates a route for host redirecting.\n\n```javascript\n// Redirect for host\nF.redirect('http://totaljs.com', 'https://www.totaljs.com', true, true);```",
           "example": "https://github.com/totaljs/examples/tree/master/redirect-host",
           "name": "F.redirect",
+          "alias": "REDIRECT",
           "params": [
             {
               "body": "The old host with procotol. Example: http://www.domain.com",
@@ -1517,14 +1450,15 @@
         {
           "body": "Creates a route for relative redirecting.\n\n```javascript\n// Redirect for relative URL\nF.redirect('/relative-old/', '/relative-new/');```",
           "name": "F.redirect",
+          "alias": "REDIRECT",
           "params": [
             {
-              "body": "The relative URL address. Example: /contact/",
+              "body": "A relative URL address. Example: /contact/",
               "name": "url",
               "type": "String"
             },
             {
-              "body": "The relative URL address. Example: /contacts/",
+              "body": "A relative URL address. Example: /contacts/",
               "name": "redirectTo",
               "type": "String"
             },
@@ -1548,7 +1482,7 @@
           ],
           "params": [
             {
-              "body": "The relative URL address. Example: /users/",
+              "body": "A relative URL address. Example: /users/",
               "name": "url",
               "type": "String"
             },
@@ -1613,7 +1547,7 @@
           "name": "F.restful2",
           "params": [
             {
-              "body": "The relative URL address. Example: /users/",
+              "body": "A relative URL address. Example: /users/",
               "name": "url",
               "type": "String"
             },
@@ -1663,16 +1597,14 @@
           "return": "Framework"
         },
         {
-          "changelog": "+v2.9.0 supports additional sitemap routing",
-          "body": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nF.route('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nF.route('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nF.route('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nF.route('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nF.route('/', 'index'); // is same as F.route('/');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nF.route('/', '=default/index');\nF.route('/', '=?/index'); // --> \"=?\" means that the framework uses default theme name\nF.route('/', '~index'); // --> \"~\" means that the framework loads view \"index\" from root of  \"/views/\" (skips themes)\n\n// Route with regular expression\nF.route('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nF.route(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n\n// +v3.0.0\n// supports a declared method in URL address\nF.route('GET /api/users/', action);\nF.route('POST /api/users/', action);\n```\n\n## Schemas\n\n```javascript\nF.route('/api/account/', action, ['*Account']); // +v1.9.7\nF.route('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nF.route('/api/account/', action, ['put', '*User#update']);\n\n// With a link to workflow:\n// Workflow means: open \"File: workflows\" section\nF.route('/api/account/', action, ['put'], '*User --> save'); // Executes the workflow \"save\"\nF.route('/api/account/', action, ['put'], '*User --> exec'); // Executes the workflow \"exec\"\n\n// +v3.0.0\n// Supports auto-executing of some operations in Schema\n// \"@name\" means name of operation, framework will try to find an operation (e.g CRUD operation or workflow, transform, operation or hook) with this name\n\nF.route('/api/account/', action, ['*User --> @insert', 'post']);    // Executes (if exists) schema.setInsert()\nF.route('/api/account/', action, ['*User --> @update', 'put']);     // Executes (if exists) schema.setUpdate()\nF.route('/api/account/', action, ['*User --> @save', 'post']);      // Executes (if exists) schema.setSave()\nF.route('/api/account/', action, ['*User --> @get']);               // Executes (if exists) schema.setRead() or schema.setGet()\nF.route('/api/account/', action, ['*User --> @read']);              // Executes (if exists) schema.setRead() or schema.setGet()\nF.route('/api/account/', action, ['*User --> @remove', 'delete']);  // Executes (if exists) schema.setRemove()\nF.route('/api/account/', action, ['*User --> @query']);             // Executes (if exists) schema.setQuery()\n\n// Workflows, Transforms, Operations or Hooks\nF.route('/api/account/', action, ['*User --> @exec']);    // Executes (if exists) @exec workflow or transform or operation or hook\nF.route('/api/account/', action, ['*User --> @xml']);     // Executes (if exists) @exec workflow or transform or operation or hook\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nF.route('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nF.route('[*]/', action);\n// All subdomains\n\nF.route('[nice*]/', action);\n// All subdomains which contain `nice` word\n```\n\n## Sitemap\n\n```javascript\n// Creates route according to the sitemap\nF.route('#sitemap_id', [action], [flags]);\n\n// +v2.9.0 supports additional sitemap routing\nF.route('#sitemap_id/products/', [action], [flags]);\nF.route('#sitemap_id/orders/', [action], [flags]);```",
+          "changetype": 2,
+          "body": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nROUTE('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nROUTE('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nROUTE('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nROUTE('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nROUTE('/', 'index'); // is same as ROUTE('/');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nROUTE('/', '=default/index');\nROUTE('/', '=?/index'); // --> \"=?\" means that the framework uses default theme name\nROUTE('/', '~index'); // --> \"~\" means that the framework loads view \"index\" from root of  \"/views/\" (skips themes)\n\n// Route with regular expression\nROUTE('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nROUTE(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n\n// +v3.0.0\n// supports a declared method in URL address\nROUTE('GET /api/users/', action);\nROUTE('POST /api/users/', action);\n```\n\n## Schemas\n\n```javascript\nROUTE('/api/account/', action, ['*Account']); // +v1.9.7\nROUTE('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nROUTE('/api/account/', action, ['put', '*User#update']);\n\n// With a link to workflow:\n// Workflow means: open \"File: workflows\" section\nROUTE('/api/account/', action, ['put'], '*User --> save'); // Executes the workflow \"save\"\nROUTE('/api/account/', action, ['put'], '*User --> exec'); // Executes the workflow \"exec\"\n\n// +v3.0.0\n// Supports auto-executing of some operations in Schema\n// \"@name\" means name of operation, framework will try to find an operation (e.g CRUD operation or workflow, transform, operation or hook) with this name\n\nROUTE('/api/account/', action, ['*User --> @insert', 'post']);    // Executes (if exists) schema.setInsert()\nROUTE('/api/account/', action, ['*User --> @update', 'put']);     // Executes (if exists) schema.setUpdate()\nROUTE('/api/account/', action, ['*User --> @save', 'post']);      // Executes (if exists) schema.setSave()\nROUTE('/api/account/', action, ['*User --> @get']);               // Executes (if exists) schema.setRead() or schema.setGet()\nROUTE('/api/account/', action, ['*User --> @read']);              // Executes (if exists) schema.setRead() or schema.setGet()\nROUTE('/api/account/', action, ['*User --> @remove', 'delete']);  // Executes (if exists) schema.setRemove()\nROUTE('/api/account/', action, ['*User --> @query']);             // Executes (if exists) schema.setQuery()\n\n// Workflows, Transforms, Operations or Hooks\nROUTE('/api/account/', action, ['*User --> @exec']);    // Executes (if exists) @exec workflow or transform or operation or hook\nROUTE('/api/account/', action, ['*User --> @xml']);     // Executes (if exists) @exec workflow or transform or operation or hook\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nROUTE('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nROUTE('[*]/', action);\n// All subdomains\n\nROUTE('[nice*]/', action);\n// All subdomains which contain `nice` word\n```\n\n## Sitemap\n\n```javascript\n// Creates route according to the sitemap\nROUTE('#sitemap_id', [action], [flags]);\n\n// +v2.9.0 supports additional sitemap routing\nROUTE('#sitemap_id/products/', [action], [flags]);\nROUTE('#sitemap_id/orders/', [action], [flags]);```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "F.route",
-          "options": [
-            "multifunctional"
-          ],
+          "alias": "ROUTE",
           "params": [
             {
-              "body": "The relative URL. You can create a dynamic param: /{param1}/{param2}/",
+              "body": "A relative URL. You can create a dynamic param: /{param1}/{param2}/",
               "name": "url",
               "type": "String"
             },
@@ -1810,7 +1742,7 @@
           "name": "F.resize",
           "params": [
             {
-              "body": "The relative URL. Example: \"/img/small/*.jpg\" (only JPG) or \"/img/medium/\" (all extensions argument).",
+              "body": "A relative URL. Example: \"/img/small/*.jpg\" (only JPG) or \"/img/medium/\" (all extensions argument).",
               "name": "url",
               "type": "String"
             },
@@ -1840,6 +1772,7 @@
         {
           "body": "Evaluates a script in the secure scope. This method can handle user-defined scripts.\n\n```javascript\n// value\n// next(newValue or error) --> this is a callback\n// now() --> this method returns current datetime\nSCRIPT('next(value + 1)', 5, function(err, value, argument) {\n    // value === 6\n    console.log(value);\n});\n\n// SCRIPT() evaluates code like this:\n// function (value, next, now) {\n//     SAFE\n//     next(value + 1);\n// }\n```\n\n### Precompile\n\n```javascript\nvar fn = SCRIPT('next(value + 1)');\nfn(10, (err, response) => console.log(response));\nfn(20, (err, response) => console.log(response));\nfn(30, (err, response) => console.log(response));```",
           "name": "F.script",
+          "alias": "SCRIPT",
           "params": [
             {
               "body": "A code.",
@@ -1898,7 +1831,7 @@
           "name": "F.mmr",
           "params": [
             {
-              "body": "The relative URL. It can't contain dynamic query",
+              "body": "A relative URL. It can't contain dynamic query",
               "name": "url",
               "type": "String"
             },
@@ -1930,6 +1863,7 @@
         {
           "body": "The method extends flags in the all routes in the function scope like this:\n\n```javascript\nexports.install = function() {\n    F.group(['#middleware', 'authorize'], function() {\n        F.route('/api/posts/', json_posts, ['put']);\n        F.route('/api/commnets/', json_posts, ['post']);\n        F.websocket('/', chat);\n    });\n}```",
           "name": "F.group",
+          "alias": "GROUP",
           "options": [
             "+v2.1.0"
           ],
@@ -1954,10 +1888,11 @@
         {
           "body": "Creates a Websocket route to the controller or module.\n\n```javascript\nF.websocket('/', action, ['json']);\nF.websocket('/with-specific-room/', action, ['json', 'my-chat-room']);\nF.websocket('/with-specific-origin/', action, ['json', 'http://privater.eu', 'https://www.totaljs.com']);\nF.websocket('/array-binary-message/', action, ['binary']);\nF.websocket('/raw-text-message/', action, ['raw']);\n\n// Or dynamic routing\nF.websocket('/{room}/', action_dynamic);\n\nfunction action_dynamic(room) {\n    console.log(room);\n}```",
           "example": "https://github.com/totaljs/examples/tree/master/websocket",
+          "alias": "WEBSOCKET",
           "name": "F.websocket",
           "params": [
             {
-              "body": "The relative URL. You can create a dynamic param: /{param1}/{param2}/",
+              "body": "A relative URL. You can create a dynamic param: /{param1}/{param2}/",
               "name": "url",
               "type": "String"
             },
@@ -2019,9 +1954,10 @@
           "changelog": "+v3.0.0 Without arguments it enables CORS for all routes with methods.",
           "body": "Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();\n\n// Allows all method with credentials\n// +v3.0.0\nCORS('/api/*', true);\n\n// Allows all method without credentials\nCORS('/api/*');\n```",
           "name": "F.cors",
+          "alias": "CORS",
           "params": [
             {
-              "body": "The relative URL, supports wildcard (asterix) routing",
+              "body": "A relative URL, supports wildcard (asterix) routing",
               "name": "url",
               "type": "String"
             },
@@ -2047,9 +1983,10 @@
           "body": "Creates a new file route. This function can handle static files.\n\n- __IMPORTANT__: the action of file handler doesn't use a context of the controller because it's optimized for the performance\n- __IMPORTANT__: you need to create a response from `req` and `res` arguments\n\n### Example: \n\n```js\nF.file('*.jpg', function(req, res) {\n\t// ... a transformation\n\tres.file('new-file-name.jpg');\n});\n```\n\n```js\nF.file('/img/', some_action1, ['.jpg', '.png', '#middlewareA', '#middlewareB']);\nF.file('/process/invoice.txt', some_action2, ['#middlewareA', { custom: 'options for middleware' }]);\n\nfunction some_action1(req, res) {\n\t// a custom content\n\t// !!! IMPORTANT !!! \"this\" is not a context of controller\n}\n\nfunction some_action2(req, res) {\n\t// a custom content\n\t// !!! IMPORTANT !!! \"this\" is not a context of controller\n}```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
           "name": "F.file",
+          "alias": "FILE",
           "params": [
             {
-              "body": "The relative URL. The URL can contain extension e.g. `/img/*.jpg` and for all files use `/img/*`",
+              "body": "A relative URL. The URL can contain extension e.g. `/img/*.jpg` and for all files use `/img/*`",
               "name": "url",
               "type": "String"
             },
@@ -2084,6 +2021,7 @@
         {
           "body": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocale()` delegate. Supported flags:\n\n- `compress` or `minify` enables compression (by default: `true`)\n- `nocompress` disables compression\n- `.extension` a file extension which will be accepted\n\n```javascript\nF.localize('/templates/*.html');\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('/templates/*.hbs', ['nocompress']);\n\n// With a sitemap identificator\n// +v2.9.0\nF.localize('#sitemapId/templates/*.html');\n```\n\n```html\nhttp://0.0.0.0:8000/templates/settings.html   --> will be localized and minified\nhttp://0.0.0.0:8000/templates/idontknow.html  --> will be localized and minified\nhttp://0.0.0.0:8000/templates/ember.hbs       --> will be localized only```",
           "name": "F.localize",
+          "alias": "LOCALIZE",
           "params": [
             {
               "body": "A relative URL into the directory or +v2.9.0 can contain a sitemap identificator",
@@ -2122,17 +2060,6 @@
               "name": "path",
               "type": "String"
             }
-          ],
-          "return": "FrameworkController"
-        },
-        {
-          "body": "Restart the framework. The framework releases all things, then it initalizes all again",
-          "name": "F.restart",
-          "options": [
-            "+v2.0.0"
-          ],
-          "params": [
-
           ],
           "return": "FrameworkController"
         },
@@ -2256,6 +2183,7 @@
         {
           "body": "Creates the HTML from some view and sends the email. __IMPORTANT:__ the subject is automatically translated according to the localization when it contains the localization's markup `@(SUBJECT)`",
           "name": "F.mail",
+          "alias": "MAIL",
           "params": [
             {
               "body": "To email",
@@ -2310,6 +2238,7 @@
         {
           "body": "Sends plain text (as HTML `<pre>TAG</pre>`) mail to email address",
           "name": "F.logmail",
+          "alias": "LOGMAIL",
           "params": [
             {
               "body": "To email",
@@ -2351,9 +2280,10 @@
           "changelog": "URL can be `sitemap` identificator.",
           "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript, CSS or HTML.\n\n```javascript\n// Merging files\nF.merge('/merge.js', '/js/ui.js', '/js/default.js');\n\n// Merging all files\nF.merge('/merge.js', '/js/*.js');\n\n// Merging files in themes:\nF.merge('/merge.css', '=moderntheme/public/ui.css', '=moderntheme/public/default.css');\n\n// Merging files in packages:\nF.merge('/merge.css', '@packagename/public/ui.css', '@packagename/public/default.css');\n\n// Merging files with an isomorphice code:\nF.merge('/merge.js', '/js/default.js', '#isomorphicname1', '#isomorphicname2');\n\n// External URL address:\nF.merge('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/default.js');\n\n// Merging with blocks\nF.merge('/manager.js', '/js/ui.js#manager', '/js/manager.js');\n\n// With a sitemap identificator\n// +v2.9.0\nF.merge('#sitemapId/myfile.js', '/js/ui.js', '/js/manager.js');```",
           "name": "F.merge",
+          "alias": "MERGE",
           "params": [
             {
-              "body": "The relative url for listening or +v2.9.0 can contain a sitemap identificator",
+              "body": "A relative url for listening or +v2.9.0 can contain a sitemap identificator",
               "name": "url",
               "type": "String"
             },
@@ -2388,9 +2318,10 @@
           "changelog": "v2.9.0 supports a sitemap identificator",
           "body": "A custom mapping of static files. You can easily change a mapping static file. __IMPORTANT__: if you map some directory/file then the directory/file has to exist otherwise the mapping won't be work.\n\n### Mapping files\n\n```javascript\n// http://0.0.0.0:8000/app.js --> server responds with app-homepage.js script\nF.map('/app.js', '/hidden-in-public-directory/app-homepage.js');\nF.map('/app.js', F.path.private('/app-homepage.js'));\n\n// With a sitemap identificator\n// +v2.9.0\nF.map('#sitemapId/app.js', F.path.private('/app-homepage.js'));\n```\n\n### Mapping directories\n\n```javascript\n// all files\nF.map('/custom/', '/hidden-in-public-directory/');\nF.map('/custom/', '~/hidden-in-root-directory/');\n\n// only images\nF.map('/custom/', F.path.root('my-images'), ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', F.path.private(), function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for packages\n\n```javascript\n// all files\nF.map('/custom/', '@package_name');\n\n// only images\nF.map('/custom/', '@package_name', ['.png', '.gif', '.jpg']);\n\n// custom filter\nF.map('/custom/', '@package_name', function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for isomorphic code\n\n```javascript\n// below file is linked to /isomorphic/my-isomorphic.js\nF.map('/serverside.js', '#my-isomorphic');```",
           "name": "F.map",
+          "alias": "MAP",
           "params": [
             {
-              "body": "The relative url",
+              "body": "A relative url",
               "name": "url",
               "type": "String"
             },
@@ -2653,6 +2584,7 @@
           "body": "Gets the module instance",
           "example": "https://github.com/totaljs/examples/tree/master/framework-modules",
           "name": "F.module",
+          "alias": "MODULE",
           "params": [
             {
               "body": "The module name",
@@ -2768,6 +2700,7 @@
           "body": "Gets a business logic object. The business logic directory is defined in `config['directory-source']`",
           "example": "https://github.com/totaljs/examples/tree/master/framework-business-logic-source",
           "name": "F.source",
+          "alias": "SOURCE",
           "params": [
             {
               "body": "The source name",
@@ -2789,6 +2722,7 @@
           "body": "Gets the model instance",
           "example": "https://github.com/totaljs/examples/tree/master/models",
           "name": "F.model",
+          "alias": "MODEL",
           "params": [
             {
               "body": "The model name",
@@ -3013,6 +2947,7 @@
           "body": "Writes the message into the log file. The log file will contain date + time",
           "example": "https://github.com/totaljs/examples/tree/master/logs",
           "name": "F.log",
+          "alias": "LOG",
           "params": [
             {
               "body": "A dynamic parameter",
@@ -3048,6 +2983,7 @@
           ],
           "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['models', 'definitions'], '../');\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', null, '../'););\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['packages'], '../');\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
           "name": "F.load",
+          "alias": "LOAD",
           "params": [
             {
               "body": "Runs the framework in \"debug\" or \"release\" mode",
@@ -3075,6 +3011,7 @@
         {
           "body": "Writes the message into the specific log file. The log file will contain date + time",
           "name": "F.logger",
+          "alias": "LOGGER",
           "options": [
             "+v1.8.0"
           ],
@@ -3136,7 +3073,7 @@
           ],
           "params": [
             {
-              "body": "The relative URL address. When is not entered the URL address then the method clears entire cache",
+              "body": "A relative URL address. When is not entered the URL address then the method clears entire cache",
               "name": "url",
               "type": "String",
               "options": [
@@ -3145,62 +3082,6 @@
             }
           ],
           "return": "Framework"
-        },
-        {
-          "body": "Sets `last-modified` or `etag` header.",
-          "name": "F.setModified",
-          "params": [
-            {
-              "body": "The HTTP request.",
-              "name": "req",
-              "type": "Object"
-            },
-            {
-              "body": "The HTTP response.",
-              "name": "res",
-              "type": "Object"
-            },
-            {
-              "body": "Etag = string, Last-Modified = Date.",
-              "name": "value",
-              "type": "String or Date"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
-          "body": "Checks if `ETag` or `Last Modified` header is modified.\n\n```javascript\n    if (compare === String)\n        console.log('The framework compares ETag with the compare value.');\n    else if (compare === Date)\n        console.log('The framework compares Date with the compare date.');\n```\n\nIf the framework doesn't find a difference then responds 304 (not modified). If the content is modified then function returns `true`.",
-          "name": "F.notModified",
-          "params": [
-            {
-              "body": "The HTTP request.",
-              "name": "req",
-              "type": "Object"
-            },
-            {
-              "body": "The HTTP response.",
-              "name": "res",
-              "type": "Object"
-            },
-            {
-              "body": "Etag = string, Last-Modified = Date.",
-              "name": "compare",
-              "options": [
-                "optional"
-              ],
-              "type": "String or Date"
-            },
-            {
-              "default": "false",
-              "body": "strict: equals date (else compares greater the date).",
-              "name": "strict",
-              "options": [
-                "optional"
-              ],
-              "type": "Boolean"
-            }
-          ],
-          "return": "Boolean"
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/waiting",
@@ -3282,8 +3163,9 @@
           "return": "Framework"
         },
         {
-          "body": "Get a controller.",
+          "body": "Gets a controller.",
           "name": "F.controller",
+          "alias": "CONTROLLER",
           "params": [
             {
               "body": "The controller name.",
@@ -3375,6 +3257,7 @@
           "body": "Gets a value.",
           "example": "https://github.com/totaljs/examples/tree/master/localization-resources",
           "name": "F.resource",
+          "alias": "RESOURCE",
           "params": [
             {
               "default": "'default'",
@@ -3396,6 +3279,7 @@
         {
           "body": "Translates the text according to the language. __IMPORTANT__: if the text starts with `#SOMETEXT` the function doesn't convert the text to the __hash__ and it reads the value directly from the resource file.",
           "name": "F.translate",
+          "alias": "TRANSLATE",
           "params": [
             {
               "default": "'default'",
@@ -3417,6 +3301,7 @@
         {
           "body": "Translates the text according to language like view engine `Some text @(ONLY THIS TEXT WILL BE TRANSLATED) bla bla @(#DIRECTREADING) bla bla`.",
           "name": "F.translator",
+          "alias": "TRANSLATOR",
           "params": [
             {
               "default": "'default'",
@@ -8752,7 +8637,7 @@
               "type": "String"
             },
             {
-              "body": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\".",
+              "body": "A relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\".",
               "name": "picture",
               "options": [
                 "optional"
@@ -9129,65 +9014,6 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Checks if `ETag` or `Last Modified` header is modified.\n\n```javascript\n    if (compare === String)\n        console.log('The framework compares ETag with the compare value.');\n    else if (compare === Date)\n        console.log('The framework compares Date with the compare date.');\n```\n\nIf the framework doesn't find a difference then responds 304 (not modified). If the content is modified then function returns `true`.",
-          "example": "https://github.com/totaljs/examples/tree/master/cache-http",
-          "name": "controller.notModified",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "body": "Etag = string, Last-Modified = Date.",
-              "name": "compare",
-              "options": [
-                "optional"
-              ],
-              "type": "String or Date"
-            },
-            {
-              "default": "false",
-              "body": "strict: equals date (else compares greater the date).",
-              "name": "strict",
-              "options": [
-                "optional"
-              ],
-              "type": "Boolean"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
-          "body": "Sets the `last-modified` or `etag` header.",
-          "example": "https://github.com/totaljs/examples/tree/master/cache-http",
-          "name": "controller.setModified",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "body": "Etag = string, Last-Modified = Date.",
-              "name": "value",
-              "type": "String or Date"
-            }
-          ],
-          "return": "FrameworkController"
-        },
-        {
-          "body": "Sets expiration header.",
-          "name": "controller.setExpires",
-          "options": [
-            "http"
-          ],
-          "params": [
-            {
-              "body": "The date expiration.",
-              "name": "value",
-              "type": "Date or String"
-            }
-          ],
-          "return": "FrameworkController"
-        },
-        {
           "body": "Appends content into the `@{head}` tag. The function supports appending more strings arguments. If it doesn't have any arguments then returns its content. __IMPORTANT:__ the function adds `<script>` and `<style>` tag automatically for `.js` and `.css` extensions.",
           "example": "https://github.com/totaljs/examples/tree/master/views-head",
           "name": "controller.head",
@@ -9211,7 +9037,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9226,7 +9052,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9241,7 +9067,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9256,7 +9082,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9271,7 +9097,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9286,7 +9112,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -9301,7 +9127,7 @@
           ],
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -10817,7 +10643,7 @@
           ],
           "params": [
             {
-              "body": "The relative URL address.",
+              "body": "A relative URL address.",
               "name": "url",
               "type": "String"
             },
@@ -12029,7 +11855,7 @@
               "type": "String"
             },
             {
-              "body": "The relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\".",
+              "body": "A relative URL address. This option creates the META tags with \"og:image\" and \"twitter:image\".",
               "name": "imageURL",
               "options": [
                 "optional"
@@ -12044,7 +11870,7 @@
           "name": "@{image}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "filename",
               "type": "String"
             },
@@ -12088,7 +11914,7 @@
           "name": "@{download}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "filename",
               "type": "String"
             },
@@ -12121,7 +11947,7 @@
           "name": "@{css}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "filename",
               "type": "String"
             }
@@ -12133,7 +11959,7 @@
           "name": "@{js}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "filename",
               "type": "String"
             }
@@ -12145,7 +11971,7 @@
           "name": "@{favicon}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "filename",
               "type": "String"
             }
@@ -12410,7 +12236,7 @@
           "name": "@{routeScript}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -12422,7 +12248,7 @@
           "name": "@{routeStyle}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -12434,7 +12260,7 @@
           "name": "@{routeDownload}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -12446,7 +12272,7 @@
           "name": "@{routeImage}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -12458,7 +12284,7 @@
           "name": "@{routeVideo}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -12470,7 +12296,7 @@
           "name": "@{routeStatic}",
           "params": [
             {
-              "body": "The relative filename.",
+              "body": "A relative filename.",
               "name": "name",
               "type": "String"
             }
@@ -14275,6 +14101,7 @@
           "return": "Object"
         },
         {
+          "alias": "CLONE",
           "body": "Clones an object.",
           "name": "U.clone",
           "params": [
@@ -20437,7 +20264,7 @@
       ]
     },
     {
-      "body": "Gets a global objects or functions. All methods are meant as shortcuts.\n\n```javascript\nvar user = INCLUDE('user');\n\n//or\n\nvar error = new ErrorBuilder();```",
+      "body": "Gets a global objects or functions. All methods are meant as shortcuts.",
       "group": "Additional",
       "methods": [
         {
@@ -20554,7 +20381,7 @@
           "return": "Function"
         },
         {
-          "body": "Gets the route. This function is the alias for `framework.routing()`.",
+          "body": "Gets the route. This function is the alias for `F.routing()`.",
           "name": "ROUTING",
           "params": [
             {
@@ -20566,7 +20393,7 @@
           "return": "Object"
         },
         {
-          "body": "Gets the controller. This function is the alias for `framework.controller()`.",
+          "body": "Gets the controller. This function is the alias for `F.controller()`.",
           "name": "CONTROLLER",
           "params": [
             {
@@ -20578,7 +20405,7 @@
           "return": "Object"
         },
         {
-          "body": "Gets the model. This function is the alias for `framework.model()`.",
+          "body": "Gets the model. This function is the alias for `F.model()`.",
           "name": "MODEL",
           "params": [
             {
@@ -21149,8 +20976,7 @@
               ],
               "type": "Function(err)"
             }
-          ],
-          "return": "Framework"
+          ]
         },
         {
           "go": "#api~Framework",
@@ -21200,8 +21026,7 @@
               ],
               "type": "Function"
             }
-          ],
-          "return": "Framework"
+          ]
         },
         {
           "body": "Uninstalls a feature from the framework. This function is the alias for `framework.uninstall()`.",
@@ -21225,8 +21050,7 @@
               ],
               "type": "Object"
             }
-          ],
-          "return": "Framework"
+          ]
         },
         {
           "body": "Translates the text according to language. This function is the alias for `framework.translate()`.",
@@ -21434,7 +21258,7 @@
           "name": "MERGE",
           "params": [
             {
-              "body": "The relative url for listening",
+              "body": "A relative url for listening",
               "name": "url",
               "type": "String"
             },
@@ -21473,7 +21297,7 @@
           "name": "MAP",
           "params": [
             {
-              "body": "The relative url",
+              "body": "A relative url",
               "name": "url",
               "type": "String"
             },
@@ -21535,7 +21359,7 @@
           ],
           "params": [
             {
-              "body": "The relative URL, supports wildcard (asterix) routing",
+              "body": "A relative URL, supports wildcard (asterix) routing",
               "name": "url",
               "type": "String"
             },
@@ -22062,21 +21886,13 @@
           "return": "undefined"
         },
         {
-          "body": "This method enables in-memory NoSQL embedded database (or a view only)",
+          "body": "This method enables in-memory NoSQL embedded database",
           "name": "NOSQLMEMORY",
           "params": [
             {
               "body": "Name of DB.",
               "name": "name",
               "type": "String"
-            },
-            {
-              "body": "View name (if you want caches only view)",
-              "name": "view",
-              "type": "String",
-              "options": [
-                "optional"
-              ]
             }
           ],
           "return": "undefined"
@@ -22161,7 +21977,7 @@
         },
         {
           "body": "Alias for `DatabaseBinary`, the method returns: `NOSQL('user').binary` command.",
-          "name": "NOBIN",
+          "name": "NOSQLBINARY",
           "params": [
             {
               "body": "Name of DB.",
@@ -22173,7 +21989,7 @@
         },
         {
           "body": "Alias for `DatabaseCounter`, the method returns: `NOSQL('user').counter` command.",
-          "name": "NOCOUNTER",
+          "name": "NOSQLCOUNTER",
           "params": [
             {
               "body": "Name of DB.",
@@ -27492,7 +27308,7 @@
   "modified": "2018-01-19 00:39:00",
   "pages": [
     {
-      "body": "> Welcome to the **Total.js documentation**. Total.js is free web application framework for building Web sites and Web applications using JavaScript, HTML and CSS. The framework has very simple logic, a short learning curve and many features for creating scalable web applications. Please support Total.js on social networks and [GitHub repository](https://github.com/totaljs/framework).\n\n---\n\n[![Support](https://www.totaljs.com/img/button-support.png)](https://www.totaljs.com/support/)\n\n## How should I read this documentation?\n\n![Undertanding](resources/documentation.png)\n\n## Minimum requirements for Total.js\n\n- CPU: 1x Single Core\n- Memory (RAM): 50 MB\n- Free hard drive space: 15 MB\n\n---\n\n## Installation options\n\nI recommend to download the framework with __empty project__:\n\n- Install [Node.js platform](http://www.nodejs.org) (recommended: `Node.js +v8.0.0`)\n- [Download empty project](https://github.com/totaljs/emptyproject)\n- Unpack and run it via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains entire Total.js framework and 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watches all changes in your project directory and when a change occurs the script restarts the application automatically.\n\n```bash\n$ node debug.js\n$ node release.js\n$ node test.js\n```\n\nYou can create your own start script if you don't use prepared start scripts:\n\n__With web server__:\n```javascript\n// require('total.js').http(mode, [options]);\n// require('total.js').https(mode, [options]);\n// modes: debug, release, test\n\n// The code below starts the framework\nrequire('total.js').http('debug');\n```\n\n- [Documentation: F.http()](http://docs.totaljs.com/latest/en.html#api~Framework~F.http)\n- `+v2.6.0` contains built-in watcher [Documentation: Watcher](http://docs.totaljs.com/latest/en.html#pages~Watcher)\n\n__Without web server (e.g. for workers)__:\n```javascript\n// require('total.js').load(mode, types, [path]);\n// modes: debug, release, test\n// types: models, modules, definitions, controllers, isomorphic, packages, sitemap, dependencies\n\n// The code below starts the framework without web server\nrequire('total.js').load('debug', ['definitions', 'models']);\n```\n\n[Documentation: F.load()](http://docs.totaljs.com/latest/en.html#api~Framework~F.load)\n\n> __REMEMBER__: all project files has to have lower case extensions (very important). Our recommendation is to use lower case for files and directories as well.\n\n## Other ways for installation\n\n### 1. NPM (Node Package Manager)\n\nNode.js platform includes [Node Package Manager](http://www.npmjs.com) (NPM). This option installs __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node Package Manager) installation as a global module\n\nThe global module contains executable (binary) app, this app contains many helpful features.\n\n```bash\n$ sudo npm install -g total.js\n```\n\n__Try to write__ into the terminal or command-line after installation:\n\n```bash\n$ totaljs -help\n```\n\n### Recommendation for directory structure\n\n- Read in Node.js docs - [Loading from node_modules Folders](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_node_modules_folders)\n- Read in Node.js docs - [Loading from the global folders](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_the_global_folders)\n\n__Peter Sirka's configuration__:\n\n```html\n/my-app-folder/\n/my-app-folder/node_modules/ <!-- create it manually and this directory will contain all Node.js modules -->\n\n/my-app-folder/apps/ <!-- directory will contain your Total.js apps, e.g: -->\n/my-app-folder/apps/totaljs_com-www/\n/my-app-folder/apps/componentator_com-www/\n/my-app-folder/apps/...\n```\n\nHow can I install Total.js?\n\n```bash\ncd /my-app-folder/\nnpm install total.js\n```\n\n__Safe configuration__:\n\n```html\n/apps/ <!-- directory will contain your Total.js apps, e.g: -->\n\n/apps/totaljs_com-www/\n/apps/totaljs_com-www/node_modules <!-- create it manually and this directory will contain all Node.js modules for this app -->\n\n/apps/componentator_com-www/\n/apps/componentator_com-www/node_modules <!-- create it manually and this directory will contain all Node.js modules for this app -->\n/apps/...\n```\n\nHow can I install Total.js?\n\n```bash\ncd /apps/totaljs_com-www/\nnpm install total.js\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
+      "body": "[![Chat with contributors](https://www.totaljs.com/img/badge-chat.svg)](https://messenger.totaljs.com)\n\n> Welcome to the __Total.js Documentation__. You can improve documentation too, just [create a pull request on the GitHub](https://github.com/totaljs/documentation).\n\n## How should I read this documentation?\n\n![Undertanding](resources/documentation.png)\n\n## Minimum requirements for Total.js\n\n- CPU: 1x Single Core\n- Memory (RAM): 50 MB\n- Free hard drive space: 15 MB\n\n---\n\n## Installation options\n\nI recommend to download the framework with __empty project__:\n\n- Install [Node.js platform](http://www.nodejs.org) (recommended: `Node.js +v8.0.0`)\n- [Download empty project](https://github.com/totaljs/emptyproject)\n- Unpack and run it via terminal:\n\n```bash\n$ cd myapp\n$ node debug.js\n```\n\n__Empty project__ contains entire Total.js framework and 3x startup files `debug.js` (for development), `release.js` (for production) and `test.js` (for assertion testing). __IMPORTANT__: The startup file `debug.js` automatically watches all changes in your project directory and when a change occurs the script restarts the application automatically.\n\n```bash\n$ node debug.js\n$ node release.js\n$ node test.js\n```\n\nYou can create your own start script if you don't use prepared start scripts:\n\n__With web server__:\n```javascript\n// require('total.js').http(mode, [options]);\n// require('total.js').https(mode, [options]);\n// modes: debug, release, test\n\n// The code below starts the framework\nrequire('total.js').http('debug');\n```\n\n- [Documentation: F.http()](http://docs.totaljs.com/latest/en.html#api~Framework~F.http)\n- `+v2.6.0` contains built-in watcher [Documentation: Watcher](http://docs.totaljs.com/latest/en.html#pages~Watcher)\n\n__Without web server (e.g. for workers)__:\n```javascript\n// require('total.js').load(mode, types, [path]);\n// modes: debug, release, test\n// types: models, modules, definitions, controllers, isomorphic, packages, sitemap, dependencies\n\n// The code below starts the framework without web server\nrequire('total.js').load('debug', ['definitions', 'models']);\n```\n\n[Documentation: F.load()](http://docs.totaljs.com/latest/en.html#api~Framework~F.load)\n\n> __REMEMBER__: all project files has to have lower case extensions (very important). Our recommendation is to use lower case for files and directories as well.\n\n## Other ways for installation\n\n### 1. NPM (Node Package Manager)\n\nNode.js platform includes [Node Package Manager](http://www.npmjs.com) (NPM). This option installs __total.js__ into current directory.\n\n```bash\n$ mkdir myapp\n$ cd myapp\n$ npm install total.js --save\n```\n\n### 2. NPM (Node Package Manager) installation as a global module\n\nThe global module contains executable (binary) app, this app contains many helpful features.\n\n```bash\n$ sudo npm install -g total.js\n```\n\n__Try to write__ into the terminal or command-line after installation:\n\n```bash\n$ totaljs -help\n```\n\n### Recommendation for directory structure\n\n- Read in Node.js docs - [Loading from node_modules Folders](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_node_modules_folders)\n- Read in Node.js docs - [Loading from the global folders](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_the_global_folders)\n\n__Peter Sirka's configuration__:\n\n```html\n/my-app-folder/\n/my-app-folder/node_modules/ <!-- create it manually and this directory will contain all Node.js modules -->\n\n/my-app-folder/apps/ <!-- directory will contain your Total.js apps, e.g: -->\n/my-app-folder/apps/totaljs_com-www/\n/my-app-folder/apps/componentator_com-www/\n/my-app-folder/apps/...\n```\n\nHow can I install Total.js?\n\n```bash\ncd /my-app-folder/\nnpm install total.js\n```\n\n__Safe configuration__:\n\n```html\n/apps/ <!-- directory will contain your Total.js apps, e.g: -->\n\n/apps/totaljs_com-www/\n/apps/totaljs_com-www/node_modules <!-- create it manually and this directory will contain all Node.js modules for this app -->\n\n/apps/componentator_com-www/\n/apps/componentator_com-www/node_modules <!-- create it manually and this directory will contain all Node.js modules for this app -->\n/apps/...\n```\n\nHow can I install Total.js?\n\n```bash\ncd /apps/totaljs_com-www/\nnpm install total.js\n```\n\n### Read more:\n\n- [Total.js - Tutorial](#pages~Tutorial)\n- [Total.js - Directory structure](#pages~Directory%20structure)",
       "group": "",
       "name": "Getting started"
     },
@@ -27567,7 +27383,7 @@
     },
     {
       "changetype": 1,
-      "body": "Schemas are a big part of Total.js framework. With schemas you can control incoming data and convert them to your defined types. Each schema can support validation and multiple operations (CRUD operations, transformations, workflows or hooks) which you can call step-by-step.\n\n## Creating schemas\n\nA schema describes a data-types/data-structure for incoming data only and __schema isn't a mirror for database table schema__. So we define a simple schema `User` which we use on this page:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// Define fields in the schema\n\t// schema.define('FIELD_NAME', 'DATA_TYPE', [required]);\n\n\tschema.define('firstname', 'Capitalize(30)', true);\n\tschema.define('lastname', 'Capitalize(30)', true);\n\tschema.define('age', Number, age => age >= 18);\n\n\t// Define operations in the schema\n\t// BTW: all operations below are optional\n\n\tschema.setQuery(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setInsert(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setUpdate(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setRemove(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.addWorkflow('logoff', function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\t// etc..\n\n});\n```\n\nFramework converts incoming data according to the schema __always__. So you __always__ get type as you defined. Default values:\n\n- `array` returns `[]`\n- `boolean` returns `false`\n- `date` returns `new Date()`\n- `json` returns `''`\n- `number` returns `0`\n- `object` returns `null`\n- `string` returns `''`\n- `email` returns `'@'`\n- link to schema returns `null`\n\n__Good to know__:\n\n- schema doesn't need to contain defined operations\n- schema doesn't need to contain defined fields (e.g. you want to use operations only)\n- all [schema data-types](#)\n- methods and properties in [SchemaOptions](#)\n- methods in [SchemaInstance](#)\n\n---\n\n## Dictionary\n\n### SchemaDeclaration\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\t// schema ===  SchemaDeclaration\n});\n```\n\n### SchemaOptions\n\n`SchemaOptions` can be a part in some Schema operation.\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\tschema.setInsert(function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n\tschema.addWorkflow('something', function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n});\n```\n\n### SchemaInstance\n\nThis is an instance generated according to the `SchemaDeclaration`.\n\n- [Documentation](#)\n\n__Created in the schema__:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// YOUR SCHEMA DECLARATION\n\t// ...\n\t// ...\n\t// ...\n\n\tvar user = schema.create();\n\t// user === SchemaInstance\n\n});\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n__In controllers__:\n\n```javascript\nexports.install = function() {\n\tROUTE('POST /api/users/', action, ['*User'];\n};\n\nfunction action() {\n\tvar self = this;        // this === controller\n\tvar user = self.model;  // this.model === SchemaInstance\n}\n```\n\n## Using schemas in routing\n\nImaging that the code below is a part of some controller:\n\n```javascript\nexports.install = function() {\n\n\tROUTE('GET     /api/users/',        ['*User --> @query']);\n\t// Framework calls this defined operation automatically: \"User.setQuery(...)\"\n\n\tROUTE('GET     /api/users/{id}/',   ['*User --> @get']);\n\t// Framework calls this defined operation automatically: \"User.setGet(...)\"\n\n\tROUTE('DELETE  /api/users/{id}/',   ['*User --> @remove']);\n\t// Framework calls this defined operation automatically: \"User.setRemove(...)\"\n\n\tROUTE('POST    /api/users/',        ['*User --> @insert']);\n\t// Framework calls this defined operation automatically: \"User.setInsert(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('PUT     /api/users/{id}/',   ['*User --> @update']);\n\t// Framework calls this defined operation automatically: \"User.setUpdate(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('GET     /api/users/logoff/', ['*User --> @logoff']);\n\t// Framework calls this defined workflow automatically: \"User.addWorkflow('logoff', ...)\"\n\n};\n```\n\n## Using schemas globally\n\nSchemas can be used everywhere in your code and we have prepared several methods:\n\n```javascript\n// $INSERT(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setInsert()\n$INSERT('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $UPDATE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setUpdate()\n$UPDATE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $SAVE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setSave()\n$SAVE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $REMOVE(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$REMOVE('User', { id: 101 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $QUERY(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$QUERY('User', { take: 10 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $GET(schema_name, [options], [callback], [controller]);\n// Performs schema.setGet()\n$GET('User', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $WORKFLOW(schema_name, [options], [callback], [controller]);\n// Performs schema.addWorkflow('send', ...);\n$WORKFLOW('User', 'send', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $TRANSFORM(schema_name, [options], [callback], [controller]);\n// Performs schema.addTransform('xml', ...);\n$TRANSFORM('User', 'xml', { indent: true }, function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n## Advanced usage\n\n### Creating a new schema instance\n\n- all [operations for schema instances](#)\n\n```javascript\nvar user = $CREATE('User');\n// user === Schema instance of User\n\nuser.firstname = 'Peter';\nuser.lastname = 'Širka';\nuser.age = 33;\n\n// user.$insert([options], [callback]);\n// user.$update([options], [callback]);\n// user.$save([options], [callback]);\n// user.$query([options], [callback]);\n// user.$get([options], [callback]);\n// user.$remove([options], [callback]);\n// user.$workflow(name, [options], [callback]);\n// user.$transform(name, [options], [callback]);\n// user.$hook(name, [options], [callback]);\n// etc..\n\nuser.$insert(function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n### Extending schemas\n\n```javascript\n// Waiting for a schema declaration\n// Great solution for extending schemas in some apps like Total.js CMS, etc.\nGETSCHEMA('User', function(err, schema) {\n\t// This callback will be executed if the schema will be declared\n\t// And here we can extend existing schema\n\tschema.define('new_field', 'String');\n});\n\n// Get a schema declaration\n// But the schema must exist, otherwise will be \"null\"\nvar schema = GETSCHEMA('User');\n```\n\n## Error handling\n\nSchemas use Total.js `ErrorBuilder` for error handling. `ErrorBuilder` supports great features and supports transformation. Each scope of executed schema operation contains `ErrorBuilder` instance for handling errors. If the `ErrorBuilder` contains some error then `err` argument in the callback will contain `ErrorBuilder` instance, otherwise will be `null`.\n\n__Auto-validation__:\n\nFramework returns error messages according to the schema field names and it reads messages from resource file according to the current language. By default error messages are read from `default.resource`:\n\n```html\nfirstname     : Please enter your name.\nlastname      : Please enter your name.\nage           : You are too young.\n```\n\nIf you want to use a prefix then use:\n\n```javascript\nschema.setPrefix('form-');\n```\n\nAnd update your resource file like this:\n\n```html\nform-firstname     : Please enter your name.\nform-lastname      : Please enter your name.\nform-age           : You are too young.\n```\n\n### Custom error messages\n\n```javascript\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn 'Please fill age.';\n\tif (val < 18)\n\t\treturn 'You are too young';\n\treturn true;\n});\n\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn '@your-custom-key-in-the-resource';\n\tif (val < 18)\n\t\treturn '@your-custom-key-in-the-resource';\n\treturn true;\n});\n```\n\n- validation are performed for `POST` and `PUT` HTTP methods only in the routing\n\n### Note: Default ErrorBuilder transformation\n\nErrors in `ErrorBuilder` are serialized into the JSON like Object Array as default. But you can rewrite this transformation via [ErrorBuilder.addTransform()](#api~ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in the current object\", \"index\":0 }]\n```\n\n#### How to check errors on client-side?\n\n```javascript\n$.ajax('/api/users/', { type: 'POST', data: JSON.stringify({ age: 15 }), success: function(response) {\n\n\tif (typeof(response) === 'string')\n\t\tresponse = JSON.parse(response);\n\n\t// Check erros\n\tif (response instanceof Array) {\n\t\tshowErrors(response);\n\t\treturn;\n\t}\n\n\t// SUCCESS\n});```",
+      "body": "Schemas are a big part of Total.js framework. With schemas you can control incoming data and convert them to your defined types. Each schema can support validation and multiple operations (CRUD operations, transformations, workflows or hooks) which you can call step-by-step.\n\n## Creating schemas\n\nA schema describes a data-types/data-structure for incoming data only and __schema isn't a mirror for database table schema__. So we define a simple schema `User` which we use on this page:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// Define fields in the schema\n\t// schema.define('FIELD_NAME', 'DATA_TYPE', [required]);\n\n\tschema.define('firstname', 'Capitalize(30)', true);\n\tschema.define('lastname', 'Capitalize(30)', true);\n\tschema.define('age', Number, age => age >= 18);\n\n\t// Define operations in the schema\n\t// BTW: all operations below are optional\n\n\tschema.setQuery(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setInsert(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setUpdate(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setRemove(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.addWorkflow('logoff', function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\t// etc..\n\n});\n```\n\nFramework converts incoming data according to the schema __always__. So you __always__ get type as you defined. Default values:\n\n- `array` returns `[]`\n- `boolean` returns `false`\n- `date` returns `new Date()`\n- `json` returns `''`\n- `number` returns `0`\n- `object` returns `null`\n- `string` returns `''`\n- `email` returns `'@'`\n- link to schema returns `null`\n\n__Good to know__:\n\n- schema doesn't need to contain defined operations\n- schema doesn't need to contain defined fields (e.g. you want to use operations only)\n- all [schema data-types](#)\n- methods and properties in [SchemaOptions](#)\n- methods in [SchemaInstance](#)\n\n---\n\n## Dictionary\n\n### SchemaDeclaration\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\t// schema ===  SchemaDeclaration\n});\n```\n\n### SchemaOptions\n\n`SchemaOptions` can be a part in some Schema operation.\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\tschema.setInsert(function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n\tschema.addWorkflow('something', function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n});\n```\n\n### SchemaInstance\n\nThis is an instance generated according to the `SchemaDeclaration`.\n\n- [Documentation](#)\n\n__Created in the schema__:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// YOUR SCHEMA DECLARATION\n\t// ...\n\t// ...\n\t// ...\n\n\tvar user = schema.create();\n\t// user === SchemaInstance\n\n});\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n__In controllers__:\n\n```javascript\nexports.install = function() {\n\tROUTE('POST /api/users/', action, ['*User'];\n};\n\nfunction action() {\n\tvar self = this;        // this === controller\n\tvar user = self.model;  // this.model === SchemaInstance\n}\n```\n\n## Using schemas in routing\n\nImaging that the code below is a part of some controller:\n\n```javascript\nexports.install = function() {\n\n\tROUTE('GET     /api/users/',        ['*User --> @query']);\n\t// Framework calls this defined operation automatically: \"User.setQuery(...)\"\n\n\tROUTE('GET     /api/users/{id}/',   ['*User --> @get']);\n\t// Framework calls this defined operation automatically: \"User.setGet(...)\"\n\n\tROUTE('DELETE  /api/users/{id}/',   ['*User --> @remove']);\n\t// Framework calls this defined operation automatically: \"User.setRemove(...)\"\n\n\tROUTE('POST    /api/users/',        ['*User --> @insert']);\n\t// Framework calls this defined operation automatically: \"User.setInsert(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('PUT     /api/users/{id}/',   ['*User --> @update']);\n\t// Framework calls this defined operation automatically: \"User.setUpdate(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('GET     /api/users/logoff/', ['*User --> @logoff']);\n\t// Framework calls this defined workflow automatically: \"User.addWorkflow('logoff', ...)\"\n\n};\n```\n\n## Using schemas globally\n\nSchemas can be used everywhere in your code and we have prepared several methods:\n\n```javascript\n// $INSERT(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setInsert()\n$INSERT('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $UPDATE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setUpdate()\n$UPDATE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $SAVE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setSave()\n$SAVE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $REMOVE(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$REMOVE('User', { id: 101 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $QUERY(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$QUERY('User', { take: 10 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $GET(schema_name, [options], [callback], [controller]);\n// Performs schema.setGet()\n$GET('User', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $WORKFLOW(schema_name, [options], [callback], [controller]);\n// Performs schema.addWorkflow('send', ...);\n$WORKFLOW('User', 'send', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $TRANSFORM(schema_name, [options], [callback], [controller]);\n// Performs schema.addTransform('xml', ...);\n$TRANSFORM('User', 'xml', { indent: true }, function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n## Advanced usage\n\n### Creating a new schema instance\n\n- all [operations for schema instances](#)\n\n```javascript\nvar user = $CREATE('User');\n// user === Schema instance of User\n\nuser.firstname = 'Peter';\nuser.lastname = 'Širka';\nuser.age = 33;\n\n// user.$insert([options], [callback]);\n// user.$update([options], [callback]);\n// user.$save([options], [callback]);\n// user.$query([options], [callback]);\n// user.$get([options], [callback]);\n// user.$remove([options], [callback]);\n// user.$workflow(name, [options], [callback]);\n// user.$transform(name, [options], [callback]);\n// user.$hook(name, [options], [callback]);\n// etc..\n\nuser.$insert(function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n### Extending schemas\n\n```javascript\n// Waiting for a schema declaration\n// Great solution for extending schemas in some apps like Total.js CMS, etc.\nGETSCHEMA('User', function(err, schema) {\n\t// This callback will be executed if the schema will be declared\n\t// And here we can extend existing schema\n\tschema.define('new_field', 'String');\n});\n\n// Gets a schema declaration\n// But the schema must exist, otherwise will be \"null\"\nvar schema = GETSCHEMA('User');\n```\n\n## Error handling\n\nSchemas use Total.js `ErrorBuilder` for error handling. `ErrorBuilder` supports great features and supports transformation. Each scope of executed schema operation contains `ErrorBuilder` instance for handling errors. If the `ErrorBuilder` contains some error then `err` argument in the callback will contain `ErrorBuilder` instance, otherwise will be `null`.\n\n__Auto-validation__:\n\nFramework returns error messages according to the schema field names and it reads messages from resource file according to the current language. By default error messages are read from `default.resource`:\n\n```html\nfirstname     : Please enter your name.\nlastname      : Please enter your name.\nage           : You are too young.\n```\n\nIf you want to use a prefix then use:\n\n```javascript\nschema.setPrefix('form-');\n```\n\nAnd update your resource file like this:\n\n```html\nform-firstname     : Please enter your name.\nform-lastname      : Please enter your name.\nform-age           : You are too young.\n```\n\n### Custom error messages\n\n```javascript\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn 'Please fill age.';\n\tif (val < 18)\n\t\treturn 'You are too young';\n\treturn true;\n});\n\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn '@your-custom-key-in-the-resource';\n\tif (val < 18)\n\t\treturn '@your-custom-key-in-the-resource';\n\treturn true;\n});\n```\n\n- validation are performed for `POST` and `PUT` HTTP methods only in the routing\n\n### Note: Default ErrorBuilder transformation\n\nErrors in `ErrorBuilder` are serialized into the JSON like Object Array as default. But you can rewrite this transformation via [ErrorBuilder.addTransform()](#api~ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in the current object\", \"index\":0 }]\n```\n\n#### How to check errors on client-side?\n\n```javascript\n$.ajax('/api/users/', { type: 'POST', data: JSON.stringify({ age: 15 }), success: function(response) {\n\n\tif (typeof(response) === 'string')\n\t\tresponse = JSON.parse(response);\n\n\t// Check erros\n\tif (response instanceof Array) {\n\t\tshowErrors(response);\n\t\treturn;\n\t}\n\n\t// SUCCESS\n});```",
       "group": "How does it work?",
       "name": "Schemas"
     },
@@ -27613,7 +27429,7 @@
     },
     {
       "changetype": 1,
-      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similiar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
+      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
       "group": "How does it work?",
       "name": "Bundles"
     },

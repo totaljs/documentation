@@ -64,6 +64,9 @@
 					<div class="body hidden">
 						{{ if m.default }}<div class="member-body-default"><b>Default value</b>: {{ m.default }}</div>{{ fi }}
 						<div class="member-body-name">{{ m.name }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }};</div>
+						{{ if m.alias }}
+						<div class="member-body-alias"><b>&uarr;</b> {{ m.alias }}{{ if m.name_params }}<span class="members-params">{{ m.name_params }}</span>{{ fi }};</div>
+						{{ fi }}
 						{{ if m.changelog }}<div class="member-body-changelog"><b>CHANGELOG:</b> {{ m.changelog | raw }}</div>{{ fi }}
 						{{ if m.params && m.params.length > 0 }}
 							<div class="member-body-params">
