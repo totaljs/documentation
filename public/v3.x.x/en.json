@@ -25424,6 +25424,11 @@
           "name": "schema.addWorkflow",
           "params": [
             {
+              "body": "A workflow name",
+              "name": "name",
+              "type": "String"
+            },
+            {
               "body": "A callback delegate",
               "name": "callback",
               "params": [
