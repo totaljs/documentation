@@ -27065,6 +27065,30 @@
           "body": "It wraps this code `$.callback(SUCCESS(true))`. A simple usage: \n\n```javascript\n$.success(true);```"
         },
         {
+          "name": "$.callback",
+          "params": [
+            {
+              "name": "err",
+              "body": "Error handling",
+              "type": "Error",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "body": "A value",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "SchemaOptions",
+          "body": "Performs a callback."
+        },
+
+        {
           "name": "$.done",
           "params": [
             {
