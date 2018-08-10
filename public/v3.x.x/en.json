@@ -10719,6 +10719,15 @@
                 "optional"
               ],
               "type": "Object"
+            },
+            {
+              "default": "undefined",
+              "body": "A model",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
             }
           ],
           "return": "String"
