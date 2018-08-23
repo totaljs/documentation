@@ -5091,16 +5091,7 @@
         {
           "name": "database.remove",
           "body": "Removes a document in the database.",
-          "params": [
-            {
-              "name": "backup",
-              "type": "String",
-              "body": "An absolute backup filename (removed documents will be stored in this backup).",
-              "options": [
-                "optional"
-              ]
-            }
-          ],
+          "params": [],
           "return": "DatabaseBuilder"
         },
         {
@@ -5696,16 +5687,7 @@
         {
           "name": "table.remove",
           "body": "Removes a document in the database.",
-          "params": [
-            {
-              "name": "backup",
-              "type": "String",
-              "body": "An absolute backup filename (removed documents will be stored in this backup).",
-              "options": [
-                "optional"
-              ]
-            }
-          ],
+          "params": [],
           "return": "DatabaseBuilder"
         },
         {
