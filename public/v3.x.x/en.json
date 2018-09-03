@@ -6734,7 +6734,7 @@
     },
     {
       "changetype": 1,
-      "body": "`+v3.0.0` __NoSQL Database Storage__ is an engine for storing small big data. It can store documents to independent database files divided by days. In other words: __storage__ creates each day a new database. File name of database is in the form: `yyyyMMdd.nosql` and each database has own `storage` directory. __IMPORTANT__: storage can't update/remove documents, it supports append/read mode only.\n\n```javascript\nvar storage = NOSQL('yourdbname').storage;\n// or\nvar storage = NOSQLSTORAGE('yourdbname');\n\n// Example of inserting\nstorage.insert({ your: 'data' });\n```",
+      "body": "`+v3.0.0` __NoSQL Database Storage__ is an engine for storing small big data. It can store documents to independent database files divided by days. In other words: __storage__ creates each day a new database. File name of database is in the form: `yyyyMMdd.nosql` and each database has own `storage` directory. __IMPORTANT__: storage can't update/remove documents, it supports append/read mode only.\n\n```javascript\nvar storage = NOSQL('yourdbname').storage;\n// or\nvar storage = NOSQLSTORAGE('yourdbname');\n\n// Example of inserting\nstorage.insert({ your: 'data' });\n```\n\n`+v3.1.0` supports very effective filtering documents outside of main thread. You can filter documents with help of `.find()`, `.scalar()` and `.count()` methods and you can set count of threads for reading.",
       "name": "DatabaseStorage",
       "group": "NoSQL Embedded",
       "methods": [
@@ -6785,6 +6785,103 @@
             }
           ],
           "return": "DatabaseStorage"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "name": "database.storage.find",
+          "body": "Finds documents according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').find('2018')\n// NOSQLSTORAGE('iot').find('2018-05')\n// NOSQLSTORAGE('iot').find('2018-10-10')\n// NOSQLSTORAGE('iot').find(null, '2019');\n// NOSQLSTORAGE('iot').find(null, null, 10);\n\nNOSQLSTORAGE('iot').find('2018', '2019', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').take(100).sort('temperature', true).callback(console.log);```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "beg",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "end",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "threads",
+              "type": "Number",
+              "body": "Count of threads",
+              "default": "1",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "name": "database.storage.count",
+          "body": "Counts documents according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').count('2018')\n// NOSQLSTORAGE('iot').count('2018-05')\n// NOSQLSTORAGE('iot').count('2018-10-10')\n// NOSQLSTORAGE('iot').count(null, '2019');\n// NOSQLSTORAGE('iot').count(null, null, 10);\n\nNOSQLSTORAGE('iot').count('2018', '2019', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').callback(console.log);```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "beg",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "end",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "threads",
+              "type": "Number",
+              "body": "Count of threads",
+              "default": "1",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "name": "database.storage.scalar",
+          "body": "Performs a scalar operation according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').scalar('2018', null, 'max', 'temperature')\n// NOSQLSTORAGE('iot').scalar('2018-05', null, 'min', 'temperature')\n// NOSQLSTORAGE('iot').scalar('2018-10-10')\n// NOSQLSTORAGE('iot').scalar(null, '2019', 'avg', 'temperature');\n// NOSQLSTORAGE('iot').scalar(null, null, 'max', 'temperature', 10);\n\nNOSQLSTORAGE('iot').scalar('2018', '2019', 'max', 'temperature', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').callback(console.log);```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "beg",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "end",
+              "type": "String",
+              "body": "Date from, can be in the form: <b>2018</b> (year), <b>2018-02</b> (year + month) or <b>2018-02-02</b> (year + month + day)"
+            },
+            {
+              "name": "type",
+              "type": "String",
+              "body": "A scalar operation type `min`, `max`, `sum`, `avg`, `count` or `group`."
+            },
+            {
+              "name": "field",
+              "type": "String",
+              "body": "A field name"
+            },
+            {
+              "name": "threads",
+              "type": "Number",
+              "body": "Count of threads",
+              "default": "1",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "DatabaseBuilder"
         },
         {
           "name": "database.storage.scan",
@@ -10585,7 +10682,9 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie?__\n\n```javascript\ncontroller.cookie('cookiename', 'VALUE', '5 days');\n```\n\n__How to remove cookie?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');```",
+          "changelog": "v3.1.0 Added <code>security</code> as alias for <code>SameSite</code> cookie attribute",
+          "changetype": 2,
+          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie from request?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie to response?__\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days');\n```\n\n__How to remove cookie in response?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');\n```\n\n__With additional settings__:\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days', { httponly: true, security: 'lax' });\n```\n\n__Secured cookies for sessions__:\n\n```javascript\ncontroller.cookie('cookiename', 'token', '5 days', { security: 'strict', secure: true, httponly: true });```",
           "name": "controller.cookie",
           "options": [
             "http"
@@ -10607,7 +10706,7 @@
               "type": "String/Date"
             },
             {
-              "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httpOnly (Boolean). Default cookie path: <b>\"/\"</b>.",
+              "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httponly (Boolean), security (String - <code>lax</code> or <code>strict</code>). Default cookie path: <b>\"/\"</b>.",
               "name": "options",
               "options": [
                 "optional"
@@ -14732,6 +14831,16 @@
           "return": "Chunker"
         },
         {
+          "changetype": 1,
+          "body": "Creates a new instance of Data-Reader. Please read more in `Additional / Data-Reader` section.",
+          "name": "U.reader",
+          "options": [
+            "+v3.1.0"
+          ],
+          "params": [],
+          "return": "DataReader"
+        },
+        {
           "body": "Creates the unique identifier.",
           "name": "U.GUID",
           "params": [
@@ -17425,7 +17534,7 @@
               "type": "String/Date"
             },
             {
-              "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httpOnly (Boolean). Default cookie path: <b>\"/\"</b>",
+              "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httponly (Boolean), security (String - <code>lax</code> or <code>strict</code>). Default cookie path: <b>\"/\"</b>.",
               "name": "options",
               "options": [
                 "optional"
@@ -27292,6 +27401,52 @@
           "return": "Chunker"
         }
       ]
+    },
+    {
+      "name": "DataReader",
+      "changetype": 1,
+      "group": "Additional",
+      "body": "`+v3.1.0` __DataReader__ is very effective and optimized solution for reading and filtering data in real-time. With this solution you can stream data and filter data easily. Also NoSQL embedded database uses `DataReader` too.\n\n```javascript\nvar reader = U.reader();\n\nreader.find().between('price', 10, 200).callback(console.log);\n\n// or\nreader.scalar('max', 'price').callback(console.log);\n\n// or\nreader.count().between('price', 10, 200).callback(console.log);\n\n// Some ReadStream\nsomestream.on('data', function(chunk) {\n\t// some data processing\n\treader.push(ARRAY_OF_DOCS_or_DOC);\n});\n\nsomestream.on('end', () => reader.push(null));```",
+      "methods": [
+        {
+          "name": "reader.find",
+          "body": "Finds records.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "reader.count",
+          "body": "Counts records.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "reader.clear",
+          "body": "Clears all results for new data.",
+          "params": [
+          ],
+          "return": "DataReader"
+        },
+        {
+          "name": "reader.scalar",
+          "body": "Performs a scalar operation.",
+          "params": [
+            {
+              "name": "type",
+              "type": "String",
+              "body": "A scalar operation type `min`, `max`, `sum`, `avg`, `count` or `group`."
+            },
+            {
+              "name": "field",
+              "type": "String",
+              "body": "A field name"
+            }
+          ],
+          "return": "DatabaseBuilder"
+        }
+      ]
     }
   ],
   "build": "",
@@ -27409,7 +27564,7 @@
       "name": "Schemas"
     },
     {
-      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n### CSS\n\n- All CSS code is minified `F.config['allow-compile-style']`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` - remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `F.config['allow-compile-script']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$ totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$ totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$ totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
+      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n###\u00a0CSS\n\n- All CSS code is minified `F.config['allow-compile-style']`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` just remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Variables default values__:\n\n`+v3.1` supports a default value for non-exist variable.\n\n```css\nbody { font-family: $arial || 'Arial'; }\ndiv { border-radius: $radius || 10px; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `F.config['allow-compile-script']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$\u00a0totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$\u00a0totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$\u00a0totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
       "group": "How does it work?",
       "name": "HTML, JS, CSS"
     },
@@ -27417,16 +27572,6 @@
       "body": "- By default the view engine encodes all values.\n- The framework works only with object (POST/GET/DELETE/PUT data are parsed as object).\n- Use AJAX/XHR form submitting for the [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) protection.\n- The framework supports method for setting [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing).\n- The framework supports auto-binding model into the forms.\n- The framework automatically checks incoming requests and the bad requests destroys automatically.\n- The framework checks length of uploading files.\n- All requests are destroyed when don't have a defined route.\n\n---\n\n## Examples\n\n- [Example: CSRF](https://github.com/totaljs/examples/tree/master/csrf)\n- [Example: CORS](https://github.com/totaljs/examples/tree/master/cors)\n- [Example: Auto binding values](https://github.com/totaljs/examples/tree/master/forms)",
       "group": "How does it work?",
       "name": "Security (XSS, CSRF, CORS)"
-    },
-    {
-      "body": "- important keyword: `yield` and important methods: `sync()`, `sync2()`, `async(function*(`\n- [Prepared synchronous methods](#pages~Wrapped%20methods)\n\n---\n\n## Usage in the framework\n\n### Synchronous routing\n\n```javascript\nconst Fs = require('fs');\n\nexports.install = function() {\n    F.route('/', view_index);\n};\n\n// Yes, JavaScript generators\nfunction *view_index() {    \n    var content = yield sync(Fs.readFile)(F.path.root('readme.md'));\n    // The framework solves unexpected errors automatically via throw500(err)\n    this.view('index', content);\n}\n```\n\n### Synchronous schemas\n\n```javascript\nconst Fs = require('fs');\n\nNEWSCHEMA('User').make(function(schema) {})\n\n    schema.define('id', Number);\n    schema.define('name', String);\n    schema.define('datecreated', Date);\n    schema.define('tags', '[String(20)]');\n\n    schema.setSave(function*(error, model, options, callback) {\n\n        // Here you can use `yield` operator        \n\n        // The callback returns result\n        callback();\n    });\n\n    schema.setQuery(function*(error, options, callback) {\n        \n        // Here you can use `yield` operator        \n\n        // The callback returns result\n        callback();\n    });\n```\n\n### Synchronous inline? No problem\n\n```javascript\nconst Fs = require('fs');\n\nasync(function*() {\n    \n    var filename = 'file.txt';\n    var content = yield sync(Fs.readFile)(filename);\n    console.log(content);\n\n})(function(err) {\n    // err = unexpected error\n    // this callback is optional\n});\n\n```\n\n> __Total.js/Utils__ contains implementation of `async` and `sync` method.\n\n---\n\n## How to create synchronous methods?\n\nWe have to wrap a base method:\n\n### First example\n\n```javascript\n// Extend Connection prototype of MySQL module\nConnection.prototype.$$query = function(query, parameters) {\n    // this === connection\n    var self = this;\n    return function(callback) {\n        // The callback has to be the last argument\n        self.query(query, parameters, callback);\n    };\n};\n\nfunction *some_totaljs_action_in_controller() {\n    var users = yield sync2(connection.$$query('SELECT * FROM users WHERE `name`=?', ['Peter']));\n    var products = yield sync2(connection.$$query('SELECT * FROM products'));\n\n    // or without wrapping\n    // sync(function, [context])(arg1, arg2, WITHOUT_CALLBACK)\n    var products_nowrap = yield sync2(connection.query, connection)('SELECT * FROM products');\n\n    this.view('index', { users: users, products: products });\n}\n```\n\n### Second example\n\n```javascript\nvar Fs = require('fs');\n\nFs.$$readFile = function(filename) {\n    return function(callback) {\n        Fs.readFile(filename, callback);\n    };\n};\n\nfunction *some_totaljs_action_in_controller() {\n    var content = yield sync2(Fs.$$readFile('file.txt'));\n    this.plain(content.toString('utf8'));\n}\n```\n\n### IMPORTANT: A callback which the framework will be needed\n\n```javascript\nfunction callback(err, response, param3, paramN) {\n    // err             = unexpected error handling\n    // response        = the response will be returned as return in the sync() method\n    // param3, paramN  = will be skipped\n} \n```\n\n### Generators\n\nGenerators is name for `yield` keyword ([read more](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*)).\n\n### Arrow function example\n\n```javascript\nvar sum = (a, b) => a+b;\nconsole.log(sum(2, 2));\n// Output: 4\n```\n\n## Examples\n\n- [Generators](https://github.com/totaljs/examples/tree/master/generators)\n- [Generators in routing](https://github.com/totaljs/examples/tree/master/routing-generators)",
-      "group": "Generators",
-      "name": "Synchronous programming"
-    },
-    {
-      "body": "- [SQL Agent synchronouse method (ORM for MySQL, PostgreSQL and MS SQL)](https://github.com/petersirka/node-sqlagent#generators-in-totaljs)\n\n---\n\n## Built-in methods\n\n### FrameworkImage\n\n- `Image.$$save(filename)`\n- `Image.$$measure();`\n- `Image.$$identify();`\n\n### Utils\n\n- `Utils.$$request(url, [flags], data, [cookies], [headers], [encoding], [timeout]);`\n- `Utils.$$download(url, [flags], data, [cookies], [headers], [encoding], [timeout]);`\n- `Utils.$$send(name, stream, url, [headers], [method]);`\n- `Utils.$$wait(fnValid, [timeout], [interval]);`\n- `Utils.$$resolve(url);`\n\n### HttpFile\n\n- `HttpFile.$$copy(filename)`\n- `HttpFile.$$read()`\n- `HttpFile.$$md5()`",
-      "group": "Generators",
-      "name": "Wrapped methods"
     },
     {
       "body": "__Table of contents__:\n\n- [Hosting Total.js applications in IIS on Windows](#)\n- [SMTP settings for Gmail, Office and Zoho](#)\n- [Windows developers](#)\n- [Websocket connection is disconnected after 1 minute](#)\n- [Synchronous programming not working](#)\n- [Prevention for multiple requesting](#)\n- [Too many open files](#)\n- [Merged files contain additional informations](#)\n- [Publishing of website through a REVERSE PROXY](#)\n- [SOAP with total.js](#)\n- [Creating a tunnel between localhost and internet](#)\n- [Best NGINX configuration](#)\n- [Static files only through the reverse proxy](#)\n- [Disable JS/CSS/HTML compression in file handler](#)\n- [How to run Total.js app on Passenger Web Server?](#)\n- [Total.js Events don't support all functionality from Node.js](#)\n- [Requests in RESTBuilder are too slow](#)\n\n---\n\n## Hosting Total.js applications in IIS on Windows\n\nThis is the perfect setup to run Total.js application on local IIS or __Azure__. Follow the steps below:\n\n- <https://github.com/totaljs/framework/issues/509>\n\n__web.config__:\n\n```xml\n<configuration>\n  <system.webServer>\n\n\t<handlers>\n\t  <!-- indicates that the app.js file is a Node.js application to be handled by the iisnode module -->\n\t  <add name=\"iisnode\" path=\"release.js\" verb=\"*\" modules=\"iisnode\" />\n\t</handlers>\n\n\t<rewrite>\n\t  <rules>        \n\t\t<!-- Don't interfere with requests for node-inspector debugging -->\n\t\t<rule name=\"NodeInspector\" patternSyntax=\"ECMAScript\" stopProcessing=\"true\">\n\t\t  <match url=\"^release.js\\/debug[\\/]?\" />\n\t\t</rule>\n\n\t\t<!-- First we consider whether the incoming URL matches a physical file in the /public folder -->\n\t\t<rule name=\"StaticContent\">\n\t\t  <action type=\"Rewrite\" url=\"{REQUEST_URI}\" />\n\t\t</rule>\n\n\t\t<!-- All other URLs are mapped to the Node.js application entry point -->\n\t\t<rule name=\"DynamicContent\">\n\t\t  <conditions>\n\t\t\t<add input=\"{REQUEST_FILENAME}\" matchType=\"IsFile\" negate=\"True\" />\n\t\t  </conditions>\n\t\t  <action type=\"Rewrite\" url=\"release.js\" />\n\t\t</rule>\n\t\t\n\t  </rules>\n\t</rewrite>\n\n  </system.webServer>\n</configuration>\n```\n\n__release.js__:\n\n```javascript\nconst options = {};\noptions.ip = 'auto';\noptions.port = process.env.port;\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n## SMTP settings for Gmail, Office and Zoho\n\n```html\n// Gmail SMTP settings\nmail-smtp                : smtp.gmail.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"rejectUnauthorized\":true}\n\n// Office365 SMTP settings\nmail-smtp                : smtp.office365.com\nmail-smtp-options        : {\"port\":587,\"secure\":false,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\",\"tls\":{\"ciphers\":\"SSLv3\"}}\n\n// Zoho SMTP settings\nmail-smtp                : smtp.zoho.com\nmail-smtp-options        : {\"port\":465,\"secure\":true,\"user\":\"ENTER_YOUR_EMAIL\",\"password\":\"ENTER_YOUR_PASSWORD\"}\n```\n\n## Windows developers\n\nUse Unix paths for your projects.\n\n- bad: ~~`\\some-directory\\some-file.txt`~~\n- good: `/some-directory/some-file.txt`\n\n---\n\n## Websocket connection is disconnected after 1 minute\n\nCertainly you use __NGINX__. The problem is in `proxy_read_timeout`:\n<http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout>\n\n---\n\n## Synchronous programming not working\n\nProbably you run node application without `--harmony` argument (__node +v0.11__). New Node.js version `+v6.0.0` doesn't need `--harmony` argument because supports generators by default.\n\n```bash\n$ node my-application.js\n```\n\n## Prevention for multiple requesting\n\nIf the server doesn't reply quickly, then the web browser can send the request again. We recorded the problem in __Chrome__ web browser.\n\n### Total.js prevention\n\n```javascript\nexports.install = function() {\n\t// Prevention for multipe requests from one browser\n\tROUTE('/', delay_operation, ['delay']);\n};\n\nfunction delay_operaiton() {\n\tvar self = this;\n\n\tconsole.log('I am here.');\n\n\tsetTimeout(function() {\n\t\tself.view('some-view');\n\t}, 10000);\n}\n```\n\n### Important change for nginx\n\n```lua\nhttp {\n\t# VERY IMPORTANT FOR \"DELAY\" FLAG\n\tproxy_http_version 1.1;\n}\n```\n\n## Too many open files\n\nIf the framework throws `Too many open files` exception then we have to enable [default-maximum-file-descriptors](#api~FrameworkConfiguration~default-maximum-file-descriptors) or increase the system limit via terminal `$ ulimit -v unlimited`.\n\n```html\n// The framework opens max. 10 files together and waits while they are not closed.\ndefault-maximum-file-descriptors        : 10\n```\n\n## Merged files contain additional informations\n\n__Yes__ and these additional informations are added only in debug (development) mode. These informations are very helpful for debugging of front-end development.\n\ne.g.\n\n```html\n/*!\n * ===========================================================================================\n * MERGED: ./public/css/bootstrap.min.css\n * ===========================================================================================\n */\n```\n\n## Publishing of website through a REVERSE PROXY\n\n![NGINX reverse proxy](resources/nginx-reverse-proxy.png)\n\n__Reverse proxy through:__\n\n- [NGINX - __recommended__](http://nginx.org/) (OSX, Linux, Windows)\n- [HAProxy](http://www.haproxy.org/) (OSX, Linux, Solaris)\n- [node-http-proxy](https://github.com/nodejitsu/node-http-proxy) (OSX, Linux, Windows)\n- [Phusion Passenger](https://www.phusionpassenger.com/) (OSX, Linux)\n- [IIS - iisnode](https://github.com/tjanczuk/iisnode) (Windows)\n- [Apache](http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#proxypass) (OSX, Linux)\n\n### NGINX reverse proxy - EDIT: nginx.conf\n\n```lua\nworker_processes  1;\n\nevents {\n\tworker_connections  1024;\n}\n\nhttp {\n\n\tinclude            mime.types;\n\tdefault_type       application/octet-stream;\n\tsendfile           on;\n\tkeepalive_timeout  65;\n\tproxy_http_version 1.1;\n\n\t# ONE APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name www.totaljs.com;\n\t\tserver_name totaljs.com;\n\t\tcharset     utf-8;\n\n\t\t# WITH WEBSOCKET DEFINITION\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\n\t\t\t# max 15 minutes keep-alive\n\t\t\tproxy_read_timeout  600s;\n\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header Upgrade          $http_upgrade;\n\t\t\tproxy_set_header Connection       \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n\n\t# SECOND APP\n\tserver {\n\t\tlisten      80;\n\t\tserver_name docs.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\t\t\tproxy_set_header   Host             $http_host;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-Forwarded-For  $remote_addr;\n\t\t\tproxy_set_header   X-NginX-Proxy    true;\n\t\t\tproxy_pass         http://0.0.0.0:8001;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_redirect     off;\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## SOAP with total.js\n\nHow to create a SOAP request with total.js?\n\n__Try it:__\n\n1. Open [SOAP test client](http://www.soapclient.com/soaptest.html)\n2. Add `http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl` and click to retrieve\n3. Fill first inputs and select `Request` in `Show` settings\n4. Click to invoke and show the source code of the webpage\n\n__SOAP request__:\n\n```xml\n<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:impl=\"urn:ec.europa.eu:taxud:vies:services:checkVat\" xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\n\t<SOAP-ENV:Body>\n\t\t<tns1:checkVat xmlns:tns1=\"urn:ec.europa.eu:taxud:vies:services:checkVat:types\">\n\t\t\t<tns1:countryCode>SK</tns1:countryCode>\n\t\t\t<tns1:vatNumber>0000000000</tns1:vatNumber>\n\t\t</tns1:checkVat>\n\t</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n```\n\n```javascript\nU.request('http://ec.europa.eu/taxation_customs/vies/services/checkVatService', ['post'], '<?xml version=\"1.0\" .... ', function(err, response) {\n\tconsole.log(response.parseXML());\n});\n```\n\n__Response in total.js__:\n\n```javascript\n{ 'soap:Envelope[]': { soap: 'http://schemas.xmlsoap.org/soap/envelope/' },\n  'soap:Envelope.soap:Body.checkVatResponse[]': { xmlns: 'urn:ec.europa.eu:taxud:vies:services:checkVat:types' },\n  'soap:Envelope.soap:Body.checkVatResponse.countryCode': 'SK',\n  'soap:Envelope.soap:Body.checkVatResponse.vatNumber': '0000000000',\n  'soap:Envelope.soap:Body.checkVatResponse.requestDate': '2015-04-01+02:00',\n  'soap:Envelope.soap:Body.checkVatResponse.valid': 'false',\n  'soap:Envelope.soap:Body.checkVatResponse.name': '---',\n  'soap:Envelope.soap:Body.checkVatResponse.address': '---' }\n```\n\n## Creating a tunnel between localhost and internet\n\n- [Download ngrok - secure introspectable tunnels to localhost](https://ngrok.com/)\n- [ngrok - documentation](https://ngrok.com/usage)\n\nNgrok creates the tunnel from the public internet (http://subdomain.ngrok.com) to a port on your local machine. You can give this URL to anyone to allow them to try out a web site you're developing without doing any deployment.\n\n![ngrok run](resources/ngrok-run.jpg)\n\n![ngrok running](resources/ngrok-running.jpg)\n\n![ngrok web public](resources/ngrok-web-public.jpg)\n\n---\n\n## Best NGINX configuration\n\nYou can found NGINX settings in `/etc/nginx/nginx.conf` (Ubuntu server).\n\n```lua\nworker_processes auto;\n\nevents {\n\tuse epoll;\n\tworker_connections 1024;\n\tmulti_accept on;\n}\n\nhttp {\n\t# DDOS protection\n\tlimit_req_zone $binary_remote_addr zone=ddos:10m rate=50r/s;\n\n\tclient_body_buffer_size 10K;\n\tclient_header_buffer_size 1k;\n\tclient_max_body_size 8m;\n\tlarge_client_header_buffers 2 1k;\n\tserver_names_hash_bucket_size 64;\n\tsendfile on;\n\ttcp_nodelay on;\n\tkeepalive_timeout 15;\n\tkeepalive_requests 200;\n\treset_timedout_connection on;\n\tclient_body_timeout 10;\n\tsend_timeout 5;\n\tserver_tokens off;\n\ttypes_hash_max_size 2048;\n\tinclude /etc/nginx/mime.types;\n\tdefault_type application/octet-stream;\n\taccess_log off;\n\t# access_log /www/logs/nginx.log;\n\terror_log /var/log/nginx/error.log;\n\tproxy_http_version 1.1;\n\t\n\t# My configuration for websites:\n\t# include /www/nginx/*.conf;\n\n\tssl_protocols TLSv1 TLSv1.1 TLSv1.2;\n\tssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;\n\tssl_prefer_server_ciphers on;\n\tssl_session_cache shared:SSL:10m;\n\tssl_session_timeout 10m;\n\n\t# ======================\n\t# Some server definition\n\t# ======================\n\n\tserver {\n\t\tlisten 80;\n\t\tserver_name totaljs.com;\n\t\tserver_name www.totaljs.com;\n\t\tcharset     utf-8;\n\n\t\tlocation / {\n\n\t\t\t# DDOS protection for maximum 30 requests\n\t\t\tlimit_req zone=ddos burst=30 nodelay;\n\n\t\t\tproxy_set_header   Host $http_host;\n\t\t\tproxy_set_header   X-Forwarded-For $remote_addr;\n\t\t\tproxy_set_header   X-Forwarded-Proto $scheme;\n\t\t\tproxy_set_header   X-NginX-Proxy true;\n\t\t\tproxy_pass         http://0.0.0.0:8000;\n\t\t\tproxy_redirect     off;\n\t\t\tproxy_http_version 1.1;\n\t\t\tproxy_set_header   Upgrade $http_upgrade;\n\t\t\tproxy_set_header   Connection \"upgrade\";\n\t\t\tbreak;\n\t\t}\n\t}\n}\n```\n\n## Static files only through the reverse proxy\n\nIf you want to use reverse proxy (as NGINX) for static files and you want to use total.js JS and CSS compression or merge, then the framework supports method `F.snapshot()`.\n\n__Some defintion__:\n\n```javascript\nON('load', function() {\n\t// Framework calls itself and creates new file\n\t// nginx can follow static files in a specific directory\n\tF.snapshot('merge.js', '/www/assets/merge.js');\n\tF.snapshot('default.js', '/www/assets/mywebsite.js');\n\tF.snapshot('default.css', '/www/assets/mywebsite.css');\n\tF.snapshot('/', '/www/assets/mywebsite.html');\n});\n```\n\n## Disable JS/CSS/HTML compression in file handler\n\n```javascript\nfunction filehander_action(req, res) {\n\t// easy hack\n\tres.noCompress = true;\n\tres.file('myjavascript.js');\n}\n```\n\n## How to run Total.js app on Passenger Web Server?\n\n```javascript\nvar options = {};\noptions.directory = process.cwd();\nrequire('total.js').http('release', options);\n```\n\n### Total.js Events don't support all functionality from Node.js\n\nTotal.js framework has own implementation of `EventEmitter` (because of performance), so some standard Node.js functionality of events may not work correctly. Keep your app according to Total.js documentation.\n\n## Requests in RESTBuilder are too slow\n\nThe problem can be in `dnscache`. Try to disable this behavior via `builder.noDnsCache()`.",
@@ -27450,7 +27595,7 @@
     },
     {
       "changetype": 1,
-      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
+      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## Extending files\n\n`+v3.1` supports extending files from bundles. Now you can rename file `--FILENAME.js`, `--FILENAME.css` or `--FILENAME.html` and this file will be inserted into the target file extracted from bundle. Target file won't be overwritten.\n\n__Example__:\n\n```html\n/bundles/cms.bundle\n/themes/admin/public/--ui.js\n```\n\n- the content of `--ui.js` will be inserted into the `/themes/admin/public/ui.js` file at the end of file\n\n## .bundlesignore\n\n`+v3.1` You can create `/.bundlesignore` file which can contains a list of ignore rules. This file must be in the root of app and its definition is similar to `.gitignore` file.\n\n__Example__:\n\n```html\n/download/*.pdf\n/private/*\n*.zip\n```\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
       "group": "How does it work?",
       "name": "Bundles"
     },
