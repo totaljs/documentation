@@ -26557,14 +26557,6 @@
           "options": [
             "alias"
           ],
-          "name": "$.params",
-          "return": "Object",
-          "body": "Alias for `controller.params`. It contains dynamic values according to route dynamic params. __IMPORTANT__: controller must be assigned."
-        },
-        {
-          "options": [
-            "alias"
-          ],
           "name": "$.language",
           "return": "String",
           "body": "Alias for `controller.language`. __IMPORTANT__: controller must be assigned."
