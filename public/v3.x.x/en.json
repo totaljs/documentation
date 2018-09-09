@@ -6439,6 +6439,26 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.0.0"],
+          "name": "builder.repository",
+          "body": "Sets/Gets a value from the query builder repository. If the value is not defined then the method returns a value from the repository according to the `key`.",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "body": "A key"
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "body": "A value",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "name": "builder.between",
           "body": "Creates a filter for finding a value beween two numbers.",
           "return": "DatabaseBuilder",
