@@ -19823,11 +19823,11 @@
           "return": "Array"
         },
         {
-          "body": "Sorts the array. Supports the alphabetical sorting.\n\n```javascript\nvar arr = [];\n\narr.push({ user: { name: 'Peter', age: 30 }});\narr.push({ user: { name: 'Lucia', age: 33 }});\narr.push({ user: { name: 'John', age: 18 });\narr.push({ user: { name: 'Denis', age: 35 });\n\nconsole.log(arr.quicksort('user.name'));\nconsole.log(arr.quicksort('user.name', false));```",
+          "body": "Sorts the array. Supports the alphabetical sorting.\n\n```javascript\nvar arr = [];\n\narr.push({ user: { name: 'Peter', age: 30 }});\narr.push({ user: { name: 'Lucia', age: 33 }});\narr.push({ user: { name: 'John', age: 18 });\narr.push({ user: { name: 'Denis', age: 35 });\n\nconsole.log(arr.quicksort('name'));\nconsole.log(arr.quicksort('name', false));```",
           "name": "Array.prototype.quicksort",
           "params": [
             {
-              "body": "The path to the property.",
+              "body": "The path to the property. Path can't contain nested fields.",
               "name": "path",
               "type": "String"
             },
