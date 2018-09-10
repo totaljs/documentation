@@ -19833,18 +19833,9 @@
             },
             {
               "default": "true",
-              "body": "Asc (true), Desc (false)",
+              "body": "Asc (true), Desc (false) or can be <code>asc</code> or <code>desc</code>",
               "name": "asc",
-              "type": "Boolean"
-            },
-            {
-              "default": "3",
-              "body": "The maximum count of chars for ordering.",
-              "name": "maxlength",
-              "type": "Number",
-              "options": [
-                "optional"
-              ]
+              "type": "Boolean/String"
             }
           ],
           "return": "Array"
