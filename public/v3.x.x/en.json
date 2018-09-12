@@ -23196,10 +23196,18 @@
           "return": "Boolean"
         },
         {
+          "options": ["+v3.0.0"],
           "changetype": 1,
           "body": "Is alias for `F.datetime`.",
           "name": "NOW",
           "return": "Date"
+        },
+        {
+          "options": ["+v3.1.0"],
+          "changetype": 1,
+          "body": "Is alias for `F.config`.",
+          "name": "CONF",
+          "return": "Object"
         },
         {
           "changetype": 1,
@@ -23234,12 +23242,14 @@
       ]
     },
     {
-      "body": "All methods are in a global scope. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value; {Object} data/model\n\t// $.error; {ErrorBuilder}\n\t// $.controller; {Controller} optional\n\t// $.options; {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\n    // error === ErrorBuilder\n    setTimeout(function() {\n        $.callback(SUCCESS(true)); // is same as $.success();\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});\n```",
+      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value; {Object} data/model\n\t// $.error; {ErrorBuilder}\n\t// $.controller; {Controller} optional\n\t// $.options; {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});\n```",
       "group": "Builders",
       "name": "Operations",
       "methods": [
         {
-          "body": "Registers a new operation.",
+          "changetype": 2,
+          "changelog": "+v3.1.0 appends new arguments <code>repeat</code> and <code>stop</code>",
+          "body": "Registers a new global operation.\n\n```javascript\nNEWOPERATION('myoperation', function($) {\n\n\t// $.value or $.model;\n\t// Contains an input value\n\n\t// $.options;\n\t// Contains additional options\n\n\t// $.error;\n\t// ErrorBuilder instance\n\n\t// $.DB();\n\t// Returns a new instance of DB (targeted for SQL Agent and DBMS moduels)\n\n\t//\u00a0$.invalid(name, [message]);\n\t// Responds with error (it executes callback automatically)\n\n\t//\u00a0$.success([success], [value]);\n\t// Responds with SUCCESS (it executes callback automatically)\n\n\t//\u00a0$.done([arg]);\n\t// It returns a callback function with SUCCESS()\n\t// You can use it in some async operations instead of callback\n\n\t// $.callback([err], value);\n\n\t// =============================\n\t// If the controller is assigned\n\t// =============================\n\n\t// $.controller;\n\t// $.body;\n\t// $.files;\n\t// $.id;\n\t// $.ip;\n\t// $.language;\n\t// $.params;\n\t// $.query;\n\t// $.session;\n\t// $.user;\n\n}, 3);\n```",
           "name": "NEWOPERATION",
           "params": [
             {
@@ -23252,32 +23262,26 @@
               "name": "fn",
               "params": [
                 {
-                  "body": "A custom error handling.",
-                  "name": "error",
-                  "type": "ErrorBuilder"
-                },
-                {
-                  "body": "A custom value.",
-                  "name": "value",
+                  "body": "Operation options",
+                  "name": "$",
                   "type": "Object"
-                },
-                {
-                  "body": "A callback.",
-                  "name": "callback",
-                  "type": "Function",
-                  "params": [
-                    {
-                      "name": "value",
-                      "type": "Object/Error",
-                      "body": "A new value",
-                      "options": [
-                        "optional"
-                      ]
-                    }
-                  ]
                 }
               ],
               "type": "Function"
+            },
+            {
+              "body": "How many times can be this operation repeated if this operation will throw error?",
+              "name": "repeat",
+              "type": "Number",
+              "default": "0",
+              "options": ["+3.1.0", "optional"]
+            },
+            {
+              "body": "If <code>true</code> then next operations won't be executed. This argument is applied for <code>RUN()</code> method.",
+              "name": "stop",
+              "type": "Boolean",
+              "default": "false",
+              "options": ["+3.1.0", "optional"]
             }
           ]
         },
@@ -23313,6 +23317,67 @@
                   "name": "value",
                   "type": "Object"
                 }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "A custom options",
+              "name": "options",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A controller instance",
+              "name": "controller",
+              "type": "Controller",
+              "options": [
+                "optional"
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "body": "Executes multiple operations.\n\n```javascript\nRUN('operation_1, operation_2, operation_3', { some: 'data' }, function(err, response, $) {\n\tconsole.log(err);\n\tconsole.log(response.operation_1);\n\tconsole.log(response.operation_2);\n\tconsole.log(response.operation_3);\n});\n\n// OR\n\nRUN(['operation_1', 'operation_2', 'operation_3'], { some: 'data' }, function(err, response, $) {\n\tconsole.log(err);\n\tconsole.log(response.operation_1);\n\tconsole.log(response.operation_2);\n\tconsole.log(response.operation_3);\n});\n```",
+          "name": "RUN",
+          "params": [
+            {
+              "body": "Names of operations.",
+              "name": "name",
+              "type": "Array/String"
+            },
+            {
+              "body": "A value",
+              "name": "value",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A callback",
+              "name": "fn",
+              "params": [
+                {
+                  "body": "An error.",
+                  "name": "err",
+                  "type": "Error",
+                  "default": "null"
+                },
+                {
+                  "body": "Responses from operations in the form <code>response.name_of_operation</code>.",
+                  "name": "response",
+                  "type": "Object"
+                },
+                {
+                  "body": "OperationOptions instance",
+                  "name": "$",
+                  "type": "Object"
+                }
+
               ],
               "type": "Function"
             },
