@@ -6077,6 +6077,27 @@
         },
         {
           "options": [
+            "+v3.1.0"
+          ],
+          "changetype": 1,
+          "name": "builder.arg",
+          "body": "Appends a new dynamic parameter for filtering, simple usage:\n\n```javascript\nbuilder.arg('age', 33);\nbuilder.query('doc.age==arg.age');```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "key",
+              "type": "String",
+              "body": "A field name"
+            },
+            {
+              "name": "value",
+              "type": "Object",
+              "body": "A value"
+            }
+          ]
+        },
+        {
+          "options": [
             "+v2.8.0"
           ],
           "name": "builder.backup",
@@ -6512,32 +6533,13 @@
             "+v3.0.0"
           ],
           "name": "builder.query",
-          "body": "Creates a simple condition which will be evaluated as JS code.\n\n```javascript\n// doc {Object}   === processed document\n// index {Number} === an index of processed document\nNOSQL('products').find().query('doc.published=true && doc.price>10').callback(console.log);```",
+          "body": "Creates a simple condition which will be evaluated as a JS code. The code must return a `Boolean` value without `return` keyword.\n\n```javascript\n// doc {Object}   === processed document\n// index {Number} === an index of processed document\nNOSQL('products').find().query('doc.published=true && doc.price>10').callback(console.log);```\n\n__Supported arguments__:\n\n- `doc {Object}` contains a current processed document\n- `arg {Object}` contains a dynamic arguments\n- `repository {Object}` contains a custom repository\n- `index {Number}` a current processed document index",
           "return": "DatabaseBuilder",
           "params": [
             {
               "name": "code",
               "type": "String",
               "body": "Your condition"
-            }
-          ]
-        },
-        {
-          "name": "builder.filter",
-          "body": "Create an own custom filter. The method has to return `Boolean`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.filter((doc) => doc.age > 10);\n});```",
-          "return": "DatabaseBuilder",
-          "params": [
-            {
-              "name": "fn",
-              "type": "Function",
-              "body": "A custom filter.",
-              "params": [
-                {
-                  "name": "doc",
-                  "type": "Object",
-                  "body": "A document from DB."
-                }
-              ]
             }
           ]
         },
@@ -6559,30 +6561,6 @@
                   "name": "doc",
                   "type": "Object",
                   "body": "A document from DB."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "builder.prepare",
-          "body": "Can prepare a stored document to your needs.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.prepare((doc) => { recordID: doc.id });\n});```",
-          "return": "DatabaseBuilder",
-          "params": [
-            {
-              "name": "fn",
-              "type": "Function",
-              "body": "A custom preparation.",
-              "params": [
-                {
-                  "name": "doc",
-                  "type": "Object",
-                  "body": "A document from DB."
-                },
-                {
-                  "name": "index",
-                  "type": "Number",
-                  "body": "Current index."
                 }
               ]
             }
