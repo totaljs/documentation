@@ -5187,12 +5187,14 @@
           "return": "Database"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "database.update",
-          "body": "Updates a document in the database.",
+          "body": "Updates a document in the database.\n\n__+v3.1.0 supports__:\n\n```javascript\nNOSQL('database').update('doc.name = doc.name.toUpperCase(); return doc').where('id', 1);\n```\n\nSupported arguments:\n\n- `doc` a current processed document\n- `repository` a repository object\n- `arg` a custom arguments",
           "params": [
             {
               "name": "doc",
-              "type": "Object",
+              "type": "Object/String",
               "body": "This document will be updated in DB file."
             },
             {
@@ -5234,7 +5236,7 @@
           "changetype": 2,
           "changelog": "Supports incremental enrollments",
           "name": "database.modify",
-          "body": "Modifies specific values in the database. Example:\n\n```javascript\nNOSQL('database').modify({ name: 'Peter', age: (age, doc) => age + 10, '+price': 10 }).where('id', 1);\n```\n\n__Total.js v3 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`",
+          "body": "Modifies specific values in the database. Example:\n\n```javascript\nNOSQL('database').modify({ name: 'Peter', $age: 'val + 10', '+price': 10 }).where('id', 1);\n```\n\n__v3.0.0 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`\n\n__+v3.1.0 supports__:\n\n- `$age` evaluates a string as a JS code, supported dynamic arguments:\n\t- `val` a current field value\n\t- `doc` a current processed document\n\t- `repository` a repository object\n\t- `arg` a custom arguments\n\n```javascript\nNOSQL('database').modify({ $age: 'val + 10' }).where('id', 1);\n\n// or you can use \"return\" statement:\nNOSQL('database').modify({ $age: 'return val + 10' }).where('id', 1);\n```",
           "params": [
             {
               "name": "doc",
@@ -5691,12 +5693,14 @@
           "return": "DatabaseBuilder"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "table.update",
-          "body": "Updates a document in the database.",
+          "body": "Updates a document in the database.\n\n__+v3.1.0 supports__:\n\n```javascript\nTABLE('database').update('doc.name = doc.name.toUpperCase(); return doc').where('id', 1);\n```\n\nSupported arguments:\n\n- `doc` a current processed document\n- `repository` a repository object\n- `arg` a custom arguments",
           "params": [
             {
               "name": "doc",
-              "type": "Object",
+              "type": "Object/String",
               "body": "This document will be updated in DB file."
             },
             {
@@ -5745,8 +5749,10 @@
           "return": "Table"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "table.modify",
-          "body": "Modifies specific values in the database. Example:\n\n```javascript\nTABLE('database').modify({ name: 'Peter', age: (age, doc) => age + 10, '+price': 10 }).where('id', 1);\n```\n\n__Total.js v3 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`",
+          "body": "Modifies specific values in the database. Example:\n\n```javascript\nTABLE('database').modify({ name: 'Peter', $age: 'val + 10', '+price': 10 }).where('id', 1);\n```\n\n__v3.0.0 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`\n\n__+v3.1.0 supports__:\n\n- `$age` evaluates a string as a JS code, supported dynamic arguments:\n\t- `val` a current field value\n\t- `doc` a current processed document\n\t- `repository` a repository object\n\t- `arg` a custom arguments\n\n```javascript\nTABLE('database').modify({ $age: 'val + 10' }).where('id', 1);\n\n// or you can use \"return\" statement:\nTABLE('database').modify({ $age: 'return val + 10' }).where('id', 1);\n```",
           "params": [
             {
               "name": "doc",
