@@ -23367,7 +23367,7 @@
               "type": "Function"
             },
             {
-              "body": "A custom options",
+              "body": "A custom options. Must be `Object`.",
               "name": "options",
               "type": "Object",
               "options": [
