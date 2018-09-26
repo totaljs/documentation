@@ -4109,6 +4109,14 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "default": "10000",
+          "body": "A default RESTBuilder timeout in milliseconds.",
+          "name": "default-restbuilder-timeout",
+          "return": "Number"
+        },
+        {
           "default": "'gm'",
           "body": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server has to have installed one of them.",
           "name": "default-image-converter",
@@ -23265,7 +23273,7 @@
               "body": "If <code>true</code> then next operations won't be executed. This argument is applied for <code>RUN()</code> method.",
               "name": "stop",
               "type": "Boolean",
-              "default": "false",
+              "default": "true",
               "options": ["+3.1.0", "optional"]
             }
           ]
