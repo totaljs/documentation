@@ -4117,6 +4117,22 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "default": "33",
+          "body": "A maximum count of keys for parsing URL encoded arguments.",
+          "name": "default-request-maxkeys",
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "default": "false",
+          "body": "Enables logger for Schemas and Operations. It can contain these values:\n\n- `file` or `true` stores info into the file `logs/logger.log`\n- `console` shows info into the console",
+          "name": "logger",
+          "return": "String/Boolean"
+        },
+        {
           "default": "'gm'",
           "body": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server has to have installed one of them.",
           "name": "default-image-converter",
