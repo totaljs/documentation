@@ -10712,7 +10712,7 @@
         {
           "changelog": "v3.1.0 Added <code>security</code> as alias for <code>SameSite</code> cookie attribute",
           "changetype": 2,
-          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie from request?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie to response?__\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days');\n```\n\n__How to remove cookie in response?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');\n```\n\n__With additional settings__:\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days', { httponly: true, security: 'lax' });\n```\n\n__Secured cookies for sessions__:\n\n```javascript\ncontroller.cookie('cookiename', 'token', '5 days', { security: 'strict', secure: true, httponly: true });```",
+          "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie from request?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie to response?__\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days');\n```\n\n__How to remove cookie in response?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');\n```\n\n__How to create a session cookie?__\n\n```javascript\ncontroller.cookie('cookiename', 'value');\n```\n\n__With additional settings__:\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days', { httponly: true, security: 'lax' });\n```\n\n__Secured cookies for sessions__:\n\n```javascript\ncontroller.cookie('cookiename', 'token', '5 days', { security: 'strict', secure: true, httponly: true });```",
           "name": "controller.cookie",
           "options": [
             "http"
@@ -10731,7 +10731,8 @@
             {
               "body": "Expiration. E.g. <b>\"2 days\"</b>.",
               "name": "expiration",
-              "type": "String/Date"
+              "type": "String/Date",
+              "options": ["optional"]
             },
             {
               "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httponly (Boolean), security (String - <code>lax</code> or <code>strict</code>). Default cookie path: <b>\"/\"</b>.",
