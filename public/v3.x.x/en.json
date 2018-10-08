@@ -23292,6 +23292,13 @@
               "type": "Boolean",
               "default": "true",
               "options": ["+3.1.0", "optional"]
+            },
+            {
+              "body": "If <code>true</code> then <code>error</code> (if it throws) will be return as a result from this operation when operations are chaining. Otherwise the framework returns <code>value</code> or <code>undefined</code>.",
+              "name": "bind_error",
+              "type": "Boolean",
+              "default": "false",
+              "options": ["+3.1.0", "optional"]
             }
           ]
         },
