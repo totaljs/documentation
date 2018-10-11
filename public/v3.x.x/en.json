@@ -23252,7 +23252,7 @@
     },
     {
       "changetype": 2,
-      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
+      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
       "group": "Builders",
       "name": "Operations",
       "methods": [
@@ -27280,7 +27280,15 @@
           "return": "SchemaOptions",
           "body": "Performs a callback."
         },
-
+        {
+          "options": "+v3.1.0",
+          "changetype": 1,
+          "name": "$.cancel",
+          "params": [
+          ],
+          "return": "SchemaOptions",
+          "body": "Cancels callback and cleans the current `SchemaInstance`."
+        },
         {
           "name": "$.done",
           "params": [
