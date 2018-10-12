@@ -4103,6 +4103,20 @@
           "return": "Boolean"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "default": "null",
+          "body": "Default allowed CORS hostnames separated by `,` comma in the `config`. Hostname can start with `//` and it will be assigned to `http:` and `https:` protocol.",
+          "name": "default-cors",
+          "return": "String Array"
+        },
+        {
+          "default": "120",
+          "body": "A default CORS max age in seconds.",
+          "name": "default-cors-maxage",
+          "return": "Number"
+        },
+        {
           "default": "3000",
           "body": "The default request timeout in milliseconds (websocket doesn't support it).",
           "name": "default-request-timeout",
