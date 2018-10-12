@@ -14466,6 +14466,13 @@
               "body": "The value for parsing.",
               "name": "value",
               "type": "String"
+            },
+            {
+              "body": "Converts date fields to <code>Date</code> object.",
+              "name": "date",
+              "type": "Boolean",
+              "default": "false",
+              "options": ["optional"]
             }
           ],
           "return": "Object"
@@ -27728,7 +27735,7 @@
       "name": "Debugging"
     },
     {
-      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `F.onAuthorize` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter Širka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter Širka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();\n```",
+      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do a fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `F.onAuthorize` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter Širka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter Širka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();\n```",
       "group": "How does it work?",
       "name": "Unit-Testing"
     }
