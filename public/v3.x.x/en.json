@@ -9441,7 +9441,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Creates a proxy for the current request.",
+          "body": "Creates a proxy for the current request. __IMPORTANT__: response data are loaded into the memory.",
           "name": "controller.proxy",
           "options": [
             "http"
@@ -9719,45 +9719,6 @@
           ],
           "params": [
 
-          ],
-          "return": "FrameworkController"
-        },
-        {
-          "body": "Creates the response from the URL address (it copies only the response body).",
-          "name": "controller.pipe",
-          "options": [
-            "important",
-            "http"
-          ],
-          "params": [
-            {
-              "body": "The URL address.",
-              "name": "url",
-              "type": "String"
-            },
-            {
-              "body": "The request additional headers.",
-              "name": "headers",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-                {
-                  "name": "err",
-                  "type": "Error",
-                  "body": "Error handling."
-                }
-              ],
-              "type": "Function"
-            }
           ],
           "return": "FrameworkController"
         },
@@ -14061,7 +14022,7 @@
               "type": "String Array"
             },
             {
-              "body": "The request data.",
+              "body": "Data from the response. If the content-type is <code>text/*</code> or <code>application/*</code> then the method returns <code>String</code>, otherwise <code>Buffer</code>",
               "name": "data",
               "type": "Object"
             },
@@ -17264,16 +17225,6 @@
         {
           "body": "Sets the route for `debug mode` only",
           "name": "debug",
-          "options": [
-            "optional",
-            "http"
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Sets the route for proxy. Allows the communication between more Total.js independent applications",
-          "example": "https://github.com/totaljs/examples/tree/master/controller-proxy",
-          "name": "proxy",
           "options": [
             "optional",
             "http"
@@ -22359,9 +22310,9 @@
               "type": "String Array"
             },
             {
-              "body": "The request data.",
+              "body": "A request data. If the content-type is <code>text/*</code> or <code>application/*</code> then the method returns <code>String</code>, otherwise <code>Buffer</code>",
               "name": "data",
-              "type": "Object"
+              "type": "String/Buffer"
             },
             {
               "body": "A callback",
