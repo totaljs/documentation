@@ -20381,6 +20381,39 @@
           "return": "Object"
         },
         {
+          "options": ["+v3.1.0"],
+          "changetype": 1,
+          "body": "Sets/Gets a value into/from cache.\n\n```javascript\nvar write = CACHE('somekey', 'somevalue', '5 days');\nvar read = CACHE('somekey');```",
+          "name": "CACHE",
+          "params": [
+            {
+              "body": "A key.",
+              "name": "key",
+              "type": "String"
+            },
+            {
+              "body": "A value.",
+              "name": "value",
+              "type": "Number",
+              "options": ["optional"]
+            },
+            {
+              "body": "Expiration",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Will be persistent?",
+              "name": "persistent",
+              "type": "Boolean",
+              "default": "false",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Object"
+        },
+        {
           "body": "Gets the value from `framework.resource()`.",
           "name": "RESOURCE",
           "params": [
