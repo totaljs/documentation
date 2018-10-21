@@ -3651,7 +3651,7 @@
     },
     {
       "changetype": 2,
-      "body": "`FrameworkConfiguration` contains framework settings. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault-image-quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy-custom-object-raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy-custom-object-json     (JSON)      : { \"name\": \"Total.js\" }\nmy-custom-number          (number)    : 320.34\nmy-custom-boolean         (boolean)   : true\nmy-custom-date            (date)      : 2016-07-26\nmy-custom-array           (array)     : [1, 2, 3, 4]\nbinds-environment-value   (env)       : process.env\n\n// +v2.9.0 supports config linking\nbinds-config-value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill-be-number-1      : 123\nwill-be-number-2      : 0.3\nwill-not-be-number-1  : 0123\nwill-not-be-number-2  : 0,3\n\nwill-be-boolean-1     : true\nwill-be-boolean-2     : false\n```",
+      "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : process.env\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```",
       "group": "Framework",
       "name": "FrameworkConfiguration",
       "properties": [
@@ -3673,7 +3673,7 @@
         {
           "default": "false",
           "body": "`F.cache` database will be stored on HDD each 1 minute. Cache is loaded from HDD automatically if the framework is started.",
-          "name": "allow-cache-snapshot",
+          "name": "allow_cache_snapshot",
           "return": "Boolean",
           "options": [
             "+v2.2.0"
@@ -3683,7 +3683,7 @@
           "changetype": 1,
           "default": "false",
           "body": "`F.cache` database will be synchronized between all child processes in the cluster",
-          "name": "allow-cache-cluster",
+          "name": "allow_cache_cluster",
           "return": "Boolean",
           "options": [
             "+v3.0.0"
@@ -3692,13 +3692,13 @@
         {
           "default": "false",
           "body": "Enables a small console debugging. The framework creates snapshot of `F.usage()` automatically into the `/usage.log` file.\n\n__Or alternative__:\n```javascript\nrequire('total.js').http('release', { debug: true });```",
-          "name": "allow-debug",
+          "name": "allow_debug",
           "return": "Boolean"
         },
         {
           "default": "true",
           "body": "If `true` then the framework filters some unhandled network errors like `EPIPE`, `ZLIB DISTANCE`, etc..",
-          "name": "allow-filter-errors",
+          "name": "allow_filter_errors",
           "return": "Boolean",
           "options": [
             "+v2.8.0"
@@ -3707,7 +3707,7 @@
         {
           "default": "''",
           "body": "Sets the default timezone for the application. E.g. for the universal datetime set the property to `UTC`.",
-          "name": "default-timezone",
+          "name": "default_timezone",
           "return": "String",
           "options": [
             "+v1.9.0"
@@ -3716,7 +3716,7 @@
         {
           "default": "null",
           "body": "starts a UNIX socket server listening for connections on the given path.",
-          "name": "default-listenpath",
+          "name": "default_listenpath",
           "return": "String",
           "options": [
             "+v2.6.0"
@@ -3725,7 +3725,7 @@
         {
           "default": "200",
           "body": "Sets a default HTTP status when ErrorBuilder responds.",
-          "name": "default-errorbuilder-status",
+          "name": "default_errorbuilder_status",
           "return": "Number",
           "options": [
             "+v2.6.0"
@@ -3734,7 +3734,7 @@
         {
           "default": "''",
           "body": "This property can replace a root relative path. It's very helpful for applications which are running on the one domain with different paths.",
-          "name": "default-root",
+          "name": "default_root",
           "return": "String",
           "options": [
             "+v1.9.7"
@@ -3744,7 +3744,7 @@
           "changetype": 1,
           "default": "''",
           "body": "A default web proxy server, can contain protocol `http` or `https`.\n\n```html\n// without auth\ndefault-proxy      : HOSTNAME:PORT\n\n// or with auth\ndefault-proxy      : USERNAME:PASSWORD@HOSTNAME:PORT```",
-          "name": "default-proxy",
+          "name": "default_proxy",
           "return": "String",
           "options": [
             "+v3.0.0"
@@ -3753,7 +3753,7 @@
         {
           "default": "'11111111'",
           "body": "This property can replace a default response max-age header.",
-          "name": "default-response-maxage",
+          "name": "default_response_maxage",
           "return": "String",
           "options": [
             "+v1.9.7"
@@ -3764,7 +3764,7 @@
           "changetype": 1,
           "default": "true",
           "body": "Can disable auto clearing of temporary directory",
-          "name": "allow-clear-temp",
+          "name": "allow_clear_temp",
           "return": "Boolean",
           "options": [
             "+v3.0.0"
@@ -3773,7 +3773,7 @@
         {
           "default": "'Total.js'",
           "body": "Sets X-Powered-By header. Empty value removes header in a configuration file.",
-          "name": "default-xpoweredby",
+          "name": "default_xpoweredby",
           "return": "String"
         },
         {
@@ -3782,7 +3782,7 @@
             "+v3.0.0"
           ],
           "body": "A secret for encrypting/decrypting unique identificators. This secret is used in `U.encryptID()`, `U.decryptID()` - as default salt. Default value is the same value like `secret` item.",
-          "name": "secret-uid",
+          "name": "secret_uid",
           "return": "String"
         },
         {
@@ -3801,20 +3801,20 @@
         },
         {
           "default": "''",
-          "body": "Custom `etag-version` for handling static files, that is used as part of the key for caching static files on client-side.",
-          "name": "etag-version",
+          "body": "Custom `etag_version` for handling static files, that is used as part of the key for caching static files on client-side.",
+          "name": "etag_version",
           "return": "String"
         },
         {
           "default": "'/packages/'",
           "body": "A default directory for packages. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-packages",
+          "name": "directory_packages",
           "return": "String"
         },
         {
           "default": "'/isomorphic/'",
           "body": "A default directory for isomorphic code. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-isomorphic",
+          "name": "directory_isomorphic",
           "return": "String",
           "options": [
             "+v1.9.0"
@@ -3823,7 +3823,7 @@
         {
           "default": "'/private/'",
           "body": "A default directory for private files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-private",
+          "name": "directory_private",
           "return": "String",
           "options": [
             "+v1.9.0"
@@ -3832,61 +3832,61 @@
         {
           "default": "'/definitions/'",
           "body": "A default directory for definitions. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-definitions",
+          "name": "directory_definitions",
           "return": "String"
         },
         {
           "default": "'/controllers/'",
           "body": "A default directory for controllers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.  __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-controllers",
+          "name": "directory_controllers",
           "return": "String"
         },
         {
           "default": "'/databases/'",
           "body": "A default directory for NoSQL databases. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-databases",
+          "name": "directory_databases",
           "return": "String"
         },
         {
           "default": "'/configs/'",
           "body": "A default directory for another `config` files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-configs",
+          "name": "directory_configs",
           "return": "String"
         },
         {
           "default": "'/models/'",
           "body": "A default directory for models. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-models",
+          "name": "directory_models",
           "return": "String"
         },
         {
           "default": "'/views/'",
           "body": "A default directory for views. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-views",
+          "name": "directory_views",
           "return": "String"
         },
         {
           "default": "'/tmp/'",
           "body": "A default directory for temporary files. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application root. This value can be empty and then the framework will use a temporary directory of OS.",
-          "name": "directory-temp",
+          "name": "directory_temp",
           "return": "String"
         },
         {
           "default": "'/resources/'",
           "body": "A default directory for resources. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-resources",
+          "name": "directory_resources",
           "return": "String"
         },
         {
           "default": "'/source/'",
           "body": "A default directory for business logic. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-source",
+          "name": "directory_source",
           "return": "String"
         },
         {
           "default": "'/public/'",
           "body": "A default directory for publishing. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-public",
+          "name": "directory_public",
           "return": "String"
         },
         {
@@ -3896,7 +3896,7 @@
           "changetype": 1,
           "default": "'/.src/'",
           "body": "A default directory for unpacking bundles.",
-          "name": "directory-src",
+          "name": "directory_src",
           "return": "String"
         },
         {
@@ -3906,7 +3906,7 @@
           "changetype": 1,
           "default": "'/bundles/'",
           "body": "A default directory for bundles.",
-          "name": "directory-bundles",
+          "name": "directory_bundles",
           "return": "String"
         },
         {
@@ -3916,7 +3916,7 @@
           "changetype": 1,
           "default": "'/schemas/'",
           "body": "A default directory for schemas.",
-          "name": "directory-schemas",
+          "name": "directory_schemas",
           "return": "String"
         },
         {
@@ -3926,90 +3926,90 @@
           "changetype": 1,
           "default": "'/operations/'",
           "body": "A default directory for operations.",
-          "name": "directory-operations",
+          "name": "directory_operations",
           "return": "String"
         },
         {
           "default": "'/app/'",
           "body": "The default virtual directory for publishing. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
-          "name": "directory-public-virtual",
+          "name": "directory_public_virtual",
           "return": "String"
         },
         {
           "default": "'/modules/'",
           "body": "A default directory for modules. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-modules",
+          "name": "directory_modules",
           "return": "String"
         },
         {
           "default": "'/logs/'",
           "body": "A default directory for logs. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory.",
-          "name": "directory-logs",
+          "name": "directory_logs",
           "return": "String"
         },
         {
           "default": "'/tests/'",
           "body": "A default directory for tests. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-tests",
+          "name": "directory_tests",
           "return": "String"
         },
         {
           "default": "'/workers/'",
           "body": "A default directory for workers. When the path starts with `~` then the framework doesn't modify path according to the application directory. So with `~` char you can set the directory outside of the application directory. __IMPORTANT__: I don't recommend to change it.",
-          "name": "directory-workers",
+          "name": "directory_workers",
           "return": "String"
         },
         {
           "default": "''",
           "body": "The default url routing of static files. Is used in view engine and F.routeStatic().",
-          "name": "static-url",
+          "name": "static_url",
           "return": "String"
         },
         {
           "default": "'/js/'",
           "body": "The default url routing of static files (JavaScript) routing. Is used in view engine and F.routeScript().",
-          "name": "static-url-script",
+          "name": "static_url_script",
           "return": "String"
         },
         {
           "default": "'/css/'",
           "body": "The default url routing of static files (CSS) routing. Is used in view engine and F.routeStyle().",
-          "name": "static-url-style",
+          "name": "static_url_style",
           "return": "String"
         },
         {
           "default": "'/img/'",
           "body": "The default url routing of static files (Images/Pictures) routing. Is used in view engine and F.routeImage().",
-          "name": "static-url-image",
+          "name": "static_url_image",
           "return": "String"
         },
         {
           "default": "'/fonts/'",
           "body": "The default url routing of static files (Fonts) routing. Is used in view engine and F.routeFont().",
-          "name": "static-url-font",
+          "name": "static_url_font",
           "return": "String"
         },
         {
           "default": "'/video/'",
           "body": "The default url routing of static files (Videos) routing. Is used in view engine and F.routeVideo().",
-          "name": "static-url-video",
+          "name": "static_url_video",
           "return": "String"
         },
         {
           "default": "'/download/'",
           "body": "The default url routing of static files (Downloads) routing. Is used in view engine and F.routeDownload().",
-          "name": "static-url-download",
+          "name": "static_url_download",
           "return": "String"
         },
         {
-          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic-accepts            : .jpg, .ico, .js```",
-          "name": "static-accepts",
+          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic_accepts            : .jpg, .ico, .js```",
+          "name": "static_accepts",
           "return": "String Array"
         },
         {
           "default": "[]",
-          "body": "This option adds all own values into `static-accepts` and it's not visible in `F.config`. Values in config files have to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic-accepts-custom        : .eps, .nosql```",
-          "name": "static-accepts-custom",
+          "body": "This option adds all own values into `static_accepts` and it's not visible in `F.config`. Values in config files have to be separated with comma `,` (on one line).\n\n__The config file declaration__:\n\n```html\nstatic_accepts_custom        : .eps, .nosql```",
+          "name": "static_accepts_custom",
           "options": [
             "auxiliary"
           ],
@@ -4018,33 +4018,33 @@
         {
           "default": "'0.0.0.0'",
           "body": "A default IP address for listening of Total.js web server.",
-          "name": "default-ip",
+          "name": "default_ip",
           "return": "String"
         },
         {
           "default": "8000",
           "body": "The default PORT for listening of server.",
-          "name": "default-port",
+          "name": "default_port",
           "return": "Number"
         },
         {
           "default": "'layout'",
           "body": "The default layout name for the views. The framework loads the layout in this format: `{directory-views}/{layout}.html`",
-          "name": "default-layout",
+          "name": "default_layout",
           "return": "String"
         },
         {
           "default": "''",
           "body": "The default theme name for the views.",
-          "name": "default-theme",
+          "name": "default_theme",
           "return": "String"
         },
         {
-          "changelog": "Renamed <code>default-request-length</code>",
+          "changelog": "Renamed <code>default_request_length</code>",
           "changetype": 1,
           "default": "5",
           "body": "The default request length in `kB` (kilobyte). The framework calculates POST/PUT data and length of uploaded files.",
-          "name": "default-request-maxlength",
+          "name": "default_request_maxlength",
           "return": "Number",
           "options": [
             "+v3.0.0"
@@ -4053,7 +4053,7 @@
         {
           "default": "1500",
           "body": "A default timeout in milliseconds for dependencies of Total.js modules.",
-          "name": "default-dependency-timeout",
+          "name": "default_dependency_timeout",
           "options": [
             "+v2.9.0",
             "internal"
@@ -4061,11 +4061,11 @@
           "return": "Number"
         },
         {
-          "changelog": "Renamed <code>default-maximum-file-descriptors</code>",
+          "changelog": "Renamed <code>default_maximum_file_descriptors</code>",
           "changetype": 1,
           "default": "0",
           "body": "A maximum open file descriptors. The feature is disabled if the value is `0`.",
-          "name": "default-maxopenfiles",
+          "name": "default_maxopenfiles",
           "options": [
             "+v3.0.0"
           ],
@@ -4081,16 +4081,16 @@
         },
         {
           "body": "Enables/Disables console tracing.",
-          "name": "trace-console",
+          "name": "trace_console",
           "default": "true",
           "return": "Boolean"
         },
         {
           "changetype": 1,
-          "changelog": "Renamed <code>default-websocket-request-length</code>",
+          "changelog": "Renamed <code>default_websocket_request_length</code>",
           "default": "2",
           "body": "The default WebSocket message length in kB (kilobajt). The framework calculates received message.",
-          "name": "default-websocket-maxlength",
+          "name": "default_websocket_maxlength",
           "return": "Number",
           "options": [
             "+v3.0.0"
@@ -4099,7 +4099,7 @@
         {
           "default": "true",
           "body": "Encodes/Decodes WebSocket messages automatically. The framework automatically encodes/decodes (through encodeURIComponent/decodeURIComponent) messages for better encoding. On the client-side is need to perform encode/decode too.\n\n### Example (client-side):\n\n__Sending:__\n```javascript\nwebsocket.send(encodeURIComponent(JSON.stringify({ name: 'Peter Sirka' })));\n```\n\n__Receiving:__\n```javascrip\nwebsocket.onmessage = function(e) {\n    var message = JSON.parse(decodeURIComponent(e.data));\n};```",
-          "name": "default-websocket-encodedecode",
+          "name": "default_websocket_encodedecode",
           "return": "Boolean"
         },
         {
@@ -4107,19 +4107,19 @@
           "options": ["+v3.1.0"],
           "default": "null",
           "body": "Default allowed CORS hostnames separated by `,` comma in the `config`. Hostname can start with `//` and it will be assigned to `http:` and `https:` protocol.",
-          "name": "default-cors",
+          "name": "default_cors",
           "return": "String Array"
         },
         {
           "default": "120",
           "body": "A default CORS max age in seconds.",
-          "name": "default-cors-maxage",
+          "name": "default_cors_maxage",
           "return": "Number"
         },
         {
           "default": "3000",
           "body": "The default request timeout in milliseconds (websocket doesn't support it).",
-          "name": "default-request-timeout",
+          "name": "default_request_timeout",
           "return": "Number"
         },
         {
@@ -4127,7 +4127,7 @@
           "options": ["+v3.1.0"],
           "default": "10000",
           "body": "A default RESTBuilder timeout in milliseconds.",
-          "name": "default-restbuilder-timeout",
+          "name": "default_restbuilder_timeout",
           "return": "Number"
         },
         {
@@ -4135,7 +4135,7 @@
           "options": ["+v3.1.0"],
           "default": "33",
           "body": "A maximum count of keys for parsing URL encoded arguments.",
-          "name": "default-request-maxkeys",
+          "name": "default_request_maxkeys",
           "return": "Number"
         },
         {
@@ -4149,25 +4149,25 @@
         {
           "default": "'gm'",
           "body": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server has to have installed one of them.",
-          "name": "default-image-converter",
+          "name": "default_image_converter",
           "return": "String"
         },
         {
           "default": "30",
           "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB of memory map. Default value is `30%` = 450 MB of memory and 900 MB of memory map.",
-          "name": "default-image-consumption",
+          "name": "default_image_consumption",
           "return": "Number"
         },
         {
           "default": "90",
           "body": "The default image/picture quality for JPEG files only.",
-          "name": "default-image-quality",
+          "name": "default_image_quality",
           "return": "Number"
         },
         {
           "default": "true",
           "body": "Framework handles all static files if the value is `true`.",
-          "name": "allow-static-files",
+          "name": "allow_static_files",
           "options": [
             "important"
           ],
@@ -4176,13 +4176,13 @@
         {
           "default": "true",
           "body": "Allows to use GZIP compression (for responses). GZIP is used when this option is true and browser supports compression.",
-          "name": "allow-gzip",
+          "name": "allow_gzip",
           "return": "Boolean"
         },
         {
           "default": "false",
           "body": "If it's enabled then the framework adds `head` method for each web route.",
-          "name": "allow-head",
+          "name": "allow_head",
           "return": "Boolean"
         },
         {
@@ -4201,7 +4201,7 @@
           ],
           "default": "false",
           "body": "Enables worker (another thread) for all NoSQL embedded databases.",
-          "name": "nosql-worker",
+          "name": "nosql_worker",
           "return": "Boolean"
         },
         {
@@ -4210,7 +4210,7 @@
             "+v3.0.0"
           ],
           "body": "Enables auto-cleaner defined in __minutes__. Default: __24 hours__ = `1440` minutes.",
-          "name": "nosql-cleaner",
+          "name": "nosql_cleaner",
           "default": "1440",
           "return": "Number"
         },
@@ -4220,7 +4220,7 @@
             "+v3.0.0"
           ],
           "body": "Enables NoSQL logger, in the app console will be printed some important data from NoSQL cleaner, etc..",
-          "name": "nosql-logger",
+          "name": "nosql_logger",
           "default": "true",
           "return": "Number"
         },
@@ -4230,21 +4230,21 @@
             "+v3.0.0"
           ],
           "default": "''",
-          "body": "Enables in-memory mode for databases defined in this option.\n\n```html\nnosql-inmemory           : orders, products\n```",
-          "name": "nosql-inmemory",
+          "body": "Enables in-memory mode for databases defined in this option.\n\n```html\nnosql_inmemory           : orders, products\n```",
+          "name": "nosql_inmemory",
           "return": "String Array"
         },
         {
           "default": "true",
           "body": "Allows the websocket listening. If you want to use e.g. Socket.io, this option has to be false.",
-          "name": "allow-websocket",
+          "name": "allow_websocket",
           "return": "Boolean"
         },
         {
           "changelog": "allow-compile-js has been replaced to allow-compile-script",
           "default": "true",
           "body": "Allows to compile (compression) JavaScript files and inline scripts in views.",
-          "name": "allow-compile-script",
+          "name": "allow_compile_script",
           "return": "Boolean"
         },
         {
@@ -4253,33 +4253,33 @@
           ],
           "default": "true",
           "body": "Allows entire compilation.",
-          "name": "allow-compile",
+          "name": "allow_compile",
           "return": "Boolean"
         },
         {
           "changelog": "allow-compile-css has been replaced to allow-compile-style",
           "default": "true",
           "body": "Allows to compile (compression, variables and auto-vendor-prefixes) CSS files and inline styles in views.",
-          "name": "allow-compile-style",
+          "name": "allow_compile_style",
           "return": "Boolean"
         },
         {
           "default": "true",
           "body": "Allows to compile (compression) HTML of views.",
-          "name": "allow-compile-html",
+          "name": "allow_compile_html",
           "return": "Boolean"
         },
         {
           "changelog": "changed default value to <b>true</b>.",
           "default": "true",
           "body": "Allows to increase the HTTP performance.",
-          "name": "allow-performance",
+          "name": "allow_performance",
           "return": "Boolean"
         },
         {
           "default": "false",
           "body": "Disables to append an application name into meta tags.",
-          "name": "allow-custom-titles",
+          "name": "allow_custom_titles",
           "return": "Boolean"
         },
         {
@@ -4287,7 +4287,7 @@
           "changetype": 1,
           "default": "false",
           "body": "This option sets: process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0. In other words it can disable strict server certificate validation.",
-          "name": "allow-ssc-validation",
+          "name": "allow_ssc_validation",
           "return": "Boolean",
           "options": [
             "+v3.0.0"
@@ -4296,13 +4296,13 @@
         {
           "default": "20",
           "body": "Interval (minutes) for clearing resources from the memory. Resources are read if are needed.",
-          "name": "default-interval-clear-resources",
+          "name": "default_interval_clear_resources",
           "return": "Number"
         },
         {
           "default": "0",
           "body": "Interval (minutes) for creating `cache` snapshot on HDD.",
-          "name": "default-interval-cache-snapshot",
+          "name": "default_interval_cache_snapshot",
           "return": "Number"
         },
         {
@@ -4311,44 +4311,44 @@
             "+v1.8.0"
           ],
           "body": "Interval (minutes) for clearing DNS CACHE from the memory. For manual clearing use `U.clearDNS()`.",
-          "name": "default-interval-clear-dnscache",
+          "name": "default_interval_clear_dnscache",
           "return": "Number"
         },
         {
           "default": "3",
           "body": "Interval (minutes) for clearing cache from the memory.",
-          "name": "default-interval-clear-cache",
+          "name": "default_interval_clear_cache",
           "return": "Number"
         },
         {
           "default": "61",
           "body": "Interval (minutes) for precompiling external views.",
-          "name": "default-interval-precompile-views",
+          "name": "default_interval_precompile_views",
           "return": "Number"
         },
         {
           "changelog": "changed the default value from <b>0</b> to <b>3</b>.",
           "default": "3",
           "body": "Interval (minutes) for the websocket pinging. `0` is disabled.",
-          "name": "default-interval-websocket-ping",
+          "name": "default_interval_websocket_ping",
           "return": "Number"
         },
         {
           "default": "'default'",
           "body": "The default resource name for `ErrorBuilder`. `ErrorBuilder` uses framework.resource().",
-          "name": "default-errorbuilder-resource-name",
+          "name": "default_errorbuilder_resource_name",
           "return": "String"
         },
         {
           "default": "''",
           "body": "The default prefix for `ErrorBuilder`. Prefix is added before the property name.",
-          "name": "default-errorbuilder-resource-prefix",
+          "name": "default_errorbuilder_resource_prefix",
           "return": "String"
         },
         {
           "default": "''",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets sender address.",
-          "name": "mail-address-from",
+          "name": "mail_address_from",
           "options": [
             "important"
           ],
@@ -4357,7 +4357,7 @@
         {
           "default": "''",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets replyTo address.",
-          "name": "mail-address-reply",
+          "name": "mail_address_reply",
           "options": [
             "optional"
           ],
@@ -4366,7 +4366,7 @@
         {
           "default": "''",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets BCC address.",
-          "name": "mail-address-copy",
+          "name": "mail_address_copy",
           "options": [
             "optional"
           ],
@@ -4375,7 +4375,7 @@
         {
           "default": "''",
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP server (HOST).",
-          "name": "mail-smtp",
+          "name": "mail_smtp",
           "options": [
             "important"
           ],
@@ -4383,7 +4383,7 @@
         },
         {
           "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- `secure` (optional, default: `false`)\n- `user` (optional, default: empty)\n- `password` (optional, default: empty)\n- `timeout` (optional, default: `10000`)\n- `xoauth2` (optional) can contain a token in base64 encoding `+v2.8.0`\n\n__Example:__\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}```",
-          "name": "mail-smtp-options",
+          "name": "mail_smtp_options",
           "options": [
             "important"
           ],
@@ -4636,7 +4636,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-public']`.",
+          "body": "Gets the path from `CONF.directory_public`.",
           "name": "F.path.public",
           "params": [
             {
@@ -4651,7 +4651,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-isomporhic']`.",
+          "body": "Gets the path from `CONF.directory_isomporhic`.",
           "name": "F.path.isomporhic",
           "params": [
             {
@@ -4669,7 +4669,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-private']`.",
+          "body": "Gets the path from `CONF.directory_private`.",
           "name": "F.path.private",
           "params": [
             {
@@ -4687,7 +4687,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-configs']`.",
+          "body": "Gets the path from `CONF.directory_configs`.",
           "name": "F.path.configs",
           "params": [
             {
@@ -4705,7 +4705,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-public-virtual']`.",
+          "body": "Gets the path from `CONF.directory_public_virtual`.",
           "name": "F.path.virtual",
           "params": [
             {
@@ -4723,7 +4723,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-models']`.",
+          "body": "Gets the path from `CONF.directory_models`.",
           "name": "F.path.models",
           "params": [
             {
@@ -4738,7 +4738,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-databases']`.",
+          "body": "Gets the path from `CONF.directory_databases`.",
           "name": "F.path.databases",
           "params": [
             {
@@ -4753,7 +4753,7 @@
           "return": "String"
         },
         {
-          "body": "Get the path from `F.config['directory-logs']`.",
+          "body": "Get the path from `CONF.directory_logs`.",
           "name": "F.path.logs",
           "params": [
             {
@@ -4768,7 +4768,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-temp']`.",
+          "body": "Gets the path from `CONF.directory_temp`.",
           "name": "F.path.temp",
           "params": [
             {
@@ -4783,7 +4783,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-workers']`.",
+          "body": "Gets the path from `CONF.directory_workers`.",
           "name": "F.path.workers",
           "params": [
             {
@@ -4798,7 +4798,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-views']`.",
+          "body": "Gets the path from `CONF.directory_views`.",
           "name": "F.path.views",
           "params": [
             {
@@ -4813,7 +4813,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-modules']`.",
+          "body": "Gets the path from `CONF.directory_modules`.",
           "name": "F.path.modules",
           "params": [
             {
@@ -4828,7 +4828,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-definitions']`.",
+          "body": "Gets the path from `CONF.directory_definitions`.",
           "name": "F.path.definitions",
           "params": [
             {
@@ -4843,7 +4843,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-controllers']`.",
+          "body": "Gets the path from `CONF.directory_controllers`.",
           "name": "F.path.controllers",
           "params": [
             {
@@ -4858,7 +4858,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-tests']`.",
+          "body": "Gets the path from `CONF.directory_tests`.",
           "name": "F.path.tests",
           "params": [
             {
@@ -4873,7 +4873,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-packages']`.",
+          "body": "Gets the path from `CONF.directory_packages`.",
           "name": "F.path.packages",
           "params": [
             {
@@ -4888,7 +4888,7 @@
           "return": "String"
         },
         {
-          "body": "Gets the path from `F.config['directory-resources']`.",
+          "body": "Gets the path from `CONF.directory_resources`.",
           "name": "F.path.resources",
           "params": [
             {
@@ -9152,7 +9152,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-script']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_script`.",
           "name": "controller.routeScript",
           "options": [
             "http"
@@ -9167,7 +9167,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-style']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_style`.",
           "name": "controller.routeStyle",
           "options": [
             "http"
@@ -9182,7 +9182,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-image']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_image`.",
           "name": "controller.routeImage",
           "options": [
             "http"
@@ -9197,7 +9197,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-video']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_video`.",
           "name": "controller.routeVideo",
           "options": [
             "http"
@@ -9212,7 +9212,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-font']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_font`.",
           "name": "controller.routeFont",
           "options": [
             "http"
@@ -9227,7 +9227,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-download']`.",
+          "body": "Creates the URL address according to the `CONF.static_url_download`.",
           "name": "controller.routeDownload",
           "options": [
             "http"
@@ -9242,7 +9242,7 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url']`.",
+          "body": "Creates the URL address according to the `CONF.static_url`.",
           "name": "controller.routeStatic",
           "options": [
             "http"
@@ -14748,7 +14748,7 @@
           "options": [
             "+v3.0.0"
           ],
-          "body": "This method encrypts a value. You can encrypt __numbers__ or __strings__. This method uses `F.config['secret-uid']` value as a secret.",
+          "body": "This method encrypts a value. You can encrypt __numbers__ or __strings__. This method uses `CONF.secret_uid` value as a secret.",
           "name": "U.encryptUID",
           "params": [
             {
@@ -23453,7 +23453,7 @@
           "options": [
             "+v2.6.0"
           ],
-          "default": "F.config['default-errorbuilder-status']",
+          "default": "CONF.default_errorbuilder_status",
           "body": "HTTP Status code if the ErrorBuilder is used as response.",
           "name": "instance.status",
           "return": "Number"
@@ -27641,7 +27641,7 @@
       "name": "Resources"
     },
     {
-      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (Total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions has been `_layout.html`.\n- if the path starts with `~` char then the framework maps the path into the views root directory\n- When the path starts with `.` char then the framework skips `.` and it loads the view without support of the framework configuration (the view can be outside of app directory)\n- [View properties and methods](#api~FrameworkViews)\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n---\n\n### Examples\n\nFollowing [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nThere are many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function() {\n\tF.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n\tvar self = this;\n\tself.repository.firstname = 'Peter';\n\tself.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according the name. The layout is the same as the view. The only difference is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n\t@{meta}\n\t<meta charset=\"utf-8\" />\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n\t<meta name=\"format-detection\" content=\"telephone=no\" />\n\t<meta name=\"robots\" content=\"all,follow\" />\n\t@{head}\n\t@{import('default.css', 'default.js', 'favicon.ico')}\n</head>\n<body>\n\n\t<div class=\"content\">\n\t\t@{section('panel')}\n\t\t@{body}\n\t</div>\n\n\t@{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n\t\t\t\t\t{ name: 'B', price: 32.10 },\n\t\t\t\t\t{ name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n- supports `else if` in `+v1.9.1`\n\n```html\n@{if user === null}\n\t<div>sign in</div>\n@{else}\n\t<div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n\t@{if model.name === 'Lucia'}\n\t\t<div>Here is Lucia.</div>\n\t\t@{else}\n\t\t<div>Here is Peter.</div>\n\t@{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n\t<div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n__Array looping__:\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n\t<div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.name}</div>\n\t<div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n__Object looping__:\n```html\n@{foreach m in { name: 'Peter', age: 32 }}\n\t<div>property: @{m.key}, value: @{m.value}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.key}</div>\n\t<div>@{property.value}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n\t@{body}\n....\n....\n\t@{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n\t<h1>Homepage</h1>\n\t<br />\n....\n....\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`.\n\n```javascript\nF.helpers.custom = function(str, num) {\n\t// this === controller\n\treturn str + ' = ' + num;\n};\n\nF.helpers.isTrue = function(value) {\n\treturn value ? true : false;\n};\n```\n\n```html\n@{custom('Peter', 25)}\n\n<!-- OR BETTER -->\n\n@{helpers.custom('Peter', 25)}\n\n<!-- OR -->\n\n@{if helpers.isTrue(true)}\n\tHelpers in condition. The helper <code>isTrue</code> won't work without <code>helpers</code> keyword.\n@{fi}\n```\n\n## Defining inline helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`. The inline helper has to by defined in the view.\n\n```html\n@{helper address(street, city)\n\t<h2>Address</h2>\n\t<div>@{street}</div>\n\t<div>@{city}</div>\n\t<br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n\t<div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n\n<!--\n\tOr you can translate by the resource key with @(#KEY).\n\tExample:\n-->\n\n<h1>@(#T-3403403030)</h1>\n<p>@(#T34930203922)</p>\n```\n\n## Auto binding values\n\n```javascript\nfunction view_contactform() {\n\tthis.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n## Reading a value from the configuration\n\n- +v2.8.0 supports binding values directly from the `F.config`\n\n```html\n<div>F.config.name: @{'%name'}</div>\n<div>F.config['manager-url']: @{'%manager-url'}</div>\n```\n\n## Simple routing to static files\n\n```html\n<!-- Will be routed into: `/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'logo.png'}\" />\n\n<!-- Will be routed into the `redtheme` theme and the URL will be `/redtheme/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=redtheme/logo.png'}\" />\n\n<!-- Will be routed into the default theme and the URL will be `/A_DEFAULT_THEME/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=?/logo.png'}\" />\n\n<!-- Will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n<script src=\"@{'ui.js'}\"></script>\n\n<!-- Will create a tag <script> and the `src` attribute will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n@{import('ui.js')}\n\n<!-- Will create a tag <link> and the `href` attribute will be routed into: `/css/ui.css` (find: `static-url-style` in docs) -->\n@{import('ui.css')}\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n## Paths\n\n```javascript\nvar output = VIEW('someview', ...);\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('@somepackage/someview', ...);\n// Targeted to --> /app/packages/somepackage.package/someview.html\n\nvar output = VIEW('=themename/someview', ...);\n// Targeted to --> /app/themes/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~\" --> is routed into the root of views (if the controller uses a theme then is routed into the root views of the theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~~\" --> is routed into the root of views (if the controller has applied a theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('./absolute/path/someview', ...);\n// Targeted to --> /absolute/path/someview.html```",
+      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More informations__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (Total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions has been `_layout.html`.\n- if the path starts with `~` char then the framework maps the path into the views root directory\n- When the path starts with `.` char then the framework skips `.` and it loads the view without support of the framework configuration (the view can be outside of app directory)\n- [View properties and methods](#api~FrameworkViews)\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n---\n\n### Examples\n\nFollowing [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nThere are many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function() {\n\tF.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n\tvar self = this;\n\tself.repository.firstname = 'Peter';\n\tself.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according the name. The layout is the same as the view. The only difference is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n\t@{meta}\n\t<meta charset=\"utf-8\" />\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n\t<meta name=\"format-detection\" content=\"telephone=no\" />\n\t<meta name=\"robots\" content=\"all,follow\" />\n\t@{head}\n\t@{import('default.css', 'default.js', 'favicon.ico')}\n</head>\n<body>\n\n\t<div class=\"content\">\n\t\t@{section('panel')}\n\t\t@{body}\n\t</div>\n\n\t@{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n\t\t\t\t\t{ name: 'B', price: 32.10 },\n\t\t\t\t\t{ name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n- supports `else if` in `+v1.9.1`\n\n```html\n@{if user === null}\n\t<div>sign in</div>\n@{else}\n\t<div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n\t@{if model.name === 'Lucia'}\n\t\t<div>Here is Lucia.</div>\n\t\t@{else}\n\t\t<div>Here is Peter.</div>\n\t@{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n\t<div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n__Array looping__:\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n\t<div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.name}</div>\n\t<div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n__Object looping__:\n```html\n@{foreach m in { name: 'Peter', age: 32 }}\n\t<div>property: @{m.key}, value: @{m.value}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.key}</div>\n\t<div>@{property.value}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n\t@{body}\n....\n....\n\t@{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n\t<h1>Homepage</h1>\n\t<br />\n....\n....\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`.\n\n```javascript\nF.helpers.custom = function(str, num) {\n\t// this === controller\n\treturn str + ' = ' + num;\n};\n\nF.helpers.isTrue = function(value) {\n\treturn value ? true : false;\n};\n```\n\n```html\n@{custom('Peter', 25)}\n\n<!-- OR BETTER -->\n\n@{helpers.custom('Peter', 25)}\n\n<!-- OR -->\n\n@{if helpers.isTrue(true)}\n\tHelpers in condition. The helper <code>isTrue</code> won't work without <code>helpers</code> keyword.\n@{fi}\n```\n\n## Defining inline helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`. The inline helper has to by defined in the view.\n\n```html\n@{helper address(street, city)\n\t<h2>Address</h2>\n\t<div>@{street}</div>\n\t<div>@{city}</div>\n\t<br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n\t<div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n\n<!--\n\tOr you can translate by the resource key with @(#KEY).\n\tExample:\n-->\n\n<h1>@(#T-3403403030)</h1>\n<p>@(#T34930203922)</p>\n```\n\n## Auto binding values\n\n```javascript\nfunction view_contactform() {\n\tthis.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n## Reading a value from the configuration\n\n- +v2.8.0 supports binding values directly from the `F.config`\n\n```html\n<div>F.config.name: @{'%name'}</div>\n<div>CONF['manager-url']: @{'%manager-url'}</div>\n```\n\n## Simple routing to static files\n\n```html\n<!-- Will be routed into: `/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'logo.png'}\" />\n\n<!-- Will be routed into the `redtheme` theme and the URL will be `/redtheme/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=redtheme/logo.png'}\" />\n\n<!-- Will be routed into the default theme and the URL will be `/A_DEFAULT_THEME/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=?/logo.png'}\" />\n\n<!-- Will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n<script src=\"@{'ui.js'}\"></script>\n\n<!-- Will create a tag <script> and the `src` attribute will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n@{import('ui.js')}\n\n<!-- Will create a tag <link> and the `href` attribute will be routed into: `/css/ui.css` (find: `static-url-style` in docs) -->\n@{import('ui.css')}\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n## Paths\n\n```javascript\nvar output = VIEW('someview', ...);\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('@somepackage/someview', ...);\n// Targeted to --> /app/packages/somepackage.package/someview.html\n\nvar output = VIEW('=themename/someview', ...);\n// Targeted to --> /app/themes/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~\" --> is routed into the root of views (if the controller uses a theme then is routed into the root views of the theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~~\" --> is routed into the root of views (if the controller has applied a theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('./absolute/path/someview', ...);\n// Targeted to --> /absolute/path/someview.html```",
       "group": "How does it work?",
       "name": "View engine"
     },
@@ -27670,7 +27670,7 @@
       "name": "Schemas"
     },
     {
-      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n###\u00a0CSS\n\n- All CSS code is minified `F.config['allow-compile-style']`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` just remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Variables default values__:\n\n`+v3.1` supports a default value for non-exist variable.\n\n```css\nbody { font-family: $arial || 'Arial'; }\ndiv { border-radius: $radius || 10px; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `F.config['allow-compile-script']`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$\u00a0totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$\u00a0totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$\u00a0totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
+      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n###\u00a0CSS\n\n- All CSS code is minified `CONF.allow_compile_style`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` just remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Variables default values__:\n\n`+v3.1` supports a default value for non-exist variable.\n\n```css\nbody { font-family: $arial || 'Arial'; }\ndiv { border-radius: $radius || 10px; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `CONF.allow_compile_script`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`total` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$\u00a0totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$\u00a0totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$\u00a0totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
       "group": "How does it work?",
       "name": "HTML, JS, CSS"
     },
@@ -27690,7 +27690,7 @@
       "name": "Best practices"
     },
     {
-      "body": "__Themes__ (`+v1.9.4`) are very helpful for multiple designs.\n\n- independent on controllers\n- themes are composed from views and static files\n- themes can contain own static files (the framework maps them automatically)\n- themes support an initialization script `themes/THEME_NAME/index.js`\n- [__THEMES EXAMPLE__](https://github.com/totaljs/examples/tree/master/themes)\n\n---\n\n## Initialization file\n\n```plain\nFramework initialization:\n\n01. Bundles\n02. Modules\n03. Packages\n04. Models\n05. Schemas\n06. Operations\n07. Themes\n08. Definitions\n09. Controllers\n10. Components\n```\n\n- is optional\n- filename `themes/THEME_NAME/index.js`\n\n```javascript\nexports.install = function() {\n\t// ...\n\t// ...\n\t// space for your code\n\t// ...\n\t// ...\n};\n```\n\n## A default theme for all controllers\n\n__Configuration file__ (e.g. `config`, `config-debug`, `config-release` or `config-test`):\n\n```html\ndefault-theme      : THEME_NAME\n```\n\nor\n\n```javascript\nF.config['default-theme'] = 'THEME_NAME';\n```\n\n## Change the theme in the controller\n\n```javascript\nfunction some_action_in_controller() {\n\tvar self = this;\n\tself.theme('THEME_NAME');\n\tself.view('index');\n}\n```\n\n__IMPORTANT__:\n\n- all views will be routed into the `/theme/THEME_NAME/views/` directory (with `layout`)\n- themes doesn't support fallback for views\n- behaviour is same as in views outside of themes\n\n---\n\n## Views\n\n```html\n<div>CURRENT THEME: @{theme}</div>\n\n---\n\n@{import('~common.css', 'default.css')}\n\n<!-- common.css will be routed into the `/public/css/common.css` directory (config: static-url-style) -->\n<!-- default.css will be routed into the `/themes/THEME_NAME/public/css/default.css` directory (config: static-url-style) -->\n\n\n---\n\n<img src=\"/THEME_NAME/img/logo.png\" /> is same as: <img src=\"@{'logo.png'}\" />\n\nor\n\n<!-- logo.png will be routed into the `/themes/THEME_NAME/public/img/logo.png` directory (config: static-url-image) -->\n@{image('logo.png')}\n```\n\n## Public directory in themes\n\n__Directory structure__:\n```html\n/themes/THEME_NAME/public/img/logo.png\n/themes/THEME_NAME/public/js/default.js\n/themes/THEME_NAME/public/css/default.css\n```\n\n__Listening on__:\n```html\nhttp://0.0.0.0:8000/THEME_NAME/img/logo.png\nhttp://0.0.0.0:8000/THEME_NAME/js/default.js\nhttp://0.0.0.0:8000/THEME_NAME/css/default.css\n```\n\n## Merging & Mapping\n\n- the framework identifies `=THEME_NAME` as a full theme path\n\n```javascript\n// Merging\nMERGE('/merged-script.js', 'default.js',  '=THEME_NAME/public/js/default.js');\nMERGE('/merged-style.css', 'default.css', '=THEME_NAME/public/css/default.css');\n\n// Mapping\nMAP('/mapped-script.js', '=THEME_NAME/public/js/default.js');\nMAP('/mapped-style.css', '=THEME_NAME/public/css/default.css');\n```\n\n## Special cases\n\n- `~view_name` will be routed into the root of current theme `/theme/THEME_NAME/views/`\n- `~~view_name` will be routed into the root of `views` directory `/views/`\n\n## Routing with themes\n\n- `F.view()`\n- `F.route(url, viewname)`\n- `F.mail()`\n- `controller.mail()`\n\n```html\n=THEME_NAME/name     : is routed into the file: /themes/THEME_NAME/views/name.html\n=?/name              : is routed into the default theme's directory /themes/???_FRAMEWORK_DETERMINES_???/views/name.html\n```\n\nSame way are with static files but the framework recognizes extensions and by them creates routing.",
+      "body": "__Themes__ (`+v1.9.4`) are very helpful for multiple designs.\n\n- independent on controllers\n- themes are composed from views and static files\n- themes can contain own static files (the framework maps them automatically)\n- themes support an initialization script `themes/THEME_NAME/index.js`\n- [__THEMES EXAMPLE__](https://github.com/totaljs/examples/tree/master/themes)\n\n---\n\n## Initialization file\n\n```plain\nFramework initialization:\n\n01. Bundles\n02. Modules\n03. Packages\n04. Models\n05. Schemas\n06. Operations\n07. Themes\n08. Definitions\n09. Controllers\n10. Components\n```\n\n- is optional\n- filename `themes/THEME_NAME/index.js`\n\n```javascript\nexports.install = function() {\n\t// ...\n\t// ...\n\t// space for your code\n\t// ...\n\t// ...\n};\n```\n\n## A default theme for all controllers\n\n__Configuration file__ (e.g. `config`, `config-debug`, `config-release` or `config-test`):\n\n```html\ndefault-theme      : THEME_NAME\n```\n\nor\n\n```javascript\nCONF.default_theme = 'THEME_NAME';\n```\n\n## Change the theme in the controller\n\n```javascript\nfunction some_action_in_controller() {\n\tvar self = this;\n\tself.theme('THEME_NAME');\n\tself.view('index');\n}\n```\n\n__IMPORTANT__:\n\n- all views will be routed into the `/theme/THEME_NAME/views/` directory (with `layout`)\n- themes doesn't support fallback for views\n- behaviour is same as in views outside of themes\n\n---\n\n## Views\n\n```html\n<div>CURRENT THEME: @{theme}</div>\n\n---\n\n@{import('~common.css', 'default.css')}\n\n<!-- common.css will be routed into the `/public/css/common.css` directory (config: static-url-style) -->\n<!-- default.css will be routed into the `/themes/THEME_NAME/public/css/default.css` directory (config: static-url-style) -->\n\n\n---\n\n<img src=\"/THEME_NAME/img/logo.png\" /> is same as: <img src=\"@{'logo.png'}\" />\n\nor\n\n<!-- logo.png will be routed into the `/themes/THEME_NAME/public/img/logo.png` directory (config: static-url-image) -->\n@{image('logo.png')}\n```\n\n## Public directory in themes\n\n__Directory structure__:\n```html\n/themes/THEME_NAME/public/img/logo.png\n/themes/THEME_NAME/public/js/default.js\n/themes/THEME_NAME/public/css/default.css\n```\n\n__Listening on__:\n```html\nhttp://0.0.0.0:8000/THEME_NAME/img/logo.png\nhttp://0.0.0.0:8000/THEME_NAME/js/default.js\nhttp://0.0.0.0:8000/THEME_NAME/css/default.css\n```\n\n## Merging & Mapping\n\n- the framework identifies `=THEME_NAME` as a full theme path\n\n```javascript\n// Merging\nMERGE('/merged-script.js', 'default.js',  '=THEME_NAME/public/js/default.js');\nMERGE('/merged-style.css', 'default.css', '=THEME_NAME/public/css/default.css');\n\n// Mapping\nMAP('/mapped-script.js', '=THEME_NAME/public/js/default.js');\nMAP('/mapped-style.css', '=THEME_NAME/public/css/default.css');\n```\n\n## Special cases\n\n- `~view_name` will be routed into the root of current theme `/theme/THEME_NAME/views/`\n- `~~view_name` will be routed into the root of `views` directory `/views/`\n\n## Routing with themes\n\n- `F.view()`\n- `F.route(url, viewname)`\n- `F.mail()`\n- `controller.mail()`\n\n```html\n=THEME_NAME/name     : is routed into the file: /themes/THEME_NAME/views/name.html\n=?/name              : is routed into the default theme's directory /themes/???_FRAMEWORK_DETERMINES_???/views/name.html\n```\n\nSame way are with static files but the framework recognizes extensions and by them creates routing.",
       "group": "How does it work?",
       "name": "Themes"
     },
