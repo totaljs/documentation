@@ -3085,7 +3085,7 @@
         },
         {
           "example": "https://github.com/totaljs/examples/tree/master/waiting",
-          "body": "The web server waits for open task / tasks.\n\n__Example with MongoDB__:\n\n```javascript\n// This is definition file.\nvar db = null;\n\n// The web server waits for ending task\nF.wait('database');\n// Alternative: F.wait('database', true);\n\nrequire('mongobuilder').init(CONFIG('database'), function(err, instance) {\n\tif (err)\n\t\tF.error(err);\n\tdb = instance;\n\tF.emit('database');\n\tF.wait('database');\n\t// Alternative: F.wait('database', false);\n\t// The web server can continue.\n});\n\nF.database = function(collection) {\n\tif (collection)\n\t\treturn db.collection(collection);\n\treturn db;\n};```",
+          "body": "The web server waits for open task / tasks.\n\n__Example with MongoDB__:\n\n```javascript\n// This is definition file.\nvar db = null;\n\n// The web server waits for ending task\nF.wait('database');\n// Alternative: F.wait('database', true);\n\nrequire('mongobuilder').init(CONF.database, function(err, instance) {\n\tif (err)\n\t\tF.error(err);\n\tdb = instance;\n\tF.emit('database');\n\tF.wait('database');\n\t// Alternative: F.wait('database', false);\n\t// The web server can continue.\n});\n\nF.database = function(collection) {\n\tif (collection)\n\t\treturn db.collection(collection);\n\treturn db;\n};```",
           "name": "F.wait",
           "params": [
             {
@@ -20360,26 +20360,6 @@
       "body": "Gets a global objects or functions. All methods are meant as shortcuts.",
       "group": "Additional",
       "methods": [
-        {
-          "changetype": 2,
-          "changelog": "+v3.0.0 added <code>value</code> argument",
-          "body": "Gets the value from the `F.config`.",
-          "name": "CONFIG",
-          "params": [
-            {
-              "body": "A key.",
-              "name": "key",
-              "type": "String"
-            },
-            {
-              "body": "A value.",
-              "name": "value",
-              "type": "Number",
-              "options": ["optional"]
-            }
-          ],
-          "return": "Object"
-        },
         {
           "options": ["+v3.1.0"],
           "changetype": 1,
