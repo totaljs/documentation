@@ -1072,6 +1072,15 @@
           "return": "Framework"
         },
         {
+          "options": ["+v3.1.0"],
+          "changetype": 1,
+          "body": "This method refreshes internal cache. Removes resources, views, etc. from the internal memory.",
+          "name": "F.refresh",
+          "params": [
+          ],
+          "return": "Framework"
+        },
+        {
           "body": "Reads the configuration from the file",
           "options": [
             "+v1.7.1"
