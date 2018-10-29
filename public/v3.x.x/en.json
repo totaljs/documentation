@@ -6253,6 +6253,14 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "name": "builder.reset",
+          "body": "Resets counters and responses. It's targeted for __DataReader__.",
+          "return": "DatabaseBuilder",
+          "params": []
+        },
+        {
           "name": "builder.take",
           "body": "Takes a specific number of documents.",
           "return": "DatabaseBuilder",
@@ -27501,8 +27509,22 @@
       "name": "DataReader",
       "changetype": 1,
       "group": "Additional",
-      "body": "`+v3.1.0` __DataReader__ is very effective and optimized solution for reading and filtering data in real-time. With this solution you can stream data and filter data easily. Also NoSQL embedded database uses `DataReader` too.\n\n```javascript\nvar reader = U.reader();\n\nreader.find().between('price', 10, 200).callback(console.log);\n\n// or\nreader.scalar('max', 'price').callback(console.log);\n\n// or\nreader.count().between('price', 10, 200).callback(console.log);\n\n// Some ReadStream\nsomestream.on('data', function(chunk) {\n\t// some data processing\n\treader.push(ARRAY_OF_DOCS_or_DOC);\n});\n\nsomestream.on('end', () => reader.push(null));```",
+      "body": "`+v3.1.0` __DataReader__ is very effective and optimized solution for reading and filtering data in real-time. With this solution you can stream data and filter data easily. Also NoSQL embedded database uses `DataReader` too.\n\n```javascript\nvar reader = U.reader();\n\nreader.find().between('price', 10, 200).callback(console.log);\n\n// or\nreader.scalar('max', 'price').callback(console.log);\n\n// or\nreader.count().between('price', 10, 200).callback(console.log);\n\n// Some ReadStream\nsomestream.on('data', function(chunk) {\n\t// some data processing\n\treader.push(ARRAY_OF_DOCS_or_DOC);\n});\n\nsomestream.on('end', () => reader.done());```",
       "methods": [
+        {
+          "name": "reader.reset",
+          "body": "Resets counters and responses.",
+          "params": [
+          ],
+          "return": "DataReader"
+        },
+        {
+          "name": "reader.done",
+          "body": "Evaluates callbacks in all `DatabaseBuilder` instances. Same as `reader.push(null)`.",
+          "params": [
+          ],
+          "return": "DataReader"
+        },
         {
           "name": "reader.find",
           "body": "Finds records.",
@@ -27516,13 +27538,6 @@
           "params": [
           ],
           "return": "DatabaseBuilder"
-        },
-        {
-          "name": "reader.clear",
-          "body": "Clears all results for new data.",
-          "params": [
-          ],
-          "return": "DataReader"
         },
         {
           "name": "reader.scalar",
