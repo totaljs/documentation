@@ -6221,14 +6221,6 @@
               "name": "dbName",
               "type": "String/Database",
               "body": "A database name."
-            },
-            {
-              "name": "view",
-              "type": "String",
-              "body": "A view name, so data will be read from a view.",
-              "options": [
-                "optional"
-              ]
             }
           ]
         },
