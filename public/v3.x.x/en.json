@@ -20522,13 +20522,19 @@
           "return": "Function"
         },
         {
-          "body": "Gets the route. This function is the alias for `F.routing()`.",
+          "body": "Gets a route object.\n\n```javascript\nvar route = ROUTING('GET /*', ['unauthorize']);\nif (route) {\n\troute.execute = function() {\n\t\t// overwriting action\n\t\t// this === Controller\n\t\tthis.plain('Response');\n\t};\n}```",
           "name": "ROUTING",
           "params": [
             {
-              "body": "The identificator.",
-              "name": "id",
+              "body": "ID or search pharse.",
+              "name": "id/search",
               "type": "String"
+            },
+            {
+              "body": "Flags",
+              "name": "flags",
+              "type": "Array String",
+              "options": ["optional"]
             }
           ],
           "return": "Object"
@@ -22194,8 +22200,25 @@
           "return": "Boolean"
         },
         {
-          "body": "Alias for `F.on()`. Registers a new event.",
+          "body": "Alias for `F.on()`. Registers a new listener for the event.",
           "name": "ON",
+          "params": [
+            {
+              "body": "Event name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function"
+            }
+          ],
+          "return": "Framework"
+        },
+        {
+          "body": "Alias for `F.once()`. Registers a new listener for the event.",
+          "name": "ONCE",
           "params": [
             {
               "body": "Event name",
