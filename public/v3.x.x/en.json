@@ -1295,6 +1295,14 @@
                 "optional"
               ],
               "type": "Number"
+            },
+            {
+              "body": "Additional process arguments <code>process.argv</code>.",
+              "name": "args",
+              "options": [
+                "optional"
+              ],
+              "type": "Array String"
             }
           ],
           "return": "ChildProcess"
@@ -2990,7 +2998,7 @@
             "+v1.9.0",
             "important"
           ],
-          "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['models', 'definitions'], '../');\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', null, '../'););\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['packages'], '../');\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
+          "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['models', 'definitions'], '../');\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', null, '../');\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['packages'], '../');\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
           "name": "F.load",
           "alias": "LOAD",
           "params": [
