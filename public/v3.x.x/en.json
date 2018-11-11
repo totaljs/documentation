@@ -16121,6 +16121,20 @@
           "return": "FrameworkImage"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "body": "Can add a coder/decoder specific options for GM/IM.",
+          "name": "image.define",
+          "params": [
+            {
+              "body": "A value",
+              "name": "value",
+              "type": "String"
+            }
+          ],
+          "return": "FrameworkImage"
+        },
+        {
           "body": "Sets the image align.",
           "name": "image.align",
           "params": [
