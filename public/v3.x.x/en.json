@@ -16419,7 +16419,9 @@
           "options": [
             "+v2.6.0"
           ],
-          "body": "Emits an event in all threads with except a current thread. Supports only one additional argument.",
+          "changetype": 2,
+          "changelog": "v3.1.0 Added a support for multiple arguments",
+          "body": "Emits an event in all threads with except a current thread. Supports max. 5 additional arguments.",
           "name": "F.cluster.emit",
           "return": "Framework",
           "params": [
@@ -16429,7 +16431,39 @@
               "type": "String"
             },
             {
-              "body": "Event value.",
+              "body": "Event value 1.",
+              "name": "value",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Event value 2.",
+              "name": "value",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Event value 3.",
+              "name": "value",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Event value 4.",
+              "name": "value",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Event value 5.",
               "name": "value",
               "type": "Object",
               "options": [
@@ -16532,6 +16566,8 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "v3.1.0 Added a support for multiple arguments",
           "body": "__Only for child process__. This method emits an event from `child` process in `master` process.\n\n__Example__:\n\n```javascript\nF.custer.master('event', { yourcustomdata: 'YOUR DATA' });\n```",
           "name": "F.cluster.master",
           "params": [
@@ -16541,9 +16577,34 @@
               "type": "String"
             },
             {
-              "body": "A value. The value has to be a simple and not large object/string/number/boolean/date/etc..",
+              "body": "A value 1. The value has to be a simple and not large object/string/number/boolean/date/etc..",
               "name": "value",
-              "type": "Object"
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A value 2",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A value 3",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A value 4",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
+            }
+            {
+              "body": "A value 5",
+              "name": "value",
+              "type": "Object",
+              "options": ["optional"]
             }
           ],
           "return": "Framework"
