@@ -23379,7 +23379,7 @@
     },
     {
       "changetype": 2,
-      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
+      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\t// $.tasks();           --> +v3.1.0 returns a new instance TaskBuilder\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
       "group": "Builders",
       "name": "Operations",
       "methods": [
@@ -25013,6 +25013,154 @@
         }
       ],
       "name": "TransformBuilder"
+    },
+    {
+      "changetype": 1,
+      "options": ["+v3.1.0"],
+      "body": "`+v3.1.0` The __TaskBuilder__ is helpful for creating async tasks.\n\n```javascript\nvar instance = new TaskBuilder([controller or schema/operation_options or ErrorBuilder]);\n\ninstance.push('task1', function($) {\n\tif (some_error)\n\t\t$.invalid(some_error);\n\telse\n\t\t$.next('task2');\n});\n\ninstance.push('task2', function($) {\n\t$.success();\n});\n\ninstance.exec('task1', $.callback);\n```",
+      "group": "Builders",
+      "methods": [
+        {
+          "body": "Registers a new task.\n\n```javascript\ninstance.push('my_task_name', function($) {\n\n\t//\u00a0$ === instance\n\n\t// Each task must execute one method from the methods below:\n\t$.next('ANOTHER_TASK');\n\n\t// or\n\t$.done();\n\n\t// or\n\t$.invalid('ERROR');\n\n\t// or\n\t$.success();\n});\n```",
+          "name": "instance.push",
+          "params": [
+            {
+              "name": "name",
+              "body": "Name of task",
+              "type": "String"
+            },
+            {
+              "name": "fn",
+              "body": "A task context",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "$",
+                    "body": "A current instance of TaskBuilder",
+                    "type": "TaskBuilder"
+                  }
+              ]
+            }
+          ],
+          "return": "TaskBuilder"
+        },
+        {
+          "body": "The method tries to execute another task in order. If any task doesn't exist then it performs `$.done()`.",
+          "name": "instance.next",
+          "params": [
+            {
+              "name": "name",
+              "body": "Name of task",
+              "type": "String"
+            },
+            {
+              "name": "name2",
+              "body": "Name of task",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "name": "nameN",
+              "body": "Name of task",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ],
+          "return": "TaskBuilder"
+        },
+        {
+          "body": "The method ends future executing of tasks.",
+          "name": "instance.done",
+          "params": [
+            {
+              "options": ["optional"],
+              "name": "data",
+              "body": "A custom data for the callback",
+              "type": "Object"
+            }
+          ],
+          "return": "TaskBuilder"
+        },
+        {
+          "body": "The method ends future executing of tasks and returns `{ success: true }` object.",
+          "name": "instance.success",
+          "params": [
+            {
+              "options": ["optional"],
+              "name": "data",
+              "body": "A custom data for the result.",
+              "type": "Object"
+            }
+          ],
+          "return": "TaskBuilder"
+        },
+        {
+          "body": "The method ends future executing of tasks and returns `ErrorBuilder` in the `callback`.",
+          "name": "instance.invalid",
+          "params": [
+            {
+              "name": "err",
+              "body": "An error",
+              "type": "Error/String/ErrorBuilder"
+            }
+          ],
+          "return": "TaskBuilder"
+        },
+        {
+          "body": "The method starts executing of all registered tasks in order.",
+          "name": "instance.exec",
+          "params": [
+            {
+              "name": "name",
+              "body": "A name of task",
+              "type": "String"
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "body": "A callback function",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "body": "An error handling",
+                  "type": "ErrorBuilder"
+                },
+                {
+                  "name": "response",
+                  "body": "A response",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "TaskBuilder"
+        }
+      ],
+      "properties": [
+        {
+          "body": "A temporary object for storing data. By default is returned in the callback as a value.",
+          "name": "instance.value",
+          "return": "Object"
+        },
+        {
+          "body": "Returns a current task name",
+          "name": "instance.current",
+          "return": "String"
+        },
+        {
+          "body": "Returns previous task name",
+          "name": "instance.prev",
+          "return": "String"
+        },
+        {
+          "body": "Name of TaskBuilder for internal logging",
+          "name": "instance.name",
+          "return": "String",
+          "default": "undefined"
+        }
+      ],
+      "name": "TaskBuilder"
     },
     {
       "body": "The __URLBuilder__ is helpful for create query parameters into the URL address.\n\n```javascript\nvar instance = new URLBuilder();\nconsole.log(instance.toString());\n\n// or +v2.3.0:\nvar instance = URLBuilder.make(function(builder) {\n\tconsole.log(builder.toString());\n});```",
@@ -26799,6 +26947,13 @@
         }
       ],
       "methods": [
+        {
+          "changetype": 1,
+          "options": ["+v3.1.0"],
+          "name": "$.tasks",
+          "return": "TaskBuilder",
+          "body": "Returns a new instance of TaskBuilder."
+        },
         {
           "name": "$.clean",
           "params": [
