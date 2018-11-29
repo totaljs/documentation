@@ -11128,6 +11128,18 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 1,
+          "body": "Returns all online clients.",
+          "name": "controller.all",
+          "options": [
+            "+v3.1.0",
+            "important",
+            "websocket"
+          ],
+          "params": [],
+          "return": "Array"
+        },
+        {
           "body": "Finds a client connection (only for __WebSocket__).\n\n```javascript\nvar client = controller.find('126329a3487dklee348733');\n\n// or\n\nvar client = controller.find((client, id) => client.user.name === 'petersirka');```",
           "go": "#api~FrameworkWebSocketClient",
           "name": "controller.find",
