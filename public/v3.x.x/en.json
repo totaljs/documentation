@@ -22707,7 +22707,7 @@
               "default": "false"
             }
           ],
-          "return": "SchemaDeclaration"
+          "return": "SchemaInstance"
         },
         {
           "changetype": 1,
