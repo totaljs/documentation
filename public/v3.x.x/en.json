@@ -21589,8 +21589,34 @@
               "type": "Boolean",
               "default": "true"
             }
+          ]
+        },
+        {
+          "changetype": 1,
+          "body": "Can replace `F.onLocale`.\n\n```javascript\nLOCALIZE(function(req, res) {\n\treturn 'en';\n});\n\n// Is same as:\nF.onLoca = function(req, res) {\n\treturn 'en';\n};\n```",
+          "name": "LOCALIZE",
+          "options": [
+            "+v3.1.0"
           ],
-          "return": "Framework"
+          "params": [
+            {
+              "body": "A localization delegate. A function must return a `langauge` for the next processing.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "req",
+                  "type": "Request",
+                  "body": "HTTP request"
+                },
+                {
+                  "name": "res",
+                  "type": "Response",
+                  "body": "HTTP response"
+                }
+              ]
+            }
+          ]
         },
         {
           "changetype": 2,
