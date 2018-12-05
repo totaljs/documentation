@@ -21593,7 +21593,7 @@
         },
         {
           "changetype": 1,
-          "body": "Can replace `F.onLocale`.\n\n```javascript\nLOCALIZE(function(req, res) {\n\treturn 'en';\n});\n\n// Is same as:\nF.onLoca = function(req, res) {\n\treturn 'en';\n};\n```",
+          "body": "Can replace `F.onLocale`.\n\n```javascript\nLOCALIZE(function(req, res) {\n\treturn 'en';\n});\n\n// Is same as older declaration:\nF.onLocale = function(req, res) {\n\treturn 'en';\n};\n```",
           "name": "LOCALIZE",
           "options": [
             "+v3.1.0"
