@@ -27851,6 +27851,18 @@
           "return": "DatabaseBuilder"
         },
         {
+          "name": "reader.push",
+          "body": "Inserts a new data for analysing. __null__ value will evalute a DataReader `callback`.",
+          "params": [
+            {
+              "name": "data",
+              "body": "Array of documents",
+              "type": "Array"
+            }
+          ],
+          "return": "DataReader"
+        },
+        {
           "name": "reader.count",
           "body": "Counts records.",
           "params": [
