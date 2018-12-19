@@ -6621,7 +6621,7 @@
             "+v3.0.0"
           ],
           "name": "builder.query",
-          "body": "Creates a simple condition which will be evaluated as a JS code. The code must return a `Boolean` value without `return` keyword.\n\n```javascript\n// doc {Object}   === processed document\n// index {Number} === an index of processed document\nNOSQL('products').find().query('doc.published=true && doc.price>10').callback(console.log);```\n\n__Supported arguments__:\n\n- `doc {Object}` contains a current processed document\n- `arg {Object}` contains a dynamic arguments\n- `repository {Object}` contains a custom repository\n- `index {Number}` a current processed document index",
+          "body": "Creates a simple condition which will be evaluated as a JS code. The code must return a `Boolean` value without `return` keyword.\n\n```javascript\n// doc {Object}   === processed document\n// index {Number} === an index of processed document\nNOSQL('products').find().query('doc.published===true && doc.price>10').callback(console.log);```\n\n__Supported arguments__:\n\n- `doc {Object}` contains a current processed document\n- `arg {Object}` contains a dynamic arguments\n- `repository {Object}` contains a custom repository\n- `index {Number}` a current processed document index",
           "return": "DatabaseBuilder",
           "params": [
             {
