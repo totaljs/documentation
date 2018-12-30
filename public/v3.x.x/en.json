@@ -11044,6 +11044,39 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 1,
+          "body": "Sends the message via `WebSocket`. It's similiar like to `controller.send()` but with simpler declaration.\n\n```javascript\nfunction some_websocket_action() {\n\tvar controller = this;\n\tcontroller.on('message', function(client) {\n\t\t// 1.\n\t\tcontroller.send2('Hello world!');\n\n\t\t// 2.\n\t\tcontroller.send2('Hello world!', (client, message) => client.user.isadmin);\n\t});\n};\n```",
+          "name": "controller.send2",
+          "options": [
+            "+v3.1.0",
+            "websocket"
+          ],
+          "params": [
+            {
+              "body": "The message.",
+              "name": "message",
+              "type": "String or Object"
+            },
+            {
+              "body": "Comparer",
+              "name": "comparer",
+              "options": [
+                "optional"
+              ],
+              "type": "Function(client, message)"
+            },
+            {
+              "body": "A JSON replacer function",
+              "name": "replacer",
+              "options": [
+                "optional"
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
           "body": "This method reads or adds a placeholder by the name. If you call the method only with the name, then the method reads value, otherwise adds a new content. It's very helpful for the view engine because you can add/read a dynamic content from the controller.",
           "name": "controller.place",
           "options": [
