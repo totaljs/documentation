@@ -1270,9 +1270,12 @@
           "return": "Database"
         },
         {
+          "changetype": 2,
+          "changelog": "Added alias",
           "body": "Runs a worker. In other words: another script in a __new thread__.",
           "example": "https://github.com/totaljs/examples/tree/master/workers",
           "name": "F.worker",
+          "alias": "WORKER",
           "params": [
             {
               "body": "Name of worker (workers/{name}.js).",
@@ -1311,7 +1314,10 @@
           "options": [
             "+v2.0.0"
           ],
+          "changetype": 2,
+          "changelog": "Added alias",
           "body": "Runs a worker. In other words: another script in a __new thread__.",
+          "alias": "WORKER2",
           "name": "F.worker2",
           "params": [
             {
@@ -4020,7 +4026,7 @@
           "return": "String"
         },
         {
-          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md']\n```\n\n__The config file declaration__:\n\n```html\nstatic_accepts            : .jpg, .ico, .js```",
+          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md', '.ics']\n```\n\n__The config file declaration__:\n\n```html\nstatic_accepts            : .jpg, .ico, .js```",
           "name": "static_accepts",
           "return": "String Array"
         },
@@ -4400,7 +4406,9 @@
           "return": "String"
         },
         {
-          "body": "Mail settings for `framework.mail()` or `controller.mail()`: this option sets SMTP options:\n\n- `secure` (optional, default: `false`)\n- `user` (optional, default: empty)\n- `password` (optional, default: empty)\n- `timeout` (optional, default: `10000`)\n- `xoauth2` (optional) can contain a token in base64 encoding `+v2.8.0`\n\n__Example:__\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}```",
+          "changelog": "Added <code>heloid</code> option",
+          "changetype": 2,
+          "body": "Mail settings for `MAIL()`, this option sets SMTP options:\n\n- `secure` optional, default: `false`\n- `user` optional, default: empty\n- `password` optional, default: empty\n- `timeout` optional, default: `10000`\n- `xoauth2` optional, can contain a token in base64 encoding `+v2.8.0` (default: `undefined`)\n- `heloid` optional, can contain `HELO` or `EHLO` value `+v3.2.0` (default: `undefined`)\n\n__Example:__\n\n```json\n{\"secure\":false,\"port\":25,\"user\":\"\",\"password\":\"\",\"timeout\":10000}```",
           "name": "mail_smtp_options",
           "options": [
             "important"
@@ -16421,7 +16429,7 @@
           "options": [
             "+v2.6.0"
           ],
-          "body": "Starts a cluster.",
+          "body": "Runs a cluster as HTTP.",
           "name": "F.cluster.http",
           "params": [
             {
@@ -16435,12 +16443,37 @@
               "type": "String"
             },
             {
-              "body": "Additional options. Custom options. `{ port: Number, ip: String, config: Object, sleep: Number, package: String }`",
+              "body": "Additional options. Custom options. <code>{ port: Number, ip: String, config: Object, sleep: Number }</code>",
               "name": "options",
               "type": "Object",
               "options": [
                 "optional"
               ]
+            }
+          ]
+        },
+        {
+          "options": [
+            "+v3.2.0"
+          ],
+          "changetype": 1,
+          "body": "Runs a cluster as HTTPS.",
+          "name": "F.cluster.https",
+          "params": [
+            {
+              "body": "Count of threads. Value <b>`auto`</b> {String} or <b>null</b> sets count of threads according to your system.",
+              "name": "count",
+              "type": "Number/String"
+            },
+            {
+              "body": "Framework mode (release or debug)",
+              "name": "mode",
+              "type": "String"
+            },
+            {
+              "body": "Additional options. Custom options. <code>{ port: Number, ip: String, config: Object, sleep: Number, https: { key: 'BASE64', cert: 'BASE64' }}</code>",
+              "name": "options",
+              "type": "Object"
             }
           ]
         },
@@ -23450,7 +23483,7 @@
     },
     {
       "changetype": 2,
-      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\t// $.tasks();           --> +v3.1.0 returns a new instance TaskBuilder\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
+      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\t// $.tasks();           --> +v3.1.0 returns a new instance TaskBuilder\n\t// $.redirect(url);     --> +v3.2.0 performs a redirect\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
       "group": "Builders",
       "name": "Operations",
       "methods": [
@@ -24536,6 +24569,7 @@
         },
         {
           "body": "Sets `PUT` method and data.",
+          "alias": "instance.PUT",
           "name": "instance.put",
           "params": [
             {
@@ -24570,6 +24604,7 @@
             "+v3.0.0"
           ],
           "body": "Sets `PATCH` method and data.",
+          "alias": "instance.PATCH",
           "name": "instance.patch",
           "params": [
             {
@@ -24636,6 +24671,7 @@
         },
         {
           "body": "Sets `DELETE` method and data.",
+          "alias": "instance.DELETE",
           "name": "instance.delete",
           "params": [
             {
@@ -24651,6 +24687,7 @@
         },
         {
           "body": "Sets `GET` method and data.",
+          "alias": "instance.GET",
           "name": "instance.get",
           "params": [
             {
@@ -25464,6 +25501,45 @@
           "return": "SchemaDeclaration"
         },
         {
+          "changetype": 1,
+          "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index) => value.toUpperCase());\n\t// ...\n});\n```",
+          "name": "schema.before",
+          "options": [
+            "+v3.2.0"
+          ],
+          "params": [
+            {
+              "body": "Field name.",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Preparator",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "val",
+                  "type": "String/Number/Object",
+                  "body": "A value according to the schema"
+                },
+                {
+                  "name": "model",
+                  "type": "SchemaInstance",
+                  "body": "A schema instance object"
+                },
+                {
+                  "name": "index",
+                  "type": "Number",
+                  "body": "Array index",
+                  "options": ["optional"]
+                }
+              ]
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
           "options": [
             "+v2.0.0"
           ],
@@ -26154,11 +26230,21 @@
       "changetype": 1,
       "group": "Schemas",
       "body": "Framework creates `SchemaInstance` automatically if the schema is linked via routes or can be created manually.\n\n__Created automatically__:\n\n```javacript\nexports.install = function() {\n\n\t// \"SchemaInstance\" will be created in the background\n\tROUTE('POST /api/products/', ['*Product --> @save']);\n\n\t// \"SchemaInstance\" will be created before the route's action is executed\n\tROUTE('POST /api/users/',  json_user_create, ['*User']);\n\n};\n\nfunction json_user_create() {\n\tvar self = this;\n\t// self.model === SchemaInstance\n}\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n```javascript\n$MAKE('User', { firstname: 'Peter', lastname: 'Širka' }, function(err, user) {\n\t// user === SchemaInstance\n});```\n__Imagine__ that `model` is the `SchemaInstance` object.",
+      "properties": [
+        {
+          "changetype": 1,
+          "options": ["+3.2.0"],
+          "name": "$.model.$parent",
+          "body": "A parent instance of the current schema.",
+          "type": "SchemaInstance"
+        }
+      ],
       "methods": [
         {
           "name": "model.$clean",
           "return": "Object",
-          "body": "Returns cleaned and raw object with model data. Because each `SchemaInstance` object contains internal meta-data and methods."
+          "body": "Returns cleaned and raw object with model data. Because each `SchemaInstance` object contains internal meta-data and methods.",
+          "params": []
         },
         {
           "name": "model.$output",
@@ -27392,6 +27478,22 @@
             "+v3.0.0",
             "advanced",
             "alias"
+          ]
+        },
+        {
+          "changetype": 1,
+          "name": "$.redirect",
+          "params": [
+            {
+              "name": "url",
+              "type": "String",
+              "body": "URL for redirect"
+            }
+          ],
+          "return": "SchemaInstance",
+          "body": "Performs a redirect.",
+          "options": [
+            "+v3.2.0"
           ]
         },
         {
