@@ -1,4 +1,4 @@
-{
+  {
   "api": [
     {
       "delegates": [
@@ -3204,7 +3204,7 @@
           "name": "F.hash",
           "params": [
             {
-              "body": "A hash algorithmus. Example: sha1, sha256, sha512, md5.",
+              "body": "A hash algorithm. Example: sha1, sha256, sha512, md5.",
               "name": "type",
               "type": "String"
             },
@@ -3935,6 +3935,16 @@
         },
         {
           "options": [
+            "+v3.3.0"
+          ],
+          "changetype": 1,
+          "default": "'/tasks/'",
+          "body": "A default directory for tasks.",
+          "name": "directory_tasks",
+          "return": "String"
+        },
+        {
+          "options": [
             "+v3.0.0"
           ],
           "changetype": 1,
@@ -4038,6 +4048,22 @@
             "auxiliary"
           ],
           "return": "String Array"
+        },
+        {
+          "changetype": 1,
+          "default": "undefined",
+          "body": "A default crypto algorithm and can rewrite internal Total.js crypto algorithm, for example: `aes-128-ccm`",
+          "name": "default_crypto",
+          "return": "String",
+          "options": ["+v3.3.0"]
+        },
+        {
+          "changetype": 1,
+          "default": "undefined",
+          "body": "It's an initialization vector (default: generated from `secret`) or it can contain a custom `hex` value",
+          "name": "default_crypto_iv",
+          "return": "String",
+          "options": ["+v3.3.0"]
         },
         {
           "default": "'0.0.0.0'",
@@ -4299,6 +4325,14 @@
           "body": "Allows to increase the HTTP performance.",
           "name": "allow_performance",
           "return": "Boolean"
+        },
+        {
+          "changetype": 1,
+          "default": "false",
+          "body": "Can enable silent `F.worker()` (detached stream of worker from the stream of the current process).",
+          "name": "allow_workers_silent",
+          "return": "Boolean",
+          "options": ["+v3.3.0"]
         },
         {
           "default": "false",
@@ -9744,6 +9778,32 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Disables HTTP cache",
+          "name": "controller.nocache",
+          "params": [
+          ],
+          "return": "FrameworkController"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Responds with `204` status and without content.",
+          "name": "controller.nocontent",
+          "params": [
+            {
+              "body": "Additional headers.",
+              "name": "headers",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ],
+          "return": "FrameworkController"
+        },
+        {
           "body": "Sends the empty response (text/plain).",
           "name": "controller.empty",
           "options": [
@@ -11258,6 +11318,18 @@
         {
           "body": "Gets the controller name.",
           "name": "controller.name",
+          "options": [
+            "readonly",
+            "http",
+            "websocket"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Gets the current `sessionid`.",
+          "name": "controller.sessionid",
           "options": [
             "readonly",
             "http",
@@ -15706,6 +15778,14 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "body": "A type of message content. Can contain these values: `html` (default) or `plain`.",
+          "name": "message.type",
+          "return": "String",
+          "default": "'html'",
+          "options": ["+v3.3.0"]
+        },
+        {
           "options": [
             "+v1.9.0"
           ],
@@ -17480,6 +17560,22 @@
           "return": "Object"
         },
         {
+          "changetype": 1,
+          "body": "Returns parsed user-agent. It uses [`String.prototype.parseUA()`](#api~String.prototype~String.prototype.parseUA).",
+          "go": "#api~String.prototype~String.prototype.parseUA",
+          "name": "Request.prototype.useragent",
+          "params": [
+              {
+                "name": "structured",
+                "type": "Boolean",
+                "body": "Should be the result structured in object? If yes, then the method returns an Object instead of String",
+                "options": ["optional"]
+              }
+          ],
+          "options": ["+v3.3.0"],
+          "return": "String/Object"
+        },
+        {
           "options": [
             "+v1.9.0"
           ],
@@ -18423,6 +18519,36 @@
       "body": "The __String prototype__ is available in each Node.js / Total.js script. Prototypes are defined in the __FrameworkUtils__ `utils.js`. The __FrameworkUtils__ is a global variable",
       "group": "Prototypes",
       "methods": [
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "CSV parser.\n\n__CSV example__:\n\n```csv\nvalue1,value2,value3\nvalue1,value2,value3\n```\n\n__Parsed output__:\n\n```javascript\n[\n  { a: 'value1', b: 'value2', c: 'value3' },\n  { a: 'value1', b: 'value2', c: 'value3' }\n]```",
+          "name": "String.prototype.parseCSV",
+          "params": [
+              {
+                "name": "delimiter",
+                "type": "String",
+                "body": "A value delimiter",
+                "options": ["optional"]
+              }
+          ],
+          "return": "Array"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "A simple parser for user-agent strings.\n\n__User-agent__:\n\n```javascript\nvar ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36';\nvar unstructured = ua.parseUA();\nvar structured = ua.parseUA(true);\n```\n\n__Unstructured__:\n\n```plain\nWindows Chrome\n```\n\n__Structured__:\n\n```javascript\n{ os: 'Windows', browser: 'Chrome', device: 'desktop' }\n```\n\n__IMPORTANT__: `device` can contain these values:\n\n- `desktop`\n- `mobile`\n- `tablet`\n- `tv`",
+          "name": "String.prototype.parseUA",
+          "params": [
+              {
+                "name": "structured",
+                "type": "Boolean",
+                "body": "Should be the result structured in object? If yes, then the method returns an Object instead of String",
+                "options": ["optional"]
+              }
+          ],
+          "return": "String/Object"
+        },
         {
           "body": "Trims the white characters",
           "name": "String.prototype.trim",
@@ -23407,6 +23533,27 @@
           "return": "Boolean"
         },
         {
+          "changetype": 1,
+          "body": "A global helper object for storing global functions",
+          "name": "FUNC",
+          "return": "Object",
+          "options": ["+v3.3.0"]
+        },
+        {
+          "changetype": 1,
+          "body": "A global helper object for storing global data",
+          "name": "REPO",
+          "return": "Object",
+          "options": ["+v3.3.0"]
+        },
+        {
+          "changetype": 1,
+          "body": "A global helper object for storing main data of app",
+          "name": "MAIN",
+          "return": "Object",
+          "options": ["+v3.3.0"]
+        },
+        {
           "options": [
             "+v1.9.0"
           ],
@@ -23674,6 +23821,15 @@
           "body": "Determines whether is some error in the builder.",
           "name": "instance.is",
           "return": "Boolean"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "body": "Returns a count of errors. It's alias for `instance.items.length`",
+          "name": "instance.length",
+          "return": "Number"
         },
         {
           "options": [
@@ -24909,6 +25065,15 @@
           "return": "RESTBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Enables HTTP keep-alive agent.",
+          "name": "instance.keepalive",
+          "params": [
+          ],
+          "return": "RESTBuilder"
+        },
+        {
           "body": "Performs the request.",
           "name": "instance.exec",
           "params": [
@@ -25502,7 +25667,7 @@
         },
         {
           "changetype": 1,
-          "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index) => value.toUpperCase());\n\t// ...\n});\n```",
+          "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index, req) => value.toUpperCase());\n\t// ...\n});\n```",
           "name": "schema.before",
           "options": [
             "+v3.2.0"
@@ -25533,11 +25698,49 @@
                   "type": "Number",
                   "body": "Array index",
                   "options": ["optional"]
+                },
+                {
+                  "name": "req",
+                  "type": "Request",
+                  "body": "+v3.3.0 A request object. Can be `undefined`.",
+                  "options": ["optional"]
                 }
               ]
             }
           ],
           "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "body": "This method can return a Key/Value or Enum values defined via `schema.define()` method. Example:\n\n```javascript\nschema.define('a', ['A', 'B', 'C', 'D']);\nschema.define('b', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' });\n\nconsole.log(schema.cl('a'));\nconsole.log(schema.cl('b'));\n```",
+          "name": "schema.cl",
+          "params": [
+            {
+              "body": "A property name",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Object/Array"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "body": "Returns all meta info about properties.\n\n```javascript\nNEWSCHEMA('Users', function(schema) {\n\n\tschema.define('name', String, true);\n\tschema.define('age', Number, true);\n\tschema.define('type', ['A', 'B', 'C', 'D']);\n\n\tconsole.log(schema.props());\n});\n```\n\n__Output__:\n\n```javascript\n{\n  name: { required: true, type: 'string', subtype: undefined },\n  age: { required: true, type: 'number' },\n  type: { type: 'enum', items: [ 'A', 'B', 'C', 'D' ] }\n}```",
+          "name": "schema.props",
+          "params": [
+            {
+              "body": "A property name",
+              "name": "name",
+              "type": "String"
+            }
+          ],
+          "return": "Object/Array"
         },
         {
           "options": [
@@ -25676,44 +25879,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changelog": "added a <b>model</b> argument",
-          "body": "Prepares the values. has to return a prepared object.",
-          "name": "schema.setPrepare",
-          "options": [
-            "+v1.8.0"
-          ],
-          "params": [
-            {
-              "body": "The function.",
-              "name": "fn",
-              "params": [
-                {
-                  "body": "The property name.",
-                  "name": "name",
-                  "type": "String"
-                },
-                {
-                  "body": "The property value.",
-                  "name": "value",
-                  "type": "Object"
-                },
-                {
-                  "body": "Indexer for array.",
-                  "name": "index",
-                  "type": "Number"
-                },
-                {
-                  "body": "A whole model.",
-                  "name": "model",
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Object"
-        },
-        {
           "body": "Sets the prefix for the ErrorBuilder.",
           "name": "schema.setPrefix",
           "options": [
@@ -25820,6 +25985,37 @@
           ],
           "body": "Sets the update delegate.",
           "name": "schema.setUpdate",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "A functionality description",
+              "name": "description",
+              "type": "String",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "body": "Sets the patch delegate. Real `PATCH` functionality can be used with other methods like `.setUpdate()` or `.serInsert()` or `.addWorkflow()`, etc..",
+          "name": "schema.setPatch",
           "params": [
             {
               "body": "A callback delegate",
@@ -26188,8 +26384,8 @@
         }
       ],
       "name": "SchemaDeclaration",
-      "changetype": 1,
-      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n\t\t\t\t\t// (NOTE: the framework doesn't deserialize JSON to Object)\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// How to get back default values?\nconsole.log(schema.schema.propertyName.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
+      "changetype": 2,
+      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Number2');           // +v3.3.0 default value is null, not \"0\" (zero)\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n// (NOTE: the framework doesn't deserialize JSON to Object)\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// Function types instead of String types:\nschema.define('prop', UID);                 // +v3.3.0 is same as 'UID'\nschema.define('prop', String);              // is same as 'String'\nschema.define('prop', Number);              // is same as 'Number'\nschema.define('prop', Boolean);             // is same as 'Boolean'\nschema.define('prop', Object);              // is same as 'Object'\nschema.define('prop', Date);                // is same as 'Date'\n\n// How to get back default values?\nconsole.log(schema.schema.property_name.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
       "properties": [
         {
           "body": "Returns a schema definition.",
@@ -27055,6 +27251,29 @@
           "body": "Alias for `controller.ip`. __IMPORTANT__: controller must be assigned."
         },
         {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "name": "$.keys",
+          "return": "String Array",
+          "body": "Very important property, it can returns received keys with values according to the schema. It's targeted for `PATCH` HTTP method."
+        },
+        {
+          "options": ["+v3.1.0", "alias"],
+          "changetype": 1,
+          "name": "$.res",
+          "return": "Response",
+          "body": "Returns current `response` object. It's alias for `$.controller.res`."
+        },
+        {
+          "options": ["+v3.1.0", "alias"],
+          "changetype": 1,
+          "name": "$.req",
+          "return": "Request",
+          "body": "Returns current `request` object. It's alias for `$.controller.req`."
+        },
+        {
           "options": [
             "alias"
           ],
@@ -27736,7 +27955,7 @@
           "body": "Performs a callback."
         },
         {
-          "options": "+v3.1.0",
+          "options": ["+v3.1.0"],
           "changetype": 1,
           "name": "$.cancel",
           "params": [
