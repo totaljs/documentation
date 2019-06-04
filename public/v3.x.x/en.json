@@ -56,57 +56,6 @@
           ]
         },
         {
-          "default": "null",
-          "body": "The authorization delegate is for the user authorization. According to the callback values the framework sets flag `authorize` or `unauthorize` to the current request and then evaluates a route condition. Don't forget execute the callback.",
-          "example": "https://github.com/totaljs/examples/tree/master/authorization",
-          "name": "F.onAuthorize",
-          "options": [
-            "depends on the callback"
-          ],
-          "params": [
-            {
-              "body": "The HTTP request",
-              "name": "req",
-              "type": "Object"
-            },
-            {
-              "body": "The HTTP response",
-              "name": "res",
-              "type": "Object"
-            },
-            {
-              "body": "The current request flags.",
-              "name": "flags",
-              "type": "Array"
-            },
-            {
-              "body": "The callback function.",
-              "name": "callback",
-              "options": [
-                "important",
-                "required"
-              ],
-              "params": [
-                {
-                  "body": "Is the user authorized?",
-                  "name": "isAuthorized",
-                  "type": "Boolean"
-                },
-                {
-                  "body": "The custom user object. This object will be associated with req.user.",
-                  "name": "user",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
           "body": "This delegate sets a mail handler for sending emails.",
           "example": "https://github.com/totaljs/examples/tree/master/controller-mail",
           "name": "F.onMail",
@@ -1268,97 +1217,6 @@
             }
           ],
           "return": "Database"
-        },
-        {
-          "changetype": 2,
-          "changelog": "Added alias",
-          "body": "Runs a worker. In other words: another script in a __new thread__.",
-          "example": "https://github.com/totaljs/examples/tree/master/workers",
-          "name": "F.worker",
-          "alias": "WORKER",
-          "params": [
-            {
-              "body": "Name of worker (workers/{name}.js).",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Id of worker. According ID parameter you can get alive worker.",
-              "name": "id",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "default": "infinite",
-              "body": "Worker timeout.",
-              "name": "timeout",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
-            },
-            {
-              "body": "Additional process arguments <code>process.argv</code>.",
-              "name": "args",
-              "options": [
-                "optional"
-              ],
-              "type": "Array String"
-            }
-          ],
-          "return": "ChildProcess"
-        },
-        {
-          "options": [
-            "+v2.0.0"
-          ],
-          "changetype": 2,
-          "changelog": "Added alias",
-          "body": "Runs a worker. In other words: another script in a __new thread__.",
-          "alias": "WORKER2",
-          "name": "F.worker2",
-          "params": [
-            {
-              "body": "Name of worker (workers/{name}.js).",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Additional process arguments <code>process.argv</code>.",
-              "name": "args",
-              "options": [
-                "optional"
-              ],
-              "type": "Array String"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-                {
-                  "name": "err",
-                  "body": "Error handling.",
-                  "type": "Error"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "default": "infinite",
-              "body": "Worker timeout.",
-              "name": "timeout",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
-            }
-          ],
-          "return": "ChildProcess"
         },
         {
           "body": "Reconnects HTTP/HTTPS again.",
@@ -17182,6 +17040,132 @@
       ]
     },
     {
+      "body": "`+v3.3.0` __AuthOptions__ is used as `$` argument in `AUTH()` method.",
+      "group": "Additional",
+      "changetype": 1,
+      "name": "AuthOptions",
+      "properties": [
+        {
+          "body": "Returns `Request` instance",
+          "name": "$.req",
+          "return": "Object"
+        },
+        {
+          "body": "Returns `Response` instance",
+          "name": "$.res",
+          "return": "Object"
+        },
+        {
+          "body": "Returns IP address",
+          "name": "$.ip",
+          "return": "String"
+        },
+        {
+          "body": "Returns language from `LOCALIZE()` delegate",
+          "name": "$.language",
+          "return": "String"
+        },
+        {
+          "body": "Returns request headers",
+          "name": "$.headers",
+          "return": "Object"
+        },
+        {
+          "body": "Returns dynamic arguments",
+          "name": "$.params",
+          "return": "Object"
+        }
+      ],
+      "methods": [
+        {
+          "body": "Appends roles for the current user.",
+          "name": "$.roles",
+          "params": [
+            {
+              "name": "role1",
+              "type": "String",
+              "body": "Role 1, example: <code>admin<code>"
+            },
+            {
+              "name": "role2",
+              "type": "String",
+              "body": "Role 2, example: <code>moderator<code>",
+              "options": ["optional"]
+            },
+            {
+              "name": "roleN",
+              "type": "String",
+              "body": "Role N",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "body": "The method sets the request as unauthorized.",
+          "name": "$.invalid",
+          "params": [
+            {
+              "name": "user",
+              "type": "Object",
+              "body": "A user instance",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "body": "The method sets the request as authorized.",
+          "name": "$.success",
+          "params": [
+            {
+              "name": "user",
+              "type": "Object",
+              "body": "A user instance"
+            }
+          ]
+        },
+        {
+          "body": "The method creates a cookie",
+          "name": "$.cookie",
+          "params": [
+            {
+              "name": "name",
+              "type": "String",
+              "body": "A key of cookie value"
+            }
+          ]
+        },
+        {
+          "body": "The method creates a cookie",
+          "name": "$.cookie",
+          "params": [
+            {
+              "body": "Cookie name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A value",
+              "name": "value",
+              "type": "String"
+            },
+            {
+              "body": "The expiration. E.g. <b>\"2 days\"</b>",
+              "name": "expiration",
+              "type": "String/Date"
+            },
+            {
+              "body": "Additional options. Supported values: domain (String), path (String), secure (Boolean), httponly (Boolean), security (String - <code>lax</code> or <code>strict</code>). Default cookie path: <b>\"/\"</b>.",
+              "name": "options",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "body": "```javascript\nexports.install = function() {\n\tF.route('/contact/', json_contact, ['xhr', 'post']);\n};```",
       "group": "Additional",
       "changetype": 2,
@@ -21297,6 +21281,159 @@
           "return": "Framework"
         },
         {
+          "body": "Runs a worker. In other words: another script in a __new thread__. __IMPORTANT__: `stdout` stream is piped into the main process, so `console.log()` in the worker will be part of main process.",
+          "example": "https://github.com/totaljs/examples/tree/master/workers",
+          "name": "WORKER",
+          "params": [
+            {
+              "body": "Name of worker (workers/{name}.js).",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Id of worker. According ID parameter you can get alive worker.",
+              "name": "id",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "default": "infinite",
+              "body": "Worker timeout.",
+              "name": "timeout",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            },
+            {
+              "body": "Additional process arguments <code>process.argv</code>.",
+              "name": "args",
+              "options": [
+                "optional"
+              ],
+              "type": "Array String"
+            }
+          ],
+          "return": "ChildProcess"
+        },
+        {
+          "options": [
+            "+v2.0.0"
+          ],
+          "body": "Runs a worker. In other words: another script in a __new thread__. This worker returns a buffer from `stdout` in the callback, so `console.log()` in the worker will be as a response in the callback.",
+          "name": "WORKER2",
+          "params": [
+            {
+              "body": "Name of worker (workers/{name}.js).",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Additional process arguments <code>process.argv</code>.",
+              "name": "args",
+              "options": [
+                "optional"
+              ],
+              "type": "Array String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "buffer",
+                  "body": "Buffered response",
+                  "type": "Buffer"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "default": "infinite",
+              "body": "Worker timeout.",
+              "name": "timeout",
+              "options": [
+                "optional"
+              ],
+              "type": "Number"
+            }
+          ],
+          "return": "ChildProcess"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "This method encrypts a value according to the request meta information. In addition it stores user-agent (always) and IP address (in strict mode only). It's targeted for storing encrypted values in e.g. cookies (for temporary usage). __IMPORTANT__: don't use this method for encrypting long-term values in DB. The method returns encoded `String`.",
+          "name": "ENCRYPTREQ",
+          "params": [
+            {
+              "body": "A request object",
+              "name": "req",
+              "type": "Request"
+            },
+            {
+              "body": "A value for encrypting",
+              "name": "val",
+              "type": "Object/String"
+            },
+            {
+              "body": "A custom key. The key is combined with `secret`.",
+              "name": "key",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "Enables strict comparing, this means that IP address will be encrypted and compared too.",
+              "name": "strict",
+              "options": [
+                "optional"
+              ],
+              "default": "false",
+              "type": "Boolean"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "This method decrypts a value according to the request meta information. The method returns decoded `Object` or `String`.",
+          "name": "DECRYPTREQ",
+          "params": [
+            {
+              "body": "A request object",
+              "name": "req",
+              "type": "Request"
+            },
+            {
+              "body": "A value for encrypting",
+              "name": "val",
+              "type": "Object/String"
+            },
+            {
+              "body": "A custom key. The key is combined with `secret`.",
+              "name": "key",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "Object/String"
+        },
+        {
           "body": "An alias for `framework.log()`",
           "go": "#api~Framework",
           "name": "LOG",
@@ -21870,8 +22007,8 @@
           "return": "Framework"
         },
         {
-          "body": "Alias for `F.onAuthorize = fn`",
           "name": "AUTH",
+          "body": "The authorization delegate is for the user authorization. According to the callback values the framework sets flag `authorize` or `unauthorize` to the current request and then evaluates a route condition. Don't forget execute the callback. Read more in [Authorization's section](#pages~Authorization).",
           "options": [
             "+v2.9.0"
           ],
@@ -21882,48 +22019,13 @@
               "type": "Function",
               "params": [
                 {
-                  "body": "The HTTP request",
-                  "name": "req",
-                  "type": "Object"
-                },
-                {
-                  "body": "The HTTP response",
-                  "name": "res",
-                  "type": "Object"
-                },
-                {
-                  "body": "The current request flags.",
-                  "name": "flags",
-                  "type": "Array"
-                },
-                {
-                  "body": "The callback function.",
-                  "name": "callback",
-                  "options": [
-                    "important",
-                    "required"
-                  ],
-                  "params": [
-                    {
-                      "body": "Is the user authorized?",
-                      "name": "isAuthorized",
-                      "type": "Boolean"
-                    },
-                    {
-                      "body": "The custom user object. This object will be associated with req.user.",
-                      "name": "user",
-                      "options": [
-                        "optional"
-                      ],
-                      "type": "Object"
-                    }
-                  ],
-                  "type": "Function"
+                  "body": "Options",
+                  "name": "$",
+                  "type": "AuthOptions"
                 }
               ]
             }
-          ],
-          "return": "Framework"
+          ]
         },
         {
           "body": "Alias for `F.group()`",
@@ -28518,7 +28620,7 @@
       "name": "Localization"
     },
     {
-      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `F.onAuthorize` or `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n- [Download module: Auth](https://github.com/totaljs/modules/tree/master/Security/auth)\n\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n## Simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function(req, res, flags, next) {\n\n\t// EXAMPLE:\n\tvar userId = req.cookie('user').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\tnext(false);\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\tnext(false);\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\tnext(true, user);\n\n\t\t// or assign the user object to request.user:\n\t\t/*\n\t\t\treq.user = user;\n\t\t\tnext(true);\n\t\t*/\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');\n}```",
+      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n- [Download module: Auth](https://github.com/totaljs/modules/tree/master/Security/auth)\n\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n`+v3.3.0` brings great new improvements.\n\n## A simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function($) {\n\n\t// $ means \"AuthOptions\"\n\n\t// ====================================\n\t// Properties:\n\t// ====================================\n\n\t// $.req;\n\t// $.res;\n\n\t// $.flags;\n\t// {String Array} A custom flags\n\n\t// $.headers;\n\t// {Object} Reads request headers\n\n\t// $.ip;\n\t// {String} Reads IP address\n\t\n\t// $.language;\n\t// {String} Reads language\n\n\t// $.query;\n\t// {Object} Reads a query values\n\t\n\t// $.params;\n\t// {Object} Reads URL dynamic params\n\n\t// ====================================\n\t// Methods:\n\t// ====================================\n\t\n\t// $.invalid([user_instance]);\n\t// Doesn't authorize user (it will be unauthorized)\n\n\t// $.success(user_instance);\n\t// Authorizes the user (it will be authorized)\n\n\t// $.done();\n\t// returns function(err, user) for handling callbacks\n\n\t// $.cookie(name);\n\t// Reads a cookie\n\n\t// $.roles(role1, role2, roleN);\n\t// Appends roles for the current user\n\n\t// $.cookie(name, value, expires, [options]);\n\t// Creates a cookie\n\n\t// EXAMPLE:\n\tvar userId = ($.cookie('user') || '').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\t$.invalid();\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\t$.invalid();\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\t$.success(user);\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');}```",
       "group": "How does it work?",
       "name": "Authorization"
     },
@@ -28600,7 +28702,7 @@
       "name": "Debugging"
     },
     {
-      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do a fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `F.onAuthorize` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter Širka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter Širka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();\n```",
+      "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do a fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `AUTH()` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter \u0160irka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter \u0160irka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();```",
       "group": "How does it work?",
       "name": "Unit-Testing"
     }
