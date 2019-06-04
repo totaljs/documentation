@@ -1386,37 +1386,6 @@
           "return": "Framework"
         },
         {
-          "changelog": "<b>+v3.0.0</b> improved declaration",
-          "changetype": 2,
-          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nF.middleware('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older implementation\n\n```javascript\nF.middleware('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});\n```\n",
-          "example": "https://github.com/totaljs/examples/tree/master/middleware",
-          "name": "F.middleware",
-          "alias": "MIDDLEWARE",
-          "params": [
-            {
-              "body": "The middleware name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The function to execute.",
-              "name": "fn",
-              "options": [
-                "important"
-              ],
-              "params": [
-                {
-                  "body": "Options",
-                  "name": "$",
-                  "type": "MiddlewareOptions"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
           "body": "Registers a new convertor for auto converting values in `controller.query` and `controller.body` (when the request doesn't contain JSON).\n\n```javascript\nF.convert('page', Number);\nF.convert('newsletter', Boolean);\nF.convert('q', val => val.toLowerCase());```",
           "name": "F.convert",
           "params": [
@@ -2104,105 +2073,6 @@
             }
           ],
           "return": "FrameworkController Array"
-        },
-        {
-          "changelog": "+v2.8.0 - add a support for URL address",
-          "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string.\n\n`+v2.8.0` __Rendering view from URL address__:\n\n```javascript\nvar response = F.view('https://www.totaljs.com/view.html');\nif (response instanceof Function) {\n\t// Is called the only once because the second time the view is read from the framework cache\n\tresponse(function(err, response) {\n\t\tconsole.log('VIEW:', response);\n\t});\n} else\n\tconsole.log('VIEW:', response);```",
-          "name": "F.view",
-          "params": [
-            {
-              "body": "The view name or `+v2.8.0` URL address",
-              "name": "name/url",
-              "type": "String"
-            },
-            {
-              "body": "A model for this view",
-              "name": "model",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "A layout for the view",
-              "name": "layout",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "A repository object",
-              "name": "repository",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "Localization for the view",
-              "name": "language",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "changelog": "v2.8.0 - supports cache key",
-          "body": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string",
-          "name": "F.viewCompile",
-          "params": [
-            {
-              "body": "A view markup",
-              "name": "html",
-              "type": "String"
-            },
-            {
-              "body": "A model for this view",
-              "name": "model",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "A layout for the view",
-              "name": "layout",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "A repository object",
-              "name": "repository",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "Localization for the view",
-              "name": "language",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "A cache key.",
-              "name": "key",
-              "options": [
-                "optional",
-                "+v2.8.0"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "String"
         },
         {
           "body": "Creates the HTML from some view and sends the email. __IMPORTANT:__ the subject is automatically translated according to the localization when it contains the localization's markup `@(SUBJECT)`",
@@ -3675,7 +3545,7 @@
     },
     {
       "changetype": 2,
-      "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : process.env\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```\n\n## Simple \"encrypting\" of values\n\n`+v3.1.0` supports a simple encrypting of values with `base64` or `hex` encoding. Fox example:\n\n```html\nsomevalue1            : base64 MTIzNDU2\n// Contains 123456 value\n\nsomevalue2            : hex 313233343536\n// Contains 123456 value\n```",
+      "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : process.env\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```\n\n## Simple \"encrypting\" of values\n\n`+v3.1.0` supports a simple encrypting of values with `base64` or `hex` encoding. Fox example:\n\n```html\nsomevalue1            : base64 MTIzNDU2\n// Contains 123456 value\n\nsomevalue2            : hex 313233343536\n// Contains 123456 value\n```\n\n## Random values\n\n`+v3.3.0` supports random values, example:\n\n```html\nsomevalue1    (random)        : 10\n// Will contain a random string with length 10 chars```",
       "group": "Framework",
       "name": "FrameworkConfiguration",
       "properties": [
@@ -4197,8 +4067,10 @@
           "return": "String/Boolean"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.3.0 adds a new value `magick` for ImageMagick v7",
           "default": "'gm'",
-          "body": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server has to have installed one of them.",
+          "body": "The default image/picture converter. Value: `gm` is GraphicsMagick and `im` is ImageMagick. Your server has to have installed one of them. `+v3.3.0` adds a new value called `magick` for ImageMagick v7.",
           "name": "default_image_converter",
           "return": "String"
         },
@@ -9527,6 +9399,8 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.3.0 `headers` argument supports `.flags` property which can extend REQUEST() flags.",
           "body": "Creates a proxy for the current request. __IMPORTANT__: response data are loaded into the memory.",
           "name": "controller.proxy",
           "options": [
@@ -13116,6 +12990,42 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Serializes object with __defined keys only__ into the JSON format. This method creates `<script type=\"application/json\" ...`.",
+          "name": "@{json2}",
+          "params": [
+            {
+              "body": "The object.",
+              "name": "obj",
+              "type": "Object"
+            },
+            {
+              "body": "The script id.",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A key 1",
+              "name": "key1",
+              "type": "String"
+            },
+            {
+              "body": "A key 2",
+              "name": "key2",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A key ... N",
+              "name": "keyN",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ],
+          "return": "String"
+        },
+        {
           "body": "Renders the select tag from the array.\n\n```html\n<select>\n    @{options([{ name: 'All', value: 0 }, { name: 'One', value: 1 }], 1)}\n</select>```",
           "name": "@{options}",
           "params": [
@@ -13651,7 +13561,9 @@
       "group": "Framework",
       "methods": [
         {
-          "body": "Download content or file from a url address.\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`",
+          "changelog": "+v3.3.0 adds `keepalive` flag",
+          "changetype": 2,
+          "body": "Download content or file from a url address.\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `CONF.default_interval_clear_dnscache`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`\n- `+v3.3.0` adds a new flag called `keepalive` which keeps a connection to the server",
           "name": "U.download",
           "params": [
             {
@@ -14173,7 +14085,10 @@
           "return": "Boolean"
         },
         {
-          "body": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `config['default-interval-clear-dnscache']`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `< 8` reads the content with maximum size `8 kB`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- `noredirect` disables auto-redirect (+v2.5.0)\n- `raw` sends data as they are (+v2.5.0)\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`\n- `+v2.9.2` adds a new flag called `cookies` for persistency of cookies (Important: cookie object must be declared)",
+          "changelog": "+v3.3.0 adds `keepalive` flag",
+          "changetype": 2,
+          "body": "Creates the request (GET/POST/DELETE/PUT) to the URL address with the custom params, cookies and headers. The method automatically serializes values (without xml and files).\n\n__IMPORTANT__:\nFor DNS HOST CACHE use `dnscache` flag (auto-clear DNS cache: `CONF.default_interval_clear_dnscache`).\n\n__FLAGS__:\n- `number` is considered as `timeout`\n- `< 8` reads the content with maximum size `8 kB`\n- `json` automatically serializes data to `json`\n- `xhr` is supported too\n- `dnscache` resolves IP from DNS\n- `noredirect` disables auto-redirect (+v2.5.0)\n- `raw` sends data as they are (+v2.5.0)\n- supported encodings: `utf8` (default), `ascii`, `base64`, `binary` and `hex`\n- supported content types: `html`, `plain`, `json` and `xml`\n- supported methods: `get` (default), `post`, `put`, `delete`, `path`, `head` and `options`\n- `+v2.9.2` adds a new flag called `cookies` for persistency of cookies (Important: cookie object must be declared)\n- `+v3.3.0` adds a new flag called `keepalive` which keeps a connection to the server",
+          "alias": "REQUEST",
           "name": "U.request",
           "params": [
             {
@@ -18018,7 +17933,8 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
+          "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
+          "changetype": 2,
           "options": ["+v3.0.0"],
           "body": "Sends a file stored in FileStorage",
           "name": "Response.prototype.filefs",
@@ -18034,12 +17950,12 @@
               "type": "String/Number"
             },
             {
-              "body": "A download name",
+              "body": "A download name or +v3.3.0 can be a `function(name, type)` which must return a new name.",
               "name": "download",
               "options": [
                 "optional"
               ],
-              "type": "String"
+              "type": "String/Function"
             },
             {
               "body": "Additional headers",
@@ -18061,7 +17977,8 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
+          "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
+          "changetype": 2,
           "options": ["+v3.0.0"],
           "body": "Sends a file stored in NoSQL embedded database",
           "name": "Response.prototype.filenosql",
@@ -18077,7 +17994,7 @@
               "type": "String/Number"
             },
             {
-              "body": "A download name",
+              "body": "A download name or +v3.3.0 can be a `function(name, type)` which must return a new name.",
               "name": "download",
               "options": [
                 "optional"
@@ -18578,6 +18495,8 @@
           "return": "String"
         },
         {
+          "changelog": "+v3.3.0 adds `encode` and `def` arguments.",
+          "changetype": 2,
           "options": [
             "+v2.9.3"
           ],
@@ -18588,6 +18507,20 @@
               "name": "obj",
               "type": "Object",
               "body": "Object with keys/values"
+            },
+            {
+              "name": "encode",
+              "type": "Boolean/String",
+              "body": "If `true` then it encodes a value via `encodeURIComponent()` method or if it will contain `json` then the value will be encoded via `JSON.stringify()` method",
+              "default": "false",
+              "options": ["optional"]
+            },
+            {
+              "name": "def",
+              "type": "String",
+              "body": "A default value for non-existing fields",
+              "default": "undefined",
+              "options": ["optional"]
             }
           ],
           "return": "String"
@@ -19171,8 +19104,8 @@
         },
         {
           "changetype": 2,
-          "changelog": "+v3.0.0 supports crc32 and crc32unsigned",
-          "body": "Creates the hash from the string. Supports: `sha1`, `sha256`, `sha512`, `md5`, `crc32` or `crc32unsigned`.",
+          "changelog": "+v3.3.0 supports unsigned int",
+          "body": "Creates the hash from the string. Supports: `sha1`, `sha256`, `sha512`, `md5`, `crc32` or `crc32unsigned`.\n\n```javascript\nvar string = 'Something'.hash();\nvar string = 'Something'.hash(true); // +v3.3.0 returns unsigned int```",
           "name": "String.prototype.hash",
           "params": [
             {
@@ -20852,10 +20785,9 @@
           "return": "Object"
         },
         {
-          "options": [
-            "+v2.9.0"
-          ],
-          "body": "Registers a new middleware. Alias to `F.middleware()`.",
+          "changelog": "<b>+v3.3.0</b> improved declaration",
+          "changetype": 2,
+          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// +v3.3.0: A current session ID\n\t// {String}\n\t$.sessionid;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n\t// +v3.3.0: Alias to req.headers\n\t// {Object}\n\t$.headers;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older and removed implementation\n\n```javascript\nMIDDLEWARE('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});```",
           "name": "MIDDLEWARE",
           "params": [
             {
@@ -20871,44 +20803,15 @@
               ],
               "params": [
                 {
-                  "body": "The HTTP Request.",
-                  "name": "req",
-                  "type": "Request"
-                },
-                {
-                  "body": "The HTTP Response. <b>IMPORTANT</b>: websocket includes net.Socket object.",
-                  "name": "res",
-                  "type": "Response/Socket"
-                },
-                {
-                  "body": "The next step.",
-                  "name": "next",
-                  "options": [
-                    "important"
-                  ],
-                  "type": "Function"
-                },
-                {
-                  "body": "A route (user-defined) options.",
-                  "name": "options",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                },
-                {
-                  "body": "The current controller (if exists).",
-                  "name": "controller",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "FrameworkController"
+                  "body": "Options",
+                  "name": "$",
+                  "type": "MiddlewareOptions"
                 }
               ],
               "type": "Function"
             }
           ],
-          "return": "Object"
+          "return": "Framework"
         },
         {
           "body": "Gets the database instance. This function is the alias for `framework.database()`.",
@@ -20931,10 +20834,101 @@
         },
         {
           "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Compiles and renders a string as view. This method simulates the controller and renders HTML into the string",
+          "name": "VIEWCOMPILE",
+          "params": [
+            {
+              "body": "A view markup",
+              "name": "html",
+              "type": "String"
+            },
+            {
+              "body": "A model for this view",
+              "name": "model",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "A layout for the view",
+              "name": "layout",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "A repository object",
+              "name": "repository",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
+            },
+            {
+              "body": "Localization for the view",
+              "name": "language",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "A cache key.",
+              "name": "key",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "body": "Registers a new motificator.\n\n```javascript\nMODIFY(function(type, filename, value, controller) {\n\t// @type {String} can contain: \"view\", \"style\", \"script\", \"static\" (static files like html, js, script, style, markdown or plain-text files)\n\t// @filename {String} can be empty\n\t// @value {String} a content (view, JS, CSS, etc.)\n\t// @controller {Object} can be \"undefined\"\n\n\t// MUST RETURN (UPDATED) VALUE\n\treturn value;\n});\n```",
+          "name": "MODIFY",
+          "params": [
+            {
+              "body": "A processor",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "body": "A type of content: `view`, `style`, `script` or `static`",
+                  "name": "type",
+                  "type": "String"
+                },
+                {
+                  "body": "A filename of the file, can be empty",
+                  "name": "filename",
+                  "type": "String"
+                },
+                {
+                  "body": "A value/content",
+                  "name": "value",
+                  "type": "String"
+                },
+                {
+                  "body": "A controller instance, can be undefined",
+                  "name": "controller",
+                  "type": "Controller"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
-          "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string. It's alias to `F.view()`.",
+          "body": "Renders a view into the string. This method simulates the controller and renders HTML into the string.",
           "name": "VIEW",
           "params": [
             {
@@ -21333,6 +21327,39 @@
             }
           ],
           "return": "Framework"
+        },
+        {
+          "changetype": 1,
+          "body": "Appends an audit message into the specific log file. The log file will contain JSON object with useful information:\n\n- `message`\n- `type` if exists\n- parsed __user__ id as `userid` (if exists)\n- parsed __user__ name as `username` (if exists)\n- parsed __user-agent__ as `ua`\n- `created` date\n- `ip` address\n\n```javascript\nschema.setSave(function($) {\n\tAUDIT('operations', $, 'updated record {0}'.format($.id));\n\t$.success();\n});```",
+          "name": "AUDIT",
+          "options": [
+            "+v3.3.0"
+          ],
+          "params": [
+            {
+              "body": "A filename",
+              "name": "filename",
+              "type": "String"
+            },
+            {
+              "body": "A SchemaOptions/OperationOptions/AuthOptions/MiddlewareOptions/TaskBuilderOptions",
+              "name": "$",
+              "type": "Object"
+            },
+            {
+              "body": "A custom type",
+              "name": "type",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            },
+            {
+              "body": "A message",
+              "name": "message",
+              "type": "String"
+            }
+          ]
         },
         {
           "body": "Writes the message into the specific log file. The log file will contain date + time.",
@@ -24571,6 +24598,131 @@
           "return": "RESTBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with defined URL address.",
+          "name": "RESTBuilder.url",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with POST method.",
+          "name": "RESTBuilder.POST",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A request data",
+              "name": "data",
+              "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with GET method.",
+          "name": "RESTBuilder.GET",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A request data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with PUT method.",
+          "name": "RESTBuilder.PUT",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A request data",
+              "name": "data",
+              "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with PATCH method.",
+          "name": "RESTBuilder.PATCH",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A request data",
+              "name": "data",
+              "type": "Object"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with DELETE method.",
+          "name": "RESTBuilder.DELETE",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A request data",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Creates a new instance of RESTBuilder with HEAD method.",
+          "name": "RESTBuilder.HEAD",
+          "params": [
+            {
+              "body": "Absolute URL address.",
+              "name": "url",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
           "body": "Sets/Gets URL / endpoint. When `url` argument is `undefined` the method returns a current `URL`.",
           "name": "instance.url",
           "params": [
@@ -27260,14 +27412,21 @@
           "body": "Very important property, it can returns received keys with values according to the schema. It's targeted for `PATCH` HTTP method."
         },
         {
-          "options": ["+v3.1.0", "alias"],
+          "options": ["+v3.3.0", "alias"],
+          "changetype": 1,
+          "name": "$.headers",
+          "return": "Object",
+          "body": "Returns current `request` headers. It's alias for `$.controller.req.headers`."
+        },
+        {
+          "options": ["+v3.3.0", "alias"],
           "changetype": 1,
           "name": "$.res",
           "return": "Response",
           "body": "Returns current `response` object. It's alias for `$.controller.res`."
         },
         {
-          "options": ["+v3.1.0", "alias"],
+          "options": ["+v3.3.0", "alias"],
           "changetype": 1,
           "name": "$.req",
           "return": "Request",
@@ -27964,12 +28123,14 @@
           "body": "Cancels callback and cleans the current `SchemaInstance`."
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.3.0 extends `arg` for returning Object or primite values",
           "name": "$.done",
           "params": [
             {
               "name": "arg",
-              "body": "Can be `arg` as a value?",
-              "type": "Boolean",
+              "body": "Can be `arg` as a value? If the type of argument is `Object` then this `Object` will be return in the callback",
+              "type": "Boolean/Object",
               "default": "true",
               "options": [
                 "optional"
@@ -27977,7 +28138,7 @@
             }
           ],
           "return": "Function",
-          "body": "It can be used for one-line async operations. It returns `SUCCESS()` result if the callback doesn't return error. A simple usage: \n\n```javascript\n// Returns SUCCESS(true)\nNOSQL('users').remove().where('id', '9289').callback($.done());\n\n// Returns SUCCESS(true, response_from_callback)\nNOSQL('users').remove().where('id', '9289').callback($.done(true));```"
+          "body": "It can be used for one-line async operations. It returns `SUCCESS()` result if the callback doesn't return error. A simple usage: \n\n```javascript\n// Returns SUCCESS(true)\nNOSQL('users').remove().where('id', '9289').callback($.done());\n// Output will be without value: { success: true }\n\n// Returns SUCCESS(true, response_from_callback)\nNOSQL('users').remove().where('id', '9289').callback($.done(true));\n// Output will be a value from DB: { success: true, value: RESULT_FROM_DB }\n\nNOSQL('users').remove().where('id', '9289').callback($.done({ removed: true }));\n// +v3.3.0 Output will be: { success: true, value: { removed: true }}```"
         },
         {
           "name": "$.invalid",
@@ -27997,7 +28158,17 @@
             }
           ],
           "return": "SchemaOptions",
-          "body": "Fast and simple error handling. It wraps this code `$.error.push()` and executes `$.callback()` immediately. A simple usage: \n\n```javascript\nif (!$.model.terms) {\n    $.invalid('terms', 'You must agree with terms and conditions.');\n    return;\n}```"
+          "body": "Fast and simple error handling. It wraps this code `$.error.push()` and executes `$.callback()` immediately. A simple usage: \n\n```javascript\nif (!$.model.terms) {\n    $.invalid('terms', 'You must agree with terms and conditions.');\n    return;\n}```",
+          "changetype": 2,
+          "changelog": "+v3.3.0 can be without arguments and it returns a function with error handling."
+        },
+        {
+          "changetype": 1,
+          "name": "$.invalid",
+          "params": [
+          ],
+          "return": "Function",
+          "body": "It's very similar to `$.invalid(name, [error])` but its without arguments. It returns a `function(err)` for handling errors in the callbacks."
         },
         {
           "name": "$.repository",
