@@ -3204,13 +3204,6 @@
           "return": "FrameworkConfig"
         },
         {
-          "default": "{}",
-          "body": "Returns framework custom functions. You can define your own functions into it.\n\n```javascript\nF.functions.toUpperCase = function(value) {\n    return value.toString().toUpperCase();\n};\n```\n\n__Usage__:\n\n```javascript\nconsole.log(F.functions.toUpperCase('peter'));\nconsole.log(FUNCTION('toUpperCase')('peter'));```",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-functions",
-          "name": "F.functions",
-          "return": "Object"
-        },
-        {
           "body": "Is the framework running in debug mode?",
           "name": "F.isDebug",
           "alias": "DEBUG",
@@ -3285,90 +3278,9 @@
           "return": "String"
         },
         {
-          "default": "{}",
-          "body": "A global property for storing values.\n\n__Example__:\n\n```javascript\nframework.global.MAX = 10;\n\n// Get the value\nconsole.log(framework.global.MAX);\nconsole.log(controller.global.MAX);\n```\n\nView:\n\n```html\n<div>Max: @{global.MAX}</div>```",
-          "example": "https://github.com/totaljs/examples/tree/master/framework-global",
-          "name": "F.global",
-          "return": "Object"
-        },
-        {
-          "default": "{}",
-          "body": "This property contains all open NoSQL embedded databases.",
-          "name": "F.databases",
-          "options": [
-            "private"
-          ],
-          "return": "Object"
-        },
-        {
-          "default": "{}",
-          "body": "This property contains mappings to static files.",
-          "name": "F.versions",
-          "options": [
-            "private"
-          ],
-          "return": "Object"
-        },
-        {
-          "default": "{}",
-          "body": "This property contains alive workers.",
-          "name": "F.workers",
-          "options": [
-            "private"
-          ],
-          "return": "Object"
-        },
-        {
-          "body": "This property contains all framework validators (regular expression) `email`, `url`, `phone`, `zip` and `uid`.",
-          "name": "F.validators",
-          "options": [
-            "important"
-          ],
-          "return": "Object"
-        },
-        {
-          "default": "{}",
-          "body": "This property stores helper functions for the view engine.\n\n__Example__:\n\n```javascript\nframework.helpers.sum = function(a, b) {\n    return a + b;\n};\n```\n\nView:\n\n```html\n<div>@{sum(10, 10)} === 20</div>```",
-          "example": "https://github.com/totaljs/examples/tree/master/views-custom-helper",
-          "name": "F.helpers",
-          "return": "Object"
-        },
-        {
-          "body": "The property contains the current `Date` (+/- 1 minute). The value is refreshed each 1 minute. Sometimes you don't need a fixed date/time, so this property saves CPU in some cases.",
-          "name": "F.datetime",
-          "return": "Date"
-        },
-        {
           "default": "[]",
           "body": "The property stores last 50 errors.",
           "name": "F.errors",
-          "options": [
-            "readonly"
-          ],
-          "return": "Array"
-        },
-        {
-          "default": "[]",
-          "body": "The property stores last 50 problems.",
-          "name": "F.problems",
-          "options": [
-            "readonly"
-          ],
-          "return": "Array"
-        },
-        {
-          "default": "[]",
-          "body": "This property stores last 50 changes.",
-          "name": "F.changes",
-          "options": [
-            "readonly"
-          ],
-          "return": "Array"
-        },
-        {
-          "default": "[]",
-          "body": "This property stores last 50 traces.",
-          "name": "F.traces",
           "options": [
             "readonly"
           ],
@@ -19597,7 +19509,7 @@
           "return": "String"
         },
         {
-          "body": "The number formatting.",
+          "body": "A number formatting.",
           "name": "Number.prototype.format",
           "params": [
             {
@@ -19611,7 +19523,7 @@
             },
             {
               "default": "' '",
-              "body": "The number separator.",
+              "body": "A number separator.",
               "name": "separator",
               "options": [
                 "optional"
@@ -19625,6 +19537,20 @@
               "options": [
                 "optional"
               ],
+              "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "The method formats a number to currency.\n\n```javascript\nNumber.currency(currency);\n// @currency {String}\n// return {String}\n\n// First, you need to have currency formatters declared:\nDEF.currencies.eur = function(val) {\n\t// @val {Number}\n\t// return {String}\n\treturn val.format(2) + ' \u20ac';\n};\n\nDEF.currencies.usd = function(val) {\n\t// @val {Number}\n\t// return {String}\n\treturn '$ ' + val.format(2);\n};\n\nconsole.log((2121).currency('usd'));\nconsole.log((2121).currency('eur'));```",
+          "name": "Number.prototype.currency",
+          "params": [
+            {
+              "body": "A currency defined in `DEF.currencies`",
+              "name": "currency",
               "type": "String"
             }
           ],
@@ -19711,7 +19637,7 @@
               "type": "String"
             },
             {
-              "body": "The number (can be also negative).",
+              "body": "A number (can be also negative).",
               "name": "count",
               "type": "Number"
             }
@@ -23726,9 +23652,39 @@
           "return": "Object"
         },
         {
+          "options": ["+v3.3.0"],
           "changetype": 1,
-          "body": "Is alias for `F.global`.",
-          "name": "G",
+          "body": "Contains preddefined values or behaviour for some operations.",
+          "name": "DEF",
+          "return": "Object"
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "body": "This property can define a currency formatter:\n\n```javascript\nDEF.currencies.eur = function(val) {\n\treturn val.format(2) + ' &euro;';\n};\n\n// Usage:\nconsole.log((1023).currency('eur'));```",
+          "name": "DEF.currencies",
+          "options": [
+            "important"
+          ],
+          "return": "Object"
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "body": "This property contains all framework validators (regular expression) `email`, `url`, `phone`, `zip` and `uid`.",
+          "name": "DEF.validators",
+          "options": [
+            "important"
+          ],
+          "return": "Object"
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "default": "{}",
+          "body": "This property stores helper functions for the view engine.\n\n__Example__:\n\n```javascript\nDEF.helpers.sum = function(a, b) {\n    return a + b;\n};\n```\n\nView:\n\n```html\n<div>@{sum(10, 10)} === 20</div>```",
+          "example": "https://github.com/totaljs/examples/tree/master/views-custom-helper",
+          "name": "DEF.helpers",
           "return": "Object"
         },
         {
