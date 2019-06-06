@@ -683,78 +683,6 @@
           ]
         },
         {
-          "body": "This event is triggered if a problem is created",
-          "example": "https://github.com/totaljs/examples/tree/master/problems",
-          "name": "F.on('problem')",
-          "params": [
-            {
-              "body": "The message",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "The controller or module name",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "The URI object",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The IP address",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ]
-        },
-        {
-          "body": "This event is triggered if is a change",
-          "example": "https://github.com/totaljs/examples/tree/master/changes",
-          "name": "F.on('change')",
-          "params": [
-            {
-              "body": "The change description",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "Controller / Module name",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "URI",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "IP address",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ]
-        },
-        {
           "body": "This event is triggered if the item is removed from the cache",
           "name": "F.on('cache-expire')",
           "params": [
@@ -2226,108 +2154,6 @@
               "params": [
 
               ]
-            }
-          ],
-          "return": "Framework"
-        },
-        {
-          "body": "Creates a new problem. The framework logs all problems into the file `logs/problems.log`",
-          "name": "F.problem",
-          "params": [
-            {
-              "body": "A problem description",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "The controller or module name",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The URI object",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The IP address",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
-          "body": "Creates a new change. The framework logs all changes into the file `logs/changes.log`",
-          "name": "F.change",
-          "params": [
-            {
-              "body": "The change description",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "Controller / Module name",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "URI object",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "IP address",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
-          "body": "Performs trace. The framework logs all trace info into the file `logs/traces.log`",
-          "name": "F.trace",
-          "options": [
-            "+v2.0.0"
-          ],
-          "params": [
-            {
-              "body": "The change description",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "Controller / Module name",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "URI object",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "IP address",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
             }
           ],
           "return": "Framework"
@@ -8378,23 +8204,6 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Creates the problem.",
-          "example": "https://github.com/totaljs/examples/tree/master/problems",
-          "name": "controller.problem",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "body": "A problem description.",
-              "name": "message",
-              "type": "String"
-            }
-          ],
-          "return": "FrameworkController"
-        },
-        {
           "body": "Returns the wrapped function `callback(err, some_data_as_model)`. In case of the error the framework throws `controller.throw500(error)` and if the error is `ErrorBuilder` then the framework responds with `controller.content(error)`.\n\n```javascript\n// Returns data as JSON\nNOSQL('some_db').find().callback(controller.callback());\n\n// Returns data as model into the \"my-view\" view\nNOSQL('some_db').find().callback(controller.callback('my-view'))```",
           "name": "controller.callback",
           "options": [
@@ -8411,39 +8220,6 @@
             }
           ],
           "return": "Function"
-        },
-        {
-          "body": "Creates a change.",
-          "example": "https://github.com/totaljs/examples/tree/master/changes",
-          "name": "controller.change",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "body": "The change message.",
-              "name": "message",
-              "type": "String"
-            }
-          ],
-          "return": "FrameworkController"
-        },
-        {
-          "body": "Performs trace.",
-          "name": "controller.trace",
-          "options": [
-            "http",
-            "websocket"
-          ],
-          "params": [
-            {
-              "body": "A message.",
-              "name": "message",
-              "type": "String"
-            }
-          ],
-          "return": "FrameworkController"
         },
         {
           "body": "Cancels the action execution.",
@@ -22209,42 +21985,6 @@
             }
           ],
           "return": "SchemaDeclaration"
-        },
-        {
-          "options": [
-            "+v2.2.0"
-          ],
-          "body": "Creates a new problem (alias for `F.problem()`). The framework logs all problems into the file `logs/problems.log`.",
-          "name": "WTF",
-          "params": [
-            {
-              "body": "A problem description.",
-              "name": "message",
-              "type": "String"
-            },
-            {
-              "body": "The controller or module name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "The URI object.",
-              "name": "uri",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "The IP address.",
-              "name": "ip",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Framework"
         },
         {
           "body": "A simple async shortcut for getting a schema. This method waits max. 20 seconds for schema declaration (it not exists).",
