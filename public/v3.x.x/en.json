@@ -2754,32 +2754,6 @@
           "return": "FrameworkController"
         },
         {
-          "body": "This function hashs strings.",
-          "name": "F.hash",
-          "params": [
-            {
-              "body": "A hash algorithm. Example: sha1, sha256, sha512, md5.",
-              "name": "type",
-              "type": "String"
-            },
-            {
-              "body": "The value for hashing.",
-              "name": "value",
-              "type": "String"
-            },
-            {
-              "default": "config['secret']",
-              "body": "A salt for hash. Boolean (default: true), false == disables the salt.",
-              "name": "salt",
-              "options": [
-                "optional"
-              ],
-              "type": "String/Boolean"
-            }
-          ],
-          "return": "String"
-        },
-        {
           "body": "Internal cryptography function for encrypting strings or objects. The salt is `config['secret']`.",
           "name": "F.encrypt",
           "params": [
@@ -20082,221 +20056,659 @@
       "name": "ArrayBuffer.prototype"
     },
     {
-      "body": "The __Async__ class is helpful for asynchronous work. Is defined in the __FrameworkUtils__ `utils.js`. The __FrameworkUtils__ is a global variable.\n\n__Example:__\n\n```javascript\nvar async = new Utils.Async();\n\nasync.await('1', function(next) {\n    setTimeout(function() {\n        console.log('1');\n        next();\n    }, 1000);\n});\n\nasync.await(function(next) {\n    console.log('2');\n    next();\n});\n\nasync.wait('3', '1', function(next) {\n    console.log('3');\n    next();\n});\n\nasync.run(function() {\n    console.log('DONE');\n});\n```\n\n__Output__:\n\n```html\n2\n1\n3\nDONE```",
+      "body": "`+v3.3.0` Preferences are a special functionality which can read and store data persistently. They are targeted for applications where the users can change some preferences.\n\n__Writing data__:\n\n```javascript\nPREF.set('key_string', 'value');\nPREF.set('key_number', 102);\nPREF.set('key_boolean', true);\nPREF.set('key_date', new Date());\n```\n\nData will be stored on HDD into the file: `databases/preferences.json`. If the framework will be restarted then the data will be loaded into the memory again.\n\n__Reading data__:\n\n```javascript\nconsole.log(PREF.key_string);\nconsole.log(PREF.key_number);\nconsole.log(PREF.key_boolean);\nconsole.log(PREF.key_date);\n```\n\n### Good to know\n\nFramework automatically stores preferences into the file `databases/preferences.json`, but you can rewrite writing/reading preferences. Just create some definition file with your custom implementation of preferences:\n\n```javascript\n// This delegate is executed when the framework is loading\nF.onPrefLoad = function(next) {\n\t// your operations\n\t// here you can load preferences from some storages\n\tnext({});\n};\n\n// This delegate is executed when the framework is loading\nF.onPrefSave = function(preferences) {\n\t// your operations\n\t// here you need to store preferences to some storages\n};\n```",
       "group": "Additional",
       "methods": [
         {
-          "body": "Cancels the work.",
-          "name": "async.cancel",
-          "params": [
-
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Adds a new function into the waiting list. All tasks are run in order and with except await tasks.",
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "name": "async.wait",
+          "body": "Stores a value in Preferences.",
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "name": "PREF.set",
           "params": [
             {
-              "body": "A name.",
+              "body": "A preference name.",
               "name": "name",
               "type": "String"
             },
             {
-              "default": "",
-              "body": "The dependency name.",
-              "name": "dependency",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "The function for execution.",
-              "name": "fn",
-              "params": [
-                {
-                  "body": "Continue.",
-                  "name": "next",
-                  "options": [
-                    "important"
-                  ],
-                  "type": "Function"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-
-              ],
-              "type": "Function"
+              "body": "A value",
+              "name": "value",
+              "type": "String/Date/Number/Boolean"
             }
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Adds a new function into the waiting list. All tasks are run in order and at the same time.",
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "name": "async.await",
-          "params": [
-            {
-              "default": "Utils.GUID(5)",
-              "body": "The task name.",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            },
-            {
-              "body": "The function for execution.",
-              "name": "fn",
-              "params": [
-                {
-                  "body": "Continue.",
-                  "name": "next",
-                  "options": [
-                    "important"
-                  ],
-                  "type": "Function"
-                }
-              ],
-              "type": "Function"
-            },
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Runs the functions.",
-          "example": "https://github.com/totaljs/examples/tree/master/async",
-          "name": "async.run",
-          "params": [
-            {
-              "body": "A callback",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Cancels the specific task or cancels all tasks.",
-          "name": "async.cancel",
-          "params": [
-            {
-              "body": "The task name.",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Sets the timeout for the specific task. This function sets `timeout` into the future and current (waiting/pending/running) tasks. You can disabled the timeout: `async.timeout('name');` or `async.timeout('name', 0).`",
-          "name": "async.timeout",
-          "params": [
-            {
-              "body": "The task name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "default": "undefined",
-              "body": "The timeout in milliseconds.",
-              "name": "timeout",
-              "options": [
-                "optional"
-              ],
-              "type": "Number"
-            }
-          ],
-          "return": "Async"
-        },
-        {
-          "body": "Determines whether the task is/tasks are running.",
-          "name": "async.isRunning",
-          "params": [
-            {
-              "body": "The task name.",
-              "name": "name",
-              "options": [
-                "optional"
-              ],
-              "type": "String"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
-          "body": "Check if task is waiting for execute.",
-          "name": "async.isWaiting",
-          "params": [
-            {
-              "body": "The task name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "Boolean"
-        },
-        {
-          "body": "Determines whether the task waits for other task.",
-          "name": "async.isPending",
-          "params": [
-            {
-              "body": "The task name.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "Boolean"
+          ]
         }
       ],
-      "name": "Async",
+      "name": "Preferences",
+      "changetype": 1,
+      "options": ["+v3.3.0"]
+    },
+    {
+      "body": "`+v3.3.0` Session can help with reading/storing session data.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n{\n\tid: 'user_id',                             // A main identificator, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRE_DATE',                     // Expiration date, when will the session expire?\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`",
+      "group": "Additional",
       "properties": [
         {
-          "default": "0",
-          "body": "How many tasks are waiting?",
-          "name": "async.count",
-          "options": [
-            "readonly"
-          ],
-          "return": "Number"
+          "body": "Returns a name of session container.",
+          "name": "session.name",
+          "type": "String"
+        }
+      ],
+      "methods": [
+        {
+          "body": "Returns a new or existing session instance.",
+          "name": "SESSION",
+          "params": [
+            {
+              "body": "A session name",
+              "name": "name",
+              "type": "String",
+              "default": "'DEFAULT'",
+              "options": ["optional"]
+            },
+            {
+              "body": "A handler for reading data from DB",
+              "name": "ondata",
+              "type": "Function",
+              "options": ["optional"]
+            }
+          ]
         },
         {
-          "default": "0",
-          "body": "The work percentage.",
-          "name": "async.percentage",
-          "options": [
-            "readonly"
-          ],
-          "return": "Number"
+          "body": "Returns a list with of session instances.",
+          "name": "session.list",
+          "params": [
+            {
+              "body": "Identificator",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "A response with Session objects.",
+                    "type": "Array"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Checks whether `sessionid` is existing in Session DB.",
+          "name": "session.has",
+          "params": [
+            {
+              "body": "IMPORTANT: SessionID",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "exists",
+                    "body": "Is existing?",
+                    "type": "Boolean"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Checks whether `id` is existing in Session DB.",
+          "name": "session.has2",
+          "params": [
+            {
+              "body": "IMPORTANT: id",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "exists",
+                    "body": "Is existing?",
+                    "type": "Boolean"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Returns internal usage of Session in the form `{ free: NUMBER, used: NUMBER, count: NUMBER }`",
+          "name": "session.usage",
+          "params": [],
+          "return": "Object"
+        },
+        {
+          "body": "Removes all expired sessions.",
+          "name": "session.clean",
+          "params": []
+        },
+        {
+          "body": "Response will be in the form `{ free: NUMBER, used: NUMBER, count: NUMBER }`",
+          "name": "session.count",
+          "params": [
+            {
+              "body": "Identificator (not sessionid)",
+              "name": "id",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "stats",
+                    "body": "Statistics",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Removes all unused session. If the `lastusage` won't be defined then all sessions will be removed.",
+          "name": "session.clear",
+          "params": [
+            {
+              "body": "Last usage, can be \"1 day\" or \"30 minutes\", etc.",
+              "name": "lastusage",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of removed items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Removes a specific session id, removed object will returned in the callback.",
+          "name": "session.remove",
+          "params": [
+            {
+              "body": "SessionID",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Removes all session with defined `id`.",
+          "name": "session.remove2",
+          "params": [
+            {
+              "body": "Identificator",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of removed items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Reads a value.",
+          "name": "session.get",
+          "params": [
+            {
+              "body": "SessionID",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "Expiration date. Can extend the expiration date (only when the value is entered)",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "A session data",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "firstload",
+                    "body": "It's \"true\" when the data are loaded first time via \"session.ondata\" delegate.",
+                    "type": "Boolean"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Reads all session item objects.",
+          "name": "session.get2",
+          "params": [
+            {
+              "body": "Identificator",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "A collection with session items according to the \"id\"",
+                    "type": "Array"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Releases all session items.",
+          "name": "session.release",
+          "params": [
+            {
+              "body": "SessionID or can be <b>null</b> for all session items",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of released session items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Releases all session items according to the `id`.",
+          "name": "session.release2",
+          "params": [
+            {
+              "body": "Identificator",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "Expiration, can contain string pharses only, example: \"10 minutes\" or \"2 days\". It's applied when is entered.",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of released session items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Releases all unused session items.",
+          "name": "session.releaseunsused",
+          "params": [
+            {
+              "body": "Last usage, can be \"1 day\" or \"30 minutes\", etc.",
+              "name": "lastusage",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of released session items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Sets a value into the Session",
+          "name": "session.set",
+          "params": [
+            {
+              "body": "SessionID, can be generated by \"UID()\" or \"GUID()\"",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "Identificator, for example \"user.id\"",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A session data, can be \"null\" but when the item will be read then the Session use \"session.ondata\" delegate.",
+              "name": "data",
+              "type": "Object"
+            },
+            {
+              "body": "Expiration, can contain string pharses only, example: \"10 minutes\" or \"2 days\".",
+              "name": "expire",
+              "type": "String"
+            },
+            {
+              "body": "A custom note",
+              "name": "note",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Custom settings",
+              "name": "settings",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "Inserted data",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "This method updates data and meta data for a specific `sessionid`. __IMPORTANT__: only entered data will be changed (not nullable).",
+          "name": "session.update",
+          "params": [
+            {
+              "body": "SessionID, can be generated by \"UID()\" or \"GUID()\"",
+              "name": "sessionid",
+              "type": "String"
+            },
+            {
+              "body": "A session data, can be \"null\" but when the item will be read then the Session use \"session.ondata\" delegate.",
+              "name": "data",
+              "type": "Object"
+            },
+            {
+              "body": "Expiration, can contain string pharses only, example: \"10 minutes\" or \"2 days\".",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A custom note",
+              "name": "note",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Custom settings",
+              "name": "settings",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "Inserted data",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "This method updates all data and meta data for a specific `id`. __IMPORTANT__: only entered data will be changed (not nullable).",
+          "name": "session.update2",
+          "params": [
+            {
+              "body": "Identificator",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A session data, can be \"null\" but when the item will be read then the Session use \"session.ondata\" delegate.",
+              "name": "data",
+              "type": "Object"
+            },
+            {
+              "body": "Expiration, can contain string pharses only, example: \"10 minutes\" or \"2 days\".",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A custom note",
+              "name": "note",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Custom settings",
+              "name": "settings",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "count",
+                    "body": "Count of updated items.",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "This method updates all existing session with same `id`.",
+          "name": "session.set2",
+          "params": [
+            {
+              "body": "Identificator, for example \"user.id\"",
+              "name": "id",
+              "type": "String"
+            },
+            {
+              "body": "A session data, can be \"null\" but when the item will be read then the Session use \"session.ondata\" delegate.",
+              "name": "data",
+              "type": "Object"
+            },
+            {
+              "body": "Expiration, can contain string pharses only, example: \"10 minutes\" or \"2 days\". IMPORTANT: expiration will be updated when is entered.",
+              "name": "expire",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A custom note. IMPORTANT: note will be updated when is entered.",
+              "name": "note",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Custom settings. IMPORTANT: settings will be updated when are entered.",
+              "name": "settings",
+              "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "updated",
+                    "body": "Count of updated items",
+                    "type": "Number"
+                  }
+              ]
+            }
+          ]
         }
-      ]
+      ],
+      "name": "Session",
+      "changetype": 1,
+      "options": ["+v3.3.0"]
     },
     {
       "body": "Gets a global objects or functions. All methods are meant as shortcuts.",
@@ -20958,29 +21370,6 @@
             }
           ],
           "return": "String"
-        },
-        {
-          "body": "This method creates a safe scope via `try + catch`. It's useful for unhandled exceptions.\n\n```javascript\nTRY(function() {\n    throw new Error('NOT IMPLEMENTED');\n}, function(err) {\n    console.log('error', err);\n});\n\nconsole.log('CONTINUE');\n// OR\n\nTRY(function() {\n    throw new Error('NOT IMPLEMENTED');\n});\n\nconsole.log('CONTINUE');```",
-          "options": [
-            "+v1.9.3"
-          ],
-          "name": "TRY",
-          "params": [
-            {
-              "body": "A scope function.",
-              "name": "fnScope",
-              "type": "Function"
-            },
-            {
-              "body": "Error handling",
-              "name": "fnError",
-              "type": "Function",
-              "options": [
-                "optional"
-              ]
-            }
-          ],
-          "return": "Framework"
         },
         {
           "body": "Runs a worker. In other words: another script in a __new thread__. __IMPORTANT__: `stdout` stream is piped into the main process, so `console.log()` in the worker will be part of main process.",
@@ -22309,6 +22698,59 @@
           "return": "Boolean"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "The method makes differences between two arrays.\n\n__Example for understanding:__\n\n```javascript\nvar arr_db = [{ id: 1, name: 'Peter' }, { id: 2, name: 'Lucia' }] ;\nvar arr_form = [{ id: 1, name: 'Peter' }, { id: 3, name: 'Tomas' }];\nvar diff = DIFFARR('id', arr_db, arr_form);\n\n// diff.add   {Object Array}   --> Items for inserting to DB\n// diff.upd   {Object Array}   --> Items for updating in DB\n// diff.upd   {Array}          --> identificators for removing from DB\n```\n\n__Output__:\n\n```javascript\n{\n\tadd: [\n\t\t{ id: 3, name: 'Tomas' }\n\t],\n\tupd: [\n\t\t{ db: { id: 1, name: 'Peter' }, form: { id: 1, name: 'Peter' }}\n\t],\n\trem: [\n\t\t2\n\t]\n}```",
+          "name": "DIFFARR",
+          "params": [
+            {
+              "body": "A property name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "Array from a DB",
+              "name": "arr_db",
+              "type": "Object Array"
+            },
+            {
+              "body": "Array from a form",
+              "name": "arr_form",
+              "type": "Object Array"
+            }
+          ],
+          "return": "Object"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Can read and store preferences. Read more in `Additional/Preferences` section.",
+          "name": "PREF",
+          "return": "Object"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Can read and store data in Session. Read more in `Additional/Session` section.",
+          "name": "SESSION",
+          "params": [
+            {
+              "body": "A session name",
+              "name": "name",
+              "type": "String",
+              "default": "'DEFAULT'",
+              "options": ["optional"]
+            },
+            {
+              "body": "A handler for reading data from DB",
+              "name": "ondata",
+              "type": "Function",
+              "options": ["optional"]
+            }
+          ],
+          "return": "Object"
+        },
+        {
           "body": "Alias for `F.on()`. Registers a new listener for the event.",
           "name": "ON",
           "params": [
@@ -23306,14 +23748,6 @@
           "return": "Image"
         },
         {
-          "body": "Returns __TransformBuilder__ class.",
-          "name": "TransformBuilder",
-          "options": [
-            "alias"
-          ],
-          "return": "TransformBuilder"
-        },
-        {
           "body": "Gets the FrameworkMail.",
           "go": "#api~FrameworkMail",
           "name": "Mail",
@@ -23597,7 +24031,6 @@
                   "name": "$",
                   "type": "Object"
                 }
-
               ],
               "type": "Function"
             },
@@ -25131,256 +25564,84 @@
       "changetype": 2
     },
     {
-      "body": "The __TransformBuilder__ is very helpful for transformation plain objects.\n\n- TransformBuilder is a global object\n\n### Creating transformation\n\n```javascript\nTransformBuilder.addTransform('xml', function(obj) {\n    var builder = '';\n    Object.keys(obj).forEach(function(key) {\n        var value = obj[key];\n        if (value === undefined || value === null)\n            value = '';\n        builder += '<' + key + '>' + value.toString().encode() + '</' + key + '>';\n    });\n    return '<xml>' + builder + '</xml>';\n});\n```\n\n### Applying transformation\n\n```javascript\nvar user = { name: 'Peter Širka', email: 'petersirka@gmail.com' };\nconsole.log(TransformBuilder.transform('xml', user));\n// OUTPUT: <xml><name>Peter Širka</name><email>petersirka@gmail.com</email></xml>```",
-      "example": "https://github.com/totaljs/examples/tree/master/pagination",
-      "group": "Builders",
-      "methods": [
-        {
-          "body": "Creates a new transformation.",
-          "name": "TransformBuilder.addTransform",
-          "options": [
-            "static method"
-          ],
-          "params": [
-            {
-              "body": "A transformation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "A transformation function.",
-              "name": "fn",
-              "options": [
-                "has to return some object"
-              ],
-              "params": [
-                {
-                  "body": "The object for transformation.",
-                  "name": "obj",
-                  "type": "Object"
-                },
-                {
-                  "body": "Custom parameter ... 1",
-                  "name": "param1",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                },
-                {
-                  "body": "Custom parameter ... 2",
-                  "name": "param2",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                },
-                {
-                  "body": "Custom parameter ... N",
-                  "name": "paramN",
-                  "options": [
-                    "optional"
-                  ],
-                  "type": "Object"
-                }
-              ],
-              "return": "Object",
-              "type": "Function"
-            }
-          ],
-          "return": "Object"
-        },
-        {
-          "body": "Transforms object.",
-          "name": "TransformBuilder.transform",
-          "options": [
-            "static method"
-          ],
-          "params": [
-            {
-              "body": "A tansformation name.",
-              "name": "name",
-              "type": "String"
-            },
-            {
-              "body": "Object for transformation.",
-              "name": "obj",
-              "type": "Object"
-            },
-            {
-              "body": "Custom parameter ... 1",
-              "name": "param1",
-              "type": "Object",
-              "options": [
-                "optional"
-              ]
-            },
-            {
-              "body": "Custom parameter ... 2",
-              "name": "param1",
-              "type": "Object",
-              "options": [
-                "optional"
-              ]
-            },
-            {
-              "body": "Custom parameter ... N",
-              "name": "paramN",
-              "type": "Object",
-              "options": [
-                "optional"
-              ]
-            }
-          ],
-          "return": "Object"
-        }
-      ],
-      "name": "TransformBuilder"
-    },
-    {
       "changetype": 1,
       "options": ["+v3.1.0"],
-      "body": "`+v3.1.0` The __TaskBuilder__ is helpful for creating async tasks.\n\n```javascript\nvar instance = new TaskBuilder([controller or schema/operation_options or ErrorBuilder]);\n\ninstance.push('task1', function($) {\n\tif (some_error)\n\t\t$.invalid(some_error);\n\telse\n\t\t$.next('task2');\n});\n\ninstance.push('task2', function($) {\n\t$.success();\n});\n\ninstance.exec('task1', $.callback);\n```",
+      "body": "`+v3.3.0` supports predefined tasks targeted for the best performance. Predefined tasks can be stored in `/tasks/` directory.\n\n```javascript\n// Declaration\nNEWTASK('TaskBuilderName', function(push) {\n\n\tpush('task1', function($) {\n\n\t\t// $ === TaskBuilderOptions\n\t\n\t\t// Properties:\n\t\t// $.value;                              --> {Object} A temporary data/model\n\t\t// $.error;                              --> {ErrorBuilder} optional\n\t\t// $.controller;                         --> {Controller} optional\n\t\t// $.session;                            --> {Object} optional, A session object (depends on the controller)\n\t\t// $.sessionid;                          --> {Object} optional, A session identificator (depends on the controller)\n\t\t// $.user;                               --> {Object} optional, A user instance (depends on the controller)\n\t\t// $.language;                           --> {Object} optional, A current language (depends on the controller)\n\t\t// $.ip;                                 --> {Object} optional, A request IP address (depends on the controller)\n\t\t// $.id;                                 --> {Object} optional, A route first dynamic argument depends on the controller)\n\t\t// $.req;                                --> {Object} optional, A current request instance (depends on the controller)\n\t\t// $.res;                                --> {Object} optional, A current response (depends on the controller)\n\t\t// $.params;                             --> {Object} optional, All dynamic route parameters (depends on the controller)\n\t\t// $.files;                              --> {Object} optional, All received files (depends on the controller)\n\t\t// $.body;                               --> {Object} optional, Received data (depends on the controller)\n\t\t// $.query;                              --> {Object} optional, Received URL query arguments (depends on the controller)\n\t\t// $.headers;                            --> {Object} optional, All received request headers (depends on the controller)\n\n\t\t// Methods:\n\t\t// $.next(task1, [task2], [taskN]);      --> Runs only the first existing task\n\t\t// $.next2(task);                        --> returns Function with wrapped \"$.next(task)\", it handles errors automatically (targeted for callbacks)\n\t\t// $.success([value]);                   --> ends TasksBuilder with { success: true, value: [value] } object\n\t\t// $.success2([value]);                  --> returns Function with wrapped \"$.success()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.done([data]);                       --> ends TaskBuilder processing, if \"data\" are entered then will be returned in the callback\n\t\t// $.done2([send_value_from_callback]);  --> returns Function with wrapped \"$.done()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.callback(callback);                 --> can rewrite existing callback\n\n\t\tconsole.log('task1', $.value.custom);\n\t\t$.next('task2');\n\t});\n\n\tpush('task2', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task2', $.value.custom);\n\t\t$.done();\n\t});\n\n});\n\n// TASK() executes predefined TaskBuilder and it starts with \"task1\"\nvar builder = TASK('TaskBuilderName', 'task1', function(err, response) {\n\tconsole.log(err, response);\n});\n\n// Now we can assign a value to a TaskBuilder model\nbuilder.value.custom = 'value';\n```\n\n__Output__:\n\n```html\ntask1 value\ntask2 value\nnull { custom: 'value' }```",
       "group": "Builders",
       "methods": [
         {
-          "body": "Registers a new task.\n\n```javascript\ninstance.push('my_task_name', function($) {\n\n\t//\u00a0$ === instance\n\n\t// Each task must execute one method from the methods below:\n\t$.next('ANOTHER_TASK');\n\n\t// or\n\t$.done();\n\n\t// or\n\t$.invalid('ERROR');\n\n\t// or\n\t$.success();\n});\n```",
-          "name": "instance.push",
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Executes preddefined TaskBuilder.\n\n```javascript\nTASK('task_builder_name', 'task_name', function(err, response) {\n\tconsole.log(err, response);\n});```",
+          "name": "TASK",
           "params": [
             {
+              "body": "TaskBuilder name",
               "name": "name",
-              "body": "Name of task",
               "type": "String"
             },
             {
+              "body": "Task name",
+              "name": "task",
+              "type": "String"
+            },
+            {
+              "body": "A callback",
               "name": "fn",
-              "body": "A task context",
-              "type": "Function",
-              "params": [
-                  {
-                    "name": "$",
-                    "body": "A current instance of TaskBuilder",
-                    "type": "TaskBuilder"
-                  }
-              ]
-            }
-          ],
-          "return": "TaskBuilder"
-        },
-        {
-          "body": "The method tries to execute another task in order. If any task doesn't exist then it performs `$.done()`.",
-          "name": "instance.next",
-          "params": [
-            {
-              "name": "name",
-              "body": "Name of task",
-              "type": "String"
-            },
-            {
-              "name": "name2",
-              "body": "Name of task",
-              "type": "String",
-              "options": ["optional"]
-            },
-            {
-              "name": "nameN",
-              "body": "Name of task",
-              "type": "String",
-              "options": ["optional"]
-            }
-          ],
-          "return": "TaskBuilder"
-        },
-        {
-          "body": "The method ends future executing of tasks.",
-          "name": "instance.done",
-          "params": [
-            {
-              "options": ["optional"],
-              "name": "data",
-              "body": "A custom data for the callback",
-              "type": "Object"
-            }
-          ],
-          "return": "TaskBuilder"
-        },
-        {
-          "body": "The method ends future executing of tasks and returns `{ success: true }` object.",
-          "name": "instance.success",
-          "params": [
-            {
-              "options": ["optional"],
-              "name": "data",
-              "body": "A custom data for the result.",
-              "type": "Object"
-            }
-          ],
-          "return": "TaskBuilder"
-        },
-        {
-          "body": "The method ends future executing of tasks and returns `ErrorBuilder` in the `callback`.",
-          "name": "instance.invalid",
-          "params": [
-            {
-              "name": "err",
-              "body": "An error",
-              "type": "Error/String/ErrorBuilder"
-            }
-          ],
-          "return": "TaskBuilder"
-        },
-        {
-          "body": "The method starts executing of all registered tasks in order.",
-          "name": "instance.exec",
-          "params": [
-            {
-              "name": "name",
-              "body": "A name of task",
-              "type": "String"
-            },
-            {
-              "options": ["optional"],
-              "name": "callback",
-              "body": "A callback function",
-              "type": "Function",
               "params": [
                 {
+                  "body": "An error.",
                   "name": "err",
-                  "body": "An error handling",
-                  "type": "ErrorBuilder"
+                  "type": "Error",
+                  "default": "null"
                 },
                 {
+                  "body": "Responses from operations in the form <code>response.name_of_operation</code>.",
                   "name": "response",
-                  "body": "A response",
                   "type": "Object"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "Controller/SchemaOptions/OperationOptions/TaskBuilderOptions instance",
+              "name": "instance",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Registers a preddefined TaskBuilder.\n\n```javascript\nNEWTASK('TaskBuilderName', function(push) {\n\n\tpush('task1', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task1', $.value.custom);\n\t\t$.next('task2');\n\t});\n\n\tpush('task2', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task2', $.value.custom);\n\t\t$.done();\n\t});\n\n});```",
+          "name": "NEWTASK",
+          "params": [
+            {
+              "body": "TaskBuilder name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A registration delegate",
+              "name": "push",
+              "type": "Function",
+              "params": [
+                {
+                  "body": "A task name",
+                  "name": "name",
+                  "type": "String"
+                },
+                {
+                  "body": "A processor",
+                  "name": "fn",
+                  "type": "Function"
                 }
               ]
             }
-          ],
-          "return": "TaskBuilder"
-        }
-      ],
-      "properties": [
-        {
-          "body": "A temporary object for storing data. By default is returned in the callback as a value.",
-          "name": "instance.value",
-          "return": "Object"
-        },
-        {
-          "body": "Returns a current task name",
-          "name": "instance.current",
-          "return": "String"
-        },
-        {
-          "body": "Returns previous task name",
-          "name": "instance.prev",
-          "return": "String"
-        },
-        {
-          "body": "Name of TaskBuilder for internal logging",
-          "name": "instance.name",
-          "return": "String",
-          "default": "undefined"
+          ]
         }
       ],
       "name": "TaskBuilder"
