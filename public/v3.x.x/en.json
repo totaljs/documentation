@@ -317,7 +317,7 @@
       "events": [
         {
           "body": "This event is triggered every 60 seconds and is used for cleaning temporary data / cache",
-          "name": "F.on('service')",
+          "name": "ON('service')",
           "options": [
             "every 60 seconds"
           ],
@@ -331,7 +331,7 @@
         },
         {
           "body": "This event is triggered if the part of the framework is updated",
-          "name": "F.on('uptodate')",
+          "name": "ON('uptodate')",
           "params": [
             {
               "body": "Type (e.g. module, model, controller, etc.)",
@@ -347,7 +347,7 @@
         },
         {
           "body": "This event is triggered if a new route is added",
-          "name": "F.on('route')",
+          "name": "ON('route')",
           "params": [
             {
               "body": "The route type (web, websocket, file)",
@@ -363,7 +363,7 @@
         },
         {
           "body": "This event is triggered if the request contains a file (begin)",
-          "name": "F.on('upload-begin')",
+          "name": "ON('upload-begin')",
           "options": [
             "+v1.8.0"
           ],
@@ -382,7 +382,7 @@
         },
         {
           "body": "This event is triggered if the request contains a file (end)",
-          "name": "F.on('upload-end')",
+          "name": "ON('upload-end')",
           "options": [
             "+v1.8.0"
           ],
@@ -401,7 +401,7 @@
         },
         {
           "body": "This event is triggered if the JavaScript code is evaluated",
-          "name": "F.on('eval')",
+          "name": "ON('eval')",
           "params": [
             {
               "body": "The URL address",
@@ -415,7 +415,7 @@
         },
         {
           "body": "This event is triggered if a new item is cached",
-          "name": "F.on('cache-set')",
+          "name": "ON('cache-set')",
           "params": [
             {
               "body": "The cache key",
@@ -441,21 +441,21 @@
         },
         {
           "body": "This event is triggered if a new module is installed",
-          "name": "F.on('module#name')",
+          "name": "ON('module#name')",
           "params": [
 
           ]
         },
         {
           "body": "This event is triggered if a new controller is installed",
-          "name": "F.on('controller#name')",
+          "name": "ON('controller#name')",
           "params": [
 
           ]
         },
         {
           "body": "This event is triggered if the framework responds with: 400 HTTP status",
-          "name": "F.on('error400')",
+          "name": "ON('error400')",
           "params": [
             {
               "name": "req",
@@ -476,7 +476,7 @@
         },
         {
           "body": "This event is triggered if the framework responds with: 401 HTTP status",
-          "name": "F.on('error401')",
+          "name": "ON('error401')",
           "params": [
             {
               "name": "req",
@@ -497,7 +497,7 @@
         },
         {
           "body": "This event is triggered if the framework responds with: 403 HTTP status",
-          "name": "F.on('error403')",
+          "name": "ON('error403')",
           "params": [
             {
               "name": "req",
@@ -518,7 +518,7 @@
         },
         {
           "body": "This event is triggered if the framework responds with: 404 HTTP status",
-          "name": "F.on('error404')",
+          "name": "ON('error404')",
           "params": [
             {
               "name": "req",
@@ -539,7 +539,7 @@
         },
         {
           "body": "This event is triggered if the framework responds with: 408 HTTP status",
-          "name": "F.on('error408')",
+          "name": "ON('error408')",
           "params": [
             {
               "name": "req",
@@ -559,10 +559,9 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "This event is triggered if the framework responds with: 409 HTTP status",
-          "name": "F.on('error409')",
+          "name": "ON('error409')",
           "params": [
             {
               "name": "req",
@@ -583,7 +582,7 @@
         },
         {
           "body": "This event is triggered if the framework responds with: 431 HTTP status",
-          "name": "F.on('error431')",
+          "name": "ON('error431')",
           "params": [
             {
               "name": "req",
@@ -604,21 +603,21 @@
         },
         {
           "body": "This event is triggered if a new model is installed",
-          "name": "F.on('model#name')",
+          "name": "ON('model#name')",
           "params": [
 
           ]
         },
         {
           "body": "This event is triggered if a new config is installed",
-          "name": "F.on('config#name')",
+          "name": "ON('config#name')",
           "params": [
 
           ]
         },
         {
           "body": "This event is triggered if module, controller, model, etc. is installed using `framework.install()`",
-          "name": "F.on('install')",
+          "name": "ON('install')",
           "params": [
             {
               "body": "What type has been installed? (module, controller, model, etc.)",
@@ -634,7 +633,7 @@
         },
         {
           "body": "This event is triggered module, controller, model, etc. is unnistalled using `framework.uninstall()`",
-          "name": "F.on('uninstall')",
+          "name": "ON('uninstall')",
           "params": [
             {
               "body": "Which type has been uninstalled? (module, controller, model, etc.)",
@@ -650,7 +649,7 @@
         },
         {
           "body": "This event is triggered if the framework is re-configured",
-          "name": "F.on('configure')",
+          "name": "ON('configure')",
           "params": [
             {
               "body": "Current configuration",
@@ -661,11 +660,11 @@
         },
         {
           "body": "This event is triggered if the framework refreshes the configuration file",
-          "name": "F.on('reconfigure')"
+          "name": "ON('reconfigure')"
         },
         {
           "body": "This event is triggered if the framework clears internal informations",
-          "name": "F.on('clear')",
+          "name": "ON('clear')",
           "params": [
             {
               "body": "The internal information name: refresh, resources or temporary",
@@ -684,7 +683,7 @@
         },
         {
           "body": "This event is triggered if the item is removed from the cache",
-          "name": "F.on('cache-expire')",
+          "name": "ON('cache-expire')",
           "params": [
             {
               "body": "Cache key",
@@ -700,7 +699,7 @@
         },
         {
           "body": "This event is triggered if the framework has stopped. This event will not be triggered if the application is stopped by force",
-          "name": "F.on('exit')",
+          "name": "ON('exit')",
           "params": [
             {
               "body": "A signal code (+v2.3.0)",
@@ -711,7 +710,7 @@
         },
         {
           "body": "This event is triggered if the HTTP request begins",
-          "name": "F.on('request')",
+          "name": "ON('request')",
           "params": [
             {
               "body": "The HTTP request",
@@ -727,7 +726,7 @@
         },
         {
           "body": "This event is triggered if the WebSocket begins the request",
-          "name": "F.on('websocket')",
+          "name": "ON('websocket')",
           "params": [
             {
               "body": "The HTTP request",
@@ -743,7 +742,7 @@
         },
         {
           "body": "This event is triggered if the HTTP request beings __(It's not valid for static file)__",
-          "name": "F.on('request-begin')",
+          "name": "ON('request-begin')",
           "params": [
             {
               "body": "The HTTP request",
@@ -759,7 +758,7 @@
         },
         {
           "body": "This event is triggered if the HTTP request ends __(It's not valid for static file)__",
-          "name": "F.on('request-end')",
+          "name": "ON('request-end')",
           "params": [
             {
               "body": "The HTTP request",
@@ -775,7 +774,7 @@
         },
         {
           "body": "This event is triggered if the Websocket begins the request",
-          "name": "F.on('websocket-begin')",
+          "name": "ON('websocket-begin')",
           "params": [
             {
               "body": "The controller object",
@@ -791,7 +790,7 @@
         },
         {
           "body": "This event is triggered if the WebSocket ends the request",
-          "name": "F.on('websocket-end')",
+          "name": "ON('websocket-end')",
           "params": [
             {
               "body": "Controller object",
@@ -807,7 +806,7 @@
         },
         {
           "body": "This event is triggered after the framework is ready and Definitions, Controllers, Modules, Packages, etc. were loaded. However, this doesn't ensure the Packages have been fully loaded, since they are loaded asynchronously",
-          "name": "F.on('load')",
+          "name": "ON('load')",
           "options": [
             "onetime"
           ],
@@ -817,7 +816,7 @@
         },
         {
           "body": "This event is triggered after the framework is ready and Definitions, Controllers, Modules, Packages, etc. were loaded. However, this doesn't ensure the Packages have been fully loaded, since they are loaded asynchronously",
-          "name": "F.on('ready')",
+          "name": "ON('ready')",
           "options": [
             "onetime"
           ],
@@ -827,7 +826,7 @@
         },
         {
           "body": "This event is triggered before any dependency is loaded",
-          "name": "F.on('init')",
+          "name": "ON('init')",
           "options": [
             "onetime"
           ],
@@ -838,7 +837,7 @@
         {
           "body": "This event is called every `request` to the `controller`. In this event you can cancel the request to the controller using `controller.cancel()`",
           "example": "https://github.com/totaljs/examples/tree/master/controller-cancel",
-          "name": "F.on('controller')",
+          "name": "ON('controller')",
           "params": [
             {
               "body": "Controller",
@@ -857,7 +856,7 @@
             "+v2.9.3"
           ],
           "body": "This event is called every `request` to the `controller` with a specific name.\n\n```javascript\nON('@default', function(controller) {\n    // Your code\n};```",
-          "name": "F.on('@name-of-controller')",
+          "name": "ON('@name-of-controller')",
           "params": [
             {
               "body": "Controller",
@@ -868,7 +867,7 @@
         },
         {
           "body": "This event is triggered if the controller renders head tags",
-          "name": "F.on('controller-render-head')",
+          "name": "ON('controller-render-head')",
           "params": [
             {
               "body": "Current controller",
@@ -879,7 +878,7 @@
         },
         {
           "body": "This event is triggered if the controller renders meta tags",
-          "name": "F.on('controller-render-meta')",
+          "name": "ON('controller-render-meta')",
           "params": [
             {
               "body": "Current controller",
@@ -936,7 +935,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 1,
           "body": "This method can change the root directory of the application.",
           "name": "F.dir",
           "params": [
@@ -950,7 +948,6 @@
         },
         {
           "options": ["+v3.1.0"],
-          "changetype": 1,
           "body": "This method refreshes internal cache. Removes resources, views, etc. from the internal memory.",
           "name": "F.refresh",
           "params": [
@@ -1008,7 +1005,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "Instead of middleware name can contain a middleware function",
           "body": "Uses a middleware for all or specific routes. Example:\n\n```javascript\n// Simple usage:\nF.use('auth', '*', ['web']);\n\n// +v3.0.0\n// Supports function instead of name\nF.use(function($) {\n\tsetTimeout($.next, 1000);\n});```",
           "name": "F.use",
@@ -1375,7 +1371,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "v3.1.0 supports dynamic schemas",
           "body": "Creates a new HTTP/HTTPS route.\n\n```javascript\n// Route with flags\nROUTE('/relative/', action, ['post', 'xhr']);\n\n// Route with flags, middlewares and with the upload limit (1024 kB)\nROUTE('/relative/', action, ['#middleware1', '#middleware3', 'upload'], 1024);\n\n// Route with middleware and settings for all middleware\nROUTE('/relative/', action, ['#middleware', { name: 'middleware custom options' }]);\n\n// Route with flag + increased timeout to 10 seconds\nROUTE('/relative/', action, ['put', 10000]);\n\n// Route without flags and is routed into the view \"/views/index.html\"\nROUTE('/', 'index'); // is same as ROUTE('/');\n\n// Route without flags and is routed into the view in a theme e.g. \"/themes/default/views/index.html\"\nROUTE('/', '=default/index');\nROUTE('/', '=?/index'); // --> \"=?\" means that the framework uses default theme name\nROUTE('/', '~index'); // --> \"~\" means that the framework loads view \"index\" from root of  \"/views/\" (skips themes)\n\n// Route with regular expression\nROUTE('/{/^\\\\d+$/}', action);\n\n// Route with custom filter\nROUTE(function(url, req, flags) {\n    return url.startsWith('/special/');\n}, action);\n\n// +v3.0.0\n// supports a declared method in URL address\nROUTE('GET /api/users/', action);\nROUTE('POST /api/users/', action);\n```\n\n## Schemas\n\n```javascript\nROUTE('/api/account/', action, ['*Account']); // +v1.9.7\nROUTE('/api/registration/', action, ['post', '*User']);\n\n// With custom filter\nROUTE('/api/account/', action, ['put', '*User#update']);\n\n// With a link to workflow:\n// Workflow means: open \"File: workflows\" section\nROUTE('/api/account/', action, ['put'], '*User --> save'); // Executes the workflow \"save\"\nROUTE('/api/account/', action, ['put'], '*User --> exec'); // Executes the workflow \"exec\"\n\n// +v3.0.0\n// Supports auto-executing of some operations in Schema\n// \"@name\" means name of operation, framework will try to find an operation (e.g CRUD operation or workflow, transform, operation or hook) with this name\nROUTE('POST   /api/account/       *User --> @insert', 'post');    // Executes (if exists) schema.setInsert()\nROUTE('POST   /api/account/       *User --> @update', 'put');     // Executes (if exists) schema.setUpdate()\nROUTE('POST   /api/account/       *User --> @save', 'post');      // Executes (if exists) schema.setSave()\nROUTE('GET    /api/account/       *User --> @get');               // Executes (if exists) schema.setRead() or schema.setGet()\nROUTE('GET    /api/account/       *User --> @read');              // Executes (if exists) schema.setRead() or schema.setGet()\nROUTE('DELETE /api/account/       *User --> @remove', 'delete');  // Executes (if exists) schema.setRemove()\nROUTE('GET    /api/account/       *User --> @query');             // Executes (if exists) schema.setQuery()\n\n// +v3.1.0\n// Supports dynamic schemas (so you can merge multiple routes into the one)\n// It's case insensitive\nROUTE('GET   /api/{schema}/        *{schema} --> @query');\nROUTE('GET   /api/{schema}/{id}/   *{schema} --> @read');\nROUTE('POST  /api/{schema}/{id}/   *{schema} --> @insert');\nROUTE('PUT   /api/{schema}/{id}/   *{schema} --> @update');\n\n// Or multiple operations with array of results\nROUTE('POST   /api/account/       *User --> @check @save @email');\n\n// Or multiple operations with the response from @save operation\nROUTE('POST   /api/account/       *User --> @check @save (response) @email');\n\n// Workflows, Transforms, Operations or Hooks\nROUTE('/api/account/', action, ['*User --> @exec']);    // Executes (if exists) @exec workflow or transform or operation or hook\nROUTE('/api/account/', action, ['*User --> @xml']);     // Executes (if exists) @exec workflow or transform or operation or hook\n```\n\n## Subdomain routing\n\n```javascript\n// Route with flags\nROUTE('[eshop,store]/', action);\n// e.g. http://eshop.totaljs.com/\n// e.g. http://store.totaljs.com/\n\nROUTE('[*]/', action);\n// All subdomains\n\nROUTE('[nice*]/', action);\n// All subdomains which contain `nice` word\n```\n\n## Sitemap\n\n```javascript\n// Creates route according to the sitemap\nROUTE('#sitemap_id', [action], [flags]);\n\n// +v2.9.0 supports additional sitemap routing\nROUTE('#sitemap_id/products/', [action], [flags]);\nROUTE('#sitemap_id/orders/', [action], [flags]);```",
           "example": "https://github.com/totaljs/examples/tree/master/routing",
@@ -1729,7 +1724,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 Without arguments it enables CORS for all routes with methods.",
           "body": "Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();\n\n// Allows all method with credentials\n// +v3.0.0\nCORS('/api/*', true);\n\n// Allows all method without credentials\nCORS('/api/*');\n```",
           "name": "F.cors",
@@ -2969,7 +2963,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "body": "It contains a stamp of `OS` name + version.",
           "name": "F.syshash",
           "options": [
@@ -3114,7 +3107,6 @@
       ]
     },
     {
-      "changetype": 2,
       "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : process.env\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```\n\n## Simple \"encrypting\" of values\n\n`+v3.1.0` supports a simple encrypting of values with `base64` or `hex` encoding. Fox example:\n\n```html\nsomevalue1            : base64 MTIzNDU2\n// Contains 123456 value\n\nsomevalue2            : hex 313233343536\n// Contains 123456 value\n```\n\n## Random values\n\n`+v3.3.0` supports random values, example:\n\n```html\nsomevalue1    (random)        : 10\n// Will contain a random string with length 10 chars```",
       "group": "Framework",
       "name": "FrameworkConfiguration",
@@ -3144,7 +3136,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "false",
           "body": "`F.cache` database will be synchronized between all child processes in the cluster",
           "name": "allow_cache_cluster",
@@ -3205,7 +3196,6 @@
           ]
         },
         {
-          "changetype": 1,
           "default": "''",
           "body": "A default web proxy server, can contain protocol `http` or `https`.\n\n```html\n// without auth\ndefault-proxy      : HOSTNAME:PORT\n\n// or with auth\ndefault-proxy      : USERNAME:PASSWORD@HOSTNAME:PORT```",
           "name": "default_proxy",
@@ -3225,7 +3215,6 @@
         },
         {
           "changelog": "Renamed <code>disable-clear-temporary-directory</code>",
-          "changetype": 1,
           "default": "true",
           "body": "Can disable auto clearing of temporary directory",
           "name": "allow_clear_temp",
@@ -3241,7 +3230,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3357,7 +3345,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "default": "'/.src/'",
           "body": "A default directory for unpacking bundles.",
           "name": "directory_src",
@@ -3367,7 +3354,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "default": "'/bundles/'",
           "body": "A default directory for bundles.",
           "name": "directory_bundles",
@@ -3387,7 +3373,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "default": "'/schemas/'",
           "body": "A default directory for schemas.",
           "name": "directory_schemas",
@@ -3397,7 +3382,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "default": "'/operations/'",
           "body": "A default directory for operations.",
           "name": "directory_operations",
@@ -3531,7 +3515,6 @@
         },
         {
           "changelog": "Renamed <code>default_request_length</code>",
-          "changetype": 1,
           "default": "5",
           "body": "The default request length in `kB` (kilobyte). The framework calculates POST/PUT data and length of uploaded files.",
           "name": "default_request_maxlength",
@@ -3552,7 +3535,6 @@
         },
         {
           "changelog": "Renamed <code>default_maximum_file_descriptors</code>",
-          "changetype": 1,
           "default": "0",
           "body": "A maximum open file descriptors. The feature is disabled if the value is `0`.",
           "name": "default_maxopenfiles",
@@ -3576,7 +3558,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "changelog": "Renamed <code>default_websocket_request_length</code>",
           "default": "2",
           "body": "The default WebSocket message length in kB (kilobajt). The framework calculates received message.",
@@ -3593,7 +3574,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "default": "null",
           "body": "Default allowed CORS hostnames separated by `,` comma in the `config`. Hostname can start with `//` and it will be assigned to `http:` and `https:` protocol.",
@@ -3613,7 +3593,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "default": "10000",
           "body": "A default RESTBuilder timeout in milliseconds.",
@@ -3621,7 +3600,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "default": "33",
           "body": "A maximum count of keys for parsing URL encoded arguments.",
@@ -3629,7 +3607,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "default": "false",
           "body": "Enables logger for Schemas and Operations. It can contain these values:\n\n- `file` or `true` stores info into the file `logs/logger.log`\n- `console` shows info into the console",
@@ -3678,7 +3655,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3687,7 +3663,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3697,7 +3672,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3707,7 +3681,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3717,7 +3690,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -3784,7 +3756,6 @@
         },
         {
           "changelog": "Renamed <code>disable-strict-server-certificate-validation</code>",
-          "changetype": 1,
           "default": "false",
           "body": "This option sets: process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0. In other words it can disable strict server certificate validation.",
           "name": "allow_ssc_validation",
@@ -4530,7 +4501,6 @@
     },
     {
       "body": "__NoSQL embedded database__ is very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each NoSQL database is separated file, the database contains serialized JSON data.\n\nTry: [__NoSQL & Table embedded database explorer__](https://nosql.totaljs.com)\n\n```javascript\n// If you use Total.js\nvar nosql = NOSQL('users');\n// or\nvar nosql = DB('users'); // is same as NOSQL but NOSQL() will work with e.g. SQL Agent.\n\n// +v2.8.0\n// READ-ONLY MODE, reads/streams DB from URL\nvar nosql = DB('https://www.totaljs.com/test.nosql');\n\n// If you use require('nosql'):\nvar DB = require('nosql');\nvar nosql = DB.load('/path/to/database/file.nosql');\n```\n\n__Good to know__:\n\n- __supports joins__\n- DB reads `32` kB blocks of data per read\n- boolean `true` values are added with empty space as `\"key\":true ,` because it's more effective for updating of DB file\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data\n\n### WARNING\n\nEach document __in DB file__ must end with `\\n` __newline char__. This is very important rule!\n\n__Bad__:\n\n```html\n{\"field\":\"value\"}\\n\n{\"field\":\"value\"}\n```\n\n__Good__:\n\n```html\n{\"field\":\"value\"}\\n\n{\"field\":\"value\"}\\n\n```",
-      "changetype": 2,
       "name": "Database",
       "group": "NoSQL Embedded",
       "properties": [
@@ -4727,7 +4697,6 @@
           "return": "Database"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "database.update",
           "body": "Updates a document in the database.\n\n__+v3.1.0 supports__:\n\n```javascript\nNOSQL('database').update('doc.name = doc.name.toUpperCase(); return doc').where('id', 1);\n```\n\nSupported arguments:\n\n- `doc` a current processed document\n- `repository` a repository object\n- `arg` a custom arguments",
@@ -4749,7 +4718,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["v3.0.0"],
           "name": "database.memory",
           "body": "Affects buffer/memory while DB is reading/writing.",
@@ -4773,7 +4741,6 @@
           "return": "Database"
         },
         {
-          "changetype": 2,
           "changelog": "Supports incremental enrollments",
           "name": "database.modify",
           "body": "Modifies specific values in the database. Example:\n\n```javascript\nNOSQL('database').modify({ name: 'Peter', $age: 'val + 10', '+price': 10 }).where('id', 1);\n```\n\n__v3.0.0 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`\n\n__+v3.1.0 supports__:\n\n- `$age` evaluates a string as a JS code, supported dynamic arguments:\n\t- `val` a current field value\n\t- `doc` a current processed document\n\t- `repository` a repository object\n\t- `arg` a custom arguments\n\n```javascript\nNOSQL('database').modify({ $age: 'val + 10' }).where('id', 1);\n\n// or you can use \"return\" statement:\nNOSQL('database').modify({ $age: 'return val + 10' }).where('id', 1);\n```",
@@ -4811,7 +4778,6 @@
           "return": "Database"
         },
         {
-          "changetype": 1,
           "name": "database.stream",
           "body": "Streams documents from database.\n\n```javascript\nNOSQL('users').stream(function(doc, repository) {\n\trepository.max = repository.max ? Math.max(repository.max, doc.age) : doc.age;\n\trepository.min = repository.min ? Math.min(repository.min, doc.age) : doc.age;\n}, { max: null, min: null }, function(err, repository, count) {\n\tconsole.log(repository);\n\tconsole.log('Count of processed documents:', count);\n});```",
           "params": [
@@ -4876,7 +4842,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "name": "database.listing",
           "body": "Same functionality like `database.find()` but the response is the object in the structure below:\n\n```javascript\n{\n\tlimit: 50,\n\tpage: 1,\n\tpages: 5\n\tcount: 500,\n\titems: [{ ... }, { ... }]\n}\n```",
@@ -4885,7 +4850,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -4897,7 +4861,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -4920,7 +4883,6 @@
           "return": "Database"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -4942,7 +4904,6 @@
           "return": "Database"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -5010,7 +4971,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "name": "database.one2",
           "body": "Finds only the one document in the database but reading is from end of file. This reading can be faster in some cases",
@@ -5060,7 +5020,6 @@
       ],
       "events": [
         {
-          "changetype": 1,
           "body": "Is triggered if the database file is changed.",
           "name": "database.on('change')",
           "options": [
@@ -5089,7 +5048,6 @@
         },
         {
           "changelog": "+v3.0.0 adds a new argument <code>old</code>",
-          "changetype": 2,
           "body": "Is triggered if a document is updated in the database.",
           "name": "database.on('update')",
           "return": "Database",
@@ -5108,7 +5066,6 @@
         },
         {
           "changelog": "+v3.0.0 adds a new argument <code>old</code>",
-          "changetype": 2,
           "body": "Is triggered if a document is modified in the database.",
           "name": "database.on('modify')",
           "return": "Database",
@@ -5140,7 +5097,6 @@
       ]
     },
     {
-      "changetype": 1,
       "body": "`+v3.0.0` __Table__ is a small and very effective plain text embedded database __with preddefined schema__. It uses same engine like NoSQL embedded database. It's very great and simple database for small projects. It can help you with storing contact forms, emails, logs, etc.. Each Table database is stored in separated and independent file. __The big different__ from NoSQL embedded database is preddefined schema of data. This database is much more faster (about 20-40%) than NoSQL embedded database with smaller CPU, memory and HDD consumption.\n\nTry: [__NoSQL & Table embedded database explorer__](https://nosql.totaljs.com)\n\n## How to use it?\n\n`Table` needs to have defined a schema in the app `config` file while DB file doesn't exist.\n\n```html\n// table.YOURDBNAME   : PROPERTY:TYPE | PROPERTY:TYPE  | PROPERTY:TYPE     | etc..\ntable.dbname1         : id:string     | name:string    | price:number      | created:date\ntable.dbname2         : name:string   | ip:string      | confirmed:boolean | created:date\n```\n\nYou can create DB file manually (and then you don't need to define schema), just create an empty file with columns declaration (without spaces) and with __NEW EMPTY LINE__ (IMPORTANT). Don't forget to __replace__ `\\n` chars for a new line:\n\n```html\nid:string|name:string|price:number|created:date\\n\n\\n\n```\n\nIf you create a DB file manually then you don't need to define `TABLE` schema in the app config.\n\n__Supported types__:\n\n- `number` can contain number or float number, default value `0`\n- `boolean` default value `false`\n- `string` default value `''`\n- `date` default value `null`\n- `object` is serialized into the JSON format (I don't recommend it because of performance), default value `null`\n\n__Good to know__:\n\n- __supports joins__\n- Table has `.table` extension\n- __supports NoSQL embedded worker__\n- DB engine performs data changes automatically when you change a schema\n- properties with values which are not defined in the schema will be removed when you are inserting or updateting\n- DB reads `32` kB blocks of data per read\n- modified data can start with `-` char and DB performs a cleaner of DB file after some time (within 24 hours, you can change this behaviour in the `config` file: `nosql-cleaner`) for useless data\n\n__Example__:\n\n```javascript\nvar db = TABLE('dbname');\n\ndb.find().between('price', 100, 200).callback(console.log);\ndb.insert({ price: 100, created: new Date() });\n```\n\n### WARNING\n\nEach record __in TABLE file__ must end with `\\n` __newline char__. This is very important rule!\n\n__Bad__:\n\n```html\nname:string\\n\n+|Peter|\\n\n+|Lucia|\n```\n\n__Good__:\n\n```html\nname:string\\n\n+|Peter|\\n\n+|Lucia|\\n\n```",
       "name": "Table",
       "group": "NoSQL Embedded",
@@ -5233,7 +5189,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "table.update",
           "body": "Updates a document in the database.\n\n__+v3.1.0 supports__:\n\n```javascript\nTABLE('database').update('doc.name = doc.name.toUpperCase(); return doc').where('id', 1);\n```\n\nSupported arguments:\n\n- `doc` a current processed document\n- `repository` a repository object\n- `arg` a custom arguments",
@@ -5289,7 +5244,6 @@
           "return": "Table"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.1.0 supports a string value which will be evaluated as a JS code",
           "name": "table.modify",
           "body": "Modifies specific values in the database. Example:\n\n```javascript\nTABLE('database').modify({ name: 'Peter', $age: 'val + 10', '+price': 10 }).where('id', 1);\n```\n\n__v3.0.0 supports__:\n\n- `name` will be replaced by value directly\n- `age` will be evaluated as a function\n- `+price` increments `price` field by adding `10`, supports these operations `-field`, `*field` and `/field`\n\n__+v3.1.0 supports__:\n\n- `$age` evaluates a string as a JS code, supported dynamic arguments:\n\t- `val` a current field value\n\t- `doc` a current processed document\n\t- `repository` a repository object\n\t- `arg` a custom arguments\n\n```javascript\nTABLE('database').modify({ $age: 'val + 10' }).where('id', 1);\n\n// or you can use \"return\" statement:\nTABLE('database').modify({ $age: 'return val + 10' }).where('id', 1);\n```",
@@ -5610,7 +5564,6 @@
     {
       "body": "__NoSQL Database Builder__ helps with building queries for classic CRUD operation. A lot of methods from `Database` implementation returns this `DatabaseBuilder`.\n\n```javascript\nvar nosql = NOSQL('users');\n\nnosql.find().make(function(builder) {\n    builder.between('age', 20, 30);\n    builder.callback(function(err, response) {\n        console.log('users between 20 and 30 years:', response);\n    });\n});\n\nnosql.insert({ id: 3499, age: 55, name: 'Peter' }).callback(function(err) {\n    console.log('The user has been created.');\n});\n\nnosql.update({ id: 3403, age: 60, name: 'Lucia' }).make(function(builder) {\n    // builder.first(); --> updates only the one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('updated documents:', count);\n    });\n});\n\nnosql.modify({ age: 58 }).make(function(builder) {\n    // builder.first(); --> modifies only the one document\n    builder.where('id', 3403);\n    builder.callback(function(err, count) {\n        console.log('modified documents:', count);\n    });\n});\n\nnosql.remove().make(function(builder) {\n    // builder.first(); --> removes only the one document\n    builder.where('age', '<', 15);\n    builder.callback(function(err, count) {\n        console.log('removed documents:', count);\n    });\n});```",
       "name": "DatabaseBuilder",
-      "changetype": 2,
       "group": "NoSQL Embedded",
       "methods": [
         {
@@ -5625,7 +5578,6 @@
           "options": [
             "+v3.1.0"
           ],
-          "changetype": 1,
           "name": "builder.arg",
           "body": "Appends a new dynamic parameter for filtering, simple usage:\n\n```javascript\nbuilder.arg('age', 33);\nbuilder.query('doc.age==arg.age');```",
           "return": "DatabaseBuilder",
@@ -5738,7 +5690,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "builder.reset",
           "body": "Resets counters and responses. It's targeted for __DataReader__.",
@@ -5823,7 +5774,6 @@
           ]
         },
         {
-          "changetype": 2,
           "changelog": "Supports removing defined fields <code>-fieldname</code>",
           "name": "builder.fields",
           "body": "Creates a projection for properties, otherwise: the database selects only these fields.\n\n__Projection__:\n\n```javascript\nNOSQL('yourdb').find().fields('id', 'name').callback(console.log);\n// Fields \"id\" and \"name\" will be in the result\n```\n\n__A reverse projection__:\n\n```javascript\nNOSQL('yourdb').find().fields('-id', '-name').callback(console.log);\n// Fields \"id\" and \"name\" will be removed from the result```",
@@ -5980,7 +5930,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -6006,7 +5955,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "name": "builder.repository",
           "body": "Sets/Gets a value from the query builder repository. If the value is not defined then the method returns a value from the repository according to the `key`.",
@@ -6074,7 +6022,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "builder.each",
           "body": "This method executes a provided function once for each document in DB. __IMPORTANT__: don't use variables external references.\n\n```javascript\nbuilder.each(function(doc, repository) {\n\trepository.max = Math.max(repository.max || 0, doc.price);\n}).callback(function(err, response, count, repository) {\n\tconsole.log(repository.max);\n});\n```",
@@ -6100,7 +6047,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -6116,7 +6062,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -6165,7 +6110,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "v3.0.0"
           ],
@@ -6195,7 +6139,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "v3.0.0"
           ],
@@ -6303,7 +6246,6 @@
       ]
     },
     {
-      "changetype": 1,
       "body": "`+v3.0.0` __NoSQL Database Storage__ is an engine for storing small big data. It can store documents to independent database files divided by days. In other words: __storage__ creates each day a new database. File name of database is in the form: `yyyyMMdd.nosql` and each database has own `storage` directory. __IMPORTANT__: storage can't update/remove documents, it supports append/read mode only.\n\n```javascript\nvar storage = NOSQL('yourdbname').storage;\n// or\nvar storage = NOSQLSTORAGE('yourdbname');\n\n// Example of inserting\nstorage.insert({ your: 'data' });\n```\n\n`+v3.1.0` supports very effective filtering documents outside of main thread. You can filter documents with help of `.find()`, `.scalar()` and `.count()` methods and you can set count of threads for reading.",
       "name": "DatabaseStorage",
       "group": "NoSQL Embedded",
@@ -6357,7 +6299,6 @@
           "return": "DatabaseStorage"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "database.storage.find",
           "body": "Finds documents according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').find('2018')\n// NOSQLSTORAGE('iot').find('2018-05')\n// NOSQLSTORAGE('iot').find('2018-10-10')\n// NOSQLSTORAGE('iot').find(null, '2019');\n// NOSQLSTORAGE('iot').find(null, null, 10);\n\nNOSQLSTORAGE('iot').find('2018', '2019', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').take(100).sort('temperature', true).callback(console.log);```",
@@ -6386,7 +6327,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "database.storage.count",
           "body": "Counts documents according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').count('2018')\n// NOSQLSTORAGE('iot').count('2018-05')\n// NOSQLSTORAGE('iot').count('2018-10-10')\n// NOSQLSTORAGE('iot').count(null, '2019');\n// NOSQLSTORAGE('iot').count(null, null, 10);\n\nNOSQLSTORAGE('iot').count('2018', '2019', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').callback(console.log);```",
@@ -6415,7 +6355,6 @@
           "return": "DatabaseBuilder"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "database.storage.scalar",
           "body": "Performs a scalar operation according to the filter.\n\n```javascript\n// NOSQLSTORAGE('iot').scalar('2018', null, 'max', 'temperature')\n// NOSQLSTORAGE('iot').scalar('2018-05', null, 'min', 'temperature')\n// NOSQLSTORAGE('iot').scalar('2018-10-10')\n// NOSQLSTORAGE('iot').scalar(null, '2019', 'avg', 'temperature');\n// NOSQLSTORAGE('iot').scalar(null, null, 'max', 'temperature', 10);\n\nNOSQLSTORAGE('iot').scalar('2018', '2019', 'max', 'temperature', 5).where('sensorid', '00-04-a3-0b-00-1e-14-be').callback(console.log);```",
@@ -7376,7 +7315,6 @@
       ]
     },
     {
-      "changetype": 2,
       "body": "__NoSQL Database Binary__ helps with storing files in the NoSQL embedded database. `+v3.0.0` binary mode stores files into the independent directores for 1000 files per directory. You can store max. `999999999` files.\n\n```javascript\nvar binary = NOSQL('photos').binary;\n// or\nvar binary = NOSQLBINARY('photos');\n\nvar idfile = binary.insert('logo.png', STREAM_or_BUFFER_or_BASE64);\nconsole.log(idfile);\n```",
       "name": "DatabaseBinary",
       "group": "NoSQL Embedded",
@@ -7578,7 +7516,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "name": "database.binary.browse",
           "body": "This method can browse all files.\n\n```javascript\ndatabase.binary.browse(function(err, directories) {\n\n\t// RETURNS ALL CREATED DIRECTORIES\n\tconsole.log(directories);\n\n\t// BROWSE FILES ACCORDING TO THE SPECIFIC DIRECTORY\n\tdatabase.binary.browse(directories[0], function(err, files) {\n\t\t// RETURNS ALL REGISTERED FILES IN THIS DIRECTORY\n\t\tconsole.log(files);\n\t});\n\n});```",
           "return": "DatabaseBinary",
@@ -7679,18 +7616,15 @@
     {
       "body": "This stats are filled automatically. You can change/resets stats every time.",
       "group": "Additional",
-      "changetype": 2,
       "name": "FrameworkStats",
       "properties": [
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Dynamic requests per minute",
           "name": "F.stats.performance.request",
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "File requests per minute",
           "name": "F.stats.performance.file",
@@ -7977,7 +7911,6 @@
           ]
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 adds message and code arguments",
           "body": "This event is triggered if the user is disconnected.",
           "name": "controller.on('close')",
@@ -8354,7 +8287,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "The method is same like `controller.sitemap_url()` but it contains `language` argument in addition.",
           "name": "controller.sitemap_url2",
           "options": [
@@ -8488,7 +8420,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "The method is same like `controller.sitemap_name2()` but it contains `language` argument in addition.",
           "name": "controller.sitemap_name2",
           "options": [
@@ -8900,7 +8831,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "body": "Enables/Disables auto-clearing uploaded files. The manual clearing through: `controller.clear()`.",
           "name": "controller.autoclear",
           "options": [
@@ -10192,7 +10122,6 @@
         },
         {
           "changelog": "v3.1.0 Added <code>security</code> as alias for <code>SameSite</code> cookie attribute",
-          "changetype": 2,
           "body": "Reads and Writes cookies. __When the value is undefined then the method performs reading.__\n\n__How to read cookie from request?__\n\n```javascript\nvar value = controller.cookie('cookiename');\n```\n\n__How to write cookie to response?__\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days');\n```\n\n__How to remove cookie in response?__\n\n```javascript\ncontroller.cookie('cookiename', '', '-1 day');\n```\n\n__How to create a session cookie?__\n\n```javascript\ncontroller.cookie('cookiename', 'value');\n```\n\n__With additional settings__:\n\n```javascript\ncontroller.cookie('cookiename', 'value', '5 days', { httponly: true, security: 'lax' });\n```\n\n__Secured cookies for sessions__:\n\n```javascript\ncontroller.cookie('cookiename', 'token', '5 days', { security: 'strict', secure: true, httponly: true });```",
           "name": "controller.cookie",
           "options": [
@@ -10506,7 +10435,6 @@
           "return": "FrameworkController"
         },
         {
-          "changetype": 1,
           "body": "Sends the message via `WebSocket`. It's similiar like to `controller.send()` but with simpler declaration.\n\n```javascript\nfunction some_websocket_action() {\n\tvar controller = this;\n\tcontroller.on('message', function(client) {\n\t\t// 1.\n\t\tcontroller.send2('Hello world!');\n\n\t\t// 2.\n\t\tcontroller.send2('Hello world!', (client, message) => client.user.isadmin);\n\t});\n};\n```",
           "name": "controller.send2",
           "options": [
@@ -10623,7 +10551,6 @@
           "return": "FrameworkController"
         },
         {
-          "changetype": 1,
           "body": "Returns all online clients.",
           "name": "controller.all",
           "options": [
@@ -10701,7 +10628,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -12121,7 +12047,6 @@
           "options": [
             "v3.0.0"
           ],
-          "changetype": 1,
           "body": "The method is same like `@{sitemap_url()}` but it contains `language` argument in addition.",
           "name": "@{sitemap_url2}",
           "params": [
@@ -12250,7 +12175,6 @@
           "options": [
             "v3.0.0"
           ],
-          "changetype": 1,
           "body": "The method is same like `@{sitemap_name()}` but it contains `language` argument in addition.",
           "name": "@{sitemap_name2}",
           "params": [
@@ -12847,7 +12771,6 @@
           "return": "String"
         }
       ],
-      "changetype": 2,
       "name": "FrameworkViews",
       "properties": [
         {
@@ -12894,7 +12817,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -13039,14 +12961,15 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "default": "''",
           "body": "Returns `default-root` value without last `/` backslash. By default contains __empty string__. You can use this markup if you use multiple Total.js apps on the one domain.",
           "name": "@{root}",
-          "return": "String"
+          "return": "String",
+          "options": [
+            "+v3.0.0"
+          ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -13394,7 +13317,6 @@
           "return": "Function"
         },
         {
-          "changetype": 1,
           "body": "Simple chunk `Buffer` streamer to `Buffer`.\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\n\n// e.g. http://www.w3schools.com/xml/cd_catalog.xml\nvar stream = Fs.createReadStream('large-cd-catalog.xml');\n\nstream.on('data', U.streamer('<CD>', '</CD>', function(value, index) {\n    \n    // value === BUFFER!!!!\n\n    console.log(index, value);\n\n    // Cancels processing\n    // return false;\n}));\n\nstream.on('end', function() {\n    console.log('DONE');\n});```",
           "name": "U.streamer2",
           "options": [
@@ -14348,7 +14270,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -14372,7 +14293,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -14446,7 +14366,6 @@
           "return": "Chunker"
         },
         {
-          "changetype": 1,
           "body": "Creates a new instance of Data-Reader. Please read more in `Additional / Data-Reader` section.",
           "name": "U.reader",
           "options": [
@@ -14748,7 +14667,6 @@
           "return": "MailMessage"
         },
         {
-          "changetype": 1,
           "body": "Sets the mail priority to `high`.",
           "name": "message.high",
           "options": [
@@ -14760,7 +14678,6 @@
           "return": "MailMessage"
         },
         {
-          "changetype": 1,
           "body": "Sets the mail priority to `low`.",
           "name": "message.low",
           "options": [
@@ -14772,7 +14689,6 @@
           "return": "MailMessage"
         },
         {
-          "changetype": 1,
           "body": "Sets `confidential` header in mail message.",
           "name": "message.confidential",
           "options": [
@@ -14807,7 +14723,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "body": "Adds an attachment from FileStorage.",
           "name": "message.attachmentfs",
           "params": [
@@ -14836,7 +14751,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "body": "Adds an attachment from NoSQL embeddded binary.",
           "name": "message.attachmentnosql",
           "params": [
@@ -15187,7 +15101,6 @@
           "return": "Mail"
         }
       ],
-      "changetype": 2,
       "name": "FrameworkMail",
       "properties": [
         {
@@ -15698,7 +15611,6 @@
           "return": "FrameworkImage"
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "body": "Can add a coder/decoder specific options for GM/IM.",
           "name": "image.define",
@@ -15971,7 +15883,6 @@
           "options": [
             "+v3.2.0"
           ],
-          "changetype": 1,
           "body": "Runs a cluster as HTTPS.",
           "name": "F.cluster.https",
           "params": [
@@ -16013,7 +15924,6 @@
           "options": [
             "+v2.6.0"
           ],
-          "changetype": 2,
           "changelog": "v3.1.0 Added a support for multiple arguments",
           "body": "Emits an event in all threads with except a current thread. Supports max. 5 additional arguments.",
           "name": "F.cluster.emit",
@@ -16160,7 +16070,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "v3.1.0 Added a support for multiple arguments",
           "body": "__Only for child process__. This method emits an event from `child` process in `master` process.\n\n__Example__:\n\n```javascript\nF.custer.master('event', { yourcustomdata: 'YOUR DATA' });\n```",
           "name": "F.cluster.master",
@@ -16279,7 +16188,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Stores the file in FileStorage and returns File ID from FileStorage.",
           "name": "file.fs",
@@ -16322,7 +16230,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Stores the file in NoSQL embedded database and returns File ID from NoSQL embedded database.",
           "name": "file.nosql",
@@ -16492,7 +16399,6 @@
           "return": "FrameworkImage"
         }
       ],
-      "changetype": 2,
       "name": "HttpFile",
       "properties": [
         {
@@ -16610,7 +16516,6 @@
           ]
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 adds message and code arguments",
           "body": "This event is triggered if the client is disconnected.",
           "name": "client.on('close')",
@@ -16830,7 +16735,6 @@
     {
       "body": "```javascript\nexports.install = function() {\n\tF.route('/contact/', json_contact, ['xhr', 'post']);\n};```",
       "group": "Additional",
-      "changetype": 2,
       "name": "HttpRouteOptionsFlags",
       "properties": [
         {
@@ -16851,7 +16755,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "body": "This flag can define a group name and you can use multiple group names. Groups can be used in really special cases and they don't have any other internal meaning.\n\n```javascript\nexports.install = function() {\n\tROUTE('/api/admin/', action, ['&admin', '&editor']);\n};\n\nfunction action() {\n\tvar self = this;\n\n\t// Reads defined groups, e.g.:\n\t// self.groups.admin\n\t// self.groups.editor\n\tconsole.log(self.groups);\n\n\tself.empty();\n}\n```",
           "name": "&group_name",
           "options": [
@@ -17580,7 +17483,6 @@
         },
         {
           "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
-          "changetype": 2,
           "options": ["+v3.0.0"],
           "body": "Sends a file stored in FileStorage",
           "name": "Response.prototype.filefs",
@@ -17624,7 +17526,6 @@
         },
         {
           "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
-          "changetype": 2,
           "options": ["+v3.0.0"],
           "body": "Sends a file stored in NoSQL embedded database",
           "name": "Response.prototype.filenosql",
@@ -17667,7 +17568,6 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Sends an image stored in FileStorage. Example:\n\n```javascript\nres.imagefs('files', id, function(image) {\n\timage.output('jpg');\n\timage.quality(85);\n\timage.resize('50%');\n\timage.minify();\n});\n```",
           "name": "Response.prototype.imagefs",
@@ -17707,7 +17607,6 @@
           "return": "Response"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Sends an image stored in NoSQL embedded database. Example:\n\n```javascript\nres.imagenosql('dbname', id, function(image) {\n\timage.output('jpg');\n\timage.quality(85);\n\timage.resize('50%');\n\timage.minify();\n});\n```",
           "name": "Response.prototype.imagenosql",
@@ -18051,7 +17950,6 @@
           "return": "Response"
         }
       ],
-      "changetype": 2,
       "name": "Response.prototype",
       "properties": [
         {
@@ -18142,7 +18040,6 @@
         },
         {
           "changelog": "+v3.3.0 adds `encode` and `def` arguments.",
-          "changetype": 2,
           "options": [
             "+v2.9.3"
           ],
@@ -18827,7 +18724,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "Added secret argument",
           "body": "Encrypts the string according to the key.",
           "name": "String.prototype.encrypt",
@@ -18853,7 +18749,6 @@
           "return": "String"
         },
         {
-          "changetype": 2,
           "changelog": "Added secret argument",
           "body": "Decrypts the string according to the key.",
           "name": "String.prototype.decrypt",
@@ -19045,8 +18940,7 @@
           "return": "String"
         }
       ],
-      "name": "String.prototype",
-      "changetype": 2
+      "name": "String.prototype"
     },
     {
       "body": "The __Number prototype__ is available in each Node.js / Total.js script. Prototypes are defined in the __FrameworkUtils__ `utils.js`. __FrameworkUtils__ is a global variable.",
@@ -19197,7 +19091,6 @@
           "return": "Number"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -20794,7 +20687,6 @@
       "methods": [
         {
           "options": ["+v3.1.0"],
-          "changetype": 1,
           "body": "Sets/Gets a value into/from cache.\n\n```javascript\nvar write = CACHE('somekey', 'somevalue', '5 days');\nvar read = CACHE('somekey');```",
           "name": "CACHE",
           "params": [
@@ -21100,7 +20992,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -21263,7 +21154,6 @@
           "return": "Object"
         },
         {
-          "changetype": 2,
           "changelog": "v3.0.0 adds a type argument",
           "body": "Creates special incremented UUID, minimal output length is 17 chars, e.g. `16042321110001yfg`, then `16042321110002yfg`. The unique string contains time stamp, incremented number and 3 characters generated if the framework starts. For example:\n\n```javascript\nvar user = { id: UID('users') };\nvar order = { id: UID('orders') };\nvar id = UID();\n```",
           "name": "UID",
@@ -21332,7 +21222,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "This method converts values in object according to the schema and it's effective.\n\n- supports all types like `SchemaBuilder`\n- supports Array `tags:[String]`\n- undefined properties are removed\n\n```javascript\n// For example:\n// query = { page: '1', limit: '5', created: '182732837' };\nvar filter = CONVERT(query, 'page:Number, limit:Number, search:String');\nconsole.log(filter);\n\n// Output:\n// { page: 1, limit: 5, search: '' };```",
           "options": [
             "+v3.0.0"
@@ -21430,7 +21319,6 @@
           "return": "Object"
         },
         {
-          "changetype": 1,
           "body": "Creates random identificator. Alias for `U.GUID()`.",
           "options": [
             "+v3.0.0"
@@ -21897,7 +21785,6 @@
           "return": "String"
         },
         {
-          "changetype": 1,
           "options": ["+v3.0.0"],
           "body": "Creates a NOOP callback function with internal error handling. `name` (optional) can define a current location for better error handling. For example:\n\n```javascript\nRESTBuilder.make(function(builder) {\n\tbuilder.url('http://127.0.0.1:8005/api/import/');\n\t// builder.exec(ERROR('api.progress'));\n\tbuilder.exec(ERROR());\n});```",
           "name": "ERROR",
@@ -22117,7 +22004,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Can replace `F.onLocale`.\n\n```javascript\nLOCALIZE(function(req, res) {\n\treturn 'en';\n});\n\n// Is same as older declaration:\nF.onLocale = function(req, res) {\n\treturn 'en';\n};\n```",
           "name": "LOCALIZE",
           "options": [
@@ -22144,7 +22030,6 @@
           ]
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 Without arguments it enables CORS for all routes with methods.",
           "body": "Alias for `F.cors()`. Creates CORS for a specific URL. Example:\n\n```javascript\n// Enables CORS for:\nCORS('/api/*', ['GET', 'POST', 'PUT', 'https://www.totaljs.com'], true);\n\n// Enables CORS for all routes, methods and origins\n// +v3.0.0\nCORS();\n\n// Allows all method with credentials\n// +v3.0.0\nCORS('/api/*', true);\n\n// Allows all method without credentials\nCORS('/api/*');\n```",
           "name": "CORS",
@@ -22621,7 +22506,6 @@
           "return": "undefined"
         },
         {
-          "changetype": 1,
           "body": "Writes to console output with date/time",
           "name": "PRINTLN",
           "options": [
@@ -22636,7 +22520,6 @@
           ]
         },
         {
-          "changetype": 1,
           "body": "Alias for NOSQL('DB').storage",
           "name": "NOSQLSTORAGE",
           "options": [
@@ -22652,7 +22535,6 @@
           "return": "DatabaseStorage"
         },
         {
-          "changetype": 1,
           "body": "Is a special `NOSQLSTORAGE` but seperated and independent from NoSQL embedded database. You can use it for storing of uploaded files",
           "name": "FILESTORAGE",
           "options": [
@@ -22668,7 +22550,6 @@
           "return": "DatabaseStorage"
         },
         {
-          "changetype": 1,
           "body": "Gets an instance of TABLE storage",
           "name": "TABLE",
           "options": [
@@ -22960,7 +22841,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "body": "Alias for `F.load()`",
           "name": "LOAD",
           "params": [
@@ -22991,7 +22871,6 @@
           "options": [
             "+v3.0.0"
           ],
-          "changetype": 1,
           "body": "A global alias for `U.request()`",
           "name": "REQUEST",
           "params": [
@@ -23184,7 +23063,6 @@
           "return": "Framework"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 improved <code>filter</code> for <code>required</code> fields",
           "body": "Performs `make`, example:\n\n```javascript\n$MAKE('Product', { id: 1 }, (err, model) => console.log(err, model));\n\n// +v3.0.0 makes a schema instance similarly as in dynamic operation\n// ['insert', 'notify', 'send'] is very important for \"schema.required()\" method (read more there about \"op\" operations)\n$MAKE('Product', { id: 1 }, ['insert', 'notify', 'send'], (err, model) => console.log(err, model));```",
           "name": "$MAKE",
@@ -23243,7 +23121,6 @@
           "return": "SchemaInstance"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `save`.\n\n```javascript\n$SAVE('Product', YOUR_MODEL, (err, response) => console.log(response));```",
           "name": "$SAVE",
           "options": [
@@ -23298,7 +23175,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `insert`.\n\n```javascript\n$INSERT('Product', YOUR_MODEL, (err, response) => console.log(response));```",
           "name": "$INSERT",
           "options": [
@@ -23353,7 +23229,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `update`.\n\n```javascript\n$UPDATE('Product', YOUR_MODEL, (err, response) => console.log(response));```",
           "name": "$UPDATE",
           "options": [
@@ -23408,7 +23283,6 @@
           "return": "Boolean"
         },
         {
-          "changetype": 1,
           "body": "Executes a schema `remove`.\n\n```javascript\n$REMOVE('Product', { id: 10 }, (err, response) => console.log(response));```",
           "name": "$REMOVE",
           "options": [
@@ -23643,7 +23517,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -23891,14 +23764,12 @@
         },
         {
           "options": ["+v3.0.0"],
-          "changetype": 1,
           "body": "Is alias for `F.datetime`.",
           "name": "NOW",
           "return": "Date"
         },
         {
           "options": ["+v3.1.0"],
-          "changetype": 1,
           "body": "Is alias for `F.config`.",
           "name": "CONF",
           "return": "Object"
@@ -23972,7 +23843,6 @@
       "name": "Operations",
       "methods": [
         {
-          "changetype": 2,
           "changelog": "+v3.1.0 appends new arguments <code>repeat</code> and <code>stop</code>",
           "body": "Registers a new global operation.\n\n```javascript\nNEWOPERATION('myoperation', function($) {\n\n\t// $.value or $.model;\n\t// Contains an input value\n\n\t// $.options;\n\t// Contains additional options\n\n\t// $.error;\n\t// ErrorBuilder instance\n\n\t// $.DB();\n\t// Returns a new instance of DB (targeted for SQL Agent and DBMS moduels)\n\n\t//\u00a0$.invalid(name, [message]);\n\t// Responds with error (it executes callback automatically)\n\n\t//\u00a0$.success([success], [value]);\n\t// Responds with SUCCESS (it executes callback automatically)\n\n\t//\u00a0$.done([arg]);\n\t// It returns a callback function with SUCCESS()\n\t// You can use it in some async operations instead of callback\n\n\t// $.callback([err], value);\n\n\t// =============================\n\t// If the controller is assigned\n\t// =============================\n\n\t// $.controller;\n\t// $.body;\n\t// $.files;\n\t// $.id;\n\t// $.ip;\n\t// $.language;\n\t// $.params;\n\t// $.query;\n\t// $.session;\n\t// $.user;\n\n}, 3);\n```",
           "name": "NEWOPERATION",
@@ -24071,7 +23941,6 @@
           ]
         },
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "body": "Executes multiple operations.\n\n```javascript\nRUN('operation_1, operation_2, operation_3', { some: 'data' }, function(err, response, $) {\n\tconsole.log(err);\n\tconsole.log(response.operation_1);\n\tconsole.log(response.operation_2);\n\tconsole.log(response.operation_3);\n});\n\n// OR\n\nRUN(['operation_1', 'operation_2', 'operation_3'], { some: 'data' }, function(err, response, $) {\n\tconsole.log(err);\n\tconsole.log(response.operation_1);\n\tconsole.log(response.operation_2);\n\tconsole.log(response.operation_3);\n});\n\n// OR WITH THE SPECIFIC RESPONSE\n\nRUN(['operation_1', 'operation_2', 'operation_3'], { some: 'data' }, function(err, response, $) {\n\tconsole.log(err);\n\tconsole.log(response); // Only output from operation_2\n}, 'operation_2');\n```",
           "name": "RUN",
@@ -24150,7 +24019,6 @@
           "return": "Array"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -25216,7 +25084,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -25334,7 +25201,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 2,
           "changelog": "Instead of extension can be used a real content-type",
           "body": "Sets accept header according to the extension.\n\n```javascript\ninstance.accept('txt');\n// or\ninstance.accept('text/plain');```",
           "name": "instance.accept",
@@ -25454,7 +25320,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -25473,7 +25338,6 @@
           "return": "RESTBuilder"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -25638,12 +25502,10 @@
           "return": "Object"
         }
       ],
-      "name": "RESTBuilder",
-      "changetype": 2
+      "name": "RESTBuilder"
     },
     {
       "changetype": 1,
-      "options": ["+v3.1.0"],
       "body": "`+v3.3.0` supports predefined tasks targeted for the best performance. Predefined tasks can be stored in `/tasks/` directory.\n\n```javascript\n// Declaration\nNEWTASK('TaskBuilderName', function(push) {\n\n\tpush('task1', function($) {\n\n\t\t// $ === TaskBuilderOptions\n\t\n\t\t// Properties:\n\t\t// $.value;                              --> {Object} A temporary data/model\n\t\t// $.error;                              --> {ErrorBuilder} optional\n\t\t// $.controller;                         --> {Controller} optional\n\t\t// $.session;                            --> {Object} optional, A session object (depends on the controller)\n\t\t// $.sessionid;                          --> {Object} optional, A session identificator (depends on the controller)\n\t\t// $.user;                               --> {Object} optional, A user instance (depends on the controller)\n\t\t// $.language;                           --> {Object} optional, A current language (depends on the controller)\n\t\t// $.ip;                                 --> {Object} optional, A request IP address (depends on the controller)\n\t\t// $.id;                                 --> {Object} optional, A route first dynamic argument depends on the controller)\n\t\t// $.req;                                --> {Object} optional, A current request instance (depends on the controller)\n\t\t// $.res;                                --> {Object} optional, A current response (depends on the controller)\n\t\t// $.params;                             --> {Object} optional, All dynamic route parameters (depends on the controller)\n\t\t// $.files;                              --> {Object} optional, All received files (depends on the controller)\n\t\t// $.body;                               --> {Object} optional, Received data (depends on the controller)\n\t\t// $.query;                              --> {Object} optional, Received URL query arguments (depends on the controller)\n\t\t// $.headers;                            --> {Object} optional, All received request headers (depends on the controller)\n\n\t\t// Methods:\n\t\t// $.next(task1, [task2], [taskN]);      --> Runs only the first existing task\n\t\t// $.next2(task);                        --> returns Function with wrapped \"$.next(task)\", it handles errors automatically (targeted for callbacks)\n\t\t// $.success([value]);                   --> ends TasksBuilder with { success: true, value: [value] } object\n\t\t// $.success2([value]);                  --> returns Function with wrapped \"$.success()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.done([data]);                       --> ends TaskBuilder processing, if \"data\" are entered then will be returned in the callback\n\t\t// $.done2([send_value_from_callback]);  --> returns Function with wrapped \"$.done()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.callback(callback);                 --> can rewrite existing callback\n\n\t\tconsole.log('task1', $.value.custom);\n\t\t$.next('task2');\n\t});\n\n\tpush('task2', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task2', $.value.custom);\n\t\t$.done();\n\t});\n\n});\n\n// TASK() executes predefined TaskBuilder and it starts with \"task1\"\nvar builder = TASK('TaskBuilderName', 'task1', function(err, response) {\n\tconsole.log(err, response);\n});\n\n// Now we can assign a value to a TaskBuilder model\nbuilder.value.custom = 'value';\n```\n\n__Output__:\n\n```html\ntask1 value\ntask2 value\nnull { custom: 'value' }```",
       "group": "Builders",
       "methods": [
@@ -25897,7 +25759,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 returns a Function for setting of default value. +v2.9.0 extends \"required\" argument.",
           "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n    // +v3.0.0\n    // Sets a default value\n    schema.define('id', 'UID')(() => UID());\n    schema.define('age', Number)(20);\n    schema.define('name', String)('Peter');\n    schema.define('created', Date)(() => new Date());\n\n});```",
           "name": "schema.define",
@@ -25933,7 +25794,6 @@
           "return": "Function"
         },
         {
-          "changetype": 2,
           "changelog": "+v3.0.0 - improved <code>required</code> function by adding a new argument <code>op</code>",
           "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" if the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\n\n\t// ----------------------------------------------------------------------\n\t// +v3 supports a new argument \"op\" which means \"current operations\"\n\t// ----------------------------------------------------------------------\n\n\t// Always contains an object\n\n\t// ROUTE('POST /api/users/  *User --> @insert');\n\t// \"op\" will contain { insert: 1 }\n\n\t// ROUTE('POST /api/users/  *User --> @insert (response) @notify @send');\n\t// \"op\" will contain { insert: 1, notify: 2, send: 3 }\n\n\tschema.required('id', function(model, op) {\n\n\t\t// So \"id\" field will be required when the operation will contain \"update\"\n\t\treturn op.update;\n\n\t\t// or return op.update ? true : false;\n\t\t// or return !!op.update\n\t\t// or return op.update > 0;\n\t});\n\n});\n```",
           "name": "schema.required",
@@ -25955,7 +25815,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 1,
           "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index, req) => value.toUpperCase());\n\t// ...\n});\n```",
           "name": "schema.before",
           "options": [
@@ -26183,7 +26042,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 1,
           "body": "Removes all registered properties `schema.define()` from the schema.",
           "name": "schema.clear",
           "options": [
@@ -26237,7 +26095,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -26268,7 +26125,6 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 1,
           "options": [
             "+v3.0.0"
           ],
@@ -26712,12 +26568,10 @@
     },
     {
       "name": "SchemaInstance",
-      "changetype": 1,
       "group": "Schemas",
       "body": "Framework creates `SchemaInstance` automatically if the schema is linked via routes or can be created manually.\n\n__Created automatically__:\n\n```javacript\nexports.install = function() {\n\n\t// \"SchemaInstance\" will be created in the background\n\tROUTE('POST /api/products/', ['*Product --> @save']);\n\n\t// \"SchemaInstance\" will be created before the route's action is executed\n\tROUTE('POST /api/users/',  json_user_create, ['*User']);\n\n};\n\nfunction json_user_create() {\n\tvar self = this;\n\t// self.model === SchemaInstance\n}\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n```javascript\n$MAKE('User', { firstname: 'Peter', lastname: 'Širka' }, function(err, user) {\n\t// user === SchemaInstance\n});```\n__Imagine__ that `model` is the `SchemaInstance` object.",
       "properties": [
         {
-          "changetype": 1,
           "options": ["+3.2.0"],
           "name": "$.model.$parent",
           "body": "A parent instance of the current schema.",
@@ -27480,7 +27334,6 @@
     },
     {
       "name": "SchemaOptions",
-      "changetype": 1,
       "group": "Schemas",
       "body": "`SchemaOptions` is an object created for each operation of `SchemaDeclaration`. It can be used in the scope of `SchemaDeclaration` operation like the example below:\n\n```javascript\nschema.setQuery(function($) {\n\t// $ === SchemaOptions\n});\n\nschema.setSave(function($) {\n\t// $ === SchemaOptions\n});\n\nschema.addWorkflow('send', function($) {\n\t// $ === SchemaOptions\n});```",
       "properties": [
@@ -27620,7 +27473,6 @@
       ],
       "methods": [
         {
-          "changetype": 1,
           "options": ["+v3.1.0"],
           "name": "$.tasks",
           "return": "TaskBuilder",
@@ -27996,7 +27848,6 @@
           ]
         },
         {
-          "changetype": 1,
           "name": "$.redirect",
           "params": [
             {
@@ -28252,7 +28103,6 @@
         },
         {
           "options": ["+v3.1.0"],
-          "changetype": 1,
           "name": "$.cancel",
           "params": [
           ],
@@ -28300,7 +28150,6 @@
           "changelog": "+v3.3.0 can be without arguments and it returns a function with error handling."
         },
         {
-          "changetype": 1,
           "name": "$.invalid",
           "params": [
           ],
@@ -28331,7 +28180,6 @@
     },
     {
       "name": "Chunker",
-      "changetype": 1,
       "group": "Additional",
       "body": "`Chunker` is a very helpful tool for storing temporary data when you are importing some data from another services or databases. It can store defined count of documents/data (serialized in JSON) per file and after import is done you can browse data step-by-step. `Chunker` is defined in `FrameworkUtils` and here is a simple usage:\n\n```javascript\nvar chunker = U.chunker('products', 50);\n\n// chunker === instance\n\nsomestream.on('data', U.streamer('<product>', '</product>', function(value, index) {\n\tvar product = value.parseXML();\n\n\t// The chunker creates multiple files with a maximum count of chunks (in this case: 50 products)\n\tchunker.write(product);\n\n\t// Here we can't wait for DB because data are flowing in this time\n}));\n\nsomestream.on('end', function() {\n\t\n\t// Flushs buffer\n\tchunker.end();\n\n\tchunker.each(function(items, next, index) {\n\n\t\tconsole.log(chunker.percentage);\n\n\t\t// here we can update DB\n\t\t\n\t\t// ....\n\t\t// ....\n\t\t\n\t\t// Read next items\n\t\tnext();\n\n\t}, function() {\n\n\t\t// This method is called if the chunker doesn't contain any other items (optional).\n\n\t\t// Cleans up hdd (removes files) and memory\n\t\tchunker.destroy();\n\t});\n\n});\n```\n\n__IMPORTANT__:\nChunker stores items to different files. A chunker `name` is a name of the file. If the chunker is destroyed then it removes all files automatically.",
       "properties": [
@@ -28487,7 +28335,6 @@
     },
     {
       "name": "DataReader",
-      "changetype": 1,
       "group": "Additional",
       "body": "`+v3.1.0` __DataReader__ is very effective and optimized solution for reading and filtering data in real-time. With this solution you can stream data and filter data easily. Also NoSQL embedded database uses `DataReader` too.\n\n```javascript\nvar reader = U.reader();\n\nreader.find().between('price', 10, 200).callback(console.log);\n\n// or\nreader.scalar('max', 'price').callback(console.log);\n\n// or\nreader.count().between('price', 10, 200).callback(console.log);\n\n// Some ReadStream\nsomestream.on('data', function(chunk) {\n\t// some data processing\n\treader.push(ARRAY_OF_DOCS_or_DOC);\n});\n\nsomestream.on('end', () => reader.done());```",
       "methods": [
@@ -28602,7 +28449,7 @@
       "changetype": 2
     },
     {
-      "body": "- [A minimal framework configuration for running](#)\n- [Total.js binary / executable app](#)\n- [IDE for Node.js applications](#)\n- [Databases for Node.js applications](#)\n- [Sublime Text 3 Node.js build system](#)\n- [Sublime Text 3 syntax highlighter for Total.js](#)\n- [__Atom syntax highlighter for Total.js__](https://atom.io/packages/language-totaljs)\n- [__Visual Studio Code syntax highlighter for Total.js__](https://marketplace.visualstudio.com/items?itemName=pnmcosta.vscode-totaljs)\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js').http('debug');\n\nROUTE('/', function() {\n\tthis.plain('Total.js is really good Node.js framework!');\n});\n```\n\n__Run it__:\n\n```bash\n$ node myapp.js\n```\n\nYou have a full web server with all Total.js features in the above code.\n\n---\n\n## Total.js binary / executable app\n\nInstall Total.js as a global module `$ npm install -g total.js` and then you can use a lot of great features:\n\n- `$ totaljs --help`\n- local webserver with directory listing `$ cd somedir` and `$ totaljs 8000` (starts webserver)\n- translation tools `$ totaljs --translate`\n- minifications tools `$ totaljs --minify script.js` (works with CSS and HTML too)\n- create empty project `$ mkdir app`, `$ cd app` and `$ totaljs`\n\n---\n\n## IDE for Node.js applications\n\n| Name                                   | Paid            | Platform        |\n|----------------------------------------|-----------------|-----------------|\n| [__Sublime Text Editor__](http://www.sublimetext.com/) | Free trial | OSX, Linux, Windows |\n| [Atom](http://www.atom.io/) | Free | OSX, Linux, Windows |\n| [Brackets](http://brackets.io/) | Free | OSX, Linux, Windows |\n| [Visual Studio Code](https://www.visualstudio.com/) | Free | OSX, Linux, Windows |\n| [CodeRunner 2](https://coderunnerapp.com/) | Free trial | OSX |\n| [WebStorm](https://www.jetbrains.com/webstorm/) | Free trial | OSX, Linux, Windows |\n| [Coda 2](http://panic.com/coda/) | Free trial | OSX |\n| [Espresso](http://macrabbit.com/espresso/) | Free trial | OSX |\n| [Komodo 9](http://komodoide.com/) | Free trial | OSX, Linux, Windows |\n| [__Cloud 9 - online editor__](https://c9.io/) | Free trial | OSX, Linux, Windows |\n\n## Databases for Node.js applications\n\n| Name                                   | Type            |\n|----------------------------------------|:---------------:|\n| [__PostgreSQL__](http://www.postgresql.org/) | RDBMS |\n| [MySQL](http://www.mysql.com/) | RDBMS |\n| [MariaDB](https://mariadb.org/) | RDBMS |\n| [Firebird](http://firebirdsql.org/) | RDBMS |\n| [SQLite](http://www.sqlite.org/) | RDBMS |\n| [MS SQL Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/) | RDBMS |\n| [Oracle Database](https://www.oracle.com/database/index.html) | RDBMS |\n| [__MongoDB__](http://www.mongodb.org/) | NoSQL |\n| [__CouchDB__](http://couchdb.apache.org/) | NoSQL |\n| [__RethinkDB__](http://rethinkdb.com/) | NoSQL |\n| [RiakDB](http://basho.com/products/) | NoSQL |\n| [NoSQL embedded database](https://github.com/petersirka/nosql) | NoSQL |\n| [__Redis__](http://redis.io/) | Key-Value |\n| [memcached](http://memcached.org/) | Key-Value |\n| [FireBase](https://www.firebase.com/) | Key-Value |\n| [Neo4j](http://neo4j.com/) | Graph Database |\n| [OrientDB](http://orientdb.com/) | Graph Database |\n| [ElasticSearch](https://www.elastic.co/) | Fulltext Search Database |\n\n## Sublime Text 3 Node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 syntax highlighter for Total.js\n\n- [Download: sublime-syntax.zip](resources/sublime-syntax.zip)\n- Download and unzip into `User/` directory.\n- Run Sublime Text Editor\n- Set syntax for `view engine`, `configuration files`, `resources`, `versions`, `dependencies` and `logs`\n\n![Sublime syntax](resources/sublime-syntax.png)",
+      "body": "- [A minimal framework configuration for running](#)\n- [Total.js binary / executable app](#)\n- [Total.js Code Editor](#)\n- [IDE for Node.js applications](#)\n- [Databases for Node.js applications](#)\n- [Sublime Text 3 Node.js build system](#)\n- [Sublime Text 3 syntax highlighter for Total.js](#)\n- [__Atom syntax highlighter for Total.js__](https://atom.io/packages/language-totaljs)\n- [__Visual Studio Code syntax highlighter for Total.js__](https://marketplace.visualstudio.com/items?itemName=pnmcosta.vscode-totaljs)\n\n---\n\n## A minimal framework configuration for running\n\nThe framework is really simple, you can create the website very easily:\n\nCreate `myapp.js`:\n\n```javascript\nrequire('total.js').http('debug');\n\nROUTE('/', function() {\n\tthis.plain('Total.js is really good Node.js framework!');\n});\n```\n\n__Run it__:\n\n```bash\n$\u00a0node myapp.js\n```\n\nYou have a full web server with all Total.js features in the above code.\n\n---\n\n## Total.js binary / executable app\n\nInstall Total.js as a global module `$ npm install -g total.js` and then you can use a lot of great features:\n\n- `$ totaljs --help`\n- local webserver with directory listing `$ cd somedir` and `$ totaljs 8000` (starts webserver)\n- translation tools `$ totaljs --translate`\n- minifications tools `$ totaljs --minify script.js` (works with CSS and HTML too)\n- create empty project `$ mkdir app`, `$ cd app` and `$ totaljs`\n\n---\n\n##\u00a0Total.js Code Editor\n\nWe recommend to use __Total.js Code Editor__, more info here: <https://www.totaljs.com/code/>\n\n![Total.js Code](https://www.totaljs.com/download/B20181207T000000096.jpg)\n\n---\n\n## IDE for Node.js applications\n\n| Name                                   | Paid            | Platform        |\n|----------------------------------------|-----------------|-----------------|\n| [__Sublime Text Editor__](http://www.sublimetext.com/) | Free trial | OSX, Linux, Windows |\n| [Atom](http://www.atom.io/) | Free | OSX, Linux, Windows |\n| [Brackets](http://brackets.io/) | Free | OSX, Linux, Windows |\n| [Visual Studio Code](https://www.visualstudio.com/) | Free | OSX, Linux, Windows |\n| [CodeRunner 2](https://coderunnerapp.com/) | Free trial | OSX |\n| [WebStorm](https://www.jetbrains.com/webstorm/) | Free trial | OSX, Linux, Windows |\n| [Coda 2](http://panic.com/coda/) | Free trial | OSX |\n| [Espresso](http://macrabbit.com/espresso/) | Free trial | OSX |\n| [Komodo 9](http://komodoide.com/) | Free trial | OSX, Linux, Windows |\n| [__Cloud 9 - online editor__](https://c9.io/) | Free trial | OSX, Linux, Windows |\n\n## Databases for Node.js applications\n\n| Name                                   | Type            |\n|----------------------------------------|:---------------:|\n| [__PostgreSQL__](http://www.postgresql.org/) | RDBMS |\n| [MySQL](http://www.mysql.com/) | RDBMS |\n| [MariaDB](https://mariadb.org/) | RDBMS |\n| [Firebird](http://firebirdsql.org/) | RDBMS |\n| [SQLite](http://www.sqlite.org/) | RDBMS |\n| [MS SQL Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/) | RDBMS |\n| [Oracle Database](https://www.oracle.com/database/index.html) | RDBMS |\n| [__MongoDB__](http://www.mongodb.org/) | NoSQL |\n| [__CouchDB__](http://couchdb.apache.org/) | NoSQL |\n| [__RethinkDB__](http://rethinkdb.com/) | NoSQL |\n| [RiakDB](http://basho.com/products/) | NoSQL |\n| [NoSQL embedded database](https://github.com/petersirka/nosql) | NoSQL |\n| [__Redis__](http://redis.io/) | Key-Value |\n| [memcached](http://memcached.org/) | Key-Value |\n| [FireBase](https://www.firebase.com/) | Key-Value |\n| [Neo4j](http://neo4j.com/) | Graph Database |\n| [OrientDB](http://orientdb.com/) | Graph Database |\n| [ElasticSearch](https://www.elastic.co/) | Fulltext Search Database |\n\n## Sublime Text 3 Node.js build system\n\n- [Download: sublime-build-nodejs.zip](resources/sublime-build-nodejs.zip)\n- Download and unzip into `User/` directory.\n\n### Instalation\n\n![Sublime menu](resources/sublime-menu.png)\n![Sublime packages](resources/sublime-packages.png)\n\n---\n\n## Sublime Text 3 syntax highlighter for Total.js\n\n- [Download: sublime-syntax.zip](resources/sublime-syntax.zip)\n- Download and unzip into `User/` directory.\n- Run Sublime Text Editor\n- Set syntax for `view engine`, `configuration files`, `resources`, `versions`, `dependencies` and `logs`\n\n![Sublime syntax](resources/sublime-syntax.png)",
       "group": "",
       "name": "Developer tools"
     },
@@ -28642,7 +28489,6 @@
       "name": "View engine"
     },
     {
-      "changetype": 2,
       "changelog": "Added a support for async rendering and inline component files.",
       "body": "`+v2.4.0`. __Components__ are a part of views and they can contain server-side implementation. `+v2.5.0` adds a support for groups and `v3.0.0` adds a support for async rendering.\n\n```plain\nFramework initialization:\n\n01. Bundles\n02. Modules\n03. Packages\n04. Models\n05. Schemas\n06. Operations\n07. Themes\n08. Definitions\n09. Controllers\n10. Components\n```\n\n---\n\n__More informations__\n\n- The component is a single `.html` file stored in `/components/` directory.\n- Components are synchronous.\n- They have same functionality like views.\n- Components are compiled into the function.\n- Supports localization `@(Translate me)`.\n- Framework parses all inline styles from all components into the merged single file `/components.css` (compressed).\n- Framework parses all inline scripts from all components into the merged single file `/components.js` (compressed).\n- Links to static files are generated into the `@{head}` tag.\n- [Download __Component example__](https://github.com/totaljs/examples/tree/master/components)\n\n---\n\n## Single file declaration\n\nThe best practice is to store a server-side code and a client-side code of the component in the main component file.\n\n- __IMPORTANT__ framework parses `<script total></script>` as server-side Total.js code\n\n__Create `/components/newsletter.html`__:\n\n```html\n<script total>\n\n\t// +v2.5.0 optional\n\texports.group = 'Name of group';\n\n\texports.install = function() {\n\t\tF.route('/api/newsletter/', json_newsletter, ['post']);\n\t};\n\n\t// +v3.0.0\n\t// Optional ASYNC rendering helper\n\texports.render = function($) {\n\t\t// $.repository\n\t\t// $.model\n\t\t// $.user\n\t\t// $.session\n\t\t// $.controller\n\t\t// $.query\n\t\t// $.body\n\t\t// $.files\n\t\t// $.options, $.settings --> will contain same value\n\t\t// $.callback(model); --> callback with model\n\n\t\t// !!! IMPORTANT !!!\n\t\t// \"callback\" returns a model which is used in the component \"view\"\n\n\t\t// For example:\n\t\tNOSQL('products').find().take(10).callback((err, response) => $.callback(response));\n\t};\n\n\tfunction json_newsletter() {\n\t\tvar self = this;\n\t\tself.body.ip = self.ip;\n\t\tself.body.created = F.datetime;\n\t\tNOSQL('newsletter').insert(self.body);\n\t\tself.json(SUCCESS(true));\n\t}\n\n</script>\n\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter @{settings.key}:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter', { key: 'Custom settings value', something: 100 })}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n## Separated declaration\n\n__Create `/components/newsletter.html`__ (client-side):\n\n```html\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Create `/components/newsletter.js`__ (server-side):\n\n```javascript\n// +v2.5.0 optional\nexports.group = 'Name of group';\n\nexports.install = function() {\n\tF.route('/api/newsletter/', json_newsletter, ['post']);\n};\n\nfunction json_newsletter() {\n\tvar self = this;\n\tself.body.ip = self.ip;\n\tself.body.created = F.datetime;\n\tNOSQL('newsletter').insert(self.body);\n\tself.json(SUCCESS(true));\n}\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n__Rendering all components by Group name__:\n\n```html\n<h2>Renders all components from the group</h2>\n@{components('Name of group')}\n```\n\n## Good to know\n\n### Inline files\n\nTotal.js `v3.0.0` supports component's inline files. The framework parses all inline files and stores them in the temporary directory. All files are available on `http://hostname.com/~componentname/filename.ext`. For example `myfirstcomponent.html`:\n\n```html\n<file name=\"logo.svg\">base64</file>\n<file name=\"template.html\">base64</file>\n\n<!-- Renders a logo from this component -->\n<img src=\"/~myfirstcomponent/logo.svg\" />\n\n<script total>\n    ...\n</script>\n```\n\n### Static files according to group name\n\nTotal.js `v2.7.0` supports rendering of specific scripts/styles for component's group, for example:\n\n```html\n@{components('dashboard')}\n@{components('flowboard')}\n```\n\n__The framework will render__:\n\n```html\n<head>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=dashboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=dashboard&version=1498544518093\"></script>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=flowboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=flowboard&version=1498544518093\"></script>\n</head>\n```\n\nIf the view contains `@{component()}` the framework renders static files (js+css) from all registered components.\n\n### Hash\n\nBecause of HTTP cache, if the framework registers a new component it changes version hash. Therefore your `components.css` and `components.js` have still another hash e.g. `?version=ak38s`.\n\n### Renaming of static files\n\nYou can rename static files `.css` and `.js` of components via config file:\n\n__Default settings__:\n\n```html\nstatic-url-components    : /components.\n```\n\n__You can change it to e.g.__:\n\n```html\nstatic-url-components    : /components/all.\n```\n\n__The result will be:__\n- `/components/all.js`\n- `/components/all.css`",
       "group": "How does it work?",
@@ -28660,7 +28506,6 @@
       "name": "Authorization"
     },
     {
-      "changetype": 1,
       "body": "Schemas are a big part of Total.js framework. With schemas you can control incoming data and convert them to your defined types. Each schema can support validation and multiple operations (CRUD operations, transformations, workflows or hooks) which you can call step-by-step.\n\n## Creating schemas\n\nA schema describes a data-types/data-structure for incoming data only and __schema isn't a mirror for database table schema__. So we define a simple schema `User` which we use on this page:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// Define fields in the schema\n\t// schema.define('FIELD_NAME', 'DATA_TYPE', [required]);\n\n\tschema.define('firstname', 'Capitalize(30)', true);\n\tschema.define('lastname', 'Capitalize(30)', true);\n\tschema.define('age', Number, age => age >= 18);\n\n\t// Define operations in the schema\n\t// BTW: all operations below are optional\n\n\tschema.setQuery(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setGet(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.setInsert(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setUpdate(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t// $.model ==> data\n\t\t$.success();\n\t});\n\n\tschema.setRemove(function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\tschema.addWorkflow('logoff', function($) {\n\t\t// $ ==> is SchemaOptions\n\t\t// your code\n\t\t$.success();\n\t});\n\n\t// etc..\n\n});\n```\n\nFramework converts incoming data according to the schema __always__. So you __always__ get type as you defined. Default values:\n\n- `array` returns `[]`\n- `boolean` returns `false`\n- `date` returns `new Date()`\n- `json` returns `''`\n- `number` returns `0`\n- `object` returns `null`\n- `string` returns `''`\n- `email` returns `'@'`\n- link to schema returns `null`\n\n__Good to know__:\n\n- schema doesn't need to contain defined operations\n- schema doesn't need to contain defined fields (e.g. you want to use operations only)\n- all [schema data-types](#)\n- methods and properties in [SchemaOptions](#)\n- methods in [SchemaInstance](#)\n\n---\n\n## Dictionary\n\n### SchemaDeclaration\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\t// schema ===  SchemaDeclaration\n});\n```\n\n### SchemaOptions\n\n`SchemaOptions` can be a part in some Schema operation.\n\n- [Documentation](#)\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\tschema.setInsert(function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n\tschema.addWorkflow('something', function($) {\n\t\t// $ === SchemaOptions\n\t});\n\n});\n```\n\n### SchemaInstance\n\nThis is an instance generated according to the `SchemaDeclaration`.\n\n- [Documentation](#)\n\n__Created in the schema__:\n\n```javascript\nNEWSCHEMA('User', function(schema) {\n\n\t// YOUR SCHEMA DECLARATION\n\t// ...\n\t// ...\n\t// ...\n\n\tvar user = schema.create();\n\t// user === SchemaInstance\n\n});\n```\n\n__Created manually__:\n\n```javascript\nvar user = $CREATE('User');\n// user === SchemaInstance\n```\n\n__In controllers__:\n\n```javascript\nexports.install = function() {\n\tROUTE('POST /api/users/', action, ['*User'];\n};\n\nfunction action() {\n\tvar self = this;        // this === controller\n\tvar user = self.model;  // this.model === SchemaInstance\n}\n```\n\n## Using schemas in routing\n\nImaging that the code below is a part of some controller:\n\n```javascript\nexports.install = function() {\n\n\tROUTE('GET     /api/users/',        ['*User --> @query']);\n\t// Framework calls this defined operation automatically: \"User.setQuery(...)\"\n\n\tROUTE('GET     /api/users/{id}/',   ['*User --> @get']);\n\t// Framework calls this defined operation automatically: \"User.setGet(...)\"\n\n\tROUTE('DELETE  /api/users/{id}/',   ['*User --> @remove']);\n\t// Framework calls this defined operation automatically: \"User.setRemove(...)\"\n\n\tROUTE('POST    /api/users/',        ['*User --> @insert']);\n\t// Framework calls this defined operation automatically: \"User.setInsert(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('PUT     /api/users/{id}/',   ['*User --> @update']);\n\t// Framework calls this defined operation automatically: \"User.setUpdate(...)\"\n\t// Incoming data will be validated\n\n\tROUTE('GET     /api/users/logoff/', ['*User --> @logoff']);\n\t// Framework calls this defined workflow automatically: \"User.addWorkflow('logoff', ...)\"\n\n};\n```\n\n## Using schemas globally\n\nSchemas can be used everywhere in your code and we have prepared several methods:\n\n```javascript\n// $INSERT(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setInsert()\n$INSERT('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $UPDATE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setUpdate()\n$UPDATE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $SAVE(schema_name, model, [options], [callback], [controller]);\n// Performs schema.setSave()\n$SAVE('User', { firstname: 'Peter', lastname: 'Širka', age: 18 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $REMOVE(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$REMOVE('User', { id: 101 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $QUERY(schema_name, [options], [callback], [controller]);\n// Performs schema.setQuery()\n$QUERY('User', { take: 10 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $GET(schema_name, [options], [callback], [controller]);\n// Performs schema.setGet()\n$GET('User', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $WORKFLOW(schema_name, [options], [callback], [controller]);\n// Performs schema.addWorkflow('send', ...);\n$WORKFLOW('User', 'send', { id: 100 }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n// $TRANSFORM(schema_name, [options], [callback], [controller]);\n// Performs schema.addTransform('xml', ...);\n$TRANSFORM('User', 'xml', { indent: true }, function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n## Advanced usage\n\n### Creating a new schema instance\n\n- all [operations for schema instances](#)\n\n```javascript\nvar user = $CREATE('User');\n// user === Schema instance of User\n\nuser.firstname = 'Peter';\nuser.lastname = 'Širka';\nuser.age = 33;\n\n// user.$insert([options], [callback]);\n// user.$update([options], [callback]);\n// user.$save([options], [callback]);\n// user.$query([options], [callback]);\n// user.$get([options], [callback]);\n// user.$remove([options], [callback]);\n// user.$workflow(name, [options], [callback]);\n// user.$transform(name, [options], [callback]);\n// user.$hook(name, [options], [callback]);\n// etc..\n\nuser.$insert(function(err, response) {\n\tconsole.log(err, response);\n});\n```\n\n### Extending schemas\n\n```javascript\n// Waiting for a schema declaration\n// Great solution for extending schemas in some apps like Total.js CMS, etc.\nGETSCHEMA('User', function(err, schema) {\n\t// This callback will be executed if the schema will be declared\n\t// And here we can extend existing schema\n\tschema.define('new_field', 'String');\n});\n\n// Gets a schema declaration\n// But the schema must exist, otherwise will be \"null\"\nvar schema = GETSCHEMA('User');\n```\n\n## Error handling\n\nSchemas use Total.js `ErrorBuilder` for error handling. `ErrorBuilder` supports great features and supports transformation. Each scope of executed schema operation contains `ErrorBuilder` instance for handling errors. If the `ErrorBuilder` contains some error then `err` argument in the callback will contain `ErrorBuilder` instance, otherwise will be `null`.\n\n__Auto-validation__:\n\nFramework returns error messages according to the schema field names and it reads messages from resource file according to the current language. By default error messages are read from `default.resource`:\n\n```html\nfirstname     : Please enter your name.\nlastname      : Please enter your name.\nage           : You are too young.\n```\n\nIf you want to use a prefix then use:\n\n```javascript\nschema.setPrefix('form-');\n```\n\nAnd update your resource file like this:\n\n```html\nform-firstname     : Please enter your name.\nform-lastname      : Please enter your name.\nform-age           : You are too young.\n```\n\n### Custom error messages\n\n```javascript\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn 'Please fill age.';\n\tif (val < 18)\n\t\treturn 'You are too young';\n\treturn true;\n});\n\nschema.define('age', Number, function(val) {\n\tif (val === 0)\n\t\treturn '@your-custom-key-in-the-resource';\n\tif (val < 18)\n\t\treturn '@your-custom-key-in-the-resource';\n\treturn true;\n});\n```\n\n- validation are performed for `POST` and `PUT` HTTP methods only in the routing\n\n### Note: Default ErrorBuilder transformation\n\nErrors in `ErrorBuilder` are serialized into the JSON like Object Array as default. But you can rewrite this transformation via [ErrorBuilder.addTransform()](#api~ErrorBuilder~ErrorBuilder.addTransform) and [ErrorBuilder.setTransform()](api~ErrorBuilder~ErrorBuilder.setDefaultTransform).\n\n```json\n[{ \"name\":\"Property name\", \"error\":\"Error message\", \"path\":\"Path in the current object\", \"index\":0 }]\n```\n\n#### How to check errors on client-side?\n\n```javascript\n$.ajax('/api/users/', { type: 'POST', data: JSON.stringify({ age: 15 }), success: function(response) {\n\n\tif (typeof(response) === 'string')\n\t\tresponse = JSON.parse(response);\n\n\t// Check erros\n\tif (response instanceof Array) {\n\t\tshowErrors(response);\n\t\treturn;\n\t}\n\n\t// SUCCESS\n});```",
       "group": "How does it work?",
       "name": "Schemas"
@@ -28696,8 +28541,7 @@
       "name": "Isomorphic code"
     },
     {
-      "changetype": 1,
-      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## Extending files\n\n`+v3.1` supports extending files from bundles. Now you can rename file `--FILENAME.js`, `--FILENAME.css` or `--FILENAME.html` and this file will be inserted into the target file extracted from bundle. Target file won't be overwritten.\n\n__Example__:\n\n```html\n/bundles/cms.bundle\n/themes/admin/public/--ui.js\n```\n\n- the content of `--ui.js` will be inserted into the `/themes/admin/public/ui.js` file at the end of file\n\n## .bundlesignore\n\n`+v3.1` You can create `/.bundlesignore` file which can contains a list of ignore rules. This file must be in the root of app and its definition is similar to `.gitignore` file.\n\n__Example__:\n\n```html\n/download/*.pdf\n/private/*\n*.zip\n```\n\n## External Bundles\n\n`+v3.1` Total.js can download a bundle from URL address. Just create a plain-text file with `.url` extension:\n\n__File__:\n\n```html\n/bundles/cms.url\n```\n\n__Content__:\n\n```html\nhttps://cdn.totaljs.com/bundles/cms@12.bundle\n```\n\nTotal.js downloads the bundle into this direcotry as `cms.bundle` when is starting. So the external bundle will be a part of `/bundles/` directory. If you restart app then the framework will download again bundle.\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
+      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## Extending files\n\n`+v3.1` supports extending files from bundles. Now you can rename file `--FILENAME.js`, `--FILENAME.css` or `--FILENAME.html` and this file will be inserted into the target file extracted from bundle. Target file won't be overwritten.\n\n__Example__:\n\n```html\n/bundles/cms.bundle\n/themes/admin/public/--ui.js\n```\n\n- the content of `--ui.js` will be inserted into the `/themes/admin/public/ui.js` file at the end of file\n- `+v3.3.0` supports extending `--filename` in `bundles` directly\n\n## .bundlesignore\n\n`+v3.1` You can create `/.bundlesignore` file which can contains a list of ignore rules. This file must be in the root of app and its definition is similar to `.gitignore` file.\n\n__Example__:\n\n```html\n/download/*.pdf\n/private/*\n*.zip\n```\n\n## External Bundles\n\n`+v3.1` Total.js can download a bundle from URL address. Just create a plain-text file with `.url` extension:\n\n__File__:\n\n```html\n/bundles/cms.url\n```\n\n__Content__:\n\n```html\nhttps://cdn.totaljs.com/bundles/cms@12.bundle\n```\n\nTotal.js downloads the bundle into this direcotry as `cms.bundle` when is starting. So the external bundle will be a part of `/bundles/` directory. If you restart app then the framework will download again bundle.\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
       "group": "How does it work?",
       "name": "Bundles"
     },
@@ -28715,7 +28559,6 @@
       "name": "File: dependencies"
     },
     {
-      "changetype": 2,
       "body": "## Versioning static files\n\nThe framework (`+v1.9.0`) has great mechanism for versioning of static files. The versioning is supported via `/versions` file in app root directory. The versioning is very great solution for solving HTTP cache. The versioning file `/versions` is a plain text file and has same syntax as __framework config file__ with except `-->` remapping. So if you have a problem with HTTP cache, this feature saves your time.\n\n__Where do I have to store this file?__\n\n```html\n/controllers\n/debug.js\n/release.js\n/versions\n```\n\n## How does it work?\n\nFile: `/versions` with:\n\n```html\n/js/default.js        : /js/default-101.js\n/css/default.css      : /css/default-105.css\n/img/logo.png         : /img/logo-101.png\n```\n\n`v3.0.0` adds a support for auto-generating filename:\n\n```html\n/js/default.js        : auto\n/css/default.css      : auto\n```\n\nFramework downloads the file immediately and performs MD5 checksum + CRC32 and adds the result into the filename. Auto-generating names can't be used with mapping `-->`.\n\n### 1. affects all views:\n\n```html\n@{js('default.js')} --> output will be /js/default-101.js\n@{img('logo.png')} --> output will be /img/logo-101.png\n@{css('default.css')} --> output will be /css/default-105.css\n\nOutput file has to exist or has to be served via `MERGE()` or `MAP()`\n\n<!-- OR -->\n\n<img src=\"/img/logo.png\" /> --> output will be <img src=\"/img/logo-101.png\" />\n<script src=\"/js/default.js\"></script> --> output will be <script src=\"/js/default-101.js\"></script>\n<link href=\"/css/default.css\" /> --> output will be <link href=\"/css/default-105.css\" />\n```\n\n###  2. affects `MERGE()` and `MAP()`:\n\n```javascript\nMERGE('/js/default.js', 'scriptA.js', 'scriptB.js');\n// The framework automatically remaps MERGE() on the background to:\n// MERGE('/js/default-101.js', 'scriptA.js', 'scriptB.js');\n\nMAP('/js/default.js', 'newfile.js');\n// The framework automatically remaps MAP() on the background to:\n// MAP('/js/default-101.js', 'newfile.js');\n```\n\n---\n\nFile: `/versions` with remapping:\n\n> Below solution solves problem with renaming of files. You don't need to rename file `/img/logo.png` to `img/logo-101.png`. The framework automatically creates a file mapping. So in the prax: you change old __logo file__ without renaming.\n\n```html\n/img/logo.png       --> /img/logo-101.png\n```\n\nThe framework automatically creates `MAP()` e.g. `MAP('/img/logo-101.png','/img/logo.png')` and it has same behaviour like versioning without remapping.\n\n---\n\n- [Example: versioning of static files](https://github.com/totaljs/examples/tree/master/static-version)",
       "group": "How does it work?",
       "name": "File: versions"
