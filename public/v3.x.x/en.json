@@ -20083,7 +20083,7 @@
       "options": ["+v3.3.0"]
     },
     {
-      "body": "`+v3.3.0` Session can help with reading/storing session data.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n{\n\tid: 'user_id',                             // A main identificator, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRE_DATE',                     // Expiration date, when will the session expire?\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`",
+      "body": "`+v3.3.0` Session can help with reading/storing session data. __Read carefully__ the documentation below because __session item__ contains two identificators `id` and `sessionid` which is very important to know difference between each other.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n{\n\tid: 'user_id',                             // A main identificator, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRE_DATE',                     // Expiration date, when will the session expire?\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`\n\n### Good to know\n\n- by default are sessions stored in plain-text files in `databases` directory in the form `sessions_NAME.txt`",
       "group": "Additional",
       "properties": [
         {
@@ -20538,6 +20538,84 @@
                   {
                     "name": "session",
                     "body": "A session item",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Creates a session and stores the identificator in the cookie. The example below describes possibilities:\n\n```javascript\nvar $ = SCHEMAOPTIONS_OR_OPERATIONOPTIONS_OR_CONTROLLER;\n\n// Options\nvar opt = {};\nopt.name = 'auth';             // A cookie name\nopt.key = CONF.authkey;        // A cookie secret key\nopt.id = user.id;              // A user ID\nopt.expire = '3 days';         // Expiration\nopt.data = user;               // A session data\n// opt.sessionid = UID()       // Optional, a unique session ID (default: UID())\n// opt.options = {};           // Optional, A cookie options (default: { httponly: true, security: 'lax' })\n// opt.strict = true;          // Optional, a strict comparing of cookie value according to user-agent combined with IP address (default: false)\n// opt.settings = '';          // Optional, custom session settings\nopt.note = ($.headers['user-agent'] || '').parseUA() + ' ({0})'.format($.ip); // A custom note\n\n// Creates a cookie and session item\nSESSION().setcookie($.controller, opt, $.done());\n```",
+          "name": "session.setcookie",
+          "params": [
+            {
+              "body": "A response instance",
+              "name": "res",
+              "type": "Object"
+            },
+            {
+              "body": "Custom options",
+              "name": "options",
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "A session data, can be null",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item, can be null",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Reads a session according to the cookie value. The example below describes usage with `AUTH()` delegate.\n\n```javascript\nAUTH(function($) {\n\t// Options\n\tvar opt = {};\n\topt.name = 'auth';             // A cookie name\n\topt.key = 'key_1984';          // An encrypt key\n\topt.expire = '3 days';         // Optional, after read can be updated expiration\n\t// opt.extendcookie = true;    // Extends cookie expiration (default: true)\n\t// opt.removecookie = true;    // Removes cookie if isn't valid (default: true)\n\t// opt.options = {};           // Optional, a cookie options when the the cookie is extended (default: { httponly: true, security: 'lax' })\n\n\t// Reads a cookie and session\n\tSESSION().getcookie($.controller, opt, $.done());\n});\n```",
+          "name": "session.getcookie",
+          "params": [
+            {
+              "body": "A response instance",
+              "name": "res",
+              "type": "Object"
+            },
+            {
+              "body": "Custom options",
+              "name": "options",
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "A session data, can be null",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item, can be null",
                     "type": "Object"
                   }
               ]
