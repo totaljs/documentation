@@ -2865,90 +2865,6 @@
             }
           ],
           "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-script']`.",
-          "name": "F.routeScript",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-style']`.",
-          "name": "F.routeStyle",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-image']`.",
-          "name": "F.routeImage",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-video']`.",
-          "name": "F.routeVideo",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-font']`.",
-          "name": "F.routeFont",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-download']`.",
-          "name": "F.routeDownload",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url']`.",
-          "name": "F.routeStatic",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
         }
       ],
       "changetype": 2,
@@ -3419,43 +3335,43 @@
         },
         {
           "default": "''",
-          "body": "The default url routing of static files. Is used in view engine and F.routeStatic().",
+          "body": "__INTERNAL__. A default relative URL routing of static files",
           "name": "static_url",
           "return": "String"
         },
         {
           "default": "'/js/'",
-          "body": "The default url routing of static files (JavaScript) routing. Is used in view engine and F.routeScript().",
+          "body": "__INTERNAL__. A default relative URL routing for scripts.",
           "name": "static_url_script",
           "return": "String"
         },
         {
           "default": "'/css/'",
-          "body": "The default url routing of static files (CSS) routing. Is used in view engine and F.routeStyle().",
+          "body": "__INTERNAL__. A default relative URL routing for styles.",
           "name": "static_url_style",
           "return": "String"
         },
         {
           "default": "'/img/'",
-          "body": "The default url routing of static files (Images/Pictures) routing. Is used in view engine and F.routeImage().",
+          "body": "__INTERNAL__. A default relative URL routing for images.",
           "name": "static_url_image",
           "return": "String"
         },
         {
           "default": "'/fonts/'",
-          "body": "The default url routing of static files (Fonts) routing. Is used in view engine and F.routeFont().",
+          "body": "__INTERNAL__. A default relative URL routing for fonts.",
           "name": "static_url_font",
           "return": "String"
         },
         {
           "default": "'/video/'",
-          "body": "The default url routing of static files (Videos) routing. Is used in view engine and F.routeVideo().",
+          "body": "__INTERNAL__. A default relative URL routing for videos.",
           "name": "static_url_video",
           "return": "String"
         },
         {
           "default": "'/download/'",
-          "body": "The default url routing of static files (Downloads) routing. Is used in view engine and F.routeDownload().",
+          "body": "__INTERNAL__. A default relative URL routing for downloading files.",
           "name": "static_url_download",
           "return": "String"
         },
@@ -8561,8 +8477,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_script`.",
-          "name": "controller.routeScript",
+          "body": "Creates a URL address within the path `/public/js/`.",
+          "name": "controller.public_js",
           "options": [
             "http"
           ],
@@ -8576,8 +8492,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_style`.",
-          "name": "controller.routeStyle",
+          "body": "Creates a URL address within the path `/public/css/`.",
+          "name": "controller.public_css",
           "options": [
             "http"
           ],
@@ -8591,8 +8507,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_image`.",
-          "name": "controller.routeImage",
+          "body": "Creates a URL address within the path `/public/img/`.",
+          "name": "controller.public_image",
           "options": [
             "http"
           ],
@@ -8606,8 +8522,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_video`.",
-          "name": "controller.routeVideo",
+          "body": "Creates a URL address within the path `/public/video/`.",
+          "name": "controller.public_video",
           "options": [
             "http"
           ],
@@ -8621,8 +8537,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_font`.",
-          "name": "controller.routeFont",
+          "body": "Creates a URL address within the path `/public/fonts/`.",
+          "name": "controller.public_font",
           "options": [
             "http"
           ],
@@ -8636,8 +8552,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_download`.",
-          "name": "controller.routeDownload",
+          "body": "Creates a URL address within the path `/public/download/`.",
+          "name": "controller.public_download",
           "options": [
             "http"
           ],
@@ -8651,8 +8567,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url`.",
-          "name": "controller.routeStatic",
+          "body": "Creates a URL address within the path `/public/`.",
+          "name": "controller.public",
           "options": [
             "http"
           ],
@@ -11816,8 +11732,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-script']`.",
-          "name": "@{routeScript}",
+          "body": "Creates a relative URL address within the path `/public/js/`.",
+          "name": "@{public_js}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11828,8 +11744,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-style']`.",
-          "name": "@{routeStyle}",
+          "body": "Creates a relative URL address within the path `/public/css/`.",
+          "name": "@{public_css}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11840,8 +11756,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-download']`.",
-          "name": "@{routeDownload}",
+          "body": "Creates a relative URL address within the path `/public/download/`.",
+          "name": "@{public_download}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11852,8 +11768,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-image']`.",
-          "name": "@{routeImage}",
+          "body": "Creates a relative URL address within the path `/public/img/`.",
+          "name": "@{public_image}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11864,8 +11780,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-video']`.",
-          "name": "@{routeVideo}",
+          "body": "Creates a relative URL address within the path `/public/video/`.",
+          "name": "@{public_video}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11876,8 +11792,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url']`.",
-          "name": "@{routeStatic}",
+          "body": "Creates a relative URL address within the path `/public/`.",
+          "name": "@{public}",
           "params": [
             {
               "body": "A relative filename.",
