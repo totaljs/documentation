@@ -10214,7 +10214,7 @@
         {
           "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles a dynamic string as view.",
-          "name": "controller.viewCompile",
+          "name": "controller.view_compile",
           "options": [
             "important",
             "http"
@@ -12259,7 +12259,7 @@
         {
           "changelog": "+v2.8.0 - supports cache key",
           "body": "Compiles and renders string as view",
-          "name": "@{viewCompile}",
+          "name": "@{view_compile}",
           "params": [
             {
               "body": "A view markup.",
