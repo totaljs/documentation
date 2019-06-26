@@ -3509,8 +3509,8 @@
           "return": "String"
         },
         {
-          "default": "30",
-          "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB of memory map. Default value is `30%` = 450 MB of memory and 900 MB of memory map.",
+          "default": "0",
+          "body": "This value can set memory limitation for image converter. `100%` = 1500 MB memory and 3000 MB of memory map. Default value is `30%` = 450 MB of memory and 900 MB of memory map. `0` turns off this memory restrictions.",
           "name": "default_image_consumption",
           "return": "Number"
         },
@@ -23489,6 +23489,22 @@
                   "body": "A new instance of WebSocketClient"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "options": [
+            "+v3.3.0"
+          ],
+          "changetype": 1,
+          "body": "This method wraps `require()` method by adding a path of current application directory.\n\n__Example__:\n\n```javascript\nvar controller = REQUIRE('controllers/default');```",
+          "name": "REQUIRE",
+          "return": "Object",
+          "params": [
+            {
+              "body": "A relative path",
+              "name": "path",
+              "type": "String"
             }
           ]
         }
