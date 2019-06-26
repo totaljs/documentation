@@ -2845,90 +2845,6 @@
             }
           ],
           "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-script']`.",
-          "name": "F.routeScript",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-style']`.",
-          "name": "F.routeStyle",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-image']`.",
-          "name": "F.routeImage",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-video']`.",
-          "name": "F.routeVideo",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-font']`.",
-          "name": "F.routeFont",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url-download']`.",
-          "name": "F.routeDownload",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
-        },
-        {
-          "body": "Creates the relative URL according to `config['static-url']`.",
-          "name": "F.routeStatic",
-          "params": [
-            {
-              "body": "The filename.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "String"
         }
       ],
       "changetype": 2,
@@ -3390,43 +3306,43 @@
         },
         {
           "default": "''",
-          "body": "The default url routing of static files. Is used in view engine and F.routeStatic().",
+          "body": "__INTERNAL__. A default relative URL routing of static files",
           "name": "static_url",
           "return": "String"
         },
         {
           "default": "'/js/'",
-          "body": "The default url routing of static files (JavaScript) routing. Is used in view engine and F.routeScript().",
+          "body": "__INTERNAL__. A default relative URL routing for scripts.",
           "name": "static_url_script",
           "return": "String"
         },
         {
           "default": "'/css/'",
-          "body": "The default url routing of static files (CSS) routing. Is used in view engine and F.routeStyle().",
+          "body": "__INTERNAL__. A default relative URL routing for styles.",
           "name": "static_url_style",
           "return": "String"
         },
         {
           "default": "'/img/'",
-          "body": "The default url routing of static files (Images/Pictures) routing. Is used in view engine and F.routeImage().",
+          "body": "__INTERNAL__. A default relative URL routing for images.",
           "name": "static_url_image",
           "return": "String"
         },
         {
           "default": "'/fonts/'",
-          "body": "The default url routing of static files (Fonts) routing. Is used in view engine and F.routeFont().",
+          "body": "__INTERNAL__. A default relative URL routing for fonts.",
           "name": "static_url_font",
           "return": "String"
         },
         {
           "default": "'/video/'",
-          "body": "The default url routing of static files (Videos) routing. Is used in view engine and F.routeVideo().",
+          "body": "__INTERNAL__. A default relative URL routing for videos.",
           "name": "static_url_video",
           "return": "String"
         },
         {
           "default": "'/download/'",
-          "body": "The default url routing of static files (Downloads) routing. Is used in view engine and F.routeDownload().",
+          "body": "__INTERNAL__. A default relative URL routing for downloading files.",
           "name": "static_url_download",
           "return": "String"
         },
@@ -8539,8 +8455,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_script`.",
-          "name": "controller.routeScript",
+          "body": "Creates a URL address within the path `/public/js/`.",
+          "name": "controller.public_js",
           "options": [
             "http"
           ],
@@ -8554,8 +8470,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_style`.",
-          "name": "controller.routeStyle",
+          "body": "Creates a URL address within the path `/public/css/`.",
+          "name": "controller.public_css",
           "options": [
             "http"
           ],
@@ -8569,8 +8485,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_image`.",
-          "name": "controller.routeImage",
+          "body": "Creates a URL address within the path `/public/img/`.",
+          "name": "controller.public_image",
           "options": [
             "http"
           ],
@@ -8584,8 +8500,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_video`.",
-          "name": "controller.routeVideo",
+          "body": "Creates a URL address within the path `/public/video/`.",
+          "name": "controller.public_video",
           "options": [
             "http"
           ],
@@ -8599,8 +8515,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_font`.",
-          "name": "controller.routeFont",
+          "body": "Creates a URL address within the path `/public/fonts/`.",
+          "name": "controller.public_font",
           "options": [
             "http"
           ],
@@ -8614,8 +8530,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url_download`.",
-          "name": "controller.routeDownload",
+          "body": "Creates a URL address within the path `/public/download/`.",
+          "name": "controller.public_download",
           "options": [
             "http"
           ],
@@ -8629,8 +8545,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `CONF.static_url`.",
-          "name": "controller.routeStatic",
+          "body": "Creates a URL address within the path `/public/`.",
+          "name": "controller.public",
           "options": [
             "http"
           ],
@@ -10276,7 +10192,7 @@
         {
           "changelog": "v2.8.0 - supports cache key",
           "body": "Compiles a dynamic string as view.",
-          "name": "controller.viewCompile",
+          "name": "controller.view_compile",
           "options": [
             "important",
             "http"
@@ -11794,8 +11710,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-script']`.",
-          "name": "@{routeScript}",
+          "body": "Creates a relative URL address within the path `/public/js/`.",
+          "name": "@{public_js}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11806,8 +11722,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-style']`.",
-          "name": "@{routeStyle}",
+          "body": "Creates a relative URL address within the path `/public/css/`.",
+          "name": "@{public_css}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11818,8 +11734,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-download']`.",
-          "name": "@{routeDownload}",
+          "body": "Creates a relative URL address within the path `/public/download/`.",
+          "name": "@{public_download}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11830,8 +11746,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-image']`.",
-          "name": "@{routeImage}",
+          "body": "Creates a relative URL address within the path `/public/img/`.",
+          "name": "@{public_image}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11842,8 +11758,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url-video']`.",
-          "name": "@{routeVideo}",
+          "body": "Creates a relative URL address within the path `/public/video/`.",
+          "name": "@{public_video}",
           "params": [
             {
               "body": "A relative filename.",
@@ -11854,8 +11770,8 @@
           "return": "String"
         },
         {
-          "body": "Creates the URL address according to the `config['static-url']`.",
-          "name": "@{routeStatic}",
+          "body": "Creates a relative URL address within the path `/public/`.",
+          "name": "@{public}",
           "params": [
             {
               "body": "A relative filename.",
@@ -12321,7 +12237,7 @@
         {
           "changelog": "+v2.8.0 - supports cache key",
           "body": "Compiles and renders string as view",
-          "name": "@{viewCompile}",
+          "name": "@{view_compile}",
           "params": [
             {
               "body": "A view markup.",
@@ -16577,7 +16493,7 @@
       ]
     },
     {
-      "body": "`+v3.3.0` __AuthOptions__ is used as `$` argument in `AUTH()` method.",
+      "body": "`+v3.3.0` __AuthOptions__ is used as `$` argument in `AUTH()` method.\n- [How does the authorization work?](#pages~Authorization)\n- [`AUTH()`](#api~global~AUTH) method\n```javascript\nAUTH(function($) {\n\t// $ === AuthOptions\n\t$.invalid();\n});```",
       "group": "Additional",
       "changetype": 1,
       "name": "AuthOptions",
@@ -28443,7 +28359,7 @@
       "name": "Localization"
     },
     {
-      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n- [Download module: Auth](https://github.com/totaljs/modules/tree/master/Security/auth)\n\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n`+v3.3.0` brings great new improvements.\n\n## A simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function($) {\n\n\t// $ means \"AuthOptions\"\n\n\t// ====================================\n\t// Properties:\n\t// ====================================\n\n\t// $.req;\n\t// $.res;\n\n\t// $.flags;\n\t// {String Array} A custom flags\n\n\t// $.headers;\n\t// {Object} Reads request headers\n\n\t// $.ip;\n\t// {String} Reads IP address\n\t\n\t// $.language;\n\t// {String} Reads language\n\n\t// $.query;\n\t// {Object} Reads a query values\n\t\n\t// $.params;\n\t// {Object} Reads URL dynamic params\n\n\t// ====================================\n\t// Methods:\n\t// ====================================\n\t\n\t// $.invalid([user_instance]);\n\t// Doesn't authorize user (it will be unauthorized)\n\n\t// $.success(user_instance);\n\t// Authorizes the user (it will be authorized)\n\n\t// $.done();\n\t// returns function(err, user) for handling callbacks\n\n\t// $.cookie(name);\n\t// Reads a cookie\n\n\t// $.roles(role1, role2, roleN);\n\t// Appends roles for the current user\n\n\t// $.cookie(name, value, expires, [options]);\n\t// Creates a cookie\n\n\t// EXAMPLE:\n\tvar userId = ($.cookie('user') || '').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\t$.invalid();\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\t$.invalid();\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\t$.success(user);\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');}```",
+      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n`+v3.3.0` brings great new improvements.\n\n## A simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function($) {\n\n\t// $ means \"AuthOptions\"\n\n\t// ====================================\n\t// Properties:\n\t// ====================================\n\n\t// $.req;\n\t// $.res;\n\n\t// $.flags;\n\t// {String Array} A custom flags\n\n\t// $.headers;\n\t// {Object} Reads request headers\n\n\t// $.ip;\n\t// {String} Reads IP address\n\t\n\t// $.language;\n\t// {String} Reads language\n\n\t// $.query;\n\t// {Object} Reads a query values\n\t\n\t// $.params;\n\t// {Object} Reads URL dynamic params\n\n\t// ====================================\n\t// Methods:\n\t// ====================================\n\t\n\t// $.invalid([user_instance]);\n\t// Doesn't authorize user (it will be unauthorized)\n\n\t// $.success(user_instance);\n\t// Authorizes the user (it will be authorized)\n\n\t// $.done();\n\t// returns function(err, user) for handling callbacks\n\n\t// $.cookie(name);\n\t// Reads a cookie\n\n\t// $.roles(role1, role2, roleN);\n\t// Appends roles for the current user\n\n\t// $.cookie(name, value, expires, [options]);\n\t// Creates a cookie\n\n\t// EXAMPLE:\n\tvar userId = ($.cookie('user') || '').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\t$.invalid();\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\t$.invalid();\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\t$.success(user);\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');}```",
       "group": "How does it work?",
       "name": "Authorization"
     },
