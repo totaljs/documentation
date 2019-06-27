@@ -27354,9 +27354,7 @@
         },
         {
           "name": "$.clean",
-          "params": [
-            "alias"
-          ],
+          "params": [],
           "return": "Object",
           "body": "Returns cleaned and raw object with model data. `$.model` is SchemaInstance object and it contains additional internal methods which this method removes. It's alias for `$.model.$clean()`."
         },
