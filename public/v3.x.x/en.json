@@ -20372,8 +20372,91 @@
           "name": "session.getcookie",
           "params": [
             {
+              "body": "A request instance",
+              "name": "req",
+              "type": "Object"
+            },
+            {
+              "body": "Custom options",
+              "name": "options",
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "data",
+                    "body": "A session data, can be null",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item, can be null",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Creates a session token which can be used as a custom header like `x-token`. The example below describes possibilities:\n\n```javascript\nvar $ = SCHEMAOPTIONS_OR_OPERATIONOPTIONS_OR_CONTROLLER;\n\n// Options\nvar opt = {};\nopt.name = 'auth';             // A cookie name\nopt.key = CONF.authkey;        // A cookie secret key\nopt.id = user.id;              // A user ID\nopt.expire = '3 days';         // Expiration\nopt.data = user;               // A session data\n// opt.sessionid = UID()       // Optional, a unique session ID (default: UID())\n// opt.strict = true;          // Optional, a strict comparing of cookie value according to user-agent combined with IP address (default: false)\n// opt.settings = '';          // Optional, custom session settings\nopt.note = ($.headers['user-agent'] || '').parseUA() + ' ({0})'.format($.ip); // A custom note\n\n// Creates a cookie and session item\nSESSION().settoken($.controller, opt, function(err, token, item, meta) {\n\t// now you can store \"token\" to response headers or somewhere else\n\t// \"token\" is needed for decrypting of value and must used with SESSION().gettoken()\n});```",
+          "name": "session.settoken",
+          "params": [
+            {
               "body": "A response instance",
               "name": "res",
+              "type": "Object"
+            },
+            {
+              "body": "Custom options",
+              "name": "options",
+              "type": "Object"
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "options": ["optional"],
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "token",
+                    "body": "A generated token",
+                    "type": "String"
+                  },
+                  {
+                    "name": "data",
+                    "body": "A session data, can be null",
+                    "type": "Object"
+                  },
+                  {
+                    "name": "session",
+                    "body": "A session item, can be null",
+                    "type": "Object"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "Reads a session according to the cookie value. The example below describes usage with `AUTH()` delegate.\n\n```javascript\nAUTH(function($) {\n\t// Options\n\tvar opt = {};\n\topt.name = 'auth';             // A cookie name\n\topt.key = 'key_1984';          // An encrypt key\n\topt.expire = '3 days';         // Optional, after read can be updated expiration\n\t// opt.extendcookie = true;    // Extends cookie expiration (default: true)\n\t// opt.removecookie = true;    // Removes cookie if isn't valid (default: true)\n\t// opt.options = {};           // Optional, a cookie options when the the cookie is extended (default: { httponly: true, security: 'lax' })\n\n\t// Reads a cookie and session\n\tSESSION().getcookie($.controller, opt, $.done());\n});\n```",
+          "name": "session.gettoken",
+          "params": [
+            {
+              "body": "A request instance",
+              "name": "req",
               "type": "Object"
             },
             {
