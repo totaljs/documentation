@@ -13910,6 +13910,13 @@
               "body": "The value for parsing.",
               "name": "value",
               "type": "String"
+            },
+            {
+              "body": "Replaces `.` or `-` in <b>all keys</b> to `_`.",
+              "name": "replace",
+              "type": "Boolean",
+              "options": ["optional", "+v3.3.0"],
+              "default": "false"
             }
           ],
           "return": "Object"
@@ -18063,7 +18070,13 @@
           "body": "Parses XML from the string to Object.",
           "name": "String.prototype.parseXML",
           "params": [
-
+            {
+              "body": "Replaces `.` or `-` in <b>all keys</b> to `_`.",
+              "name": "replace",
+              "type": "Boolean",
+              "options": ["optional", "+v3.3.0"],
+              "default": "false"
+            }
           ],
           "return": "Object"
         },
