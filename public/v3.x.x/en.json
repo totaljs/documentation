@@ -2556,6 +2556,15 @@
               "body": "A startup path",
               "name": "path",
               "type": "String"
+            },
+            {
+              "options": [
+                "optional",
+                "+v3.3.0"
+              ],
+              "body": "A callback function, it's executed when the project is loaded correctly",
+              "name": "callback",
+              "type": "Function"
             }
           ],
           "return": "Framework"
