@@ -2533,7 +2533,7 @@
             "+v1.9.0",
             "important"
           ],
-          "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['models', 'definitions'], '../');\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', null, '../');\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nvar debug = false;\nrequire('total.js').load('debug', ['packages'], '../');\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (F.isWorker)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```\n",
+          "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nrequire('total.js').load('debug', ['models', 'definitions'], function() {\n\t// IS READY\n});\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, packages, etc..)\n\n```javascript\nrequire('total.js').load('debug', function() {\n\t// IS READY\n});\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nrequire('total.js').load('debug', ['packages'], function() {\n\t// IS READY\n});\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (isWORKER)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');\n```",
           "name": "F.load",
           "alias": "LOAD",
           "params": [
@@ -2543,7 +2543,7 @@
               "type": "String"
             },
             {
-              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>sitemap</b>, <b>dependencies</b> (dependencies is meant as file \"/dependencies\") and <b>service</b> (enables interval for F.on(\"service\")). If types doesn't contain any type the framework loads all types / dependencies",
+              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b> and <b>sitemap</b>. If types doesn't contain any type the framework loads all types / dependencies",
               "name": "types",
               "type": "String Array",
               "default": "[]"
@@ -22801,7 +22801,7 @@
               "type": "String"
             },
             {
-              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>sitemap</b>, <b>dependencies</b> (dependencies is meant as file \"/dependencies\") and <b>service</b> (enables interval for F.on(\"service\")). If types doesn't contain any type the framework loads all types / dependencies",
+              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>sitemap</b>. If types doesn't contain any type the framework loads all types / dependencies",
               "name": "types",
               "type": "String Array",
               "default": "[]"
