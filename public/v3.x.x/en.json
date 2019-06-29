@@ -23663,6 +23663,13 @@
         },
         {
           "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "Is the process executed as a worker?",
+          "name": "ISWORKER",
+          "return": "Boolean"
+        },
+        {
+          "changetype": 1,
           "body": "A global helper object for storing global functions",
           "name": "FUNC",
           "return": "Object",
