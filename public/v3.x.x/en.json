@@ -310,22 +310,6 @@
           ]
         },
         {
-          "body": "This event is triggered if the part of the framework is updated",
-          "name": "ON('uptodate')",
-          "params": [
-            {
-              "body": "Type (e.g. module, model, controller, etc.)",
-              "name": "type",
-              "type": "String"
-            },
-            {
-              "body": "Name of dependency",
-              "name": "name",
-              "type": "String"
-            }
-          ]
-        },
-        {
           "body": "This event is triggered if a new route is added",
           "name": "ON('route')",
           "params": [
@@ -2413,56 +2397,6 @@
                   "name": "err",
                   "type": "Error",
                   "body": "Error handling"
-                }
-              ],
-              "type": "Function"
-            }
-          ],
-          "return": "Framework"
-        },
-        {
-          "body": "Installs a new feature into the framework with an update interval",
-          "name": "F.uptodate",
-          "params": [
-            {
-              "body": "Can be: controller, module, model, view, definition, eval",
-              "name": "type",
-              "type": "String"
-            },
-            {
-              "body": "Absolute URL address",
-              "name": "url",
-              "type": "String"
-            },
-            {
-              "body": "Custom options for new feature",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "An update interval e.g. `1 day`, `2 months`, `20 minutes`, etc.",
-              "name": "interval",
-              "type": "String"
-            },
-            {
-              "body": "A callback function. This callback is still executed if the dependency is updated",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-                {
-                  "name": "err",
-                  "type": "Error",
-                  "body": "Error handling"
-                },
-                {
-                  "name": "name",
-                  "type": "String",
-                  "body": "A dependency name"
                 }
               ],
               "type": "Function"
@@ -21582,56 +21516,6 @@
                 "optional"
               ],
               "type": "Function(err)"
-            }
-          ]
-        },
-        {
-          "go": "#api~Framework",
-          "body": "Installs a new feature into the framework with an update interval. Alias for `F.uptodate()`.",
-          "name": "UPTODATE",
-          "params": [
-            {
-              "body": "Can be: controller, module, model, view, definition, eval",
-              "name": "type",
-              "type": "String"
-            },
-            {
-              "body": "Absolute URL address.",
-              "name": "url",
-              "type": "String"
-            },
-            {
-              "body": "Custom options for new feature.",
-              "name": "options",
-              "options": [
-                "optional"
-              ],
-              "type": "Object"
-            },
-            {
-              "body": "An update interval e.g. `1 day`, `2 months`, `20 minutes`, etc..",
-              "name": "interval",
-              "type": "String"
-            },
-            {
-              "body": "A callback function. This callback is still executed if the dependency is updated.",
-              "name": "callback",
-              "options": [
-                "optional"
-              ],
-              "params": [
-                {
-                  "name": "err",
-                  "type": "Error",
-                  "body": "Error handling."
-                },
-                {
-                  "name": "name",
-                  "type": "String",
-                  "body": "A dependency name."
-                }
-              ],
-              "type": "Function"
             }
           ]
         },
