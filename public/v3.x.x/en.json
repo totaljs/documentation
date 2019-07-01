@@ -21892,7 +21892,7 @@
           ]
         },
         {
-          "body": "The method extends flags in the all routes in the function scope like this:\n\n```javascript\nexports.install = function() {\n    GROUP(['#middleware', 'authorize'], function() {\n        ROUTE('/api/posts/', json_posts, ['put']);\n        ROUTE('/api/commnets/', json_posts, ['post']);\n        F.websocket('/', chat);\n    });\n}```",
+          "body": "The method extends flags in the all routes in the function scope like this:\n\n```javascript\nexports.install = function() {\n\n    GROUP(['#middleware', 'authorize'], function() {\n        ROUTE('PUT  /api/posts/', someaction);\n        ROUTE('POST /api/commnets/', someaction);\n        WEBSOCKET('/', chat);\n    });\n\n    // IMPORTANT: prefix must contain a slash char \"/\" \n    GROUP('/urlprefix/', ['flags'], function() {\n\n        ROUTE('PUT  /api/posts/', someaction);\n        // OUTPUT WILL BE:\n        // \"/urlprefix/api/posts/\"\n\n        ROUTE('POST /api/commnets/', someaction);\n        // OUTPUT WILL BE:\n        // \"/urlprefix/api/commnets/\"\n\n        WEBSOCKET('/', chat);\n        // OUTPUT WILL BE:\n        // \"/urlprefix/\"\n    });\n\n\tGROUP('authorize', function() {\n\t\t// Appends \"authorize\" flag to all nested routes:\n        ROUTE('/api/posts/', someaction);\n        ROUTE('/api/commnets/', someaction);\n    });\n\n}```",
           "name": "GROUP",
           "alias": "F.group",
           "options": [
@@ -21902,7 +21902,7 @@
             {
               "body": "Route flags.",
               "name": "flags",
-              "type": "String Array",
+              "type": "String Array/String",
               "options": [
                 "optional"
               ]
