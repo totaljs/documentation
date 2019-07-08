@@ -22237,6 +22237,44 @@
           "return": "SchemaDeclaration"
         },
         {
+          "changetype": 1,
+          "body": "Can evaluate a route without request creation.",
+          "name": "ACTION",
+          "options": [
+            "+v3.3.0"
+          ],
+          "params": [
+            {
+              "body": "Method + URL address, example: <b>GET /</b>",
+              "name": "url",
+              "type": "String"
+            },
+            {
+              "body": "A data which will be represented as a request body",
+              "name": "body",
+              "type": "Object",
+              "options": ["optional"]
+            },
+            {
+              "body": "A callback",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "body": "Error handling",
+                  "name": "err",
+                  "type": "Error"
+                },
+                {
+                  "body": "A response",
+                  "name": "response",
+                  "type": "Object/String"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "body": "This method can track a real end of the stream/response/request. Why? <https://github.com/joyent/node/issues/9429>\n\n__Example__:\n\n```javascript\nvar Fs = require('fs');\nvar stream = Fs.createReadStream('some-file.dat');\n\nFINISHED(stream, function(err) {\n    console.log('This stream is really finished.');\n    DESTROY(stream);\n});```",
           "name": "FINISHED",
           "options": [
