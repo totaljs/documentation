@@ -20715,7 +20715,7 @@
         {
           "changelog": "<b>+v3.3.0</b> improved declaration",
           "changetype": 2,
-          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// +v3.3.0: A current session ID\n\t// {String}\n\t$.sessionid;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n\t// +v3.3.0: Alias to req.headers\n\t// {Object}\n\t$.headers;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older and removed implementation\n\n```javascript\nMIDDLEWARE('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});```",
+          "body": "Creates a middleware. The middleware is executed before is executing a `Request`, `Controller`, or `Module`. The middleware has to be specified for usage.\n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t// IMPORTANT: next processing\n\t// {Function}\n\t$.next();\n\n\t// Cancel processing\n\t// {Function}\n\t$.cancel();\n\n\t// HTTP Request\n\t// {Object}\n\t$.req;\n\n\t// HTTP response\n\t// {Object}\n\t$.res;\n\n\t// Route options (may not exists)\n\t// {Object}\n\t$.options;\n\n\t// Request body data (alias to req.body)\n\t// {Object}\n\t$.body;\n\n\t// URL query data (alias to req.query)\n\t// {Object}\n\t$.query;\n\t$.filter;\n\n\t// User instance (may not exists)\n\t// {Object}\n\t$.user;\n\n\t// Uploaded files (alias to req.files)\n\t// {Array Object}\n\t$.files;\n\n\t// Session instance (may not exists)\n\t// {Object}\n\t$.session;\n\n\t// +v3.3.0: A current session ID\n\t// {String}\n\t$.sessionid;\n\n\t// Language\n\t// {String}\n\t$.language;\n\n\t// Controller (may not exists)\n\t// {Object}\n\t$.controller;\n\n\t// Dynamic routing params (may not exists)\n\t// {Object}\n\t$.params;\n\n\t// First dynamic param\n\t// {String}\n\t$.id;\n\n\t// +v3.3.0: Alias to req.headers\n\t// {Object}\n\t$.headers;\n\n});\n```\n\n### How to cancel `next` processing? \n\n```javascript\nMIDDLEWARE('mymiddleware', function($) {\n\n\t$.cancel();\n\t// or\n\t// $.next(false);\n\n});\n```\n\n### Older and removed implementation\n\n```javascript\nMIDDLEWARE('mymiddleware'. function(req, res, next, options, controller) {\n\tnext();\n});```",
           "name": "MIDDLEWARE",
           "params": [
             {
@@ -23692,7 +23692,7 @@
       "methods": [
         {
           "changelog": "+v3.1.0 appends new arguments <code>repeat</code> and <code>stop</code>",
-          "body": "Registers a new global operation.\n\n```javascript\nNEWOPERATION('myoperation', function($) {\n\n\t// $.value or $.model;\n\t// Contains an input value\n\n\t// $.options;\n\t// Contains additional options\n\n\t// $.error;\n\t// ErrorBuilder instance\n\n\t// $.DB();\n\t// Returns a new instance of DB (targeted for SQL Agent and DBMS moduels)\n\n\t//\u00a0$.invalid(name, [message]);\n\t// Responds with error (it executes callback automatically)\n\n\t//\u00a0$.success([success], [value]);\n\t// Responds with SUCCESS (it executes callback automatically)\n\n\t//\u00a0$.done([arg]);\n\t// It returns a callback function with SUCCESS()\n\t// You can use it in some async operations instead of callback\n\n\t// $.callback([err], value);\n\n\t// =============================\n\t// If the controller is assigned\n\t// =============================\n\n\t// $.controller;\n\t// $.body;\n\t// $.files;\n\t// $.id;\n\t// $.ip;\n\t// $.language;\n\t// $.params;\n\t// $.query;\n\t// $.session;\n\t// $.user;\n\n}, 3);\n```",
+          "body": "Registers a new global operation.\n\n```javascript\nNEWOPERATION('myoperation', function($) {\n\n\t// $.value or $.model;\n\t// Contains an input value\n\n\t// $.options;\n\t// Contains additional options\n\n\t// $.error;\n\t// ErrorBuilder instance\n\n\t// $.DB();\n\t// Returns a new instance of DB (targeted for SQL Agent and DBMS moduels)\n\n\t//\u00a0$.invalid(name, [message]);\n\t// Responds with error (it executes callback automatically)\n\n\t//\u00a0$.success([success], [value]);\n\t// Responds with SUCCESS (it executes callback automatically)\n\n\t//\u00a0$.done([arg]);\n\t// It returns a callback function with SUCCESS()\n\t// You can use it in some async operations instead of callback\n\n\t// $.callback([err], value);\n\n\t// =============================\n\t// If the controller is assigned\n\t// =============================\n\n\t// $.controller;\n\t// $.body;\n\t// $.files;\n\t// $.id;\n\t// $.ip;\n\t// $.language;\n\t// $.params;\n\t// $.query;\n\t// $.filter;\n\t// $.session;\n\t// $.user;\n\n}, 3);\n```\n\n__`v3.3.0` With a query schema__:\n\n```javascript\nNEWOPERATION('myoperation', function($) {\n\t\n\t// \"$.filter\" inherits values from $.query and the values are transformed according to the query schema:\n\tconsole.log($.filter);\n\t// Example of output: --> { page: 1, limit: 100, q: '' }\n\n\t$.success();\n\n}, 'page:Number, limit:Number, q:String');\n```",
           "name": "NEWOPERATION",
           "params": [
             {
@@ -23732,7 +23732,14 @@
               "type": "Boolean",
               "default": "false",
               "options": ["+3.1.0", "optional"]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": ["+v3.3.0", "optional"]
             }
+
           ]
         },
         {
@@ -25947,6 +25954,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -25977,6 +25993,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -26005,6 +26030,15 @@
               "name": "description",
               "type": "String",
               "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
                 "optional"
               ]
             }
@@ -26063,6 +26097,15 @@
               "name": "description",
               "type": "String",
               "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
                 "optional"
               ]
             }
@@ -26129,6 +26172,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -26154,6 +26206,15 @@
               "name": "description",
               "type": "String",
               "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
                 "optional"
               ]
             }
@@ -26236,6 +26297,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -26268,6 +26338,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -26295,6 +26374,15 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
+                "optional"
+              ]
             }
           ],
           "return": "SchemaDeclaration"
@@ -26320,6 +26408,15 @@
               "name": "description",
               "type": "String",
               "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A preddefined schema for query arguments. It must be in the form <code>key:Type,page:Number,limit:Number,search:String</code>. The parser uses <code>CONVERT()</code> method internally.",
+              "name": "queryschema",
+              "type": "String",
+              "options": [
+                "+v3.3.0",
                 "optional"
               ]
             }
@@ -27246,6 +27343,15 @@
           "name": "$.query",
           "return": "Object",
           "body": "Alias for `controller.query`. __IMPORTANT__: controller must be assigned."
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.3.0"
+          ],
+          "name": "$.filter",
+          "return": "Object",
+          "body": "Returns prepared query arguments according to the defined `query schema`"
         },
         {
           "options": [
@@ -28305,7 +28411,7 @@
     },
     {
       "changelog": "Added a support for async rendering and inline component files.",
-      "body": "`+v2.4.0`. __Components__ are a part of views and they can contain server-side implementation. `+v2.5.0` adds a support for groups and `v3.0.0` adds a support for async rendering.\n\n```plain\nFramework initialization:\n\n01. Bundles\n02. Modules\n03. Packages\n04. Models\n05. Schemas\n06. Operations\n07. Themes\n08. Definitions\n09. Controllers\n10. Components\n```\n\n---\n\n__More informations__\n\n- The component is a single `.html` file stored in `/components/` directory.\n- Components are synchronous.\n- They have same functionality like views.\n- Components are compiled into the function.\n- Supports localization `@(Translate me)`.\n- Framework parses all inline styles from all components into the merged single file `/components.css` (compressed).\n- Framework parses all inline scripts from all components into the merged single file `/components.js` (compressed).\n- Links to static files are generated into the `@{head}` tag.\n- [Download __Component example__](https://github.com/totaljs/examples/tree/master/components)\n\n---\n\n## Single file declaration\n\nThe best practice is to store a server-side code and a client-side code of the component in the main component file.\n\n- __IMPORTANT__ framework parses `<script total></script>` as server-side Total.js code\n\n__Create `/components/newsletter.html`__:\n\n```html\n<script total>\n\n\t// +v2.5.0 optional\n\texports.group = 'Name of group';\n\n\texports.install = function() {\n\t\tF.route('/api/newsletter/', json_newsletter, ['post']);\n\t};\n\n\t// +v3.0.0\n\t// Optional ASYNC rendering helper\n\texports.render = function($) {\n\t\t// $.repository\n\t\t// $.model\n\t\t// $.user\n\t\t// $.session\n\t\t// $.controller\n\t\t// $.query\n\t\t// $.body\n\t\t// $.files\n\t\t// $.options, $.settings --> will contain same value\n\t\t// $.callback(model); --> callback with model\n\n\t\t// !!! IMPORTANT !!!\n\t\t// \"callback\" returns a model which is used in the component \"view\"\n\n\t\t// For example:\n\t\tNOSQL('products').find().take(10).callback((err, response) => $.callback(response));\n\t};\n\n\tfunction json_newsletter() {\n\t\tvar self = this;\n\t\tself.body.ip = self.ip;\n\t\tself.body.created = F.datetime;\n\t\tNOSQL('newsletter').insert(self.body);\n\t\tself.success();\n\t}\n\n</script>\n\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter @{settings.key}:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter', { key: 'Custom settings value', something: 100 })}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n## Separated declaration\n\n__Create `/components/newsletter.html`__ (client-side):\n\n```html\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Create `/components/newsletter.js`__ (server-side):\n\n```javascript\n// +v2.5.0 optional\nexports.group = 'Name of group';\n\nexports.install = function() {\n\tF.route('/api/newsletter/', json_newsletter, ['post']);\n};\n\nfunction json_newsletter() {\n\tvar self = this;\n\tself.body.ip = self.ip;\n\tself.body.created = F.datetime;\n\tNOSQL('newsletter').insert(self.body);\n\tself.success();\n}\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n__Rendering all components by Group name__:\n\n```html\n<h2>Renders all components from the group</h2>\n@{components('Name of group')}\n```\n\n## Good to know\n\n### Inline files\n\nTotal.js `v3.0.0` supports component's inline files. The framework parses all inline files and stores them in the temporary directory. All files are available on `http://hostname.com/~componentname/filename.ext`. For example `myfirstcomponent.html`:\n\n```html\n<file name=\"logo.svg\">base64</file>\n<file name=\"template.html\">base64</file>\n\n<!-- Renders a logo from this component -->\n<img src=\"/~myfirstcomponent/logo.svg\" />\n\n<script total>\n    ...\n</script>\n```\n\n### Static files according to group name\n\nTotal.js `v2.7.0` supports rendering of specific scripts/styles for component's group, for example:\n\n```html\n@{components('dashboard')}\n@{components('flowboard')}\n```\n\n__The framework will render__:\n\n```html\n<head>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=dashboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=dashboard&version=1498544518093\"></script>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=flowboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=flowboard&version=1498544518093\"></script>\n</head>\n```\n\nIf the view contains `@{component()}` the framework renders static files (js+css) from all registered components.\n\n### Hash\n\nBecause of HTTP cache, if the framework registers a new component it changes version hash. Therefore your `components.css` and `components.js` have still another hash e.g. `?version=ak38s`.\n\n### Renaming of static files\n\nYou can rename static files `.css` and `.js` of components via config file:\n\n__Default settings__:\n\n```html\nstatic-url-components    : /components.\n```\n\n__You can change it to e.g.__:\n\n```html\nstatic-url-components    : /components/all.\n```\n\n__The result will be:__\n- `/components/all.js`\n- `/components/all.css`",
+      "body": "`+v2.4.0`. __Components__ are a part of views and they can contain server-side implementation. `+v2.5.0` adds a support for groups and `v3.0.0` adds a support for async rendering.\n\n```plain\nFramework initialization:\n\n01. Bundles\n02. Modules\n03. Packages\n04. Models\n05. Schemas\n06. Operations\n07. Themes\n08. Definitions\n09. Controllers\n10. Components\n```\n\n---\n\n__More informations__\n\n- The component is a single `.html` file stored in `/components/` directory.\n- Components are synchronous.\n- They have same functionality like views.\n- Components are compiled into the function.\n- Supports localization `@(Translate me)`.\n- Framework parses all inline styles from all components into the merged single file `/components.css` (compressed).\n- Framework parses all inline scripts from all components into the merged single file `/components.js` (compressed).\n- Links to static files are generated into the `@{head}` tag.\n- [Download __Component example__](https://github.com/totaljs/examples/tree/master/components)\n\n---\n\n## Single file declaration\n\nThe best practice is to store a server-side code and a client-side code of the component in the main component file.\n\n- __IMPORTANT__ framework parses `<script total></script>` as server-side Total.js code\n\n__Create `/components/newsletter.html`__:\n\n```html\n<script total>\n\n\t// +v2.5.0 optional\n\texports.group = 'Name of group';\n\n\texports.install = function() {\n\t\tF.route('/api/newsletter/', json_newsletter, ['post']);\n\t};\n\n\t// +v3.0.0\n\t// Optional ASYNC rendering helper\n\texports.render = function($) {\n\t\t// $.repository\n\t\t// $.model\n\t\t// $.user\n\t\t// $.session\n\t\t// $.controller\n\t\t// $.query\n\t\t// $.filter\n\t\t// $.body\n\t\t// $.files\n\t\t// $.options, $.settings --> will contain same value\n\t\t// $.callback(model); --> callback with model\n\n\t\t// !!! IMPORTANT !!!\n\t\t// \"callback\" returns a model which is used in the component \"view\"\n\n\t\t// For example:\n\t\tNOSQL('products').find().take(10).callback((err, response) => $.callback(response));\n\t};\n\n\tfunction json_newsletter() {\n\t\tvar self = this;\n\t\tself.body.ip = self.ip;\n\t\tself.body.created = F.datetime;\n\t\tNOSQL('newsletter').insert(self.body);\n\t\tself.success();\n\t}\n\n</script>\n\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter @{settings.key}:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter', { key: 'Custom settings value', something: 100 })}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n## Separated declaration\n\n__Create `/components/newsletter.html`__ (client-side):\n\n```html\n<style>\n\t.newsletter { padding: 50px; background-color: #D0D0D0; border-radius: 4px; }\n\t.newsletter-input { font-size: 20px; padding: 20px; width: 100%; }\n\t.newsletter-success { padding: 50px; background-color: green; border-radius: 4px; color: white; }\n</style>\n\n<div class=\"newsletter\">\n\t<div>Join to newsletter:</div>\n\t<input type=\"text\" class=\"newsletter-input\" placeholder=\"Type your email address\" />\n</div>\n\n<script>\n\t$(document).on('keypress', '.newsletter-input', function(e) {\n\t\tif (e.keyCode !== 13)\n\t\t\treturn;\n\t\tvar el = $(this).closest('.newsletter');\n\t\t$.post('/api/newsletter/', { email: this.value }, function(response) {\n\t\t\tel.replaceWith('<div class=\"newsletter-success\">THANK YOU!</div>');\n\t\t});\n\t});\n</script>\n```\n\n__Create `/components/newsletter.js`__ (server-side):\n\n```javascript\n// +v2.5.0 optional\nexports.group = 'Name of group';\n\nexports.install = function() {\n\tF.route('/api/newsletter/', json_newsletter, ['post']);\n};\n\nfunction json_newsletter() {\n\tvar self = this;\n\tself.body.ip = self.ip;\n\tself.body.created = F.datetime;\n\tNOSQL('newsletter').insert(self.body);\n\tself.success();\n}\n```\n\n__Rendering__:\n\n```html\n<h2>Newsletter 1</h2>\n@{component('newsletter')}\n\n<h2>Newsletter 2</h2>\n@{component('newsletter')}\n```\n\n__Rendering all components by Group name__:\n\n```html\n<h2>Renders all components from the group</h2>\n@{components('Name of group')}\n```\n\n## Good to know\n\n### Inline files\n\nTotal.js `v3.0.0` supports component's inline files. The framework parses all inline files and stores them in the temporary directory. All files are available on `http://hostname.com/~componentname/filename.ext`. For example `myfirstcomponent.html`:\n\n```html\n<file name=\"logo.svg\">base64</file>\n<file name=\"template.html\">base64</file>\n\n<!-- Renders a logo from this component -->\n<img src=\"/~myfirstcomponent/logo.svg\" />\n\n<script total>\n    ...\n</script>\n```\n\n### Static files according to group name\n\nTotal.js `v2.7.0` supports rendering of specific scripts/styles for component's group, for example:\n\n```html\n@{components('dashboard')}\n@{components('flowboard')}\n```\n\n__The framework will render__:\n\n```html\n<head>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=dashboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=dashboard&version=1498544518093\"></script>\n\t<link rel=\"stylesheet\" href=\"/components.css?group=flowboard&version=1498544518093\" />\n\t<script src=\"/components.js?group=flowboard&version=1498544518093\"></script>\n</head>\n```\n\nIf the view contains `@{component()}` the framework renders static files (js+css) from all registered components.\n\n### Hash\n\nBecause of HTTP cache, if the framework registers a new component it changes version hash. Therefore your `components.css` and `components.js` have still another hash e.g. `?version=ak38s`.\n\n### Renaming of static files\n\nYou can rename static files `.css` and `.js` of components via config file:\n\n__Default settings__:\n\n```html\nstatic-url-components    : /components.\n```\n\n__You can change it to e.g.__:\n\n```html\nstatic-url-components    : /components/all.\n```\n\n__The result will be:__\n- `/components/all.js`\n- `/components/all.css`",
       "group": "How does it work?",
       "name": "Components"
     },
@@ -28316,7 +28422,7 @@
       "name": "Localization"
     },
     {
-      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n`+v3.3.0` brings great new improvements.\n\n## A simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function($) {\n\n\t// $ means \"AuthOptions\"\n\n\t// ====================================\n\t// Properties:\n\t// ====================================\n\n\t// $.req;\n\t// $.res;\n\n\t// $.flags;\n\t// {String Array} A custom flags\n\n\t// $.headers;\n\t// {Object} Reads request headers\n\n\t// $.ip;\n\t// {String} Reads IP address\n\t\n\t// $.language;\n\t// {String} Reads language\n\n\t// $.query;\n\t// {Object} Reads a query values\n\t\n\t// $.params;\n\t// {Object} Reads URL dynamic params\n\n\t// ====================================\n\t// Methods:\n\t// ====================================\n\t\n\t// $.invalid([user_instance]);\n\t// Doesn't authorize user (it will be unauthorized)\n\n\t// $.success(user_instance);\n\t// Authorizes the user (it will be authorized)\n\n\t// $.done();\n\t// returns function(err, user) for handling callbacks\n\n\t// $.cookie(name);\n\t// Reads a cookie\n\n\t// $.roles(role1, role2, roleN);\n\t// Appends roles for the current user\n\n\t// $.cookie(name, value, expires, [options]);\n\t// Creates a cookie\n\n\t// EXAMPLE:\n\tvar userId = ($.cookie('user') || '').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\t$.invalid();\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\t$.invalid();\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\t$.success(user);\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');}```",
+      "body": "Total.js has a simple authorization mechanism. It's built on one delegate function `AUTH(function)`. The authorization is asynchronous.\n\n- You can create your own authorization mechanism (Total.js gives open options).\n- The authorization delegate is async.\n- You can authorize users according to the cookies / headers.\n- You can set user roles.\n- The authorization delegate adds `authorize` and `unauthorize` flag according to the state.\n- Is executed in each request.\n- __Delegate does not handle static files.__\n- [Example: authorization](https://github.com/totaljs/examples/tree/master/authorization)\n---\n\n![Authorization](resources/authorization.png)\n\n---\n\n`+v3.3.0` brings great new improvements.\n\n## A simple example\n\nCreate e.g. definition:\n\n```javascript\nAUTH(function($) {\n\n\t// $ means \"AuthOptions\"\n\n\t// ====================================\n\t// Properties:\n\t// ====================================\n\n\t// $.req;\n\t// $.res;\n\n\t// $.flags;\n\t// {String Array} A custom flags\n\n\t// $.headers;\n\t// {Object} Reads request headers\n\n\t// $.ip;\n\t// {String} Reads IP address\n\t\n\t// $.language;\n\t// {String} Reads language\n\n\t// $.query;\n\t// {Object} Reads query values\n\n\t// $.filter;\n\t// {Object} Reads prepared query arguments according to the query schema (+v3.3.0)\n\t\n\t// $.params;\n\t// {Object} Reads URL dynamic params\n\n\t// ====================================\n\t// Methods:\n\t// ====================================\n\t\n\t// $.invalid([user_instance]);\n\t// Doesn't authorize user (it will be unauthorized)\n\n\t// $.success(user_instance);\n\t// Authorizes the user (it will be authorized)\n\n\t// $.done();\n\t// returns function(err, user) for handling callbacks\n\n\t// $.cookie(name);\n\t// Reads a cookie\n\n\t// $.roles(role1, role2, roleN);\n\t// Appends roles for the current user\n\n\t// $.cookie(name, value, expires, [options]);\n\t// Creates a cookie\n\n\t// EXAMPLE:\n\tvar userId = ($.cookie('user') || '').parseInt();\n\n\tif (userId === 0) {\n\t\t// unauthorized user\n\t\t$.invalid();\n\t\treturn;\n\t}\n\n\tvar nosql = NOSQL('users');\n\n\tnosql.one().where('id', userId).callback(function(err, user) {\n\n\t\tif (err || !user) {\n\t\t\t// unauthorized user\n\t\t\t$.invalid();\n\t\t\treturn;\n\t\t}\n\n\t\t// user is authorized\n\t\t$.success(user);\n\t});\n});\n```\n\nUsage in controllers:\n\n```javascript\nexports.install = function() {\n\tROUTE('/user/', view_logged,   ['authorize']);\n\tROUTE('/user/', view_unlogged, ['unauthorize']);\n}\n\nfunction view_logged() {\n\tthis.view('logged');\n}\n\nfunction view_unlogged() {\n\tthis.view('unlogged');}```",
       "group": "How does it work?",
       "name": "Authorization"
     },
