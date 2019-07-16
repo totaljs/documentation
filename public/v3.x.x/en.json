@@ -5284,7 +5284,7 @@
             {
               "name": "field",
               "type": "String",
-              "body": "A field name (optional if the type is `count` or `group`).",
+              "body": "A field name (optional for `count`).",
               "options": [
                 "optional"
               ]
@@ -5494,7 +5494,7 @@
             {
               "name": "field",
               "type": "String",
-              "body": "A field name (optional if the type is `count` or `group`).",
+              "body": "A field name (optional for `count`).",
               "options": [
                 "optional"
               ]
