@@ -2557,9 +2557,12 @@
           "return": "Framework"
         },
         {
+          "changetype": 2,
+          "changelog": "Added <code>PAUSESERVER()</code> alias",
           "example": "https://github.com/totaljs/examples/tree/master/waiting",
-          "body": "The web server waits for open task / tasks.\n\n__Example with MongoDB__:\n\n```javascript\n// This is definition file.\nvar db = null;\n\n// The web server waits for ending task\nF.wait('database');\n// Alternative: F.wait('database', true);\n\nrequire('mongobuilder').init(CONF.database, function(err, instance) {\n\tif (err)\n\t\tF.error(err);\n\tdb = instance;\n\tF.emit('database');\n\tF.wait('database');\n\t// Alternative: F.wait('database', false);\n\t// The web server can continue.\n});\n\nF.database = function(collection) {\n\tif (collection)\n\t\treturn db.collection(collection);\n\treturn db;\n};```",
+          "body": "The web server waits for open task / tasks.\n\n__Example with MongoDB__:\n\n```javascript\n// This is definition file.\nvar db = null;\n\n// The web server waits for ending task\nPAUSESERVER('database');\n// Alternative: PAUSESERVER('database', true);\n\nrequire('mongobuilder').init(CONF.database, function(err, instance) {\n\tif (err)\n\t\tF.error(err);\n\tdb = instance;\n\tF.emit('database');\n\tPAUSESERVER('database');\n\t// Alternative: PAUSESERVER('database', false);\n\t// The web server can continue.\n});\n\nF.database = function(collection) {\n\tif (collection)\n\t\treturn db.collection(collection);\n\treturn db;\n};```",
           "name": "F.wait",
+          "alias": "PAUSESERVER",
           "params": [
             {
               "body": "A task name.",
@@ -10443,6 +10446,17 @@
             "websocket"
           ],
           "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "Returns a current generated breadcrumb from the sitemap",
+          "name": "controller.breadcrumb",
+          "options": [
+            "+v3.3.0",
+            "readonly",
+            "http"
+          ],
+          "return": "Array"
         },
         {
           "changetype": 1,
