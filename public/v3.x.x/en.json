@@ -22460,21 +22460,6 @@
           "return": "DatabaseTable"
         },
         {
-          "body": "Gets an instance of DatabaseBinary but without DB",
-          "name": "FILESTORAGE",
-          "options": [
-            "+v3.0.0"
-          ],
-          "params": [
-            {
-              "body": "Name of FileStorage.",
-              "name": "name",
-              "type": "String"
-            }
-          ],
-          "return": "DatabaseBinary"
-        },
-        {
           "body": "Alias for `DatabaseBinary`, the method returns: `NOSQL('user').binary` command.",
           "name": "NOSQLBINARY",
           "params": [
