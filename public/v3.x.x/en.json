@@ -22952,7 +22952,7 @@
           "return": "Framework"
         },
         {
-          "changelog": "+v3.0.0 improved <code>filter</code> for <code>required</code> fields",
+          "changelog": "+v3.3.0 Added <code>novalidate</code> argument",
           "body": "Performs `make`, example:\n\n```javascript\n$MAKE('Product', { id: 1 }, (err, model) => console.log(err, model));\n\n// +v3.0.0 makes a schema instance similarly as in dynamic operation\n// ['insert', 'notify', 'send'] is very important for \"schema.required()\" method (read more there about \"op\" operations)\n$MAKE('Product', { id: 1 }, ['insert', 'notify', 'send'], (err, model) => console.log(err, model));```",
           "name": "$MAKE",
           "params": [
@@ -23059,11 +23059,21 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "Skips validation",
+              "name": "novalidate",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ],
+              "default": "false"
             }
           ],
           "return": "Boolean"
         },
         {
+          "changelog": "+v3.3.0 Added <code>novalidate</code> argument",
           "body": "Executes a schema `insert`.\n\n```javascript\n$INSERT('Product', YOUR_MODEL, (err, response) => console.log(response));```",
           "name": "$INSERT",
           "options": [
@@ -23113,11 +23123,21 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "Skips validation",
+              "name": "novalidate",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ],
+              "default": "false"
             }
           ],
           "return": "Boolean"
         },
         {
+          "changelog": "+v3.3.0 Added <code>novalidate</code> argument",
           "body": "Executes a schema `update`.\n\n```javascript\n$UPDATE('Product', YOUR_MODEL, (err, response) => console.log(response));```",
           "name": "$UPDATE",
           "options": [
@@ -23167,6 +23187,79 @@
               "options": [
                 "optional"
               ]
+            },
+            {
+              "body": "Skips validation",
+              "name": "novalidate",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ],
+              "default": "false"
+            }
+          ],
+          "return": "Boolean"
+        },
+        {
+          "changetype": 1,
+          "body": "Executes a schema `patch`.\n\n```javascript\n$PATCH('Product', YOUR_MODEL, (err, response) => console.log(response));```",
+          "name": "$PATCH",
+          "options": [
+            "+v3.3.0"
+          ],
+          "params": [
+            {
+              "body": "A schema name. Can contain a group like this in the form `Group/Schema`. A default group is `default`",
+              "name": "schema",
+              "type": "String"
+            },
+            {
+              "body": "Model",
+              "name": "model",
+              "type": "Object"
+            },
+            {
+              "body": "Custom options.",
+              "name": "options",
+              "type": "Object",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "err",
+                  "type": "ErrorBuilder",
+                  "default": "null",
+                  "body": "Error Handling"
+                },
+                {
+                  "name": "response",
+                  "type": "Object",
+                  "body": "Response from the schema"
+                }
+              ]
+            },
+            {
+              "body": "A controller instance",
+              "name": "controller",
+              "type": "FrameworkController",
+              "options": [
+                "optional"
+              ]
+            },
+            {
+              "body": "Skips validation",
+              "name": "novalidate",
+              "type": "Boolean",
+              "options": [
+                "optional"
+              ],
+              "default": "false"
             }
           ],
           "return": "Boolean"
@@ -23427,6 +23520,92 @@
               ]
             }
           ]
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "body": "Creates a fallback for non-existing files. __IMPORTANT__: method can process only the one action, so it rewrites previous action if it's defined.",
+          "name": "FILE404",
+          "params": [
+            {
+              "body": "A custom action.",
+              "name": "action",
+              "params": [
+                {
+                  "body": "The HTTP request",
+                  "name": "req",
+                  "type": "Object"
+                },
+                {
+                  "body": "The HTTP response",
+                  "name": "res",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+           ]
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "body": "Registers a proxy, so the current web server will be used as a proxy for the specific path.\n\n```javascript\nPROXY('/users/', 'https://www.totaljs.com/users/', function(uri, req, res) {\n\t// @uri {Object} Prepared URL address\n\t// @req {Request} Incoming request\n\t// @res {Response} A resposne for incoming request\n\turi.headers['x-token'] = '123456';\n});```",
+          "name": "PROXY",
+          "params": [
+            {
+              "body": "A relative endpoint, e.g. /users/",
+              "name": "endpoint",
+              "type": "String"
+            },
+            {
+              "body": "A hostname with path, e.g. https://www.totaljs.com/users/",
+              "name": "hostname",
+              "type": "String"
+            },
+            {
+              "body": "Copies URL path to a proxy endpoint.",
+              "name": "copypath",
+              "type": "Boolean",
+              "default": "false",
+              "options": ["optional"]
+            },
+            {
+              "body": "This function will be evaluated before is proxy applied",
+              "name": "before",
+              "options": ["optional"],
+              "params": [
+                {
+                  "body": "Parsed URL with additional headers",
+                  "name": "uri",
+                  "type": "Object"
+                },
+                {
+                  "body": "The HTTP request",
+                  "name": "req",
+                  "type": "Object"
+                },
+                {
+                  "body": "The HTTP response",
+                  "name": "res",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "This function will be evaluated after is proxy applied",
+              "name": "after",
+              "options": ["optional"],
+              "params": [
+                {
+                  "body": "The HTTP response",
+                  "name": "res",
+                  "type": "Object"
+                }
+              ],
+              "type": "Function"
+            }
+           ]
         },
         {
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
@@ -25655,7 +25834,7 @@
         },
         {
           "changelog": "+v3.0.0 returns a Function for setting of default value. +v2.9.0 extends \"required\" argument.",
-          "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n    // +v3.0.0\n    // Sets a default value\n    schema.define('id', 'UID')(() => UID());\n    schema.define('age', Number)(20);\n    schema.define('name', String)('Peter');\n    schema.define('created', Date)(() => new Date());\n\n});```",
+          "body": "The method defines a field for the current entity.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n\n    schema.define('id', 'UID');\n    schema.define('name', 'Capitalize(30)', true); // The framework trims long strings automatically\n    schema.define('email', 'Email');\n    schema.define('age', Number);\n\n\t// +v2.9.0\n\t// Supports field validation\n    schema.define('age', Number, (value, model) => model.from18 && value > 18);\n    schema.define('isterms', Boolean, value => value === true);\n\n    // +v3.0.0\n    // Sets a default value\n    schema.define('id', 'UID')(() => UID());\n    schema.define('age', Number)(20);\n    schema.define('name', String)('Peter');\n    schema.define('created', Date)(() => new Date());\n\n});```",
           "name": "schema.define",
           "params": [
             {
@@ -25689,8 +25868,33 @@
           "return": "Function"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "body": "The method registers a new middleware which is evaluated before the schema operation is executed.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n\n\tschema.middleware(function($, next) {\n\n\t\t// @$ {SchemaOptions} A name of operation\n\t\t// @next([stop]) {Function} A follow-up function\n\n\t\t// Good to know:\n\t\t// \"$.name\" contains a schema operation name (\"save\", \"get\", \"query\", \"remove\", \"workflow:NAME\", \"transform:name\")\n\n\t\tif ($.user.sa && $.name !== 'query')\n\t\t\tnext();\n\t\telse {\n\t\t\t$.invalid('error-permissions');\n\t\t\tnext(true); // The next operation will be canceled\n\t\t}\n\n\t});\n\n\n});```",
+          "name": "schema.middleware",
+          "params": [
+            {
+              "body": "Custom attribute for filtering.",
+              "name": "fn",
+              "params": [
+                {
+                  "name": "$",
+                  "body": "A SchemaOptions instance",
+                  "type": "SchemaOptions"
+                },
+                {
+                  "name": "next",
+                  "body": "Follow-up function",
+                  "type": "Function"
+                }
+              ],
+              "type": "Function"
+            }
+          ]
+        },
+        {
           "changelog": "+v3.0.0 - improved <code>required</code> function by adding a new argument <code>op</code>",
-          "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" if the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\n\n\t// ----------------------------------------------------------------------\n\t// +v3 supports a new argument \"op\" which means \"current operations\"\n\t// ----------------------------------------------------------------------\n\n\t// Always contains an object\n\n\t// ROUTE('POST /api/users/  *User --> @insert');\n\t// \"op\" will contain { insert: 1 }\n\n\t// ROUTE('POST /api/users/  *User --> @insert (response) @notify @send');\n\t// \"op\" will contain { insert: 1, notify: 2, send: 3 }\n\n\tschema.required('id', function(model, op) {\n\n\t\t// So \"id\" field will be required when the operation will contain \"update\"\n\t\treturn op.update;\n\n\t\t// or return op.update ? true : false;\n\t\t// or return !!op.update\n\t\t// or return op.update > 0;\n\t});\n\n});\n```",
+          "body": "This method can enable/disable validation of defined field.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n\n\tschema.define('age', Number);\n\tschema.define('email', 'Email');\n\n\t// Enables validation\n\tschema.required('age', true);\n\tschema.required('email', true);\n\n\t// or advanced config for validation\n\t// \"company\" field will be \"required\" if the \"model.iscompany = true\" otherwise won't be validated\n\tschema.required('company', model => model.iscompany);\n\tschema.required('companyid', model => model.iscompany);\n\n\t// or \n\tschema.required('company, companyid, companyvat', model => model.iscompany);\n\n\t// ----------------------------------------------------------------------\n\t// +v3 supports a new argument \"op\" which means \"current operations\"\n\t// ----------------------------------------------------------------------\n\n\t// Always contains an object\n\n\t// ROUTE('POST /api/users/  *User --> @insert');\n\t// \"op\" will contain { insert: 1 }\n\n\t// ROUTE('POST /api/users/  *User --> @insert (response) @notify @send');\n\t// \"op\" will contain { insert: 1, notify: 2, send: 3 }\n\n\tschema.required('id', function(model, op) {\n\n\t\t// So \"id\" field will be required when the operation will contain \"update\"\n\t\treturn op.update;\n\n\t\t// or return op.update ? true : false;\n\t\t// or return !!op.update\n\t\t// or return op.update > 0;\n\t});\n\n});\n```",
           "name": "schema.required",
           "options": [
             "+v2.9.0"
@@ -25710,7 +25914,7 @@
           "return": "SchemaDeclaration"
         },
         {
-          "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index, req) => value.toUpperCase());\n\t// ...\n});\n```",
+          "body": "This method can prepare a value before is assigned into the instance. It's alternative to `schema.setPrepare()`.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n\t// ...\n\tschema.before('name', (value, index, index, req) => value.toUpperCase());\n\t// ...\n});\n```",
           "name": "schema.before",
           "options": [
             "+v3.2.0"
@@ -25789,7 +25993,7 @@
           "options": [
             "+v2.0.0"
           ],
-          "body": "The schema allows not specified fieds, so if the schema is prepared then the framework doesn't remove allowed fields.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // ...\n    // ...\n    schema.allow('customfield1', 'customfield2', 'customfieldN');\n});```",
+          "body": "The schema allows not specified fieds, so if the schema is prepared then the framework doesn't remove allowed fields.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n    // ...\n    // ...\n    schema.allow('customfield1', 'customfield2', 'customfieldN');\n});```",
           "name": "schema.allow",
           "params": [
             {
@@ -25903,7 +26107,7 @@
           "return": "SchemaDeclaration"
         },
         {
-          "body": "It's useful for readability.\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('email', String, true);\n});\n\nNEWSCHEMA('Product').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('price', Number, true);\n});```",
+          "body": "It's useful for readability.\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('email', String, true);\n});\n\nNEWSCHEMA('Product').make(function(schema) {\n    schema.define('name', String, true);\n    schema.define('price', Number, true);\n});```",
           "name": "schema.make",
           "params": [
             {
@@ -26484,7 +26688,7 @@
           "return": "SchemaInstance"
         },
         {
-          "body": "The filter finds all properties by search phrase in __defined properties__ according `custom` argument.\n\n- search phrase supports __String__, __RegExp__ and __Number__ searching\n- filtering with model returns `Object with values` otherwise `String Array` with property names\n\n---\n\n### Example for understanding\n\n__Defining some schema__:\n\n```javascript\nNEWSCHEMA('User').make(function(schema) {\n    // SchemaDeclaration.define(name, type, [required], [--> custom <--]);\n    schema.define('id', String, 'r'); // \"r\" = read\n    schema.define('name', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('email', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('ip', String, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n    schema.define('updated', Date, 'ru');  // \"ru\" = \"r\" read, \"u\" update\n    schema.define('created', Date, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n});\n```\n\n__Filtering without model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\nconsole.log(User.filter('r')); // finds only whole phrase\n// Output: ['id'];\n\nconsole.log(User.filter('*u')); // finds everything with \"u\"\n// Output: ['name', 'email', 'update'];\n\nconsole.log(User.filter('*c')); // finds everything with \"c\"\n// Output: ['name', 'email', 'ip', 'created'];\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', true));\n// Output: ['name', 'email', 'ip', 'update', 'created'];\n\nconsole.log(User.filter('*u', true));\n// Output: ['id', 'ip', 'created'];\n```\n\n__Filtering with model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\n// Creates an empty model:\nvar model = User.create();\nmodel.id = 2;\nmodel.name = 'Peter Sirka';\nmodel.email = 'petersirka@gmail.com';\nmodel.ip = '127.0.0.1';\nmodel.created = 'SOME DATE';\nmodel.updated = 'SOME DATE';\n\n// IMPORTANT: filtering\nconsole.log(User.filter('r', model)); // finds only whole phrase\n// Output: { id: 2 };\n\nconsole.log(User.filter('*u', model)); // finds everything with \"u\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*c', model)); // finds everything with \"c\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', ip: '127.0.0.1', created: 'SOME DATE' }\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', model, true));\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*u', model, true));\n// Output: { id: 2, ip: '127.0.0.1', created: 'SOME DATE' }\n```\n\n### Why do we need the filter?\n\nThe filter is great feature for e.g. ORM mapping because you can get a specific data for insert (create) and specific data for e.g. update or read.\n",
+          "body": "The filter finds all properties by search phrase in __defined properties__ according `custom` argument.\n\n- search phrase supports __String__, __RegExp__ and __Number__ searching\n- filtering with model returns `Object with values` otherwise `String Array` with property names\n\n---\n\n### Example for understanding\n\n__Defining some schema__:\n\n```javascript\nNEWSCHEMA('Users').make(function(schema) {\n    // SchemaDeclaration.define(name, type, [required], [--> custom <--]);\n    schema.define('id', String, 'r'); // \"r\" = read\n    schema.define('name', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('email', String, true, 'cru'); // \"cru\" = \"c\" create, \"r\" read, \"u\" update\n    schema.define('ip', String, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n    schema.define('updated', Date, 'ru');  // \"ru\" = \"r\" read, \"u\" update\n    schema.define('created', Date, 'cr');  // \"cr\" = \"c\" create, \"r\" read\n});\n```\n\n__Filtering without model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\nconsole.log(User.filter('r')); // finds only whole phrase\n// Output: ['id'];\n\nconsole.log(User.filter('*u')); // finds everything with \"u\"\n// Output: ['name', 'email', 'update'];\n\nconsole.log(User.filter('*c')); // finds everything with \"c\"\n// Output: ['name', 'email', 'ip', 'created'];\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', true));\n// Output: ['name', 'email', 'ip', 'update', 'created'];\n\nconsole.log(User.filter('*u', true));\n// Output: ['id', 'ip', 'created'];\n```\n\n__Filtering with model__:\n\n```javascript\n// Gets the schema instance\nvar User = GETSCHEMA('User');\n\n// Creates an empty model:\nvar model = User.create();\nmodel.id = 2;\nmodel.name = 'Peter Sirka';\nmodel.email = 'petersirka@gmail.com';\nmodel.ip = '127.0.0.1';\nmodel.created = 'SOME DATE';\nmodel.updated = 'SOME DATE';\n\n// IMPORTANT: filtering\nconsole.log(User.filter('r', model)); // finds only whole phrase\n// Output: { id: 2 };\n\nconsole.log(User.filter('*u', model)); // finds everything with \"u\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*c', model)); // finds everything with \"c\"\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', ip: '127.0.0.1', created: 'SOME DATE' }\n\n// ================================================\n// In reverse\n// ================================================\n\nconsole.log(User.filter('r', model, true));\n// Output: { name: 'Peter Sirka', email: 'petersirka@gmail.com', updated: 'SOME DATE' }\n\nconsole.log(User.filter('*u', model, true));\n// Output: { id: 2, ip: '127.0.0.1', created: 'SOME DATE' }\n```\n\n### Why do we need the filter?\n\nThe filter is great feature for e.g. ORM mapping because you can get a specific data for insert (create) and specific data for e.g. update or read.\n",
           "name": "schema.filter",
           "params": [
             {
@@ -27320,6 +27524,15 @@
           "name": "$.body",
           "return": "Object",
           "body": "Alias for `controller.body`. __IMPORTANT__: controller must be assigned."
+        },
+        {
+          "options": [
+            "v3.3.0"
+          ],
+          "changetype": 1,
+          "name": "$.name",
+          "return": "String",
+          "body": "A name of the current operation. Can contain `insert`, `update`, `patch`, `query`, `remove`, `get`, `workflow:NAME`, `transform:NAME`, `operation:NAME` or `hook:NAME`."
         },
         {
           "options": [
