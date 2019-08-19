@@ -28251,7 +28251,16 @@
           "params": [
           ],
           "return": "SchemaOptions",
-          "body": "Cancels callback and cleans the current `SchemaInstance`."
+          "body": "Cancels a callback and cleans the current `SchemaInstance`."
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.0"],
+          "name": "$.noop",
+          "params": [
+          ],
+          "return": "SchemaOptions",
+          "body": "A callback of the schema operation won't be executed and the controller instance (if exists) will perform `controller.custom()` method. After execution you can create a custom response on the request."
         },
         {
           "changetype": 2,
