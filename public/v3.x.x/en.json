@@ -25946,7 +25946,7 @@
         {
           "changetype": 1,
           "options": ["+v3.3.0"],
-          "body": "The method registers a new middleware which is evaluated before the schema operation is executed.\n\n```javascript\nNEWSCHEMA('Users', function(schema) {\n\n\tschema.middleware(function($, next) {\n\n\t\t// @$ {SchemaOptions} A name of operation\n\t\t// @next([stop]) {Function} A follow-up function\n\n\t\t// Good to know:\n\t\t// \"$.name\" contains a schema operation name (\"save\", \"get\", \"query\", \"remove\", \"workflow:NAME\", \"transform:name\")\n\n\t\tif ($.user.sa && $.name !== 'query')\n\t\t\tnext();\n\t\telse {\n\t\t\t$.invalid('error-permissions');\n\t\t\tnext(true); // The next operation will be canceled\n\t\t}\n\n\t});\n\n\n});```",
+          "body": "The method registers a new middleware which is evaluated before the schema operation is executed.\n\n```javascript\nNEWSCHEMA('Users', function(schema) {\n\n\tschema.middleware(function($, next) {\n\n\t\t// @$ {SchemaOptions} A name of operation\n\t\t// @next([stop]) {Function} A follow-up function\n\n\t\t// Good to know:\n\t\t// \"$.name\" contains a schema operation name (\"save\", \"get\", \"query\", \"remove\", \"workflow:NAME\", \"transform:name\")\n\n\t\tif ($.user.sa && $.name !== 'query')\n\t\t\tnext();\n\t\telse {\n\t\t\t$.invalid('error-permissions');\n\t\t\tnext(true); // The next operation will be canceled\n\t\t}\n\n\t});\n\n});```",
           "name": "schema.middleware",
           "params": [
             {
