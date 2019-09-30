@@ -872,7 +872,7 @@
       "group": "Framework",
       "methods": [
         {
-          "changelog": "Added [repeat] argument. v2.5.0 returns an schedule identificator",
+          "changelog": "Added [repeat] argument. v2.5.0 returns an schedule identifier",
           "options": [
             "+v1.7.1"
           ],
@@ -908,7 +908,7 @@
           "name": "F.clearSchedule",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             }
@@ -1228,7 +1228,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "Identificator."
+                  "body": "identifier."
                 }
               ]
             },
@@ -1240,7 +1240,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "Identificator. If the request method is <b>post</b> then the identificator is undefined.",
+                  "body": "identifier. If the request method is <b>post</b> then the identifier is undefined.",
                   "options": [
                     "optional"
                   ]
@@ -1255,7 +1255,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "Identificator."
+                  "body": "identifier."
                 }
               ]
             }
@@ -1293,7 +1293,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "Identificator."
+                  "body": "identifier."
                 }
               ]
             },
@@ -1713,12 +1713,12 @@
           "return": "Framework"
         },
         {
-          "body": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocale()` delegate. Supported flags:\n\n- `compress` or `minify` enables compression (by default: `true`)\n- `nocompress` disables compression\n- `.extension` a file extension which will be accepted\n\n```javascript\nF.localize('/templates/*.html');\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('/templates/*.hbs', ['nocompress']);\n\n// With a sitemap identificator\n// +v2.9.0\nF.localize('#sitemapId/templates/*.html');\n```\n\n```html\nhttp://0.0.0.0:8000/templates/settings.html   --> will be localized and minified\nhttp://0.0.0.0:8000/templates/idontknow.html  --> will be localized and minified\nhttp://0.0.0.0:8000/templates/ember.hbs       --> will be localized only```",
+          "body": "This method creates file handler with the localization. It's very helpful for translation static `.html`, `.txt` and `.md` files. Modern web applications are combined with many template files and this method solves problem with the localization. The method is linked with `F.onLocale()` delegate. Supported flags:\n\n- `compress` or `minify` enables compression (by default: `true`)\n- `nocompress` disables compression\n- `.extension` a file extension which will be accepted\n\n```javascript\nF.localize('/templates/*.html');\n\n// Accept a new extension for the web server\nF.accept('.hbs', 'text/html');\nF.localize('/templates/*.hbs', ['nocompress']);\n\n// With a sitemap identifier\n// +v2.9.0\nF.localize('#sitemapId/templates/*.html');\n```\n\n```html\nhttp://0.0.0.0:8000/templates/settings.html   --> will be localized and minified\nhttp://0.0.0.0:8000/templates/idontknow.html  --> will be localized and minified\nhttp://0.0.0.0:8000/templates/ember.hbs       --> will be localized only```",
           "name": "F.localize",
           "alias": "LOCALIZE",
           "params": [
             {
-              "body": "A relative URL into the directory or +v2.9.0 can contain a sitemap identificator",
+              "body": "A relative URL into the directory or +v2.9.0 can contain a sitemap identifier",
               "name": "url",
               "type": "String"
             },
@@ -1872,13 +1872,13 @@
           "return": "MailMessage"
         },
         {
-          "changelog": "URL can be `sitemap` identificator.",
-          "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript, CSS or HTML.\n\n```javascript\n// Merging files\nMERGE('/merge.js', '/js/ui.js', '/js/default.js');\n\n// Merging all files\nMERGE('/merge.js', '/js/*.js');\n\n// Merging files in themes:\nMERGE('/merge.css', '=moderntheme/public/ui.css', '=moderntheme/public/default.css');\n\n// Merging files in packages:\nMERGE('/merge.css', '@packagename/public/ui.css', '@packagename/public/default.css');\n\n// External URL address:\nMERGE('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/default.js');\n\n// Merging with blocks\nMERGE('/manager.js', '/js/ui.js#manager', '/js/manager.js');\n\n// With a sitemap identificator\n// +v2.9.0\nMERGE('#sitemapId/myfile.js', '/js/ui.js', '/js/manager.js');```",
+          "changelog": "URL can be `sitemap` identifier.",
+          "body": "Creates a virtual route for merging static files. Method supports merging: JavaScript, CSS or HTML.\n\n```javascript\n// Merging files\nMERGE('/merge.js', '/js/ui.js', '/js/default.js');\n\n// Merging all files\nMERGE('/merge.js', '/js/*.js');\n\n// Merging files in themes:\nMERGE('/merge.css', '=moderntheme/public/ui.css', '=moderntheme/public/default.css');\n\n// Merging files in packages:\nMERGE('/merge.css', '@packagename/public/ui.css', '@packagename/public/default.css');\n\n// External URL address:\nMERGE('/merge.js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', '/js/default.js');\n\n// Merging with blocks\nMERGE('/manager.js', '/js/ui.js#manager', '/js/manager.js');\n\n// With a sitemap identifier\n// +v2.9.0\nMERGE('#sitemapId/myfile.js', '/js/ui.js', '/js/manager.js');```",
           "name": "F.merge",
           "alias": "MERGE",
           "params": [
             {
-              "body": "A relative url for listening or +v2.9.0 can contain a sitemap identificator",
+              "body": "A relative url for listening or +v2.9.0 can contain a sitemap identifier",
               "name": "url",
               "type": "String"
             },
@@ -1910,8 +1910,8 @@
           "return": "Framework"
         },
         {
-          "changelog": "v2.9.0 supports a sitemap identificator",
-          "body": "A custom mapping of static files. You can easily change a mapping static file. __IMPORTANT__: if you map some directory/file then the directory/file has to exist otherwise the mapping won't be work.\n\n### Mapping files\n\n```javascript\n// http://0.0.0.0:8000/app.js --> server responds with app-homepage.js script\nMAP('/app.js', '/hidden-in-public-directory/app-homepage.js');\nMAP('/app.js', F.path.private('/app-homepage.js'));\n\n// With a sitemap identificator\n// +v2.9.0\nMAP('#sitemapId/app.js', F.path.private('/app-homepage.js'));\n```\n\n### Mapping directories\n\n```javascript\n// all files\nMAP('/custom/', '/hidden-in-public-directory/');\nMAP('/custom/', '~/hidden-in-root-directory/');\n\n// only images\nMAP('/custom/', F.path.root('my-images'), ['.png', '.gif', '.jpg']);\n\n// custom filter\nMAP('/custom/', F.path.private(), function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for packages\n\n```javascript\n// all files\nMAP('/custom/', '@package_name');\n\n// only images\nMAP('/custom/', '@package_name', ['.png', '.gif', '.jpg']);\n\n// custom filter\nMAP('/custom/', '@package_name', function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n``````",
+          "changelog": "v2.9.0 supports a sitemap identifier",
+          "body": "A custom mapping of static files. You can easily change a mapping static file. __IMPORTANT__: if you map some directory/file then the directory/file has to exist otherwise the mapping won't be work.\n\n### Mapping files\n\n```javascript\n// http://0.0.0.0:8000/app.js --> server responds with app-homepage.js script\nMAP('/app.js', '/hidden-in-public-directory/app-homepage.js');\nMAP('/app.js', F.path.private('/app-homepage.js'));\n\n// With a sitemap identifier\n// +v2.9.0\nMAP('#sitemapId/app.js', F.path.private('/app-homepage.js'));\n```\n\n### Mapping directories\n\n```javascript\n// all files\nMAP('/custom/', '/hidden-in-public-directory/');\nMAP('/custom/', '~/hidden-in-root-directory/');\n\n// only images\nMAP('/custom/', F.path.root('my-images'), ['.png', '.gif', '.jpg']);\n\n// custom filter\nMAP('/custom/', F.path.private(), function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n```\n\n### Mapping for packages\n\n```javascript\n// all files\nMAP('/custom/', '@package_name');\n\n// only images\nMAP('/custom/', '@package_name', ['.png', '.gif', '.jpg']);\n\n// custom filter\nMAP('/custom/', '@package_name', function(filename) {\n    return filename.match(/\\.(jpg|gif|png|js)$/i);\n});\n``````",
           "name": "F.map",
           "alias": "MAP",
           "params": [
@@ -1954,12 +1954,12 @@
         {
           "changetype": 2,
           "changelog": "Added alias <code>SITEMAP()</code>",
-          "body": "### First item\n\n```javascript\nvar value = F.sitemap('sitemap-identificator', true);\nvalue.sitemap     // current sitemap id\nvalue.id          // current item id\nvalue.name        // current item name\nvalue.url         // current item url\nvalue.wildcard    // does the current item url contain a wildcard routing?\n```\n\n### All items in tree\n\n```javascript\n\nvar arr = F.sitemap('sitemap-identificator');\n\nfor (var i = 0, length = arr.length; i < length; i++) {\n    value.sitemap   // current sitemap id\n    value.id        // current item id\n    value.name      // current item name\n    value.url       // current item url\n    value.last      // is the last item?\n    value.first     // is the first item?\n    value.index     // current item index in sitemap (in the parent tree)\n    value.wildcard  // does the current item url contain a wildcard routing?\n}```",
+          "body": "### First item\n\n```javascript\nvar value = F.sitemap('sitemap-identifier', true);\nvalue.sitemap     // current sitemap id\nvalue.id          // current item id\nvalue.name        // current item name\nvalue.url         // current item url\nvalue.wildcard    // does the current item url contain a wildcard routing?\n```\n\n### All items in tree\n\n```javascript\n\nvar arr = F.sitemap('sitemap-identifier');\n\nfor (var i = 0, length = arr.length; i < length; i++) {\n    value.sitemap   // current sitemap id\n    value.id        // current item id\n    value.name      // current item name\n    value.url       // current item url\n    value.last      // is the last item?\n    value.first     // is the first item?\n    value.index     // current item index in sitemap (in the parent tree)\n    value.wildcard  // does the current item url contain a wildcard routing?\n}```",
           "name": "F.sitemap",
           "alias": "SITEMAP",
           "params": [
             {
-              "body": "The sitemap identificator",
+              "body": "The sitemap identifier",
               "name": "id",
               "type": "String"
             },
@@ -3036,7 +3036,7 @@
           "options": [
             "+v3.0.0"
           ],
-          "body": "A secret for encrypting/decrypting unique identificators. This secret is used in `U.encryptID()`, `U.decryptID()` - as default salt. Default value is the same value like `secret` item.",
+          "body": "A secret for encrypting/decrypting unique identifiers. This secret is used in `U.encryptID()`, `U.decryptID()` - as default salt. Default value is the same value like `secret` item.",
           "name": "secret_uid",
           "return": "String"
         },
@@ -6344,7 +6344,7 @@
             {
               "name": "id",
               "type": "String",
-              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+              "body": "Your custom identifier (e.g. blog id, user id, file id)"
             },
             {
               "default": "1",
@@ -6369,7 +6369,7 @@
             {
               "name": "id",
               "type": "String",
-              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+              "body": "Your custom identifier (e.g. blog id, user id, file id)"
             },
             {
               "default": "1",
@@ -6394,7 +6394,7 @@
             {
               "name": "id",
               "type": "String",
-              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+              "body": "Your custom identifier (e.g. blog id, user id, file id)"
             },
             {
               "name": "count",
@@ -6415,7 +6415,7 @@
             {
               "name": "id",
               "type": "String",
-              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+              "body": "Your custom identifier (e.g. blog id, user id, file id)"
             },
             {
               "name": "count",
@@ -6427,26 +6427,26 @@
         },
         {
           "name": "database.counter.remove",
-          "body": "Removes all stats according to the identificator.",
+          "body": "Removes all stats according to the identifier.",
           "return": "DatabaseCounter",
           "params": [
             {
               "name": "id",
               "type": "String",
-              "body": "Your custom identificator (e.g. blog id, user id, file id)"
+              "body": "Your custom identifier (e.g. blog id, user id, file id)"
             }
           ],
           "return": "DatabaseCounter"
         },
         {
           "name": "database.counter.count",
-          "body": "Reads count of all `sum` stats.\n\n```javascript\n// Reads stats\ndatabase.counter.count(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.count('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.count(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.count(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
+          "body": "Reads count of all `sum` stats.\n\n```javascript\n// Reads stats\ndatabase.counter.count(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.count('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.count(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identifiers\ndatabase.counter.count(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
           "return": "DatabaseCounter",
           "params": [
             {
               "name": "id",
               "type": "String/Array String/Boolean",
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id)",
               "options": [
                 "optional"
               ]
@@ -6464,7 +6464,7 @@
                 {
                   "name": "response",
                   "type": "Number/Object",
-                  "body": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6476,13 +6476,13 @@
             "+v2.8.0"
           ],
           "name": "database.counter.minimum",
-          "body": "Reads a `minimum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.minimum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.minimum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.minimum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
+          "body": "Reads a `minimum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.minimum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.minimum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.minimum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identifiers\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
           "return": "DatabaseCounter",
           "params": [
             {
               "name": "id",
               "type": "String/Array String/Boolean",
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id)",
               "options": [
                 "optional"
               ]
@@ -6500,7 +6500,7 @@
                 {
                   "name": "response",
                   "type": "Number/Object",
-                  "body": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6512,13 +6512,13 @@
             "+v2.8.0"
           ],
           "name": "database.counter.maximum",
-          "body": "Reads a `maximum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.maximum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.maximum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.maximum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identificators\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
+          "body": "Reads a `maximum` value.\n\n```javascript\n// Reads stats\ndatabase.counter.maximum(function(err, response) {\n    // e.g. 2800\n});\n\n// Reads stats by specific ID\ndatabase.counter.maximum('16083014300001idn1', function(err, response) {\n    // e.g. 340\n});\n\n// Reads stats by specific IDs\ndatabase.counter.maximum(['16083014300001idn1', '16090123150001clu1'], function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n    }\n    */\n});\n\n// Reads stats by groupped identifiers\ndatabase.counter.minimum(true, function(err, response) {\n    /*\n    {\n        '16083014300001idn1': 2800,\n        '16090123150001clu1': 486\n        ...\n    }\n    */\n});```",
           "return": "DatabaseCounter",
           "params": [
             {
               "name": "id",
               "type": "String/Array String/Boolean",
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id)",
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id)",
               "options": [
                 "optional"
               ]
@@ -6536,7 +6536,7 @@
                 {
                   "name": "response",
                   "type": "Number/Object",
-                  "body": "When the identificator is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `string` or is `undefined` then the callback responds with `Number` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6557,7 +6557,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6572,7 +6572,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6593,7 +6593,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6608,7 +6608,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6629,7 +6629,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6644,7 +6644,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6665,7 +6665,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6680,7 +6680,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6701,7 +6701,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6716,7 +6716,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6737,7 +6737,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6752,7 +6752,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6773,7 +6773,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6788,7 +6788,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6809,7 +6809,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6824,7 +6824,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -6845,7 +6845,7 @@
               "options": [
                 "optional"
               ],
-              "body": "Your custom identificator(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
+              "body": "Your custom identifier(s) (e.g. blog id, user id, file id). If `id` is `true` then DB returns stats of all records."
             },
             {
               "name": "callback",
@@ -6860,7 +6860,7 @@
                 {
                   "name": "response",
                   "type": "Array",
-                  "body": "When the identificator is `undefined` then the callback responds with `Array` otherwise with `Object` with identificators."
+                  "body": "When the identifier is `undefined` then the callback responds with `Array` otherwise with `Object` with identifiers."
                 }
               ]
             }
@@ -7038,7 +7038,7 @@
           "return": "DatabaseCounter",
           "params": [
             {
-              "body": "An identificator.",
+              "body": "An identifier.",
               "name": "id",
               "type": "String"
             },
@@ -7058,7 +7058,7 @@
           ],
           "params": [
             {
-              "body": "An identificator.",
+              "body": "An identifier.",
               "name": "id",
               "type": "String"
             },
@@ -7078,7 +7078,7 @@
           ],
           "params": [
             {
-              "body": "An identificator.",
+              "body": "An identifier.",
               "name": "id",
               "type": "String"
             },
@@ -7105,12 +7105,12 @@
           ]
         },
         {
-          "body": "Is triggered if an identificator is removed from the database.",
+          "body": "Is triggered if an identifier is removed from the database.",
           "return": "DatabaseCounter",
           "name": "database.counter.on('remove')",
           "params": [
             {
-              "body": "An identificator.",
+              "body": "An identifier.",
               "name": "id",
               "type": "String"
             }
@@ -7132,7 +7132,7 @@
       "methods": [
         {
           "name": "database.binary.insert",
-          "body": "Inserts a new file into the database. The method __returns file identificator__.\n\n```javascript\nvar nosql = NOSQL('photos');\n\n// Usage 1 (filename with path):\nnosql.binary.insert(F.root.public('photos/1.jpg'), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert(F.root.public('photos/2.jpg'), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 2 (buffer):\nnosql.binary.insert('photo3.jpg', require('fs').readFileSync(F.root.public('photos/3.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert('photo4.jpg', require('fs').readFileSync(F.root.public('photos/4.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 3 (stream):\nnosql.binary.insert('photo5.jpg', require('fs').createReadStream(F.root.public('photos/5.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert('photo6.jpg', require('fs').createReadStream(F.root.public('photos/6.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 5 (base64):\nnosql.binary.insert('photo7.jpg', 'iVBORw0KGgoAAAANSUhEUgAAAW8AAAEdC...', function(err, id, meta) {\n\tconsole.log(id);\n});```",
+          "body": "Inserts a new file into the database. The method __returns file identifier__.\n\n```javascript\nvar nosql = NOSQL('photos');\n\n// Usage 1 (filename with path):\nnosql.binary.insert(F.root.public('photos/1.jpg'), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert(F.root.public('photos/2.jpg'), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 2 (buffer):\nnosql.binary.insert('photo3.jpg', require('fs').readFileSync(F.root.public('photos/3.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert('photo4.jpg', require('fs').readFileSync(F.root.public('photos/4.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 3 (stream):\nnosql.binary.insert('photo5.jpg', require('fs').createReadStream(F.root.public('photos/5.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\nnosql.binary.insert('photo6.jpg', require('fs').createReadStream(F.root.public('photos/6.jpg')), function(err, id, meta) {\n\tconsole.log(id);\n});\n\n// Usage 5 (base64):\nnosql.binary.insert('photo7.jpg', 'iVBORw0KGgoAAAANSUhEUgAAAW8AAAEdC...', function(err, id, meta) {\n\tconsole.log(id);\n});```",
           "return": "String",
           "params": [
             {
@@ -7161,7 +7161,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "File identificator."
+                  "body": "File identifier."
                 },
                 {
                   "name": "header",
@@ -7184,7 +7184,7 @@
             {
               "name": "id",
               "type": "String/Number",
-              "body": "The filename identificator."
+              "body": "The filename identifier."
             },
             {
               "name": "name",
@@ -7212,7 +7212,7 @@
                 {
                   "name": "id",
                   "type": "String",
-                  "body": "File identificator."
+                  "body": "File identifier."
                 },
                 {
                   "name": "header",
@@ -7235,7 +7235,7 @@
             {
               "name": "id",
               "type": "String/Number",
-              "body": "Filename identificator."
+              "body": "Filename identifier."
             },
             {
               "name": "callback",
@@ -7273,7 +7273,7 @@
             {
               "name": "id",
               "type": "String/Number",
-              "body": "Filename identificator."
+              "body": "Filename identifier."
             },
             {
               "name": "callback",
@@ -7387,7 +7387,7 @@
           "return": "DatabaseBinary",
           "params": [
             {
-              "body": "A file identificator.",
+              "body": "A file identifier.",
               "name": "id",
               "type": "String"
             },
@@ -7404,7 +7404,7 @@
           "return": "DatabaseBinary",
           "params": [
             {
-              "body": "A file identificator.",
+              "body": "A file identifier.",
               "name": "id",
               "type": "String"
             }
@@ -8048,7 +8048,7 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name. If is not defined then the framework binds the sitemap according to the `controller.sitemapid`.",
+              "body": "identifier / Name. If is not defined then the framework binds the sitemap according to the `controller.sitemapid`.",
               "name": "name",
               "type": "String",
               "options": [
@@ -8066,7 +8066,7 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -8111,7 +8111,7 @@
               "type": "String"
             },
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -8151,7 +8151,7 @@
           ],
           "params": [
             {
-              "body": "Parent identificator of sitemap.",
+              "body": "Parent identifier of sitemap.",
               "name": "parent",
               "type": "String"
             },
@@ -8199,7 +8199,7 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -8244,7 +8244,7 @@
               "type": "String"
             },
             {
-              "body": "Identificator / Name",
+              "body": "identifier / Name",
               "name": "name",
               "type": "String"
             },
@@ -8283,7 +8283,7 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -8308,7 +8308,7 @@
           "name": "controller.sitemap_replace",
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -11785,7 +11785,7 @@
           ],
           "params": [
             {
-              "body": "Parent identificator of sitemap.",
+              "body": "Parent identifier of sitemap.",
               "name": "parent",
               "type": "String"
             },
@@ -11807,7 +11807,7 @@
           "name": "@{sitemap_url}",
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -11851,7 +11851,7 @@
               "type": "String"
             },
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -11890,7 +11890,7 @@
           "name": "@{sitemap_replace}",
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -11935,7 +11935,7 @@
           "name": "@{sitemap_name}",
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -11979,7 +11979,7 @@
               "type": "String"
             },
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -12015,7 +12015,7 @@
           "name": "@{sitemap}",
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             }
@@ -12030,7 +12030,7 @@
           ],
           "params": [
             {
-              "body": "Identificator / Name.",
+              "body": "identifier / Name.",
               "name": "name",
               "type": "String"
             },
@@ -12048,7 +12048,7 @@
           "return": "FrameworkController"
         },
         {
-          "body": "Gets the links in the sitemap according to the current sitemap `@{sitemap('page_identificator'}`.",
+          "body": "Gets the links in the sitemap according to the current sitemap `@{sitemap('page_identifier'}`.",
           "example": "https://github.com/totaljs/examples/tree/master/navigation-sitemap",
           "name": "@{sitemap}",
           "params": [
@@ -13236,7 +13236,7 @@
           "name": "U.queue",
           "params": [
             {
-              "body": "Name / Identificator.",
+              "body": "Name / identifier.",
               "name": "name",
               "type": "String"
             },
@@ -15782,7 +15782,7 @@
           "options": [
             "+v2.6.0"
           ],
-          "body": "Registers a response for all requests with the same `name` identificator.\n\n__Example__:\n\n```javascript\nF.custer.response('sum', function(value, next) {\n    var newvalue = value + 1;\n    // We have to call a \"next\" function for delivery of a new value\n    next(newvalue);    \n});```",
+          "body": "Registers a response for all requests with the same `name` identifier.\n\n__Example__:\n\n```javascript\nF.custer.response('sum', function(value, next) {\n    var newvalue = value + 1;\n    // We have to call a \"next\" function for delivery of a new value\n    next(newvalue);    \n});```",
           "name": "F.cluster.response",
           "params": [
             {
@@ -16549,7 +16549,7 @@
           "return": "String"
         },
         {
-          "body": "Each route can have own identificator (works with `F.route()`, `F.file()` or `F.websocket()`).\n\n__Example__:\n```javascript\nF.route('/', ['id:homepage']);\n```\n\nThen it's easy to uninstall specific route according its identificator: `UNINSTALL('web', 'id:ROUTE_ID');` or `UNINSTALL('file', 'id:ROUTE_ID');`",
+          "body": "Each route can have own identifier (works with `F.route()`, `F.file()` or `F.websocket()`).\n\n__Example__:\n```javascript\nF.route('/', ['id:homepage']);\n```\n\nThen it's easy to uninstall specific route according its identifier: `UNINSTALL('web', 'id:ROUTE_ID');` or `UNINSTALL('file', 'id:ROUTE_ID');`",
           "name": "id:ROUTE_ID",
           "options": [
             "optional"
@@ -19348,7 +19348,7 @@
           ],
           "params": [
             {
-              "body": "A property name: \"identificator\".",
+              "body": "A property name: \"identifier\".",
               "name": "id",
               "type": "String"
             },
@@ -19792,7 +19792,7 @@
       "options": ["+v3.3.0"]
     },
     {
-      "body": "`+v3.3.0` Session can help with reading/storing session data. __Read carefully__ the documentation below because __session item__ contains two identificators `id` and `sessionid` which is very important to know difference between each other.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n// SESSION ITEM:\n{\n\tid: 'user_id',                             // A main identificator, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRATION_DATE',                 // Expiration date, when will the session expire?\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n\n\t// SESSION DATA:\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`\n\n### Good to know\n\n- by default are sessions stored in plain-text files in `databases` directory in the form `sessions_NAME.txt`\n- session item contains last usage time, creation date, custom note and custom settings, these info can be very helpful in several cases",
+      "body": "`+v3.3.0` Session can help with reading/storing session data. __Read carefully__ the documentation below because __session item__ contains two identifiers `id` and `sessionid` which is very important to know difference between each other.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n// SESSION ITEM:\n{\n\tid: 'user_id',                             // A main identifier, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRATION_DATE',                 // Expiration date, when will the session expire?\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n\n\t// SESSION DATA:\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`\n\n### Good to know\n\n- by default are sessions stored in plain-text files in `databases` directory in the form `sessions_NAME.txt`\n- session item contains last usage time, creation date, custom note and custom settings, these info can be very helpful in several cases",
       "group": "Additional",
       "properties": [
         {
@@ -19831,7 +19831,7 @@
           "name": "session.list",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             },
@@ -19926,7 +19926,7 @@
           "name": "session.count",
           "params": [
             {
-              "body": "Identificator (not sessionid)",
+              "body": "identifier (not sessionid)",
               "name": "id",
               "type": "String",
               "options": ["optional"]
@@ -20012,7 +20012,7 @@
           "name": "session.remove2",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             },
@@ -20084,7 +20084,7 @@
           "name": "session.get2",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             },
@@ -20140,7 +20140,7 @@
           "name": "session.release2",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             },
@@ -20207,7 +20207,7 @@
               "type": "String"
             },
             {
-              "body": "Identificator, for example \"user.id\"",
+              "body": "identifier, for example \"user.id\"",
               "name": "id",
               "type": "String"
             },
@@ -20259,7 +20259,7 @@
           ]
         },
         {
-          "body": "Creates a session and stores the identificator in the cookie. The example below describes possibilities:\n\n```javascript\nvar $ = SCHEMAOPTIONS_OR_OPERATIONOPTIONS_OR_CONTROLLER;\n\n// Options\nvar opt = {};\nopt.name = 'auth';             // A cookie name\nopt.key = CONF.authkey;        // A cookie secret key\nopt.id = user.id;              // A user ID\nopt.expire = '3 days';         // Expiration\nopt.data = user;               // A session data\n// opt.sessionid = UID()       // Optional, a unique session ID (default: UID())\n// opt.options = {};           // Optional, A cookie options (default: { httponly: true, security: 'lax' })\n// opt.strict = true;          // Optional, a strict comparing of cookie value according to user-agent combined with IP address (default: false)\n// opt.settings = '';          // Optional, custom session settings\nopt.note = ($.headers['user-agent'] || '').parseUA() + ' ({0})'.format($.ip); // A custom note\n\n// Creates a cookie and session item\nSESSION().setcookie($.controller, opt, $.done());\n```",
+          "body": "Creates a session and stores the identifier in the cookie. The example below describes possibilities:\n\n```javascript\nvar $ = SCHEMAOPTIONS_OR_OPERATIONOPTIONS_OR_CONTROLLER;\n\n// Options\nvar opt = {};\nopt.name = 'auth';             // A cookie name\nopt.key = CONF.authkey;        // A cookie secret key\nopt.id = user.id;              // A user ID\nopt.expire = '3 days';         // Expiration\nopt.data = user;               // A session data\n// opt.sessionid = UID()       // Optional, a unique session ID (default: UID())\n// opt.options = {};           // Optional, A cookie options (default: { httponly: true, security: 'lax' })\n// opt.strict = true;          // Optional, a strict comparing of cookie value according to user-agent combined with IP address (default: false)\n// opt.settings = '';          // Optional, custom session settings\nopt.note = ($.headers['user-agent'] || '').parseUA() + ' ({0})'.format($.ip); // A custom note\n\n// Creates a cookie and session item\nSESSION().setcookie($.controller, opt, $.done());\n```",
           "name": "session.setcookie",
           "params": [
             {
@@ -20481,7 +20481,7 @@
           "name": "session.update2",
           "params": [
             {
-              "body": "Identificator",
+              "body": "identifier",
               "name": "id",
               "type": "String"
             },
@@ -20533,7 +20533,7 @@
           "name": "session.set2",
           "params": [
             {
-              "body": "Identificator, for example \"user.id\"",
+              "body": "identifier, for example \"user.id\"",
               "name": "id",
               "type": "String"
             },
@@ -21255,7 +21255,7 @@
           "return": "Object"
         },
         {
-          "body": "Creates random identificator. Alias for `U.GUID()`.",
+          "body": "Creates random identifier. Alias for `U.GUID()`.",
           "options": [
             "+v3.0.0"
           ],
@@ -22569,7 +22569,7 @@
         {
           "changetype": 1,
           "options": ["+v3.3.0"],
-          "body": "The method makes differences between two arrays.\n\n__Example for understanding:__\n\n```javascript\nvar arr_db = [{ id: 1, name: 'Peter' }, { id: 2, name: 'Lucia' }] ;\nvar arr_form = [{ id: 1, name: 'Peter' }, { id: 3, name: 'Tomas' }];\nvar diff = DIFFARR('id', arr_db, arr_form);\n\n// diff.add   {Object Array}   --> Items for inserting to DB\n// diff.upd   {Object Array}   --> Items for updating in DB\n// diff.upd   {Array}          --> identificators for removing from DB\n```\n\n__Output__:\n\n```javascript\n{\n\tadd: [\n\t\t{ id: 3, name: 'Tomas' }\n\t],\n\tupd: [\n\t\t{ db: { id: 1, name: 'Peter' }, form: { id: 1, name: 'Peter' }}\n\t],\n\trem: [\n\t\t2\n\t]\n}```",
+          "body": "The method makes differences between two arrays.\n\n__Example for understanding:__\n\n```javascript\nvar arr_db = [{ id: 1, name: 'Peter' }, { id: 2, name: 'Lucia' }] ;\nvar arr_form = [{ id: 1, name: 'Peter' }, { id: 3, name: 'Tomas' }];\nvar diff = DIFFARR('id', arr_db, arr_form);\n\n// diff.add   {Object Array}   --> Items for inserting to DB\n// diff.upd   {Object Array}   --> Items for updating in DB\n// diff.upd   {Array}          --> identifiers for removing from DB\n```\n\n__Output__:\n\n```javascript\n{\n\tadd: [\n\t\t{ id: 3, name: 'Tomas' }\n\t],\n\tupd: [\n\t\t{ db: { id: 1, name: 'Peter' }, form: { id: 1, name: 'Peter' }}\n\t],\n\trem: [\n\t\t2\n\t]\n}```",
           "name": "DIFFARR",
           "params": [
             {
@@ -23972,7 +23972,7 @@
     },
     {
       "changetype": 2,
-      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\t// $.tasks();           --> +v3.1.0 returns a new instance TaskBuilder\n\t// $.redirect(url);     --> +v3.2.0 performs a redirect\n\t// $.noop();            --> +v3.3.0 a callback of the operation won't be executed and the controller instance (if exists) will perform \"controller.custom()\" method. After execution you can create a custom response on the request.\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identificator for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
+      "body": "Operations are simple methods for processing some operations. The benefits of operations are great error handling and chaining operations in queue. Operations don't need to have specific schema for input data. If the `error` contains some error then `callback` argument will contain this error otherwise `err` argument will contain `null`.\n\n__Register an operation__:\n\n```javascript\nNEWOPERATION('delay', function($) {\n\n\t// Properties:\n\t// $.value;             --> {Object} data/model\n\t// $.error;             --> {ErrorBuilder}\n\t// $.controller;        --> {Controller} optional\n\t// $.options;           --> {Object} optional, default EMPTYOBJECT\n\n\t// Methods:\n\t// $.callback([value]);\n\t// $.success([value]);\n\t// $.invalid(err, [message]);\n\t// $.done([arg]);\n\t// $.cancel();          --> +v3.1.0 cancels callback\n\t// $.tasks();           --> +v3.1.0 returns a new instance TaskBuilder\n\t// $.redirect(url);     --> +v3.2.0 performs a redirect\n\t// $.noop();            --> +v3.3.0 a callback of the operation won't be executed and the controller instance (if exists) will perform \"controller.custom()\" method. After execution you can create a custom response on the request.\n\n\t// Only for chaining:\n\t// $.response;          --> {Object} contains all results\n\t// $.errors;            --> {ErrorBuilder} main error builder\n\t// $.meta.items;        --> {String Array} name of all operations in a queue\n\t// $.meta.prev;         --> {String} a prev operation\n\t// $.meta.next;         --> {String} a next operation\n\t// $.meta.index;        --> {Number} a current processed index from \"$.meta.index\"\n\t// $.repeated;          --> {Number} contains a count of repeating of the current operation\n\t// $.name;              --> {String} an identifier for \"$.response\" (default: \"operation name\")\n\n    setTimeout(function() {\n        $.success(); // is same as $.callback(SUCCESS(true));\n    }, $.delay || 0);\n});\n```\n\n__Execute the operation__:\n\n```javascript\nOPERATION('delay', 5000, function(err, response) {\n    console.log(err, response);\n});```",
       "group": "Builders",
       "name": "Operations",
       "methods": [
@@ -24440,7 +24440,7 @@
           "name": "instance.read",
           "params": [
             {
-              "body": "Property name / Item identificator.",
+              "body": "Property name / Item identifier.",
               "name": "name",
               "type": "String"
             }
@@ -25656,7 +25656,7 @@
     },
     {
       "changetype": 1,
-      "body": "`+v3.3.0` supports predefined tasks targeted for the best performance. Predefined tasks can be stored in `/tasks/` directory.\n\n```javascript\n// Declaration\nNEWTASK('TaskBuilderName', function(push) {\n\n\tpush('task1', function($) {\n\n\t\t// $ === TaskBuilderOptions\n\t\n\t\t// Properties:\n\t\t// $.value;                              --> {Object} A temporary data/model\n\t\t// $.error;                              --> {ErrorBuilder} optional\n\t\t// $.controller;                         --> {Controller} optional\n\t\t// $.session;                            --> {Object} optional, A session object (depends on the controller)\n\t\t// $.sessionid;                          --> {Object} optional, A session identificator (depends on the controller)\n\t\t// $.user;                               --> {Object} optional, A user instance (depends on the controller)\n\t\t// $.language;                           --> {Object} optional, A current language (depends on the controller)\n\t\t// $.ip;                                 --> {Object} optional, A request IP address (depends on the controller)\n\t\t// $.id;                                 --> {Object} optional, A route first dynamic argument depends on the controller)\n\t\t// $.req;                                --> {Object} optional, A current request instance (depends on the controller)\n\t\t// $.res;                                --> {Object} optional, A current response (depends on the controller)\n\t\t// $.params;                             --> {Object} optional, All dynamic route parameters (depends on the controller)\n\t\t// $.files;                              --> {Object} optional, All received files (depends on the controller)\n\t\t// $.body;                               --> {Object} optional, Received data (depends on the controller)\n\t\t// $.query;                              --> {Object} optional, Received URL query arguments (depends on the controller)\n\t\t// $.headers;                            --> {Object} optional, All received request headers (depends on the controller)\n\n\t\t// Methods:\n\t\t// $.next(task1, [task2], [taskN]);      --> Runs only the first existing task\n\t\t// $.next2(task);                        --> returns Function with wrapped \"$.next(task)\", it handles errors automatically (targeted for callbacks)\n\t\t// $.success([value]);                   --> ends TasksBuilder with { success: true, value: [value] } object\n\t\t// $.success2([value]);                  --> returns Function with wrapped \"$.success()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.done([data]);                       --> ends TaskBuilder processing, if \"data\" are entered then will be returned in the callback\n\t\t// $.done2([send_value_from_callback]);  --> returns Function with wrapped \"$.done()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.callback(callback);                 --> can rewrite existing callback\n\n\t\tconsole.log('task1', $.value.custom);\n\t\t$.next('task2');\n\t});\n\n\tpush('task2', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task2', $.value.custom);\n\t\t$.done();\n\t});\n\n});\n\n// TASK() executes predefined TaskBuilder and it starts with \"task1\"\nvar builder = TASK('TaskBuilderName', 'task1', function(err, response) {\n\tconsole.log(err, response);\n});\n\n// Now we can assign a value to a TaskBuilder model\nbuilder.value.custom = 'value';\n```\n\n__Output__:\n\n```html\ntask1 value\ntask2 value\nnull { custom: 'value' }```",
+      "body": "`+v3.3.0` supports predefined tasks targeted for the best performance. Predefined tasks can be stored in `/tasks/` directory.\n\n```javascript\n// Declaration\nNEWTASK('TaskBuilderName', function(push) {\n\n\tpush('task1', function($) {\n\n\t\t// $ === TaskBuilderOptions\n\t\n\t\t// Properties:\n\t\t// $.value;                              --> {Object} A temporary data/model\n\t\t// $.error;                              --> {ErrorBuilder} optional\n\t\t// $.controller;                         --> {Controller} optional\n\t\t// $.session;                            --> {Object} optional, A session object (depends on the controller)\n\t\t// $.sessionid;                          --> {Object} optional, A session identifier (depends on the controller)\n\t\t// $.user;                               --> {Object} optional, A user instance (depends on the controller)\n\t\t// $.language;                           --> {Object} optional, A current language (depends on the controller)\n\t\t// $.ip;                                 --> {Object} optional, A request IP address (depends on the controller)\n\t\t// $.id;                                 --> {Object} optional, A route first dynamic argument depends on the controller)\n\t\t// $.req;                                --> {Object} optional, A current request instance (depends on the controller)\n\t\t// $.res;                                --> {Object} optional, A current response (depends on the controller)\n\t\t// $.params;                             --> {Object} optional, All dynamic route parameters (depends on the controller)\n\t\t// $.files;                              --> {Object} optional, All received files (depends on the controller)\n\t\t// $.body;                               --> {Object} optional, Received data (depends on the controller)\n\t\t// $.query;                              --> {Object} optional, Received URL query arguments (depends on the controller)\n\t\t// $.headers;                            --> {Object} optional, All received request headers (depends on the controller)\n\n\t\t// Methods:\n\t\t// $.next(task1, [task2], [taskN]);      --> Runs only the first existing task\n\t\t// $.next2(task);                        --> returns Function with wrapped \"$.next(task)\", it handles errors automatically (targeted for callbacks)\n\t\t// $.success([value]);                   --> ends TasksBuilder with { success: true, value: [value] } object\n\t\t// $.success2([value]);                  --> returns Function with wrapped \"$.success()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.done([data]);                       --> ends TaskBuilder processing, if \"data\" are entered then will be returned in the callback\n\t\t// $.done2([send_value_from_callback]);  --> returns Function with wrapped \"$.done()\", it handels errors automatically (targeted for callbacks)\n\t\t// $.callback(callback);                 --> can rewrite existing callback\n\n\t\tconsole.log('task1', $.value.custom);\n\t\t$.next('task2');\n\t});\n\n\tpush('task2', function($) {\n\t\t// $ === TaskBuilderOptions\n\t\tconsole.log('task2', $.value.custom);\n\t\t$.done();\n\t});\n\n});\n\n// TASK() executes predefined TaskBuilder and it starts with \"task1\"\nvar builder = TASK('TaskBuilderName', 'task1', function(err, response) {\n\tconsole.log(err, response);\n});\n\n// Now we can assign a value to a TaskBuilder model\nbuilder.value.custom = 'value';\n```\n\n__Output__:\n\n```html\ntask1 value\ntask2 value\nnull { custom: 'value' }```",
       "group": "Builders",
       "methods": [
         {
