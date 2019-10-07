@@ -12053,8 +12053,20 @@
           "name": "@{sitemap}",
           "params": [
 
-          ],
-          "return": "Object Array"
+          ]
+        },
+        {
+          "options": ["+v3.3.0"],
+          "changetype": 1,
+          "body": "Renders specific part (look to Total.js Components).",
+          "name": "@{part}",
+          "params": [
+              {
+                "name": "name",
+                "type": "String",
+                "body": "Name of part"
+              }
+          ]
         },
         {
           "body": "Renders the partial view.",
@@ -12090,8 +12102,7 @@
               ],
               "type": "String"
             }
-          ],
-          "return": "String"
+          ]
         },
         {
           "body": "Renders a component.",
