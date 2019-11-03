@@ -76,7 +76,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -125,7 +125,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -1438,7 +1438,7 @@
               "default": 10
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -3856,7 +3856,7 @@
               "type": "Function"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "fnCallback",
               "options": [
                 "optional"
@@ -4229,7 +4229,7 @@
               "type": "String / String Array"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -4255,7 +4255,7 @@
               "type": "String / Array String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": [
@@ -4427,7 +4427,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "params": [
                 {
@@ -4485,7 +4485,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "params": [
                 {
@@ -4620,7 +4620,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -4703,7 +4703,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -4724,7 +4724,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -4757,7 +4757,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "params": [
                 {
                   "name": "err",
@@ -5107,7 +5107,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -5180,7 +5180,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -5198,7 +5198,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -5228,7 +5228,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "params": [
                 {
                   "name": "err",
@@ -6097,7 +6097,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "params": [
                 {
                   "name": "err",
@@ -6249,7 +6249,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "params": [
                 {
                   "name": "err",
@@ -8674,7 +8674,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -9018,7 +9018,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -9065,7 +9065,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -9111,7 +9111,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -9202,7 +9202,7 @@
           ],
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -12893,7 +12893,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -12942,7 +12942,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -12996,7 +12996,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -13351,7 +13351,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -14295,7 +14295,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": [
@@ -14653,7 +14653,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -14671,7 +14671,7 @@
           "name": "message.send2",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -14774,7 +14774,7 @@
               "type": "Array Message"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -14809,7 +14809,7 @@
               "type": "Array Message"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -14899,7 +14899,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -15128,7 +15128,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -15155,7 +15155,7 @@
           "name": "image.identify",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -15935,7 +15935,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "function",
               "params": [
@@ -15966,7 +15966,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -16017,7 +16017,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -16059,7 +16059,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -16156,7 +16156,7 @@
           "name": "file.md5",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -16188,7 +16188,7 @@
               "options": [
                 "optional"
               ],
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -17248,7 +17248,7 @@
           "name": "Response.prototype.continue",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17284,7 +17284,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17327,7 +17327,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17370,7 +17370,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17409,7 +17409,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17449,7 +17449,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17495,7 +17495,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17541,7 +17541,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -17582,7 +17582,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -19425,7 +19425,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -19554,7 +19554,7 @@
               "type": "Function"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -19847,7 +19847,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -19875,7 +19875,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -19903,7 +19903,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -19943,7 +19943,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -19972,7 +19972,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20000,7 +20000,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20028,7 +20028,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20062,7 +20062,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20100,7 +20100,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20128,7 +20128,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20162,7 +20162,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20190,7 +20190,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -20245,7 +20245,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20284,7 +20284,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20323,7 +20323,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20362,7 +20362,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20406,7 +20406,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20463,7 +20463,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20520,7 +20520,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -20572,7 +20572,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": ["optional"],
@@ -21343,7 +21343,7 @@
               "type": "Array String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "options": [
                 "optional"
@@ -22343,7 +22343,7 @@
               "options": ["optional"]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "fn",
               "type": "Function",
               "params": [
@@ -22640,7 +22640,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function"
             }
@@ -22657,7 +22657,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function"
             }
@@ -22702,7 +22702,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "options": [
@@ -22730,7 +22730,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -22824,7 +22824,7 @@
               "type": "String/Buffer"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "params": [
                 {
@@ -22909,7 +22909,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -22964,7 +22964,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23016,7 +23016,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23076,7 +23076,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23140,7 +23140,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23196,7 +23196,7 @@
               "type": "Object"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23250,7 +23250,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23314,7 +23314,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23372,7 +23372,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23423,7 +23423,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23474,7 +23474,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23525,7 +23525,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23572,7 +23572,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -23743,7 +23743,7 @@
           "return": "undefined",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "Function",
               "params": [
@@ -24057,7 +24057,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "fn",
               "params": [
                 {
@@ -24111,7 +24111,7 @@
               ]
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "fn",
               "params": [
                 {
@@ -25561,10 +25561,44 @@
         },
         {
           "body": "Performs the request.",
+          "alias": "instance.callback",
           "name": "instance.exec",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
+              "name": "callback",
+              "type": "String",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                },
+                {
+                  "name": "data",
+                  "body": "A parsed data. (+v2.4.0) This value can't be null, a default value is `EMPTYOBJECT`.",
+                  "type": "Object"
+                },
+                {
+                  "name": "response",
+                  "body": "A response snapshot (.value, .headers, .status, .cache, .response, etc., .datetime). This response object can read cookies like `response.cookie('name')`.",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "EventEmitter(begin, end, data(chunk, percentage))"
+        },
+        {
+          "options": ["+v3.3.1"],
+          "body": "Performs the request.",
+          "name": "instance.callback",
+          "params": [
+            {
+              "body": "A callback function",
               "name": "callback",
               "type": "String",
               "options": [
@@ -25596,7 +25630,7 @@
           "name": "instance.stream",
           "params": [
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "callback",
               "type": "String",
               "options": [
@@ -25687,7 +25721,7 @@
               "type": "String"
             },
             {
-              "body": "A callback",
+              "body": "A callback function",
               "name": "fn",
               "params": [
                 {
@@ -27031,7 +27065,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27076,7 +27110,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27121,7 +27155,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27166,7 +27200,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27211,7 +27245,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27256,7 +27290,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27306,7 +27340,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27356,7 +27390,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27406,7 +27440,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27456,7 +27490,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "options": [
                 "optional"
@@ -27539,7 +27573,7 @@
           "params": [
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "params": [
                 {
@@ -27828,7 +27862,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -27868,7 +27902,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -27908,7 +27942,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -27948,7 +27982,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -27988,7 +28022,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28028,7 +28062,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28073,7 +28107,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28133,7 +28167,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28178,7 +28212,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28223,7 +28257,7 @@
             {
               "name": "callback",
               "type": "Function",
-              "body": "A callback",
+              "body": "A callback function",
               "options": [
                 "optional"
               ],
@@ -28259,7 +28293,7 @@
           "params": [
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "params": [
                 {
@@ -28536,7 +28570,7 @@
             },
             {
               "name": "callback",
-              "body": "A callback",
+              "body": "A callback function",
               "type": "Function",
               "params": [
                 {
@@ -28598,6 +28632,71 @@
       "name": "DataReader",
       "group": "Additional",
       "body": "`+v3.1.0` __DataReader__ is very effective and optimized solution for reading and filtering data in real-time. With this solution you can stream data and filter data easily. Also NoSQL embedded database uses `DataReader` too.\n\n```javascript\nvar reader = U.reader();\n\nreader.find().between('price', 10, 200).callback(console.log);\n\n// or\nreader.scalar('max', 'price').callback(console.log);\n\n// or\nreader.count().between('price', 10, 200).callback(console.log);\n\n// Some ReadStream\nsomestream.on('data', function(chunk) {\n\t// some data processing\n\treader.push(ARRAY_OF_DOCS_or_DOC);\n});\n\nsomestream.on('end', () => reader.done());```",
+      "methods": [
+        {
+          "name": "reader.reset",
+          "body": "Resets counters and responses.",
+          "params": [
+          ],
+          "return": "DataReader"
+        },
+        {
+          "name": "reader.done",
+          "body": "Evaluates callbacks in all `DatabaseBuilder` instances. Same as `reader.push(null)`.",
+          "params": [
+          ],
+          "return": "DataReader"
+        },
+        {
+          "name": "reader.find",
+          "body": "Finds records.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "reader.push",
+          "body": "Inserts a new data for analysing. __null__ value will evalute a DataReader `callback`.",
+          "params": [
+            {
+              "name": "data",
+              "body": "Array of documents",
+              "type": "Array"
+            }
+          ],
+          "return": "DataReader"
+        },
+        {
+          "name": "reader.count",
+          "body": "Counts records.",
+          "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "name": "reader.scalar",
+          "body": "Performs a scalar operation.",
+          "params": [
+            {
+              "name": "type",
+              "type": "String",
+              "body": "A scalar operation type `min`, `max`, `sum`, `avg`, `count` or `group`."
+            },
+            {
+              "name": "field",
+              "type": "String",
+              "body": "A field name"
+            }
+          ],
+          "return": "DatabaseBuilder"
+        }
+      ]
+    },
+    {
+      "changetype": 1,
+      "name": "FLOWSTREAM",
+      "group": "Additional",
+      "body": "`+v3.3.1` __FLOWSTREAM__ (currently beta) contains a small core of Total.js Flow.",
       "methods": [
         {
           "name": "reader.reset",
