@@ -4741,6 +4741,31 @@
         },
         {
           "options": [
+            "+v3.0.0"
+          ],
+          "name": "database.clean",
+          "body": "Cleans DB by removing of invalid documents.",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback function",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                }
+              ]
+            }
+          ],
+          "return": "Database"
+        },
+        {
+          "options": [
             "+v2.9.0"
           ],
           "name": "database.backups",
@@ -5213,6 +5238,29 @@
           ],
           "return": "Database"
         },
+        {
+          "options": [
+            "+v3.0.0"
+          ],
+          "name": "table.clean",
+          "body": "Cleans DB by removing of invalid documents.",
+          "params": [
+            {
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback function",
+              "options": [
+                "optional"
+              ],
+              "params": [
+                {
+                  "name": "err",
+                  "body": "Error handling.",
+                  "type": "Error"
+                }
+              ]
+            }
+          ],
         {
           "name": "table.backups",
           "body": "Reads all backups created by `DatabaseBuilder.backup()` method.",
