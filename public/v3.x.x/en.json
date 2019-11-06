@@ -5260,7 +5260,8 @@
                 }
               ]
             }
-          ],
+          ]
+        },
         {
           "name": "table.backups",
           "body": "Reads all backups created by `DatabaseBuilder.backup()` method.",
@@ -5431,6 +5432,41 @@
           "return": "DatabaseBuilder",
           "params": [
 
+          ]
+        },
+        {
+          "options": [
+            "+v3.3.0"
+          ],
+          "changetype": 1,
+          "name": "builder.rule",
+          "body": "Evaluates a rule for each document. It other words: improved creating of conditions\n\n```javascript\nbuilder.rule(doc => doc.age > 33);\n// or builder.builder.rule((doc, param) => doc.age > param.age, { age: 33 });```",
+          "return": "DatabaseBuilder",
+          "params": [
+            {
+              "name": "fn",
+              "type": "Function",
+              "body": "A function for evaluting of documents",
+              "params": [
+                {
+                  "name": "doc",
+                  "type": "Object",
+                  "body": "Input object"
+                },
+                {
+                  "options": ["optional"],
+                  "name": "params",
+                  "type": "Object",
+                  "body": "Custom params"
+                }
+              ]
+            },
+            {
+              "options": ["optional"],
+              "name": "param",
+              "type": "Object",
+              "body": "A custom param"
+            }
           ]
         },
         {
