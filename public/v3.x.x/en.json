@@ -23263,15 +23263,15 @@
         },
         {
           "changetype": 1,
-          "body": "Very helpful method. It can simulate a request to the route with the schema. It supports all form HTTP methods for CRUD operations.\n\n```javascript\n$ACTION('POST /api/products/', { name: 'Total.js' }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n$ACTION('GET /api/products/', function(err, response) {\n\tconsole.log(err, response);\n});```",
+          "body": "Very helpful method. It can simulate a request to the route with the schema. It supports all form HTTP methods for CRUD operations.\n\n```javascript\n$ACTION('POST Products --> @check @save (response)', { name: 'Total.js' }, function(err, response) {\n\tconsole.log(err, response);\n});\n\n$ACTION('GET Products -->\u00a0@read', function(err, response) {\n\tconsole.log(err, response);\n});```",
           "name": "$ACTION",
           "options": [
             "+v3.3.0"
           ],
           "params": [
             {
-              "body": "A route path",
-              "name": "path",
+              "body": "Method + Schema name + operations",
+              "name": "method_schema",
               "type": "String"
             },
             {
