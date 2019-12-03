@@ -17381,7 +17381,7 @@
         {
           "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
           "options": ["+v3.0.0"],
-          "body": "Sends a file stored in FileStorage",
+          "body": "Sends a stored file in FileStorage",
           "name": "Response.prototype.filefs",
           "params": [
             {
@@ -17424,7 +17424,7 @@
         {
           "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
           "options": ["+v3.0.0"],
-          "body": "Sends a file stored in NoSQL embedded database",
+          "body": "Sends a stored file in NoSQL embedded database",
           "name": "Response.prototype.filenosql",
           "params": [
             {
