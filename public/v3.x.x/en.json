@@ -18569,6 +18569,14 @@
                 "optional"
               ],
               "type": "string"
+            },
+            {
+              "body": "A salt which will be added into the end of the string",
+              "name": "salt",
+              "options": [
+                "optional"
+              ],
+              "type": "string"
             }
           ],
           "return": "String"
