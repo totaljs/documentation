@@ -1581,10 +1581,12 @@
           "return": "Framework"
         },
         {
-          "body": "Creates a Websocket route to the controller or module.\n\n```javascript\nF.websocket('/', action, ['json']);\nF.websocket('/with-specific-room/', action, ['json', 'my-chat-room']);\nF.websocket('/with-specific-origin/', action, ['json', 'http://privater.eu', 'https://www.totaljs.com']);\nF.websocket('/array-binary-message/', action, ['binary']);\nF.websocket('/raw-text-message/', action, ['raw']);\n\n// Or dynamic routing\nF.websocket('/{room}/', action_dynamic);\n\nfunction action_dynamic(room) {\n    console.log(room);\n}```",
+          "changetype": 2,
+          "changelog": "+v3.3.3 supports auth flags directly in path",
+          "body": "Creates a Websocket route to the controller or module.\n\n```javascript\nWEBSOCKET('/', action, ['json']);\nWEBSOCKET('/with-specific-room/', action, ['json', 'my-chat-room']);\nWEBSOCKET('/with-specific-origin/', action, ['json', 'http://privater.eu', 'https://www.totaljs.com']);\nWEBSOCKET('/array-binary-message/', action, ['binary']);\nWEBSOCKET('/raw-text-message/', action, ['raw']);\n\n// Or dynamic routing\nWEBSOCKET('/{room}/', action_dynamic);\n\nfunction action_dynamic(room) {\n    console.log(room);\n}\n\n// +v3.3.3\n// Easy way to perform authorization instead of use flags:\nWEBSOCKET('\ud83d\udd12 /authorized/');\nWEBSOCKET('+ /authorized/');\n\n// +v3.3.3\n// Unauthorized:\nWEBSOCKET('- /unauthorized/');```",
           "example": "https://github.com/totaljs/examples/tree/master/websocket",
-          "alias": "WEBSOCKET",
-          "name": "F.websocket",
+          "alias": "F.websocket",
+          "name": "WEBSOCKET",
           "params": [
             {
               "body": "A relative URL. You can create a dynamic param: /{param1}/{param2}/",
@@ -2427,9 +2429,11 @@
             "+v1.9.0",
             "important"
           ],
+          "changetype": 2,
+          "changelog": "v3.3.3 supports <code>service</code> type",
           "body": "This method load framework without server and with user-defiend dependencies. Great solution for workers.\n\n__Usage in some worker 1__\n\n- the instance loads models and definitions\n\n```javascript\nrequire('total.js').load('debug', ['models', 'definitions'], function() {\n\t// IS READY\n});\n```\n\n__Usage in some worker 2__\n\n- the instance loads all dependencies (controllers, definitions, models, modules, etc..)\n- instance doesn't load `bundles`, `packages`, `components` and `themes`\n\n```javascript\nrequire('total.js').load('debug', function() {\n\t// IS READY\n});\n```\n\n__Usage in some worker 3__\n\n- the instance loads packages only\n\n```javascript\nrequire('total.js').load('debug', ['packages'], function() {\n\t// IS READY\n});\n```\n\n### How to customize framework dependencies for workers and websites together?\n\nSome code (model, definition, controller, module):\n\n```javascript\nif (isWORKER)\n    console.log('I am worker.');\nelse\n    console.log('I am server.');```",
-          "name": "F.load",
-          "alias": "LOAD",
+          "name": "LOAD",
+          "alias": "F.load",
           "params": [
             {
               "body": "Runs the framework in \"debug\" or \"release\" mode",
@@ -2437,7 +2441,7 @@
               "type": "String"
             },
             {
-              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>components</b>, <b>themes</b>, <b>bundles</b> and <b>sitemap</b>. If types don't contain any type the framework loads all types / dependencies with except <b>bundles</b>, <b>packages</b>, <b>themes</b> and <b>components</b>.",
+              "body": "Load only these dependencies / types. Types: <b>modules</b>, <b>packages</b>, <b>models</b>, <b>definitions</b>, <b>controllers</b>, <b>components</b>, <b>themes</b>, <b>bundles</b> and <b>sitemap</b>. If types don't contain any type the framework loads all types / dependencies with except <b>bundles</b>, <b>packages</b>, <b>themes</b>, <b>components</b> and `+v3.3.3` supports <b>service</b> type.",
               "name": "types",
               "type": "String Array",
               "default": "[]"
@@ -2910,7 +2914,8 @@
     },
     {
       "changetype": 2,
-      "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : APP_NAME\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```\n\n## Simple \"encrypting\" of values\n\n`+v3.1.0` supports a simple encrypting of values with `base64` or `hex` encoding. Fox example:\n\n```html\nsomevalue1            : base64 MTIzNDU2\n// Contains 123456 value\n\nsomevalue2            : hex 313233343536\n// Contains 123456 value\n```\n\n## Random values\n\n`+v3.3.0` supports random values, example:\n\n```html\nsomevalue1    (random)        : 10\n// Will contain a random string with length 10 chars```",
+      "changelog": "Added persistent generated values",
+      "body": "`FrameworkConfiguration` contains framework settings. __IMPORTANT__: `v3.1.0` renames all internal config keys, all keys with `-` chars were replaced to keys with `_` chars. Settings can be stored in these files:\n\n```html\n/app/config\n/app/config-debug\n/app/config-release\n/app/config-rest\n```\n\nThe `config` file is loaded for all framework modes (`release`, `debug`, `test`) and other configs are loaded according to the framework mode. The configuration file is a plain text file.\n\n__Example__:\n\n```html\nname                         : My Web Site name\nversion                      : 1.01\nauthor                       : Peter Sirka\nsecret                       : mySECRET1.01\ndefault_image_quality        : 96\n...\n...\n...\n```\n\n## Auto-Converting values with sub-type\n\nThe framework converts/binds values according the sub-type. So you can read converted values in the application:\n\n```html\nmy_custom_object_raw      (Object)    : { name: 'Total.js', date: new Date() }\nmy_custom_object_json     (JSON)      : { \"name\": \"Total.js\" }\nmy_custom_number          (number)    : 320.34\nmy_custom_boolean         (boolean)   : true\nmy_custom_date            (date)      : 2016-07-26\nmy_custom_array           (array)     : [1, 2, 3, 4]\nbinds_environment_value   (env)       : APP_NAME\n\n// +v2.9.0 supports config linking\nbinds_config_value        (config)    : name\n```\n\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n## Custom options for dependencies\n\n`+v2.4.0` supports custom options for all dependencies.\n\n```html\n// type#name       (Object)  : { name: 'value', number: 30, boolean: false }\n// a real example:\nmodule#monitor     (Object)  : { url: '/mymonitor/'}```\n\n## Good to know\n\n- __IMPORTANT__ `key : value` before the semicolon `:` must be min. one `space` or `\\t`\n- __IMPORTANT__ framework tries to parse number (only numbers witch not start with `0` zero) as number and boolean (`true` and `false`) as boolean, for example:\n\n```html\nwill_be_number_1      : 123\nwill_be_number_2      : 0.3\nwill_not_be_number_1  : 0123\nwill_not_be_number_2  : 0,3\n\nwill_be_boolean_1     : true\nwill_be_boolean_2     : false\n```\n\n## Simple \"encrypting\" of values\n\n`+v3.1.0` supports a simple encrypting of values with `base64` or `hex` encoding. Fox example:\n\n```html\nsomevalue1            : base64 MTIzNDU2\n// Contains 123456 value\n\nsomevalue2            : hex 313233343536\n// Contains 123456 value\n```\n\n## Random values\n\n`+v3.3.0` supports random values, example:\n\n```html\nsomevalue1    (random)        : 10\n// Will contain a random string with length 10 chars\n```\n\n## Persistent generated values\n\n`+v3.3.3` supports persistent generated values, example:\n\n```html\nsomevalue1    (generated)        : 10\n// Will contain a random string with length 10 chars and stores it for future usage in /databases/config.json```",
       "group": "Framework",
       "name": "FrameworkConfiguration",
       "properties": [
@@ -2928,6 +2933,26 @@
           "body": "An application version.",
           "name": "version",
           "return": "String"
+        },
+        {
+          "changetype": 1,
+          "default": "true",
+          "body": "Creates a snapshot of important internal statistics from the application and stores it as `init_script_name.js.json` in 60 seconds interval.",
+          "name": "allow_stats_snapshot",
+          "return": "Boolean",
+          "options": [
+            "+v3.3.3"
+          ]
+        },
+        {
+          "default": "-20 minutes",
+          "changetype": 1,
+          "body": "Releases unused session in defined interval. Empty value will disable this behaviour.",
+          "name": "allow_sessions_unused",
+          "return": "String",
+          "options": [
+            "+v3.3.3"
+          ]
         },
         {
           "default": "false",
@@ -3909,7 +3934,7 @@
             "+v2.8.0"
           ],
           "body": "Creates directories (if not exist) according to the path. Method is synchronous.",
-          "name": "F.path.mkdir",
+          "name": "PATH.mkdir",
           "params": [
             {
               "body": "A path",
@@ -3921,7 +3946,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_public`.",
-          "name": "F.path.public",
+          "name": "PATH.public",
           "params": [
             {
               "body": "A relative path",
@@ -3936,7 +3961,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_isomporhic`.",
-          "name": "F.path.isomporhic",
+          "name": "PATH.isomporhic",
           "params": [
             {
               "body": "A relative path",
@@ -3954,7 +3979,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_private`.",
-          "name": "F.path.private",
+          "name": "PATH.private",
           "params": [
             {
               "body": "A relative path",
@@ -3972,7 +3997,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_configs`.",
-          "name": "F.path.configs",
+          "name": "PATH.configs",
           "params": [
             {
               "body": "A relative path",
@@ -3989,8 +4014,84 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "body": "Gets the path from `CONF.directory_schemas`.",
+          "name": "PATH.schemas",
+          "params": [
+            {
+              "body": "A relative path",
+              "name": "filename",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v3.3.3"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "Gets the path from `CONF.directory_updates`.",
+          "name": "PATH.updates",
+          "params": [
+            {
+              "body": "A relative path",
+              "name": "filename",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v3.3.3"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "Gets the path from `CONF.directory_operations`.",
+          "name": "PATH.tasks",
+          "params": [
+            {
+              "body": "A relative path",
+              "name": "filename",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v3.3.3"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "Gets the path from `CONF.directory_operations`.",
+          "name": "PATH.operations",
+          "params": [
+            {
+              "body": "A relative path",
+              "name": "filename",
+              "options": [
+                "optional"
+              ],
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v3.3.3"
+          ],
+          "return": "String"
+        },
+        {
           "body": "Gets the path from `CONF.directory_public_virtual`.",
-          "name": "F.path.virtual",
+          "name": "PATH.virtual",
           "params": [
             {
               "body": "A relative path",
@@ -4008,7 +4109,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_models`.",
-          "name": "F.path.models",
+          "name": "PATH.models",
           "params": [
             {
               "body": "A relative path",
@@ -4023,7 +4124,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_databases`.",
-          "name": "F.path.databases",
+          "name": "PATH.databases",
           "params": [
             {
               "body": "A relative path",
@@ -4038,7 +4139,7 @@
         },
         {
           "body": "Get the path from `CONF.directory_logs`.",
-          "name": "F.path.logs",
+          "name": "PATH.logs",
           "params": [
             {
               "body": "A relative path",
@@ -4053,7 +4154,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_temp`.",
-          "name": "F.path.temp",
+          "name": "PATH.temp",
           "params": [
             {
               "body": "A relative path",
@@ -4068,7 +4169,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_workers`.",
-          "name": "F.path.workers",
+          "name": "PATH.workers",
           "params": [
             {
               "body": "A relative path",
@@ -4083,7 +4184,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_views`.",
-          "name": "F.path.views",
+          "name": "PATH.views",
           "params": [
             {
               "body": "A relative path",
@@ -4098,7 +4199,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_modules`.",
-          "name": "F.path.modules",
+          "name": "PATH.modules",
           "params": [
             {
               "body": "A relative path",
@@ -4113,7 +4214,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_definitions`.",
-          "name": "F.path.definitions",
+          "name": "PATH.definitions",
           "params": [
             {
               "body": "A relative path",
@@ -4128,7 +4229,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_controllers`.",
-          "name": "F.path.controllers",
+          "name": "PATH.controllers",
           "params": [
             {
               "body": "A relative path",
@@ -4143,7 +4244,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_tests`.",
-          "name": "F.path.tests",
+          "name": "PATH.tests",
           "params": [
             {
               "body": "A relative path",
@@ -4158,7 +4259,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_packages`.",
-          "name": "F.path.packages",
+          "name": "PATH.packages",
           "params": [
             {
               "body": "A relative path",
@@ -4173,7 +4274,7 @@
         },
         {
           "body": "Gets the path from `CONF.directory_resources`.",
-          "name": "F.path.resources",
+          "name": "PATH.resources",
           "params": [
             {
               "body": "A relative path",
@@ -4188,7 +4289,7 @@
         },
         {
           "body": "Gets the root path.",
-          "name": "F.path.root",
+          "name": "PATH.root",
           "params": [
             {
               "body": "A relative path",
@@ -4203,7 +4304,7 @@
         },
         {
           "body": "Gets `themes` path.",
-          "name": "F.path.themes",
+          "name": "PATH.themes",
           "params": [
             {
               "body": "A relative path",
@@ -4221,7 +4322,7 @@
           "options": [
             "+v2.9.0"
           ],
-          "name": "F.path.unlink",
+          "name": "PATH.unlink",
           "params": [
             {
               "body": "Path to filenames.",
@@ -4247,7 +4348,7 @@
             "+v2.9.0"
           ],
           "body": "Removes all files and directories on the path.",
-          "name": "F.path.rmdir",
+          "name": "PATH.rmdir",
           "params": [
             {
               "body": "Path to directory or directories.",
@@ -4270,7 +4371,7 @@
         },
         {
           "body": "Checks whether the path exists.",
-          "name": "F.path.exists",
+          "name": "PATH.exists",
           "options": [
             "+v2.0.0"
           ],
@@ -4649,6 +4750,50 @@
           "name": "database.find",
           "body": "Finds documents in the database.",
           "params": [
+          ],
+          "return": "DatabaseBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["v3.3.0"],
+          "name": "database.autofill",
+          "body": "Creates a filter automatically according to the __Total.js Schema__. Query parameters will be used for the filtering and parameters:\n\n- `fields` (separated by comma) will be returned from DB\n- `page` will be used as a page\n- `limit` will be used as a limit otherwise `def_maxlimit`\n- `sort` will be used for __sorting__ otherwise `def_sort`\n\n```javascript\n// builder.autofill($, allowedfields, skipfields, def_sort, def_maxlimit);\n// @$ {SchemaOptions} Instance of SchemaOptions\n// @allowedfields {String} Optional, can contain fields not defined in the schema and must be separated by comma \",\"\n// @skippedfields {String} Optional, can contain skip fields defined in schema and must be separated by comma \",\"\n// @def_sort {String} Optional, default sort in the form \"FIELDNAME_asc\" or \"FIELDNAME_desc\"\n// @def_maxlimit {Number} Optional, a maximum count of items per page\n// @localized {String} Optional, defines localized name of fields\n// returns QueryBuilder\n\n// IMPORTANT:\n// If \"def_maxlimit\" is not defined then the pagination isnt't applied\n\n// Example:\ndb.find('users').autofill($, 'dtcreated:Date,dtupdated:Date', 'id', 'dtcreated_desc', 50);\n\n// Example with localized fields:\ndb.find('users').autofill($, 'dtcreated:Date,dtupdated:Date', 'id', 'dtcreated_desc', 50, 'name,description').language('sk');\n```",
+          "params": [
+              {
+                "name": "$",
+                "type": "SchemaInstance",
+                "body": "A schema instance"
+              },
+              {
+                "name": "allowedfields",
+                "type": "String",
+                "body": "Allowed fields separated by comma",
+                "options": ["optional"]
+              },
+              {
+                "name": "skippedfields",
+                "type": "String",
+                "body": "Skipped fields separated by comma",
+                "options": ["optional"]
+              },
+              {
+                "name": "def_sort",
+                "type": "String",
+                "body": "A default sort in the form \"FIELDNAME_asc\" or \"FIELDNAME_desc\"",
+                "options": ["optional"]
+              },
+              {
+                "name": "def_maxlimit",
+                "type": "Number",
+                "body": "A maximum count of items per page",
+                "options": ["optional"]
+              },
+              {
+                "name": "localized",
+                "type": "String",
+                "body": "Defines localized name of fields",
+                "options": ["optional"]
+              }
           ],
           "return": "DatabaseBuilder"
         },
@@ -6464,6 +6609,48 @@
                 "optional"
               ]
             }
+          ],
+          "return": "DatabaseCounter"
+        },
+        {
+          "options": [
+            "+v3.3.3"
+          ],
+          "changetype": 1,
+          "name": "database.counter.reset",
+          "body": "Resets statistics accoding to the filter",
+          "return": "DatabaseCounter",
+          "params": [
+            {
+              "name": "type",
+              "type": "String",
+              "body": "Type of stats (`mma` = min,max,avg, `min`, `max` or `sum`). `null` value means all type of stats"
+            },
+            {
+              "name": "id",
+              "type": "String",
+              "body": "An identifier. `null` means all identifiers"
+            },
+            {
+              "name": "date",
+              "type": "String",
+              "body": "A date. `null` means all dates or supported formats `yyyy`, `yyyy-MM` and `yyyy-MM-dd`"
+            },
+            {
+              "options": ["optional"],
+              "name": "callback",
+              "type": "Function",
+              "body": "A callback",
+              "params":
+                [
+                    {
+                      "name": "err",
+                      "type": "Error",
+                      "body": "Error handling"
+                    }
+                ]
+            }
+
           ],
           "return": "DatabaseCounter"
         },
@@ -10898,6 +11085,17 @@
           "return": "Number"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Returns all ID of all connections in WebSocket",
+          "name": "controller.keys",
+          "options": [
+            "readonly",
+            "websocket"
+          ],
+          "return": "String Array"
+        },
+        {
           "default": "{}",
           "body": "All connected users.",
           "name": "controller.connections",
@@ -11604,7 +11802,9 @@
           "return": "String"
         },
         {
-          "body": "Imports static files. Works with `.js`, `.css` and `.ico` automatically creates tags `<script>`, `<link>` and `<favicon>`. It supports routing of images or movies without tag creation and supports routing to themes (more in themes section), then `head` and `meta` tag rendering.\n\n```html\n<head>\n    ...\n    ...\n    @{import('head', 'meta', 'default.js', 'default.css', 'favicon.ico')}\n</head>\n```\n\nThis method is alternative for `@{js}`, `@{css}` and `@{favicon}`.\n\n__Special values__:\n\n- `manifest` (`+v3.0.0`) renders link tag to `/manifest.json`\n- `livereload` (`+v3.0.0`) renders link to `livereload` script (only in `debug` mode)\n- `head` renders values from `@{head()}` method\n- `meta` renders values from `@{meta()}`, `@{title()}`, `@{description()}` and `@{keywords()}` methods\n- `components` renders links to components styles/scripts\n- `favicon.ico` or `favicon.png` renders favicon link tag",
+          "changetype": 2,
+          "changelog": "v3.3.0 supports merging of static files",
+          "body": "Imports static files. Works with `.js`, `.css` and `.ico` automatically creates tags `<script>`, `<link>` and `<favicon>`. It supports routing of images or movies without tag creation and supports routing to themes (more in themes section), then `head` and `meta` tag rendering.\n\n```html\n<head>\n    ...\n    ...\n    @{import('head', 'meta', 'default.js', 'default.css', 'favicon.ico')}\n</head>\n```\n\nThis method is alternative for `@{js}`, `@{css}` and `@{favicon}`.\n\n__Special values__:\n\n- `manifest` (`+v3.0.0`) renders link tag to `/manifest.json`\n- `livereload` (`+v3.0.0`) renders link to `livereload` script (only in `debug` mode)\n- `head` renders values from `@{head()}` method\n- `meta` renders values from `@{meta()}`, `@{title()}`, `@{description()}` and `@{keywords()}` methods\n- `components` renders links to components styles/scripts\n- `favicon.ico` or `favicon.png` renders favicon link tag\n\n---\n\n`+v3.3.0` supports merging of static files, example:\n\n```html\n@{import('default.js + ui.js', 'default.css + ui.css')}```",
           "name": "@{import}",
           "params": [
             {
@@ -15746,7 +15946,8 @@
       "name": "FrameworkImage"
     },
     {
-      "body": "Total.js Cluster `+v2.6.0` can clusterize a current app to multiple threads. Cluster synchronizes `F.cache()` between all threads automatically and enables locking of NoSQL embedded database files.\n\n### How to run Total.js Cluster?\n\n```javascript\nrequire('total.js');\n\nconst options = {};\noptions.ip = '0.0.0.0';\n\n// Run the framework in the cluster\nF.cluster.http(4, 'release', options);\n```\n",
+      "changetype": 2,
+      "body": "Total.js Cluster `+v2.6.0` can clusterize a current app to multiple threads. Cluster tries to synchronize `cache` and `sessions` between all threads automatically and enables locking of NoSQL embedded database files.\n\n### How to run Total.js Cluster?\n\n```javascript\nconst options = {};\noptions.ip = '0.0.0.0';\n\n// Run the framework in the cluster\nrequire('total.js').cluster.http(4, 'release', options);\n```\n\n## Auto-elasticity\n\n`+v3.3.3` The framework automatically adapts performance to application needs. In 5 seconds interval it pings each thread and if the respond of all threads is more than 70ms then it opens a new thread.\n\n```javascript\nconst options = {};\noptions.ip = '0.0.0.0';\noptions.max = 100; // a maximum count of open threads (default: infinite)\n\nrequire('total.js').cluster.http('auto', 'release', options);\n```\n\n## Watcher in debug mode\n\n`+v3.3.3` supports watcher in `debug` clustered mode. If the framework will capture a change then it restarts each thread.\n\n```javascript\nconst options = {};\noptions.ip = '0.0.0.0';\n\n// Run the framework in the cluster\nrequire('total.js').cluster.http('auto', 'debug', options);\n```\n\n## Good to know\n\n`+v3.3.3` Cluster watches a current working directory. If it will contain a file called `restart` then it restarts threads (then will be the file removed).",
       "group": "Framework",
       "methods": [
         {
@@ -16172,7 +16373,6 @@
           "body": "Checks the content type whether is an audio.",
           "name": "file.isAudio",
           "params": [
-
           ],
           "return": "Boolean"
         },
@@ -16309,13 +16509,29 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "options": ["v3.3.3"],
+          "body": "Extension of the uploaded file without `.` (dot).",
+          "name": "file.extension",
+          "return": "String"
+        },
+        {
           "body": "The file path into the temporary directory.",
           "name": "file.path",
           "return": "String"
         },
         {
+          "alias": "file.size",
           "body": "The file length (size) in `bytes`.",
           "name": "file.length",
+          "return": "Number"
+        },
+        {
+          "options": ["+v3.3.3"],
+          "changetype": 1,
+          "alias": "file.length",
+          "body": "The file length (size) in `bytes`.",
+          "name": "file.size",
           "return": "Number"
         },
         {
@@ -17379,7 +17595,8 @@
           "return": "Response"
         },
         {
-          "changelog": "+v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
+          "changetype": 2,
+          "changelog": "+v3.3.3 adds `checkmeta` argument, +v3.3.0 `download` argument can be a function in the form `(name, type) => name.toUpperCase()`",
           "options": ["+v3.0.0"],
           "body": "Sends a stored file in FileStorage",
           "name": "Response.prototype.filefs",
@@ -17417,6 +17634,22 @@
                 "optional"
               ],
               "type": "Function"
+            },
+            {
+              "body": "Meta checker. The method must return `true` (file will be returned) or `false` (framework throws 404).",
+              "name": "checkmeta",
+              "options": [
+                "+v3.3.3",
+                "optional"
+              ],
+              "type": "Function",
+              "params": [
+                {
+                  "name": "meta",
+                  "type": "Object",
+                  "body": "A file meta data"
+                }
+              ]
             }
           ],
           "return": "Response"
@@ -17465,6 +17698,8 @@
           "return": "Response"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.3.3 adds `checkmeta` argument",
           "options": ["+v3.0.0"],
           "body": "Sends an image stored in FileStorage. Example:\n\n```javascript\nres.imagefs('files', id, function(image) {\n\timage.output('jpg');\n\timage.quality(85);\n\timage.resize('50%');\n\timage.minify();\n});\n```",
           "name": "Response.prototype.imagefs",
@@ -17499,6 +17734,22 @@
                 "optional"
               ],
               "type": "Function"
+            },
+            {
+              "body": "Meta checker. The method must return `true` (file will be returned) or `false` (framework throws 404).",
+              "name": "checkmeta",
+              "options": [
+                "+v3.3.3",
+                "optional"
+              ],
+              "type": "Function",
+              "params": [
+                {
+                  "name": "meta",
+                  "type": "Object",
+                  "body": "A file meta data"
+                }
+              ]
             }
           ],
           "return": "Response"
@@ -17917,6 +18168,13 @@
         },
         {
           "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Checks if the string contains a valid Base64",
+          "name": "String.prototype.isBase64",
+          "params": [],
+          "return": "Boolean"
+        },
+        {
           "body": "This method can replace `@{#}` for a new `root` URL address according to the `default-root` value in the app config. This method is used in the View Engine.",
           "name": "String.prototype.ROOT",
           "options": [
@@ -19222,6 +19480,21 @@
           "return": "Date"
         },
         {
+          "body": "Updates a timezone in DateTime",
+          "name": "Date.prototype.setTimeZone",
+          "params": [
+            {
+              "body": "A timezone",
+              "name": "tm",
+              "type": "String"
+            }
+          ],
+          "options": [
+            "+v3.3.3"
+          ],
+          "return": "Date"
+        },
+        {
           "body": "Adds milliseconds to the current date and it returns a new date.",
           "name": "Date.prototype.add",
           "params": [
@@ -19895,7 +20168,9 @@
       "options": ["+v3.3.0"]
     },
     {
-      "body": "`+v3.3.0` Session can help with reading/storing session data. __Read carefully__ the documentation below because __session item__ contains two identifiers `id` and `sessionid` which is very important to know difference between each other.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n// SESSION ITEM:\n{\n\tid: 'user_id',                             // A main identifier, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRATION_DATE',                 // Expiration date, when will the session expire?\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n\n\t// SESSION DATA:\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`\n\n### Good to know\n\n- by default are sessions stored in plain-text files in `databases` directory in the form `sessions_NAME.txt`\n- session item contains last usage time, creation date, custom note and custom settings, these info can be very helpful in several cases",
+      "changetype": 2,
+      "changelog": "+v3.3.0 enables auto-clearing of unused sessions",
+      "body": "`+v3.3.0` Session can help with reading/storing session data. __Read carefully__ the documentation below because __session item__ contains two identifiers `id` and `sessionid` which is very important to know difference between each other.\n\n```javascript\n// A default session is initialized\nvar session = SESSION();\n\n// OR with a specific storage called \"orders\":\n// var orders = SESSION('orders');\n\n// OR with a specific storage called \"tokens\":\n// var tokens = SESSION('tokens');\n```\n\n### Session item object\n\n```javascript\n// SESSION ITEM:\n{\n\tid: 'user_id',                             // A main identifier, for example \"user.id\"\n\tsessionid: 'session_id',                   // Must be always unique, we use \"UID()\"\n\texpire: 'EXPIRATION_DATE',                 // Expiration date, when will the session expire?\n\tcreated: 'CREATION_DATE',                  // Internal value\n\tsettings: 'custom settings (optional)',    // It's targeted for specific situations only, so this field can contain special settings (must be STRING!!!)\n\tnote: 'a custom note (optional)'           // Here we can store for example parsed User-Agent (browser name + device type)\n\n\t// SESSION DATA:\n\tdata: { SESSION: 'DATA' },                 // A session data, for example in most cases contains a user profile\n}\n```\n\n- the framework stores on HDD only these fields `id`, `sessionid`, `note`, `settings`, `expire`, `created`\n- `data` can be null and when data is null then the `Session` instance tries to load data via `instance.ondata` delegate\n- session DB can contain several same `session.id` in DB but `sessionid` will be unique per each `session.id`\n\n### Good to know\n\n- by default are sessions stored in plain-text files in `databases` directory in the form `sessions_NAME.txt`\n- session item contains last usage time, creation date, custom note and custom settings, these info can be very helpful in several cases\n- `+v3.3.3` enables auto-clearing of unused sessions (can be disable via `allow_sessions_unused` option)",
       "group": "Additional",
       "properties": [
         {
@@ -20999,6 +21274,40 @@
           ]
         },
         {
+          "changetype": 1,
+          "options": [
+            "+v3.3.3"
+          ],
+          "body": "This is very helpful method for performing of application/database updates. The method tries to execute a script of each script of update in the order. If the file isn't located then update will be continue with another script. Scripts are running in main application thread. If you will perform an update in cluster mode then the \"0\" thread only will perform the update. This feature is a simple alternative to `startup` folder.\n\n```javascript\n// How does the framework perform that update?\n// - tries to load a script /updates/1.0.1.js\n// - tries to load a script /updates/1.0.2.js\n// - tries to load a script /updates/1.0.3.js\nUPDATE(['1.0.1', '1.0.2', '1.0.3'], function() {\n\t// DONE\n}, 'Updating database');\n\n// After update are files renamed to:\n// - tries to load a script /updates/1.0.1.js-bk\n// - tries to load a script /updates/1.0.2.js-bk\n// - tries to load a script /updates/1.0.3.js-bk\n// So after the next start will the scripts skipped.\n```",
+          "name": "UPDATE",
+          "params": [
+            {
+              "body": "Definion of old version of app",
+              "name": "versions",
+              "type": "String Array"
+            },
+            {
+              "options": ["optional"],
+              "body": "callback",
+              "name": "A callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "type": "Error",
+                    "body": "Error handling"
+                  }
+              ]
+            },
+            {
+              "body": "A custom message for `PAUSESERVER()`",
+              "name": "pause_server_message",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "options": [
             "+v3.0.0"
           ],
@@ -21178,7 +21487,9 @@
           "return": "DatabaseBuilder"
         },
         {
-          "body": "Gets the database instance. This function is the alias for `framework.nosql()`.",
+          "changelog": "Supports absolute paths",
+          "changetype": 2,
+          "body": "Gets the database instance. This function is the alias for `framework.nosql()`.\n\n- `+v3.3.3` adds `NOSQL('~absolute_path.nosql')`",
           "name": "NOSQL",
           "options": [
             "+v2.0.0"
@@ -22578,7 +22889,9 @@
           "return": "DatabaseStorage"
         },
         {
-          "body": "Gets an instance of TABLE storage",
+          "changelog": "Supports absolute paths",
+          "changetype": 2,
+          "body": "Gets an instance of TABLE storage.\n\n- `+v3.3.3` adds `NOSQL('~absolute_path.nosql')`",
           "name": "TABLE",
           "options": [
             "+v3.0.0"
@@ -26800,6 +27113,323 @@
           "return": "SchemaDeclaration"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new workflow extension, but target `workflow` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.addWorkflowExtension",
+          "params": [
+            {
+              "body": "A workflow name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new operation extension, but target `operation` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.addOperationExtension",
+          "params": [
+            {
+              "body": "A operation name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new transform extension, but target `transform` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.addTransformExtension",
+          "params": [
+            {
+              "body": "A transform name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new hook extension, but target `hook` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.addHookExtension",
+          "params": [
+            {
+              "body": "A hook name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new save extension, but target `save` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setSaveExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new update extension, but target `update` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setUpdateExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new insert extension, but target `insert` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setInsertExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new patch extension, but target `patch` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setPatchExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new read extension, but target `read` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setReadExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new query extension, but target `query` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setQueryExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Adds a new remove extension, but target `remove` must declare `$.extend([data])` method which allows you to extend it. __Extension can transform/modify data or model only.__",
+          "name": "schema.setRemoveExtension",
+          "params": [
+            {
+              "body": "A callback delegate",
+              "name": "callback",
+              "params": [
+                {
+                  "body": "Schema options",
+                  "name": "$",
+                  "type": "Object"
+                },
+                {
+                  "body": "Custom data",
+                  "name": "data",
+                  "type": "Object",
+                  "options": ["optional"]
+                }
+              ],
+              "type": "Function"
+            }
+          ],
+          "return": "SchemaDeclaration"
+        },
+        {
           "body": "Adds a new hook (+v2.1.0). Hooks are too specific than others. You can register multiple hooks with the same name and the framework processes all hooks asynchronous. Design expected that you change the model in each hook.",
           "name": "schema.addHook",
           "params": [
@@ -26932,7 +27562,7 @@
       ],
       "name": "SchemaDeclaration",
       "changetype": 2,
-      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Number2');           // +v3.3.0 default value is null, not \"0\" (zero)\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'YourSchemaName');\n\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n// (NOTE: the framework doesn't deserialize JSON to Object)\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// Function types instead of String types:\nschema.define('prop', UID);                 // +v3.3.0 is same as 'UID'\nschema.define('prop', String);              // is same as 'String'\nschema.define('prop', Number);              // is same as 'Number'\nschema.define('prop', Boolean);             // is same as 'Boolean'\nschema.define('prop', Object);              // is same as 'Object'\nschema.define('prop', Date);                // is same as 'Date'\n\n// How to get back default values?\nconsole.log(schema.schema.property_name.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
+      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Number2');           // +v3.3.0 default value is null, not \"0\" (zero)\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'Base64');            // +v3.3.3 a value must be valid Base64 string\nschema.define('prop', 'YourSchemaName');\n\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n// (NOTE: the framework doesn't deserialize JSON to Object)\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// Function types instead of String types:\nschema.define('prop', UID);                 // +v3.3.0 is same as 'UID'\nschema.define('prop', String);              // is same as 'String'\nschema.define('prop', Number);              // is same as 'Number'\nschema.define('prop', Boolean);             // is same as 'Boolean'\nschema.define('prop', Object);              // is same as 'Object'\nschema.define('prop', Date);                // is same as 'Date'\n\n// How to get back default values?\nconsole.log(schema.schema.property_name.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
       "properties": [
         {
           "body": "Returns a schema definition.",
@@ -28457,6 +29087,20 @@
           "body": "It wraps this code `$.callback(SUCCESS(true))`. A simple usage: \n\n```javascript\n$.success(true);```"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Allows to extend current instance of the schema. It executes all registered extensions in current operation.",
+          "name": "$.extend",
+          "params": [
+            {
+              "body": "A custom data which will be sent into the extensions.",
+              "name": "data",
+              "type": "Object",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
           "name": "$.callback",
           "params": [
             {
@@ -28785,10 +29429,11 @@
       ]
     },
     {
-      "changetype": 1,
+      "changetype": 2,
+      "changelog": "v3.3.0 supports <code>options<code> delegate in the components.",
       "name": "FLOWSTREAM",
       "group": "Additional",
-      "body": "`+v3.3.1` __FLOWSTREAM__ (currently beta) contains a small modified core of real Total.js Flow. You need to understand how it works. __The Flow can be used for__ e.g. Workflows, Alarms, Rule engines, etc..\n\n- [Flow UI component](https://componentator.com/components/j-flow/) fully optimized for this Total.js Flow\n- [Example](https://github.com/totaljs/examples/tree/master/flow)\n\n### `FLOWSTREAM()` method\n\nTotal.js Flow is optimized for different cases and you can provide different Flows in the same time.\n\n```javascript\nvar flow1 = FLOWSTREAM(); // is same as FLOWSTREAM('default');\nvar flow2 = FLOWSTREAM('mails');\nvar flow3 = FLOWSTREAM('users');\n\n// ...\n// ...\n\nflow1.trigger('id1__0', YOUR_INPUT_DATA);\n```\n\nMethod `FLOWSTREAM()` creates a `Flow` instance if the instance doesn't exist. If the instance already exists then the method returns existing instance. You can provide unlimited count of Flow instances. First of all you have to register your components via `flow.register()` method, then you have to load Flow schema via `flow.use()`. After that you need to perform `flow.trigger()` for executing of Flow. \n\n### How does the Flow work?\n\nFlow processes data according to the Flow schema. Flow Schema contains items. Each item contains its `connections` (output to input) to other items. You have to understand the schema below:\n\n```javascript\n{\n\tid1: {                    // ID of instance of the component\n\t\tcomponent: 'trigger', // Type of component\n\t\tconnections: [\n\t\t\t'0': {            // 0 means output index\n\t\t\t\tid: 'id2',    // target component ID\n\t\t\t\tindex: 0      // target component input index: 0\n\t\t\t},\n\t\t\t'2': {            // 2 means output index\n\t\t\t\tid: 'id4',    // target component ID\n\t\t\t\tindex: 2      // target component input index: 2\n\t\t\t}\n\t\t]\n\t},\n\tid2: {                    // ID of instance of the component\n\t\tcomponent: 'SMS',     // Type of component\n\t\tconnections: [\n\t\t\t'0': {            // 0 means output index\n\t\t\t\tid: 'id8',    // target component ID\n\t\t\t\tindex: 1      // target component input index: 1\n\t\t\t},\n\t\t\t'2': {            // 2 means output index\n\t\t\t\tid: 'id3',    // target component ID\n\t\t\t\tindex: 0      // target component input index: 0\n\t\t\t}\n\t\t]\n\t},\n\t...\n}\n```\n\nFlow reads the schema above into the memory and the schema will react on incoming data. Incoming data must be executed via `flow.trigger()`, everything starts there.\n\n### FlowMessage\n\nFlow message is the most important part of Total.js Flow. Message will contain all data and you will work with the message instance only.\n\n```javascript\n// PROPERTIES\nmessage.data                    // {Object} A message data\nmessage.from;                   // {FlowComponent} A component instance\nmessage.fromid;                 // {String} ID of component instance\nmessage.fromindex;              // {Number} Output index\nmessage.fromcomponent;          // {String} A component name\nmessage.fromschema;             // {FlowSchema} A schema instance\nmessage.to;                     // {FlowComponent} A component instance\nmessage.toid;                   // {String} ID of component instance\nmessage.toindex;                // {Number} Input index\nmessage.tocomponent;            // {FlowComponent} A component name\nmessage.toschema                // {FlowComponent} A schema instance\nmessage.schema;                 // {FlowSchema} alias to \"toschema\"\nmessage.cache;                  // {Object} A persistent cache for all messages and each instance of component\nmessage.options;                // {Object} A custom options for the component\nmessage.used;                   // {Number} How many components have processed the message?\nmessage.repo;                   // {Object} A persistent cache for the current message\nmessage.main;                   // {Flow} A flow instance\nmessage.count;                  // {Number} A count of all processed messages per Flow\nmessage.duration;               // {Number} Contains a creation date (ticks)\nmessage.duration2;              // {Number} Contains a cloned date (ticks)\nmessage.controller;             // {Controller} Total.js Controller (if exists)\nmessage.user;                   // {Controller.user}\nmessage.session;                // {Controller.session}\nmessage.sessionid;              // {Controller.sessionid}\nmessage.language;               // {Controller.language}\nmessage.id;                     // {Controller.id}\nmessage.ip;                     // {Controller.ip}\nmessage.req;                    // {Controller.req}\nmessage.res;                    // {Controller.res}\nmessage.params;                 // {Controller.params}\nmessage.files;                  // {Controller.files}\nmessage.body;                   // {Controller.body}\nmessage.query;                  // {Controller.query}\nmessage.headers;                // {Controller.headers}\n\n// METHODS\nmessage.replace(NEW_DATA);\n\nmessage.send(OUTPUT_INDEX);\n// Sends the message next\n// @OUTPUT_INDEX {String/Number} optional, sends the message to specific index (if the index isn't specified then the message will be sent to all outputs)\n// return {Number} with count of outputs\n\nmessage.destroy();\n// Destroys the message\n\nmessage.on('message', function(message) {\n\t// The message has been sent\n});\n\nmessage.on('end', function(message) {\n\t// The message has been destroyed\n});\n```\n\n### FlowComponent\n\n`FlowComponent` means a scope defined below:\n\n```javascript\nflow.register('component_name', function(exports) {\n\n\t// exports \"means\" FlowComponent instance\n\n\t// Delegates:\n\n\texports.install = function() {\n\n\t};\n\n\texports.uninstall = function() {\n\n\t};\n\n\texports.message = function(message) {\n\n\t};\n\n\texports.destroy = function() {\n\n\t};\n\n\t// Properties:\n\n\t// exports.cache; {Object}\n\t// exports.disabled {Boolean}\n\t// exports.connected {Boolean}\n\t// exports.stats {Object} { pending: Number, input: Number, output: Number, duration: Number }\n\n});\n```\n\n- Flow doesn't create instance for each type of component\n- Each component has only the one instance\n- `FlowComponent` instance depends on the `FlowMessage` only\n- `FlowMessage` contains all data and meta data (e.g. `options`) for the component\n\n### FlowSchema\n\n`FlowSchema` contains a component evaluated data from the schema defined via `flow.use()`, example:\n\n```javascript\ncomponent: 'trigger',\nconnections: [\n\t'0': {\n\t\tid: 'id2',\n\t\tindex: 0\n\t},\n\t'2': {\n\t\tid: 'id4',\n\t\tindex: 2\n\t}\n]\n```\n\nSo if you use custom data in the schema, then you can use it in the Flow.\n\n### Example\n\nWe belive that you understand the example below. Just create a script called `flow.js` and run it.\n\n```javascript\nvar flow = FLOWSTREAM();\n\nflow.register('transform', function(exports) {\n\n\texports.message = function(message) {\n\t\tswitch (message.options.type) {\n\t\t\tcase 'uppercase':\n\t\t\t\tmessage.data = message.data.toUpperCase();\n\t\t\t\tbreak;\n\t\t\tcase 'lowercase':\n\t\t\t\tmessage.data = message.data.toLowerCase();\n\t\t\t\tbreak;\n\t\t}\n\n\t\t// Send next\n\t\tmessage.send(0);\n\t};\n\n}, { type: 'uppercase' });\n\nflow.register('reverse', function(exports) {\n\texports.message = function(message) {\n\n\t\tvar arr = message.data.split('');\n\t\tarr.reverse();\n\t\tmessage.data = arr.join('');\n\n\t\tmessage.send(0);\n\t};\n});\n\nflow.register('length', function(exports) {\n\texports.message = function(message) {\n\t\tmessage.data = message.data.length;\n\t\tmessage.send(0);\n\t};\n});\n\nflow.register('debug', function(exports) {\n\texports.message = function(message) {\n\t\tconsole.log(message.data);\n\t\tmessage.destroy();\n\t};\n});\n\nflow.use({\n\n\tcom1: {\n\t\tcomponent: 'transform',\n\t\toptions: { type: 'uppercase' },\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com2', index: 0 },\n\t\t\t\t{ id: 'com3', index: 0 },\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom2: {\n\t\tcomponent: 'length',\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom3: {\n\t\tcomponent: 'reverse',\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom4: {\n\t\tcomponent: 'debug'\n\t}\n});\n\nflow.trigger('com1__0', 'Total.js Platform');\n```",
+      "body": "`+v3.3.1` __FLOWSTREAM__ (currently beta) contains a small modified core of real Total.js Flow. You need to understand how it works. __The Flow can be used for__ e.g. Workflows, Alarms, Rule engines, etc..\n\n- [Flow UI component](https://componentator.com/components/j-flow/) fully optimized for this Total.js Flow\n- [Example](https://github.com/totaljs/examples/tree/master/flow)\n\n### `FLOWSTREAM()` method\n\nTotal.js Flow is optimized for different cases and you can provide different Flows in the same time.\n\n```javascript\nvar flow1 = FLOWSTREAM(); // is same as FLOWSTREAM('default');\nvar flow2 = FLOWSTREAM('mails');\nvar flow3 = FLOWSTREAM('users');\n\n// ...\n// ...\n\nflow1.trigger('id1__0', YOUR_INPUT_DATA);\n```\n\nMethod `FLOWSTREAM()` creates a `Flow` instance if the instance doesn't exist. If the instance already exists then the method returns existing instance. You can provide unlimited count of Flow instances. First of all you have to register your components via `flow.register()` method, then you have to load Flow schema via `flow.use()`. After that you need to perform `flow.trigger()` for executing of Flow. \n\n### How does the Flow work?\n\nFlow processes data according to the Flow schema. Flow Schema contains items. Each item contains its `connections` (output to input) to other items. You have to understand the schema below:\n\n```javascript\n{\n\tid1: {                    // ID of instance of the component\n\t\tcomponent: 'trigger', // Type of component\n\t\tconnections: [\n\t\t\t'0': {            // 0 means output index\n\t\t\t\tid: 'id2',    // target component ID\n\t\t\t\tindex: 0      // target component input index: 0\n\t\t\t},\n\t\t\t'2': {            // 2 means output index\n\t\t\t\tid: 'id4',    // target component ID\n\t\t\t\tindex: 2      // target component input index: 2\n\t\t\t}\n\t\t]\n\t},\n\tid2: {                    // ID of instance of the component\n\t\tcomponent: 'SMS',     // Type of component\n\t\tconnections: [\n\t\t\t'0': {            // 0 means output index\n\t\t\t\tid: 'id8',    // target component ID\n\t\t\t\tindex: 1      // target component input index: 1\n\t\t\t},\n\t\t\t'2': {            // 2 means output index\n\t\t\t\tid: 'id3',    // target component ID\n\t\t\t\tindex: 0      // target component input index: 0\n\t\t\t}\n\t\t]\n\t},\n\t...\n}\n```\n\nFlow reads the schema above into the memory and the schema will react on incoming data. Incoming data must be executed via `flow.trigger()`, everything starts there.\n\n### FlowMessage\n\nFlow message is the most important part of Total.js Flow. Message will contain all data and you will work with the message instance only.\n\n```javascript\n// PROPERTIES\nmessage.data                    // {Object} A message data\nmessage.from;                   // {FlowComponent} A component instance\nmessage.fromid;                 // {String} ID of component instance\nmessage.fromindex;              // {Number} Output index\nmessage.fromcomponent;          // {String} A component name\nmessage.fromschema;             // {FlowSchema} A schema instance\nmessage.to;                     // {FlowComponent} A component instance\nmessage.toid;                   // {String} ID of component instance\nmessage.toindex;                // {Number} Input index\nmessage.tocomponent;            // {FlowComponent} A component name\nmessage.toschema                // {FlowComponent} A schema instance\nmessage.schema;                 // {FlowSchema} alias to \"toschema\"\nmessage.cache;                  // {Object} A persistent cache for all messages and each instance of component\nmessage.options;                // {Object} A custom options for the component\nmessage.used;                   // {Number} How many components have processed the message?\nmessage.repo;                   // {Object} A persistent cache for the current message\nmessage.main;                   // {Flow} A flow instance\nmessage.count;                  // {Number} A count of all processed messages per Flow\nmessage.duration;               // {Number} Contains a creation date (ticks)\nmessage.duration2;              // {Number} Contains a cloned date (ticks)\nmessage.controller;             // {Controller} Total.js Controller (if exists)\nmessage.user;                   // {Controller.user}\nmessage.session;                // {Controller.session}\nmessage.sessionid;              // {Controller.sessionid}\nmessage.language;               // {Controller.language}\nmessage.id;                     // {Controller.id}\nmessage.ip;                     // {Controller.ip}\nmessage.req;                    // {Controller.req}\nmessage.res;                    // {Controller.res}\nmessage.params;                 // {Controller.params}\nmessage.files;                  // {Controller.files}\nmessage.body;                   // {Controller.body}\nmessage.query;                  // {Controller.query}\nmessage.headers;                // {Controller.headers}\n\n// METHODS\nmessage.replace(NEW_DATA);\n\nmessage.send(OUTPUT_INDEX);\n// Sends the message next\n// @OUTPUT_INDEX {String/Number} optional, sends the message to specific index (if the index isn't specified then the message will be sent to all outputs)\n// return {Number} with count of outputs\n\nmessage.destroy();\n// Destroys the message\n\nmessage.on('message', function(message) {\n\t// The message has been sent\n});\n\nmessage.on('end', function(message) {\n\t// The message has been destroyed\n});\n```\n\n### FlowComponent\n\n`FlowComponent` means a scope defined below:\n\n```javascript\nflow.register('component_name', function(exports) {\n\n\t// exports \"means\" FlowComponent instance\n\n\t// Delegates:\n\n\texports.install = function() {\n\n\t};\n\n\texports.uninstall = function() {\n\n\t};\n\n\texports.message = function(message) {\n\n\t};\n\n\texports.destroy = function() {\n\n\t};\n\n\t// +v3.3.0 supports \"options\" delegate:\n\texports.options = function(options) {\n\n\t};\n\n\t// Properties:\n\n\t// exports.cache; {Object}\n\t// exports.disabled {Boolean}\n\t// exports.connected {Boolean}\n\t// exports.stats {Object} { pending: Number, input: Number, output: Number, duration: Number }\n\n});\n```\n\n- Flow doesn't create instance for each type of component\n- Each component has only the one instance\n- `FlowComponent` instance depends on the `FlowMessage` only\n- `FlowMessage` contains all data and meta data (e.g. `options`) for the component\n\n### FlowSchema\n\n`FlowSchema` contains a component evaluated data from the schema defined via `flow.use()`, example:\n\n```javascript\ncomponent: 'trigger',\nconnections: [\n\t'0': {\n\t\tid: 'id2',\n\t\tindex: 0\n\t},\n\t'2': {\n\t\tid: 'id4',\n\t\tindex: 2\n\t}\n]\n```\n\nSo if you use custom data in the schema, then you can use it in the Flow.\n\n### Example\n\nWe belive that you understand the example below. Just create a script called `flow.js` and run it.\n\n```javascript\nvar flow = FLOWSTREAM();\n\nflow.register('transform', function(exports) {\n\n\texports.message = function(message) {\n\t\tswitch (message.options.type) {\n\t\t\tcase 'uppercase':\n\t\t\t\tmessage.data = message.data.toUpperCase();\n\t\t\t\tbreak;\n\t\t\tcase 'lowercase':\n\t\t\t\tmessage.data = message.data.toLowerCase();\n\t\t\t\tbreak;\n\t\t}\n\n\t\t// Send next\n\t\tmessage.send(0);\n\t};\n\n}, { type: 'uppercase' });\n\nflow.register('reverse', function(exports) {\n\texports.message = function(message) {\n\n\t\tvar arr = message.data.split('');\n\t\tarr.reverse();\n\t\tmessage.data = arr.join('');\n\n\t\tmessage.send(0);\n\t};\n});\n\nflow.register('length', function(exports) {\n\texports.message = function(message) {\n\t\tmessage.data = message.data.length;\n\t\tmessage.send(0);\n\t};\n});\n\nflow.register('debug', function(exports) {\n\texports.message = function(message) {\n\t\tconsole.log(message.data);\n\t\tmessage.destroy();\n\t};\n});\n\nflow.use({\n\n\tcom1: {\n\t\tcomponent: 'transform',\n\t\toptions: { type: 'uppercase' },\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com2', index: 0 },\n\t\t\t\t{ id: 'com3', index: 0 },\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom2: {\n\t\tcomponent: 'length',\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom3: {\n\t\tcomponent: 'reverse',\n\t\tconnections: {\n\t\t\t'0': [\n\t\t\t\t{ id: 'com4', index: 0 }\n\t\t\t]\n\t\t}\n\t},\n\tcom4: {\n\t\tcomponent: 'debug'\n\t}\n});\n\nflow.trigger('com1__0', 'Total.js Platform');```",
       "properties": [
         {
           "name": "flowmesage.data",
@@ -29242,7 +29887,7 @@
       "name": "Resources"
     },
     {
-      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More information__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (Total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions has been `_layout.html`.\n- if the path starts with `~` char then the framework maps the path into the views root directory\n- When the path starts with `.` char then the framework skips `.` and it loads the view without support of the framework configuration (the view can be outside of app directory)\n- [View properties and methods](#api~FrameworkViews)\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n---\n\n### Examples\n\nFollowing [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nThere are many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function() {\n\tF.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n\tvar self = this;\n\tself.repository.firstname = 'Peter';\n\tself.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according the name. The layout is the same as the view. The only difference is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n\t@{meta}\n\t<meta charset=\"utf-8\" />\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n\t<meta name=\"format-detection\" content=\"telephone=no\" />\n\t<meta name=\"robots\" content=\"all,follow\" />\n\t@{head}\n\t@{import('default.css', 'default.js', 'favicon.ico')}\n</head>\n<body>\n\n\t<div class=\"content\">\n\t\t@{section('panel')}\n\t\t@{body}\n\t</div>\n\n\t@{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n\t\t\t\t\t{ name: 'B', price: 32.10 },\n\t\t\t\t\t{ name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n- supports `else if` in `+v1.9.1`\n\n```html\n@{if user === null}\n\t<div>sign in</div>\n@{else}\n\t<div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n\t@{if model.name === 'Lucia'}\n\t\t<div>Here is Lucia.</div>\n\t\t@{else}\n\t\t<div>Here is Peter.</div>\n\t@{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n\t<div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n__Array looping__:\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n\t<div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.name}</div>\n\t<div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n__Object looping__:\n```html\n@{foreach m in { name: 'Peter', age: 32 }}\n\t<div>property: @{m.key}, value: @{m.value}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.key}</div>\n\t<div>@{property.value}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n\t@{body}\n....\n....\n\t@{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n\t<h1>Homepage</h1>\n\t<br />\n....\n....\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`.\n\n```javascript\nF.helpers.custom = function(str, num) {\n\t// this === controller\n\treturn str + ' = ' + num;\n};\n\nF.helpers.isTrue = function(value) {\n\treturn value ? true : false;\n};\n```\n\n```html\n@{custom('Peter', 25)}\n\n<!-- OR BETTER -->\n\n@{helpers.custom('Peter', 25)}\n\n<!-- OR -->\n\n@{if helpers.isTrue(true)}\n\tHelpers in condition. The helper <code>isTrue</code> won't work without <code>helpers</code> keyword.\n@{fi}\n```\n\n## Defining inline helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`. The inline helper has to by defined in the view.\n\n```html\n@{helper address(street, city)\n\t<h2>Address</h2>\n\t<div>@{street}</div>\n\t<div>@{city}</div>\n\t<br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n\t<div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n\n<!--\n\tOr you can translate by the resource key with @(#KEY).\n\tExample:\n-->\n\n<h1>@(#T-3403403030)</h1>\n<p>@(#T34930203922)</p>\n```\n\n## Auto binding values\n\n```javascript\nfunction view_contactform() {\n\tthis.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n## Reading a value from the configuration\n\n- +v2.8.0 supports binding values directly from the `F.config`\n\n```html\n<div>F.config.name: @{'%name'}</div>\n<div>CONF['manager-url']: @{'%manager-url'}</div>\n```\n\n## Simple routing to static files\n\n```html\n<!-- Will be routed into: `/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'logo.png'}\" />\n\n<!-- Will be routed into the `redtheme` theme and the URL will be `/redtheme/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=redtheme/logo.png'}\" />\n\n<!-- Will be routed into the default theme and the URL will be `/A_DEFAULT_THEME/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=?/logo.png'}\" />\n\n<!-- Will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n<script src=\"@{'ui.js'}\"></script>\n\n<!-- Will create a tag <script> and the `src` attribute will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n@{import('ui.js')}\n\n<!-- Will create a tag <link> and the `href` attribute will be routed into: `/css/ui.css` (find: `static-url-style` in docs) -->\n@{import('ui.css')}\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n## Paths\n\n```javascript\nvar output = VIEW('someview', ...);\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('@somepackage/someview', ...);\n// Targeted to --> /app/packages/somepackage.package/someview.html\n\nvar output = VIEW('=themename/someview', ...);\n// Targeted to --> /app/themes/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~\" --> is routed into the root of views (if the controller uses a theme then is routed into the root views of the theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~~\" --> is routed into the root of views (if the controller has applied a theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('./absolute/path/someview', ...);\n// Targeted to --> /absolute/path/someview.html```",
+      "body": "`Views` can render HTML. You can render \"view\" in \"view\" and \"view\" is rendered into the layout at the end. The view engine supports conditions, loops, sections, helpers and inline helpers.\n\n---\n\n__More information__\n\n- View is the plain HTML file with `.html` extension.\n- __IMPORTANT:__ Server tags are represented as `@{keyword}` (encoded) tag and `@{!keyword}` (raw) tag.\n- Views are synchronous.\n- Views are compiled into the function.\n- All views (HTML) are minimized under the compilation (Total.js saves memory).\n- The layout is rendered at the last (if it's not disabled).\n- You can render some view into the string.\n- The default layout filename is `layout.html`, in older versions has been `_layout.html`.\n- if the path starts with `~` char then the framework maps the path into the views root directory\n- When the path starts with `.` char then the framework skips `.` and it loads the view without support of the framework configuration (the view can be outside of app directory)\n- [View properties and methods](#api~FrameworkViews)\n- [Download the syntax highlighter for Sublime Text 3](#pages~Developer%20tools)\n\n---\n\n### Examples\n\nFollowing [examples](https://github.com/totaljs/examples) contain views.\n\n- [Example: Views](https://github.com/totaljs/examples/tree/master/views)\n- [Example: Views with XHR](https://github.com/totaljs/examples/tree/master/views-xhr)\n- [Example: Views places and sections](https://github.com/totaljs/examples/tree/master/views-place-sections)\n- [Example: Views meta](https://github.com/totaljs/examples/tree/master/views-meta)\n- [Example: Views inline JavaScript compress](https://github.com/totaljs/examples/tree/master/views-javascript-compress)\n- [Example: Views head](https://github.com/totaljs/examples/tree/master/views-head)\n- [Example: Views custom helper](https://github.com/totaljs/examples/tree/master/views-custom-helper)\n\n---\n\n## Repository vs. Model\n\nThere are many ways how to send some values between controllers and views. You can transfer data between the controller and the view via `controller.repository` or `controller.view('name', model)`.\n\n```javascript\nexports.install = function() {\n\tF.route('/', view_homepage);\n};\n\nfunction view_homepage() {\n\tvar self = this;\n\tself.repository.firstname = 'Peter';\n\tself.view('my-view', { firstname: 'Lucia' });\n}\n```\n\nA picture describes the behaviour of variables:\n\n![Repository vs. model](resources/viewengine-repository-vs-model.png)\n\n```html\n<h1>My View</h1>\n\n<!-- The repository will be available in the layout. -->\n<div>Get the value from the repository: @{repository.firstname}</div>\n\n<!-- The model won't be available in the layout. -->\n<div>Get the value from the model: @{model.firstname}</div>\n\n<!-- The repository and the model will be available in partial-view-1: -->\n<div>@{view('partial-view-1', model)}</div>\n\n<!-- Question: Will be the model available in partial-view-2? -->\n<div>@{view('partial-view-2')}</div>\n```\n\n## Defining the layout\n\nYou can create unlimited layouts and customize them according the name. The layout is the same as the view. The only difference is tag `@{body}`. Into this tag is rendered the view.\n\n### The layout example\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n\t@{meta}\n\t<meta charset=\"utf-8\" />\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n\t<meta name=\"format-detection\" content=\"telephone=no\" />\n\t<meta name=\"robots\" content=\"all,follow\" />\n\t@{head}\n\t@{import('default.css', 'default.js', 'favicon.ico')}\n</head>\n<body>\n\n\t<div class=\"content\">\n\t\t@{section('panel')}\n\t\t@{body}\n\t</div>\n\n\t@{view('footer')}\n\n</body>\n</html>\n```\n\nRead more about [view engine tags](#api~FrameworkViews).\n\n---\n\n## Defining the view\n\nYou can create unlimited views.\n\n### Example\n\n```html\n@{meta('Title', 'Description (optional)', 'Keywords (optional)')}\n\n<div>Hello World!</div>\n\n@{view('products', [{ name: 'A', price: 23.32 }, { name: 'B', price: 32.10 }])}\n@{view('users', model)}\n\n<!-- You can define multi-line command -->\n@{view('products', [{ name: 'A', price: 23.32 },\n\t\t\t\t\t{ name: 'B', price: 32.10 },\n\t\t\t\t\t{ name: 'C', price: 15.22 }])}\n```\n\n## Escaping\n\nThe view engine automatically escape HTML entities. Tag with `@{!` renders the raw value.\n\n```html\n@{repository.tag = 'Hello <b>World</b>'}\n\n<div>ESCAPED: @{repository.tag}</div>\n<div>RAW: @{!repository.tag}</div>\n```\n\n__Output__:\n\n```html\n<div>ESCAPED: Hello &lt;b&gt;World&lt;/b&gt;</div>\n<div>RAW: Hello <b>World</b></div>\n```\n\n## Conditions\n\n- supports `else if` in `+v1.9.1`\n\n```html\n@{if user === null}\n\t<div>sign in</div>\n@{else}\n\t<div>sign up</div>\n@{fi}\n\n<br />\n<br />\n\n@{if model.name === 'Peter'}\n\t@{if model.name === 'Lucia'}\n\t\t<div>Here is Lucia.</div>\n\t\t@{else}\n\t\t<div>Here is Peter.</div>\n\t@{fi}\n@{fi}\n\n<br />\n<br />\n\n@{if model.name !== 'Peter'}\n\t<div>Here is @{model.name}</div>\n@{fi}\n```\n\n## Looping\n\n__Array looping__:\n\n```html\n@{foreach m in [1, 2, 3, 4]}\n\t<div>@{m}, index: @{index}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.name}</div>\n\t<div>@{property.age.format('### ###')}</div>\n@{end}\n```\n\n__Object looping__:\n```html\n@{foreach m in { name: 'Peter', age: 32 }}\n\t<div>property: @{m.key}, value: @{m.value}</div>\n@{end}\n\n<br />\n<br />\n\n@{foreach property in model}\n\t<div>@{index}</div>\n\t<div>@{property.key}</div>\n\t<div>@{property.value}</div>\n@{end}\n```\n\n## Sections\n\n__View__:\n\n```html\n<!-- This content will be rendered out of @{body} -->\n@{section footer}\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n@{end}\n\n<h1>Homepage</h1>\n<br />\n```\n\n__Layout__:\n\n```html\n<html>\n....\n....\n\t@{body}\n....\n....\n\t@{section('footer')}\n....\n....\n</html>\n```\n\n__Output__:\n\n```html\n<html>\n....\n....\n\t<h1>Homepage</h1>\n\t<br />\n....\n....\n\t<div>THIS IS FOOTER FROM THE VIEW</div>\n....\n....\n</html>\n```\n\n## Assignment values\n\n__SUPPORTS ONLY:__ repository, model, user, session, global, get, post and config.\n\n```html\n@{repository.name = 'Peter'}\n<h1>@{repository.name}</h1>\n```\n\n__Output__:\n\n```html\n<h1>Peter</h1>\n```\n\n## Defining helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`.\n\n```javascript\nF.helpers.custom = function(str, num) {\n\t// this === controller\n\treturn str + ' = ' + num;\n};\n\nF.helpers.isTrue = function(value) {\n\treturn value ? true : false;\n};\n```\n\n```html\n@{custom('Peter', 25)}\n\n<!-- OR BETTER -->\n\n@{helpers.custom('Peter', 25)}\n\n<!-- OR -->\n\n@{if helpers.isTrue(true)}\n\tHelpers in condition. The helper <code>isTrue</code> won't work without <code>helpers</code> keyword.\n@{fi}\n```\n\n## Defining inline helpers\n\n__IMPORTANT__: Helpers can't be used in view engine conditions `@{if ...`. The inline helper has to by defined in the view.\n\n```html\n@{helper address(street, city)\n\t<h2>Address</h2>\n\t<div>@{street}</div>\n\t<div>@{city}</div>\n\t<br />\n@{end}\n\n<div>Address 1</div>\n@{address('Baker street 3', 'Wien')}\n\n<div>Address 2</div>\n@{address('Galvaniho 3', 'Bratislava')}\n```\n\n## Defining custom 3rd compilers\n\nThe view engine supports custom 3rd compilers. [How to write a connection to 3rd compiler?](#api~Framework~framework.onCompileView)\n\n```html\n<h2>HANDLEBARS</h2>\n\n@{compile handlebars}\n<h2>Handlebars: {{ title }}</h2>\n<p>{{ body }}</p>\n@{end}\n\n<h2>JADE</h2>\n\n@{compile jade}\nh3 View engine\np Total.js is amazing!\n@{end}\n```\n\n## Date feature\n\n`date` function compares the current date with date in the argument.\n\n```html\n@{if date('>', '2015-01-01') && date('<', '2015-01-10 12:00')}\n\t<div>! Happy new year !</div>\n@{fi}\n\n<!-- OR -->\n\n@{viewToggle(date('=', '2014-08-08'), 'important-partial-view')}\n```\n\n## Defining views in sub-directories\n\nThe default controller `default.js` includes views from the default views directory `/views`. To modify this behaviour, rename the controller's filename (e.g: `controllers/site.js`) to match a directory of the same name under views (e.g: `views/site/`). The views contained within the `site` directory would be displayed.\n\n__IMPORTANT__: char `~` is very important for mapping path of views, because `~index` is still routed into the `/views/index.html`.\n\n---\n\n## Localization\n\nThe framework automatically translates `@(text)` when compiling the views.\n\n- [How does localization work?](#pages~Localization)\n\n```html\n@{meta('@(My custom title)', '@(Description to translate)')}\n\n<h1>@(Hello world)</h1>\n<p>@(Lorem ipsum dolor sit amet, consectetur ...)</p>\n\n<!--\n\tOr you can translate by the resource key with @(#KEY).\n\tExample:\n-->\n\n<h1>@(#T-3403403030)</h1>\n<p>@(#T34930203922)</p>\n```\n\n## Auto binding values\n\n```javascript\nfunction view_contactform() {\n\tthis.view('contactform', { Email: '@', Name: 'Ano<n>ym' });\n};\n```\n\n## Reading a value from the configuration\n\n- +v2.8.0 supports binding values directly from the `CONF`\n\n```html\n<div>CONF.name: @{'%name'}</div>\n<div>CONF['manager-url']: @{'%manager-url'}</div>\n```\n\n## Simple routing to static files\n\n```html\n<!-- Will be routed into: `/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'logo.png'}\" />\n\n<!-- Will be routed into the `redtheme` theme and the URL will be `/redtheme/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=redtheme/logo.png'}\" />\n\n<!-- Will be routed into the default theme and the URL will be `/A_DEFAULT_THEME/img/logo.png` (find: `static-url-image` in docs) -->\n<img src=\"@{'=?/logo.png'}\" />\n\n<!-- Will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n<script src=\"@{'ui.js'}\"></script>\n\n<!-- Will create a tag <script> and the `src` attribute will be routed into: `/js/ui.js` (find: `static-url-script` in docs) -->\n@{import('ui.js')}\n\n<!-- Will create a tag <link> and the `href` attribute will be routed into: `/css/ui.css` (find: `static-url-style` in docs) -->\n@{import('ui.css')}\n\n<!-- +v3.3.3 Supports merging static files directly in views -->\n@{import('default.css + ui.css')}\n```\n\n__View__:\n\n```html\nEmail: @{text('Email')}\nName: @{text('Name')}\n```\n\n__Output__:\n\n```html\nEmail: <input type=\"text\" name=\"Email\" value=\"@\" />\nName: <input type=\"text\" name=\"Name\" value=\"Ano&lt;n&gt;ym\" />\n```\n\n## Paths\n\n```javascript\nvar output = VIEW('someview', ...);\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('@somepackage/someview', ...);\n// Targeted to --> /app/packages/somepackage.package/someview.html\n\nvar output = VIEW('=themename/someview', ...);\n// Targeted to --> /app/themes/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~\" --> is routed into the root of views (if the controller uses a theme then is routed into the root views of the theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('~someview', ...);\n// \"~~\" --> is routed into the root of views (if the controller has applied a theme)\n// Targeted to --> /app/views/someview.html\n\nvar output = VIEW('./absolute/path/someview', ...);\n// Targeted to --> /absolute/path/someview.html```",
       "group": "How does it work?",
       "name": "View engine"
     },
@@ -29318,7 +29963,7 @@
       "name": "Blocks (JS+CSS+HTML)"
     },
     {
-      "body": "Total.js `+v2.6.0` --> `debugging` mode watches all changes in your application's code and it restarts the app automatically if needed. Supports Node.js code inspection or watching of your own directories.\n\n## How to run Total.js Debug?\n\n- just __create a start__ script called e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\n// (Optional) Enables live reload\n// +v3.0.0\n// options.livereload = true; // opens WS on port 35729 (default) for live reload\n// options.livereload = 8005; // opens WS on port 8005 for live reload\n\nrequire('total.js/debug')(options);\n```\n\n- then run it `$ node debug.js`\n- this file will watch all changes of server-side code\n\n---\n\n## Live reloading\n\nThe client-side script tries to connect via WebSocket to `ws://127.0.0.1:35729`. Total.js `debugging` mode (in Total.js `+v3.0.0`) creates a WebSocket listener and if some file is changed then it sends to all listeners a message for reloading a browser.\n\n### How do I enable `livereload` on client-side?\n\n- Source-code: <https://github.com/totaljs/livereload>\n- CDN script: `https://cdn.totaljs.com/livereload.js` (only __400 bytes__ without GZIP compression)\n\n__Just append this script to your website:__\n\n```html\n<html>\n\t<head>\n\t</head>\n\t<body>\n\n\t\tYour HTML code.\n\n\t\t<!-- LIVE RELOAD SCRIPT -->\n\t\t<script src=\"https://cdn.totaljs.com/livereload.js\"></script>\n\n\t\t<!-- OR WITH A CUSTOM URL -->\n\t\t<script src=\"https://cdn.totaljs.com/livereload.js\" data-url=\"ws://livereload.totaljs.com\"></script>\n\n\t</body>\n</html>\n```\n\n### How do I enable `livereload` in Total.js app?\n\nLive reload works only with Total.js `+v3.0.0`. So just update your `debug.js` file like this:\n\n```javascript\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\n// !!! HERE !!!\n// !!! HERE !!!\n// !!! HERE !!!\n// (Optional) Enables live reloading\noptions.livereload = true;\n\nrequire('total.js/debug')(options);\n```\n\nAnd run it `$ node debug.js`. That's all.\n\n---\n\n__Good to know__:\n\n- livereload uses port `35729` with hostname `127.0.0.1`\n- it works with Total.js apps only!!!\n- you can feel a small delay\n- __important__ you can work with only the one instance of Total.js app and livereload feature\n- `+v3.3.0` performing `process.send('total:restart')` in the app will restart the app in debug mode only",
+      "body": "Total.js `+v2.6.0` --> `debugging` mode watches all changes in your application's code and it restarts the app automatically if needed. Supports Node.js code inspection or watching of your own directories.\n\n## How to run Total.js Debug?\n\n- just __create a start__ script called e.g. `debug.js` and put this content:\n\n```javascript\nrequire('total.js/debug');\n```\n\n__Advanced settings__:\n\n```javascript\n// ===================================================\n// FOR DEVELOPMENT\n// Total.js - framework for Node.js platform\n// https://www.totaljs.com\n// ===================================================\n\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\n// (Optional) Enables live reload\n// +v3.0.0\n// options.livereload = true; // opens WS on port 35729 (default) for live reload\n// options.livereload = 8005; // opens WS on port 8005 for live reload\n\nrequire('total.js/debug')(options);\n```\n\n- then run it `$ node debug.js`\n- this file will watch all changes of server-side code\n\n---\n\n## Live reloading\n\nThe client-side script tries to connect via WebSocket to `ws://127.0.0.1:35729`. Total.js `debugging` mode (in Total.js `+v3.0.0`) creates a WebSocket listener and if some file is changed then it sends to all listeners a message for reloading a browser.\n\n### How do I enable `livereload` on client-side?\n\n- Source-code: <https://github.com/totaljs/livereload>\n- CDN script: `https://cdn.totaljs.com/livereload.js` (only __400 bytes__ without GZIP compression)\n\n__Just append this script to your website:__\n\n```html\n<html>\n\t<head>\n\t</head>\n\t<body>\n\n\t\tYour HTML code.\n\n\t\t<!-- LIVE RELOAD SCRIPT -->\n\t\t<script src=\"https://cdn.totaljs.com/livereload.js\"></script>\n\n\t\t<!-- OR WITH A CUSTOM URL -->\n\t\t<script src=\"https://cdn.totaljs.com/livereload.js\" data-url=\"ws://livereload.totaljs.com\"></script>\n\n\t</body>\n</html>\n```\n\n### How do I enable `livereload` in Total.js app?\n\nLive reload works only with Total.js `+v3.0.0`. So just update your `debug.js` file like this:\n\n```javascript\nconst options = {};\n\n// (Optinal) custom IP\n// options.ip = '127.0.0.1';\n\n// (Optinal) custom port\n// options.port = parseInt(process.argv[2]);\n\n// (Optional) Overwrites config\n// options.config = { name: 'Total.js' };\n\n// (Optional) Sleeps the\n// options.sleep = 3000;\n\n// (Optional) Enables Google Chrome code inspector on the port below:\n// options.inspector = 9229;\n\n// (Optional) Your own custom directories in the application's root:\n// options.watch = ['adminer'];\n\n// !!! HERE !!!\n// !!! HERE !!!\n// !!! HERE !!!\n// (Optional) Enables live reloading\noptions.livereload = true;\n\nrequire('total.js/debug')(options);\n```\n\nAnd run it `$ node debug.js`. That's all.\n\n---\n\n__Good to know__:\n\n- livereload uses port `35729` with hostname `127.0.0.1`\n- it works with Total.js apps only!!!\n- you can feel a small delay\n- __important__ you can work with only the one instance of Total.js app and livereload feature\n- `+v3.3.0` performing `process.send('total:restart')` in the app will restart the app in debug mode only\n- `+v3.3.3` works with cluster",
       "group": "How does it work?",
       "name": "Debugging"
     },
