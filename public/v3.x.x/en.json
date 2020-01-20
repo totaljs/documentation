@@ -24280,6 +24280,13 @@
           "return": "Boolean"
         },
         {
+          "options": ["+v3.3.3"],
+          "changetype": 1,
+          "body": "Contains a current name of thread",
+          "name": "THREAD",
+          "return": "String"
+        },
+        {
           "changetype": 1,
           "options": ["+v3.3.0"],
           "body": "Is the process executed as a worker?",
@@ -29971,6 +29978,12 @@
       "body": "In Total.js `+v2.7.0` the Unit-Testing mechanism has been updated.\n\n## How the test has to be look?\n\n- each `test` has to be stored in `/your-app/tests/` directory\n- `tests` directory can contain sub-directories with tests\n- `test` is executed if the framework is fully started\n\n```javascript\n// Testing method:\nTEST('Test method', function() {\n\t$GET('Users', 100, function(err, response) {\n\t\tFAIL(err != null);\n\t\t// or\n\t\t// OK(err == null);\n\t});\n});\n\n// Testing controller's action\nTEST('Test action', '/api/newsletter/', function(builder) {\n\tbuilder.json({ email: 'petersirka@gmail.com' });\n\tbuilder.exec(function(err, response) {\n\t\tFAIL(response.success !== true);\n\t\t// or\n\t\t// OK(respons.success);\n\t});\n});\n```\n\n## How to run tests?\n\n- create `/you-app/test.js` file with this content:\n\n```javascript\n// Debug mode:\nrequire('total.js').http('test debug');\n\n// Release mode:\n// require('total.js').http('test');\n```\n\n__Terminal__:\n\n```bash\n$ node test.js\n```\n\n## Troubleshooting\n\n### Can I have multiple `FAIL()` or `OK()` method in a row?\n\n- Yes.\n\n### How can I add additional description to test?\n\n```javascript\nFAIL(err != null, 'error handling');\nFAIL(user != null, 'checking user instance');\nOK(response.success, 'email validation');\n```\n\n### Can I have tests in different sub-directories?\n\n- Yes.\n\n### Can I do a fake authorization?\n\nYes, `+v3.0.0` supports new method `TESTUSER(userObject, [flags])` which wraps `AUTH()` delegate. Just append this method before your `TEST()` method.\n\n```javascript\n// without flags\nTESTUSER({ id: 1, name: 'Peter \u0160irka' });\n\n// or with flags:\nTESTUSER({ id: 1, name: 'Peter \u0160irka' }, ['@admin']);\n\n// returns back older \"F.onAuthorize\" delegate\nTESTUSER();```",
       "group": "How does it work?",
       "name": "Unit-Testing"
+    },
+    {
+      "changetype": 1,
+      "body": "`+v3.3.3` __THREADS__ (currently beta) are a new part of Total.js framework. They are targeted for high-performance web applications. They mean server-less architecture in our conception because threads inherit a main core of application and developer can target to their functionality only.\n\n- __threads need a reverse proxy because they use multiple ports__\n- threads are primary targeted for REST services\n- each thread is executed as an independent thread in cluster mode\n- each thread must have own endpoint and routes optimized for this endpoint\n- [example with threads](https://github.com/totaljs/examples/tree/master/threads)\n\n## How do threads work?\n\n__Structure of application__:\n\n```html\n<!-- Basic functionality -->\n/definitions/\n\n<!-- Threads -->\n/threads/users/\n/threads/users/controllers/\n/threads/users/schemas/\n\n/threads/products/\n/threads/products/controllers/\n/threads/products/schemas/\n\n/threads/orders/\n/threads/orders/controllers/\n/threads/orders/schemas/\n\n<!-- Init scripts -->\nindex_users.js\nindex_products.js\nindex_orders.js\n```\n\n__Init script__: Total.js framework will load application in the standard mode (loads all Total.js dependencies) and then it evaluates required thread defined in init script. Each init script __must be executed with different PORT__.\n\n### Example of init scripts\n\n__init_users.js__:\n\n```javascript\nvar options = {};\noptions.thread = 'users';\n// options.port = 8000; --> default port number is loaded from command-line argument\nrequire('total.js').cluster.http('auto', 'debug', options);\n```\n\n__init_products.js__:\n\n```javascript\nvar options = {};\noptions.thread = 'products';\n// options.port = 8001; --> default port number is loaded from command-line argument\nrequire('total.js').cluster.http('auto', 'debug', options);\n```\n\n__init_orders.js__:\n\n```javascript\nvar options = {};\noptions.thread = 'orders';\n// options.port = 8002; --> default port number is loaded from command-line argument\nrequire('total.js').cluster.http('auto', 'debug', options);```",
+      "group": "How does it work?",
+      "name": "Threads"
     }
   ],
   "version": "3.x.x"
