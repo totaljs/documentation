@@ -20205,7 +20205,7 @@
           ]
         },
         {
-          "body": "Returns a list with of session instances.",
+          "body": "Returns a list with all of session instances according to the specific ID.",
           "name": "session.list",
           "params": [
             {
@@ -20213,6 +20213,31 @@
               "name": "id",
               "type": "String"
             },
+            {
+              "body": "A callback function",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "err",
+                    "body": "Error handler",
+                    "type": "Error"
+                  },
+                  {
+                    "name": "response",
+                    "body": "A response with Session objects.",
+                    "type": "Array"
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Returns a list with all of live session instances.",
+          "name": "session.listlive",
+          "params": [
             {
               "body": "A callback function",
               "name": "callback",
