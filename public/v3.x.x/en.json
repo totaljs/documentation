@@ -28364,6 +28364,7 @@
       ]
     },
     {
+      "changetype": 2,
       "name": "SchemaOptions",
       "group": "Schemas",
       "body": "`SchemaOptions` is an object created for each operation of `SchemaDeclaration`. It can be used in the scope of `SchemaDeclaration` operation like the example below:\n\n```javascript\nschema.setQuery(function($) {\n\t// $ === SchemaOptions\n});\n\nschema.setSave(function($) {\n\t// $ === SchemaOptions\n});\n\nschema.addWorkflow('send', function($) {\n\t// $ === SchemaOptions\n});```",
@@ -28447,6 +28448,13 @@
           "name": "$.headers",
           "return": "Object",
           "body": "Returns current `request` headers. It's alias for `$.controller.req.headers`."
+        },
+        {
+          "options": ["+v3.3.3"],
+          "changetype": 1,
+          "name": "$.ua",
+          "return": "String",
+          "body": "Returns parsed User-Agent."
         },
         {
           "options": ["+v3.3.0", "alias"],
