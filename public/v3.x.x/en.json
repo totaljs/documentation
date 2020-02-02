@@ -10702,6 +10702,16 @@
         },
         {
           "changetype": 1,
+          "body": "Returns a parsed user-agent.",
+          "name": "controller.ua",
+          "options": [
+            "+v3.3.3",
+            "readonly"
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
           "body": "Returns a current generated breadcrumb from the sitemap",
           "name": "controller.breadcrumb",
           "options": [
@@ -17373,6 +17383,13 @@
         {
           "body": "The request IP address",
           "name": "request.ip",
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Returns parsed user-agent",
+          "name": "request.ua",
           "return": "String"
         },
         {
