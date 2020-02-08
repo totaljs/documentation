@@ -847,17 +847,6 @@
           ]
         },
         {
-          "body": "This event is triggered if the controller renders head tags",
-          "name": "ON('controller-render-head')",
-          "params": [
-            {
-              "body": "Current controller",
-              "name": "controller",
-              "type": "FrameworkController"
-            }
-          ]
-        },
-        {
           "body": "This event is triggered if the controller renders meta tags",
           "name": "ON('controller_render_meta')",
           "params": [
