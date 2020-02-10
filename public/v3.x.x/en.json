@@ -2934,6 +2934,16 @@
           ]
         },
         {
+          "changetype": 1,
+          "default": "0",
+          "body": "Enables a limit for maximum count of processed requests in time according to the IP address. `0` disables this behaviour. If the quota is exceeded then the framework will return 503.",
+          "name": "allow_reqlimit",
+          "return": "Number",
+          "options": [
+            "+v3.3.3"
+          ]
+        },
+        {
           "default": "-20 minutes",
           "changetype": 1,
           "body": "Releases unused session in defined interval. Empty value will disable this behaviour.",
@@ -3268,7 +3278,7 @@
           "return": "String"
         },
         {
-          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md', '.ics']\n```\n\n__The config file declaration__:\n\n```html\nstatic_accepts            : .jpg, .ico, .js```",
+          "body": "Which files are allowed by the framework for handling static files? Values in config files have to be separated with the comma `,` (on one line).\n\n__Default__:\n\n```javascript\n['.jpg', '.png', '.gif', '.heif', '.heic', '.ico', '.js', '.mjs', '.coffee', '.css', '.txt', '.xml', '.woff', '.woff2', '.otf', '.ttf', '.eot', '.svg', '.zip', '.rar', '.pdf', '.docx', '.xlsx', '.doc', '.xls', '.html', '.htm', '.appcache', '.map', '.ogg', '.mp4', '.mp3', '.webp', '.webm', '.swf', '.package', '.json', '.md', '.ics']\n```\n\n__The config file declaration__:\n\n```html\nstatic_accepts            : .jpg, .ico, .js```",
           "name": "static_accepts",
           "return": "String Array"
         },
@@ -18546,6 +18556,36 @@
           "name": "String.prototype.decode",
           "params": [
 
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Encrypts UID.",
+          "name": "String.prototype.encodeUID",
+          "params": [
+              {
+                "name": "secret",
+                "type": "String",
+                "body": "A secret key",
+                "options": ["optional"]
+              }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.3.3"],
+          "body": "Decrypts UID. Can return `null`.",
+          "name": "String.prototype.decodeUID",
+          "params": [
+              {
+                "name": "secret",
+                "type": "String",
+                "body": "A secret key",
+                "options": ["optional"]
+              }
           ],
           "return": "String"
         },
