@@ -13047,6 +13047,11 @@
           "return": "Array"
         },
         {
+          "body": "Gets the value from the framework Preferences object.",
+          "name": "@{PREF.customkey}",
+          "return": "object"
+        },
+        {
           "body": "Gets the value from the framework configuration.",
           "name": "@{config.customKey}",
           "return": "Object"
