@@ -16337,6 +16337,12 @@
                   "type": "Object"
                 }
               ]
+            },
+            {
+              "body": "An identifier for replacing of existing file.",
+              "name": "id",
+              "type": "Number",
+              "options": ["optional"]
             }
           ],
           "return": "String"
@@ -28483,6 +28489,13 @@
           "name": "$.ip",
           "return": "String",
           "body": "Alias for `controller.ip`. __IMPORTANT__: controller must be assigned."
+        },
+        {
+          "changelog": 1,
+          "options": ["+v3.4.1"],
+          "name": "$.parent",
+          "return": "SchemaInstance",
+          "body": "Returns a parent schema instance (if exists)."
         },
         {
           "changetype": 1,
