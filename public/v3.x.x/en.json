@@ -18574,7 +18574,7 @@
           "changetype": 1,
           "options": ["+v3.4.0"],
           "body": "Encrypts UID.",
-          "name": "String.prototype.encodeUID",
+          "name": "String.prototype.encryptUID",
           "params": [
               {
                 "name": "secret",
@@ -18589,7 +18589,7 @@
           "changetype": 1,
           "options": ["+v3.4.0"],
           "body": "Decrypts UID. Can return `null`.",
-          "name": "String.prototype.decodeUID",
+          "name": "String.prototype.decryptUID",
           "params": [
               {
                 "name": "secret",
