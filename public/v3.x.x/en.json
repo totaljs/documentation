@@ -16301,7 +16301,7 @@
         },
         {
           "changetype": 1,
-          "changelog": "+v3.4.1 added <code>id<code> argument",
+          "changelog": "+v3.4.1 added <code>id</code> argument",
           "options": ["+v3.0.0"],
           "body": "Stores the file in FileStorage and returns File ID from FileStorage.",
           "name": "file.fs",
@@ -16512,9 +16512,7 @@
           "body": "Gets the FrameworkImage instance.",
           "go": "#api~FrameworkImage",
           "name": "file.image",
-          "params": [
-
-          ],
+          "params": [],
           "return": "FrameworkImage"
         }
       ],
