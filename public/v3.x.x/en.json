@@ -22824,11 +22824,12 @@
         },
         {
           "changetype": 1,
-          "body": "Can evaluate a route without request creation.",
+          "body": "Can evaluate a route without request creation. It returns controller or `undefined` if the route doesn't exist.",
           "name": "ACTION",
           "options": [
             "+v3.3.0"
           ],
+          "return": "Controller",
           "params": [
             {
               "body": "Method + URL address, example: <b>GET /</b>",
