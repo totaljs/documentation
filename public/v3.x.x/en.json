@@ -2926,6 +2926,16 @@
         {
           "changetype": 1,
           "default": "true",
+          "body": "Keeps resized images in temporary directory (can improve performance a lot). The framework checks existence of a resize file and if the file doesn't exist then it performs a resizing.",
+          "name": "allow_persistent_images",
+          "return": "Boolean",
+          "options": [
+            "+v3.4.2"
+          ]
+        },
+        {
+          "changetype": 1,
+          "default": "true",
           "body": "Creates a snapshot of important internal statistics from the application and stores it as `init_script_name.js.json` in 60 seconds interval.",
           "name": "allow_stats_snapshot",
           "return": "Boolean",
@@ -10489,6 +10499,8 @@
           "return": "FrameworkController"
         },
         {
+          "changetype": 2,
+          "changelog": "+v3.4.2 added <code>param</code> argument",
           "body": "Sends the message via `WebSocket`. It's similiar like to `controller.send()` but with simpler declaration.\n\n```javascript\nfunction some_websocket_action() {\n\tvar controller = this;\n\tcontroller.on('message', function(client) {\n\t\t// 1.\n\t\tcontroller.send2('Hello world!');\n\n\t\t// 2.\n\t\tcontroller.send2('Hello world!', (client, message) => client.user.isadmin);\n\t});\n};\n```",
           "name": "controller.send2",
           "options": [
@@ -10507,7 +10519,7 @@
               "options": [
                 "optional"
               ],
-              "type": "Function(client, message)"
+              "type": "Function(client, message, param)"
             },
             {
               "body": "A JSON replacer function",
@@ -10516,6 +10528,14 @@
                 "optional"
               ],
               "type": "Function"
+            },
+            {
+              "body": "A temporary param for a comparer function",
+              "name": "param",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
             }
           ],
           "return": "FrameworkController"
@@ -10688,6 +10708,16 @@
           "body": "Splitted path (original). E.g. `/Products/Shoes/` is parsed as `['Products', 'Shoes']`. Alias to `controller.req.split`.",
           "name": "controller.split",
           "return": "String Array"
+        },
+        {
+          "changetype": 1,
+          "body": "This property determines auto encoding/decoding of messages and you can disable encoding/decoding too via: `controller.encodedecode = false`.",
+          "name": "controller.encodedecode",
+          "options": [
+            "+v3.4.2",
+            "websocket"
+          ],
+          "return": "Boolean"
         },
         {
           "body": "Gets the controller name.",
@@ -13137,6 +13167,11 @@
                   "body": "Response stream - response.pipe(myWriteableStream).",
                   "name": "response",
                   "type": "Response"
+                },
+                {
+                  "body": "A custom param",
+                  "name": "param",
+                  "type": "Object"
                 }
               ],
               "type": "Function"
@@ -13176,6 +13211,14 @@
                 "optional"
               ],
               "type": "Number"
+            },
+            {
+              "body": "A custom param for a callback",
+              "name": "param",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
             }
           ],
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
@@ -13678,6 +13721,11 @@
                   "body": "IP address",
                   "name": "host",
                   "type": "String"
+                },
+                {
+                  "body": "A custom param",
+                  "name": "param",
+                  "type": "Object"
                 }
               ],
               "type": "Function"
@@ -13717,6 +13765,14 @@
                 "optional"
               ],
               "type": "Number"
+            },
+            {
+              "body": "A custom param for a callback",
+              "name": "param",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
             }
           ],
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
@@ -17032,6 +17088,17 @@
           "return": "String"
         },
         {
+          "changetype": 1,
+          "body": "__WebSocket__: enables raw Buffer mode for the websocket connection (only for incoming messages)",
+          "name": "buffer",
+          "options": [
+            "+v3.4.2",
+            "optional",
+            "websocket"
+          ],
+          "return": "String"
+        },
+        {
           "body": "The requests has to contain: __PUT method__",
           "example": "https://github.com/totaljs/examples/tree/master/routing-flags",
           "name": "put",
@@ -17244,6 +17311,42 @@
                 "optional"
               ],
               "type": "String"
+            }
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "options": ["v3.4.2"],
+          "body": "A preddefined and much simpler alias for `F.exists()`. You need to respond in the callback with e.g. `res.file()`, etc. or `res.throw404()` and then you need to perform `next()` method.\n\n```javascript\nreq.filecache(function(next, filename, req, res) {\n\t\n\t// next {Function} Must be executed when the file is processed\n\t// filename {String} absolute path to temporary file of this request (the file will be used as a cache for future requests)\n\t// req {Request}\n\t// res {Response}\n\n\tvar fileid = +req.query.id;\n\t\n\tif (isNaN(fileid)) {\n\t\tres.throw404();\n\t\tnext();\n\t\treturn;\n\t}\n\n\t// Usefull example:\n\tDBMS().blob().read(fileid, function(err, stream) {\n\t\tvar writer = Fs.createWriteStream(filename);\n\t\tstream.pipe(writer);\n\t\tFINISHED(writer, function() {\n\t\t\tDESTROY(writer);\n\t\t\tres.file(filename, null, null, next);\n\t\t});\n\t});\n\n});```",
+          "name": "Request.prototype.filecache",
+          "params": [
+            {
+              "body": "A callback",
+              "name": "callback",
+              "type": "Function",
+              "params": [
+                  {
+                    "name": "next",
+                    "body": "A continuer",
+                    "type": "Function"
+                  },
+                  {
+                    "name": "filename",
+                    "type": "String",
+                    "body": "A temporary filename for this request."
+                  },
+                  {
+                    "name": "req",
+                    "type": "Request",
+                    "body": "A request instance"
+                  },
+                  {
+                    "name": "res",
+                    "type": "Response",
+                    "body": "A response instance"
+                  }
+              ]
             }
           ],
           "return": "String"
@@ -18197,6 +18300,14 @@
           "name": "String.prototype.trim",
           "params": [
 
+          ],
+          "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "Replaces all values in the form `[something]` for `CONF.something`.",
+          "name": "String.prototype.env",
+          "params": [
           ],
           "return": "String"
         },
@@ -19285,6 +19396,22 @@
               "options": [
                 "optional"
               ],
+              "type": "Number"
+            }
+          ],
+          "return": "Number"
+        },
+        {
+          "changetype": 1,
+          "options": [
+            "+v3.4.2"
+          ],
+          "body": "EThe method performs `.toFixed(decimals)` and convert it to Number again.",
+          "name": "Number.prototype.fixed",
+          "params": [
+            {
+              "body": "Maximum decimals.",
+              "name": "decimals",
               "type": "Number"
             }
           ],
@@ -21333,13 +21460,20 @@
           "return": "String"
         },
         {
-          "changetype": 1,
+          "changetype": 2,
+          "changelog": "v3.4.2 adds a <code>filename</code> argument",
           "options": [
             "+v3.3.0"
           ],
           "body": "Registers a new motificator.\n\n```javascript\nMODIFY(function(type, filename, value, controller) {\n\t// @type {String} can contain: \"view\", \"style\", \"script\", \"static\" (static files like html, js, script, style, markdown or plain-text files)\n\t// @filename {String} can be empty\n\t// @value {String} a content (view, JS, CSS, etc.)\n\t// @controller {Object} can be \"undefined\"\n\n\t// MUST RETURN (UPDATED) VALUE\n\treturn value;\n});\n```",
           "name": "MODIFY",
           "params": [
+            {
+              "body": "A relative filename. With this argument the method applies modificator only for this filename.",
+              "name": "filename",
+              "type": "String",
+              "options": ["optional"]
+            },
             {
               "body": "A processor",
               "name": "fn",
@@ -21370,7 +21504,8 @@
           ]
         },
         {
-          "changetype": 1,
+          "changetype": 2,
+          "changelog": "Added <code>noarchive</code> argument.",
           "options": [
             "+v3.4.0"
           ],
@@ -21399,6 +21534,13 @@
               "body": "A custom message for `PAUSESERVER()`",
               "name": "pause_server_message",
               "type": "String",
+              "options": ["optional"]
+            },
+            {
+              "body": "Disables archiving of executed updates.",
+              "name": "noarchive",
+              "type": "Boolean",
+              "default": "false",
               "options": ["optional"]
             }
           ]
@@ -21782,6 +21924,29 @@
             }
           ],
           "return": "String"
+        },
+        {
+          "changetype": 1,
+          "body": "The method converts string to a hash.",
+          "options": [
+            "+v3.4.2"
+          ],
+          "name": "HASH",
+          "params": [
+            {
+              "body": "A value",
+              "name": "value",
+              "type": "String"
+            },
+            {
+              "body": "A hash type, can be: md5, sha1, sha256, sha512, crc32, crc32unsigned or default something like crc32",
+              "name": "type",
+              "type": "String",
+              "options": ["optional"]
+            }
+
+          ],
+          "return": "String/Number"
         },
         {
           "body": "Runs a worker. In other words: another script in a __new thread__. __IMPORTANT__: `stdout` stream is piped into the main process, so `console.log()` in the worker will be part of main process.",
@@ -23303,6 +23468,8 @@
           "options": [
             "+v3.0.0"
           ],
+          "changetype": 2,
+          "changelog": "Added <code>param</code> aragument",
           "body": "A global alias for `U.request()`",
           "name": "REQUEST",
           "params": [
@@ -23355,6 +23522,11 @@
                   "body": "IP address",
                   "name": "host",
                   "type": "String"
+                },
+                {
+                  "body": "A custom param",
+                  "name": "param",
+                  "type": "Object"
                 }
               ],
               "type": "Function"
@@ -23394,6 +23566,14 @@
                 "optional"
               ],
               "type": "Number"
+            },
+            {
+              "body": "A custom param for a callback",
+              "name": "param",
+              "options": [
+                "optional"
+              ],
+              "type": "Object"
             }
           ],
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
@@ -24056,6 +24236,8 @@
           "return": "Boolean"
         },
         {
+          "changetype": 2,
+          "changelog": "Added a support for subdomains.",
           "body": "__IMPORTANT__: it works only in `tests/*.js` files. For more info read __Unit-Testing__ in __How does it work section__.",
           "name": "TEST",
           "return": "undefined",
@@ -24066,7 +24248,7 @@
               "type": "String"
             },
             {
-              "body": "Relative/Absolute URL address",
+              "body": "Relative/Absolute URL address. URL can contain a subdomain in the form `[subdomain]/api/something/`.",
               "name": "url",
               "type": "String",
               "options": [
@@ -24403,6 +24585,13 @@
           "name": "REPO",
           "return": "Object",
           "options": ["+v3.3.0"]
+        },
+        {
+          "changetype": 1,
+          "body": "A temporary global variable for storing some data. It's cleaned every 7 minutes.",
+          "name": "TEMP",
+          "return": "Object",
+          "options": ["+v3.4.2"]
         },
         {
           "changetype": 1,
@@ -25398,7 +25587,7 @@
       ]
     },
     {
-      "body": "The __RESTBuilder__ (+v2.2.0) can create requests to different REST services.\n\n```javascript\nvar instance = new RESTBuilder('https://api.yourdomain.com/users/');\n\n// or\nRESTBuilder.make(function(builder) {\n    // builder === instance of RESTBuilder\n    builder.url('https://api.yourdomain.com/users/create/');\n    builder.post(self.body);\n    builder.schema('User');\n    builder.exec(function(err, response) {\n        !err && response.$save();    \n    });\n});\n\n```\n\n__Default values__:\n\n- RESTBuilder expects `JSON` response\n- default method `GET`\n- default timeout `10000` (10 seconds)\n- default maxlength `unlimited`\n- DNS resolver is enabled by default",
+      "body": "The __RESTBuilder__ (+v2.2.0) can create requests to different REST services.\n\n- `+v3.4.2` parses Total.js ErrorBuilder automatically to `err` argument in the `callback` function\n\n```javascript\nvar instance = new RESTBuilder('https://api.yourdomain.com/users/');\n\n// or\nRESTBuilder.make(function(builder) {\n    // builder === instance of RESTBuilder\n    builder.url('https://api.yourdomain.com/users/create/');\n    builder.post(self.body);\n    builder.schema('User');\n    builder.exec(function(err, response) {\n        !err && response.$save();    \n    });\n});\n\n```\n\n__Default values__:\n\n- RESTBuilder expects `JSON` response\n- default method `GET`\n- default timeout `10000` (10 seconds)\n- default maxlength `unlimited`\n- DNS resolver is enabled by default",
       "group": "Builders",
       "methods": [
         {
@@ -25429,6 +25618,27 @@
                   "name": "builder",
                   "type": "RESTBuilder",
                   "body": "New instance of RESTBuilder"
+                }
+              ]
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.4.2"],
+          "body": "Can modifies each instance of `RESTBuilder` in the one place.\n\n__Example__:\n\n```javascript\nRESTBuilder.upgrade(function(builder) {\n\tbuilder.$url = builder.$url.env();\n\tbuilder.$keepalive = true;\n});```",
+          "name": "RESTBuilder.upgrade",
+          "params": [
+            {
+              "body": "Upgrade method.",
+              "name": "fn",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "builder",
+                  "type": "RESTBuilder",
+                  "body": "RESTBuilder instance"
                 }
               ]
             }
@@ -26069,6 +26279,21 @@
           "return": "RESTBuilder"
         },
         {
+          "changetype": 1,
+          "options": ["+v3.4.2"],
+          "body": "The method converts a response accoring to the simple schema declaration.\n\n```javascript\nbuilder.convert('name:String,dtcreated:Date');```",
+          "name": "instance.convert",
+          "params": [
+            {
+              "body": "Inline schema declaration",
+              "name": "convertor",
+              "type": "String"
+            }
+          ],
+          "return": "RESTBuilder"
+        },
+
+        {
           "body": "Performs the request.",
           "alias": "instance.callback",
           "name": "instance.exec",
@@ -26499,6 +26724,37 @@
         },
         {
           "changetype": 1,
+          "options": ["+v3.4.2"],
+          "body": "Very helpful feature for verifying values of specific fields.\n\n```javascript\nNEWSCHEMA('Users', function(schema) {\n\n\tschema.define('countryid', 'Upper(3)', true);\n\n\t// Performs verification of field value when the schema is validating\n\tschema.verify('countryid', function($) {\n\n\t\t// PROPERTIES:\n\t\t//\u00a0$.user\n\t\t// $.ip\n\t\t// $.req\n\t\t// $.res\n\t\t// $.controller\n\t\t// $.session\n\t\t// $.sessionid\n\t\t// $.language\n\t\t// $.id\n\t\t// $.params\n\t\t// $.query\n\t\t// $.body\n\t\t// $.headers\n\t\t// $.ua\n\t\t// $.files\n\n\t\t// IMPORTANT METHODS:\n\t\t// $.callback(value) or $.success(value) or $.next(value);\n\t\t// $.invalid(err);\n\n\t\t// IMPORTANT PROPERTIES:\n\t\t// $.value {Object} a value from the model\n\t\t// $.model {Object} entire model\n\n\t\tDBMS().one('cl_country').where('id', $.value).error('error-country').callback(function(err, response) {\n\t\t\tif (err)\n\t\t\t\t$.invalid(err);\n\t\t\telse\n\t\t\t\t$.success(); // or $.success(response.id) -> it replaces a current value\n\t\t});\n\n\t});\n\n});```",
+          "name": "schema.verify",
+          "params": [
+            {
+              "body": "A field/property name",
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "body": "processor",
+              "name": "fn",
+              "params": [
+                {
+                  "name": "$",
+                  "body": "A SchemaVerifyOptions instance",
+                  "type": "SchemaVerifyOptions"
+                }
+              ],
+              "type": "Function"
+            },
+            {
+              "body": "A cache duration, e.g. <code>5 minutes</code>",
+              "name": "cache",
+              "type": "String",
+              "options": ["optional"]
+            }
+          ]
+        },
+        {
+          "changetype": 1,
           "options": ["+v3.3.0"],
           "body": "The method registers a new middleware which is evaluated before the schema operation is executed.\n\n```javascript\nNEWSCHEMA('Users', function(schema) {\n\n\tschema.middleware(function($, next) {\n\n\t\t// @$ {SchemaOptions} A name of operation\n\t\t// @next([stop]) {Function} A follow-up function\n\n\t\t// Good to know:\n\t\t// \"$.name\" contains a schema operation name (\"save\", \"get\", \"query\", \"remove\", \"workflow.NAME\", \"transform.name\")\n\n\t\tif ($.user.sa && $.name !== 'query')\n\t\t\tnext();\n\t\telse {\n\t\t\t$.invalid('error-permissions');\n\t\t\tnext(true); // The next operation will be canceled\n\t\t}\n\n\t});\n\n});```",
           "name": "schema.middleware",
@@ -26588,17 +26844,24 @@
           "return": "SchemaDeclaration"
         },
         {
-          "changetype": 1,
+          "changetype": 2,
+          "changelog": "+v3.4.2 adds <code>value</code> argument.",
           "options": [
             "+v3.3.0"
           ],
-          "body": "This method can return a Key/Value or Enum values defined via `schema.define()` method. Example:\n\n```javascript\nschema.define('a', ['A', 'B', 'C', 'D']);\nschema.define('b', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' });\n\nconsole.log(schema.cl('a'));\nconsole.log(schema.cl('b'));\n```",
+          "body": "This method can return a Key/Value or Enum values defined via `schema.define()` method. Example:\n\n```javascript\nschema.define('a', ['A', 'B', 'C', 'D']);\nschema.define('b', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' });\n\nconsole.log(schema.cl('a'));\nconsole.log(schema.cl('b'));\n\n// +v3.4.2 can replace existing value like this:\nschema.cl('a', ['C', 'B', 'D']);```",
           "name": "schema.cl",
           "params": [
             {
               "body": "A property name",
               "name": "name",
               "type": "String"
+            },
+            {
+              "body": "A new value for this property",
+              "name": "value",
+              "type": "Object",
+              "options": ["+v3.4.2", "optional"]
             }
           ],
           "return": "Object/Array"
@@ -27666,7 +27929,7 @@
       ],
       "name": "SchemaDeclaration",
       "changetype": 2,
-      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Number2');           // +v3.3.0 default value is null, not \"0\" (zero)\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'Base64');            // +v3.4.0 a value must be valid Base64 string\nschema.define('prop', 'YourSchemaName');\n\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n// (NOTE: the framework doesn't deserialize JSON to Object)\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// Function types instead of String types:\nschema.define('prop', UID);                 // +v3.3.0 is same as 'UID'\nschema.define('prop', String);              // is same as 'String'\nschema.define('prop', Number);              // is same as 'Number'\nschema.define('prop', Boolean);             // is same as 'Boolean'\nschema.define('prop', Object);              // is same as 'Object'\nschema.define('prop', Date);                // is same as 'Date'\n\n// How to get back default values?\nconsole.log(schema.schema.property_name.raw);\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
+      "body": "__Supported types__:\n\n```javascript\nschema.define('prop', 'String');            // supports auto-validation when is required\nschema.define('prop', 'String(LENGTH)');    // supports auto-validation when is required\nschema.define('prop', 'Capitalize');        // converts string to Capitalize (PascalCase) and it supports auto-validation when is required\nschema.define('prop', 'Capitalize2');       // +v3.0.0 converts string with first upper char and it supports auto-validation when is required\nschema.define('prop', 'Upper');             // converts string to UPPER CASE and it supports auto-validation when is required\nschema.define('prop', 'Lower');             // converts string to lower case and it supports auto-validation when is required\nschema.define('prop', 'Email');             // supports auto-validation when is required and \"maxlength\" is 120\nschema.define('prop', 'Phone');             // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Zip');               // supports auto-validation when is required and \"maxlength\" is 10\nschema.define('prop', 'UID');               // supports auto-validation when is required and \"maxlength\" is 20\nschema.define('prop', 'Number');            // supports auto-validation when is required \"value > 0\"\nschema.define('prop', 'Number2');           // +v3.3.0 default value is null, not \"0\" (zero)\nschema.define('prop', 'Url');               // supports auto-validation when is required and \"maxlength\" is 500\nschema.define('prop', 'Boolean');           // supports auto-validation when is required \"value === true\"\nschema.define('prop', 'Object');\nschema.define('prop', 'Date');\nschema.define('prop', 'Base64');            // +v3.4.0 a value must be valid Base64 string\nschema.define('prop', 'YourSchemaName');\n\nschema.define('prop', 'JSON');              // supports auto-validation when is required\n// (NOTE: the framework doesn't deserialize JSON to Object)\n\n// Array with as the above-mentioned types\nschema.define('prop', '[String]');          // supports auto-validation when is required\nschema.define('prop', '[String(LENGTH)]');  // supports auto-validation when is required\n// ...\n\n// +v2.3.0 New types ENUM + KEY & VALUE\nschema.define('prop', ['A', 'B', 'C', 'D']); // ENUM with string\nschema.define('prop', [1, 2, 0.3, 4]); // ENUM with numbers\n\nschema.define('prop', { a: 'VALUE A', b: 'VALUE B', c: 'VALUE C' }); // KEY & VALUE\nschema.define('prop', { a: [1, 2, 3, 4], b: { name: 'Total.js' } }); // KEY & VALUE (advanced)\n\n// Function types instead of String types:\nschema.define('prop', UID);                 // +v3.3.0 is same as 'UID'\nschema.define('prop', String);              // is same as 'String'\nschema.define('prop', Number);              // is same as 'Number'\nschema.define('prop', Boolean);             // is same as 'Boolean'\nschema.define('prop', Object);              // is same as 'Object'\nschema.define('prop', Date);                // is same as 'Date'\n\n// How to get back default values?\nconsole.log(schema.schema.property_name.raw);\n\n// +v3.4.2 supports inline and simple schema declaration\nschema.define('prop', 'street:String,zip:String,country:String(50),state:String');\n```\n\n__Iterate all schemas__:\n\n```javascript\nEACHSCHEMA(function(group, name, schema) {\n\tconsole.log(group, name);\n});```",
       "properties": [
         {
           "body": "Returns a schema definition.",
@@ -28454,6 +28717,13 @@
           "name": "$.options",
           "return": "Object",
           "body": "Custom options"
+        },
+        {
+          "changetype": 1,
+          "options": ["+v3.4.2"],
+          "name": "$.repo",
+          "return": "Object",
+          "body": "Alias for `$.model.$$repository`"
         },
         {
           "name": "$.error",
@@ -30034,7 +30304,7 @@
       "name": "Schemas"
     },
     {
-      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n###\u00a0CSS\n\n- All CSS code is minified `CONF.allow_compile_style`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` just remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Variables default values__:\n\n`+v3.1` supports a default value for non-exist variable.\n\n```css\nbody { font-family: $arial || 'Arial'; }\ndiv { border-radius: $radius || 10px; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `CONF.allow_compile_script`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`totaljs` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$\u00a0totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$\u00a0totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$\u00a0totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
+      "body": "> Total.js is doing the dirty job for you. Its core has implemented good tools to improve development and rendering website for all web browsers.\n\n## Release mode\n\n- The framework sets reasonable HTTP cache for the static files (IMG, JS, CSS).\n- The framework clears used resources in a time loop.\n- The release mode returns highly rated content.\n\n![Page speed](resources/html-pagespeed.png)\n\n---\n\n### HTML\n\n- All comments are removed from the HTML.\n- The HTML code is minified under compilation.\n\n![HTML output](resources/html-sourcecode.gif)\n\n---\n\n###\u00a0CSS\n\n- All CSS code is minified `CONF.allow_compile_style`\n- CSS supports simple variable declaration `+v1.9.0`\n- CSS supports - auto vendor prefixes - [Example: auto-vendor-prefixes](https://github.com/totaljs/examples/tree/master/css-auto-vendor-prefixes).\n- You can disable `auto-vendor-prefixes` just remove comment from the CSS: `/*auto*/`\n- Inline styles in the HTML `<style type=\"text/css\">`... are compiled and minified.\n- You can rewrite built-in compilation - [SASS example](https://github.com/totaljs/examples/tree/master/external-compile-sass).\n- If the filename contains `.min` then it won't be compiled and minified.\n- All minified styles are stored in `/tmp/` directory.\n- `+v3.4.2` all uniform colors are shortened e.g. `#000000` to `#000`\n\n__CSS - Variables__:\n\n```css\n$color: red;\n$aria: Arial;\n\nbody { font-family: $arial; }\np { color: $color; }\n```\n\n__CSS - Variables default values__:\n\n`+v3.1` supports a default value for non-exist variable.\n\n```css\nbody { font-family: $arial || 'Arial'; }\ndiv { border-radius: $radius || 10px; }\n```\n\n__CSS - Nesting__:\n\n```css\nnav {\n    ul {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n    }\n\n    li { display: inline-block; }\n\n    a {\n        display: block;\n        padding: 6px 12px;\n        text-decoration: none;\n    }\n}\n```\n\n```css\nnav ul {margin: 0;padding: 0;list-style: none;}\nnav li {display: inline-block;}\nnav a {display: block;padding: 6px 12px;text-decoration: none;}\n```\n\n__CSS - Auto vendor prefixes__:\n\n```css\n/*auto*/\n\n.animate { animation: myfirst 5s; }\n\n@keyframes myfirst\n{\n    from { background: red; }\n    to { background: yellow; }\n}\n```\n\n```css\n.animate{animation:myfirst 5s;-webkit-animation:myfirst 5s;-moz-animation:myfirst 5s;-o-animation:myfirst 5s;}@keyframes myfirst{from{background:red;}to{background:yellow;}}@-webkit-keyframes myfirst{from{background:red;}to{background:yellow;}}@-moz-keyframes myfirst{from{background:red;}to{background:yellow;}}@-o-keyframes myfirst{from{background:red;}to{background:yellow;}}\n```\n\n### JavaScript\n\n- All JavaScript code is minified `CONF.allow_compile_script`\n- Inline JavaScripts in the HTML `<script type=\"text/javascript\">` ... are minified.\n- You can rewrite built-in minification - [Example: Uglify](https://github.com/totaljs/examples/tree/master/external-compile-uglifyjs).\n- If the filename contains `.min` then it won't be minified.\n- All minified scripts are stored in `/tmp/` directory.\n\n```javascript\n$(document).ready(function() {\n    alert('WELCOME');\n});\n```\n\n__Output__:\n\n```javascript\n$(document).ready(function(){alert('WELCOME');});\n```\n\n## Bonus\n\n`totaljs` (`+v1.8.0`) binary supports minifying HTML, JS and CSS files. You can minify each HTML, CSS or JS file outside of Total.js project.\n\n__Example__:\n\n```bash\n$\u00a0totaljs --minify example.html\n```\n\n__Output:__ example.min.html\n\n```bash\n$\u00a0totaljs --minify example.js\n```\n\n__Output:__ example.min.js\n\n```bash\n$\u00a0totaljs --minify example.css\n```\n\n__Output:__ example.min.css",
       "group": "How does it work?",
       "name": "HTML, JS, CSS"
     },
@@ -30059,7 +30329,7 @@
       "name": "Themes"
     },
     {
-      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## Extending files\n\n`+v3.1` supports extending files from bundles. Now you can rename file `--FILENAME.js`, `--FILENAME.css` or `--FILENAME.html` and this file will be inserted into the target file extracted from bundle. Target file won't be overwritten.\n\n__Example__:\n\n```html\n/bundles/cms.bundle\n/themes/admin/public/--ui.js\n```\n\n- the content of `--ui.js` will be inserted into the `/themes/admin/public/ui.js` file at the end of file\n- `+v3.3.0` supports extending `--filename` in `bundles` directly\n\n## .bundleignore\n\n`+v3.1` You can create `/.bundleignore` file which can contains a list of ignore rules. This file must be in the root of app and its definition is similar to `.gitignore` file.\n\n__Example__:\n\n```html\n/download/*.pdf\n/private/*\n*.zip\n```\n\n## External Bundles\n\n`+v3.1` Total.js can download a bundle from URL address. Just create a plain-text file with `.url` extension:\n\n__File__:\n\n```html\n/bundles/cms.url\n```\n\n__Content__:\n\n```html\nhttps://cdn.totaljs.com/bundles/cms@12.bundle\n```\n\nTotal.js downloads the bundle into this direcotry as `cms.bundle` when is starting. So the external bundle will be a part of `/bundles/` directory. If you restart app then the framework will download again bundle.\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
+      "body": "Bundles are big feature in Total.js framework `+v3.0.0`. You can create unlimited count of bundles and a bundle can be a part or core of the application. Imagine that you have a CMS with many files and you don't want to see these files in your e.g. new project because they are useless for you but they are important for the project. So you can create a bundle which will contain these files and your project structure will be really clean. You will love bundles.\n\nBundle is something similar like `.zip` file, but it's not real `zip`. Bundle file has same structure like Total.js package but it has another extension called `.bundle`.\n\n---\n\n## How does it work?\n\n__Content of bundle `cms.bundle`__:\n\n```html\n/controllers/default.js\n/definitions/helpers.js\n/config\n```\n\n__Project structure__:\n\n```html\n/bundles/cms.bundle\n/definition/db.js\n/config\n/debug.js\n```\n\n__If you run the app__ then the project structure will be updated by adding `.src` directory like this:\n\n```html\n/.src/\n/.src/controllers/default.js\n/.src/definitions/helpers.js\n/.src/definitions/db.js\n/.src/config\n/definition/db.js\n/config\n/debug.js\n```\n\nThe framework extracts all bundles + copies all files from project structure into `.src` directory. Then the framework runs app from `.src` directory.\n\n__Good to know__:\n\n- Total.js framework extracts bundles first\n- then the framework (IMPORTANT) merges `resources` and `config` files\n- then the framework copies/rewrites all files from project directory\n- then the framework runs the app from `.src` directory (this directory will be as root)\n- the framework creates a file of file structure called `/.src/bundle.json` (so if you remove/create some file then the framework updates `.src` structure automatically)\n- `.src/databases` directory is synchronized only for new files, in other words: framework doesn't modify this directory\n- `+v3.4.2` framework skips all bundles with `-bk.bundle` in filename\n\n---\n\n## How to create a bundle?\n\nIt's very easy, first you need to install Total.js as a global module `$ npm install -g total.js` and then you can use CLI tool called `$ tpm` (Total Package Manager)\n\n```bash\n$ cd yourapp\n$ tpm bundle myapp\n```\n\n## Extending files\n\n`+v3.1` supports extending files from bundles. Now you can rename file `--FILENAME.js`, `--FILENAME.css` or `--FILENAME.html` and this file will be inserted into the target file extracted from bundle. Target file won't be overwritten.\n\n__Example__:\n\n```html\n/bundles/cms.bundle\n/themes/admin/public/--ui.js\n```\n\n- the content of `--ui.js` will be inserted into the `/themes/admin/public/ui.js` file at the end of file\n- `+v3.3.0` supports extending `--filename` in `bundles` directly\n\n## .bundleignore\n\n`+v3.1` You can create `/.bundleignore` file which can contains a list of ignore rules. This file must be in the root of app and its definition is similar to `.gitignore` file.\n\n__Example__:\n\n```html\n/download/*.pdf\n/private/*\n*.zip\n```\n\n## External Bundles\n\n`+v3.1` Total.js can download a bundle from URL address. Just create a plain-text file with `.url` extension:\n\n__File__:\n\n```html\n/bundles/cms.url\n```\n\n__Content__:\n\n```html\nhttps://cdn.totaljs.com/bundles/cms@12.bundle\n```\n\nTotal.js downloads the bundle into this direcotry as `cms.bundle` when is starting. So the external bundle will be a part of `/bundles/` directory. If you restart app then the framework will download again bundle.\n\n## FAQ\n\n### Can a bundle contain packages?\nYes, it can contain packages.\n\n---\n\n### Can a bundle contain sub-bundles?\nNo, it's not possible.\n\n---\n\n### Are files with same names between bundles and project structure rewritten?\nYes, they are rewritten according to the project structure because these files have a bigger priority than files in bundles. __IMPORTANT__: `config` files, `resources`, `sitemap` file, `workflows` file, `versions` file and `dependencies` files are merged.",
       "group": "How does it work?",
       "name": "Bundles"
     },
