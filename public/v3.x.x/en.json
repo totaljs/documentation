@@ -29570,6 +29570,26 @@
           "body": "It can be used for one-line async operations. It returns `SUCCESS()` result if the callback doesn't return error. A simple usage: \n\n```javascript\n// Returns SUCCESS(true)\nNOSQL('users').remove().where('id', '9289').callback($.done());\n// Output will be without value: { success: true }\n\n// Returns SUCCESS(true, response_from_callback)\nNOSQL('users').remove().where('id', '9289').callback($.done(true));\n// Output will be a value from DB: { success: true, value: RESULT_FROM_DB }\n\nNOSQL('users').remove().where('id', '9289').callback($.done({ removed: true }));\n// +v3.3.0 Output will be: { success: true, value: { removed: true }}```"
         },
         {
+          "changetype": 1,
+          "name": "$.successful",
+          "params": [
+            {
+              "name": "callback",
+              "body": "A callback for valid response",
+              "type": "Function",
+              "params": [
+                {
+                  "name": "response",
+                  "body": "A value from some operation",
+                  "type": "Object"
+                }
+              ]
+            }
+          ],
+          "return": "Function",
+          "body": "The method can help with async operations, it combines `$.invalid()` method with your callback. So the method automatically handlers errors and you can focus on the valid response. The example below describe more:\n\n```javsacript\nDBMS().one('tbl_user').error('error-users-404').callback($.successful(function(response) {\n\t// This callback will be executed only if the previous callback doesn't return error.\n\t// If the previous callback returns error then schema will respond with $.invalid()\n}));```"
+        },
+        {
           "name": "$.invalid",
           "params": [
             {
