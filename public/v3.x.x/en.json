@@ -23579,7 +23579,7 @@
           "return": "EventEmitter(begin, end, data(chunk, percentage))"
         },
         {
-          "body": "Executes async operations.\n\n```javascript\n\t$ASYNC('Product', function(err, response) {\n\t\tconsole.log(err, response);\n\t}).$workflow('load').$workflow('send').$save();```",
+          "body": "Executes async operations.\n\n```javascript\n$ASYNC('Product', function(err, response) {\n\tconsole.log(err, response);\n}).$workflow('load').$workflow('send').$save();```",
           "name": "$ASYNC",
           "options": [
             "+v2.9.0"
@@ -28069,19 +28069,21 @@
           ]
         },
         {
+          "changetype": 2,
+          "changelog": "<code>index</code> argument can be string",
           "name": "model.$response",
           "params": [
             {
               "name": "index",
-              "body": "Response index",
-              "type": "Number",
+              "type": "Number/String",
+              "body": "Index or operation name",
               "options": [
                 "optional"
               ]
             }
           ],
           "return": "Object or Array",
-          "body": "Returns a response from executed operations in chaining of `SchemaInstance.$async()`. If the `index` is not defined then the method returns Array of all responses.\n\n```javascript\n// Returns array\nconsole.log(model.$response());\n\n// Returns object\nconsole.log(model.$response(1));```",
+          "body": "The method returns a value from multiple async operations from the same schema.\n\n```javascript\n// Returns all responses\nmodel.$response();\n\n// Returns a response at 0 position\nmodel.$response(0);\n\n// Returns a response at 1 position\nmodel.$response(1);\n\n// +v3.4.4\n// Returns a response from workflow \"exec\"\nmodel.$response('workflow.exec');\n\n// +v3.4.4\n// Returns a response from \"save\" operation\nmodel.$response('save');\n```",
           "options": [
             "advanced"
           ]
@@ -28997,6 +28999,26 @@
             "+v3.0.0",
             "advanced",
             "alias"
+          ]
+        },
+        {
+          "changetype": 2,
+          "changelog": "<code>index</code> argument can be string",
+          "name": "$.response",
+          "params": [
+            {
+              "name": "index",
+              "type": "Number/String",
+              "body": "Index or operation name",
+              "options": [
+                "optional"
+              ]
+            }
+          ],
+          "return": "Object",
+          "body": "The method returns a value from multiple async operations from the same schema.\n\n```javascript\n// Returns all responses\n$.response();\n\n// Returns a response at 0 position\n$.response(0);\n\n// Returns a response at 1 position\n$.response(1);\n\n// +v3.4.4\n// Returns a response from workflow \"exec\"\n$.response('workflow.exec');\n\n// +v3.4.4\n// Returns a response from \"save\" operation\n$.response('save');```",
+          "options": [
+            "+v3.4.0"
           ]
         },
         {
