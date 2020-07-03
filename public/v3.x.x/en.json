@@ -27801,6 +27801,11 @@
           "name": "schema.addHook",
           "params": [
             {
+              "name": "name",
+              "body": "A hook name",
+              "type": "String"
+            },
+            {
               "body": "A callback delegate",
               "name": "callback",
               "params": [
@@ -27836,6 +27841,11 @@
           "body": "Adds a new operation.",
           "name": "schema.addOperation",
           "params": [
+            {
+              "name": "name",
+              "body": "A operation name",
+              "type": "String"
+            },
             {
               "body": "A callback delegate",
               "name": "callback",
@@ -28518,7 +28528,7 @@
           "params": [
             {
               "name": "name",
-              "body": "A hook name",
+              "body": "A transformation name",
               "type": "String"
             },
             {
